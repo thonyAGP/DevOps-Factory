@@ -57,9 +57,9 @@ interface ProjectStatus {
   configured: boolean;
 }
 
-const gh = (cmd: string): string => {
+const sh = (cmd: string): string => {
   try {
-    return execSync(`gh ${cmd}`, { encoding: "utf-8" }).trim();
+    return execSync(cmd, { encoding: "utf-8" }).trim();
   } catch {
     return "";
   }
@@ -69,8 +69,8 @@ const getLatestWorkflowRun = (
   repo: string,
   branch: string
 ): WorkflowRun | null => {
-  const result = gh(
-    `api repos/${repo}/actions/runs?branch=${branch}&per_page=1 --jq '.workflow_runs[0] | {conclusion, name, html_url, created_at, head_branch}'`
+  const result = sh(
+    `gh api "repos/${repo}/actions/runs?branch=${branch}&per_page=1" --jq '.workflow_runs[0] | {conclusion, name, html_url, created_at, head_branch}'`
   );
   if (!result || result === "null") return null;
   try {
@@ -81,8 +81,8 @@ const getLatestWorkflowRun = (
 };
 
 const getOpenPRs = (repo: string): PRInfo[] => {
-  const result = gh(
-    `pr list --repo ${repo} --json number,title,state,url,author,labels,createdAt --jq '[.[] | {number, title, state, html_url: .url, user: {login: .author.login}, labels: [.labels[].name], created_at: .createdAt}]'`
+  const result = sh(
+    `gh pr list --repo ${repo} --json number,title,state,url,author,labels,createdAt --jq '[.[] | {number, title, state, html_url: .url, user: {login: .author.login}, labels: [.labels[].name], created_at: .createdAt}]'`
   );
   try {
     return JSON.parse(result || "[]") as PRInfo[];
@@ -410,11 +410,11 @@ const main = () => {
     const title = `DevOps Report - ${date}`;
 
     // Close previous daily reports
-    const openIssues = gh(
-      `issue list --repo ${process.env.GITHUB_REPOSITORY} --label "daily-report" --state open --json number --jq ".[].number"`
+    const openIssues = sh(
+      `gh issue list --repo ${process.env.GITHUB_REPOSITORY} --label "daily-report" --state open --json number --jq ".[].number"`
     );
     for (const num of openIssues.split("\n").filter(Boolean)) {
-      gh(`issue close ${num} --repo ${process.env.GITHUB_REPOSITORY}`);
+      sh(`gh issue close ${num} --repo ${process.env.GITHUB_REPOSITORY}`);
     }
 
     // Create new issue
