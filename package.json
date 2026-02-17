@@ -1,0 +1,22 @@
+{
+  "name": "devops-factory",
+  "version": "1.0.0",
+  "description": "AI Factory - Automated DevOps for multi-project management",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "scan": "tsx scripts/scan-and-configure.ts",
+    "dashboard": "tsx scripts/build-dashboard.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

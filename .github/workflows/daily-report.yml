@@ -1,0 +1,43 @@
+name: Daily Report
+
+on:
+  schedule:
+    # Every day at 7:00 UTC (8:00 Madrid time)
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Run scan first to get fresh data
+      - name: Scan repos
+        run: pnpm scan
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+
+      # Then generate report and create issue
+      - name: Generate daily report
+        run: pnpm dashboard
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_ACTIONS: "true"

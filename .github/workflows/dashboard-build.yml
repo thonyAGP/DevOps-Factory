@@ -1,0 +1,70 @@
+name: Build Dashboard
+
+on:
+  schedule:
+    # Every 4 hours
+    - cron: "0 */4 * * *"
+  workflow_dispatch:
+  # Also run after scan completes
+  workflow_run:
+    workflows: ["Scan Repos"]
+    types: [completed]
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build dashboard
+        run: pnpm dashboard
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_ACTIONS: "true"
+
+      - name: Commit dashboard
+        run: |
+          git config user.name "DevOps Factory Bot"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add dashboard/
+          git diff --cached --quiet || git commit -m "chore: update dashboard"
+          git push
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+
+  deploy-pages:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard/
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

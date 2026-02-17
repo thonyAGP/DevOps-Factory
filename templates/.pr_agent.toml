@@ -1,0 +1,20 @@
+# Qodo Merge / PR-Agent configuration
+# Copy this to the root of target repos
+
+[pr_reviewer]
+extra_instructions = """
+Focus on:
+- Security vulnerabilities (OWASP top 10)
+- Edge cases in business logic
+- Missing error handling
+- Performance issues (N+1 queries, memory leaks)
+- Missing tests for critical paths
+Do NOT comment on style or formatting.
+"""
+
+[pr_description]
+publish_labels = true
+add_original_user_description = true
+
+[pr_code_suggestions]
+num_code_suggestions = 3

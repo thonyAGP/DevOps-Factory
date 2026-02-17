@@ -1,0 +1,38 @@
+# DevOps-Factory: Qodo Merge (PR-Agent) Template
+# Complementary AI review via Gemini (free tier: 75 PRs/month)
+# Focus: security, edge cases, test suggestions
+
+name: Qodo Merge
+
+on:
+  pull_request:
+    types: [opened, reopened]
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  pr-agent:
+    if: |
+      (github.event_name == 'pull_request') ||
+      (github.event_name == 'issue_comment' &&
+       contains(github.event.comment.body, '/review') &&
+       github.event.issue.pull_request)
+    runs-on: ubuntu-latest
+    name: Qodo Merge Review
+    steps:
+      - uses: Codium-ai/pr-agent@main
+        env:
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Auto-review on PR open
+          auto_review: "true"
+          # Auto-describe PR
+          auto_describe: "true"
+          # Auto-improve suggestions
+          auto_improve: "true"

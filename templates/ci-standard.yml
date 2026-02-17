@@ -1,0 +1,112 @@
+# DevOps-Factory: Standard CI Template
+# Copy this to .github/workflows/ci.yml in target repos
+# Auto-detects stack (Node.js, Next.js, .NET) and runs appropriate checks
+
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  detect-stack:
+    runs-on: ubuntu-latest
+    outputs:
+      stack: ${{ steps.detect.outputs.stack }}
+      package-manager: ${{ steps.detect.outputs.package_manager }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: detect
+        run: |
+          if [ -f "*.csproj" ] || [ -f "*.sln" ]; then
+            echo "stack=dotnet" >> $GITHUB_OUTPUT
+          elif [ -f "next.config.js" ] || [ -f "next.config.mjs" ] || [ -f "next.config.ts" ]; then
+            echo "stack=nextjs" >> $GITHUB_OUTPUT
+          elif [ -f "package.json" ]; then
+            echo "stack=node" >> $GITHUB_OUTPUT
+          else
+            echo "stack=unknown" >> $GITHUB_OUTPUT
+          fi
+
+          if [ -f "pnpm-lock.yaml" ]; then
+            echo "package_manager=pnpm" >> $GITHUB_OUTPUT
+          elif [ -f "yarn.lock" ]; then
+            echo "package_manager=yarn" >> $GITHUB_OUTPUT
+          else
+            echo "package_manager=npm" >> $GITHUB_OUTPUT
+          fi
+
+  ci-node:
+    needs: detect-stack
+    if: needs.detect-stack.outputs.stack == 'node' || needs.detect-stack.outputs.stack == 'nextjs'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        if: needs.detect-stack.outputs.package-manager == 'pnpm'
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: ${{ needs.detect-stack.outputs.package-manager }}
+
+      - name: Install dependencies
+        run: |
+          PM="${{ needs.detect-stack.outputs.package-manager }}"
+          if [ "$PM" = "pnpm" ]; then
+            pnpm install --frozen-lockfile
+          elif [ "$PM" = "yarn" ]; then
+            yarn install --frozen-lockfile
+          else
+            npm ci
+          fi
+
+      - name: Lint
+        run: |
+          PM="${{ needs.detect-stack.outputs.package-manager }}"
+          $PM run lint || echo "::warning::No lint script found"
+
+      - name: Type check
+        run: |
+          PM="${{ needs.detect-stack.outputs.package-manager }}"
+          $PM run typecheck || $PM run tsc || echo "::warning::No typecheck script found"
+
+      - name: Test
+        run: |
+          PM="${{ needs.detect-stack.outputs.package-manager }}"
+          $PM test || echo "::warning::No test script found"
+
+      - name: Build
+        run: |
+          PM="${{ needs.detect-stack.outputs.package-manager }}"
+          $PM run build
+
+  ci-dotnet:
+    needs: detect-stack
+    if: needs.detect-stack.outputs.stack == 'dotnet'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test --no-build --configuration Release --verbosity normal

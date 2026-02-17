@@ -1,0 +1,45 @@
+name: Scan Repos
+
+on:
+  schedule:
+    # Every 6 hours
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Scan and configure repos
+        run: pnpm scan
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+
+      - name: Commit scan report
+        run: |
+          git config user.name "DevOps Factory Bot"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add dashboard/scan-report.json
+          git diff --cached --quiet || git commit -m "chore: update scan report"
+          git push
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}

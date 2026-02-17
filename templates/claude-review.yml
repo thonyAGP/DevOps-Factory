@@ -1,0 +1,79 @@
+# DevOps-Factory: Claude Code PR Review Template
+# Triggered on PR open/update - reviews code with Claude Haiku (cost-efficient)
+# Escalates to Sonnet for complex changes (>500 lines or security-sensitive)
+
+name: Claude Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: read
+
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    # Skip bot PRs to avoid review loops, except Renovate/Dependabot
+    if: |
+      github.event.pull_request.user.login != 'github-actions[bot]' ||
+      contains(github.event.pull_request.labels.*.name, 'ai-fix')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR diff
+        id: diff
+        run: |
+          DIFF=$(gh pr diff ${{ github.event.pull_request.number }} --repo ${{ github.repository }})
+          LINES=$(echo "$DIFF" | wc -l)
+          echo "lines=$LINES" >> $GITHUB_OUTPUT
+
+          # Detect security-sensitive files
+          SECURITY_FILES=$(echo "$DIFF" | grep -E '^\+\+\+.*\.(env|secret|key|auth|password|token|credential)' || true)
+          if [ -n "$SECURITY_FILES" ]; then
+            echo "security_sensitive=true" >> $GITHUB_OUTPUT
+          else
+            echo "security_sensitive=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Determine model
+        id: model
+        run: |
+          LINES=${{ steps.diff.outputs.lines }}
+          SECURITY=${{ steps.diff.outputs.security_sensitive }}
+          if [ "$LINES" -gt 500 ] || [ "$SECURITY" = "true" ]; then
+            echo "model=claude-sonnet-4-5-20250929" >> $GITHUB_OUTPUT
+            echo "reason=Large diff ($LINES lines) or security-sensitive files" >> $GITHUB_OUTPUT
+          else
+            echo "model=claude-haiku-4-5-20251001" >> $GITHUB_OUTPUT
+            echo "reason=Standard review ($LINES lines)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Claude Review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          model: ${{ steps.model.outputs.model }}
+          direct_prompt: |
+            Review this PR focusing on:
+            1. **Bugs**: Logic errors, edge cases, potential runtime errors
+            2. **Security**: Injection, XSS, hardcoded secrets, OWASP top 10
+            3. **Performance**: N+1 queries, unnecessary re-renders, memory leaks
+            4. **TypeScript**: any types, missing error handling, unsafe assertions
+
+            Model selection: ${{ steps.model.outputs.reason }}
+
+            Be concise. Only comment on actual issues, not style preferences.
+            Use inline suggestions with ```suggestion blocks when possible.
+            If the code looks good, say so briefly.
+          timeout_minutes: 10
