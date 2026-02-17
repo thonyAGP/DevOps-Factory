@@ -410,13 +410,22 @@ const main = () => {
     const title = `DevOps Report - ${date}`;
 
     // Close previous daily reports
-    gh(
-      `issue list --repo ${process.env.GITHUB_REPOSITORY} --label "daily-report" --state open --json number --jq '.[].number' | while read num; do gh issue close $num --repo ${process.env.GITHUB_REPOSITORY}; done`
+    const openIssues = gh(
+      `issue list --repo ${process.env.GITHUB_REPOSITORY} --label "daily-report" --state open --json number --jq ".[].number"`
     );
+    for (const num of openIssues.split("\n").filter(Boolean)) {
+      gh(`issue close ${num} --repo ${process.env.GITHUB_REPOSITORY}`);
+    }
 
-    gh(
-      `issue create --repo ${process.env.GITHUB_REPOSITORY} --title "${title}" --body-file dashboard/daily-report.md --label "daily-report"`
-    );
+    // Create new issue
+    try {
+      execSync(
+        `gh issue create --repo ${process.env.GITHUB_REPOSITORY} --title "${title}" --body-file dashboard/daily-report.md --label "daily-report"`,
+        { encoding: "utf-8", stdio: "inherit" }
+      );
+    } catch (e) {
+      console.error("Failed to create issue:", e);
+    }
     console.log(`GitHub Issue created: ${title}`);
   }
 };
