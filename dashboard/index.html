@@ -5,29 +5,630 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevOps Factory - Dashboard</title>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #0d1117;
       color: #c9d1d9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-    .placeholder {
-      text-align: center;
       padding: 2rem;
     }
-    h1 { color: #58a6ff; }
-    p { color: #8b949e; margin-top: 1rem; }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .header h1 { color: #58a6ff; font-size: 1.8rem; }
+    .header .timestamp { color: #8b949e; font-size: 0.85rem; margin-top: 0.5rem; }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .summary-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .summary-card .number { font-size: 2rem; font-weight: bold; }
+    .summary-card .label { color: #8b949e; font-size: 0.85rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid #30363d;
+    }
+    .card-body { padding: 1rem; }
+    .status-icon { margin-right: 0.5rem; }
+    .health-score { font-size: 1.2rem; font-weight: bold; }
+    .badge {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+    }
+    .badge-nextjs { background: #000; color: #fff; border: 1px solid #333; }
+    .badge-node { background: #026e00; color: #fff; }
+    .badge-dotnet { background: #512bd4; color: #fff; }
+    .badge-fastify { background: #000; color: #fff; }
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #21262d;
+    }
+    .metric:last-child { border-bottom: none; }
+    .metric-label { color: #8b949e; }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <div class="placeholder">
+  <div class="header">
     <h1>DevOps Factory Dashboard</h1>
-    <p>Dashboard will be generated automatically after the first scan.</p>
-    <p>Run <code>pnpm scan && pnpm dashboard</code> or wait for the cron job.</p>
+    <div class="timestamp">Last updated: 2026-02-17T22:13:37.912Z</div>
+  </div>
+
+  <div class="summary">
+    <div class="summary-card">
+      <div class="number">17</div>
+      <div class="label">Projects</div>
+    </div>
+    <div class="summary-card">
+      <div class="number" style="color: #f59e0b">70</div>
+      <div class="label">Avg Health</div>
+    </div>
+    <div class="summary-card">
+      <div class="number" style="color: #22c55e">0</div>
+      <div class="label">Failing CI</div>
+    </div>
+    <div class="summary-card">
+      <div class="number" style="color: #22c55e">0</div>
+      <div class="label">AI Fixes Pending</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>au-marais</strong>
+          <span class="badge badge-nextjs">nextjs</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>CasaSync</strong>
+          <span class="badge badge-nextjs">nextjs</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>claude-cli-wrapper</strong>
+          <span class="badge badge-node">node</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>claude-launcher</strong>
+          <span class="badge badge-dotnet">dotnet</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>ClubMedRoomAssignment</strong>
+          <span class="badge badge-node">node</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">1</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>Email_Assistant</strong>
+          <span class="badge badge-node">node</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">1</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>lecteur-magic</strong>
+          <span class="badge badge-node">node</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>Livret_accueil_Au-Marais</strong>
+          <span class="badge badge-nextjs">nextjs</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>livret-au-marais</strong>
+          <span class="badge badge-nextjs">nextjs</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>MCP_Quota_Claude</strong>
+          <span class="badge badge-node">node</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>Site_1970_Plomberie</strong>
+          <span class="badge badge-node">node</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>Site_Greg-Assainissement</strong>
+          <span class="badge badge-nextjs">nextjs</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>SqlConnectionTest</strong>
+          <span class="badge badge-dotnet">dotnet</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>statusline</strong>
+          <span class="badge badge-node">node</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>test_codingmenace</strong>
+          <span class="badge badge-nextjs">nextjs</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>Thumbfast</strong>
+          <span class="badge badge-nextjs">nextjs</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <span class="status-icon">&#9898;</span>
+          <strong>Utilitaire_Webapp</strong>
+          <span class="badge badge-node">node</span>
+        </div>
+        <div class="health-score" style="color: #f59e0b">
+          70/100
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="metric">
+          <span class="metric-label">CI Status</span>
+          <span class="metric-value">none</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Open PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Fix PRs</span>
+          <span class="metric-value">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Configured</span>
+          <span class="metric-value"><em>Partial</em></span>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
