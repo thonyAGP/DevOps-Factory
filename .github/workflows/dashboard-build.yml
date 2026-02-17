@@ -5,6 +5,7 @@ on:
     # Every 4 hours
     - cron: "0 */4 * * *"
   workflow_dispatch:
+    inputs: {}
   # Also run after scan completes
   workflow_run:
     workflows: ["Scan Repos"]
@@ -60,7 +61,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: master
 
       - uses: actions/upload-pages-artifact@v3
         with:

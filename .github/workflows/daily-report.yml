@@ -5,6 +5,7 @@ on:
     # Every day at 7:00 UTC (8:00 Madrid time)
     - cron: "0 7 * * *"
   workflow_dispatch:
+    inputs: {}
 
 permissions:
   contents: read
