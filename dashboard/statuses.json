@@ -1,56 +1,69 @@
 {
-  "timestamp": "2026-02-17T22:13:37.914Z",
+  "timestamp": "2026-02-17T22:30:02.575Z",
   "projects": [
-    {
-      "name": "au-marais",
-      "fullName": "thonyAGP/au-marais",
-      "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
-      "aiFixPRs": [],
-      "healthScore": 70,
-      "configured": false
-    },
     {
       "name": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
       "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-02-03T17:50:51Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/CasaSync/actions/runs/21641375395",
+        "name": "CI"
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "claude-cli-wrapper",
       "fullName": "thonyAGP/claude-cli-wrapper",
       "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
       "stack": "dotnet",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "ClubMedRoomAssignment",
       "fullName": "thonyAGP/ClubMedRoomAssignment",
       "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-02-06T17:46:52Z",
+        "head_branch": "main",
+        "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/21760239407",
+        "name": "CI"
+      },
       "openPRs": [
         {
           "created_at": "2025-12-23T21:25:37Z",
@@ -65,15 +78,21 @@
         }
       ],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
       "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "skipped",
+        "created_at": "2026-02-17T20:45:48Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22115063857",
+        "name": "Qodo Merge - PR Review"
+      },
       "openPRs": [
         {
           "created_at": "2026-02-17T20:45:40Z",
@@ -91,128 +110,211 @@
         }
       ],
       "aiFixPRs": [],
-      "healthScore": 70,
-      "configured": false
-    },
-    {
-      "name": "lecteur-magic",
-      "fullName": "thonyAGP/lecteur-magic",
-      "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
-      "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "Livret_accueil_Au-Marais",
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
       "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
       "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-02-10T19:47:36Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/livret-au-marais/actions/runs/21879963205",
+        "name": "CI"
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "MCP_Quota_Claude",
       "fullName": "thonyAGP/MCP_Quota_Claude",
       "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "Site_1970_Plomberie",
       "fullName": "thonyAGP/Site_1970_Plomberie",
       "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "Site_Greg-Assainissement",
       "fullName": "thonyAGP/Site_Greg-Assainissement",
       "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
       "stack": "dotnet",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "statusline",
       "fullName": "thonyAGP/statusline",
       "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "test_codingmenace",
       "fullName": "thonyAGP/test_codingmenace",
       "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "Thumbfast",
       "fullName": "thonyAGP/Thumbfast",
       "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
       "configured": false
     },
     {
       "name": "Utilitaire_Webapp",
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 70,
+      "healthScore": 50,
+      "configured": false
+    },
+    {
+      "name": "au-marais",
+      "fullName": "thonyAGP/au-marais",
+      "stack": "nextjs",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-07T06:36:35Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/au-marais/actions/runs/21775816387",
+        "name": "E2E Tests"
+      },
+      "openPRs": [],
+      "aiFixPRs": [],
+      "healthScore": 80,
+      "configured": false
+    },
+    {
+      "name": "lecteur-magic",
+      "fullName": "thonyAGP/lecteur-magic",
+      "stack": "node",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-17T21:13:08Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/lecteur-magic/actions/runs/22115913255",
+        "name": "Deploy OpenSpec Viewer"
+      },
+      "openPRs": [],
+      "aiFixPRs": [],
+      "healthScore": 80,
       "configured": false
     }
   ]
