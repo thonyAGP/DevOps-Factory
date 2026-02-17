@@ -8,8 +8,8 @@
  * Cron: every 4h via GitHub Actions
  */
 
-import { execSync } from "node:child_process";
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { execSync } from 'node:child_process';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
 interface ScanResult {
   name: string;
@@ -19,6 +19,9 @@ interface ScanResult {
   hasClaudeReview: boolean;
   hasSelfHealing: boolean;
   hasQodoMerge: boolean;
+  hasGitleaks: boolean;
+  hasRenovate: boolean;
+  hasHusky: boolean;
   defaultBranch: string;
 }
 
@@ -49,30 +52,31 @@ interface ProjectStatus {
   name: string;
   fullName: string;
   stack: string;
-  ciStatus: "pass" | "fail" | "none";
+  ciStatus: 'pass' | 'fail' | 'none';
   lastRun: WorkflowRun | null;
   openPRs: PRInfo[];
   aiFixPRs: PRInfo[];
+  renovatePRs: PRInfo[];
   healthScore: number;
   configured: boolean;
+  hasGitleaks: boolean;
+  hasRenovate: boolean;
+  hasHusky: boolean;
 }
 
 const sh = (cmd: string): string => {
   try {
-    return execSync(cmd, { encoding: "utf-8" }).trim();
+    return execSync(cmd, { encoding: 'utf-8' }).trim();
   } catch {
-    return "";
+    return '';
   }
 };
 
-const getLatestWorkflowRun = (
-  repo: string,
-  branch: string
-): WorkflowRun | null => {
+const getLatestWorkflowRun = (repo: string, branch: string): WorkflowRun | null => {
   const result = sh(
     `gh api "repos/${repo}/actions/runs?branch=${branch}&per_page=1" --jq '.workflow_runs[0] | {conclusion, name, html_url, created_at, head_branch}'`
   );
-  if (!result || result === "null") return null;
+  if (!result || result === 'null') return null;
   try {
     return JSON.parse(result) as WorkflowRun;
   } catch {
@@ -85,7 +89,7 @@ const getOpenPRs = (repo: string): PRInfo[] => {
     `gh pr list --repo ${repo} --json number,title,state,url,author,labels,createdAt --jq '[.[] | {number, title, state, html_url: .url, user: {login: .author.login}, labels: [.labels[].name], created_at: .createdAt}]'`
   );
   try {
-    return JSON.parse(result || "[]") as PRInfo[];
+    return JSON.parse(result || '[]') as PRInfo[];
   } catch {
     return [];
   }
@@ -93,52 +97,52 @@ const getOpenPRs = (repo: string): PRInfo[] => {
 
 const calculateHealthScore = (status: ProjectStatus): number => {
   let score = 100;
-  if (status.ciStatus === "fail") score -= 30;
-  if (status.ciStatus === "none") score -= 10;
-  if (!status.configured) score -= 20;
+  if (status.ciStatus === 'fail') score -= 30;
+  if (status.ciStatus === 'none') score -= 10;
+  if (!status.configured) score -= 15;
   if (status.aiFixPRs.length > 0) score -= 10;
   if (status.openPRs.length > 5) score -= 10;
+  if (!status.hasGitleaks) score -= 5;
+  if (!status.hasRenovate) score -= 5;
+  if (!status.hasHusky) score -= 5;
   return Math.max(0, score);
 };
 
-const getStatusEmoji = (status: "pass" | "fail" | "none"): string => {
+const getStatusEmoji = (status: 'pass' | 'fail' | 'none'): string => {
   switch (status) {
-    case "pass":
-      return "&#9989;"; // green check
-    case "fail":
-      return "&#10060;"; // red X
-    case "none":
-      return "&#9898;"; // white circle
+    case 'pass':
+      return '&#9989;'; // green check
+    case 'fail':
+      return '&#10060;'; // red X
+    case 'none':
+      return '&#9898;'; // white circle
   }
 };
 
 const getHealthColor = (score: number): string => {
-  if (score >= 80) return "#22c55e";
-  if (score >= 60) return "#f59e0b";
-  return "#ef4444";
+  if (score >= 80) return '#22c55e';
+  if (score >= 60) return '#f59e0b';
+  return '#ef4444';
 };
 
 const buildProjectStatuses = (report: ScanReport): ProjectStatus[] => {
   return report.analyses
-    .filter((a) => a.stack !== "unknown")
+    .filter((a) => a.stack !== 'unknown')
     .map((analysis) => {
-      const lastRun = getLatestWorkflowRun(
-        analysis.fullName,
-        analysis.defaultBranch
-      );
+      const lastRun = getLatestWorkflowRun(analysis.fullName, analysis.defaultBranch);
       const allPRs = getOpenPRs(analysis.fullName);
-      const aiFixPRs = allPRs.filter((pr) =>
-        pr.labels.some((l) => l.name === "ai-fix")
-      );
+      const aiFixPRs = allPRs.filter((pr) => pr.labels.some((l) => l.name === 'ai-fix'));
+      const renovatePRs = allPRs.filter((pr) => pr.labels.some((l) => l.name === 'dependencies'));
 
-      const ciStatus: ProjectStatus["ciStatus"] = lastRun
-        ? lastRun.conclusion === "success"
-          ? "pass"
-          : "fail"
-        : "none";
+      const ciStatus: ProjectStatus['ciStatus'] = !analysis.hasCI
+        ? 'none'
+        : lastRun && lastRun.conclusion
+          ? lastRun.conclusion === 'success'
+            ? 'pass'
+            : 'fail'
+          : 'none';
 
-      const configured =
-        analysis.hasClaudeReview && analysis.hasSelfHealing;
+      const configured = analysis.hasClaudeReview && analysis.hasSelfHealing;
 
       const status: ProjectStatus = {
         name: analysis.name,
@@ -148,8 +152,12 @@ const buildProjectStatuses = (report: ScanReport): ProjectStatus[] => {
         lastRun,
         openPRs: allPRs,
         aiFixPRs,
+        renovatePRs,
         healthScore: 0,
         configured,
+        hasGitleaks: analysis.hasGitleaks ?? false,
+        hasRenovate: analysis.hasRenovate ?? false,
+        hasHusky: analysis.hasHusky ?? false,
       };
 
       status.healthScore = calculateHealthScore(status);
@@ -159,16 +167,12 @@ const buildProjectStatuses = (report: ScanReport): ProjectStatus[] => {
 
 const generateHTML = (statuses: ProjectStatus[]): string => {
   const timestamp = new Date().toISOString();
-  const avgHealth = Math.round(
-    statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length
-  );
-  const totalAIFixes = statuses.reduce(
-    (s, p) => s + p.aiFixPRs.length,
-    0
-  );
-  const failingProjects = statuses.filter(
-    (p) => p.ciStatus === "fail"
-  ).length;
+  const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
+  const totalAIFixes = statuses.reduce((s, p) => s + p.aiFixPRs.length, 0);
+  const totalRenovatePRs = statuses.reduce((s, p) => s + p.renovatePRs.length, 0);
+  const failingProjects = statuses.filter((p) => p.ciStatus === 'fail').length;
+  const securedCount = statuses.filter((p) => p.hasGitleaks).length;
+  const huskyCount = statuses.filter((p) => p.hasHusky).length;
 
   const projectCards = statuses
     .sort((a, b) => a.healthScore - b.healthScore)
@@ -188,7 +192,7 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
       <div class="card-body">
         <div class="metric">
           <span class="metric-label">CI Status</span>
-          <span class="metric-value">${p.ciStatus}${p.lastRun ? ` <a href="${p.lastRun.html_url}" target="_blank">(view)</a>` : ""}</span>
+          <span class="metric-value">${p.ciStatus}${p.lastRun ? ` <a href="${p.lastRun.html_url}" target="_blank">(view)</a>` : ''}</span>
         </div>
         <div class="metric">
           <span class="metric-label">Open PRs</span>
@@ -196,16 +200,28 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
         </div>
         <div class="metric">
           <span class="metric-label">AI Fix PRs</span>
-          <span class="metric-value">${p.aiFixPRs.length > 0 ? `<strong style="color: #f59e0b">${p.aiFixPRs.length} pending</strong>` : "0"}</span>
+          <span class="metric-value">${p.aiFixPRs.length > 0 ? `<strong style="color: #f59e0b">${p.aiFixPRs.length} pending</strong>` : '0'}</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Renovate PRs</span>
+          <span class="metric-value">${p.renovatePRs.length > 0 ? `${p.renovatePRs.length} open` : '0'}</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Security</span>
+          <span class="metric-value">${p.hasGitleaks ? '&#9989; Gitleaks' : '&#9898; No scanning'}</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Quality</span>
+          <span class="metric-value">${[p.hasHusky ? 'Husky' : '', p.hasRenovate ? 'Renovate' : ''].filter(Boolean).join(', ') || '<em>None</em>'}</span>
         </div>
         <div class="metric">
           <span class="metric-label">Configured</span>
-          <span class="metric-value">${p.configured ? "Claude + Self-heal" : "<em>Partial</em>"}</span>
+          <span class="metric-value">${p.configured ? 'Claude + Self-heal' : '<em>Partial</em>'}</span>
         </div>
       </div>
     </div>`
     )
-    .join("\n");
+    .join('\n');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -301,12 +317,24 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
       <div class="label">Avg Health</div>
     </div>
     <div class="summary-card">
-      <div class="number" style="color: ${failingProjects > 0 ? "#ef4444" : "#22c55e"}">${failingProjects}</div>
+      <div class="number" style="color: ${failingProjects > 0 ? '#ef4444' : '#22c55e'}">${failingProjects}</div>
       <div class="label">Failing CI</div>
     </div>
     <div class="summary-card">
-      <div class="number" style="color: ${totalAIFixes > 0 ? "#f59e0b" : "#22c55e"}">${totalAIFixes}</div>
+      <div class="number" style="color: ${totalAIFixes > 0 ? '#f59e0b' : '#22c55e'}">${totalAIFixes}</div>
       <div class="label">AI Fixes Pending</div>
+    </div>
+    <div class="summary-card">
+      <div class="number">${totalRenovatePRs}</div>
+      <div class="label">Renovate PRs</div>
+    </div>
+    <div class="summary-card">
+      <div class="number">${securedCount}/${statuses.length}</div>
+      <div class="label">Secret Scanning</div>
+    </div>
+    <div class="summary-card">
+      <div class="number">${huskyCount}/${statuses.length}</div>
+      <div class="label">Husky Hooks</div>
     </div>
   </div>
 
@@ -318,10 +346,8 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
 };
 
 const generateDailyReport = (statuses: ProjectStatus[]): string => {
-  const failingProjects = statuses.filter((p) => p.ciStatus === "fail");
-  const pendingAIFixes = statuses.flatMap((p) =>
-    p.aiFixPRs.map((pr) => ({ project: p.name, pr }))
-  );
+  const failingProjects = statuses.filter((p) => p.ciStatus === 'fail');
+  const pendingAIFixes = statuses.flatMap((p) => p.aiFixPRs.map((pr) => ({ project: p.name, pr })));
   const configuredCount = statuses.filter((p) => p.configured).length;
 
   let body = `## Summary\n`;
@@ -334,11 +360,7 @@ const generateDailyReport = (statuses: ProjectStatus[]): string => {
 
   for (const p of statuses.sort((a, b) => a.healthScore - b.healthScore)) {
     const icon =
-      p.ciStatus === "pass"
-        ? "white_check_mark"
-        : p.ciStatus === "fail"
-          ? "x"
-          : "white_circle";
+      p.ciStatus === 'pass' ? 'white_check_mark' : p.ciStatus === 'fail' ? 'x' : 'white_circle';
     body += `### ${p.name} :${icon}:\n`;
     body += `- **Health**: ${p.healthScore}/100\n`;
     body += `- **CI**: ${p.ciStatus}`;
@@ -368,52 +390,44 @@ const generateDailyReport = (statuses: ProjectStatus[]): string => {
 
 // Main
 const main = () => {
-  const reportPath = "dashboard/scan-report.json";
+  const reportPath = 'dashboard/scan-report.json';
 
   if (!existsSync(reportPath)) {
-    console.error(
-      "No scan report found. Run 'pnpm scan' first."
-    );
+    console.error("No scan report found. Run 'pnpm scan' first.");
     process.exit(1);
   }
 
-  const report: ScanReport = JSON.parse(
-    readFileSync(reportPath, "utf-8")
-  );
+  const report: ScanReport = JSON.parse(readFileSync(reportPath, 'utf-8'));
 
-  console.log("Building dashboard...\n");
+  console.log('Building dashboard...\n');
   const statuses = buildProjectStatuses(report);
 
   // Generate HTML dashboard
   const html = generateHTML(statuses);
-  writeFileSync("dashboard/index.html", html);
-  console.log("Dashboard written to dashboard/index.html");
+  writeFileSync('dashboard/index.html', html);
+  console.log('Dashboard written to dashboard/index.html');
 
   // Generate daily report
   const reportBody = generateDailyReport(statuses);
-  writeFileSync("dashboard/daily-report.md", reportBody);
-  console.log("Daily report written to dashboard/daily-report.md");
+  writeFileSync('dashboard/daily-report.md', reportBody);
+  console.log('Daily report written to dashboard/daily-report.md');
 
   // Write statuses JSON for other consumers
   writeFileSync(
-    "dashboard/statuses.json",
-    JSON.stringify(
-      { timestamp: new Date().toISOString(), projects: statuses },
-      null,
-      2
-    )
+    'dashboard/statuses.json',
+    JSON.stringify({ timestamp: new Date().toISOString(), projects: statuses }, null, 2)
   );
 
   // If running in GitHub Actions, create the daily issue
-  if (process.env.GITHUB_ACTIONS === "true") {
-    const date = new Date().toISOString().split("T")[0];
+  if (process.env.GITHUB_ACTIONS === 'true') {
+    const date = new Date().toISOString().split('T')[0];
     const title = `DevOps Report - ${date}`;
 
     // Close previous daily reports
     const openIssues = sh(
       `gh issue list --repo ${process.env.GITHUB_REPOSITORY} --label "daily-report" --state open --json number --jq ".[].number"`
     );
-    for (const num of openIssues.split("\n").filter(Boolean)) {
+    for (const num of openIssues.split('\n').filter(Boolean)) {
       sh(`gh issue close ${num} --repo ${process.env.GITHUB_REPOSITORY}`);
     }
 
@@ -421,10 +435,10 @@ const main = () => {
     try {
       execSync(
         `gh issue create --repo ${process.env.GITHUB_REPOSITORY} --title "${title}" --body-file dashboard/daily-report.md --label "daily-report"`,
-        { encoding: "utf-8", stdio: "inherit" }
+        { encoding: 'utf-8', stdio: 'inherit' }
       );
     } catch (e) {
-      console.error("Failed to create issue:", e);
+      console.error('Failed to create issue:', e);
     }
     console.log(`GitHub Issue created: ${title}`);
   }
