@@ -20,10 +20,12 @@ concurrency:
 jobs:
   review:
     runs-on: ubuntu-latest
-    # Skip bot PRs to avoid review loops, except Renovate/Dependabot
+    # Skip if no API key configured, or if bot PR (except ai-fix labeled)
     if: |
-      github.event.pull_request.user.login != 'github-actions[bot]' ||
-      contains(github.event.pull_request.labels.*.name, 'ai-fix')
+      secrets.ANTHROPIC_API_KEY != '' && (
+        github.event.pull_request.user.login != 'github-actions[bot]' ||
+        contains(github.event.pull_request.labels.*.name, 'ai-fix')
+      )
     steps:
       - uses: actions/checkout@v4
         with:

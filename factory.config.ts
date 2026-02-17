@@ -65,7 +65,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
   },
 ];
 
-export const GITHUB_OWNER = "ThonyMusic";
+export const GITHUB_OWNER = "thonyAGP";
 
 export const SCAN_CONFIG = {
   cronIntervalHours: 6,
