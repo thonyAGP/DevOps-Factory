@@ -318,7 +318,6 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
 };
 
 const generateDailyReport = (statuses: ProjectStatus[]): string => {
-  const date = new Date().toISOString().split("T")[0];
   const failingProjects = statuses.filter((p) => p.ciStatus === "fail");
   const pendingAIFixes = statuses.flatMap((p) =>
     p.aiFixPRs.map((pr) => ({ project: p.name, pr }))
