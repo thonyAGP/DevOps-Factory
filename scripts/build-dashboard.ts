@@ -12,6 +12,49 @@ import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { DASHBOARD_URL } from '../factory.config.js';
 
+interface MigrationModule {
+  name: string;
+  hasCommands: boolean;
+  hasQueries: boolean;
+  hasValidators: boolean;
+  handlerCount: number;
+}
+
+interface MigrationSnapshot {
+  date: string;
+  backend: {
+    modules: MigrationModule[];
+    moduleCount: number;
+    totalHandlers: number;
+    domainEntities: number;
+    apiEndpointFiles: number;
+    testFiles: number;
+    testCount: number;
+    csFiles: number;
+  };
+  frontend: {
+    reactComponents: number;
+    tsFiles: number;
+    htmlPages: number;
+    hasStorybook: boolean;
+  };
+  specs: {
+    totalSpecs: number;
+    annotatedPrograms: number;
+    migrationPatterns: number;
+    migrationDocs: number;
+  };
+  tools: {
+    csprojCount: number;
+    kbIndexed: boolean;
+    mcpServer: boolean;
+  };
+  overall: {
+    progressPercent: number;
+    totalFiles: number;
+  };
+}
+
 interface ScanResult {
   name: string;
   fullName: string;
@@ -253,6 +296,80 @@ const getProjectIssues = (p: ProjectStatus): string[] => {
   return issues;
 };
 
+const getMigrationSection = (): string => {
+  const latestPath = 'data/migration-latest.json';
+  if (!existsSync(latestPath)) return '';
+
+  try {
+    const snap = JSON.parse(readFileSync(latestPath, 'utf-8')) as MigrationSnapshot;
+    const b = snap.backend;
+    const f = snap.frontend;
+    const s = snap.specs;
+    const pct = snap.overall.progressPercent;
+    const pctColor = pct >= 70 ? '#22c55e' : pct >= 40 ? '#f59e0b' : '#ef4444';
+
+    const moduleChips = b.modules
+      .map((m) => {
+        const cls = ['module-chip', m.hasCommands ? 'has-cmd' : '', m.hasQueries ? 'has-qry' : '']
+          .filter(Boolean)
+          .join(' ');
+        return `<span class="${cls}" title="${m.handlerCount} handlers">${m.name}</span>`;
+      })
+      .join('\n            ');
+
+    return `
+  <div class="migration">
+    <h2>Lecteur Magic Migration (${snap.date})</h2>
+    <div class="migration-grid">
+      <div class="migration-card">
+        <h3>Overall Progress</h3>
+        <div class="migration-stat"><span>Progress</span><span class="val" style="color:${pctColor}">${pct}%</span></div>
+        <div class="progress-bar"><div class="fill" style="width:${pct}%;background:${pctColor}"></div></div>
+        <div class="migration-stat" style="margin-top:0.4rem"><span>Total files</span><span class="val">${snap.overall.totalFiles}</span></div>
+      </div>
+      <div class="migration-card">
+        <h3>Backend (Caisse.API)</h3>
+        <div class="migration-stat"><span>CQRS Modules</span><span class="val">${b.moduleCount}</span></div>
+        <div class="migration-stat"><span>Handlers</span><span class="val">${b.totalHandlers}</span></div>
+        <div class="migration-stat"><span>Domain entities</span><span class="val">${b.domainEntities}</span></div>
+        <div class="migration-stat"><span>C# files</span><span class="val">${b.csFiles}</span></div>
+      </div>
+      <div class="migration-card">
+        <h3>Tests</h3>
+        <div class="migration-stat"><span>Test files</span><span class="val">${b.testFiles}</span></div>
+        <div class="migration-stat"><span>Est. tests</span><span class="val">~${b.testCount}</span></div>
+        <div class="progress-bar"><div class="fill" style="width:${Math.min(100, (b.testCount / 200) * 100)}%;background:#58a6ff"></div></div>
+      </div>
+      <div class="migration-card">
+        <h3>Frontend (adh-web)</h3>
+        <div class="migration-stat"><span>React components</span><span class="val">${f.reactComponents}</span></div>
+        <div class="migration-stat"><span>TS files</span><span class="val">${f.tsFiles}</span></div>
+        <div class="migration-stat"><span>HTML prototypes</span><span class="val">${f.htmlPages}</span></div>
+        <div class="migration-stat"><span>Storybook</span><span class="val">${f.hasStorybook ? 'Yes' : 'No'}</span></div>
+      </div>
+      <div class="migration-card">
+        <h3>OpenSpec</h3>
+        <div class="migration-stat"><span>Total specs</span><span class="val">${s.totalSpecs}</span></div>
+        <div class="migration-stat"><span>Annotated</span><span class="val">${s.annotatedPrograms}</span></div>
+        <div class="migration-stat"><span>Patterns</span><span class="val">${s.migrationPatterns}</span></div>
+        <div class="migration-stat"><span>Migration docs</span><span class="val">${s.migrationDocs}</span></div>
+      </div>
+    </div>
+    <details>
+      <summary style="cursor:pointer;color:#8b949e;font-size:0.85rem">Migrated Modules (${b.moduleCount})</summary>
+      <div class="module-grid" style="margin-top:0.5rem">
+        ${moduleChips}
+      </div>
+      <div style="font-size:0.7rem;color:#6e7681;margin-top:0.4rem">
+        Green border = Commands | Blue border = Queries
+      </div>
+    </details>
+  </div>`;
+  } catch {
+    return '';
+  }
+};
+
 const generateHTML = (statuses: ProjectStatus[]): string => {
   const timestamp = new Date().toISOString();
   const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
@@ -473,6 +590,70 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
     }
     .trends h2 { color: #58a6ff; font-size: 1rem; margin-bottom: 0.8rem; }
     .trends canvas { max-height: 220px; }
+
+    /* Migration section */
+    .migration {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .migration h2 { color: #8b5cf6; font-size: 1rem; margin-bottom: 0.8rem; }
+    .migration-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .migration-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+    }
+    .migration-card h3 {
+      font-size: 0.85rem;
+      color: #8b949e;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .migration-stat {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.2rem 0;
+      font-size: 0.85rem;
+    }
+    .migration-stat .val { font-weight: bold; }
+    .progress-bar {
+      background: #21262d;
+      border-radius: 4px;
+      height: 8px;
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+    .progress-bar .fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+    .module-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
+    }
+    .module-chip {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(139,92,246,0.15);
+      color: #a78bfa;
+      border: 1px solid rgba(139,92,246,0.3);
+    }
+    .module-chip.has-cmd { border-left: 2px solid #22c55e; }
+    .module-chip.has-qry { border-right: 2px solid #58a6ff; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
@@ -524,6 +705,8 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
     <h2>Health Trends (30 days)</h2>
     <canvas id="trendsChart"></canvas>
   </div>
+
+  ${getMigrationSection()}
 
   <script>
     fetch('history.json')

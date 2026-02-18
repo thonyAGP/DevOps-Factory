@@ -1,0 +1,40 @@
+name: Migration Tracker
+
+on:
+  schedule:
+    - cron: '0 6 * * 1' # Every Monday at 6am UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Track migration progress
+        run: pnpm migration-tracker
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+
+      - name: Commit data
+        run: |
+          git config user.name "devops-factory[bot]"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add data/migration-history.json data/migration-latest.json
+          git diff --cached --quiet || git commit -m "chore: update migration tracking data" --no-verify
+          git pull --rebase
+          git push
