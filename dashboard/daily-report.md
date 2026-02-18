@@ -1,93 +1,110 @@
 ## Summary
+
 - **17** projects monitored
 - **0/17** fully configured
 - **0** AI fix PR(s) pending merge
-- **14** CI failure(s)
+- **1** CI failure(s)
 
 ## Per Project
 
-### CasaSync :x:
-- **Health**: 50/100
-- **CI**: fail ([view](https://github.com/thonyAGP/CasaSync/actions/runs/21641375395))
-- **Open PRs**: 0
-
-### claude-cli-wrapper :x:
-- **Health**: 50/100
-- **CI**: fail ([view](null))
-- **Open PRs**: 0
-
-### claude-launcher :x:
-- **Health**: 50/100
-- **CI**: fail ([view](null))
-- **Open PRs**: 0
-
 ### ClubMedRoomAssignment :x:
-- **Health**: 50/100
-- **CI**: fail ([view](https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/21760239407))
+
+- **Health**: 40/100
+- **CI**: fail ([view](https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/22132654345))
 - **Open PRs**: 1
 
-### Livret_accueil_Au-Marais :x:
-- **Health**: 50/100
-- **CI**: fail ([view](null))
+### claude-cli-wrapper :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](null))
 - **Open PRs**: 0
 
-### livret-au-marais :x:
-- **Health**: 50/100
-- **CI**: fail ([view](https://github.com/thonyAGP/livret-au-marais/actions/runs/21879963205))
+### claude-launcher :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](null))
 - **Open PRs**: 0
 
-### MCP_Quota_Claude :x:
-- **Health**: 50/100
-- **CI**: fail ([view](null))
+### lecteur-magic :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22132603920))
 - **Open PRs**: 0
 
-### Site_1970_Plomberie :x:
-- **Health**: 50/100
-- **CI**: fail ([view](null))
+### Livret_accueil_Au-Marais :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](null))
 - **Open PRs**: 0
 
-### Site_Greg-Assainissement :x:
-- **Health**: 50/100
-- **CI**: fail ([view](null))
+### MCP_Quota_Claude :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](null))
 - **Open PRs**: 0
 
-### SqlConnectionTest :x:
-- **Health**: 50/100
-- **CI**: fail ([view](null))
+### Site_1970_Plomberie :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](null))
 - **Open PRs**: 0
 
-### statusline :x:
-- **Health**: 50/100
-- **CI**: fail ([view](null))
+### Site_Greg-Assainissement :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](null))
 - **Open PRs**: 0
 
-### test_codingmenace :x:
-- **Health**: 50/100
-- **CI**: fail ([view](null))
+### SqlConnectionTest :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](null))
 - **Open PRs**: 0
 
-### Thumbfast :x:
-- **Health**: 50/100
-- **CI**: fail ([view](null))
+### statusline :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](null))
 - **Open PRs**: 0
 
-### Utilitaire_Webapp :x:
-- **Health**: 50/100
-- **CI**: fail ([view](null))
+### test_codingmenace :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](null))
+- **Open PRs**: 0
+
+### Thumbfast :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](null))
+- **Open PRs**: 0
+
+### Utilitaire_Webapp :white_circle:
+
+- **Health**: 60/100
+- **CI**: none ([view](null))
 - **Open PRs**: 0
 
 ### au-marais :white_check_mark:
-- **Health**: 80/100
+
+- **Health**: 70/100
 - **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/21775816387))
 - **Open PRs**: 0
 
-### Email_Assistant :white_check_mark:
-- **Health**: 80/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22123251676))
-- **Open PRs**: 1
+### CasaSync :white_check_mark:
 
-### lecteur-magic :white_check_mark:
-- **Health**: 80/100
-- **CI**: pass ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22115913255))
+- **Health**: 70/100
+- **CI**: pass ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22132524981))
 - **Open PRs**: 0
 
+### Email_Assistant :white_check_mark:
+
+- **Health**: 70/100
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22129878890))
+- **Open PRs**: 1
+
+### livret-au-marais :white_check_mark:
+
+- **Health**: 70/100
+- **CI**: pass ([view](https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016))
+- **Open PRs**: 0

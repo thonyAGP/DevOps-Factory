@@ -1,57 +1,6 @@
 {
-  "timestamp": "2026-02-18T06:54:32.969Z",
+  "timestamp": "2026-02-18T08:46:59.168Z",
   "projects": [
-    {
-      "name": "CasaSync",
-      "fullName": "thonyAGP/CasaSync",
-      "stack": "nextjs",
-      "ciStatus": "fail",
-      "lastRun": {
-        "conclusion": "failure",
-        "created_at": "2026-02-03T17:50:51Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/CasaSync/actions/runs/21641375395",
-        "name": "CI"
-      },
-      "openPRs": [],
-      "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
-    },
-    {
-      "name": "claude-cli-wrapper",
-      "fullName": "thonyAGP/claude-cli-wrapper",
-      "stack": "node",
-      "ciStatus": "fail",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "name": null
-      },
-      "openPRs": [],
-      "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
-    },
-    {
-      "name": "claude-launcher",
-      "fullName": "thonyAGP/claude-launcher",
-      "stack": "dotnet",
-      "ciStatus": "fail",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "name": null
-      },
-      "openPRs": [],
-      "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
-    },
     {
       "name": "ClubMedRoomAssignment",
       "fullName": "thonyAGP/ClubMedRoomAssignment",
@@ -59,10 +8,10 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-02-06T17:46:52Z",
+        "created_at": "2026-02-18T08:43:32Z",
         "head_branch": "main",
-        "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/21760239407",
-        "name": "CI"
+        "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/22132654345",
+        "name": ".github/workflows/ci.yml"
       },
       "openPRs": [
         {
@@ -78,14 +27,81 @@
         }
       ],
       "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 40,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
+    },
+    {
+      "name": "claude-cli-wrapper",
+      "fullName": "thonyAGP/claude-cli-wrapper",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
+      "openPRs": [],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
+    },
+    {
+      "name": "claude-launcher",
+      "fullName": "thonyAGP/claude-launcher",
+      "stack": "dotnet",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "name": null
+      },
+      "openPRs": [],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
+    },
+    {
+      "name": "lecteur-magic",
+      "fullName": "thonyAGP/lecteur-magic",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-18T08:41:48Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/lecteur-magic/actions/runs/22132603920",
+        "name": "Deploy OpenSpec Viewer"
+      },
+      "openPRs": [],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
       "name": "Livret_accueil_Au-Marais",
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
       "stack": "nextjs",
-      "ciStatus": "fail",
+      "ciStatus": "none",
       "lastRun": {
         "conclusion": null,
         "created_at": null,
@@ -95,31 +111,18 @@
       },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
-    },
-    {
-      "name": "livret-au-marais",
-      "fullName": "thonyAGP/livret-au-marais",
-      "stack": "nextjs",
-      "ciStatus": "fail",
-      "lastRun": {
-        "conclusion": "failure",
-        "created_at": "2026-02-10T19:47:36Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/livret-au-marais/actions/runs/21879963205",
-        "name": "CI"
-      },
-      "openPRs": [],
-      "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
       "name": "MCP_Quota_Claude",
       "fullName": "thonyAGP/MCP_Quota_Claude",
       "stack": "node",
-      "ciStatus": "fail",
+      "ciStatus": "none",
       "lastRun": {
         "conclusion": null,
         "created_at": null,
@@ -129,14 +132,18 @@
       },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
       "name": "Site_1970_Plomberie",
       "fullName": "thonyAGP/Site_1970_Plomberie",
       "stack": "node",
-      "ciStatus": "fail",
+      "ciStatus": "none",
       "lastRun": {
         "conclusion": null,
         "created_at": null,
@@ -146,14 +153,18 @@
       },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
       "name": "Site_Greg-Assainissement",
       "fullName": "thonyAGP/Site_Greg-Assainissement",
       "stack": "nextjs",
-      "ciStatus": "fail",
+      "ciStatus": "none",
       "lastRun": {
         "conclusion": null,
         "created_at": null,
@@ -163,14 +174,18 @@
       },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
       "name": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
       "stack": "dotnet",
-      "ciStatus": "fail",
+      "ciStatus": "none",
       "lastRun": {
         "conclusion": null,
         "created_at": null,
@@ -180,14 +195,18 @@
       },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
       "name": "statusline",
       "fullName": "thonyAGP/statusline",
       "stack": "node",
-      "ciStatus": "fail",
+      "ciStatus": "none",
       "lastRun": {
         "conclusion": null,
         "created_at": null,
@@ -197,14 +216,18 @@
       },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
       "name": "test_codingmenace",
       "fullName": "thonyAGP/test_codingmenace",
       "stack": "nextjs",
-      "ciStatus": "fail",
+      "ciStatus": "none",
       "lastRun": {
         "conclusion": null,
         "created_at": null,
@@ -214,14 +237,18 @@
       },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
       "name": "Thumbfast",
       "fullName": "thonyAGP/Thumbfast",
       "stack": "nextjs",
-      "ciStatus": "fail",
+      "ciStatus": "none",
       "lastRun": {
         "conclusion": null,
         "created_at": null,
@@ -231,14 +258,18 @@
       },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
       "name": "Utilitaire_Webapp",
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "stack": "node",
-      "ciStatus": "fail",
+      "ciStatus": "none",
       "lastRun": {
         "conclusion": null,
         "created_at": null,
@@ -248,8 +279,12 @@
       },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 60,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
       "name": "au-marais",
@@ -265,8 +300,33 @@
       },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 80,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 70,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
+    },
+    {
+      "name": "CasaSync",
+      "fullName": "thonyAGP/CasaSync",
+      "stack": "nextjs",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-18T08:39:02Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/CasaSync/actions/runs/22132524981",
+        "name": "CI"
+      },
+      "openPRs": [],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 70,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
       "name": "Email_Assistant",
@@ -275,19 +335,16 @@
       "ciStatus": "pass",
       "lastRun": {
         "conclusion": "success",
-        "created_at": "2026-02-18T01:49:32Z",
+        "created_at": "2026-02-18T06:56:17Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22123251676",
+        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22129878890",
         "name": "Monitor Production"
       },
       "openPRs": [
         {
           "created_at": "2026-02-17T20:45:40Z",
           "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/6",
-          "labels": [
-            "enhancement",
-            "Tests"
-          ],
+          "labels": ["enhancement", "Tests"],
           "number": 6,
           "state": "OPEN",
           "title": "chore: zero ESLint warnings, console.log cleanup, 94% API route coverage",
@@ -297,25 +354,33 @@
         }
       ],
       "aiFixPRs": [],
-      "healthScore": 80,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 70,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     },
     {
-      "name": "lecteur-magic",
-      "fullName": "thonyAGP/lecteur-magic",
-      "stack": "node",
+      "name": "livret-au-marais",
+      "fullName": "thonyAGP/livret-au-marais",
+      "stack": "nextjs",
       "ciStatus": "pass",
       "lastRun": {
         "conclusion": "success",
-        "created_at": "2026-02-17T21:13:08Z",
+        "created_at": "2026-02-18T08:28:49Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/lecteur-magic/actions/runs/22115913255",
-        "name": "Deploy OpenSpec Viewer"
+        "html_url": "https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016",
+        "name": "CI"
       },
       "openPRs": [],
       "aiFixPRs": [],
-      "healthScore": 80,
-      "configured": false
+      "renovatePRs": [],
+      "healthScore": 70,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
     }
   ]
 }
