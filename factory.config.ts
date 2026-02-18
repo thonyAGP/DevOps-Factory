@@ -336,6 +336,8 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
 
 export const GITHUB_OWNER = 'thonyAGP';
 
+export const DASHBOARD_URL = 'https://thonyagp.github.io/DevOps-Factory/';
+
 export const SCAN_CONFIG = {
   cronIntervalHours: 6,
   dashboardRefreshHours: 4,

@@ -10,6 +10,7 @@
 
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { DASHBOARD_URL } from '../factory.config.js';
 
 interface ScanResult {
   name: string;
@@ -63,6 +64,69 @@ interface ProjectStatus {
   hasRenovate: boolean;
   hasHusky: boolean;
 }
+
+interface HistoryProjectEntry {
+  name: string;
+  health: number;
+  ciStatus: 'pass' | 'fail' | 'none';
+}
+
+interface HistoryEntry {
+  date: string;
+  avgHealth: number;
+  failingCI: number;
+  passingCI: number;
+  totalOpenPRs: number;
+  perProject: HistoryProjectEntry[];
+}
+
+const HISTORY_MAX_DAYS = 90;
+
+const updateHistory = (statuses: ProjectStatus[]): void => {
+  const historyPath = 'dashboard/history.json';
+  let history: HistoryEntry[] = [];
+
+  if (existsSync(historyPath)) {
+    try {
+      history = JSON.parse(readFileSync(historyPath, 'utf-8')) as HistoryEntry[];
+    } catch {
+      history = [];
+    }
+  }
+
+  const today = new Date().toISOString().split('T')[0];
+  const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
+
+  const entry: HistoryEntry = {
+    date: today,
+    avgHealth,
+    failingCI: statuses.filter((p) => p.ciStatus === 'fail').length,
+    passingCI: statuses.filter((p) => p.ciStatus === 'pass').length,
+    totalOpenPRs: statuses.reduce((s, p) => s + p.openPRs.length, 0),
+    perProject: statuses.map((p) => ({
+      name: p.name,
+      health: p.healthScore,
+      ciStatus: p.ciStatus,
+    })),
+  };
+
+  const existingIdx = history.findIndex((h) => h.date === today);
+  if (existingIdx >= 0) {
+    history[existingIdx] = entry;
+  } else {
+    history.push(entry);
+  }
+
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - HISTORY_MAX_DAYS);
+  const cutoffStr = cutoff.toISOString().split('T')[0];
+  history = history.filter((h) => h.date >= cutoffStr);
+
+  history.sort((a, b) => a.date.localeCompare(b.date));
+
+  writeFileSync(historyPath, JSON.stringify(history, null, 2));
+  console.log(`History updated (${history.length} entries)`);
+};
 
 const sh = (cmd: string): string => {
   try {
@@ -192,7 +256,7 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
       <div class="card-body">
         <div class="metric">
           <span class="metric-label">CI Status</span>
-          <span class="metric-value">${p.ciStatus}${p.lastRun ? ` <a href="${p.lastRun.html_url}" target="_blank">(view)</a>` : ''}</span>
+          <span class="metric-value">${p.ciStatus}${p.lastRun?.html_url ? ` <a href="${p.lastRun.html_url}" target="_blank">(view)</a>` : ''}</span>
         </div>
         <div class="metric">
           <span class="metric-label">Open PRs</span>
@@ -217,6 +281,10 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
         <div class="metric">
           <span class="metric-label">Configured</span>
           <span class="metric-value">${p.configured ? 'Claude + Self-heal' : '<em>Partial</em>'}</span>
+        </div>
+        <div class="sparkline-row">
+          <span class="metric-label">14d trend</span>
+          <canvas data-sparkline="${p.name}" width="80" height="24"></canvas>
         </div>
       </div>
     </div>`
@@ -297,9 +365,26 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
     }
     .metric:last-child { border-bottom: none; }
     .metric-label { color: #8b949e; }
+    .trends {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .trends h2 { color: #58a6ff; font-size: 1.2rem; margin-bottom: 1rem; }
+    .trends canvas { max-height: 250px; }
+    .sparkline-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .sparkline-row canvas { width: 80px; height: 24px; }
     a { color: #58a6ff; text-decoration: none; }
     a:hover { text-decoration: underline; }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
 <body>
   <div class="header">
@@ -338,9 +423,118 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
     </div>
   </div>
 
+  <div class="trends">
+    <h2>Health Trends (30 days)</h2>
+    <canvas id="trendsChart"></canvas>
+  </div>
+
   <div class="grid">
     ${projectCards}
   </div>
+
+  <script>
+    fetch('history.json')
+      .then(r => r.ok ? r.json() : [])
+      .then(history => {
+        if (!history.length) return;
+        const last30 = history.slice(-30);
+        const labels = last30.map(h => h.date.slice(5));
+        const healthData = last30.map(h => h.avgHealth);
+        const failData = last30.map(h => h.failingCI);
+
+        new Chart(document.getElementById('trendsChart'), {
+          type: 'line',
+          data: {
+            labels,
+            datasets: [
+              {
+                label: 'Avg Health',
+                data: healthData,
+                borderColor: '#58a6ff',
+                backgroundColor: 'rgba(88,166,255,0.1)',
+                fill: true,
+                tension: 0.3,
+                yAxisID: 'y',
+              },
+              {
+                label: 'Failing CI',
+                data: failData,
+                borderColor: '#ef4444',
+                backgroundColor: 'rgba(239,68,68,0.1)',
+                fill: true,
+                tension: 0.3,
+                yAxisID: 'y1',
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            interaction: { mode: 'index', intersect: false },
+            scales: {
+              y: {
+                type: 'linear',
+                position: 'left',
+                min: 0,
+                max: 100,
+                title: { display: true, text: 'Health', color: '#8b949e' },
+                ticks: { color: '#8b949e' },
+                grid: { color: '#21262d' },
+              },
+              y1: {
+                type: 'linear',
+                position: 'right',
+                min: 0,
+                title: { display: true, text: 'Failing', color: '#8b949e' },
+                ticks: { color: '#8b949e', stepSize: 1 },
+                grid: { drawOnChartArea: false },
+              },
+              x: {
+                ticks: { color: '#8b949e' },
+                grid: { color: '#21262d' },
+              },
+            },
+            plugins: {
+              legend: { labels: { color: '#c9d1d9' } },
+            },
+          },
+        });
+
+        // Sparklines per project
+        document.querySelectorAll('[data-sparkline]').forEach(canvas => {
+          const name = canvas.getAttribute('data-sparkline');
+          const last14 = history.slice(-14);
+          const data = last14.map(h => {
+            const proj = h.perProject.find(p => p.name === name);
+            return proj ? proj.health : null;
+          }).filter(v => v !== null);
+          if (!data.length) return;
+
+          new Chart(canvas, {
+            type: 'line',
+            data: {
+              labels: data.map((_, i) => i),
+              datasets: [{
+                data,
+                borderColor: '#58a6ff',
+                borderWidth: 1.5,
+                pointRadius: 0,
+                fill: false,
+                tension: 0.3,
+              }],
+            },
+            options: {
+              responsive: false,
+              plugins: { legend: { display: false }, tooltip: { enabled: false } },
+              scales: {
+                x: { display: false },
+                y: { display: false, min: 0, max: 100 },
+              },
+            },
+          });
+        });
+      })
+      .catch(() => {});
+  </script>
 </body>
 </html>`;
 };
@@ -388,6 +582,59 @@ const generateDailyReport = (statuses: ProjectStatus[]): string => {
   return body;
 };
 
+interface AlertEvent {
+  type: 'ci_fail' | 'ai_fix_pending' | 'health_drop';
+  project: string;
+  message: string;
+}
+
+const detectAlerts = (statuses: ProjectStatus[]): AlertEvent[] => {
+  const alerts: AlertEvent[] = [];
+
+  for (const p of statuses) {
+    if (p.ciStatus === 'fail') {
+      alerts.push({
+        type: 'ci_fail',
+        project: p.name,
+        message: `CI is failing on ${p.name} (${p.fullName})`,
+      });
+    }
+
+    if (p.aiFixPRs.length > 0) {
+      alerts.push({
+        type: 'ai_fix_pending',
+        project: p.name,
+        message: `${p.aiFixPRs.length} AI fix PR(s) pending review on ${p.name}`,
+      });
+    }
+  }
+
+  // Check health drops against previous history
+  const historyPath = 'dashboard/history.json';
+  if (existsSync(historyPath)) {
+    try {
+      const history = JSON.parse(readFileSync(historyPath, 'utf-8')) as HistoryEntry[];
+      if (history.length >= 2) {
+        const prev = history[history.length - 2];
+        for (const p of statuses) {
+          const prevProject = prev.perProject.find((pp) => pp.name === p.name);
+          if (prevProject && prevProject.health - p.healthScore >= 15) {
+            alerts.push({
+              type: 'health_drop',
+              project: p.name,
+              message: `Health dropped from ${prevProject.health} to ${p.healthScore} on ${p.name}`,
+            });
+          }
+        }
+      }
+    } catch {
+      // ignore history parse errors
+    }
+  }
+
+  return alerts;
+};
+
 // Main
 const main = () => {
   const reportPath = 'dashboard/scan-report.json';
@@ -412,11 +659,28 @@ const main = () => {
   writeFileSync('dashboard/daily-report.md', reportBody);
   console.log('Daily report written to dashboard/daily-report.md');
 
+  // Update history for trends
+  updateHistory(statuses);
+
   // Write statuses JSON for other consumers
   writeFileSync(
     'dashboard/statuses.json',
     JSON.stringify({ timestamp: new Date().toISOString(), projects: statuses }, null, 2)
   );
+
+  // Detect alerts for email notifications
+  const alerts = detectAlerts(statuses);
+  if (alerts.length > 0) {
+    writeFileSync(
+      'dashboard/alert-payload.json',
+      JSON.stringify({ timestamp: new Date().toISOString(), alerts }, null, 2)
+    );
+    console.log(`${alerts.length} alert(s) detected - alert-payload.json written`);
+  } else {
+    console.log('No alerts detected');
+  }
+
+  console.log(`\nDashboard URL: ${DASHBOARD_URL}\n`);
 
   // If running in GitHub Actions, create the daily issue
   if (process.env.GITHUB_ACTIONS === 'true') {
