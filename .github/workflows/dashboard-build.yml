@@ -74,7 +74,9 @@ jobs:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
 
       - name: Send alert email
-        if: steps.alerts.outputs.has_alerts == 'true' && secrets.SMTP_USERNAME != ''
+        if: steps.alerts.outputs.has_alerts == 'true' && env.SMTP_USER != ''
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USERNAME }}
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: ${{ secrets.SMTP_SERVER }}
