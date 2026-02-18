@@ -59,6 +59,18 @@ jobs:
             echo "has_alerts=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Trigger self-healing for CI failures
+        if: steps.alerts.outputs.has_alerts == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+        run: |
+          jq -c '.alerts[] | select(.type == "ci_fail" and .runId != "")' dashboard/alert-payload.json | while read -r alert; do
+            REPO=$(echo "$alert" | jq -r '.repo')
+            RUN_ID=$(echo "$alert" | jq -r '.runId')
+            echo "Triggering self-heal for $REPO (run $RUN_ID)"
+            gh workflow run self-heal.yml -f repo="$REPO" -f run_id="$RUN_ID" || echo "  Failed to trigger (workflow may not exist yet)"
+          done
+
       - name: Remove transient alert file
         run: rm -f dashboard/alert-payload.json
 

@@ -32,6 +32,7 @@ interface ScanReport {
 }
 
 interface WorkflowRun {
+  id: number;
   conclusion: string;
   name: string;
   html_url: string;
@@ -138,7 +139,7 @@ const sh = (cmd: string): string => {
 
 const getLatestWorkflowRun = (repo: string, branch: string): WorkflowRun | null => {
   const result = sh(
-    `gh api "repos/${repo}/actions/runs?branch=${branch}&per_page=1" --jq '.workflow_runs[0] | {conclusion, name, html_url, created_at, head_branch}'`
+    `gh api "repos/${repo}/actions/runs?branch=${branch}&per_page=1" --jq '.workflow_runs[0] | {id, conclusion, name, html_url, created_at, head_branch}'`
   );
   if (!result || result === 'null') return null;
   try {
@@ -653,6 +654,8 @@ const generateDailyReport = (statuses: ProjectStatus[]): string => {
 interface AlertEvent {
   type: 'ci_fail' | 'ai_fix_pending' | 'health_drop';
   project: string;
+  repo: string;
+  runId: string;
   message: string;
 }
 
@@ -664,6 +667,8 @@ const detectAlerts = (statuses: ProjectStatus[]): AlertEvent[] => {
       alerts.push({
         type: 'ci_fail',
         project: p.name,
+        repo: p.fullName,
+        runId: p.lastRun?.id ? String(p.lastRun.id) : '',
         message: `CI is failing on ${p.name} (${p.fullName})`,
       });
     }
@@ -672,6 +677,8 @@ const detectAlerts = (statuses: ProjectStatus[]): AlertEvent[] => {
       alerts.push({
         type: 'ai_fix_pending',
         project: p.name,
+        repo: p.fullName,
+        runId: '',
         message: `${p.aiFixPRs.length} AI fix PR(s) pending review on ${p.name}`,
       });
     }
@@ -690,6 +697,8 @@ const detectAlerts = (statuses: ProjectStatus[]): AlertEvent[] => {
             alerts.push({
               type: 'health_drop',
               project: p.name,
+              repo: p.fullName,
+              runId: '',
               message: `Health dropped from ${prevProject.health} to ${p.healthScore} on ${p.name}`,
             });
           }
