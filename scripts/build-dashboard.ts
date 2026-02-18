@@ -229,67 +229,95 @@ const buildProjectStatuses = (report: ScanReport): ProjectStatus[] => {
     });
 };
 
+const getProjectIssues = (p: ProjectStatus): string[] => {
+  const issues: string[] = [];
+  if (p.ciStatus === 'fail') {
+    issues.push(
+      `CI failing${p.lastRun?.html_url ? ` <a href="${p.lastRun.html_url}" target="_blank">(view run)</a>` : ''}`
+    );
+  }
+  if (p.aiFixPRs.length > 0) {
+    for (const pr of p.aiFixPRs) {
+      issues.push(
+        `AI fix PR needs review: <a href="${pr.html_url}" target="_blank">#${pr.number} ${pr.title}</a>`
+      );
+    }
+  }
+  if (p.openPRs.length > 5) {
+    issues.push(`${p.openPRs.length} open PRs (backlog growing)`);
+  }
+  if (p.renovatePRs.length > 0) {
+    issues.push(`${p.renovatePRs.length} Renovate PR(s) to merge`);
+  }
+  return issues;
+};
+
 const generateHTML = (statuses: ProjectStatus[]): string => {
   const timestamp = new Date().toISOString();
   const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
+  const failingCount = statuses.filter((p) => p.ciStatus === 'fail').length;
   const totalAIFixes = statuses.reduce((s, p) => s + p.aiFixPRs.length, 0);
-  const totalRenovatePRs = statuses.reduce((s, p) => s + p.renovatePRs.length, 0);
-  const failingProjects = statuses.filter((p) => p.ciStatus === 'fail').length;
-  const securedCount = statuses.filter((p) => p.hasGitleaks).length;
-  const huskyCount = statuses.filter((p) => p.hasHusky).length;
 
-  const projectCards = statuses
-    .sort((a, b) => a.healthScore - b.healthScore)
-    .map(
-      (p) => `
-    <div class="card">
-      <div class="card-header">
+  const problemProjects = statuses
+    .filter(
+      (p) =>
+        p.ciStatus === 'fail' ||
+        p.aiFixPRs.length > 0 ||
+        p.openPRs.length > 5 ||
+        p.renovatePRs.length > 0
+    )
+    .sort((a, b) => a.healthScore - b.healthScore);
+
+  const okProjects = statuses
+    .filter((p) => !problemProjects.includes(p))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  const alertCards = problemProjects
+    .map((p) => {
+      const issues = getProjectIssues(p);
+      const borderColor = p.ciStatus === 'fail' ? '#ef4444' : '#f59e0b';
+      return `
+    <div class="alert-card" style="border-left-color: ${borderColor}">
+      <div class="alert-header">
         <div>
           <span class="status-icon">${getStatusEmoji(p.ciStatus)}</span>
           <strong>${p.name}</strong>
           <span class="badge badge-${p.stack}">${p.stack}</span>
         </div>
-        <div class="health-score" style="color: ${getHealthColor(p.healthScore)}">
-          ${p.healthScore}/100
-        </div>
+        <div class="health-score" style="color: ${getHealthColor(p.healthScore)}">${p.healthScore}</div>
       </div>
-      <div class="card-body">
-        <div class="metric">
-          <span class="metric-label">CI Status</span>
-          <span class="metric-value">${p.ciStatus}${p.lastRun?.html_url ? ` <a href="${p.lastRun.html_url}" target="_blank">(view)</a>` : ''}</span>
-        </div>
-        <div class="metric">
-          <span class="metric-label">Open PRs</span>
-          <span class="metric-value">${p.openPRs.length}</span>
-        </div>
-        <div class="metric">
-          <span class="metric-label">AI Fix PRs</span>
-          <span class="metric-value">${p.aiFixPRs.length > 0 ? `<strong style="color: #f59e0b">${p.aiFixPRs.length} pending</strong>` : '0'}</span>
-        </div>
-        <div class="metric">
-          <span class="metric-label">Renovate PRs</span>
-          <span class="metric-value">${p.renovatePRs.length > 0 ? `${p.renovatePRs.length} open` : '0'}</span>
-        </div>
-        <div class="metric">
-          <span class="metric-label">Security</span>
-          <span class="metric-value">${p.hasGitleaks ? '&#9989; Gitleaks' : '&#9898; No scanning'}</span>
-        </div>
-        <div class="metric">
-          <span class="metric-label">Quality</span>
-          <span class="metric-value">${[p.hasHusky ? 'Husky' : '', p.hasRenovate ? 'Renovate' : ''].filter(Boolean).join(', ') || '<em>None</em>'}</span>
-        </div>
-        <div class="metric">
-          <span class="metric-label">Configured</span>
-          <span class="metric-value">${p.configured ? 'Claude + Self-heal' : '<em>Partial</em>'}</span>
-        </div>
-        <div class="sparkline-row">
-          <span class="metric-label">14d trend</span>
-          <canvas data-sparkline="${p.name}" width="80" height="24"></canvas>
-        </div>
+      <ul class="issue-list">
+        ${issues.map((i) => `<li>${i}</li>`).join('\n        ')}
+      </ul>
+    </div>`;
+    })
+    .join('\n');
+
+  const okCards = okProjects
+    .map(
+      (p) => `
+    <details class="ok-card">
+      <summary>
+        <span class="status-icon">${getStatusEmoji(p.ciStatus)}</span>
+        <strong>${p.name}</strong>
+        <span class="badge badge-${p.stack}">${p.stack}</span>
+        <span class="health-score" style="color: ${getHealthColor(p.healthScore)}">${p.healthScore}</span>
+        <canvas data-sparkline="${p.name}" width="60" height="20"></canvas>
+      </summary>
+      <div class="ok-detail">
+        <div class="metric"><span class="metric-label">CI</span><span>${p.ciStatus}${p.lastRun?.html_url ? ` <a href="${p.lastRun.html_url}" target="_blank">(view)</a>` : ''}</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>${p.openPRs.length}</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span>${p.hasGitleaks ? 'Gitleaks' : 'None'}</span></div>
+        <div class="metric"><span class="metric-label">Quality</span><span>${[p.hasHusky ? 'Husky' : '', p.hasRenovate ? 'Renovate' : ''].filter(Boolean).join(', ') || 'None'}</span></div>
       </div>
-    </div>`
+    </details>`
     )
     .join('\n');
+
+  const allClearBanner =
+    problemProjects.length === 0
+      ? `<div class="all-clear">All ${statuses.length} projects are healthy</div>`
+      : '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -304,85 +332,146 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
       background: #0d1117;
       color: #c9d1d9;
       padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header */
+    .header { text-align: center; margin-bottom: 1.5rem; }
     .header h1 { color: #58a6ff; font-size: 1.8rem; }
-    .header .timestamp { color: #8b949e; font-size: 0.85rem; margin-top: 0.5rem; }
+    .header .timestamp { color: #8b949e; font-size: 0.8rem; margin-top: 0.3rem; }
+
+    /* Summary strip */
     .summary {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      display: flex;
       gap: 1rem;
-      margin-bottom: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
     }
-    .summary-card {
+    .summary-item {
       background: #161b22;
       border: 1px solid #30363d;
       border-radius: 8px;
-      padding: 1.2rem;
+      padding: 0.8rem 1.5rem;
       text-align: center;
+      min-width: 120px;
     }
-    .summary-card .number { font-size: 2rem; font-weight: bold; }
-    .summary-card .label { color: #8b949e; font-size: 0.85rem; }
-    .grid {
+    .summary-item .number { font-size: 1.6rem; font-weight: bold; }
+    .summary-item .label { color: #8b949e; font-size: 0.75rem; }
+
+    /* All clear banner */
+    .all-clear {
+      background: rgba(34,197,94,0.1);
+      border: 1px solid #22c55e;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      color: #22c55e;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Section titles */
+    .section-title {
+      font-size: 1rem;
+      color: #8b949e;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .section-title.alert { color: #ef4444; }
+
+    /* Alert cards - problems */
+    .alerts { margin-bottom: 2rem; }
+    .alert-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-left: 4px solid #ef4444;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+    .alert-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+    .issue-list {
+      list-style: none;
+      padding: 0;
+    }
+    .issue-list li {
+      padding: 0.3rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      font-size: 0.9rem;
+    }
+    .issue-list li::before {
+      content: "\\26A0";
+      position: absolute;
+      left: 0;
+    }
+
+    /* OK cards - compact expandable */
+    .ok-section { margin-bottom: 2rem; }
+    .ok-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 0.5rem;
     }
-    .card {
+    .ok-card {
       background: #161b22;
       border: 1px solid #30363d;
       border-radius: 8px;
       overflow: hidden;
     }
-    .card-header {
+    .ok-card summary {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1rem;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+    .ok-card summary::-webkit-details-marker { display: none; }
+    .ok-card summary .health-score { margin-left: auto; font-size: 0.9rem; font-weight: bold; }
+    .ok-card summary canvas { flex-shrink: 0; }
+    .ok-card[open] { border-color: #58a6ff; }
+    .ok-detail { padding: 0 1rem 0.8rem; border-top: 1px solid #21262d; }
+    .ok-detail .metric {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      border-bottom: 1px solid #30363d;
+      padding: 0.3rem 0;
+      font-size: 0.85rem;
     }
-    .card-body { padding: 1rem; }
-    .status-icon { margin-right: 0.5rem; }
-    .health-score { font-size: 1.2rem; font-weight: bold; }
-    .badge {
-      font-size: 0.7rem;
-      padding: 2px 6px;
-      border-radius: 4px;
-      margin-left: 0.5rem;
-    }
+
+    /* Shared */
+    .status-icon { margin-right: 0.3rem; }
+    .health-score { font-weight: bold; }
+    .badge { font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; margin-left: 0.3rem; }
     .badge-nextjs { background: #000; color: #fff; border: 1px solid #333; }
     .badge-node { background: #026e00; color: #fff; }
     .badge-dotnet { background: #512bd4; color: #fff; }
     .badge-fastify { background: #000; color: #fff; }
-    .metric {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.4rem 0;
-      border-bottom: 1px solid #21262d;
-    }
-    .metric:last-child { border-bottom: none; }
+    .badge-astro { background: #ff5d01; color: #fff; }
     .metric-label { color: #8b949e; }
+
+    /* Trends */
     .trends {
       background: #161b22;
       border: 1px solid #30363d;
       border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
     }
-    .trends h2 { color: #58a6ff; font-size: 1.2rem; margin-bottom: 1rem; }
-    .trends canvas { max-height: 250px; }
-    .sparkline-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .sparkline-row canvas { width: 80px; height: 24px; }
-    a { color: #58a6ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    .trends h2 { color: #58a6ff; font-size: 1rem; margin-bottom: 0.8rem; }
+    .trends canvas { max-height: 220px; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
@@ -393,43 +482,46 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
   </div>
 
   <div class="summary">
-    <div class="summary-card">
+    <div class="summary-item">
       <div class="number">${statuses.length}</div>
       <div class="label">Projects</div>
     </div>
-    <div class="summary-card">
+    <div class="summary-item">
       <div class="number" style="color: ${getHealthColor(avgHealth)}">${avgHealth}</div>
       <div class="label">Avg Health</div>
     </div>
-    <div class="summary-card">
-      <div class="number" style="color: ${failingProjects > 0 ? '#ef4444' : '#22c55e'}">${failingProjects}</div>
+    <div class="summary-item">
+      <div class="number" style="color: ${failingCount > 0 ? '#ef4444' : '#22c55e'}">${failingCount}</div>
       <div class="label">Failing CI</div>
     </div>
-    <div class="summary-card">
+    <div class="summary-item">
       <div class="number" style="color: ${totalAIFixes > 0 ? '#f59e0b' : '#22c55e'}">${totalAIFixes}</div>
-      <div class="label">AI Fixes Pending</div>
+      <div class="label">AI Fixes</div>
     </div>
-    <div class="summary-card">
-      <div class="number">${totalRenovatePRs}</div>
-      <div class="label">Renovate PRs</div>
-    </div>
-    <div class="summary-card">
-      <div class="number">${securedCount}/${statuses.length}</div>
-      <div class="label">Secret Scanning</div>
-    </div>
-    <div class="summary-card">
-      <div class="number">${huskyCount}/${statuses.length}</div>
-      <div class="label">Husky Hooks</div>
+  </div>
+
+  ${allClearBanner}
+
+  ${
+    problemProjects.length > 0
+      ? `
+  <div class="alerts">
+    <div class="section-title alert">Needs Attention (${problemProjects.length})</div>
+    ${alertCards}
+  </div>`
+      : ''
+  }
+
+  <div class="ok-section">
+    <div class="section-title">Healthy (${okProjects.length})</div>
+    <div class="ok-grid">
+      ${okCards}
     </div>
   </div>
 
   <div class="trends">
     <h2>Health Trends (30 days)</h2>
     <canvas id="trendsChart"></canvas>
-  </div>
-
-  <div class="grid">
-    ${projectCards}
   </div>
 
   <script>
@@ -472,34 +564,21 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
             interaction: { mode: 'index', intersect: false },
             scales: {
               y: {
-                type: 'linear',
-                position: 'left',
-                min: 0,
-                max: 100,
+                type: 'linear', position: 'left', min: 0, max: 100,
                 title: { display: true, text: 'Health', color: '#8b949e' },
-                ticks: { color: '#8b949e' },
-                grid: { color: '#21262d' },
+                ticks: { color: '#8b949e' }, grid: { color: '#21262d' },
               },
               y1: {
-                type: 'linear',
-                position: 'right',
-                min: 0,
+                type: 'linear', position: 'right', min: 0,
                 title: { display: true, text: 'Failing', color: '#8b949e' },
-                ticks: { color: '#8b949e', stepSize: 1 },
-                grid: { drawOnChartArea: false },
+                ticks: { color: '#8b949e', stepSize: 1 }, grid: { drawOnChartArea: false },
               },
-              x: {
-                ticks: { color: '#8b949e' },
-                grid: { color: '#21262d' },
-              },
+              x: { ticks: { color: '#8b949e' }, grid: { color: '#21262d' } },
             },
-            plugins: {
-              legend: { labels: { color: '#c9d1d9' } },
-            },
+            plugins: { legend: { labels: { color: '#c9d1d9' } } },
           },
         });
 
-        // Sparklines per project
         document.querySelectorAll('[data-sparkline]').forEach(canvas => {
           const name = canvas.getAttribute('data-sparkline');
           const last14 = history.slice(-14);
@@ -508,27 +587,16 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
             return proj ? proj.health : null;
           }).filter(v => v !== null);
           if (!data.length) return;
-
           new Chart(canvas, {
             type: 'line',
             data: {
               labels: data.map((_, i) => i),
-              datasets: [{
-                data,
-                borderColor: '#58a6ff',
-                borderWidth: 1.5,
-                pointRadius: 0,
-                fill: false,
-                tension: 0.3,
-              }],
+              datasets: [{ data, borderColor: '#58a6ff', borderWidth: 1.5, pointRadius: 0, fill: false, tension: 0.3 }],
             },
             options: {
               responsive: false,
               plugins: { legend: { display: false }, tooltip: { enabled: false } },
-              scales: {
-                x: { display: false },
-                y: { display: false, min: 0, max: 100 },
-              },
+              scales: { x: { display: false }, y: { display: false, min: 0, max: 100 } },
             },
           });
         });
