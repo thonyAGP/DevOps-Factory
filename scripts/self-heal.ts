@@ -828,7 +828,39 @@ const main = async (): Promise<void> => {
     )
   );
 
-  if (hasNonDuplicateErrors && fileContents.size > 0) {
+  // Also trigger analysis when we have logs but no annotations (403 on check-runs API)
+  const hasLogsWithoutAnnotations =
+    targetJobs.some((j) => j.logs.length > 0) &&
+    targetJobs.every((j) => j.annotations.length === 0);
+
+  if (hasLogsWithoutAnnotations && fileContents.size === 0) {
+    // Extract file paths from log error messages (e.g. "src/foo.ts(12,5): error TS2345")
+    const filePathPattern = /(?:^|\s)([\w/.+-]+\.(?:ts|tsx|js|jsx|cs|csproj))[\s(:]/gm;
+    const logText = targetJobs.map((j) => j.logs).join('\n');
+    const extractedPaths = new Set<string>();
+    let match: RegExpExecArray | null;
+    while ((match = filePathPattern.exec(logText)) !== null) {
+      const p = match[1];
+      if (!p.startsWith('node_modules/') && !p.startsWith('.github/')) {
+        extractedPaths.add(p);
+      }
+    }
+    console.log(`  Extracted ${extractedPaths.size} file path(s) from logs`);
+
+    // Fetch up to 10 files for context
+    for (const path of [...extractedPaths].slice(0, 10)) {
+      const content = fetchFileContent(repo, path, defaultBranch);
+      if (content) {
+        fileContents.set(path, content);
+        console.log(`  Fetched ${path} (${Math.round(content.length / 1024)}KB)`);
+      }
+    }
+  }
+
+  if (
+    (hasNonDuplicateErrors || hasLogsWithoutAnnotations) &&
+    (fileContents.size > 0 || hasLogsWithoutAnnotations)
+  ) {
     // Step 4a: Check pattern database first (free, instant)
     const matchedPattern = matchPattern(targetJobs);
 
@@ -880,6 +912,18 @@ const main = async (): Promise<void> => {
         if (firstError) {
           const sig = firstError.message.slice(0, 80);
           addNewPattern(sig, aiResponse.explanation.slice(0, 200), repo);
+        } else if (hasLogsWithoutAnnotations) {
+          // Extract signature from first error-like line in logs
+          const errorLine = targetJobs
+            .flatMap((j) => j.logs.split('\n'))
+            .find((l) => /error\s+(TS|CS|MSB)/i.test(l));
+          if (errorLine) {
+            addNewPattern(
+              errorLine.trim().slice(0, 80),
+              aiResponse.explanation.slice(0, 200),
+              repo
+            );
+          }
         }
       }
     }
