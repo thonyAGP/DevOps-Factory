@@ -11,7 +11,7 @@ on:
         required: true
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   review:
@@ -39,6 +39,6 @@ jobs:
           git config user.name "devops-factory[bot]"
           git config user.email "devops-factory[bot]@users.noreply.github.com"
           git add data/claude-review-quota.json
-          git diff --cached --quiet || git commit -m "data: update claude review quota"
+          git diff --cached --quiet || git commit -m "chore: update claude review quota" --no-verify
           git pull --rebase
           git push

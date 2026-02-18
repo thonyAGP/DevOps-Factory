@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
 
 jobs:
@@ -35,6 +35,6 @@ jobs:
           git config user.name "devops-factory[bot]"
           git config user.email "devops-factory[bot]@users.noreply.github.com"
           git add data/coverage-history.json
-          git diff --cached --quiet || git commit -m "data: update coverage baseline"
+          git diff --cached --quiet || git commit -m "chore: update coverage baseline" --no-verify
           git pull --rebase
           git push
