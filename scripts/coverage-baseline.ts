@@ -48,24 +48,26 @@ const sh = (cmd: string): string => {
   }
 };
 
-const detectTestFramework = (repo: string): string | undefined => {
-  // Check for Vitest
+const detectTestFramework = (repo: string, stack: string): string | undefined => {
+  // For .NET projects, check xUnit first
+  if (stack === 'dotnet') {
+    const hasXunit = sh(
+      `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq '.tree[] | select(.path | test("\\\\.Tests\\\\.csproj$")) | .path' 2>/dev/null || echo ''`
+    );
+    if (hasXunit) return 'xunit';
+    return undefined;
+  }
+
+  // For Node.js projects, check Vitest then Jest
   const hasVitest = sh(
     `gh api repos/${repo}/contents/vitest.config.ts --jq .size 2>/dev/null || echo 0`
   );
   if (hasVitest !== '0') return 'vitest';
 
-  // Check for Jest
   const hasJest = sh(
-    `gh api repos/${repo}/git/trees/HEAD --recursive --jq '.tree[] | select(.path | test("jest\\\\.config")) | .path' 2>/dev/null || echo ''`
+    `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq '.tree[] | select(.path | test("jest\\\\.config")) | .path' 2>/dev/null || echo ''`
   );
   if (hasJest) return 'jest';
-
-  // Check for xUnit (C# test projects)
-  const hasXunit = sh(
-    `gh api repos/${repo}/git/trees/HEAD --recursive --jq '.tree[] | select(.path | test("\\\\.Tests\\\\.csproj$")) | .path' 2>/dev/null || echo ''`
-  );
-  if (hasXunit) return 'xunit';
 
   return undefined;
 };
@@ -74,21 +76,20 @@ const countTestFiles = (repo: string, testFramework?: string): number => {
   if (!testFramework) return 0;
 
   if (testFramework === 'xunit') {
-    // Count .cs files in test projects
     const result = sh(
-      `gh api repos/${repo}/git/trees/HEAD --recursive --jq '.tree[] | select(.path | test("\\\\.Tests\\\\.csproj$|Tests\\\\.cs$")) | .path' 2>/dev/null | wc -l`
+      `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq '[.tree[] | select(.type == "blob") | select(.path | test("\\\\.Tests\\\\.csproj$|Tests\\\\.cs$")) | .path] | length' 2>/dev/null || echo 0`
     );
     return parseInt(result || '0', 10);
   }
 
-  // For Node.js test frameworks
+  // For Node.js test frameworks (jq needs \\\\. for literal dot in regex)
   const patterns =
     testFramework === 'vitest'
-      ? '(\\.test\\.ts|\\.spec\\.ts|\\.test\\.tsx)$'
-      : '(\\.test\\.js|\\.spec\\.js|\\.test\\.jsx)$';
+      ? '(\\\\.test\\\\.ts|\\\\.spec\\\\.ts|\\\\.test\\\\.tsx)$'
+      : '(\\\\.test\\\\.js|\\\\.spec\\\\.js|\\\\.test\\\\.jsx)$';
 
   const result = sh(
-    `gh api repos/${repo}/git/trees/HEAD --recursive --jq '.tree[] | select(.path | test("${patterns}")) | .path' 2>/dev/null | wc -l`
+    `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq '[.tree[] | select(.type == "blob") | select(.path | test("${patterns}")) | .path] | length' 2>/dev/null || echo 0`
   );
   return parseInt(result || '0', 10);
 };
@@ -161,7 +162,7 @@ const collectCoverageData = (): CoverageEntry[] => {
 
     console.log(`Scanning ${project.name}...`);
 
-    const testFramework = detectTestFramework(project.repo);
+    const testFramework = detectTestFramework(project.repo, project.stack);
     const testFileCount = countTestFiles(project.repo, testFramework);
     const hasTests = testFileCount > 0;
 

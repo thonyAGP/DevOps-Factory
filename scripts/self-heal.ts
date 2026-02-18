@@ -216,8 +216,11 @@ const getFailedJobs = (repo: string, runId: string): FailedJob[] => {
   const allLogs = sh(`gh run view ${runId} --repo ${repo} --log-failed`);
 
   return failedJobs.map((job) => {
-    // Get structured annotations
-    const annotations = ghApi<Annotation[]>(`repos/${repo}/check-runs/${job.id}/annotations`) || [];
+    // Get structured annotations (API may return object on 403 instead of array)
+    const raw = ghApi<Annotation[] | Record<string, unknown>>(
+      `repos/${repo}/check-runs/${job.id}/annotations`
+    );
+    const annotations = Array.isArray(raw) ? raw : [];
     const errors = annotations.filter((a) => a.annotation_level === 'failure');
 
     // Extract logs for this specific job (format: "JobName\tStep\tMessage")
