@@ -2,7 +2,7 @@
 - **17** projects monitored
 - **0/17** fully configured
 - **0** AI fix PR(s) pending merge
-- **15** CI failure(s)
+- **14** CI failure(s)
 
 ## Per Project
 
@@ -24,11 +24,6 @@
 ### ClubMedRoomAssignment :x:
 - **Health**: 50/100
 - **CI**: fail ([view](https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/21760239407))
-- **Open PRs**: 1
-
-### Email_Assistant :x:
-- **Health**: 50/100
-- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22115063857))
 - **Open PRs**: 1
 
 ### Livret_accueil_Au-Marais :x:
@@ -85,6 +80,11 @@
 - **Health**: 80/100
 - **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/21775816387))
 - **Open PRs**: 0
+
+### Email_Assistant :white_check_mark:
+- **Health**: 80/100
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22123251676))
+- **Open PRs**: 1
 
 ### lecteur-magic :white_check_mark:
 - **Health**: 80/100

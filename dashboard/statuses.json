@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-18T01:21:24.014Z",
+  "timestamp": "2026-02-18T02:12:14.272Z",
   "projects": [
     {
       "name": "CasaSync",
@@ -72,38 +72,6 @@
           "number": 1,
           "state": "OPEN",
           "title": "feat: Anti-regression infrastructure & MECANO fixes",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "healthScore": 50,
-      "configured": false
-    },
-    {
-      "name": "Email_Assistant",
-      "fullName": "thonyAGP/Email_Assistant",
-      "stack": "node",
-      "ciStatus": "fail",
-      "lastRun": {
-        "conclusion": "skipped",
-        "created_at": "2026-02-17T20:45:48Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22115063857",
-        "name": "Qodo Merge - PR Review"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-17T20:45:40Z",
-          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/6",
-          "labels": [
-            "enhancement",
-            "Tests"
-          ],
-          "number": 6,
-          "state": "OPEN",
-          "title": "chore: zero ESLint warnings, console.log cleanup, 94% API route coverage",
           "user": {
             "login": "thonyAGP"
           }
@@ -296,6 +264,38 @@
         "name": "E2E Tests"
       },
       "openPRs": [],
+      "aiFixPRs": [],
+      "healthScore": 80,
+      "configured": false
+    },
+    {
+      "name": "Email_Assistant",
+      "fullName": "thonyAGP/Email_Assistant",
+      "stack": "node",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-18T01:49:32Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22123251676",
+        "name": "Monitor Production"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-17T20:45:40Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/6",
+          "labels": [
+            "enhancement",
+            "Tests"
+          ],
+          "number": 6,
+          "state": "OPEN",
+          "title": "chore: zero ESLint warnings, console.log cleanup, 94% API route coverage",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "healthScore": 80,
       "configured": false
