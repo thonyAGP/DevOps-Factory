@@ -1,0 +1,34 @@
+name: Migration Checklist
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to check'
+        required: true
+        type: number
+
+permissions:
+  contents: read
+
+jobs:
+  checklist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Run migration checklist
+        run: pnpm migration-checklist -- --pr "${{ inputs.pr_number }}"
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
