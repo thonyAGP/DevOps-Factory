@@ -1,0 +1,30 @@
+name: Test Scaffold Generator
+
+on:
+  schedule:
+    - cron: '0 7 * * 1' # Monday 7am UTC (after coverage audit)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scaffold:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Generate test scaffolds
+        run: pnpm test-scaffold
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}

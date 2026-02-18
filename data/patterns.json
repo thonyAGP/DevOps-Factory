@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "lastUpdated": "2026-02-18T00:00:00.000Z",
+  "patterns": [
+    {
+      "id": "prisma-client-not-generated",
+      "category": "ci-failure",
+      "signature": "Cannot find module '.prisma/client'",
+      "fix": "Add 'prisma generate' before build in package.json scripts",
+      "fixType": "package-json",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "prettier-format-error",
+      "category": "ci-failure",
+      "signature": "Run Prettier with --write to fix",
+      "fix": "Run 'prettier --write .' on affected files",
+      "fixType": "command",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.95
+    },
+    {
+      "id": "eslint-unused-vars",
+      "category": "ci-failure",
+      "signature": "is defined but never used",
+      "fix": "Remove unused variable or prefix with underscore",
+      "fixType": "code-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.85
+    },
+    {
+      "id": "ts-noUnusedLocals",
+      "category": "ci-failure",
+      "signature": "is declared but its value is never read",
+      "fix": "Remove unused import/variable or disable noUnusedLocals",
+      "fixType": "code-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.85
+    },
+    {
+      "id": "next-build-type-error",
+      "category": "ci-failure",
+      "signature": "Type error: Type '",
+      "fix": "Fix TypeScript type mismatch in the indicated file",
+      "fixType": "ai-required",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.5
+    },
+    {
+      "id": "dotnet-duplicate-definition",
+      "category": "ci-failure",
+      "signature": "already contains a definition for",
+      "fix": "Remove duplicate class definition from the larger file",
+      "fixType": "deterministic",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.95
+    },
+    {
+      "id": "npm-peer-deps",
+      "category": "ci-failure",
+      "signature": "Could not resolve dependency: peer",
+      "fix": "Add --legacy-peer-deps or update conflicting dependency",
+      "fixType": "command",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.7
+    },
+    {
+      "id": "vitest-module-not-found",
+      "category": "ci-failure",
+      "signature": "Cannot find module",
+      "fix": "Install missing dependency or fix import path",
+      "fixType": "ai-required",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.6
+    }
+  ]
+}

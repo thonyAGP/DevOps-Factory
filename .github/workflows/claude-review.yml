@@ -1,0 +1,44 @@
+name: Claude Code Review
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: 'Repository (owner/name)'
+        required: true
+      pr:
+        description: 'PR number'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Run Claude review
+        run: pnpm claude-review -- --repo ${{ inputs.repo }} --pr ${{ inputs.pr }}
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+
+      - name: Commit quota data
+        run: |
+          git config user.name "devops-factory[bot]"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add data/claude-review-quota.json
+          git diff --cached --quiet || git commit -m "data: update claude review quota"
+          git pull --rebase
+          git push

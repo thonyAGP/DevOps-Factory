@@ -1,0 +1,40 @@
+name: Quality Score
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # Daily 8am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Calculate quality scores
+        run: pnpm quality-score
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+
+      - name: Commit quality data
+        run: |
+          git config user.name "devops-factory[bot]"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add data/quality-history.json
+          git diff --cached --quiet || git commit -m "data: update quality scores"
+          git pull --rebase
+          git push

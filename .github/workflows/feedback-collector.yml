@@ -1,0 +1,42 @@
+name: Feedback Collector
+
+on:
+  schedule:
+    - cron: '0 9 * * 0' # Sunday 9am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  feedback:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Collect feedback
+        run: pnpm feedback
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GITHUB_ACTIONS: 'true'
+          GITHUB_REPOSITORY: ${{ github.repository }}
+
+      - name: Commit feedback data
+        run: |
+          git config user.name "devops-factory[bot]"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add data/feedback-log.json data/patterns.json
+          git diff --cached --quiet || git commit -m "data: update feedback and patterns"
+          git pull --rebase
+          git push

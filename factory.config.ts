@@ -13,7 +13,50 @@ export interface ProjectConfig {
   hasLinkChecker: boolean;
   vercel: boolean;
   productionUrl?: string;
+  testFramework?: 'vitest' | 'xunit' | 'jest' | 'none';
+  hasTests?: boolean;
 }
+
+export interface CoverageThresholds {
+  services: number;
+  global: number;
+  ratchet: boolean;
+}
+
+export interface ClaudeReviewConfig {
+  maxReviewsPerDay: number;
+  enabledRepos: string[];
+  model: string;
+}
+
+export const COVERAGE_THRESHOLDS: CoverageThresholds = {
+  services: 80,
+  global: 60,
+  ratchet: true,
+};
+
+export const CLAUDE_REVIEW_CONFIG: ClaudeReviewConfig = {
+  maxReviewsPerDay: 20,
+  enabledRepos: [
+    'thonyAGP/Email_Assistant',
+    'thonyAGP/CasaSync',
+    'thonyAGP/livret-au-marais',
+    'thonyAGP/au-marais',
+    'thonyAGP/ClubMedRoomAssignment',
+    'thonyAGP/lecteur-magic',
+  ],
+  model: 'claude-sonnet-4-5-20250929',
+};
+
+export const QUALITY_WEIGHTS = {
+  ciPasses: 20,
+  coverageAboveThreshold: 20,
+  prettierClean: 10,
+  eslintZeroWarnings: 15,
+  branchProtection: 10,
+  depsUpToDate: 10,
+  noSecrets: 15,
+} as const;
 
 export const KNOWN_PROJECTS: ProjectConfig[] = [
   {

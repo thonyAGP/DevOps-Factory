@@ -1,7 +1,9 @@
 /**
  * self-heal.ts
  *
- * Analyzes CI failures using Gemini 2.5 Flash and creates fix PRs.
+ * Analyzes CI failures using pattern database + Claude/Gemini and creates fix PRs.
+ * Priority: Pattern DB (free, instant) → Claude via CLI (Max plan) → Gemini Flash (fallback)
+ *
  * Uses GitHub annotations API for structured errors + sibling file search
  * for context discovery. Works entirely via GitHub API (no local clone).
  *
@@ -10,7 +12,7 @@
  */
 
 import { execSync } from 'node:child_process';
-import { writeFileSync, unlinkSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync, unlinkSync } from 'node:fs';
 
 const GEMINI_MODEL = 'gemini-2.5-flash';
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
@@ -43,6 +45,119 @@ interface GeminiResponse {
   fixes: GeminiFix[];
   explanation: string;
 }
+
+interface Pattern {
+  id: string;
+  category: string;
+  signature: string;
+  fix: string;
+  fixType: string;
+  repos_seen: string[];
+  occurrences: number;
+  confidence: number;
+}
+
+interface PatternDB {
+  version: number;
+  lastUpdated: string;
+  patterns: Pattern[];
+}
+
+const PATTERN_DB_PATH = 'data/patterns.json';
+const PATTERN_CONFIDENCE_THRESHOLD = 0.8;
+
+// --- Pattern Database ---
+
+const loadPatterns = (): PatternDB => {
+  if (!existsSync(PATTERN_DB_PATH)) return { version: 1, lastUpdated: '', patterns: [] };
+  try {
+    return JSON.parse(readFileSync(PATTERN_DB_PATH, 'utf-8')) as PatternDB;
+  } catch {
+    return { version: 1, lastUpdated: '', patterns: [] };
+  }
+};
+
+const matchPattern = (jobs: FailedJob[]): Pattern | null => {
+  const db = loadPatterns();
+  const allMessages = jobs.flatMap((j) => [...j.annotations.map((a) => a.message), j.logs]);
+
+  for (const pattern of db.patterns) {
+    if (pattern.confidence < PATTERN_CONFIDENCE_THRESHOLD) continue;
+    if (allMessages.some((msg) => msg.includes(pattern.signature))) {
+      console.log(`  Pattern matched: ${pattern.id} (confidence: ${pattern.confidence})`);
+      return pattern;
+    }
+  }
+
+  return null;
+};
+
+const recordPatternHit = (patternId: string, repo: string, success: boolean): void => {
+  const db = loadPatterns();
+  const pattern = db.patterns.find((p) => p.id === patternId);
+  if (!pattern) return;
+
+  pattern.occurrences++;
+  if (!pattern.repos_seen.includes(repo)) {
+    pattern.repos_seen.push(repo);
+  }
+  pattern.confidence = success
+    ? Math.min(1, pattern.confidence + 0.05)
+    : Math.max(0, pattern.confidence - 0.1);
+  db.lastUpdated = new Date().toISOString();
+
+  writeFileSync(PATTERN_DB_PATH, JSON.stringify(db, null, 2));
+};
+
+const addNewPattern = (signature: string, fix: string, repo: string): void => {
+  const db = loadPatterns();
+  const id = `auto-${Date.now()}`;
+  db.patterns.push({
+    id,
+    category: 'ci-failure',
+    signature,
+    fix,
+    fixType: 'ai-generated',
+    repos_seen: [repo],
+    occurrences: 1,
+    confidence: 0.5,
+  });
+  db.lastUpdated = new Date().toISOString();
+  writeFileSync(PATTERN_DB_PATH, JSON.stringify(db, null, 2));
+  console.log(`  New pattern registered: ${id}`);
+};
+
+// --- Claude CLI (Max plan fallback) ---
+
+const askClaude = (jobs: FailedJob[], files: Map<string, string>): GeminiResponse => {
+  const prompt = buildPrompt(jobs, files);
+  console.log(`Asking Claude CLI (prompt: ${Math.round(prompt.length / 1024)}KB)...`);
+
+  try {
+    const result = execSync('claude -p --output-format text', {
+      input: prompt,
+      encoding: 'utf-8',
+      timeout: 120_000,
+      maxBuffer: 10 * 1024 * 1024,
+    });
+
+    // Try to extract JSON from Claude's response
+    const jsonMatch = result.match(/\{[\s\S]*"fixes"[\s\S]*\}/);
+    if (jsonMatch) {
+      try {
+        return JSON.parse(jsonMatch[0]) as GeminiResponse;
+      } catch {
+        // fall through
+      }
+    }
+
+    return { fixes: [], explanation: `Claude response (non-JSON): ${result.slice(0, 500)}` };
+  } catch (e: unknown) {
+    const err = e as { message?: string };
+    console.error(`Claude CLI failed: ${err.message?.slice(0, 200)}`);
+    return { fixes: [], explanation: 'Claude CLI unavailable' };
+  }
+};
 
 // --- Shell helpers ---
 
@@ -701,7 +816,7 @@ const main = async (): Promise<void> => {
     console.log(`\nDeterministic fixes: ${deterministicFixes.length}`);
   }
 
-  // 4. For remaining errors (not duplicate definitions), ask Gemini
+  // 4. For remaining errors, try: Pattern DB → Claude CLI → Gemini
   const hasNonDuplicateErrors = targetJobs.some((j) =>
     j.annotations.some(
       (a) =>
@@ -711,24 +826,60 @@ const main = async (): Promise<void> => {
   );
 
   if (hasNonDuplicateErrors && fileContents.size > 0) {
-    console.log(`\nTotal files for Gemini analysis: ${fileContents.size}`);
-    const geminiResponse = await askGemini(targetJobs, fileContents);
-    console.log(`Gemini: ${geminiResponse.explanation}`);
+    // Step 4a: Check pattern database first (free, instant)
+    const matchedPattern = matchPattern(targetJobs);
 
-    // Safety: reject Gemini fixes that look suspicious (>50% content change)
-    for (const fix of geminiResponse.fixes) {
-      const original = fetchFullFileContent(repo, fix.path, defaultBranch);
-      if (original && fix.content.length < original.length * 0.3) {
-        console.warn(
-          `  Rejected fix for ${fix.path}: content is ${Math.round((fix.content.length / original.length) * 100)}% of original (likely truncated)`
-        );
-        continue;
+    if (matchedPattern && matchedPattern.fixType !== 'ai-required') {
+      console.log(`\nPattern DB hit: "${matchedPattern.id}" - ${matchedPattern.fix}`);
+      if (explanation) explanation += '. ';
+      explanation += `Known pattern: ${matchedPattern.fix}`;
+      recordPatternHit(matchedPattern.id, repo, true);
+    } else {
+      // Step 4b: Try Claude CLI first (Max plan tokens)
+      console.log(`\nTotal files for AI analysis: ${fileContents.size}`);
+      let aiResponse: GeminiResponse = { fixes: [], explanation: '' };
+
+      const claudeResponse = askClaude(targetJobs, fileContents);
+      if (claudeResponse.fixes.length > 0) {
+        console.log(`Claude: ${claudeResponse.explanation}`);
+        aiResponse = claudeResponse;
+      } else {
+        // Step 4c: Fall back to Gemini
+        console.log('Claude unavailable/empty, falling back to Gemini...');
+        aiResponse = await askGemini(targetJobs, fileContents);
+        console.log(`Gemini: ${aiResponse.explanation}`);
       }
-      allFixes.push(fix);
-    }
 
-    if (explanation) explanation += '. ';
-    explanation += geminiResponse.explanation;
+      // Safety: reject AI fixes that look suspicious (>50% content change)
+      for (const fix of aiResponse.fixes) {
+        const original = fetchFullFileContent(repo, fix.path, defaultBranch);
+        if (original && fix.content.length < original.length * 0.3) {
+          console.warn(
+            `  Rejected fix for ${fix.path}: content is ${Math.round((fix.content.length / original.length) * 100)}% of original (likely truncated)`
+          );
+          continue;
+        }
+        allFixes.push(fix);
+      }
+
+      if (explanation) explanation += '. ';
+      explanation += aiResponse.explanation;
+
+      // Register new pattern if fix succeeded and error signature is identifiable
+      if (aiResponse.fixes.length > 0) {
+        const firstError = targetJobs
+          .flatMap((j) => j.annotations)
+          .find(
+            (a) =>
+              !a.message.includes('already contains a definition') &&
+              !a.message.includes('already defines a member')
+          );
+        if (firstError) {
+          const sig = firstError.message.slice(0, 80);
+          addNewPattern(sig, aiResponse.explanation.slice(0, 200), repo);
+        }
+      }
+    }
   }
 
   // 5. Apply or create issue
