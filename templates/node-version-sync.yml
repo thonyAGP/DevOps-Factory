@@ -1,0 +1,155 @@
+# DevOps-Factory: Node.js Version Sync Check
+# Ensures consistent Node.js version across all config files
+# Runs weekly + on changes to version-related files
+
+name: Node Version Sync
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'package.json'
+      - '.nvmrc'
+      - '.node-version'
+      - '.tool-versions'
+      - 'Dockerfile*'
+      - 'docker-compose*.yml'
+  schedule:
+    - cron: '0 8 * * 1' # Weekly Monday 8am UTC
+
+jobs:
+  check-node-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect Node versions
+        id: detect
+        run: |
+          ISSUES=""
+          EXPECTED="22"
+          VERSIONS_FOUND=""
+
+          # Check package.json engines
+          if [ -f package.json ]; then
+            PKG_NODE=$(jq -r '.engines.node // empty' package.json)
+            if [ -n "$PKG_NODE" ]; then
+              VERSIONS_FOUND="$VERSIONS_FOUND\n- package.json engines.node: $PKG_NODE"
+              MAJOR=$(echo "$PKG_NODE" | grep -oP '\d+' | head -1)
+              if [ "$MAJOR" != "$EXPECTED" ]; then
+                ISSUES="$ISSUES\n- package.json engines.node ($PKG_NODE) != expected $EXPECTED"
+              fi
+            fi
+          fi
+
+          # Check .nvmrc
+          if [ -f .nvmrc ]; then
+            NVMRC=$(cat .nvmrc | tr -d 'v \n')
+            VERSIONS_FOUND="$VERSIONS_FOUND\n- .nvmrc: $NVMRC"
+            MAJOR=$(echo "$NVMRC" | grep -oP '^\d+')
+            if [ "$MAJOR" != "$EXPECTED" ]; then
+              ISSUES="$ISSUES\n- .nvmrc ($NVMRC) != expected $EXPECTED"
+            fi
+          fi
+
+          # Check .node-version
+          if [ -f .node-version ]; then
+            NV=$(cat .node-version | tr -d 'v \n')
+            VERSIONS_FOUND="$VERSIONS_FOUND\n- .node-version: $NV"
+            MAJOR=$(echo "$NV" | grep -oP '^\d+')
+            if [ "$MAJOR" != "$EXPECTED" ]; then
+              ISSUES="$ISSUES\n- .node-version ($NV) != expected $EXPECTED"
+            fi
+          fi
+
+          # Check Dockerfile
+          for df in Dockerfile Dockerfile.*; do
+            if [ -f "$df" ]; then
+              DOCKER_NODE=$(grep -oP 'FROM node:\K[\d.]+' "$df" | head -1)
+              if [ -n "$DOCKER_NODE" ]; then
+                VERSIONS_FOUND="$VERSIONS_FOUND\n- $df: $DOCKER_NODE"
+                MAJOR=$(echo "$DOCKER_NODE" | grep -oP '^\d+')
+                if [ "$MAJOR" != "$EXPECTED" ]; then
+                  ISSUES="$ISSUES\n- $df ($DOCKER_NODE) != expected $EXPECTED"
+                fi
+              fi
+            fi
+          done
+
+          # Check CI workflows
+          for wf in .github/workflows/*.yml; do
+            if [ -f "$wf" ]; then
+              WF_NODE=$(grep -oP 'node-version:\s*\K[\d.]+' "$wf" | head -1)
+              if [ -n "$WF_NODE" ]; then
+                VERSIONS_FOUND="$VERSIONS_FOUND\n- $wf: $WF_NODE"
+                MAJOR=$(echo "$WF_NODE" | grep -oP '^\d+')
+                if [ "$MAJOR" != "$EXPECTED" ]; then
+                  ISSUES="$ISSUES\n- $wf ($WF_NODE) != expected $EXPECTED"
+                fi
+              fi
+            fi
+          done
+
+          echo -e "$VERSIONS_FOUND" > /tmp/versions.txt
+          if [ -n "$ISSUES" ]; then
+            echo -e "$ISSUES" > /tmp/issues.txt
+            echo "has_issues=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_issues=false" >> $GITHUB_OUTPUT
+          fi
+          echo "expected=$EXPECTED" >> $GITHUB_OUTPUT
+
+      - name: Comment PR on version mismatch
+        if: steps.detect.outputs.has_issues == 'true' && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const versions = fs.readFileSync('/tmp/versions.txt', 'utf8').trim();
+            const issues = fs.readFileSync('/tmp/issues.txt', 'utf8').trim();
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                '## Node.js Version Mismatch',
+                '',
+                `Expected major version: **${{ steps.detect.outputs.expected }}**`,
+                '',
+                '### Versions Found',
+                versions,
+                '',
+                '### Issues',
+                issues,
+                '',
+                'Please align all Node.js version references.',
+              ].join('\n'),
+            });
+
+      - name: Create issue on schedule
+        if: steps.detect.outputs.has_issues == 'true' && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const versions = fs.readFileSync('/tmp/versions.txt', 'utf8').trim();
+            const issues = fs.readFileSync('/tmp/issues.txt', 'utf8').trim();
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Node.js version mismatch detected`,
+              body: [
+                '## Node.js Version Sync Check',
+                '',
+                `Expected: **${{ steps.detect.outputs.expected }}**`,
+                '',
+                '### Versions Found',
+                versions,
+                '',
+                '### Issues',
+                issues,
+              ].join('\n'),
+              labels: ['maintenance'],
+            });

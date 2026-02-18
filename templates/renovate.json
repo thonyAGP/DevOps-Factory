@@ -1,0 +1,52 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    ":automergeMinor",
+    "group:monorepos",
+    "group:recommended",
+    "schedule:weekly"
+  ],
+  "labels": ["dependencies"],
+  "rangeStrategy": "bump",
+  "automerge": false,
+  "automergeType": "pr",
+  "platformAutomerge": true,
+  "packageRules": [
+    {
+      "description": "Automerge patch-level devDependencies",
+      "matchUpdateTypes": ["patch"],
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "description": "Group all non-major updates weekly",
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "minor-and-patch",
+      "schedule": ["every weekend"]
+    },
+    {
+      "description": "Label major updates for manual review",
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "breaking"],
+      "automerge": false
+    },
+    {
+      "description": "Group TypeScript ecosystem",
+      "matchPackageNames": ["typescript", "@types/*"],
+      "groupName": "typescript"
+    },
+    {
+      "description": "Group ESLint ecosystem",
+      "matchPackageNames": ["eslint", "eslint-*", "@eslint/*"],
+      "groupName": "eslint"
+    },
+    {
+      "description": "Group Next.js ecosystem",
+      "matchPackageNames": ["next", "@next/*"],
+      "groupName": "nextjs"
+    }
+  ]
+}

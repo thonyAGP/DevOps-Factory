@@ -1,0 +1,45 @@
+# DevOps-Factory: Unleash Feature Flags (AUTO-98)
+# Self-hosted feature flag management
+# Dashboard: http://localhost:4242
+# Default login: admin / unleash4all
+# Run: docker compose -f docker-compose.unleash.yml up -d
+
+services:
+  unleash:
+    image: unleashorg/unleash-server:latest
+    container_name: unleash
+    depends_on:
+      unleash-db:
+        condition: service_healthy
+    ports:
+      - '4242:4242'
+    environment:
+      DATABASE_URL: postgres://${UNLEASH_DB_USER:-unleash}:${UNLEASH_DB_PASSWORD}@unleash-db:5432/unleash
+      DATABASE_SSL: 'false'
+      INIT_ADMIN_API_TOKENS: '*:*.unleash-insecure-api-token'
+      LOG_LEVEL: warn
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost:4242/health']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  unleash-db:
+    image: postgres:16-alpine
+    container_name: unleash-db
+    environment:
+      POSTGRES_DB: unleash
+      POSTGRES_USER: ${UNLEASH_DB_USER:-unleash}
+      POSTGRES_PASSWORD: ${UNLEASH_DB_PASSWORD}
+    volumes:
+      - unleash-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U unleash']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  unleash-db-data:

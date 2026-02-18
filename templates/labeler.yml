@@ -1,0 +1,70 @@
+# Default labeler config deployed by DevOps-Factory (AUTO-100)
+# Customize per project as needed
+
+frontend:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'src/components/**'
+          - 'src/app/**'
+          - 'app/**'
+          - 'pages/**'
+          - '**/*.tsx'
+          - '**/*.jsx'
+          - '**/*.css'
+          - '**/*.scss'
+
+backend:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'src/server/**'
+          - 'src/api/**'
+          - 'api/**'
+          - 'src/services/**'
+          - 'src/repositories/**'
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/*.test.*'
+          - '**/*.spec.*'
+          - 'tests/**'
+          - 'e2e/**'
+          - 'playwright/**'
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/*.md'
+          - 'docs/**'
+          - '.openspec/**'
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'package.json'
+          - 'pnpm-lock.yaml'
+          - 'yarn.lock'
+          - 'package-lock.json'
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/**'
+          - 'Dockerfile'
+          - 'docker-compose*.yml'
+
+config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '*.config.*'
+          - 'tsconfig*.json'
+          - '.eslintrc*'
+          - '.prettierrc*'
+          - '.env.example'
+
+database:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'prisma/**'
+          - 'migrations/**'
+          - '**/*.sql'

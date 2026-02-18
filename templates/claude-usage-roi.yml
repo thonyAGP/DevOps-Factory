@@ -1,0 +1,116 @@
+# DevOps-Factory: Claude Usage & ROI Report (Centralized)
+# Tracks Claude API usage across all projects
+# Generates monthly ROI report as GitHub Issue
+
+name: Claude Usage ROI
+
+on:
+  schedule:
+    - cron: '0 8 1 * *' # 1st of each month, 8am UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  roi-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Collect usage data
+        id: usage
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DATE=$(date +%Y-%m)
+          PREV_MONTH=$(date -d 'last month' +%Y-%m 2>/dev/null || date -v-1m +%Y-%m)
+          OWNER=$(gh api user -q '.login')
+
+          echo "month=$PREV_MONTH" >> $GITHUB_OUTPUT
+
+          # Count AI-generated PRs across all repos
+          AI_PRS=0
+          SELF_HEAL_PRS=0
+          REPOS_WITH_AI=0
+
+          REPOS=$(gh repo list "$OWNER" --limit 50 --json name --jq '.[].name')
+
+          for REPO in $REPOS; do
+            FULL="$OWNER/$REPO"
+
+            # Count claude-review PRs (AI reviews done)
+            REVIEW_RUNS=$(gh api "repos/$FULL/actions/workflows" --jq '.workflows[] | select(.name | test("claude|Claude")) | .id' 2>/dev/null || true)
+            if [ -n "$REVIEW_RUNS" ]; then
+              REPOS_WITH_AI=$((REPOS_WITH_AI + 1))
+            fi
+
+            # Count self-healing PRs
+            HEAL_COUNT=$(gh pr list --repo "$FULL" --state all --label "ai-fix" --json createdAt \
+              --jq "[.[] | select(.createdAt | startswith(\"$PREV_MONTH\"))] | length" 2>/dev/null || echo "0")
+            SELF_HEAL_PRS=$((SELF_HEAL_PRS + HEAL_COUNT))
+
+            # Count AI-described PRs
+            AI_PR_COUNT=$(gh pr list --repo "$FULL" --state all --json body \
+              --jq "[.[] | select(.body != null) | select(.body | test(\"Generated|Claude|AI\"))] | length" 2>/dev/null || echo "0")
+            AI_PRS=$((AI_PRS + AI_PR_COUNT))
+          done
+
+          {
+            echo "repos_with_ai=$REPOS_WITH_AI"
+            echo "self_heal_prs=$SELF_HEAL_PRS"
+            echo "ai_prs=$AI_PRS"
+          } >> "$GITHUB_OUTPUT"
+
+          # Estimate costs (rough)
+          # Haiku reviews: ~$0.01 per review
+          # Self-healing: ~$0.10 per fix (Sonnet)
+          # Changelog: ~$0.005 per generation
+          REVIEW_COST=$(echo "$AI_PRS * 0.01" | bc 2>/dev/null || echo "N/A")
+          HEAL_COST=$(echo "$SELF_HEAL_PRS * 0.10" | bc 2>/dev/null || echo "N/A")
+          echo "estimated_cost=$REVIEW_COST + $HEAL_COST" >> "$GITHUB_OUTPUT"
+
+          # Estimate time saved
+          # Code review: 15min per PR -> 0.25h
+          # Self-heal fix: 30min per fix -> 0.5h
+          REVIEW_HOURS=$(echo "$AI_PRS * 0.25" | bc 2>/dev/null || echo "N/A")
+          HEAL_HOURS=$(echo "$SELF_HEAL_PRS * 0.5" | bc 2>/dev/null || echo "N/A")
+          echo "hours_saved_review=$REVIEW_HOURS" >> "$GITHUB_OUTPUT"
+          echo "hours_saved_heal=$HEAL_HOURS" >> "$GITHUB_OUTPUT"
+
+      - name: Create ROI issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          MONTH="${{ steps.usage.outputs.month }}"
+
+          gh issue create \
+            --title "Claude Usage ROI Report - $MONTH" \
+            --body "## Claude AI Usage Report - $MONTH
+
+          ### Usage Summary
+          | Metric | Value |
+          |--------|-------|
+          | Repos with AI workflows | ${{ steps.usage.outputs.repos_with_ai }} |
+          | AI-assisted PRs | ${{ steps.usage.outputs.ai_prs }} |
+          | Self-healing fixes | ${{ steps.usage.outputs.self_heal_prs }} |
+
+          ### Time Saved (Estimated)
+          | Activity | Hours Saved |
+          |----------|-------------|
+          | Code reviews (15min/PR) | ${{ steps.usage.outputs.hours_saved_review }}h |
+          | Self-healing fixes (30min/fix) | ${{ steps.usage.outputs.hours_saved_heal }}h |
+
+          ### Cost Estimate
+          | Item | Cost |
+          |------|------|
+          | Reviews (Haiku) | ~\${{ steps.usage.outputs.estimated_cost }} |
+
+          ### ROI
+          At \$50/h dev rate, time saved = significant ROI vs API costs.
+
+          ---
+          > This report is auto-generated monthly. Actual API costs should be verified on [Anthropic Console](https://console.anthropic.com).
+          " \
+            --label "ai-roi"

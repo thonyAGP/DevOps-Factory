@@ -1,0 +1,95 @@
+# DevOps-Factory: OpenSpec Drift Detection
+# Detects when code changes don't have corresponding spec updates
+# Ensures spec-driven development discipline
+
+name: OpenSpec Drift Check
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'src/**'
+      - 'app/**'
+      - 'lib/**'
+      - 'pages/**'
+
+jobs:
+  check-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check OpenSpec exists
+        id: has_openspec
+        run: |
+          if [ -d ".openspec" ] && [ -f ".openspec/spec.md" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Detect drift
+        if: steps.has_openspec.outputs.exists == 'true'
+        id: drift
+        run: |
+          BASE="${{ github.event.pull_request.base.sha }}"
+
+          # Files changed in PR
+          CODE_CHANGES=$(git diff --name-only "$BASE"...HEAD -- src/ app/ lib/ pages/ | wc -l)
+          SPEC_CHANGES=$(git diff --name-only "$BASE"...HEAD -- .openspec/ | wc -l)
+
+          echo "code_changes=$CODE_CHANGES" >> $GITHUB_OUTPUT
+          echo "spec_changes=$SPEC_CHANGES" >> $GITHUB_OUTPUT
+
+          # Significant code changes without spec update = drift
+          if [ "$CODE_CHANGES" -gt 5 ] && [ "$SPEC_CHANGES" -eq 0 ]; then
+            echo "has_drift=true" >> $GITHUB_OUTPUT
+
+            # List changed code files
+            git diff --name-only "$BASE"...HEAD -- src/ app/ lib/ pages/ > /tmp/changed-code.txt
+
+            # Check for new features (new files)
+            NEW_FILES=$(git diff --name-only --diff-filter=A "$BASE"...HEAD -- src/ app/ lib/ pages/ | wc -l)
+            echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
+
+            # Check if there's a change request
+            CHANGE_REQ=$(git diff --name-only "$BASE"...HEAD -- .openspec/changes/ | wc -l)
+            echo "has_change_req=$CHANGE_REQ" >> $GITHUB_OUTPUT
+          else
+            echo "has_drift=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment PR on drift
+        if: steps.drift.outputs.has_drift == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const changedCode = fs.readFileSync('/tmp/changed-code.txt', 'utf8').trim();
+            const fileList = changedCode.split('\n').slice(0, 20).map(f => `- \`${f}\``).join('\n');
+            const newFiles = '${{ steps.drift.outputs.new_files }}';
+            const hasChangeReq = '${{ steps.drift.outputs.has_change_req }}' !== '0';
+
+            let body = '## OpenSpec Drift Detected\n\n';
+            body += `**${{ steps.drift.outputs.code_changes }}** code files changed, but no spec updates found.\n\n`;
+
+            if (newFiles > 0) {
+              body += `**${newFiles} new files** added - this likely needs a spec update.\n\n`;
+            }
+
+            body += '### Changed Files\n' + fileList + '\n\n';
+
+            if (!hasChangeReq) {
+              body += '### Action Required\n';
+              body += 'Consider creating a change request in `.openspec/changes/` to document this change.\n';
+              body += 'If this is a minor fix, add `[skip-openspec]` to the PR title.\n';
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });

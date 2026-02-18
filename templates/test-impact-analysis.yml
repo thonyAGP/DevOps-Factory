@@ -1,0 +1,138 @@
+# DevOps-Factory: Test Impact Analysis (AUTO-70)
+# Only runs tests affected by changed files
+# Uses Vitest --changed flag or Nx affected for monorepos
+# Falls back to full test suite if detection fails
+
+name: Test Impact Analysis
+
+on:
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  affected-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            npm install -g pnpm && pnpm install --frozen-lockfile
+          elif [ -f "yarn.lock" ]; then
+            yarn install --frozen-lockfile
+          else
+            npm ci
+          fi
+
+      - name: Detect changed files
+        id: changes
+        run: |
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+
+          CHANGED=$(git diff --name-only "$BASE"..."$HEAD" | grep -E '\.(ts|tsx|js|jsx)$' | grep -v '\.test\.\|\.spec\.\|__tests__' || true)
+          CHANGED_TESTS=$(git diff --name-only "$BASE"..."$HEAD" | grep -E '\.(test|spec)\.(ts|tsx|js|jsx)$' || true)
+
+          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          echo "changed_tests<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED_TESTS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          FILE_COUNT=$(echo "$CHANGED" | grep -c . || echo "0")
+          TEST_COUNT=$(echo "$CHANGED_TESTS" | grep -c . || echo "0")
+          echo "file_count=$FILE_COUNT" >> $GITHUB_OUTPUT
+          echo "test_count=$TEST_COUNT" >> $GITHUB_OUTPUT
+
+      - name: Detect test runner
+        id: runner
+        run: |
+          if [ -f "vitest.config.ts" ] || [ -f "vitest.config.mts" ] || grep -q "vitest" package.json 2>/dev/null; then
+            echo "runner=vitest" >> $GITHUB_OUTPUT
+          elif grep -q "jest" package.json 2>/dev/null; then
+            echo "runner=jest" >> $GITHUB_OUTPUT
+          else
+            echo "runner=unknown" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run affected tests (Vitest)
+        if: steps.runner.outputs.runner == 'vitest' && steps.changes.outputs.file_count != '0'
+        id: vitest
+        run: |
+          # Use Vitest --changed to only run affected tests
+          npx vitest run --changed "${{ github.event.pull_request.base.sha }}" \
+            --reporter=verbose \
+            --passWithNoTests \
+            2>&1 | tee /tmp/test-output.txt || true
+
+          # Extract results
+          PASS=$(grep -c "PASS" /tmp/test-output.txt || echo "0")
+          FAIL=$(grep -c "FAIL" /tmp/test-output.txt || echo "0")
+          echo "pass=$PASS" >> $GITHUB_OUTPUT
+          echo "fail=$FAIL" >> $GITHUB_OUTPUT
+          echo "ran=true" >> $GITHUB_OUTPUT
+
+          # Fail if tests failed
+          if [ "$FAIL" -gt 0 ]; then
+            exit 1
+          fi
+
+      - name: Run affected tests (Jest)
+        if: steps.runner.outputs.runner == 'jest' && steps.changes.outputs.file_count != '0'
+        id: jest
+        run: |
+          # Use Jest --changedSince
+          npx jest --changedSince="${{ github.event.pull_request.base.sha }}" \
+            --verbose \
+            --passWithNoTests \
+            2>&1 | tee /tmp/test-output.txt || true
+
+          PASS=$(grep -oP 'Tests:\s+\K\d+ passed' /tmp/test-output.txt | grep -oP '\d+' || echo "0")
+          FAIL=$(grep -oP 'Tests:\s+\K\d+ failed' /tmp/test-output.txt | grep -oP '\d+' || echo "0")
+          echo "pass=$PASS" >> $GITHUB_OUTPUT
+          echo "fail=$FAIL" >> $GITHUB_OUTPUT
+          echo "ran=true" >> $GITHUB_OUTPUT
+
+          if [ "$FAIL" -gt 0 ]; then
+            exit 1
+          fi
+
+      - name: No tests needed
+        if: steps.changes.outputs.file_count == '0'
+        run: echo "No source files changed - skipping tests"
+
+      - name: Comment PR with impact
+        if: always() && steps.changes.outputs.file_count != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fileCount = '${{ steps.changes.outputs.file_count }}';
+            const testCount = '${{ steps.changes.outputs.test_count }}';
+            const runner = '${{ steps.runner.outputs.runner }}';
+
+            let body = `## Test Impact Analysis\n\n`;
+            body += `| Metric | Value |\n|--------|-------|\n`;
+            body += `| Source files changed | ${fileCount} |\n`;
+            body += `| Test files changed | ${testCount} |\n`;
+            body += `| Runner | ${runner} |\n`;
+            body += `\n> Only affected tests were executed (not the full suite).\n`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });

@@ -1,0 +1,125 @@
+# DevOps-Factory: Preview Environments
+# Creates isolated preview with frontend + API per PR
+# Uses Vercel for frontend, optional Railway/Docker for backend
+
+name: Preview Environment
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  deploy-preview:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    outputs:
+      frontend_url: ${{ steps.frontend.outputs.url }}
+      api_url: ${{ steps.api.outputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Frontend Preview (Vercel)
+      - name: Deploy frontend preview
+        id: frontend
+        if: env.VERCEL_TOKEN != ''
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          pnpm add -g vercel
+          vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+          vercel build --token=$VERCEL_TOKEN
+          URL=$(vercel deploy --prebuilt --token=$VERCEL_TOKEN)
+          echo "url=$URL" >> $GITHUB_OUTPUT
+          echo "Frontend preview: $URL"
+
+      # Backend Preview (Docker-based, optional)
+      - name: Check for backend
+        id: has_backend
+        run: |
+          if [ -f "Dockerfile" ] || [ -f "docker-compose.yml" ] || [ -f "docker-compose.preview.yml" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Deploy backend preview
+        id: api
+        if: steps.has_backend.outputs.exists == 'true' && env.RAILWAY_TOKEN != ''
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          # Railway deployment
+          npx @railway/cli deploy --detach 2>/dev/null || true
+          URL=$(npx @railway/cli domain 2>/dev/null || echo "N/A")
+          echo "url=$URL" >> $GITHUB_OUTPUT
+          echo "API preview: $URL"
+
+      - name: Comment PR with preview URLs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const frontendUrl = '${{ steps.frontend.outputs.url }}' || 'Not configured';
+            const apiUrl = '${{ steps.api.outputs.url }}' || 'Not applicable';
+            const pr = context.payload.pull_request.number;
+
+            const body = [
+              '## Preview Environment',
+              '',
+              `| Service | URL |`,
+              `|---------|-----|`,
+              `| Frontend | ${frontendUrl !== 'Not configured' ? `[View](${frontendUrl})` : 'Not configured'} |`,
+              `| API | ${apiUrl !== 'Not applicable' ? `[View](${apiUrl})` : 'N/A'} |`,
+              '',
+              `> Preview auto-deployed from PR #${pr}. Will be cleaned up when PR is closed.`,
+            ].join('\n');
+
+            // Update or create comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr,
+            });
+            const existing = comments.find(c => c.body.includes('## Preview Environment'));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr,
+                body,
+              });
+            }
+
+  cleanup-preview:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cleanup preview
+        run: |
+          echo "Preview environment for PR #${{ github.event.pull_request.number }} will be cleaned up."
+          echo "Vercel previews auto-expire. Railway environments need manual cleanup if used."
+          # Railway cleanup would go here if configured

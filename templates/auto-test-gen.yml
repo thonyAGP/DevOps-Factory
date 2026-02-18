@@ -1,0 +1,105 @@
+# DevOps-Factory: Auto Test Generation on New Code
+# Uses Claude to generate test suggestions for new/modified code
+# Requires ANTHROPIC_API_KEY secret
+
+name: Auto Test Suggestions
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'src/**/*.ts'
+      - 'src/**/*.tsx'
+      - 'app/**/*.ts'
+      - 'app/**/*.tsx'
+      - 'lib/**/*.ts'
+      - 'lib/**/*.tsx'
+
+jobs:
+  suggest-tests:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.pull_request.title, '[skip-tests]')"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: files
+        run: |
+          BASE="${{ github.event.pull_request.base.sha }}"
+          # Get only source files (exclude tests, types, configs)
+          CHANGED=$(git diff --name-only "$BASE"...HEAD -- \
+            'src/**/*.ts' 'src/**/*.tsx' 'app/**/*.ts' 'app/**/*.tsx' 'lib/**/*.ts' 'lib/**/*.tsx' \
+            | grep -v '\.test\.' | grep -v '\.spec\.' | grep -v '\.d\.ts' | grep -v 'types' \
+            | head -10)
+
+          if [ -z "$CHANGED" ]; then
+            echo "has_files=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_files=true" >> $GITHUB_OUTPUT
+            echo "$CHANGED" > /tmp/changed-source.txt
+          fi
+
+      - name: Check test coverage
+        if: steps.files.outputs.has_files == 'true'
+        id: coverage
+        run: |
+          MISSING=""
+          while IFS= read -r FILE; do
+            # Derive expected test file path
+            TEST_FILE=$(echo "$FILE" | sed 's/\.\(ts\|tsx\)$/.test.\1/')
+            if [ ! -f "$TEST_FILE" ]; then
+              MISSING="$MISSING\n- \`$FILE\` -> no test at \`$TEST_FILE\`"
+            fi
+          done < /tmp/changed-source.txt
+
+          if [ -n "$MISSING" ]; then
+            echo -e "$MISSING" > /tmp/missing-tests.txt
+            echo "has_missing=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_missing=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate test suggestions with AI
+        if: steps.coverage.outputs.has_missing == 'true' && env.ANTHROPIC_API_KEY != ''
+        uses: anthropics/claude-code-action@v1
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          model: claude-haiku-4-5-20251001
+          direct_prompt: |
+            Review these source files that are missing tests and suggest test cases.
+
+            Changed files without tests:
+            $(cat /tmp/missing-tests.txt)
+
+            For each file, suggest 3-5 test cases (describe + it blocks) that would provide good coverage.
+            Format as a PR comment in markdown. Be concise - just test names and what they verify.
+            Do NOT write full test implementations, just the test descriptions.
+          timeout_minutes: 3
+          allowed_tools: 'Read'
+
+      - name: Fallback comment (no AI)
+        if: steps.coverage.outputs.has_missing == 'true' && env.ANTHROPIC_API_KEY == ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const missing = fs.readFileSync('/tmp/missing-tests.txt', 'utf8').trim();
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                '## Missing Tests',
+                '',
+                'The following changed files have no corresponding test files:',
+                '',
+                missing,
+                '',
+                'Consider adding tests for these files.',
+              ].join('\n'),
+            });

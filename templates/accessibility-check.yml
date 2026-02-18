@@ -1,0 +1,114 @@
+# DevOps-Factory: Accessibility Check (AUTO-62)
+# Scans pages for WCAG 2.1 AA violations using axe-core via Playwright
+# Runs on PRs touching frontend code
+
+name: Accessibility Check
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'src/**'
+      - 'app/**'
+      - 'pages/**'
+      - 'components/**'
+      - '**/*.tsx'
+      - '**/*.jsx'
+  schedule:
+    - cron: '0 6 * * 1' # Weekly Monday 6am UTC
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  a11y:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          npm install -g pa11y-ci
+          npm install -g axe-core
+
+      - name: Detect start command
+        id: detect
+        run: |
+          if [ -f "next.config.mjs" ] || [ -f "next.config.js" ] || [ -f "next.config.ts" ]; then
+            echo "framework=nextjs" >> $GITHUB_OUTPUT
+          elif [ -f "astro.config.mjs" ]; then
+            echo "framework=astro" >> $GITHUB_OUTPUT
+          else
+            echo "framework=static" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install project deps
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            npm install -g pnpm && pnpm install --frozen-lockfile
+          elif [ -f "yarn.lock" ]; then
+            yarn install --frozen-lockfile
+          elif [ -f "package-lock.json" ]; then
+            npm ci
+          fi
+
+      - name: Build project
+        run: |
+          if [ -f "package.json" ]; then
+            npm run build 2>/dev/null || true
+          fi
+
+      - name: Start server and run pa11y
+        id: a11y
+        run: |
+          # Start dev/preview server in background
+          if [ "${{ steps.detect.outputs.framework }}" = "nextjs" ]; then
+            npx next start -p 3999 &
+          elif [ "${{ steps.detect.outputs.framework }}" = "astro" ]; then
+            npx astro preview --port 3999 &
+          else
+            npx serve out -l 3999 2>/dev/null || npx serve dist -l 3999 2>/dev/null || npx serve . -l 3999 &
+          fi
+
+          # Wait for server
+          for i in $(seq 1 30); do
+            curl -s http://localhost:3999 > /dev/null 2>&1 && break
+            sleep 2
+          done
+
+          # Run pa11y-ci with WCAG2AA standard
+          pa11y-ci \
+            --standard WCAG2AA \
+            --threshold 5 \
+            --reporter cli \
+            http://localhost:3999 \
+            2>&1 | tee /tmp/a11y-report.txt || true
+
+          # Count violations
+          VIOLATIONS=$(grep -c "Error:" /tmp/a11y-report.txt 2>/dev/null || echo "0")
+          echo "violations=$VIOLATIONS" >> $GITHUB_OUTPUT
+
+          # Kill server
+          kill %1 2>/dev/null || true
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request' && steps.a11y.outputs.violations != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('/tmp/a11y-report.txt', 'utf8');
+            const violations = '${{ steps.a11y.outputs.violations }}';
+            const truncated = report.substring(0, 3000);
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## Accessibility Check (WCAG 2.1 AA)\n\n**${violations} violation(s) found**\n\n\`\`\`\n${truncated}\n\`\`\`\n\n> Fix these to improve SEO and legal compliance.`,
+            });

@@ -1,0 +1,111 @@
+# DevOps-Factory: Type Coverage Tracking (AUTO-68)
+# Enforces strict TypeScript types - blocks PRs introducing `any`
+# Tracks type coverage percentage over time
+
+name: Type Coverage
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths: ['**/*.ts', '**/*.tsx']
+  schedule:
+    - cron: '0 6 * * 1' # Weekly Monday 6am
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  type-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            npm install -g pnpm && pnpm install --frozen-lockfile
+          elif [ -f "yarn.lock" ]; then
+            yarn install --frozen-lockfile
+          else
+            npm ci
+          fi
+
+      - name: Check for new `any` types
+        if: github.event_name == 'pull_request'
+        id: any_check
+        run: |
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+
+          # Find new `any` in changed TS files
+          NEW_ANY=0
+          DETAILS=""
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            COUNT=$(git diff "$BASE"..."$HEAD" -- "$file" | grep "^+" | grep -v "^+++" | grep -cE '\bany\b' || true)
+            if [ "$COUNT" -gt 0 ]; then
+              NEW_ANY=$((NEW_ANY + COUNT))
+              DETAILS="${DETAILS}\n- \`${file}\`: ${COUNT} new \`any\`"
+            fi
+          done <<< "$(git diff --name-only "$BASE"..."$HEAD" | grep -E '\.(ts|tsx)$' || true)"
+
+          echo "new_any=$NEW_ANY" >> $GITHUB_OUTPUT
+          echo "details<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$DETAILS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Run type coverage
+        id: coverage
+        run: |
+          npx -y type-coverage --detail --strict --ignore-catch 2>/dev/null | tee /tmp/type-coverage.txt || true
+          PERCENTAGE=$(grep -oP '[\d.]+%' /tmp/type-coverage.txt | head -1 || echo "N/A")
+          echo "percentage=$PERCENTAGE" >> $GITHUB_OUTPUT
+
+      - name: TypeScript strict check
+        id: strict
+        run: |
+          npx tsc --noEmit --strict 2>&1 | tail -5 | tee /tmp/tsc-strict.txt || true
+          ERRORS=$(grep -c "error TS" /tmp/tsc-strict.txt || echo "0")
+          echo "errors=$ERRORS" >> $GITHUB_OUTPUT
+
+      - name: Comment PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const newAny = parseInt('${{ steps.any_check.outputs.new_any }}') || 0;
+            const coverage = '${{ steps.coverage.outputs.percentage }}';
+            const strictErrors = '${{ steps.strict.outputs.errors }}';
+            const details = `${{ steps.any_check.outputs.details }}`;
+
+            const status = newAny > 0 ? '⚠️' : '✅';
+            let body = `## ${status} Type Coverage Report\n\n`;
+            body += `| Metric | Value |\n|--------|-------|\n`;
+            body += `| Type coverage | ${coverage} |\n`;
+            body += `| New \`any\` introduced | ${newAny} |\n`;
+            body += `| Strict mode errors | ${strictErrors} |\n`;
+
+            if (newAny > 0) {
+              body += `\n### New \`any\` types found\n${details}\n`;
+              body += `\n> Please replace \`any\` with proper types (\`unknown\`, generics, or specific types).\n`;
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+
+      - name: Fail if new any types
+        if: github.event_name == 'pull_request' && steps.any_check.outputs.new_any != '0'
+        run: |
+          echo "::error::Found ${{ steps.any_check.outputs.new_any }} new 'any' types. Please use proper types."
+          exit 1

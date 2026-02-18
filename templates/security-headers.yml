@@ -1,0 +1,127 @@
+# DevOps-Factory: Security Headers Check (AUTO-82)
+# Validates HTTP security headers on production sites
+# Checks HSTS, CSP, X-Frame-Options, X-Content-Type, Referrer-Policy, Permissions-Policy
+
+name: Security Headers
+
+on:
+  schedule:
+    - cron: '0 8 * * 1' # Weekly Monday 8am
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to check'
+        required: false
+
+jobs:
+  check-headers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine URL
+        id: url
+        run: |
+          if [ -n "${{ github.event.inputs.url }}" ]; then
+            echo "url=${{ github.event.inputs.url }}" >> $GITHUB_OUTPUT
+          else
+            # Try to detect from package.json or vercel.json
+            URL=""
+            if [ -f "vercel.json" ]; then
+              URL=$(node -e "try{const v=require('./vercel.json');console.log('https://'+v.name+'.vercel.app')}catch{}" 2>/dev/null || true)
+            fi
+            if [ -z "$URL" ] && [ -f "package.json" ]; then
+              URL=$(node -e "try{const p=require('./package.json');console.log(p.homepage||'')}catch{}" 2>/dev/null || true)
+            fi
+            echo "url=${URL:-}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check security headers
+        if: steps.url.outputs.url != ''
+        id: headers
+        run: |
+          URL="${{ steps.url.outputs.url }}"
+          echo "Checking: $URL"
+
+          # Fetch headers
+          curl -sI -o /tmp/headers.txt "$URL" 2>/dev/null || true
+
+          check_header() {
+            local name="$1"
+            local pattern="$2"
+            if grep -qi "$pattern" /tmp/headers.txt 2>/dev/null; then
+              echo "PASS"
+            else
+              echo "FAIL"
+            fi
+          }
+
+          HSTS=$(check_header "HSTS" "strict-transport-security")
+          CSP=$(check_header "CSP" "content-security-policy")
+          XFRAME=$(check_header "X-Frame" "x-frame-options")
+          XCTYPE=$(check_header "X-Content-Type" "x-content-type-options")
+          REFERRER=$(check_header "Referrer" "referrer-policy")
+          PERMISSIONS=$(check_header "Permissions" "permissions-policy")
+
+          PASS=0
+          FAIL=0
+          for result in $HSTS $CSP $XFRAME $XCTYPE $REFERRER $PERMISSIONS; do
+            [ "$result" = "PASS" ] && PASS=$((PASS+1)) || FAIL=$((FAIL+1))
+          done
+
+          GRADE="F"
+          [ $PASS -ge 2 ] && GRADE="D"
+          [ $PASS -ge 3 ] && GRADE="C"
+          [ $PASS -ge 4 ] && GRADE="B"
+          [ $PASS -ge 5 ] && GRADE="A"
+          [ $PASS -eq 6 ] && GRADE="A+"
+
+          echo "hsts=$HSTS" >> $GITHUB_OUTPUT
+          echo "csp=$CSP" >> $GITHUB_OUTPUT
+          echo "xframe=$XFRAME" >> $GITHUB_OUTPUT
+          echo "xctype=$XCTYPE" >> $GITHUB_OUTPUT
+          echo "referrer=$REFERRER" >> $GITHUB_OUTPUT
+          echo "permissions=$PERMISSIONS" >> $GITHUB_OUTPUT
+          echo "grade=$GRADE" >> $GITHUB_OUTPUT
+          echo "pass=$PASS" >> $GITHUB_OUTPUT
+          echo "fail=$FAIL" >> $GITHUB_OUTPUT
+
+      - name: Create issue if failing
+        if: steps.url.outputs.url != '' && steps.headers.outputs.fail != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = '${{ steps.url.outputs.url }}';
+            const grade = '${{ steps.headers.outputs.grade }}';
+            const headers = {
+              'Strict-Transport-Security (HSTS)': '${{ steps.headers.outputs.hsts }}',
+              'Content-Security-Policy (CSP)': '${{ steps.headers.outputs.csp }}',
+              'X-Frame-Options': '${{ steps.headers.outputs.xframe }}',
+              'X-Content-Type-Options': '${{ steps.headers.outputs.xctype }}',
+              'Referrer-Policy': '${{ steps.headers.outputs.referrer }}',
+              'Permissions-Policy': '${{ steps.headers.outputs.permissions }}',
+            };
+
+            let table = `| Header | Status |\n|--------|--------|\n`;
+            for (const [name, status] of Object.entries(headers)) {
+              const icon = status === 'PASS' ? '✅' : '❌';
+              table += `| ${name} | ${icon} ${status} |\n`;
+            }
+
+            const title = `🔒 Security Headers: Grade ${grade} for ${url}`;
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'security',
+              state: 'open',
+            });
+
+            if (!existing.data.some(i => i.title.includes('Security Headers'))) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body: `## Security Headers Report\n\n**URL**: ${url}\n**Grade**: ${grade}\n\n${table}\n\n### How to fix\n\nAdd missing headers in your Next.js \`next.config.js\`:\n\n\`\`\`js\nheaders: async () => [{\n  source: '/(.*)',\n  headers: [\n    { key: 'X-Content-Type-Options', value: 'nosniff' },\n    { key: 'X-Frame-Options', value: 'DENY' },\n    { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },\n  ],\n}]\n\`\`\`\n\nAuto-generated by Security Headers workflow.`,
+                labels: ['security', 'automated'],
+              });
+            }

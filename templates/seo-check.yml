@@ -1,0 +1,146 @@
+# DevOps-Factory: SEO Validation Template
+# Checks sitemap, meta tags, structured data, Open Graph
+# Runs post-deploy + weekly schedule
+
+name: SEO Check
+
+on:
+  deployment_status:
+  schedule:
+    - cron: '0 6 * * 3' # Weekly Wednesday 6am UTC
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to check'
+        required: true
+
+jobs:
+  seo-check:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'schedule' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment_status.environment == 'Production')
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Determine URL
+        id: url
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "target=${{ github.event.inputs.url }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event_name }}" = "deployment_status" ]; then
+            echo "target=${{ github.event.deployment_status.environment_url }}" >> $GITHUB_OUTPUT
+          else
+            URL="${{ vars.PRODUCTION_URL }}"
+            echo "target=$URL" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check sitemap.xml
+        id: sitemap
+        if: steps.url.outputs.target != ''
+        run: |
+          URL="${{ steps.url.outputs.target }}"
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${URL}/sitemap.xml" || echo "000")
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          if [ "$STATUS" = "200" ]; then
+            # Count URLs in sitemap
+            COUNT=$(curl -s "${URL}/sitemap.xml" | grep -c "<loc>" || echo "0")
+            echo "url_count=$COUNT" >> $GITHUB_OUTPUT
+            echo "Sitemap OK: $COUNT URLs"
+          else
+            echo "url_count=0" >> $GITHUB_OUTPUT
+            echo "::warning::Sitemap not found (HTTP $STATUS)"
+          fi
+
+      - name: Check robots.txt
+        id: robots
+        if: steps.url.outputs.target != ''
+        run: |
+          URL="${{ steps.url.outputs.target }}"
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${URL}/robots.txt" || echo "000")
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          if [ "$STATUS" = "200" ]; then
+            echo "robots.txt OK"
+          else
+            echo "::warning::robots.txt not found (HTTP $STATUS)"
+          fi
+
+      - name: Check meta tags on homepage
+        id: meta
+        if: steps.url.outputs.target != ''
+        run: |
+          URL="${{ steps.url.outputs.target }}"
+          HTML=$(curl -s "$URL")
+          ISSUES=""
+
+          # Check title
+          TITLE=$(echo "$HTML" | grep -oP '<title[^>]*>\K[^<]+' | head -1)
+          if [ -z "$TITLE" ]; then
+            ISSUES="$ISSUES\n- Missing <title> tag"
+          elif [ ${#TITLE} -gt 60 ]; then
+            ISSUES="$ISSUES\n- Title too long (${#TITLE} chars, max 60)"
+          fi
+
+          # Check meta description
+          DESC=$(echo "$HTML" | grep -oP 'meta[^>]*name="description"[^>]*content="\K[^"]+' | head -1)
+          if [ -z "$DESC" ]; then
+            ISSUES="$ISSUES\n- Missing meta description"
+          elif [ ${#DESC} -gt 160 ]; then
+            ISSUES="$ISSUES\n- Meta description too long (${#DESC} chars, max 160)"
+          fi
+
+          # Check Open Graph
+          OG_TITLE=$(echo "$HTML" | grep -c 'property="og:title"')
+          OG_DESC=$(echo "$HTML" | grep -c 'property="og:description"')
+          OG_IMAGE=$(echo "$HTML" | grep -c 'property="og:image"')
+          if [ "$OG_TITLE" -eq 0 ]; then ISSUES="$ISSUES\n- Missing og:title"; fi
+          if [ "$OG_DESC" -eq 0 ]; then ISSUES="$ISSUES\n- Missing og:description"; fi
+          if [ "$OG_IMAGE" -eq 0 ]; then ISSUES="$ISSUES\n- Missing og:image"; fi
+
+          # Check canonical
+          CANONICAL=$(echo "$HTML" | grep -c 'rel="canonical"')
+          if [ "$CANONICAL" -eq 0 ]; then ISSUES="$ISSUES\n- Missing canonical URL"; fi
+
+          # Check structured data
+          JSON_LD=$(echo "$HTML" | grep -c 'application/ld+json')
+          if [ "$JSON_LD" -eq 0 ]; then ISSUES="$ISSUES\n- No structured data (JSON-LD)"; fi
+
+          if [ -n "$ISSUES" ]; then
+            echo -e "$ISSUES" > /tmp/seo-issues.txt
+            echo "has_issues=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_issues=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create issue on SEO problems
+        if: steps.meta.outputs.has_issues == 'true' && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const issues = fs.readFileSync('/tmp/seo-issues.txt', 'utf8');
+            const sitemap = '${{ steps.sitemap.outputs.status }}' === '200' ? 'OK' : 'Missing';
+            const robots = '${{ steps.robots.outputs.status }}' === '200' ? 'OK' : 'Missing';
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `SEO: Issues found (${new Date().toISOString().split('T')[0]})`,
+              body: [
+                '## SEO Check Results',
+                '',
+                `- **URL**: ${{ steps.url.outputs.target }}`,
+                `- **Sitemap**: ${sitemap} (${{ steps.sitemap.outputs.url_count }} URLs)`,
+                `- **Robots.txt**: ${robots}`,
+                '',
+                '### Issues Found',
+                issues,
+              ].join('\n'),
+              labels: ['seo'],
+            });

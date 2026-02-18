@@ -1,0 +1,142 @@
+# DevOps-Factory: Auto CODEOWNERS Generator
+# Generates CODEOWNERS file from git log analysis
+# Runs monthly and creates a PR with updates
+
+name: Auto CODEOWNERS
+
+on:
+  schedule:
+    - cron: '0 6 1 * *' # 1st of each month, 6am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate-codeowners:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Analyze git history
+        id: analyze
+        run: |
+          echo "# CODEOWNERS - Auto-generated from git history" > /tmp/CODEOWNERS
+          echo "# Last updated: $(date +%Y-%m-%d)" >> /tmp/CODEOWNERS
+          echo "#" >> /tmp/CODEOWNERS
+          echo "# Each line is a file pattern followed by the owner(s)." >> /tmp/CODEOWNERS
+          echo "# Owner = contributor with most commits to that path in last 6 months." >> /tmp/CODEOWNERS
+          echo "" >> /tmp/CODEOWNERS
+
+          SINCE=$(date -d '6 months ago' +%Y-%m-%d 2>/dev/null || date -v-6m +%Y-%m-%d)
+          CHANGES=0
+
+          # Analyze top-level directories
+          for DIR in $(ls -d */ 2>/dev/null | grep -v node_modules | grep -v .git | grep -v dist | grep -v build | grep -v .next); do
+            DIR_NAME="${DIR%/}"
+
+            # Get top contributor for this directory
+            TOP_AUTHOR=$(git log --since="$SINCE" --format='%aN <%aE>' -- "$DIR_NAME/" 2>/dev/null \
+              | sort | uniq -c | sort -rn | head -1 | sed 's/^\s*[0-9]* //')
+
+            if [ -n "$TOP_AUTHOR" ]; then
+              # Get GitHub username from email if possible
+              EMAIL=$(echo "$TOP_AUTHOR" | grep -oP '<\K[^>]+')
+              USERNAME=$(git log --since="$SINCE" --format='%aN' -- "$DIR_NAME/" 2>/dev/null \
+                | sort | uniq -c | sort -rn | head -1 | sed 's/^\s*[0-9]* //')
+
+              COMMIT_COUNT=$(git log --since="$SINCE" --oneline -- "$DIR_NAME/" 2>/dev/null | wc -l)
+
+              if [ "$COMMIT_COUNT" -gt 2 ]; then
+                echo "/$DIR_NAME/ @${{ github.repository_owner }}" >> /tmp/CODEOWNERS
+                echo "# $USERNAME ($COMMIT_COUNT commits)" >> /tmp/CODEOWNERS
+                CHANGES=$((CHANGES + 1))
+              fi
+            fi
+          done
+
+          # Special file patterns
+          echo "" >> /tmp/CODEOWNERS
+          echo "# Infrastructure & Config" >> /tmp/CODEOWNERS
+
+          # CI/CD
+          CONFIG_AUTHOR=$(git log --since="$SINCE" --format='%aN' -- '.github/' 2>/dev/null \
+            | sort | uniq -c | sort -rn | head -1 | sed 's/^\s*[0-9]* //')
+          if [ -n "$CONFIG_AUTHOR" ]; then
+            echo "/.github/ @${{ github.repository_owner }}" >> /tmp/CODEOWNERS
+          fi
+
+          # Package files
+          echo "package.json @${{ github.repository_owner }}" >> /tmp/CODEOWNERS
+          echo "pnpm-lock.yaml @${{ github.repository_owner }}" >> /tmp/CODEOWNERS
+
+          # Database
+          if [ -d "prisma" ]; then
+            echo "/prisma/ @${{ github.repository_owner }}" >> /tmp/CODEOWNERS
+          fi
+
+          echo "entries=$CHANGES" >> $GITHUB_OUTPUT
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if [ -f CODEOWNERS ]; then
+            if diff -q CODEOWNERS /tmp/CODEOWNERS > /dev/null 2>&1; then
+              echo "changed=false" >> $GITHUB_OUTPUT
+            else
+              echo "changed=true" >> $GITHUB_OUTPUT
+            fi
+          elif [ -f .github/CODEOWNERS ]; then
+            if diff -q .github/CODEOWNERS /tmp/CODEOWNERS > /dev/null 2>&1; then
+              echo "changed=false" >> $GITHUB_OUTPUT
+            else
+              echo "changed=true" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create PR with updated CODEOWNERS
+        if: steps.diff.outputs.changed == 'true' && steps.analyze.outputs.entries > 0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="devops-factory/update-codeowners"
+          DATE=$(date +%Y-%m)
+
+          # Setup git
+          git config user.name "DevOps Factory Bot"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+
+          # Create branch
+          git checkout -b "$BRANCH" 2>/dev/null || git checkout "$BRANCH"
+
+          # Copy CODEOWNERS to preferred location
+          mkdir -p .github
+          cp /tmp/CODEOWNERS .github/CODEOWNERS
+
+          git add .github/CODEOWNERS
+          git diff --cached --quiet || {
+            git commit -m "chore: update CODEOWNERS ($DATE)"
+            git push origin "$BRANCH" --force
+
+            # Check if PR exists
+            EXISTING=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number' 2>/dev/null || true)
+            if [ -z "$EXISTING" ]; then
+              gh pr create \
+                --title "chore: update CODEOWNERS ($DATE)" \
+                --body "## Auto-Generated CODEOWNERS
+
+          Updated based on git history analysis (last 6 months).
+
+          **${{ steps.analyze.outputs.entries }}** directory ownership entries generated.
+
+          Review and merge to keep code ownership current.
+
+          > Auto-generated by DevOps-Factory" \
+                --label "maintenance"
+            fi
+          }

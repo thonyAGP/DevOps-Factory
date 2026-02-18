@@ -1,0 +1,154 @@
+# DevOps-Factory: Config Drift Detector (AUTO-165)
+# Detects when a repo diverges from standard configs
+# Checks: tsconfig, eslint, prettier, editorconfig, Node version
+
+name: Config Drift
+
+on:
+  schedule:
+    - cron: '0 7 * * 1' # Weekly Monday 7am
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  detect-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check config drift
+        id: drift
+        run: |
+          DRIFTS=""
+          DRIFT_COUNT=0
+
+          # --- tsconfig.json ---
+          if [ -f "tsconfig.json" ]; then
+            node -e "
+              const ts = require('./tsconfig.json');
+              const co = ts.compilerOptions || {};
+              const issues = [];
+              if (!co.strict && co.strict !== true) issues.push('strict not enabled');
+              if (!co.noUncheckedIndexedAccess) issues.push('noUncheckedIndexedAccess not enabled');
+              if (co.target && !['es2022','es2023','esnext'].includes(co.target.toLowerCase())) issues.push('target below ES2022');
+              if (issues.length) console.log('TSCONFIG:' + issues.join(', '));
+            " 2>/dev/null | while read line; do
+              DRIFTS="${DRIFTS}\n- tsconfig.json: ${line#TSCONFIG:}"
+              DRIFT_COUNT=$((DRIFT_COUNT + 1))
+            done
+          else
+            if [ -f "package.json" ] && grep -q "typescript" package.json; then
+              DRIFTS="${DRIFTS}\n- Missing tsconfig.json (TypeScript project)"
+              DRIFT_COUNT=$((DRIFT_COUNT + 1))
+            fi
+          fi
+
+          # --- ESLint config ---
+          HAS_ESLINT=false
+          for f in eslint.config.mjs eslint.config.js .eslintrc.json .eslintrc.js .eslintrc.yml .eslintrc; do
+            [ -f "$f" ] && HAS_ESLINT=true && break
+          done
+          if [ "$HAS_ESLINT" = "false" ] && [ -f "package.json" ]; then
+            if grep -q '"eslint"' package.json 2>/dev/null; then
+              : # Has eslint in deps but may use package.json config
+            elif grep -q "typescript" package.json 2>/dev/null; then
+              DRIFTS="${DRIFTS}\n- Missing ESLint config"
+              DRIFT_COUNT=$((DRIFT_COUNT + 1))
+            fi
+          fi
+
+          # --- Prettier ---
+          HAS_PRETTIER=false
+          for f in .prettierrc .prettierrc.json .prettierrc.yml .prettierrc.js prettier.config.js prettier.config.mjs; do
+            [ -f "$f" ] && HAS_PRETTIER=true && break
+          done
+          if [ "$HAS_PRETTIER" = "false" ] && [ -f "package.json" ] && grep -q "prettier" package.json 2>/dev/null; then
+            : # May use package.json config
+          elif [ "$HAS_PRETTIER" = "false" ] && [ -f "package.json" ]; then
+            DRIFTS="${DRIFTS}\n- Missing Prettier config"
+            DRIFT_COUNT=$((DRIFT_COUNT + 1))
+          fi
+
+          # --- .editorconfig ---
+          if [ ! -f ".editorconfig" ] && [ -f "package.json" ]; then
+            DRIFTS="${DRIFTS}\n- Missing .editorconfig"
+            DRIFT_COUNT=$((DRIFT_COUNT + 1))
+          fi
+
+          # --- Node version consistency ---
+          if [ -f "package.json" ]; then
+            ENGINE_NODE=$(node -e "try{console.log(require('./package.json').engines?.node||'')}catch{}" 2>/dev/null)
+            NVMRC_VERSION=""
+            [ -f ".nvmrc" ] && NVMRC_VERSION=$(cat .nvmrc | tr -d 'v \n')
+            [ -f ".node-version" ] && NVMRC_VERSION=$(cat .node-version | tr -d 'v \n')
+
+            if [ -n "$ENGINE_NODE" ] && [ -n "$NVMRC_VERSION" ]; then
+              if ! echo "$ENGINE_NODE" | grep -q "$NVMRC_VERSION"; then
+                DRIFTS="${DRIFTS}\n- Node version mismatch: engines=$ENGINE_NODE, .nvmrc=$NVMRC_VERSION"
+                DRIFT_COUNT=$((DRIFT_COUNT + 1))
+              fi
+            fi
+          fi
+
+          # --- Package manager consistency ---
+          if [ -f "pnpm-lock.yaml" ] && [ -f "package-lock.json" ]; then
+            DRIFTS="${DRIFTS}\n- Multiple lock files (pnpm-lock.yaml + package-lock.json)"
+            DRIFT_COUNT=$((DRIFT_COUNT + 1))
+          fi
+          if [ -f "yarn.lock" ] && [ -f "package-lock.json" ]; then
+            DRIFTS="${DRIFTS}\n- Multiple lock files (yarn.lock + package-lock.json)"
+            DRIFT_COUNT=$((DRIFT_COUNT + 1))
+          fi
+
+          # --- .gitignore essentials ---
+          if [ -f ".gitignore" ]; then
+            MISSING_IGNORES=""
+            for pattern in node_modules .env .next dist; do
+              if ! grep -q "$pattern" .gitignore 2>/dev/null; then
+                MISSING_IGNORES="${MISSING_IGNORES} ${pattern}"
+              fi
+            done
+            if [ -n "$MISSING_IGNORES" ]; then
+              DRIFTS="${DRIFTS}\n- .gitignore missing patterns:${MISSING_IGNORES}"
+              DRIFT_COUNT=$((DRIFT_COUNT + 1))
+            fi
+          fi
+
+          echo "count=$DRIFT_COUNT" >> $GITHUB_OUTPUT
+          echo "drifts<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$DRIFTS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create issue if drifts found
+        if: steps.drift.outputs.count != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const count = '${{ steps.drift.outputs.count }}';
+            const drifts = `${{ steps.drift.outputs.drifts }}`;
+
+            const title = `🔧 Config drift: ${count} deviation(s) from standard`;
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'config',
+              state: 'open',
+            });
+
+            if (!existing.data.some(i => i.title.includes('Config drift'))) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body: `## Config Drift Report\n\n${drifts}\n\n### Standard configs\n\nTemplates available in [DevOps-Factory](https://github.com/thonyAGP/DevOps-Factory/tree/main/templates).\n\nAuto-generated by Config Drift workflow.`,
+                labels: ['config', 'automated'],
+              });
+            }

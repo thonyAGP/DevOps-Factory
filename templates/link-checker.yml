@@ -1,0 +1,83 @@
+# DevOps-Factory: Broken Links Checker Template
+# Weekly scan + post-deploy check for 404s
+# Uses lychee for fast, reliable link checking
+
+name: Link Checker
+
+on:
+  schedule:
+    - cron: '0 5 * * 3' # Weekly Wednesday 5am UTC
+  deployment_status:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name != 'deployment_status' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment_status.environment == 'Production')
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine URL
+        id: url
+        run: |
+          if [ "${{ github.event_name }}" = "deployment_status" ]; then
+            echo "target=${{ github.event.deployment_status.environment_url }}" >> $GITHUB_OUTPUT
+          else
+            # Use production URL from package.json homepage or env
+            URL="${{ vars.PRODUCTION_URL }}"
+            if [ -z "$URL" ]; then
+              echo "target=" >> $GITHUB_OUTPUT
+              echo "::warning::No PRODUCTION_URL variable set. Scanning source files only."
+            else
+              echo "target=$URL" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Check links (live site)
+        if: steps.url.outputs.target != ''
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --max-retries 3
+            --timeout 30
+            --exclude-mail
+            --exclude "localhost|127.0.0.1|example.com"
+            "${{ steps.url.outputs.target }}"
+          fail: true
+
+      - name: Check links (source files)
+        if: steps.url.outputs.target == ''
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --max-retries 3
+            --timeout 30
+            --exclude-mail
+            --exclude "localhost|127.0.0.1|example.com"
+            "**/*.md"
+            "**/*.html"
+          fail: false
+
+      - name: Create issue on failure
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Broken links detected (${new Date().toISOString().split('T')[0]})`,
+              body: 'The weekly link check found broken links. Check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.',
+              labels: ['bug', 'links'],
+            });

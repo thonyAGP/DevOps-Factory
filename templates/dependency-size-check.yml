@@ -1,0 +1,147 @@
+# DevOps-Factory: Dependency Size Check (AUTO-69)
+# Alerts when a new dependency increases bundle size significantly
+# Checks package sizes via bundlephobia data
+
+name: Dependency Size Check
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths: ['package.json', 'pnpm-lock.yaml', 'yarn.lock', 'package-lock.json']
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  dep-size:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Detect new dependencies
+        id: deps
+        run: |
+          BASE="${{ github.event.pull_request.base.sha }}"
+
+          # Get base package.json
+          git show "$BASE:package.json" > /tmp/base-package.json 2>/dev/null || echo '{}' > /tmp/base-package.json
+
+          # Extract dependency names
+          node -e "
+            const base = require('/tmp/base-package.json');
+            const current = require('./package.json');
+            const baseDeps = { ...base.dependencies, ...base.devDependencies };
+            const currentDeps = { ...current.dependencies, ...current.devDependencies };
+
+            const added = Object.keys(currentDeps).filter(d => !baseDeps[d]);
+            const removed = Object.keys(baseDeps).filter(d => !currentDeps[d]);
+            const updated = Object.keys(currentDeps).filter(d => baseDeps[d] && baseDeps[d] !== currentDeps[d]);
+
+            console.log(JSON.stringify({ added, removed, updated }));
+          " > /tmp/dep-changes.json
+
+          ADDED=$(node -e "console.log(require('/tmp/dep-changes.json').added.length)")
+          REMOVED=$(node -e "console.log(require('/tmp/dep-changes.json').removed.length)")
+          UPDATED=$(node -e "console.log(require('/tmp/dep-changes.json').updated.length)")
+
+          echo "added=$ADDED" >> $GITHUB_OUTPUT
+          echo "removed=$REMOVED" >> $GITHUB_OUTPUT
+          echo "updated=$UPDATED" >> $GITHUB_OUTPUT
+
+      - name: Check sizes via bundlephobia
+        if: steps.deps.outputs.added != '0'
+        id: sizes
+        run: |
+          node -e "
+            const https = require('https');
+            const changes = require('/tmp/dep-changes.json');
+
+            const fetchSize = (pkg) => new Promise((resolve) => {
+              https.get('https://bundlephobia.com/api/size?package=' + pkg, (res) => {
+                let data = '';
+                res.on('data', c => data += c);
+                res.on('end', () => {
+                  try {
+                    const j = JSON.parse(data);
+                    resolve({ name: pkg, gzip: j.gzip, size: j.size });
+                  } catch { resolve({ name: pkg, gzip: 0, size: 0 }); }
+                });
+              }).on('error', () => resolve({ name: pkg, gzip: 0, size: 0 }));
+            });
+
+            (async () => {
+              const results = await Promise.all(changes.added.map(fetchSize));
+              const large = results.filter(r => r.gzip > 50000);
+              const totalGzip = results.reduce((s, r) => s + r.gzip, 0);
+
+              const output = {
+                packages: results.map(r => ({
+                  ...r,
+                  gzipKB: (r.gzip / 1024).toFixed(1),
+                  sizeKB: (r.size / 1024).toFixed(1),
+                })),
+                totalGzipKB: (totalGzip / 1024).toFixed(1),
+                largeCount: large.length,
+              };
+              require('fs').writeFileSync('/tmp/size-results.json', JSON.stringify(output));
+              console.log('total_gzip_kb=' + output.totalGzipKB);
+              console.log('large_count=' + output.largeCount);
+            })();
+          " | tee /tmp/size-output.txt
+
+          TOTAL=$(grep 'total_gzip_kb=' /tmp/size-output.txt | cut -d= -f2)
+          LARGE=$(grep 'large_count=' /tmp/size-output.txt | cut -d= -f2)
+          echo "total_gzip_kb=$TOTAL" >> $GITHUB_OUTPUT
+          echo "large_count=$LARGE" >> $GITHUB_OUTPUT
+
+      - name: Comment PR
+        if: always() && (steps.deps.outputs.added != '0' || steps.deps.outputs.removed != '0' || steps.deps.outputs.updated != '0')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const added = parseInt('${{ steps.deps.outputs.added }}');
+            const removed = parseInt('${{ steps.deps.outputs.removed }}');
+            const updated = parseInt('${{ steps.deps.outputs.updated }}');
+            const largeCount = parseInt('${{ steps.sizes.outputs.large_count }}') || 0;
+            const totalKB = '${{ steps.sizes.outputs.total_gzip_kb }}' || '0';
+
+            const status = largeCount > 0 ? '⚠️' : '✅';
+            let body = `## ${status} Dependency Changes\n\n`;
+            body += `| Metric | Count |\n|--------|-------|\n`;
+            body += `| Added | ${added} |\n`;
+            body += `| Removed | ${removed} |\n`;
+            body += `| Updated | ${updated} |\n`;
+
+            if (added > 0) {
+              body += `| Total new gzip size | ${totalKB} KB |\n`;
+              body += `| Large deps (>50KB gzip) | ${largeCount} |\n`;
+
+              try {
+                const results = JSON.parse(fs.readFileSync('/tmp/size-results.json', 'utf8'));
+                body += `\n### New packages\n`;
+                body += `| Package | Gzip | Raw |\n|---------|------|-----|\n`;
+                for (const p of results.packages) {
+                  const warn = parseFloat(p.gzipKB) > 50 ? ' ⚠️' : '';
+                  body += `| \`${p.name}\` | ${p.gzipKB} KB${warn} | ${p.sizeKB} KB |\n`;
+                }
+              } catch {}
+
+              if (largeCount > 0) {
+                body += `\n> ⚠️ ${largeCount} package(s) over 50KB gzip. Consider lighter alternatives.\n`;
+              }
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });

@@ -1,0 +1,156 @@
+# DevOps-Factory: Competitive Analysis Automation
+# Scrapes competitor pricing/features periodically
+# Posts findings as GitHub Issues for CasaSync/Au-Marais
+
+name: Competitive Analysis
+
+on:
+  schedule:
+    - cron: '0 6 1,15 * *' # 1st and 15th of each month, 6am UTC
+  workflow_dispatch:
+    inputs:
+      competitors:
+        description: 'Comma-separated competitor URLs to check'
+        required: false
+
+permissions:
+  issues: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Create scraper script
+        run: |
+          cat > /tmp/scrape.mjs << 'SCRIPT'
+          import { chromium } from 'playwright';
+
+          const COMPETITORS = process.env.COMPETITORS
+            ? process.env.COMPETITORS.split(',').map(u => u.trim())
+            : JSON.parse(process.env.COMPETITOR_LIST || '[]');
+
+          if (COMPETITORS.length === 0) {
+            console.log('No competitors configured. Set COMPETITOR_LIST repo variable as JSON array.');
+            console.log('Example: ["https://competitor1.com", "https://competitor2.com"]');
+            process.exit(0);
+          }
+
+          const browser = await chromium.launch();
+          const results = [];
+
+          for (const url of COMPETITORS) {
+            const page = await browser.newPage();
+            try {
+              await page.goto(url, { timeout: 30000, waitUntil: 'domcontentloaded' });
+
+              const title = await page.title();
+
+              // Extract pricing if visible
+              const priceElements = await page.$$eval(
+                '[class*="price"], [class*="Price"], [data-price], .tarif, .precio',
+                els => els.slice(0, 5).map(el => el.textContent?.trim()).filter(Boolean)
+              );
+
+              // Extract key features/headlines
+              const headlines = await page.$$eval(
+                'h1, h2, h3',
+                els => els.slice(0, 10).map(el => el.textContent?.trim()).filter(Boolean)
+              );
+
+              // Check for new pages/features
+              const links = await page.$$eval(
+                'a[href]',
+                els => [...new Set(els.map(el => el.href).filter(h => h.startsWith(els[0]?.baseURI?.split('/').slice(0, 3).join('/') || '')))]
+              );
+
+              results.push({
+                url,
+                title,
+                prices: priceElements,
+                headlines: headlines.slice(0, 5),
+                pageCount: links.length,
+                checkedAt: new Date().toISOString(),
+              });
+            } catch (err) {
+              results.push({
+                url,
+                error: err.message,
+                checkedAt: new Date().toISOString(),
+              });
+            } finally {
+              await page.close();
+            }
+          }
+
+          await browser.close();
+
+          // Output as JSON
+          const fs = await import('fs');
+          fs.writeFileSync('/tmp/competitive-results.json', JSON.stringify(results, null, 2));
+
+          // Generate markdown
+          let md = '';
+          for (const r of results) {
+            md += `### ${r.title || r.url}\n`;
+            md += `URL: ${r.url}\n\n`;
+            if (r.error) {
+              md += `Error: ${r.error}\n\n`;
+              continue;
+            }
+            if (r.prices.length > 0) {
+              md += `**Prices found:**\n`;
+              r.prices.forEach(p => { md += `- ${p}\n`; });
+              md += '\n';
+            }
+            if (r.headlines.length > 0) {
+              md += `**Headlines:**\n`;
+              r.headlines.forEach(h => { md += `- ${h}\n`; });
+              md += '\n';
+            }
+            md += `Pages indexed: ~${r.pageCount}\n\n`;
+            md += '---\n\n';
+          }
+
+          fs.writeFileSync('/tmp/competitive-report.md', md);
+          console.log(md);
+          SCRIPT
+
+      - name: Run competitor scrape
+        env:
+          COMPETITOR_LIST: ${{ vars.COMPETITOR_LIST }}
+          COMPETITORS: ${{ github.event.inputs.competitors }}
+        run: node /tmp/scrape.mjs
+
+      - name: Create analysis issue
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DATE=$(date +%Y-%m-%d)
+
+          if [ -f /tmp/competitive-report.md ]; then
+            BODY="## Competitive Analysis - $DATE
+
+          $(cat /tmp/competitive-report.md)
+
+          > Configure \`COMPETITOR_LIST\` as a repo variable (JSON array of URLs) to track competitors automatically."
+          else
+            BODY="## Competitive Analysis - $DATE
+
+          No results generated. Ensure COMPETITOR_LIST repo variable is set.
+          Example: \`[\"https://competitor1.com\", \"https://competitor2.com\"]\`"
+          fi
+
+          gh issue create \
+            --title "Competitive Analysis - $DATE" \
+            --body "$BODY" \
+            --label "competitive-intel"

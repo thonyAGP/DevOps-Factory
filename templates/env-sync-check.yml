@@ -1,0 +1,108 @@
+# DevOps-Factory: .env.example Sync Check
+# Ensures .env.example stays in sync with env vars used in code
+# Runs on PRs that modify source files
+
+name: Env Sync Check
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'src/**'
+      - 'app/**'
+      - 'pages/**'
+      - 'lib/**'
+      - '.env.example'
+
+jobs:
+  check-env:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find env vars in code
+        id: scan
+        run: |
+          # Find all process.env.* and import.meta.env.* references
+          CODE_VARS=$(grep -rhoP '(?:process\.env|import\.meta\.env)\.\K[A-Z_][A-Z0-9_]+' \
+            --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" --include="*.mjs" \
+            src/ app/ pages/ lib/ 2>/dev/null | sort -u || true)
+
+          # Also find NEXT_PUBLIC_ vars
+          NEXT_VARS=$(grep -rhoP 'NEXT_PUBLIC_[A-Z0-9_]+' \
+            --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
+            src/ app/ pages/ lib/ 2>/dev/null | sort -u || true)
+
+          ALL_VARS=$(echo -e "$CODE_VARS\n$NEXT_VARS" | sort -u | grep -v '^$' || true)
+          echo "$ALL_VARS" > /tmp/code-vars.txt
+          echo "Found $(echo "$ALL_VARS" | wc -l) env vars in code"
+
+      - name: Compare with .env.example
+        id: compare
+        run: |
+          if [ ! -f .env.example ]; then
+            echo "missing_file=true" >> $GITHUB_OUTPUT
+            echo "::warning::.env.example not found"
+            exit 0
+          fi
+
+          echo "missing_file=false" >> $GITHUB_OUTPUT
+
+          # Extract var names from .env.example
+          EXAMPLE_VARS=$(grep -oP '^[A-Z_][A-Z0-9_]+' .env.example | sort -u)
+          echo "$EXAMPLE_VARS" > /tmp/example-vars.txt
+
+          # Find vars in code but not in .env.example
+          MISSING=$(comm -23 /tmp/code-vars.txt /tmp/example-vars.txt || true)
+          # Find vars in .env.example but not in code (potentially stale)
+          STALE=$(comm -13 /tmp/code-vars.txt /tmp/example-vars.txt || true)
+
+          echo "$MISSING" > /tmp/missing-vars.txt
+          echo "$STALE" > /tmp/stale-vars.txt
+
+          MISSING_COUNT=$(echo "$MISSING" | grep -c . || echo "0")
+          STALE_COUNT=$(echo "$STALE" | grep -c . || echo "0")
+
+          echo "missing_count=$MISSING_COUNT" >> $GITHUB_OUTPUT
+          echo "stale_count=$STALE_COUNT" >> $GITHUB_OUTPUT
+
+          if [ "$MISSING_COUNT" -gt 0 ]; then
+            echo "has_issues=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_issues=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment PR
+        if: steps.compare.outputs.has_issues == 'true' || steps.compare.outputs.missing_file == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let body = '## .env Sync Check\n\n';
+
+            if ('${{ steps.compare.outputs.missing_file }}' === 'true') {
+              body += '**.env.example is missing!** Create it to document required environment variables.\n';
+            } else {
+              const missing = fs.readFileSync('/tmp/missing-vars.txt', 'utf8').trim();
+              const stale = fs.readFileSync('/tmp/stale-vars.txt', 'utf8').trim();
+
+              if (missing) {
+                body += '### Missing from .env.example\n';
+                body += 'These vars are used in code but not documented:\n';
+                body += missing.split('\n').filter(Boolean).map(v => `- \`${v}\``).join('\n');
+                body += '\n\n';
+              }
+              if (stale) {
+                body += '### Potentially stale in .env.example\n';
+                body += 'These vars are documented but not found in code:\n';
+                body += stale.split('\n').filter(Boolean).map(v => `- \`${v}\``).join('\n');
+                body += '\n';
+              }
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });

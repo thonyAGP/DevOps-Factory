@@ -1,0 +1,121 @@
+# DevOps-Factory: Auto-Changelog Template
+# Generates CHANGELOG.md from conventional commits on release
+# Uses Claude Haiku for intelligent grouping and summaries
+
+name: Auto Changelog
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      since_tag:
+        description: 'Generate changelog since this tag (leave empty for last tag)'
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get previous tag
+        id: prev_tag
+        run: |
+          if [ -n "${{ github.event.inputs.since_tag }}" ]; then
+            echo "tag=${{ github.event.inputs.since_tag }}" >> $GITHUB_OUTPUT
+          else
+            PREV=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+            echo "tag=$PREV" >> $GITHUB_OUTPUT
+          fi
+          echo "current=$(git describe --tags --abbrev=0 2>/dev/null || echo HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Generate commit list
+        id: commits
+        run: |
+          PREV="${{ steps.prev_tag.outputs.tag }}"
+          if [ -n "$PREV" ]; then
+            RANGE="$PREV..HEAD"
+          else
+            RANGE="HEAD"
+          fi
+
+          git log $RANGE --pretty=format:"%s (%h)" --no-merges > /tmp/commits.txt
+          echo "Generated commit list from $RANGE"
+          cat /tmp/commits.txt
+
+      - name: Generate changelog with AI
+        if: secrets.ANTHROPIC_API_KEY != ''
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          model: claude-haiku-4-5-20251001
+          direct_prompt: |
+            Generate a CHANGELOG entry from these conventional commits.
+            Current version: ${{ steps.prev_tag.outputs.current }}
+
+            Commits:
+            $(cat /tmp/commits.txt)
+
+            Format the output as a markdown section to PREPEND to CHANGELOG.md:
+            ## [version] - YYYY-MM-DD
+            ### Added (for feat:)
+            ### Fixed (for fix:)
+            ### Changed (for refactor:, perf:)
+            ### Other (for chore:, docs:, ci:, test:)
+
+            Only include sections that have entries. Be concise.
+            Write the result directly to CHANGELOG.md (prepend to existing content).
+          timeout_minutes: 5
+          allowed_tools: 'Read,Write,Edit'
+
+      - name: Fallback changelog (no AI)
+        if: secrets.ANTHROPIC_API_KEY == ''
+        run: |
+          VERSION="${{ steps.prev_tag.outputs.current }}"
+          DATE=$(date +%Y-%m-%d)
+
+          FEATURES=$(grep "^feat" /tmp/commits.txt || true)
+          FIXES=$(grep "^fix" /tmp/commits.txt || true)
+          OTHER=$(grep -v "^feat\|^fix" /tmp/commits.txt || true)
+
+          {
+            echo "## [$VERSION] - $DATE"
+            echo ""
+            if [ -n "$FEATURES" ]; then
+              echo "### Added"
+              echo "$FEATURES" | sed 's/^/- /'
+              echo ""
+            fi
+            if [ -n "$FIXES" ]; then
+              echo "### Fixed"
+              echo "$FIXES" | sed 's/^/- /'
+              echo ""
+            fi
+            if [ -n "$OTHER" ]; then
+              echo "### Other"
+              echo "$OTHER" | sed 's/^/- /'
+              echo ""
+            fi
+          } > /tmp/new-entry.md
+
+          if [ -f CHANGELOG.md ]; then
+            cat /tmp/new-entry.md CHANGELOG.md > /tmp/merged.md
+            mv /tmp/merged.md CHANGELOG.md
+          else
+            mv /tmp/new-entry.md CHANGELOG.md
+          fi
+
+      - name: Commit changelog
+        run: |
+          git config user.name "DevOps Factory Bot"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git diff --cached --quiet || git commit -m "docs: update CHANGELOG for ${{ steps.prev_tag.outputs.current }}"
+          git push

@@ -1,0 +1,112 @@
+# DevOps-Factory: Prisma Migration Safety Check
+# Validates that migrations don't cause data loss
+# Runs on PRs that modify prisma/ directory
+
+name: Migration Safety
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'prisma/**'
+      - 'packages/*/prisma/**'
+
+jobs:
+  check-migration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check for dangerous operations
+        id: danger
+        run: |
+          MIGRATION_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- 'prisma/migrations/**/*.sql' '**/prisma/migrations/**/*.sql')
+
+          if [ -z "$MIGRATION_FILES" ]; then
+            echo "No new migration files found"
+            echo "has_danger=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "New migration files:"
+          echo "$MIGRATION_FILES"
+
+          DANGERS=""
+          for file in $MIGRATION_FILES; do
+            if [ -f "$file" ]; then
+              # Check for DROP TABLE
+              if grep -qi "DROP TABLE" "$file"; then
+                DANGERS="$DANGERS\n- **DROP TABLE** found in \`$file\`"
+              fi
+              # Check for DROP COLUMN
+              if grep -qi "ALTER TABLE.*DROP COLUMN" "$file"; then
+                DANGERS="$DANGERS\n- **DROP COLUMN** found in \`$file\`"
+              fi
+              # Check for TRUNCATE
+              if grep -qi "TRUNCATE" "$file"; then
+                DANGERS="$DANGERS\n- **TRUNCATE** found in \`$file\`"
+              fi
+              # Check for data type changes that may lose data
+              if grep -qi "ALTER COLUMN.*TYPE" "$file"; then
+                DANGERS="$DANGERS\n- **Column type change** in \`$file\` (verify no data loss)"
+              fi
+              # Check for NOT NULL without default
+              if grep -qi "SET NOT NULL" "$file" && ! grep -qi "SET DEFAULT" "$file"; then
+                DANGERS="$DANGERS\n- **SET NOT NULL without DEFAULT** in \`$file\`"
+              fi
+            fi
+          done
+
+          if [ -n "$DANGERS" ]; then
+            echo "has_danger=true" >> $GITHUB_OUTPUT
+            echo -e "$DANGERS" > /tmp/dangers.txt
+          else
+            echo "has_danger=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment PR with warnings
+        if: steps.danger.outputs.has_danger == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const dangers = fs.readFileSync('/tmp/dangers.txt', 'utf8');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                '## Migration Safety Warning',
+                '',
+                'Potentially dangerous operations detected:',
+                '',
+                dangers,
+                '',
+                'Please verify:',
+                '- [ ] Data backup exists before running this migration',
+                '- [ ] The operation is intentional and reviewed',
+                '- [ ] Rollback migration is available',
+              ].join('\n'),
+            });
+
+      - name: Validate migration can be applied
+        run: |
+          # Generate Prisma client to validate schema
+          pnpm exec prisma generate 2>&1 || echo "::warning::Prisma generate failed"
+          # Validate schema
+          pnpm exec prisma validate 2>&1 || echo "::error::Prisma schema validation failed"

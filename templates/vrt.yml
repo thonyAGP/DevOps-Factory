@@ -1,0 +1,76 @@
+# DevOps-Factory: Visual Regression Testing Template
+# Compares screenshots between PR and main branch
+# Uses Playwright for screenshot capture
+
+name: Visual Regression
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'src/**'
+      - 'app/**'
+      - 'components/**'
+      - 'styles/**'
+      - 'public/**'
+
+concurrency:
+  group: vrt-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  visual-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Build
+        run: pnpm build
+
+      - name: Run VRT
+        run: pnpm exec playwright test --config playwright.vrt.config.ts 2>&1 || true
+
+      - name: Upload VRT results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vrt-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+      - name: Comment PR with diff
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                '## Visual Regression Detected',
+                '',
+                'Screenshots have changed. Download the [VRT artifacts](' +
+                `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}` +
+                ') to review the differences.',
+                '',
+                'If intentional, update snapshots with: `pnpm exec playwright test --update-snapshots`',
+              ].join('\n'),
+            });

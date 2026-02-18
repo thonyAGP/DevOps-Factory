@@ -1,0 +1,98 @@
+# DevOps-Factory: Lighthouse CI Template
+# Runs Lighthouse audits post-deploy on Vercel preview URLs
+# Blocks if scores drop below budgets
+
+name: Lighthouse CI
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to audit'
+        required: true
+
+concurrency:
+  group: lighthouse-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment_status.environment_url)
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine URL
+        id: url
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "target=${{ github.event.inputs.url }}" >> $GITHUB_OUTPUT
+          else
+            echo "target=${{ github.event.deployment_status.environment_url }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Wait for deployment
+        run: |
+          URL="${{ steps.url.outputs.target }}"
+          for i in $(seq 1 12); do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL" || true)
+            if [ "$STATUS" = "200" ]; then
+              echo "Site is up!"
+              break
+            fi
+            echo "Waiting for deployment... (attempt $i, status: $STATUS)"
+            sleep 10
+          done
+
+      - name: Lighthouse audit
+        id: lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: ${{ steps.url.outputs.target }}
+          runs: 3
+          budgetPath: .github/lighthouse-budget.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Comment PR with results
+        if: github.event.deployment_status.environment != 'Production'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const results = ${{ steps.lighthouse.outputs.manifest }};
+            if (!results || results.length === 0) return;
+
+            const r = results[0].summary;
+            const fmt = (v) => Math.round(v * 100);
+
+            const body = [
+              '## Lighthouse Results',
+              '',
+              `| Metric | Score |`,
+              `|--------|-------|`,
+              `| Performance | ${fmt(r.performance)} |`,
+              `| Accessibility | ${fmt(r.accessibility)} |`,
+              `| Best Practices | ${fmt(r['best-practices'])} |`,
+              `| SEO | ${fmt(r.seo)} |`,
+              '',
+              `> [Full report](${results[0].url})`,
+            ].join('\n');
+
+            const prs = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: context.sha,
+            });
+
+            if (prs.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prs.data[0].number,
+                body,
+              });
+            }

@@ -1,0 +1,65 @@
+# Release Drafter configuration
+# Place in .github/release-drafter-config.yml
+
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'feature'
+      - 'enhancement'
+      - 'feat'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+  - title: '🔒 Security'
+    labels:
+      - 'security'
+      - 'dependencies'
+  - title: '📦 Dependencies'
+    labels:
+      - 'dependencies'
+      - 'deps'
+  - title: '📝 Documentation'
+    labels:
+      - 'documentation'
+      - 'docs'
+  - title: '🏗️ Infrastructure'
+    labels:
+      - 'ci'
+      - 'infra'
+      - 'config'
+  - title: '🧪 Tests'
+    labels:
+      - 'tests'
+      - 'test'
+
+change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
+change-title-escapes: '\<*_&'
+
+version-resolver:
+  major:
+    labels:
+      - 'major'
+      - 'breaking'
+  minor:
+    labels:
+      - 'feature'
+      - 'enhancement'
+  patch:
+    labels:
+      - 'fix'
+      - 'bugfix'
+      - 'documentation'
+      - 'dependencies'
+  default: patch
+
+template: |
+  ## What's Changed
+
+  $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION

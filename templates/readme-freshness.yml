@@ -1,0 +1,148 @@
+# DevOps-Factory: README Freshness Check (AUTO-138)
+# Verifies README.md is up-to-date with actual project state
+# Checks badges, commands, dependencies references
+
+name: README Freshness
+
+on:
+  schedule:
+    - cron: '0 9 1 * *' # Monthly 1st at 9am
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Analyze README
+        id: check
+        run: |
+          if [ ! -f "README.md" ]; then
+            echo "has_readme=false" >> $GITHUB_OUTPUT
+            echo "issues=No README.md found" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "has_readme=true" >> $GITHUB_OUTPUT
+          ISSUES=""
+          WARNINGS=0
+
+          # Check last modified date
+          LAST_MODIFIED=$(git log -1 --format="%ci" -- README.md)
+          DAYS_AGO=$(( ($(date +%s) - $(date -d "$LAST_MODIFIED" +%s)) / 86400 ))
+          if [ "$DAYS_AGO" -gt 180 ]; then
+            ISSUES="${ISSUES}\n- README not updated in ${DAYS_AGO} days"
+            WARNINGS=$((WARNINGS + 1))
+          fi
+          echo "days_since_update=$DAYS_AGO" >> $GITHUB_OUTPUT
+
+          # Check if package.json scripts match README commands
+          if [ -f "package.json" ]; then
+            SCRIPTS=$(node -e "const p=require('./package.json');console.log(Object.keys(p.scripts||{}).join(' '))")
+            README_CONTENT=$(cat README.md)
+
+            # Check for common commands mentioned
+            for cmd in "npm run" "pnpm" "yarn"; do
+              if echo "$README_CONTENT" | grep -q "$cmd"; then
+                # Verify referenced scripts exist
+                for script in dev build test start lint; do
+                  if echo "$README_CONTENT" | grep -q "${cmd}.*${script}" && ! echo "$SCRIPTS" | grep -q "$script"; then
+                    ISSUES="${ISSUES}\n- README references \`${cmd} ${script}\` but script doesn't exist"
+                    WARNINGS=$((WARNINGS + 1))
+                  fi
+                done
+              fi
+            done
+
+            # Check Node version mentioned matches .nvmrc or engines
+            NODE_VERSION=$(node -e "try{console.log(require('./package.json').engines?.node||'')}catch{}")
+            if [ -f ".nvmrc" ]; then
+              NVMRC_VERSION=$(cat .nvmrc | tr -d 'v \n')
+              if echo "$README_CONTENT" | grep -qE 'node.*[0-9]+' && ! echo "$README_CONTENT" | grep -q "$NVMRC_VERSION"; then
+                ISSUES="${ISSUES}\n- README Node version may not match .nvmrc ($NVMRC_VERSION)"
+                WARNINGS=$((WARNINGS + 1))
+              fi
+            fi
+          fi
+
+          # Check for broken badge URLs
+          BADGE_URLS=$(grep -oP 'https://[^)]+badge[^)]+' README.md 2>/dev/null || true)
+          for url in $BADGE_URLS; do
+            STATUS=$(curl -sI -o /dev/null -w "%{http_code}" "$url" 2>/dev/null || echo "000")
+            if [ "$STATUS" = "404" ] || [ "$STATUS" = "000" ]; then
+              ISSUES="${ISSUES}\n- Broken badge URL: ${url}"
+              WARNINGS=$((WARNINGS + 1))
+            fi
+          done
+
+          # Check README size
+          README_LINES=$(wc -l < README.md)
+          if [ "$README_LINES" -lt 10 ]; then
+            ISSUES="${ISSUES}\n- README is very short (${README_LINES} lines)"
+            WARNINGS=$((WARNINGS + 1))
+          fi
+
+          # Check for essential sections
+          for section in "install" "usage" "getting started" "setup"; do
+            if ! grep -qi "$section" README.md; then
+              :  # Only flag if README is substantial
+            fi
+          done
+
+          echo "warnings=$WARNINGS" >> $GITHUB_OUTPUT
+          echo "issues<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$ISSUES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "lines=$README_LINES" >> $GITHUB_OUTPUT
+
+      - name: Create issue if stale
+        if: steps.check.outputs.warnings != '0' || steps.check.outputs.has_readme == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const hasReadme = '${{ steps.check.outputs.has_readme }}' === 'true';
+            const warnings = parseInt('${{ steps.check.outputs.warnings }}') || 0;
+            const daysSince = '${{ steps.check.outputs.days_since_update }}';
+            const issues = `${{ steps.check.outputs.issues }}`;
+
+            const title = hasReadme
+              ? `📝 README.md needs attention (${warnings} issues)`
+              : `📝 Missing README.md`;
+
+            let body = `## README Freshness Report\n\n`;
+            if (hasReadme) {
+              body += `Last updated: ${daysSince} days ago\n\n`;
+              body += `### Issues found\n${issues}\n`;
+            } else {
+              body += `No README.md found. Consider adding one with:\n`;
+              body += `- Project description\n- Installation instructions\n- Usage examples\n- Development setup\n`;
+            }
+            body += `\nAuto-generated by README Freshness workflow.`;
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'documentation',
+              state: 'open',
+            });
+
+            if (!existing.data.some(i => i.title.includes('README'))) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['documentation', 'automated'],
+              });
+            }

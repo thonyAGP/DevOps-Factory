@@ -1,0 +1,107 @@
+# DevOps-Factory: Weekly Digest (Centralized)
+# Generates a summary of all repos: PRs, issues, deployments, CI status
+# Runs Monday morning, posts as GitHub Issue in DevOps-Factory
+
+name: Weekly Digest
+
+on:
+  schedule:
+    - cron: '0 7 * * 1' # Monday 7am UTC (9am Madrid)
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate digest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          OWNER=$(gh api user -q '.login')
+          DATE=$(date +%Y-%m-%d)
+          WEEK_AGO=$(date -d '7 days ago' +%Y-%m-%dT00:00:00Z 2>/dev/null || date -v-7d +%Y-%m-%dT00:00:00Z)
+
+          DIGEST="## Weekly Digest - $DATE\n\n"
+
+          # Get all repos
+          REPOS=$(gh repo list "$OWNER" --limit 50 --json name,pushedAt --jq '.[] | select(.pushedAt > "'"$WEEK_AGO"'") | .name')
+
+          TOTAL_PRS=0
+          TOTAL_ISSUES=0
+          TOTAL_COMMITS=0
+          ACTIVE_REPOS=""
+
+          for REPO in $REPOS; do
+            FULL="$OWNER/$REPO"
+
+            # Count merged PRs this week
+            PRS=$(gh pr list --repo "$FULL" --state merged --json mergedAt \
+              --jq "[.[] | select(.mergedAt > \"$WEEK_AGO\")] | length" 2>/dev/null || echo "0")
+
+            # Count new issues
+            ISSUES=$(gh issue list --repo "$FULL" --state all --json createdAt \
+              --jq "[.[] | select(.createdAt > \"$WEEK_AGO\")] | length" 2>/dev/null || echo "0")
+
+            # Count commits on default branch
+            COMMITS=$(gh api "repos/$FULL/commits?since=$WEEK_AGO&per_page=100" \
+              --jq 'length' 2>/dev/null || echo "0")
+
+            # Last CI status
+            CI_STATUS=$(gh run list --repo "$FULL" --branch main --limit 1 \
+              --json conclusion --jq '.[0].conclusion // "none"' 2>/dev/null || echo "none")
+
+            CI_ICON="⚪"
+            case "$CI_STATUS" in
+              success) CI_ICON="✅" ;;
+              failure) CI_ICON="❌" ;;
+              cancelled) CI_ICON="⏹" ;;
+            esac
+
+            if [ "$PRS" -gt 0 ] || [ "$ISSUES" -gt 0 ] || [ "$COMMITS" -gt 0 ]; then
+              ACTIVE_REPOS="$ACTIVE_REPOS| $CI_ICON $REPO | $COMMITS | $PRS | $ISSUES |\n"
+              TOTAL_PRS=$((TOTAL_PRS + PRS))
+              TOTAL_ISSUES=$((TOTAL_ISSUES + ISSUES))
+              TOTAL_COMMITS=$((TOTAL_COMMITS + COMMITS))
+            fi
+          done
+
+          DIGEST="$DIGEST### Summary\n\n"
+          DIGEST="$DIGEST| Metric | Count |\n|--------|-------|\n"
+          DIGEST="$DIGEST| Active repos | $(echo "$REPOS" | wc -w) |\n"
+          DIGEST="$DIGEST| Total commits | $TOTAL_COMMITS |\n"
+          DIGEST="$DIGEST| Merged PRs | $TOTAL_PRS |\n"
+          DIGEST="$DIGEST| New issues | $TOTAL_ISSUES |\n\n"
+
+          DIGEST="$DIGEST### Per-Repo Activity\n\n"
+          DIGEST="$DIGEST| Repo | Commits | PRs Merged | Issues |\n"
+          DIGEST="$DIGEST|------|---------|------------|--------|\n"
+          DIGEST="$DIGEST$ACTIVE_REPOS\n"
+
+          # Open Renovate PRs
+          DIGEST="$DIGEST### Open Renovate PRs\n\n"
+          for REPO in $REPOS; do
+            FULL="$OWNER/$REPO"
+            RENO_PRS=$(gh pr list --repo "$FULL" --label "dependencies" --json title,url \
+              --jq '.[] | "- [\(.title)](\(.url))"' 2>/dev/null || true)
+            if [ -n "$RENO_PRS" ]; then
+              DIGEST="$DIGEST**$REPO**:\n$RENO_PRS\n\n"
+            fi
+          done
+
+          echo -e "$DIGEST" > /tmp/digest.md
+
+      - name: Create digest issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          BODY=$(cat /tmp/digest.md)
+          gh issue create \
+            --title "Weekly Digest - $DATE" \
+            --body "$BODY" \
+            --label "digest"

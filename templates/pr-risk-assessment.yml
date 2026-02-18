@@ -1,0 +1,153 @@
+# DevOps-Factory: PR Risk Assessment (AUTO-58)
+# Scores PR risk based on: size, critical files, coverage delta, complexity
+# Helps reviewers prioritize attention
+
+name: PR Risk Assessment
+
+on:
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  assess-risk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Analyze PR risk
+        id: risk
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+
+          # Size metrics
+          ADDITIONS=${{ github.event.pull_request.additions }}
+          DELETIONS=${{ github.event.pull_request.deletions }}
+          FILES_CHANGED=${{ github.event.pull_request.changed_files }}
+          TOTAL_CHANGES=$((ADDITIONS + DELETIONS))
+
+          # Critical file patterns
+          CRITICAL_FILES=$(git diff --name-only "$BASE"..."$HEAD" | grep -cE '(\.env|prisma/|migrations/|package\.json|docker|\.github/workflows|next\.config|tsconfig)' || echo "0")
+
+          # Config/infra files
+          CONFIG_FILES=$(git diff --name-only "$BASE"..."$HEAD" | grep -cE '\.(json|yml|yaml|toml|config\.)' || echo "0")
+
+          # Test file ratio
+          ALL_FILES=$(git diff --name-only "$BASE"..."$HEAD" | wc -l)
+          TEST_FILES=$(git diff --name-only "$BASE"..."$HEAD" | grep -cE '\.(test|spec)\.' || echo "0")
+          if [ "$ALL_FILES" -gt 0 ]; then
+            TEST_RATIO=$((TEST_FILES * 100 / ALL_FILES))
+          else
+            TEST_RATIO=0
+          fi
+
+          # Number of commits
+          COMMITS=$(git rev-list --count "$BASE"..."$HEAD")
+
+          # Calculate risk score (0-100)
+          SCORE=0
+
+          # Size risk (0-30)
+          if [ "$TOTAL_CHANGES" -gt 1000 ]; then SCORE=$((SCORE + 30))
+          elif [ "$TOTAL_CHANGES" -gt 500 ]; then SCORE=$((SCORE + 20))
+          elif [ "$TOTAL_CHANGES" -gt 200 ]; then SCORE=$((SCORE + 10))
+          elif [ "$TOTAL_CHANGES" -gt 50 ]; then SCORE=$((SCORE + 5))
+          fi
+
+          # Critical files risk (0-25)
+          SCORE=$((SCORE + CRITICAL_FILES * 5))
+          [ $SCORE -gt 55 ] && SCORE=55
+
+          # No tests risk (0-20)
+          if [ "$TEST_RATIO" -eq 0 ] && [ "$TOTAL_CHANGES" -gt 50 ]; then
+            SCORE=$((SCORE + 20))
+          elif [ "$TEST_RATIO" -lt 20 ]; then
+            SCORE=$((SCORE + 10))
+          fi
+
+          # Files spread risk (0-15)
+          if [ "$FILES_CHANGED" -gt 20 ]; then SCORE=$((SCORE + 15))
+          elif [ "$FILES_CHANGED" -gt 10 ]; then SCORE=$((SCORE + 10))
+          elif [ "$FILES_CHANGED" -gt 5 ]; then SCORE=$((SCORE + 5))
+          fi
+
+          # Determine level
+          LEVEL="LOW"
+          EMOJI="🟢"
+          if [ "$SCORE" -ge 60 ]; then LEVEL="CRITICAL"; EMOJI="🔴"
+          elif [ "$SCORE" -ge 40 ]; then LEVEL="HIGH"; EMOJI="🟠"
+          elif [ "$SCORE" -ge 20 ]; then LEVEL="MEDIUM"; EMOJI="🟡"
+          fi
+
+          echo "score=$SCORE" >> $GITHUB_OUTPUT
+          echo "level=$LEVEL" >> $GITHUB_OUTPUT
+          echo "emoji=$EMOJI" >> $GITHUB_OUTPUT
+          echo "additions=$ADDITIONS" >> $GITHUB_OUTPUT
+          echo "deletions=$DELETIONS" >> $GITHUB_OUTPUT
+          echo "files=$FILES_CHANGED" >> $GITHUB_OUTPUT
+          echo "critical=$CRITICAL_FILES" >> $GITHUB_OUTPUT
+          echo "test_ratio=$TEST_RATIO" >> $GITHUB_OUTPUT
+          echo "commits=$COMMITS" >> $GITHUB_OUTPUT
+
+      - name: Comment PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const score = '${{ steps.risk.outputs.score }}';
+            const level = '${{ steps.risk.outputs.level }}';
+            const emoji = '${{ steps.risk.outputs.emoji }}';
+
+            let body = `## ${emoji} PR Risk: ${level} (${score}/100)\n\n`;
+            body += `| Factor | Value |\n|--------|-------|\n`;
+            body += `| Lines added | +${{ steps.risk.outputs.additions }} |\n`;
+            body += `| Lines deleted | -${{ steps.risk.outputs.deletions }} |\n`;
+            body += `| Files changed | ${{ steps.risk.outputs.files }} |\n`;
+            body += `| Critical files touched | ${{ steps.risk.outputs.critical }} |\n`;
+            body += `| Test file ratio | ${{ steps.risk.outputs.test_ratio }}% |\n`;
+            body += `| Commits | ${{ steps.risk.outputs.commits }} |\n`;
+
+            if (parseInt(score) >= 40) {
+              body += `\n> ⚠️ High-risk PR. Consider:\n`;
+              body += `> - Breaking into smaller PRs\n`;
+              body += `> - Adding tests for changed code\n`;
+              body += `> - Requesting additional reviewers\n`;
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+
+      - name: Add risk label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const level = '${{ steps.risk.outputs.level }}';
+            const labelMap = {
+              'LOW': 'risk:low',
+              'MEDIUM': 'risk:medium',
+              'HIGH': 'risk:high',
+              'CRITICAL': 'risk:critical',
+            };
+            const label = labelMap[level];
+
+            try {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: [label],
+              });
+            } catch {
+              // Label may not exist yet
+            }

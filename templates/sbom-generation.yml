@@ -1,0 +1,72 @@
+# DevOps-Factory: SBOM Generation (AUTO-74)
+# Generates Software Bill of Materials on every release
+# Required for EU Cyber Resilience Act compliance (2026+)
+
+name: SBOM Generation
+
+on:
+  push:
+    tags:
+      - 'v*'
+  release:
+    types: [published]
+  schedule:
+    - cron: '0 8 1 * *' # Monthly 1st at 8am UTC
+
+permissions:
+  contents: write
+
+jobs:
+  sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate SBOM with Syft
+        uses: anchore/sbom-action@v0
+        with:
+          path: .
+          format: spdx-json
+          output-file: sbom.spdx.json
+          upload-artifact: true
+          upload-release-assets: true
+
+      - name: Generate CycloneDX SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: sbom.cyclonedx.json
+          upload-artifact: true
+          upload-release-assets: true
+
+      - name: Scan SBOM for vulnerabilities
+        uses: anchore/scan-action@v4
+        id: scan
+        with:
+          sbom: sbom.spdx.json
+          fail-build: false
+          severity-cutoff: critical
+
+      - name: Upload vulnerability report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-vulnerability-report
+          path: |
+            sbom.spdx.json
+            sbom.cyclonedx.json
+          retention-days: 90
+
+      - name: Summary
+        run: |
+          echo "## SBOM Generation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **SPDX**: sbom.spdx.json" >> $GITHUB_STEP_SUMMARY
+          echo "- **CycloneDX**: sbom.cyclonedx.json" >> $GITHUB_STEP_SUMMARY
+          echo "- **Scan results**: See artifacts" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f sbom.spdx.json ]; then
+            PKGS=$(jq '.packages | length' sbom.spdx.json 2>/dev/null || echo "?")
+            echo "- **Packages inventoried**: $PKGS" >> $GITHUB_STEP_SUMMARY
+          fi

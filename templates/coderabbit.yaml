@@ -1,0 +1,33 @@
+# DevOps-Factory: CodeRabbit Config (AUTO-41)
+# AI Code Review multi-model configuration
+# Install CodeRabbit GitHub App first: https://github.com/apps/coderabbitai
+# Then this config customizes behavior per repo
+
+language: fr
+reviews:
+  profile: assertive
+  request_changes_workflow: true
+  high_level_summary: true
+  high_level_summary_placeholder: '@coderabbitai summary'
+  auto_title_placeholder: '@coderabbitai'
+  review_status: true
+  collapse_walkthrough: false
+  path_instructions:
+    - path: 'src/components/**'
+      instructions: 'Focus on React best practices, hooks usage, accessibility, and performance. Check for missing memo/useCallback where needed.'
+    - path: 'src/services/**'
+      instructions: 'Focus on error handling, input validation with Zod, and proper typing. No any types.'
+    - path: 'prisma/**'
+      instructions: 'Check for destructive migrations (DROP, ALTER column type). Flag if missing down migration.'
+    - path: '**/*.test.*'
+      instructions: 'Verify AAA pattern, meaningful assertions, edge cases covered.'
+  tools:
+    eslint:
+      enabled: true
+    biome:
+      enabled: false
+    github-checks:
+      enabled: true
+      timeout_ms: 90000
+chat:
+  auto_reply: true

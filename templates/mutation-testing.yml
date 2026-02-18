@@ -1,0 +1,108 @@
+# DevOps-Factory: Mutation Testing (AUTO-59)
+# Runs Stryker Mutator to verify test suite quality
+# Injects mutations into code and checks tests catch them
+# Schedule: weekly + manual trigger
+
+name: Mutation Testing
+
+on:
+  schedule:
+    - cron: '0 3 * * 6' # Saturday 3am UTC
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Directory to mutate (e.g. src/services)'
+        required: false
+        default: 'src'
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  stryker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            npm install -g pnpm && pnpm install --frozen-lockfile
+          elif [ -f "yarn.lock" ]; then
+            yarn install --frozen-lockfile
+          else
+            npm ci
+          fi
+
+      - name: Check for Stryker config
+        id: config
+        run: |
+          if [ -f "stryker.config.mjs" ] || [ -f "stryker.conf.mjs" ] || [ -f "stryker.config.js" ]; then
+            echo "has_config=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_config=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Init Stryker if no config
+        if: steps.config.outputs.has_config == 'false'
+        run: |
+          npx stryker init --preset typescript-vitest 2>/dev/null || \
+          npx stryker init --preset typescript-jest 2>/dev/null || true
+
+      - name: Run Stryker
+        id: stryker
+        run: |
+          TARGET="${{ github.event.inputs.target || 'src' }}"
+
+          npx stryker run \
+            --mutate "${TARGET}/**/*.ts,!${TARGET}/**/*.test.*,!${TARGET}/**/*.spec.*" \
+            --reporters clear-text,json \
+            --concurrency 2 \
+            --timeoutMS 10000 \
+            2>&1 | tee /tmp/stryker-report.txt || true
+
+          # Extract mutation score
+          SCORE=$(grep -oP 'Mutation score: \K[\d.]+' /tmp/stryker-report.txt || echo "0")
+          echo "score=$SCORE" >> $GITHUB_OUTPUT
+
+          KILLED=$(grep -oP 'Killed: \K\d+' /tmp/stryker-report.txt || echo "0")
+          SURVIVED=$(grep -oP 'Survived: \K\d+' /tmp/stryker-report.txt || echo "0")
+          echo "killed=$KILLED" >> $GITHUB_OUTPUT
+          echo "survived=$SURVIVED" >> $GITHUB_OUTPUT
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stryker-report
+          path: reports/mutation/
+          retention-days: 30
+
+      - name: Create issue with results
+        if: github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const score = '${{ steps.stryker.outputs.score }}';
+            const killed = '${{ steps.stryker.outputs.killed }}';
+            const survived = '${{ steps.stryker.outputs.survived }}';
+            const date = new Date().toISOString().split('T')[0];
+            const report = fs.readFileSync('/tmp/stryker-report.txt', 'utf8').slice(-3000);
+
+            const emoji = parseFloat(score) >= 80 ? '✅' : parseFloat(score) >= 60 ? '⚠️' : '❌';
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `${emoji} Mutation score: ${score}% - ${date}`,
+              body: `## Mutation Testing Report\n\n| Metric | Value |\n|--------|-------|\n| **Score** | ${score}% |\n| **Killed** | ${killed} |\n| **Survived** | ${survived} |\n\n### Details\n\`\`\`\n${report}\n\`\`\`\n\n> Survived mutants = weak tests. Fix these to improve real test quality.`,
+              labels: ['testing', 'automated'],
+            });

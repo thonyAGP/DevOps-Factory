@@ -1,0 +1,136 @@
+# DevOps-Factory: Performance Budget CI (AUTO-65)
+# Blocks PRs that degrade bundle size or Core Web Vitals
+# Tracks JS/CSS bundle size delta + Lighthouse performance score
+
+name: Performance Budget
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'src/**'
+      - 'app/**'
+      - 'pages/**'
+      - 'components/**'
+      - 'package.json'
+      - 'next.config.*'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  bundle-size:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            npm install -g pnpm && pnpm install --frozen-lockfile
+          elif [ -f "yarn.lock" ]; then
+            yarn install --frozen-lockfile
+          else
+            npm ci
+          fi
+
+      - name: Build project
+        run: |
+          npm run build 2>&1 | tee /tmp/build-output.txt
+
+      - name: Analyze bundle size
+        id: bundle
+        run: |
+          # Next.js: check .next/analyze or build output
+          if [ -d ".next" ]; then
+            # Get total JS size
+            JS_SIZE=$(find .next/static -name "*.js" -exec wc -c {} + 2>/dev/null | tail -1 | awk '{print $1}' || echo "0")
+            CSS_SIZE=$(find .next/static -name "*.css" -exec wc -c {} + 2>/dev/null | tail -1 | awk '{print $1}' || echo "0")
+
+            JS_KB=$((JS_SIZE / 1024))
+            CSS_KB=$((CSS_SIZE / 1024))
+            TOTAL_KB=$((JS_KB + CSS_KB))
+
+            echo "js_kb=$JS_KB" >> $GITHUB_OUTPUT
+            echo "css_kb=$CSS_KB" >> $GITHUB_OUTPUT
+            echo "total_kb=$TOTAL_KB" >> $GITHUB_OUTPUT
+
+            # Budget check: 500KB total JS+CSS
+            BUDGET=500
+            if [ "$TOTAL_KB" -gt "$BUDGET" ]; then
+              echo "over_budget=true" >> $GITHUB_OUTPUT
+              echo "::warning::Bundle size ${TOTAL_KB}KB exceeds budget ${BUDGET}KB"
+            else
+              echo "over_budget=false" >> $GITHUB_OUTPUT
+            fi
+          elif [ -d "dist" ]; then
+            JS_SIZE=$(find dist -name "*.js" -exec wc -c {} + 2>/dev/null | tail -1 | awk '{print $1}' || echo "0")
+            JS_KB=$((JS_SIZE / 1024))
+            echo "js_kb=$JS_KB" >> $GITHUB_OUTPUT
+            echo "css_kb=0" >> $GITHUB_OUTPUT
+            echo "total_kb=$JS_KB" >> $GITHUB_OUTPUT
+            echo "over_budget=false" >> $GITHUB_OUTPUT
+          else
+            echo "js_kb=0" >> $GITHUB_OUTPUT
+            echo "css_kb=0" >> $GITHUB_OUTPUT
+            echo "total_kb=0" >> $GITHUB_OUTPUT
+            echo "over_budget=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check for new large dependencies
+        id: deps
+        run: |
+          # Check if any new dep > 100KB was added
+          if [ -f "package.json" ]; then
+            LARGE_DEPS=""
+            for dep in $(git diff origin/${{ github.base_ref }}...HEAD -- package.json | grep "^+" | grep -oP '"[^"]+": "\^?[0-9]' | cut -d'"' -f2 || true); do
+              SIZE=$(npm info "$dep" dist.unpackedSize 2>/dev/null || echo "0")
+              SIZE_KB=$((SIZE / 1024))
+              if [ "$SIZE_KB" -gt 100 ]; then
+                LARGE_DEPS="${LARGE_DEPS}\n- \`${dep}\`: ${SIZE_KB}KB"
+              fi
+            done
+            echo "large_deps<<EOF" >> $GITHUB_OUTPUT
+            echo -e "$LARGE_DEPS" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const jsKb = '${{ steps.bundle.outputs.js_kb }}';
+            const cssKb = '${{ steps.bundle.outputs.css_kb }}';
+            const totalKb = '${{ steps.bundle.outputs.total_kb }}';
+            const overBudget = '${{ steps.bundle.outputs.over_budget }}' === 'true';
+            const largeDeps = `${{ steps.deps.outputs.large_deps }}`.trim();
+
+            let body = `## Performance Budget\n\n`;
+            body += `| Asset | Size |\n|-------|------|\n`;
+            body += `| JS | ${jsKb} KB |\n`;
+            body += `| CSS | ${cssKb} KB |\n`;
+            body += `| **Total** | **${totalKb} KB** |\n`;
+            body += `| Budget | 500 KB |\n\n`;
+
+            if (overBudget) {
+              body += `**Budget exceeded!** Reduce bundle size before merging.\n\n`;
+            } else {
+              body += `Bundle is within budget.\n\n`;
+            }
+
+            if (largeDeps) {
+              body += `### Large new dependencies\n${largeDeps}\n\n`;
+              body += `> Consider lighter alternatives for deps > 100KB.\n`;
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });

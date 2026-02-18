@@ -1,0 +1,113 @@
+# DevOps-Factory: Branch & Artifact Cleanup
+# Deletes merged branches and old workflow artifacts
+# Runs weekly on Saturday
+
+name: Branch & Artifact Cleanup
+
+on:
+  schedule:
+    - cron: '0 4 * * 6' # Saturday 4am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  cleanup-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Delete merged branches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "## Branch Cleanup"
+          DEFAULT=$(gh repo view --json defaultBranchRef --jq '.defaultBranchRef.name')
+          DELETED=0
+          PROTECTED="main master develop release"
+
+          # List remote branches merged into default
+          MERGED=$(git branch -r --merged "origin/$DEFAULT" | grep -v "HEAD" | grep -v "$DEFAULT" | sed 's/origin\///')
+
+          for BRANCH in $MERGED; do
+            # Skip protected branches
+            SKIP=false
+            for P in $PROTECTED; do
+              if [ "$BRANCH" = "$P" ]; then
+                SKIP=true
+                break
+              fi
+            done
+
+            # Skip branches with open PRs
+            if [ "$SKIP" = "false" ]; then
+              OPEN_PR=$(gh pr list --head "$BRANCH" --state open --json number --jq 'length')
+              if [ "$OPEN_PR" -gt 0 ]; then
+                SKIP=true
+              fi
+            fi
+
+            if [ "$SKIP" = "false" ]; then
+              TRIMMED=$(echo "$BRANCH" | xargs)
+              if [ -n "$TRIMMED" ]; then
+                echo "Deleting: $TRIMMED"
+                git push origin --delete "$TRIMMED" 2>/dev/null || true
+                DELETED=$((DELETED + 1))
+              fi
+            fi
+          done
+
+          echo "Deleted $DELETED merged branch(es)"
+          echo "branches_deleted=$DELETED" >> $GITHUB_OUTPUT
+
+  cleanup-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete old artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "## Artifact Cleanup"
+          DELETED=0
+          CUTOFF=$(date -d '14 days ago' -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -v-14d -u +%Y-%m-%dT%H:%M:%SZ)
+
+          # List artifacts older than 14 days
+          ARTIFACTS=$(gh api "repos/${{ github.repository }}/actions/artifacts?per_page=100" \
+            --jq ".artifacts[] | select(.created_at < \"$CUTOFF\") | .id")
+
+          for ID in $ARTIFACTS; do
+            gh api -X DELETE "repos/${{ github.repository }}/actions/artifacts/$ID" 2>/dev/null || true
+            DELETED=$((DELETED + 1))
+          done
+
+          echo "Deleted $DELETED old artifact(s)"
+
+  cleanup-workflow-runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete old workflow runs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "## Workflow Run Cleanup"
+          DELETED=0
+          CUTOFF=$(date -d '30 days ago' -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -v-30d -u +%Y-%m-%dT%H:%M:%SZ)
+
+          # Delete completed runs older than 30 days (keep last 10 per workflow)
+          WORKFLOWS=$(gh api "repos/${{ github.repository }}/actions/workflows" --jq '.workflows[].id')
+
+          for WF_ID in $WORKFLOWS; do
+            RUNS=$(gh api "repos/${{ github.repository }}/actions/workflows/$WF_ID/runs?per_page=100&status=completed" \
+              --jq "[.workflow_runs[] | select(.created_at < \"$CUTOFF\")] | .[10:] | .[].id")
+
+            for RUN_ID in $RUNS; do
+              gh api -X DELETE "repos/${{ github.repository }}/actions/runs/$RUN_ID" 2>/dev/null || true
+              DELETED=$((DELETED + 1))
+            done
+          done
+
+          echo "Deleted $DELETED old workflow run(s)"

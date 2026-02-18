@@ -1,0 +1,108 @@
+# DevOps-Factory: Business Metrics Dashboard
+# Collects KPIs from CasaSync (bookings, revenue, occupancy)
+# Runs daily and posts as GitHub Issue
+
+name: Business Metrics
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # Daily 8am UTC (10am Madrid)
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  collect-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Collect metrics from API
+        id: metrics
+        env:
+          API_URL: ${{ vars.CASASYNC_API_URL }}
+          API_KEY: ${{ secrets.CASASYNC_API_KEY }}
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          MONTH_START=$(date +%Y-%m-01)
+          YEAR_START=$(date +%Y-01-01)
+
+          # Fetch today's bookings
+          if [ -n "$API_URL" ] && [ -n "$API_KEY" ]; then
+            # Today
+            TODAY_BOOKINGS=$(curl -sf "$API_URL/api/metrics/bookings?date=$DATE" \
+              -H "Authorization: Bearer $API_KEY" \
+              -H "Content-Type: application/json" | jq -r '.count // 0') || TODAY_BOOKINGS="N/A"
+
+            TODAY_REVENUE=$(curl -sf "$API_URL/api/metrics/revenue?date=$DATE" \
+              -H "Authorization: Bearer $API_KEY" \
+              -H "Content-Type: application/json" | jq -r '.total // 0') || TODAY_REVENUE="N/A"
+
+            # Month to date
+            MTD_BOOKINGS=$(curl -sf "$API_URL/api/metrics/bookings?from=$MONTH_START&to=$DATE" \
+              -H "Authorization: Bearer $API_KEY" \
+              -H "Content-Type: application/json" | jq -r '.count // 0') || MTD_BOOKINGS="N/A"
+
+            MTD_REVENUE=$(curl -sf "$API_URL/api/metrics/revenue?from=$MONTH_START&to=$DATE" \
+              -H "Authorization: Bearer $API_KEY" \
+              -H "Content-Type: application/json" | jq -r '.total // 0') || MTD_REVENUE="N/A"
+
+            # Occupancy rate
+            OCCUPANCY=$(curl -sf "$API_URL/api/metrics/occupancy?date=$DATE" \
+              -H "Authorization: Bearer $API_KEY" \
+              -H "Content-Type: application/json" | jq -r '.rate // 0') || OCCUPANCY="N/A"
+          else
+            echo "::warning::API_URL or API_KEY not configured. Using placeholder values."
+            TODAY_BOOKINGS="N/A"
+            TODAY_REVENUE="N/A"
+            MTD_BOOKINGS="N/A"
+            MTD_REVENUE="N/A"
+            OCCUPANCY="N/A"
+          fi
+
+          {
+            echo "date=$DATE"
+            echo "today_bookings=$TODAY_BOOKINGS"
+            echo "today_revenue=$TODAY_REVENUE"
+            echo "mtd_bookings=$MTD_BOOKINGS"
+            echo "mtd_revenue=$MTD_REVENUE"
+            echo "occupancy=$OCCUPANCY"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create daily metrics issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DATE="${{ steps.metrics.outputs.date }}"
+
+          # Close previous metric issues
+          gh issue list --label "business-metrics" --state open --json number --jq '.[].number' | while read NUM; do
+            gh issue close "$NUM" 2>/dev/null || true
+          done
+
+          BODY=$(cat << 'ENDOFBODY'
+          ## Business Metrics - ${{ steps.metrics.outputs.date }}
+
+          ### Today
+          | Metric | Value |
+          |--------|-------|
+          | Bookings | ${{ steps.metrics.outputs.today_bookings }} |
+          | Revenue | ${{ steps.metrics.outputs.today_revenue }} EUR |
+          | Occupancy | ${{ steps.metrics.outputs.occupancy }}% |
+
+          ### Month to Date
+          | Metric | Value |
+          |--------|-------|
+          | Total Bookings | ${{ steps.metrics.outputs.mtd_bookings }} |
+          | Total Revenue | ${{ steps.metrics.outputs.mtd_revenue }} EUR |
+
+          ---
+          > Configure `CASASYNC_API_URL` and `CASASYNC_API_KEY` in repo secrets for live data.
+          ENDOFBODY
+          )
+
+          gh issue create \
+            --title "Business Metrics - $DATE" \
+            --body "$BODY" \
+            --label "business-metrics"
