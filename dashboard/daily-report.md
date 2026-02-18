@@ -9,7 +9,7 @@
 
 ### ClubMedRoomAssignment :x:
 
-- **Health**: 40/100
+- **Health**: 45/100
 - **CI**: fail ([view](https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/22133276413))
 - **Open PRs**: 3
 
@@ -81,14 +81,8 @@
 
 ### Utilitaire_Webapp :white_circle:
 
-- **Health**: 60/100
+- **Health**: 65/100
 - **CI**: none ([view](null))
-- **Open PRs**: 1
-
-### au-marais :white_check_mark:
-
-- **Health**: 70/100
-- **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/21775816387))
 - **Open PRs**: 1
 
 ### CasaSync :white_check_mark:
@@ -97,14 +91,20 @@
 - **CI**: pass ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22132524981))
 - **Open PRs**: 1
 
+### au-marais :white_check_mark:
+
+- **Health**: 75/100
+- **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/21775816387))
+- **Open PRs**: 1
+
 ### Email_Assistant :white_check_mark:
 
-- **Health**: 70/100
+- **Health**: 75/100
 - **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22140547742))
 - **Open PRs**: 2
 
 ### livret-au-marais :white_check_mark:
 
-- **Health**: 70/100
+- **Health**: 75/100
 - **CI**: pass ([view](https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016))
 - **Open PRs**: 1

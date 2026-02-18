@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-18T17:12:07.449Z",
+  "timestamp": "2026-02-18T18:42:38.062Z",
   "projects": [
     {
       "name": "ClubMedRoomAssignment",
@@ -51,11 +51,11 @@
       ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 40,
+      "healthScore": 45,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
-      "hasHusky": false
+      "hasHusky": true
     },
     {
       "name": "claude-cli-wrapper",
@@ -492,45 +492,11 @@
       ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 60,
+      "healthScore": 65,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
-      "hasHusky": false
-    },
-    {
-      "name": "au-marais",
-      "fullName": "thonyAGP/au-marais",
-      "stack": "nextjs",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-02-07T06:36:35Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/au-marais/actions/runs/21775816387",
-        "id": 21775816387,
-        "name": "E2E Tests"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T12:40:45Z",
-          "html_url": "https://github.com/thonyAGP/au-marais/pull/3",
-          "labels": [],
-          "number": 3,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 70,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false
+      "hasHusky": true
     },
     {
       "name": "CasaSync",
@@ -565,6 +531,40 @@
       "hasGitleaks": false,
       "hasRenovate": false,
       "hasHusky": false
+    },
+    {
+      "name": "au-marais",
+      "fullName": "thonyAGP/au-marais",
+      "stack": "nextjs",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-07T06:36:35Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/au-marais/actions/runs/21775816387",
+        "id": 21775816387,
+        "name": "E2E Tests"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:40:45Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 75,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true
     },
     {
       "name": "Email_Assistant",
@@ -605,11 +605,11 @@
       ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 70,
+      "healthScore": 75,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
-      "hasHusky": false
+      "hasHusky": true
     },
     {
       "name": "livret-au-marais",
@@ -639,11 +639,11 @@
       ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 70,
+      "healthScore": 75,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
-      "hasHusky": false
+      "hasHusky": true
     }
   ]
 }
