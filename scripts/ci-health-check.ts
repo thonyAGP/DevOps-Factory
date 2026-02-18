@@ -218,7 +218,7 @@ const main = () => {
   console.log('');
 
   if (failing > 0) {
-    process.exitCode = 1;
+    console.log(`WARNING: ${failing} CI(s) failing - issues created/updated above`);
   }
 };
 
