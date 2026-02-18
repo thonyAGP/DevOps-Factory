@@ -67,12 +67,15 @@ const isAlreadyProtected = (repo: string, branch: string): boolean => {
   return result.ok && !!result.output;
 };
 
+const CI_CHECK_PATTERNS = ['ci', 'build', 'test', 'lint', 'typecheck'];
+
 const getExistingChecks = (repo: string): string[] => {
   const result = sh(
     `gh api "repos/${repo}/actions/workflows" --jq "[.workflows[].name]" 2>/dev/null`
   );
   try {
-    return JSON.parse(result || '[]') as string[];
+    const all = JSON.parse(result || '[]') as string[];
+    return all.filter((name) => CI_CHECK_PATTERNS.some((p) => name.toLowerCase().includes(p)));
   } catch {
     return [];
   }
