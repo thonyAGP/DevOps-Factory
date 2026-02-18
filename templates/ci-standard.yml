@@ -81,10 +81,18 @@ jobs:
           PM="${{ needs.detect-stack.outputs.package-manager }}"
           $PM run typecheck || $PM run tsc || echo "::warning::No typecheck script found"
 
-      - name: Test
+      - name: Test with coverage
         run: |
           PM="${{ needs.detect-stack.outputs.package-manager }}"
-          $PM test || echo "::warning::No test script found"
+          $PM test -- --coverage --reporter=json || echo "::warning::No test script found"
+
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/coverage-summary.json
+          if-no-files-found: ignore
 
       - name: Build
         run: |
@@ -100,7 +108,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: '8.0.x'
 
       - name: Restore
         run: dotnet restore
@@ -108,5 +116,13 @@ jobs:
       - name: Build
         run: dotnet build --no-restore --configuration Release
 
-      - name: Test
-        run: dotnet test --no-build --configuration Release --verbosity normal
+      - name: Test with coverage
+        run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: '**/coverage.cobertura.xml'
+          if-no-files-found: ignore

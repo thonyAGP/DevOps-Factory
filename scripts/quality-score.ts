@@ -17,9 +17,20 @@ interface WorkflowRun {
   conclusion: string;
 }
 
+interface CoverageRepoEntry {
+  name: string;
+  repo: string;
+  stack: string;
+  testFramework?: string;
+  hasTests: boolean;
+  testFileCount: number;
+  coverage?: { lines: number; branches: number; functions: number; statements: number };
+  status: string;
+}
+
 interface CoverageEntry {
   date: string;
-  repos: Record<string, number>;
+  repos: CoverageRepoEntry[];
 }
 
 interface CoverageHistory {
@@ -85,7 +96,8 @@ const getCoverage = (repoName: string): number => {
     const history = JSON.parse(readFileSync(coveragePath, 'utf-8')) as CoverageHistory;
     if (!history.entries.length) return 0;
     const latest = history.entries[history.entries.length - 1];
-    return latest.repos[repoName] ?? 0;
+    const repoEntry = latest.repos.find((r) => r.name === repoName);
+    return repoEntry?.coverage?.lines ?? 0;
   } catch {
     return 0;
   }
