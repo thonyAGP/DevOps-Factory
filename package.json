@@ -7,6 +7,7 @@
   "scripts": {
     "scan": "tsx scripts/scan-and-configure.ts",
     "dashboard": "tsx scripts/build-dashboard.ts",
+    "ci-health": "tsx scripts/ci-health-check.ts",
     "open": "start https://thonyagp.github.io/DevOps-Factory/",
     "watch": "powershell -NoProfile -File scripts/watch-dashboard.ps1",
     "typecheck": "tsc --noEmit",

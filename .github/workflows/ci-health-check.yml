@@ -1,0 +1,36 @@
+name: CI Health Check
+
+on:
+  schedule:
+    # Every 2 hours
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+    inputs: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run CI Health Check
+        run: pnpm ci-health
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
