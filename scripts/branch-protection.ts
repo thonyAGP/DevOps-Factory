@@ -114,6 +114,9 @@ const applyProtection = (
     if (result.output.includes('upgrade your plan') || result.output.includes('not available')) {
       return { ok: false, error: 'Requires GitHub Pro/Team plan (private repo)' };
     }
+    if (result.output.includes('Resource not accessible') || result.output.includes('403')) {
+      return { ok: false, error: 'FACTORY_PAT needs "Administration: Write" permission' };
+    }
     return { ok: false, error: result.output.slice(0, 200) };
   }
 
