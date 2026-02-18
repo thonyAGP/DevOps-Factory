@@ -10,7 +10,7 @@
 ### ClubMedRoomAssignment :x:
 
 - **Health**: 40/100
-- **CI**: fail ([view](https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/22132654345))
+- **CI**: fail ([view](https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/22133276413))
 - **Open PRs**: 1
 
 ### claude-cli-wrapper :white_circle:
