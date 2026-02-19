@@ -731,7 +731,11 @@ const fixStyleCopIssues = (repo: string, jobs: FailedJob[], branch: string): Gem
 
   for (const job of jobs) {
     for (const a of job.annotations) {
-      if (a.message.includes('SA1028') || a.message.includes('SA1513')) {
+      if (
+        a.message.includes('SA1028') ||
+        a.message.includes('SA1513') ||
+        a.message.includes('SA1507')
+      ) {
         filesToFix.add(a.path);
       }
     }
@@ -748,6 +752,9 @@ const fixStyleCopIssues = (repo: string, jobs: FailedJob[], branch: string): Gem
 
     // SA1513: closing brace should be followed by blank line
     fixed = fixed.replace(/^(\s*\})\n(\s*[^\s\}])/gm, '$1\n\n$2');
+
+    // SA1507: collapse multiple blank lines into one
+    fixed = fixed.replace(/\n{3,}/g, '\n\n');
 
     if (fixed !== content) {
       fixes.push({ path, content: fixed });
