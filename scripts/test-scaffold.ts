@@ -9,6 +9,7 @@
  */
 
 import { execSync } from 'node:child_process';
+import { writeFileSync } from 'node:fs';
 import { KNOWN_PROJECTS, GITHUB_OWNER } from '../factory.config.js';
 
 interface TreeNode {
@@ -28,15 +29,20 @@ interface TestFile {
 
 const sh = (cmd: string): string => {
   try {
-    return execSync(cmd, { encoding: 'utf-8' }).trim();
+    return execSync(cmd, { encoding: 'utf-8', timeout: 30000 }).trim();
   } catch {
     return '';
   }
 };
 
-const ghApi = <T>(cmd: string): T => {
-  const result = sh(`gh api ${cmd}`);
-  return result ? (JSON.parse(result) as T) : ({} as T);
+const ghApi = <T>(endpoint: string): T => {
+  const raw = sh(`gh api "${endpoint}"`);
+  if (!raw) return {} as T;
+  try {
+    return JSON.parse(raw) as T;
+  } catch {
+    return {} as T;
+  }
 };
 
 const isSkippedDir = (path: string): boolean => {
@@ -121,38 +127,70 @@ const generateTestSkeleton = (filePath: string, exports: string[]): string => {
   return content;
 };
 
+const DIR_PRIORITY: Record<string, number> = {
+  services: 1,
+  lib: 2,
+  utils: 3,
+  helpers: 3,
+  hooks: 4,
+  components: 5,
+  pages: 6,
+  app: 7,
+};
+
+const getFilePriority = (path: string): number => {
+  for (const [dir, priority] of Object.entries(DIR_PRIORITY)) {
+    if (path.includes(`/${dir}/`) || path.includes(`src/${dir}/`)) return priority;
+  }
+  return 10;
+};
+
+const prioritizeFiles = (files: string[]): string[] => {
+  return [...files].sort((a, b) => getFilePriority(a) - getFilePriority(b));
+};
+
+const MAX_FILES_PER_PR = 15;
+
+const hasExistingScaffoldPR = (repoFullName: string): string | null => {
+  const raw = sh(
+    `gh pr list --repo "${repoFullName}" --head "devops-factory/test-scaffold" --state open --json number`
+  );
+  if (!raw) return null;
+  try {
+    const prs = JSON.parse(raw) as { number: number }[];
+    return prs.length > 0 ? String(prs[0].number) : null;
+  } catch {
+    return null;
+  }
+};
+
 const createScaffoldPR = (repo: string, testFiles: TestFile[]): boolean => {
   if (testFiles.length === 0) {
     console.log(`  [SKIP] ${repo}: no uncovered files`);
     return false;
   }
 
-  const maxFiles = 10;
-  if (testFiles.length > maxFiles) {
-    console.log(`  [SKIP] ${repo}: ${testFiles.length} files exceed max (${maxFiles})`);
-    return false;
-  }
-
   const branchName = 'devops-factory/test-scaffold';
   const repoFullName = `${GITHUB_OWNER}/${repo}`;
 
-  // Check if PR already exists
-  const existingPR = sh(
-    `gh pr list --repo "${repoFullName}" --head "${branchName}" --json number --jq '.[0].number' 2>/dev/null`
-  );
-
+  const existingPR = hasExistingScaffoldPR(repoFullName);
   if (existingPR) {
     console.log(`  [SKIP] ${repo}: PR #${existingPR} already exists`);
     return false;
   }
 
-  console.log(`  [CREATE] ${repo}: generating test skeletons for ${testFiles.length} files`);
+  // Take top priority files up to limit
+  const batch = testFiles.slice(0, MAX_FILES_PER_PR);
+  const remaining = testFiles.length - batch.length;
 
-  // Get default branch
+  console.log(
+    `  [CREATE] ${repo}: scaffolding ${batch.length} files` +
+      (remaining > 0 ? ` (${remaining} more next run)` : '')
+  );
+
   const response = ghApi<{ default_branch: string }>(`repos/${repoFullName}`);
   const defaultBranch = response.default_branch || 'main';
 
-  // Get base SHA
   const refResponse = ghApi<{ object: { sha: string } }>(
     `repos/${repoFullName}/git/ref/heads/${defaultBranch}`
   );
@@ -165,39 +203,43 @@ const createScaffoldPR = (repo: string, testFiles: TestFile[]): boolean => {
 
   // Create branch
   sh(
-    `gh api repos/${repoFullName}/git/refs --method POST -f ref="refs/heads/${branchName}" -f sha="${baseSha}" 2>/dev/null`
+    `gh api "repos/${repoFullName}/git/refs" --method POST -f ref="refs/heads/${branchName}" -f sha="${baseSha}"`
   );
 
-  // Add test files via GitHub API
-  for (const testFile of testFiles) {
+  // Upload test files via GitHub API
+  for (const testFile of batch) {
     const encoded = Buffer.from(testFile.content).toString('base64');
     sh(
-      `gh api repos/${repoFullName}/contents/${testFile.path} --method PUT ` +
-        `-f message="test: add skeleton tests for ${testFile.sourcePath}" ` +
+      `gh api "repos/${repoFullName}/contents/${testFile.path}" --method PUT ` +
+        `-f message="test: add skeleton for ${testFile.sourcePath}" ` +
         `-f content="${encoded}" ` +
-        `-f branch="${branchName}" 2>/dev/null`
+        `-f branch="${branchName}"`
     );
   }
 
-  // Create PR
-  const fileList = testFiles.map((f) => `- \`${f.path}\` (from \`${f.sourcePath}\`)`).join('\n');
-  const body = `## Test Scaffold Generation
+  // Create PR with --body-file for safe escaping
+  const fileList = batch.map((f) => `- \`${f.path}\` (from \`${f.sourcePath}\`)`).join('\n');
+  const body = [
+    '## Test Scaffold Generation',
+    '',
+    `Generated skeleton test files for ${batch.length} uncovered source files.`,
+    remaining > 0 ? `\n> ${remaining} more files will be scaffolded in the next run.\n` : '',
+    '### Files added',
+    fileList,
+    '',
+    "### What's next",
+    '1. Review the test stubs',
+    '2. Implement actual test cases based on the exported functions/classes',
+    '3. Merge and run `pnpm test` to verify',
+    '',
+    '> Auto-generated by [DevOps-Factory Test Scaffold](https://github.com/thonyAGP/DevOps-Factory)',
+  ].join('\n');
 
-Generated skeleton test files for uncovered source files.
-
-### Files added
-${fileList}
-
-### What's next
-1. Review the test stubs
-2. Implement actual test cases based on the exported functions/classes
-3. Merge and run \`pnpm test\` to verify
-
-> Auto-generated by [DevOps-Factory Test Scaffold](https://github.com/thonyAGP/DevOps-Factory)`;
-
+  const tmpFile = '/tmp/test-scaffold-body.md';
+  writeFileSync(tmpFile, body);
   sh(
     `gh pr create --repo "${repoFullName}" --head "${branchName}" --base "${defaultBranch}" ` +
-      `--title "test: add skeleton test files" --body "${body.replace(/"/g, '\\"')}" 2>/dev/null`
+      `--title "test: add skeleton test files" --body-file "${tmpFile}"`
   );
 
   return true;
@@ -206,11 +248,9 @@ ${fileList}
 const processRepo = (repo: string): void => {
   const fullName = `${GITHUB_OWNER}/${repo}`;
 
-  // Get default branch
   const response = ghApi<{ default_branch: string }>(`repos/${fullName}`);
   const defaultBranch = response.default_branch || 'main';
 
-  // Fetch file tree
   const tree = getRepoTree(fullName, defaultBranch);
   const allFiles = tree
     .filter((node): node is TreeNode & { path: string } => node.type === 'blob' && !!node.path)
@@ -224,10 +264,14 @@ const processRepo = (repo: string): void => {
     return;
   }
 
-  // Generate test skeletons
+  console.log(`  Found ${uncoveredFiles.length} uncovered files`);
+
+  // Prioritize: services > lib > utils > hooks > components > pages
+  const prioritized = prioritizeFiles(uncoveredFiles);
+
   const testFiles: TestFile[] = [];
 
-  for (const sourcePath of uncoveredFiles) {
+  for (const sourcePath of prioritized) {
     const content = fetchFileContent(fullName, sourcePath);
     if (!content) continue;
 
