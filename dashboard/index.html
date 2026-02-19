@@ -151,13 +151,77 @@
     }
     .trends h2 { color: #58a6ff; font-size: 1rem; margin-bottom: 0.8rem; }
     .trends canvas { max-height: 220px; }
+
+    /* Migration section */
+    .migration {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .migration h2 { color: #8b5cf6; font-size: 1rem; margin-bottom: 0.8rem; }
+    .migration-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .migration-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+    }
+    .migration-card h3 {
+      font-size: 0.85rem;
+      color: #8b949e;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .migration-stat {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.2rem 0;
+      font-size: 0.85rem;
+    }
+    .migration-stat .val { font-weight: bold; }
+    .progress-bar {
+      background: #21262d;
+      border-radius: 4px;
+      height: 8px;
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+    .progress-bar .fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+    .module-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
+    }
+    .module-chip {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(139,92,246,0.15);
+      color: #a78bfa;
+      border: 1px solid rgba(139,92,246,0.3);
+    }
+    .module-chip.has-cmd { border-left: 2px solid #22c55e; }
+    .module-chip.has-qry { border-right: 2px solid #58a6ff; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
 <body>
   <div class="header">
     <h1>DevOps Factory Dashboard</h1>
-    <div class="timestamp">Last updated: 2026-02-18T20:49:47.241Z</div>
+    <div class="timestamp">Last updated: 2026-02-19T01:20:23.522Z</div>
   </div>
 
   <div class="summary">
@@ -230,7 +294,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/CasaSync/actions/runs/22132524981" target="_blank">(view)</a></span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -465,6 +529,81 @@
   <div class="trends">
     <h2>Health Trends (30 days)</h2>
     <canvas id="trendsChart"></canvas>
+  </div>
+
+  
+  <div class="migration">
+    <h2>Lecteur Magic Migration (2026-02-18)</h2>
+    <div class="migration-grid">
+      <div class="migration-card">
+        <h3>Overall Progress</h3>
+        <div class="migration-stat"><span>Progress</span><span class="val" style="color:#22c55e">86%</span></div>
+        <div class="progress-bar"><div class="fill" style="width:86%;background:#22c55e"></div></div>
+        <div class="migration-stat" style="margin-top:0.4rem"><span>Total files</span><span class="val">10602</span></div>
+      </div>
+      <div class="migration-card">
+        <h3>Backend (Caisse.API)</h3>
+        <div class="migration-stat"><span>CQRS Modules</span><span class="val">27</span></div>
+        <div class="migration-stat"><span>Handlers</span><span class="val">139</span></div>
+        <div class="migration-stat"><span>Domain entities</span><span class="val">39</span></div>
+        <div class="migration-stat"><span>C# files</span><span class="val">282</span></div>
+      </div>
+      <div class="migration-card">
+        <h3>Tests</h3>
+        <div class="migration-stat"><span>Test files</span><span class="val">44</span></div>
+        <div class="migration-stat"><span>Est. tests</span><span class="val">~132</span></div>
+        <div class="progress-bar"><div class="fill" style="width:66%;background:#58a6ff"></div></div>
+      </div>
+      <div class="migration-card">
+        <h3>Frontend (adh-web)</h3>
+        <div class="migration-stat"><span>React components</span><span class="val">260</span></div>
+        <div class="migration-stat"><span>TS files</span><span class="val">427</span></div>
+        <div class="migration-stat"><span>HTML prototypes</span><span class="val">15</span></div>
+        <div class="migration-stat"><span>Storybook</span><span class="val">Yes</span></div>
+      </div>
+      <div class="migration-card">
+        <h3>OpenSpec</h3>
+        <div class="migration-stat"><span>Total specs</span><span class="val">8088</span></div>
+        <div class="migration-stat"><span>Annotated</span><span class="val">7</span></div>
+        <div class="migration-stat"><span>Patterns</span><span class="val">17</span></div>
+        <div class="migration-stat"><span>Migration docs</span><span class="val">18</span></div>
+      </div>
+    </div>
+    <details>
+      <summary style="cursor:pointer;color:#8b949e;font-size:0.85rem">Migrated Modules (27)</summary>
+      <div class="module-grid" style="margin-top:0.5rem">
+        <span class="module-chip has-cmd has-qry" title="3 handlers">Articles</span>
+            <span class="module-chip has-cmd has-qry" title="2 handlers">CaisseDevises</span>
+            <span class="module-chip has-cmd has-qry" title="5 handlers">Change</span>
+            <span class="module-chip has-cmd has-qry" title="14 handlers">ChangementCompte</span>
+            <span class="module-chip has-cmd has-qry" title="3 handlers">Coffre</span>
+            <span class="module-chip has-cmd has-qry" title="2 handlers">Depot</span>
+            <span class="module-chip has-cmd has-qry" title="3 handlers">Details</span>
+            <span class="module-chip has-cmd has-qry" title="3 handlers">Devises</span>
+            <span class="module-chip has-qry" title="2 handlers">DevisesRef</span>
+            <span class="module-chip has-cmd has-qry" title="8 handlers">Divers</span>
+            <span class="module-chip has-cmd has-qry" title="7 handlers">EasyCheckOut</span>
+            <span class="module-chip has-qry" title="1 handlers">Ecarts</span>
+            <span class="module-chip has-qry" title="9 handlers">Extrait</span>
+            <span class="module-chip has-cmd has-qry" title="6 handlers">EzCard</span>
+            <span class="module-chip has-cmd has-qry" title="2 handlers">Factures</span>
+            <span class="module-chip has-cmd has-qry" title="6 handlers">Garanties</span>
+            <span class="module-chip has-cmd has-qry" title="5 handlers">Identification</span>
+            <span class="module-chip has-qry" title="1 handlers">Members</span>
+            <span class="module-chip has-qry" title="4 handlers">Menus</span>
+            <span class="module-chip has-qry" title="2 handlers">Parametres</span>
+            <span class="module-chip has-cmd" title="1 handlers">PrinterManagement</span>
+            <span class="module-chip has-cmd has-qry" title="3 handlers">Sessions</span>
+            <span class="module-chip has-cmd has-qry" title="3 handlers">Solde</span>
+            <span class="module-chip has-cmd has-qry" title="4 handlers">Telephone</span>
+            <span class="module-chip has-cmd has-qry" title="10 handlers">Utilitaires</span>
+            <span class="module-chip has-cmd has-qry" title="20 handlers">Ventes</span>
+            <span class="module-chip has-qry" title="10 handlers">Zooms</span>
+      </div>
+      <div style="font-size:0.7rem;color:#6e7681;margin-top:0.4rem">
+        Green border = Commands | Blue border = Queries
+      </div>
+    </details>
   </div>
 
   <script>
