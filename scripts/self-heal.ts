@@ -257,6 +257,26 @@ const getFailedJobs = (repo: string, runId: string): FailedJob[] => {
       .slice(-MAX_LOG_LINES)
       .join('\n');
 
+    // Fallback: synthesize annotations from ##[error] lines when API returns 403
+    if (errors.length === 0 && jobLogs.length > 0) {
+      const errorLinePattern =
+        /##\[error\]([\w/.+:\\-]+\.(?:cs|ts|tsx|js|jsx))\((\d+),\d+\):\s*error\s+\w+:\s*(.+?)(?:\s+\[|$)/gm;
+      let m: RegExpExecArray | null;
+      while ((m = errorLinePattern.exec(jobLogs)) !== null) {
+        const path = normalizeLogPath(m[1]);
+        errors.push({
+          path,
+          start_line: Number(m[2]),
+          end_line: Number(m[2]),
+          annotation_level: 'failure',
+          message: m[3].trim(),
+        });
+      }
+      if (errors.length > 0) {
+        console.log(`  [${job.name}] Synthesized ${errors.length} annotation(s) from logs`);
+      }
+    }
+
     console.log(
       `  [${job.name}] ${errors.length} error(s), ${jobLogs.split('\n').length} log lines`
     );
