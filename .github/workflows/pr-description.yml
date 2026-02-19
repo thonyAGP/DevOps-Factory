@@ -1,0 +1,37 @@
+name: PR Description Generator
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: 'Repository (owner/name)'
+        required: true
+      pr:
+        description: 'PR number'
+        required: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  describe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Generate PR description
+        run: pnpm pr-description -- --repo ${{ inputs.repo }} --pr ${{ inputs.pr }}
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
