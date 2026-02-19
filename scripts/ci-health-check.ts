@@ -175,11 +175,38 @@ const getLastSelfHealForRepo = (repo: string): number => {
   return 0;
 };
 
+const STALE_PR_MS = 48 * 60 * 60 * 1000; // 48h
+
 const hasOpenAiFixPR = (repo: string): boolean => {
   const result = sh(
+    `gh pr list --repo ${repo} --head "ai-fix/" --state open --json number,createdAt --jq "[.[] | {number, createdAt}]"`
+  );
+  let prs: Array<{ number: number; createdAt: string }>;
+  try {
+    prs = JSON.parse(result || '[]') as Array<{ number: number; createdAt: string }>;
+  } catch {
+    return false;
+  }
+  if (prs.length === 0) return false;
+
+  // Auto-close stale ai-fix PRs (>48h open = abandoned/failed fix)
+  for (const pr of prs) {
+    const age = Date.now() - new Date(pr.createdAt).getTime();
+    if (age > STALE_PR_MS) {
+      console.log(
+        `  [STALE] Closing abandoned ai-fix PR #${pr.number} on ${repo} (${Math.round(age / 3600000)}h old)`
+      );
+      sh(
+        `gh pr close ${pr.number} --repo ${repo} --comment "Auto-closing stale ai-fix PR (>48h). Self-heal will retry."`
+      );
+    }
+  }
+
+  // Re-check after closing stale PRs
+  const freshResult = sh(
     `gh pr list --repo ${repo} --head "ai-fix/" --state open --json number --jq "length"`
   );
-  return parseInt(result || '0', 10) > 0;
+  return parseInt(freshResult || '0', 10) > 0;
 };
 
 const hasRecentAiFixMerge = (repo: string, windowMs: number): boolean => {

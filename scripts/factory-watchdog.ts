@@ -46,6 +46,8 @@ const SELF_HEALABLE_WORKFLOWS = [
   'AI Test Writer',
   'Dependency Intelligence',
   'Feedback Collector',
+  'Test Scaffold',
+  'Coverage Baseline',
 ];
 
 const LABEL = 'factory-watchdog';

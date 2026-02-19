@@ -228,7 +228,7 @@ const askGroq = (prompt: string): string | null => {
     max_tokens: 8192,
   });
 
-  const tmpFile = `groq-req-${Date.now()}.json`;
+  const tmpFile = tmpPath('groq-req');
   writeFileSync(tmpFile, payload);
 
   try {
@@ -243,11 +243,7 @@ const askGroq = (prompt: string): string | null => {
     console.error(`    Groq failed: ${err.message?.slice(0, 200)}`);
     return null;
   } finally {
-    try {
-      execSync(`rm -f ${tmpFile}`, { encoding: 'utf-8' });
-    } catch {
-      /* ignore */
-    }
+    cleanTmp(tmpFile);
   }
 };
 
@@ -261,7 +257,7 @@ const askGemini = (prompt: string): string | null => {
     generationConfig: { temperature: 0.2, maxOutputTokens: 8192 },
   });
 
-  const tmpFile = `gemini-req-${Date.now()}.json`;
+  const tmpFile = tmpPath('gemini-req');
   writeFileSync(tmpFile, payload);
 
   try {
@@ -278,11 +274,7 @@ const askGemini = (prompt: string): string | null => {
     console.error(`    Gemini failed: ${err.message?.slice(0, 200)}`);
     return null;
   } finally {
-    try {
-      execSync(`rm -f ${tmpFile}`, { encoding: 'utf-8' });
-    } catch {
-      /* ignore */
-    }
+    cleanTmp(tmpFile);
   }
 };
 
@@ -366,67 +358,117 @@ const generateTest = (
   return null;
 };
 
-// --- PR creation ---
+// --- PR creation (batch commit: all files in one commit to avoid race conditions) ---
 
-const uploadFile = (
+const tmpPath = (name: string): string => {
+  const dir = process.env.RUNNER_TEMP || '/tmp';
+  return `${dir}/${name}-${Date.now()}.json`;
+};
+
+const cleanTmp = (path: string): void => {
+  try {
+    unlinkSync(path);
+  } catch {
+    /* ignore */
+  }
+};
+
+const createBlob = (repo: string, content: string): string | null => {
+  const tmp = tmpPath('ai-blob');
+  writeFileSync(tmp, JSON.stringify({ content, encoding: 'utf-8' }));
+  const result = sh(`gh api repos/${repo}/git/blobs --input ${tmp}`);
+  cleanTmp(tmp);
+  try {
+    return (JSON.parse(result) as { sha: string }).sha;
+  } catch {
+    return null;
+  }
+};
+
+const uploadFiles = (
   repo: string,
   branch: string,
-  path: string,
-  content: string,
+  files: Array<{ path: string; content: string }>,
   message: string
-): boolean => {
-  const encoded = Buffer.from(content).toString('base64');
-  const tmpFile = `ai-test-blob-${Date.now()}.json`;
-  writeFileSync(tmpFile, JSON.stringify({ content: encoded, encoding: 'base64' }));
+): { uploaded: string[]; failed: string[] } => {
+  const uploaded: string[] = [];
+  const failed: string[] = [];
+  const blobs: Array<{ path: string; sha: string }> = [];
 
-  const blobResult = sh(`gh api repos/${repo}/git/blobs --input ${tmpFile}`);
-  try {
-    execSync(`rm -f ${tmpFile}`, { encoding: 'utf-8' });
-  } catch {
-    // ignore cleanup errors on Windows
+  // Step 1: Create all blobs individually
+  for (const file of files) {
+    console.log(`  Creating blob for ${file.path}...`);
+    const sha = createBlob(repo, file.content);
+    if (sha) {
+      blobs.push({ path: file.path, sha });
+      uploaded.push(file.path);
+    } else {
+      console.log(`  Failed to create blob for ${file.path}`);
+      failed.push(file.path);
+    }
   }
 
-  let blobSha: string;
-  try {
-    blobSha = (JSON.parse(blobResult) as { sha: string }).sha;
-  } catch {
-    return false;
-  }
+  if (blobs.length === 0)
+    return { uploaded: [], failed: failed.length > 0 ? failed : files.map((f) => f.path) };
 
+  // Step 2: Get current branch tip
   const refData = ghApi<{ object: { sha: string } }>(`repos/${repo}/git/ref/heads/${branch}`);
-  if (!refData) return false;
+  if (!refData) return { uploaded: [], failed: files.map((f) => f.path) };
 
   const commitData = ghApi<{ tree: { sha: string } }>(
     `repos/${repo}/git/commits/${refData.object.sha}`
   );
-  if (!commitData) return false;
+  if (!commitData) return { uploaded: [], failed: files.map((f) => f.path) };
 
-  const treeResult = sh(
-    `gh api repos/${repo}/git/trees -f base_tree="${commitData.tree.sha}" -f "tree[][path]=${path}" -f "tree[][mode]=100644" -f "tree[][type]=blob" -f "tree[][sha]=${blobSha}"`
-  );
+  // Step 3: Create tree with ALL files at once (single tree = no race condition)
+  const treePayload = {
+    base_tree: commitData.tree.sha,
+    tree: blobs.map((b) => ({
+      path: b.path,
+      mode: '100644',
+      type: 'blob',
+      sha: b.sha,
+    })),
+  };
+  const treeTmp = tmpPath('ai-tree');
+  writeFileSync(treeTmp, JSON.stringify(treePayload));
+  const treeResult = sh(`gh api repos/${repo}/git/trees --input ${treeTmp}`);
+  cleanTmp(treeTmp);
 
   let treeSha: string;
   try {
     treeSha = (JSON.parse(treeResult) as { sha: string }).sha;
   } catch {
-    return false;
+    return { uploaded: [], failed: files.map((f) => f.path) };
   }
 
-  const newCommit = sh(
-    `gh api repos/${repo}/git/commits -f message="${message}" -f "tree=${treeSha}" -f "parents[]=${refData.object.sha}"`
-  );
+  // Step 4: Create single commit with all files
+  const commitPayload = {
+    message,
+    tree: treeSha,
+    parents: [refData.object.sha],
+  };
+  const commitTmp = tmpPath('ai-commit');
+  writeFileSync(commitTmp, JSON.stringify(commitPayload));
+  const newCommit = sh(`gh api repos/${repo}/git/commits --input ${commitTmp}`);
+  cleanTmp(commitTmp);
 
   let newSha: string;
   try {
     newSha = (JSON.parse(newCommit) as { sha: string }).sha;
   } catch {
-    return false;
+    return { uploaded: [], failed: files.map((f) => f.path) };
   }
 
+  // Step 5: Update branch ref (single atomic operation)
   const updateResult = sh(
     `gh api repos/${repo}/git/refs/heads/${branch} -X PATCH -f sha="${newSha}"`
   );
-  return updateResult.includes(newSha);
+  if (!updateResult.includes(newSha)) {
+    return { uploaded: [], failed: files.map((f) => f.path) };
+  }
+
+  return { uploaded, failed };
 };
 
 const createTestPR = (repo: string, tests: GeneratedTest[], baseBranch: string): string | null => {
@@ -441,34 +483,25 @@ const createTestPR = (repo: string, tests: GeneratedTest[], baseBranch: string):
   );
   if (!branchResult.includes(branchName) && !branchResult.includes(refData.object.sha)) return null;
 
-  // Upload each test file, track successes
-  const uploaded: GeneratedTest[] = [];
-  const failed: string[] = [];
-
-  for (const test of tests) {
-    console.log(`  Uploading ${test.testPath}...`);
-    const ok = uploadFile(
-      repo,
-      branchName,
-      test.testPath,
-      test.content,
-      `test: add AI-generated tests for ${test.sourcePath}`
-    );
-    if (ok) {
-      uploaded.push(test);
-    } else {
-      console.log(`  Failed to upload ${test.testPath}`);
-      failed.push(test.testPath);
-    }
-  }
+  // Batch upload all test files in a single commit
+  const { uploaded, failed } = uploadFiles(
+    repo,
+    branchName,
+    tests.map((t) => ({ path: t.testPath, content: t.content })),
+    `test: add AI-generated tests for ${tests.length} file(s)`
+  );
 
   if (uploaded.length === 0) {
     console.log('  All uploads failed, skipping PR');
     return null;
   }
 
+  const uploadedTests = tests.filter((t) => uploaded.includes(t.testPath));
+
   // Build PR body
-  const fileList = uploaded.map((t) => `- \`${t.testPath}\` (from \`${t.sourcePath}\`)`).join('\n');
+  const fileList = uploadedTests
+    .map((t) => `- \`${t.testPath}\` (from \`${t.sourcePath}\`)`)
+    .join('\n');
   const failedSection =
     failed.length > 0
       ? `\n### Failed uploads\n${failed.map((f) => `- \`${f}\``).join('\n')}\n`
@@ -492,16 +525,12 @@ Each test file covers exported functions with happy path + error cases.
 > **Human review required before merge**`;
 
   // Use --body-file to avoid shell escaping issues with backticks/quotes
-  const bodyFile = '/tmp/ai-test-pr-body.md';
+  const bodyFile = `${process.env.RUNNER_TEMP || '/tmp'}/ai-test-pr-body.md`;
   writeFileSync(bodyFile, body);
   const prUrl = sh(
     `gh pr create --repo ${repo} --head ${branchName} --base ${baseBranch} --title "test: add AI-generated tests" --body-file ${bodyFile}`
   );
-  try {
-    unlinkSync(bodyFile);
-  } catch {
-    /* ignore */
-  }
+  cleanTmp(bodyFile);
 
   return prUrl.match(/(https:\/\/[^\s]+)/)?.[1] || null;
 };
