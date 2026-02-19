@@ -60,6 +60,22 @@ export const QUALITY_WEIGHTS = {
 
 export const KNOWN_PROJECTS: ProjectConfig[] = [
   {
+    name: 'DevOps-Factory',
+    repo: 'thonyAGP/DevOps-Factory',
+    hasCI: true,
+    stack: 'node',
+    hasQodo: false,
+    hasClaude: false,
+    hasSelfHealing: true,
+    hasHusky: true,
+    hasRenovate: false,
+    hasGitleaks: false,
+    hasLighthouse: false,
+    hasLinkChecker: false,
+    vercel: false,
+    testFramework: 'none',
+  },
+  {
     name: 'Email_Assistant',
     repo: 'thonyAGP/Email_Assistant',
     hasCI: true,
@@ -384,7 +400,7 @@ export const DASHBOARD_URL = 'https://thonyagp.github.io/DevOps-Factory/';
 export const SCAN_CONFIG = {
   cronIntervalHours: 6,
   dashboardRefreshHours: 4,
-  ignoredRepos: ['DevOps-Factory', 'Parametrage_Claude', 'Migration_Pc1_vers_Pc2', '.github'],
+  ignoredRepos: ['Parametrage_Claude', 'Migration_Pc1_vers_Pc2', '.github'],
   requiredFiles: {
     node: ['package.json'],
     dotnet: ['*.csproj', '*.sln'],

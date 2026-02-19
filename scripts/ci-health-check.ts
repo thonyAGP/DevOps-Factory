@@ -10,6 +10,7 @@
  */
 
 import { execSync } from 'node:child_process';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { KNOWN_PROJECTS, type ProjectConfig } from '../factory.config.js';
 
 interface WorkflowRun {
@@ -37,6 +38,8 @@ interface ExistingIssue {
 const LABEL = 'ci-failure';
 const MAX_LOG_LENGTH = 2000;
 const SELF_HEAL_COOLDOWN_MS = 4 * 60 * 60 * 1000; // 4h between self-heal attempts per repo
+const FACTORY_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24h for DevOps-Factory (avoid loops)
+const FACTORY_REPO = 'thonyAGP/DevOps-Factory';
 
 const sh = (cmd: string): string => {
   try {
@@ -134,6 +137,30 @@ const closeIssue = (factoryRepo: string, issue: ExistingIssue, projectName: stri
   }
 };
 
+const COOLDOWN_PATH = 'data/self-heal-cooldowns.json';
+
+type CooldownMap = Record<string, number>;
+
+const loadCooldowns = (): CooldownMap => {
+  if (!existsSync(COOLDOWN_PATH)) return {};
+  try {
+    return JSON.parse(readFileSync(COOLDOWN_PATH, 'utf-8')) as CooldownMap;
+  } catch {
+    return {};
+  }
+};
+
+const saveCooldown = (repo: string): void => {
+  const cooldowns = loadCooldowns();
+  cooldowns[repo] = Date.now();
+  writeFileSync(COOLDOWN_PATH, JSON.stringify(cooldowns, null, 2));
+};
+
+const getLastSelfHealForRepo = (repo: string): number => {
+  const cooldowns = loadCooldowns();
+  return cooldowns[repo] ?? 0;
+};
+
 const hasOpenAiFixPR = (repo: string): boolean => {
   const result = sh(
     `gh pr list --repo ${repo} --head "ai-fix/" --state open --json number --jq "length"`
@@ -141,13 +168,13 @@ const hasOpenAiFixPR = (repo: string): boolean => {
   return parseInt(result || '0', 10) > 0;
 };
 
-const getLastSelfHealAttempt = (factoryRepo: string): number => {
-  // Check workflow runs for self-heal targeting this repo
+const hasRecentAiFixMerge = (repo: string, windowMs: number): boolean => {
   const result = sh(
-    `gh api "repos/${factoryRepo}/actions/workflows/self-heal.yml/runs?per_page=5&status=completed" --jq "[.workflow_runs[] | select(.conclusion != null)] | .[0].created_at" 2>/dev/null`
+    `gh pr list --repo ${repo} --search "head:ai-fix/ is:merged" --state merged --json mergedAt --jq ".[0].mergedAt" 2>/dev/null`
   );
-  if (!result || result === 'null') return 0;
-  return new Date(result).getTime();
+  if (!result || result === 'null') return false;
+  const mergedAt = new Date(result).getTime();
+  return Date.now() - mergedAt < windowMs;
 };
 
 const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
@@ -163,26 +190,45 @@ const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
     return;
   }
 
+  // Guard: don't self-heal failures on ai-fix branches (avoid loops)
+  if (run.head_branch.startsWith('ai-fix/')) {
+    console.log(`  [SKIP HEAL] ${project.name}: failure on ai-fix branch, skip`);
+    return;
+  }
+
   // Guard: don't trigger if there's already an open ai-fix PR
   if (hasOpenAiFixPR(project.repo)) {
     console.log(`  [SKIP HEAL] ${project.name}: open ai-fix PR exists`);
     return;
   }
 
-  // Guard: cooldown between attempts
-  const lastAttempt = getLastSelfHealAttempt(factoryRepo);
-  if (Date.now() - lastAttempt < SELF_HEAL_COOLDOWN_MS) {
-    const hoursAgo = ((Date.now() - lastAttempt) / 3600000).toFixed(1);
-    console.log(`  [SKIP HEAL] ${project.name}: last attempt ${hoursAgo}h ago (cooldown 4h)`);
+  // Guard: don't trigger if an ai-fix PR was merged recently (CI may still be cascading)
+  const AI_FIX_MERGE_WINDOW_MS = 2 * 60 * 60 * 1000; // 2h
+  if (hasRecentAiFixMerge(project.repo, AI_FIX_MERGE_WINDOW_MS)) {
+    console.log(`  [SKIP HEAL] ${project.name}: ai-fix PR merged <2h ago, waiting for CI cascade`);
     return;
   }
 
-  // Trigger self-heal workflow
+  // Guard: per-repo cooldown (24h for factory, 4h for others)
+  const isFactory = project.repo === FACTORY_REPO;
+  const cooldown = isFactory ? FACTORY_COOLDOWN_MS : SELF_HEAL_COOLDOWN_MS;
+  const cooldownLabel = isFactory ? '24h' : '4h';
+  const lastAttempt = getLastSelfHealForRepo(project.repo);
+  if (Date.now() - lastAttempt < cooldown) {
+    const hoursAgo = ((Date.now() - lastAttempt) / 3600000).toFixed(1);
+    console.log(
+      `  [SKIP HEAL] ${project.name}: last attempt ${hoursAgo}h ago (cooldown ${cooldownLabel})`
+    );
+    return;
+  }
+
+  // Trigger self-heal workflow + record cooldown
   try {
     execSync(
       `gh workflow run self-heal.yml --repo ${factoryRepo} -f repo="${project.repo}" -f run_id="${run.id}"`,
       { encoding: 'utf-8', timeout: 15000 }
     );
+    saveCooldown(project.repo);
     console.log(`  [HEAL] Triggered self-heal for ${project.name} (run ${run.id})`);
   } catch (e) {
     console.error(`  [ERROR] Failed to trigger self-heal for ${project.name}:`, e);
