@@ -2,10 +2,13 @@ name: CI Health Check
 
 on:
   schedule:
-    # Every 2 hours
-    - cron: '0 */2 * * *'
+    # Every hour (reduced from 2h to minimize detection lag)
+    - cron: '0 * * * *'
   workflow_dispatch:
     inputs: {}
+  workflow_run:
+    workflows: ['Factory CI']
+    types: [completed]
 
 permissions:
   contents: read
@@ -14,6 +17,8 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
+    # Skip if triggered by workflow_run that succeeded (only react to failures)
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'failure' }}
     steps:
       - uses: actions/checkout@v4
 
