@@ -132,6 +132,10 @@ const matchedPatternConfidence = (patternId: string): number => {
 };
 
 const addNewPattern = (signature: string, fix: string, repo: string): string => {
+  // Skip useless generic signatures
+  if (signature.startsWith('Process completed with exit code') || signature.length < 10) {
+    return '';
+  }
   const db = loadPatterns();
   const id = `auto-${Date.now()}`;
   db.patterns.push({
@@ -164,7 +168,7 @@ const askClaude = (
     const result = execSync('claude -p --output-format text', {
       input: prompt,
       encoding: 'utf-8',
-      timeout: 120_000,
+      timeout: 300_000,
       maxBuffer: 10 * 1024 * 1024,
     });
 
@@ -172,7 +176,16 @@ const askClaude = (
     const jsonMatch = result.match(/\{[\s\S]*"fixes"[\s\S]*\}/);
     if (jsonMatch) {
       try {
-        return JSON.parse(jsonMatch[0]) as GeminiResponse;
+        const parsed = JSON.parse(jsonMatch[0]) as GeminiResponse;
+        for (const fix of parsed.fixes) {
+          const mode = fix.replacements?.length
+            ? `${fix.replacements.length} replacement(s)`
+            : fix.content
+              ? `${Math.round(fix.content.length / 1024)}KB content`
+              : 'empty';
+          console.log(`  [Claude] fix: ${fix.path} (${mode})`);
+        }
+        return parsed;
       } catch {
         // fall through
       }
@@ -343,6 +356,122 @@ const findDuplicateDefinitionSiblings = (
   }
 
   return result;
+};
+
+/** Fix CS0104 (ambiguous reference) by finding and removing identical duplicate type definitions */
+const fixAmbiguousReferenceDuplicates = (
+  repo: string,
+  jobs: FailedJob[],
+  branch: string
+): GeminiFix[] => {
+  const fixes: GeminiFix[] = [];
+  const processed = new Set<string>();
+
+  // Check all annotations for ambiguous reference pattern
+  // Note: GitHub annotations don't include error codes (CS0104) - just the message text
+  const allAnnotations = jobs.flatMap((j) => j.annotations);
+  const ambiguousCount = allAnnotations.filter((a) =>
+    a.message.includes('is an ambiguous reference between')
+  ).length;
+  if (ambiguousCount > 0)
+    console.log(`  Found ${ambiguousCount} ambiguous reference annotation(s)`);
+
+  for (const job of jobs) {
+    for (const a of job.annotations) {
+      // 'X' is an ambiguous reference between 'NS1.X' and 'NS2.X'
+      const match = a.message.match(
+        /'(\w+)' is an ambiguous reference between '([\w.]+)' and '([\w.]+)'/
+      );
+      if (!match) continue;
+
+      const className = match[1];
+      if (processed.has(className)) continue;
+      processed.add(className);
+
+      const fqn1 = match[2];
+      const fqn2 = match[3];
+      console.log(`  CS0104: '${className}' ambiguous between ${fqn1} and ${fqn2}`);
+
+      // Get repo tree to locate files
+      const tree = ghApi<{ tree: { path: string; type: string }[] }>(
+        `repos/${repo}/git/trees/${branch}?recursive=1`
+      );
+      if (!tree?.tree) continue;
+
+      // Find standalone file (ClassName.cs) - likely the canonical definition
+      const standaloneFile = tree.tree.find(
+        (f) => f.type === 'blob' && f.path.endsWith(`/${className}.cs`)
+      );
+      if (!standaloneFile) {
+        console.log(`    No standalone ${className}.cs found`);
+        continue;
+      }
+      console.log(`    Standalone: ${standaloneFile.path}`);
+
+      // Determine which namespace the standalone is in, find other namespace dir
+      const ns1Last = fqn1.split('.').slice(-2, -1)[0];
+      const ns2Last = fqn2.split('.').slice(-2, -1)[0];
+      const standaloneInNs1 = standaloneFile.path.includes(`/${ns1Last}/`);
+      const otherNsSegment = standaloneInNs1 ? ns2Last : ns1Last;
+
+      // Find .cs files in the other namespace directory
+      const standaloneDir = standaloneFile.path.substring(0, standaloneFile.path.lastIndexOf('/'));
+      const otherDir = standaloneDir.replace(/\/[^/]+$/, `/${otherNsSegment}`);
+
+      const otherFiles = tree.tree.filter(
+        (f) =>
+          f.type === 'blob' &&
+          f.path.startsWith(otherDir + '/') &&
+          f.path.endsWith('.cs') &&
+          !f.path.endsWith(`/${className}.cs`)
+      );
+      console.log(`    Searching ${otherFiles.length} files in ${otherDir}/`);
+
+      for (const otherFile of otherFiles) {
+        // Check if this file contains the class
+        const otherContent = fetchFullFileContent(repo, otherFile.path, branch);
+        if (!otherContent || !otherContent.includes(`class ${className}`)) continue;
+
+        const otherBounds = findClassBoundaries(otherContent, className);
+        if (!otherBounds) continue;
+
+        // Compare with standalone definition (normalize whitespace + comments)
+        const standaloneContent = fetchFullFileContent(repo, standaloneFile.path, branch);
+        if (!standaloneContent) continue;
+
+        const standaloneBounds = findClassBoundaries(standaloneContent, className);
+        if (!standaloneBounds) continue;
+
+        const standaloneLines = standaloneContent.split('\n');
+        const otherLines = otherContent.split('\n');
+
+        const normalize = (s: string) =>
+          s
+            .replace(/\/\/.*$/gm, '')
+            .replace(/\/\*[\s\S]*?\*\//g, '')
+            .replace(/\s+/g, ' ')
+            .trim();
+
+        const standaloneClass = normalize(
+          standaloneLines.slice(standaloneBounds.startLine, standaloneBounds.endLine + 1).join('\n')
+        );
+        const otherClass = normalize(
+          otherLines.slice(otherBounds.startLine, otherBounds.endLine + 1).join('\n')
+        );
+
+        if (standaloneClass === otherClass) {
+          console.log(`    Identical duplicate in ${otherFile.path} - removing`);
+          const fix = removeDuplicateClass(repo, otherFile.path, className, branch);
+          if (fix) fixes.push(fix);
+        } else {
+          console.log(`    Definitions differ in ${otherFile.path} - skipping`);
+        }
+        break; // Only process first match per class
+      }
+    }
+  }
+
+  return fixes;
 };
 
 /** Fetch file content from GitHub, with optional line range for large files */
@@ -682,7 +811,7 @@ const createBranch = (repo: string, branchName: string, baseBranch: string): boo
   return result.includes(branchName) || result.includes(sha);
 };
 
-/** Upload a file using the Git tree/commit API (handles large files, no shell length limits) */
+/** Upload a file using the Git tree/commit API (handles large files via JSON input) */
 const uploadFileViaBlobApi = (
   repo: string,
   branch: string,
@@ -690,70 +819,81 @@ const uploadFileViaBlobApi = (
   content: string,
   commitMessage: string
 ): boolean => {
-  // 1. Create blob
-  const contentBase64 = Buffer.from(content).toString('base64');
-  const blobResult = sh(
-    `gh api repos/${repo}/git/blobs -f content="${contentBase64}" -f encoding="base64"`
-  );
+  const tmpFile = `self-heal-api-${Date.now()}.json`;
 
-  let blobSha: string;
   try {
-    blobSha = (JSON.parse(blobResult) as { sha: string }).sha;
-  } catch {
-    // For very large content, use a temp file approach
-    const tmpFile = `self-heal-blob-${Date.now()}.json`;
+    // 1. Create blob (always use input file to avoid shell length limits)
+    const contentBase64 = Buffer.from(content).toString('base64');
     writeFileSync(tmpFile, JSON.stringify({ content: contentBase64, encoding: 'base64' }));
-    const blobResult2 = sh(`gh api repos/${repo}/git/blobs --input ${tmpFile}`);
-    unlinkSync(tmpFile);
+    const blobResult = sh(`gh api repos/${repo}/git/blobs --input ${tmpFile}`);
+
+    let blobSha: string;
     try {
-      blobSha = (JSON.parse(blobResult2) as { sha: string }).sha;
+      blobSha = (JSON.parse(blobResult) as { sha: string }).sha;
     } catch {
       console.error(`  Failed to create blob for ${path}`);
       return false;
     }
+
+    // 2. Get current branch tree
+    const refData = ghApi<{ object: { sha: string } }>(`repos/${repo}/git/ref/heads/${branch}`);
+    if (!refData) return false;
+
+    const commitData = ghApi<{ tree: { sha: string } }>(
+      `repos/${repo}/git/commits/${refData.object.sha}`
+    );
+    if (!commitData) return false;
+
+    // 3. Create new tree (use JSON input to avoid shell escaping issues)
+    writeFileSync(
+      tmpFile,
+      JSON.stringify({
+        base_tree: commitData.tree.sha,
+        tree: [{ path, mode: '100644', type: 'blob', sha: blobSha }],
+      })
+    );
+    const treeResult = sh(`gh api repos/${repo}/git/trees --input ${tmpFile}`);
+
+    let treeSha: string;
+    try {
+      treeSha = (JSON.parse(treeResult) as { sha: string }).sha;
+    } catch {
+      console.error(`  Failed to create tree for ${path}`);
+      return false;
+    }
+
+    // 4. Create commit (use JSON input)
+    writeFileSync(
+      tmpFile,
+      JSON.stringify({
+        message: commitMessage,
+        tree: treeSha,
+        parents: [refData.object.sha],
+      })
+    );
+    const newCommitResult = sh(`gh api repos/${repo}/git/commits --input ${tmpFile}`);
+
+    let newCommitSha: string;
+    try {
+      newCommitSha = (JSON.parse(newCommitResult) as { sha: string }).sha;
+    } catch {
+      console.error(`  Failed to create commit for ${path}`);
+      return false;
+    }
+
+    // 5. Update branch ref
+    const updateResult = sh(
+      `gh api repos/${repo}/git/refs/heads/${branch} -X PATCH -f sha="${newCommitSha}"`
+    );
+
+    return updateResult.includes(newCommitSha);
+  } finally {
+    try {
+      unlinkSync(tmpFile);
+    } catch {
+      // ignore
+    }
   }
-
-  // 2. Get current branch tree
-  const refData = ghApi<{ object: { sha: string } }>(`repos/${repo}/git/ref/heads/${branch}`);
-  if (!refData) return false;
-
-  const commitData = ghApi<{ tree: { sha: string } }>(
-    `repos/${repo}/git/commits/${refData.object.sha}`
-  );
-  if (!commitData) return false;
-
-  // 3. Create new tree with the updated file
-  const treeResult = sh(
-    `gh api repos/${repo}/git/trees -f base_tree="${commitData.tree.sha}" -f "tree[][path]=${path}" -f "tree[][mode]=100644" -f "tree[][type]=blob" -f "tree[][sha]=${blobSha}"`
-  );
-
-  let treeSha: string;
-  try {
-    treeSha = (JSON.parse(treeResult) as { sha: string }).sha;
-  } catch {
-    console.error(`  Failed to create tree for ${path}`);
-    return false;
-  }
-
-  // 4. Create commit
-  const newCommitResult = sh(
-    `gh api repos/${repo}/git/commits -f message="${commitMessage}" -f "tree=${treeSha}" -f "parents[]=${refData.object.sha}"`
-  );
-
-  let newCommitSha: string;
-  try {
-    newCommitSha = (JSON.parse(newCommitResult) as { sha: string }).sha;
-  } catch {
-    console.error(`  Failed to create commit for ${path}`);
-    return false;
-  }
-
-  // 5. Update branch ref
-  const updateResult = sh(
-    `gh api repos/${repo}/git/refs/heads/${branch} -X PATCH -f sha="${newCommitSha}"`
-  );
-
-  return updateResult.includes(newCommitSha);
 };
 
 const applyFixes = (
@@ -810,9 +950,8 @@ const applyFixes = (
   return success;
 };
 
-/** Deterministic fix for StyleCop: trailing whitespace (SA1028) and missing blank line (SA1513) */
-/** SA codes we can fix deterministically (whitespace/blank lines) */
-const STYLECOP_AUTO_FIX = ['SA1028', 'SA1513', 'SA1507'];
+/** Deterministic fix for StyleCop formatting rules */
+const STYLECOP_AUTO_FIX = ['SA1028', 'SA1513', 'SA1507', 'SA1124'];
 
 const fixStyleCopIssues = (repo: string, jobs: FailedJob[], branch: string): GeminiFix[] => {
   const fixes: GeminiFix[] = [];
@@ -850,6 +989,15 @@ const fixStyleCopIssues = (repo: string, jobs: FailedJob[], branch: string): Gem
     );
 
     // SA1507: collapse multiple blank lines into one
+    fixed = fixed.replace(/\n{3,}/g, '\n\n');
+
+    // SA1124: remove #region / #endregion lines
+    fixed = fixed
+      .split('\n')
+      .filter((line) => !/^\s*#(region|endregion)\b/.test(line))
+      .join('\n');
+
+    // Clean up any double blank lines introduced by region removal
     fixed = fixed.replace(/\n{3,}/g, '\n\n');
 
     if (fixed !== content) {
@@ -1013,6 +1161,7 @@ const main = async (): Promise<void> => {
   console.log(`Default branch: ${defaultBranch}\n`);
 
   const fileContents = new Map<string, string>();
+  const partialContextFiles = new Set<string>(); // Files sent as context windows (not full content)
 
   // 2a. Files from annotations (with smart context extraction for large files)
   const annotatedFiles = getAnnotatedFiles(targetJobs);
@@ -1038,7 +1187,13 @@ const main = async (): Promise<void> => {
         : fetchFileContent(repo, path, defaultBranch);
     if (content) {
       fileContents.set(path, content);
-      console.log(`  Fetched ${path} (${Math.round(content.length / 1024)}KB)`);
+      // Track if this file was sent as partial context (not full)
+      if (content.startsWith('// File: ') && content.includes('showing context around errors')) {
+        partialContextFiles.add(path);
+        console.log(`  Fetched ${path} (${Math.round(content.length / 1024)}KB, partial context)`);
+      } else {
+        console.log(`  Fetched ${path} (${Math.round(content.length / 1024)}KB)`);
+      }
     }
   }
 
@@ -1064,6 +1219,10 @@ const main = async (): Promise<void> => {
     }
   }
 
+  // 2b2. Deterministic fixes for CS0104 ambiguous references (cross-namespace duplicates)
+  const ambiguousFixes = fixAmbiguousReferenceDuplicates(repo, targetJobs, defaultBranch);
+  deterministicFixes.push(...ambiguousFixes);
+
   // 2c. Deterministic fixes for StyleCop (SA1028 trailing whitespace, SA1513 blank lines)
   const stylecopFixes = fixStyleCopIssues(repo, targetJobs, defaultBranch);
   deterministicFixes.push(...stylecopFixes);
@@ -1075,9 +1234,17 @@ const main = async (): Promise<void> => {
 
   if (deterministicFixes.length > 0) {
     const parts: string[] = [];
-    const dupFixes = deterministicFixes.filter((f) => !stylecopFixes.includes(f));
+    const dupFixes = deterministicFixes.filter(
+      (f) => !stylecopFixes.includes(f) && !ambiguousFixes.includes(f)
+    );
     if (dupFixes.length > 0)
       parts.push(dupFixes.map((f) => `Removed duplicate class from ${f.path}`).join('. '));
+    if (ambiguousFixes.length > 0)
+      parts.push(
+        ambiguousFixes
+          .map((f) => `Removed duplicate type causing CS0104 ambiguity from ${f.path}`)
+          .join('. ')
+      );
     if (stylecopFixes.length > 0)
       parts.push(`Fixed StyleCop issues in ${stylecopFixes.map((f) => f.path).join(', ')}`);
     explanation = parts.join('. ');
@@ -1089,7 +1256,8 @@ const main = async (): Promise<void> => {
     j.annotations.some(
       (a) =>
         !a.message.includes('already contains a definition') &&
-        !a.message.includes('already defines a member')
+        !a.message.includes('already defines a member') &&
+        !a.message.includes('is an ambiguous reference between')
     )
   );
 
@@ -1147,7 +1315,14 @@ const main = async (): Promise<void> => {
           : fetchFileContent(repo, path, defaultBranch);
       if (content) {
         fileContents.set(path, content);
-        console.log(`  Fetched ${path} (${Math.round(content.length / 1024)}KB)`);
+        if (content.startsWith('// File: ') && content.includes('showing context around errors')) {
+          partialContextFiles.add(path);
+          console.log(
+            `  Fetched ${path} (${Math.round(content.length / 1024)}KB, partial context)`
+          );
+        } else {
+          console.log(`  Fetched ${path} (${Math.round(content.length / 1024)}KB)`);
+        }
       }
     }
   }
@@ -1195,13 +1370,9 @@ const main = async (): Promise<void> => {
         continue;
       }
       // Reject content fixes for files that were sent as partial context
-      const sentContent = fileContents.get(fix.path);
-      if (
-        sentContent?.startsWith('// File: ') &&
-        sentContent.includes('showing context around errors')
-      ) {
+      if (partialContextFiles.has(fix.path)) {
         console.warn(
-          `  Rejected content fix for ${fix.path}: file was sent as partial context, expected replacements`
+          `  Rejected content fix for ${fix.path}: file was sent as partial context, expected replacements format`
         );
         continue;
       }
@@ -1222,13 +1393,15 @@ const main = async (): Promise<void> => {
     if (matchedPattern) {
       recordPatternHit(matchedPattern.id, repo, aiResponse.fixes.length > 0);
     } else if (aiResponse.fixes.length > 0) {
-      // Register new pattern from AI fix
+      // Register new pattern from AI fix (skip generic/deterministic messages)
       const firstError = targetJobs
         .flatMap((j) => j.annotations)
         .find(
           (a) =>
             !a.message.includes('already contains a definition') &&
-            !a.message.includes('already defines a member')
+            !a.message.includes('already defines a member') &&
+            !a.message.includes('is an ambiguous reference between') &&
+            !a.message.startsWith('Process completed with exit code')
         );
       if (firstError) {
         usedPatternId = addNewPattern(
