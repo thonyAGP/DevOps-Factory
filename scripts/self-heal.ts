@@ -730,15 +730,11 @@ const STYLECOP_FIXABLE = ['SA1028', 'SA1513', 'SA1507', 'SA1402'];
 const fixStyleCopIssues = (repo: string, jobs: FailedJob[], branch: string): GeminiFix[] => {
   const fixes: GeminiFix[] = [];
   const filesToFix = new Set<string>();
-  const filesNeedingSuppression = new Set<string>();
 
   for (const job of jobs) {
     for (const a of job.annotations) {
       if (STYLECOP_FIXABLE.some((code) => a.message.includes(code))) {
         filesToFix.add(a.path);
-      }
-      if (a.message.includes('SA1402')) {
-        filesNeedingSuppression.add(a.path);
       }
     }
   }
@@ -758,20 +754,26 @@ const fixStyleCopIssues = (repo: string, jobs: FailedJob[], branch: string): Gem
     // SA1507: collapse multiple blank lines into one
     fixed = fixed.replace(/\n{3,}/g, '\n\n');
 
-    // SA1402: suppress "single type per file" for multi-type files
-    if (filesNeedingSuppression.has(path) && !fixed.includes('#pragma warning disable SA1402')) {
-      const insertIdx = fixed.indexOf('\nnamespace ');
-      if (insertIdx !== -1) {
-        fixed =
-          fixed.slice(0, insertIdx) +
-          '\n\n#pragma warning disable SA1402 // File may only contain a single type\n' +
-          fixed.slice(insertIdx);
-      }
-    }
-
     if (fixed !== content) {
       fixes.push({ path, content: fixed });
       console.log(`  StyleCop fix for ${path}`);
+    }
+  }
+
+  // SA1402: proactively disable in .editorconfig when fixing .cs files
+  if (filesToFix.size > 0) {
+    const editorconfig = fetchFullFileContent(repo, '.editorconfig', branch);
+    if (editorconfig && !editorconfig.includes('SA1402')) {
+      const anchor = editorconfig.indexOf('dotnet_diagnostic.SA1');
+      if (anchor !== -1) {
+        const lineEnd = editorconfig.indexOf('\n', anchor);
+        const fixed =
+          editorconfig.slice(0, lineEnd + 1) +
+          'dotnet_diagnostic.SA1402.severity = none  # File may only contain a single type\n' +
+          editorconfig.slice(lineEnd + 1);
+        fixes.push({ path: '.editorconfig', content: fixed });
+        console.log('  StyleCop fix: disabled SA1402 in .editorconfig');
+      }
     }
   }
 
