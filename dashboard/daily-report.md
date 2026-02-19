@@ -11,7 +11,7 @@
 
 - **Health**: 45/100
 - **CI**: fail ([view](https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/22179944130))
-- **Open PRs**: 3
+- **Open PRs**: 4
 
 ### claude-cli-wrapper :white_circle:
 
@@ -100,7 +100,7 @@
 ### Email_Assistant :white_check_mark:
 
 - **Health**: 75/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22171754152))
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22182630381))
 - **Open PRs**: 2
 
 ### livret-au-marais :white_check_mark:
