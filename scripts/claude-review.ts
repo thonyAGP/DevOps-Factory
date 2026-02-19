@@ -178,42 +178,56 @@ ${diff.slice(0, 40000)}
 \`\`\``;
 };
 
+const GEMINI_MODEL = 'gemini-2.5-flash';
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+
 const runClaudeReview = (diff: string, prInfo: PRInfo): string => {
   const prompt = buildReviewPrompt(diff, prInfo);
 
+  // Try Claude CLI first (works locally with Max plan tokens)
   try {
-    const result = execSync('claude -p "review" --output-format text', {
-      encoding: 'utf-8',
+    const result = execSync('claude -p --output-format text', {
       input: prompt,
-      timeout: 120000,
+      encoding: 'utf-8',
+      timeout: 300_000,
       maxBuffer: 10 * 1024 * 1024,
     });
-    return result.trim();
-  } catch (error) {
-    console.error('Claude CLI error:', error instanceof Error ? error.message : String(error));
-
-    const diffSummary = `## AI Code Review (Fallback)
-
-### Summary
-Diff summary: ${prInfo.filesChanged} file(s) changed
-
-### Diff Preview
-\`\`\`
-${diff.slice(0, 2000)}
-... (truncated)
-\`\`\`
-
-> Note: Claude CLI review unavailable. Manual review recommended.`;
-
-    return diffSummary;
+    return result.trim() + '\n\n---\n*Reviewed by Claude (Max plan)*';
+  } catch {
+    console.log('  Claude CLI unavailable, trying Gemini fallback...');
   }
+
+  // Fallback: Gemini API (works in CI with API key)
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    return `## AI Code Review\n\n> Review unavailable: no Claude CLI or GEMINI_API_KEY. Manual review recommended.\n\nFiles changed: ${prInfo.filesChanged}`;
+  }
+
+  try {
+    const body = JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { maxOutputTokens: 4096, temperature: 0.3 },
+    });
+    const result = execSync(
+      `curl -s -X POST "${GEMINI_URL}?key=${apiKey}" -H "Content-Type: application/json" -d @-`,
+      { input: body, encoding: 'utf-8', timeout: 60000, maxBuffer: 10 * 1024 * 1024 }
+    );
+    const parsed = JSON.parse(result);
+    const text = parsed?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (text) return text + '\n\n---\n*Reviewed by Gemini 2.5 Flash*';
+  } catch (e) {
+    console.error('Gemini review error:', e instanceof Error ? e.message : String(e));
+  }
+
+  return `## AI Code Review\n\n> Review failed. Manual review recommended.\n\nFiles changed: ${prInfo.filesChanged}`;
 };
 
 // --- Posting review ---
 
 const postReviewComment = (repo: string, pr: string, review: string): void => {
-  const body = review.replace(/"/g, '\\"');
-  sh(`gh pr comment ${pr} --repo ${repo} --body "${body}"`);
+  const tmpFile = '/tmp/claude-review-body.md';
+  writeFileSync(tmpFile, review);
+  sh(`gh pr comment ${pr} --repo ${repo} --body-file ${tmpFile}`);
 };
 
 // --- Main ---

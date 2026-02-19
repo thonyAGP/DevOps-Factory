@@ -33,6 +33,7 @@ jobs:
         run: pnpm claude-review -- --repo ${{ inputs.repo }} --pr ${{ inputs.pr }}
         env:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Commit quota data
         run: |

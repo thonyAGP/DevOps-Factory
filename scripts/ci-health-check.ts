@@ -36,6 +36,7 @@ interface ExistingIssue {
 
 const LABEL = 'ci-failure';
 const MAX_LOG_LENGTH = 2000;
+const SELF_HEAL_COOLDOWN_MS = 4 * 60 * 60 * 1000; // 4h between self-heal attempts per repo
 
 const sh = (cmd: string): string => {
   try {
@@ -133,6 +134,61 @@ const closeIssue = (factoryRepo: string, issue: ExistingIssue, projectName: stri
   }
 };
 
+const hasOpenAiFixPR = (repo: string): boolean => {
+  const result = sh(
+    `gh pr list --repo ${repo} --head "ai-fix/" --state open --json number --jq "length"`
+  );
+  return parseInt(result || '0', 10) > 0;
+};
+
+const getLastSelfHealAttempt = (factoryRepo: string): number => {
+  // Check workflow runs for self-heal targeting this repo
+  const result = sh(
+    `gh api "repos/${factoryRepo}/actions/workflows/self-heal.yml/runs?per_page=5&status=completed" --jq "[.workflow_runs[] | select(.conclusion != null)] | .[0].created_at" 2>/dev/null`
+  );
+  if (!result || result === 'null') return 0;
+  return new Date(result).getTime();
+};
+
+const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
+  const { project, run } = result;
+  if (!run) return;
+
+  // Guard: only self-heal on default branch (main/master)
+  const defaultBranch = sh(`gh api "repos/${project.repo}" --jq ".default_branch" 2>/dev/null`);
+  if (defaultBranch && run.head_branch !== defaultBranch) {
+    console.log(
+      `  [SKIP HEAL] ${project.name}: failure on ${run.head_branch}, not ${defaultBranch}`
+    );
+    return;
+  }
+
+  // Guard: don't trigger if there's already an open ai-fix PR
+  if (hasOpenAiFixPR(project.repo)) {
+    console.log(`  [SKIP HEAL] ${project.name}: open ai-fix PR exists`);
+    return;
+  }
+
+  // Guard: cooldown between attempts
+  const lastAttempt = getLastSelfHealAttempt(factoryRepo);
+  if (Date.now() - lastAttempt < SELF_HEAL_COOLDOWN_MS) {
+    const hoursAgo = ((Date.now() - lastAttempt) / 3600000).toFixed(1);
+    console.log(`  [SKIP HEAL] ${project.name}: last attempt ${hoursAgo}h ago (cooldown 4h)`);
+    return;
+  }
+
+  // Trigger self-heal workflow
+  try {
+    execSync(
+      `gh workflow run self-heal.yml --repo ${factoryRepo} -f repo="${project.repo}" -f run_id="${run.id}"`,
+      { encoding: 'utf-8', timeout: 15000 }
+    );
+    console.log(`  [HEAL] Triggered self-heal for ${project.name} (run ${run.id})`);
+  } catch (e) {
+    console.error(`  [ERROR] Failed to trigger self-heal for ${project.name}:`, e);
+  }
+};
+
 const updateIssue = (factoryRepo: string, issue: ExistingIssue, result: CICheckResult): void => {
   const { project, run } = result;
   if (!run) return;
@@ -198,6 +254,10 @@ const main = () => {
       } else {
         createIssue(factoryRepo, result);
         created++;
+      }
+      // Auto-trigger self-heal for enabled repos
+      if (result.project.hasSelfHealing) {
+        triggerSelfHeal(factoryRepo, result);
       }
     } else if (result.status === 'pass' && existing) {
       closeIssue(factoryRepo, existing, result.project.name);
