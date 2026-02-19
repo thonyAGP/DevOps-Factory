@@ -39,6 +39,7 @@ interface FailedJob {
 interface GeminiFix {
   path: string;
   content: string;
+  replacements?: Array<{ search: string; replace: string }>;
 }
 
 interface GeminiResponse {
@@ -362,6 +363,59 @@ const fetchFileContent = (repo: string, path: string, branch: string): string | 
   }
 };
 
+/** For large files, extract context windows around error lines instead of truncating */
+const fetchFileWithErrorContext = (
+  repo: string,
+  path: string,
+  branch: string,
+  errorLines: number[],
+  windowSize = 30
+): string | null => {
+  const decoded = fetchFullFileContent(repo, path, branch);
+  if (!decoded) return null;
+
+  // Small file: return as-is
+  if (decoded.length <= MAX_FILE_SIZE) return decoded;
+
+  const lines = decoded.split('\n');
+  const totalLines = lines.length;
+
+  // Also include usings/imports (first 30 lines) for namespace context
+  const headerEnd = Math.min(30, totalLines);
+
+  // Build set of line ranges to include
+  const includeLines = new Set<number>();
+  for (let i = 0; i < headerEnd; i++) includeLines.add(i);
+
+  for (const errLine of errorLines) {
+    const idx = errLine - 1; // 0-indexed
+    const start = Math.max(0, idx - windowSize);
+    const end = Math.min(totalLines - 1, idx + windowSize);
+    for (let i = start; i <= end; i++) includeLines.add(i);
+  }
+
+  // Build output with ellipsis markers between gaps
+  const sorted = [...includeLines].sort((a, b) => a - b);
+  const result: string[] = [
+    `// File: ${path} (${totalLines} lines, showing context around errors)`,
+  ];
+  let lastLine = -2;
+
+  for (const lineIdx of sorted) {
+    if (lineIdx > lastLine + 1) {
+      result.push(`// ... lines ${lastLine + 2}-${lineIdx} omitted ...`);
+    }
+    result.push(lines[lineIdx]);
+    lastLine = lineIdx;
+  }
+
+  if (lastLine < totalLines - 1) {
+    result.push(`// ... lines ${lastLine + 2}-${totalLines} omitted ...`);
+  }
+
+  return result.join('\n');
+};
+
 /** Find class boundaries in a file. Returns { startLine, endLine } (0-indexed) or null */
 const findClassBoundaries = (
   content: string,
@@ -515,7 +569,11 @@ ${filesSection.slice(0, 60000)}
 - Focus on BUILD/COMPILE errors first, but also fix formatting issues (trailing whitespace, missing blank lines) if present
 - For "already contains a definition" errors: the class exists in TWO files. Remove the DUPLICATE (the one embedded in a larger file), keep the standalone file.
 - Propose the MINIMAL fix (fewest lines changed)
-- For large files where you only see a fragment: output ONLY the fragment that needs to change, with a clear "// ... rest of file unchanged ..." marker
+- For PARTIAL files (marked "showing context around errors"): use "replacements" array instead of "content"
+  - Each replacement has "search" (exact multi-line text to find) and "replace" (exact text to replace with)
+  - "search" must be unique in the file - include 2-5 lines of context around the change
+  - Do NOT use "content" for partial files - only "replacements"
+- For COMPLETE files: use "content" with the full file content including fix
 - If you cannot fix it, return empty fixes with an explanation
 
 ## Response Format (JSON only)
@@ -523,11 +581,13 @@ ${filesSection.slice(0, 60000)}
   "fixes": [
     {
       "path": "relative/path/to/file.ext",
-      "content": "full file content with fix applied"
+      "content": "full file content with fix applied (for complete files)",
+      "replacements": [{"search": "exact old text", "replace": "exact new text"}]
     }
   ],
   "explanation": "Brief explanation of what was wrong and what was fixed"
-}`;
+}
+Note: Use EITHER "content" OR "replacements" per fix, never both.`;
 };
 
 const askGemini = async (
@@ -699,19 +759,45 @@ const uploadFileViaBlobApi = (
 const applyFixes = (
   repo: string,
   branch: string,
-  _baseBranch: string,
+  baseBranch: string,
   fixes: GeminiFix[]
 ): boolean => {
   let success = true;
 
   for (const fix of fixes) {
-    console.log(`  Applying fix to ${fix.path} (${Math.round(fix.content.length / 1024)}KB)...`);
+    let finalContent = fix.content;
+
+    // Apply search-and-replace for partial-file fixes
+    if (fix.replacements && fix.replacements.length > 0) {
+      const fullContent = fetchFullFileContent(repo, fix.path, baseBranch);
+      if (!fullContent) {
+        console.error(`  Cannot fetch full ${fix.path} for replacement`);
+        success = false;
+        continue;
+      }
+      finalContent = fullContent;
+      for (const r of fix.replacements) {
+        if (!finalContent.includes(r.search)) {
+          console.warn(
+            `  Replacement search text not found in ${fix.path}: "${r.search.slice(0, 60)}..."`
+          );
+          continue;
+        }
+        finalContent = finalContent.replace(r.search, r.replace);
+      }
+      if (finalContent === fullContent) {
+        console.warn(`  No replacements applied in ${fix.path}, skipping`);
+        continue;
+      }
+    }
+
+    console.log(`  Applying fix to ${fix.path} (${Math.round(finalContent.length / 1024)}KB)...`);
 
     const ok = uploadFileViaBlobApi(
       repo,
       branch,
       fix.path,
-      fix.content,
+      finalContent,
       'fix: AI-generated fix for CI failure'
     );
 
@@ -928,12 +1014,28 @@ const main = async (): Promise<void> => {
 
   const fileContents = new Map<string, string>();
 
-  // 2a. Files from annotations
+  // 2a. Files from annotations (with smart context extraction for large files)
   const annotatedFiles = getAnnotatedFiles(targetJobs);
   console.log(`Annotated files: ${[...annotatedFiles].join(', ')}`);
 
+  // Build map of error lines per file for smart context extraction
+  const errorLinesByFile = new Map<string, number[]>();
+  for (const job of targetJobs) {
+    for (const a of job.annotations) {
+      if (a.path && a.start_line) {
+        const existing = errorLinesByFile.get(a.path) || [];
+        existing.push(a.start_line);
+        errorLinesByFile.set(a.path, existing);
+      }
+    }
+  }
+
   for (const path of annotatedFiles) {
-    const content = fetchFileContent(repo, path, defaultBranch);
+    const errorLines = errorLinesByFile.get(path) || [];
+    const content =
+      errorLines.length > 0
+        ? fetchFileWithErrorContext(repo, path, defaultBranch, errorLines)
+        : fetchFileContent(repo, path, defaultBranch);
     if (content) {
       fileContents.set(path, content);
       console.log(`  Fetched ${path} (${Math.round(content.length / 1024)}KB)`);
@@ -1001,14 +1103,25 @@ const main = async (): Promise<void> => {
     const logText = targetJobs.map((j) => j.logs).join('\n');
     const extractedPaths = new Set<string>();
 
-    // .NET/TS errors: /path/to/file.cs(line,col) or file.ts(line,col)
-    const errorLocPattern = /([\w/.+:\\-]+\.(?:ts|tsx|js|jsx|cs))\(\d+/g;
+    // Collect line numbers per file from error location patterns
+    const logErrorLines = new Map<string, number[]>();
+    const errorLocWithLinePattern = /([\w/.+:\\-]+\.(?:ts|tsx|js|jsx|cs))\((\d+)/g;
+    let locMatch: RegExpExecArray | null;
+    while ((locMatch = errorLocWithLinePattern.exec(logText)) !== null) {
+      const p = normalizeLogPath(locMatch[1]);
+      const lineNum = Number(locMatch[2]);
+      const existing = logErrorLines.get(p) || [];
+      existing.push(lineNum);
+      logErrorLines.set(p, existing);
+      extractedPaths.add(p);
+    }
+
     // csproj references: [/path/to/file.csproj]
     const csprojPattern = /\[([\w/.+:\\-]+\.csproj)\]/g;
     // General: whitespace-preceded path
     const generalPattern = /(?:^|\s)([\w/.+-]+\.(?:ts|tsx|js|jsx|cs|csproj))(?=[\s(:]|$)/gm;
 
-    for (const pattern of [errorLocPattern, csprojPattern, generalPattern]) {
+    for (const pattern of [csprojPattern, generalPattern]) {
       let match: RegExpExecArray | null;
       while ((match = pattern.exec(logText)) !== null) {
         const p = normalizeLogPath(match[1]);
@@ -1025,9 +1138,13 @@ const main = async (): Promise<void> => {
     console.log(`  Extracted ${extractedPaths.size} file path(s) from logs`);
     for (const ep of extractedPaths) console.log(`    → ${ep}`);
 
-    // Fetch up to 10 files for context
+    // Fetch up to 10 files for context (with smart context for large files)
     for (const path of [...extractedPaths].slice(0, 10)) {
-      const content = fetchFileContent(repo, path, defaultBranch);
+      const errorLines = logErrorLines.get(path) || [];
+      const content =
+        errorLines.length > 0
+          ? fetchFileWithErrorContext(repo, path, defaultBranch, errorLines)
+          : fetchFileContent(repo, path, defaultBranch);
       if (content) {
         fileContents.set(path, content);
         console.log(`  Fetched ${path} (${Math.round(content.length / 1024)}KB)`);
@@ -1068,6 +1185,11 @@ const main = async (): Promise<void> => {
 
     // Safety: reject AI fixes that look suspicious (>50% content change)
     for (const fix of aiResponse.fixes) {
+      // Replacement-style fixes are inherently safe (applied on full file)
+      if (fix.replacements && fix.replacements.length > 0) {
+        allFixes.push(fix);
+        continue;
+      }
       const original = fetchFullFileContent(repo, fix.path, defaultBranch);
       if (original && fix.content.length < original.length * 0.3) {
         console.warn(
