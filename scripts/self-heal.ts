@@ -260,7 +260,7 @@ const getFailedJobs = (repo: string, runId: string): FailedJob[] => {
     // Fallback: synthesize annotations from ##[error] lines when API returns 403
     if (errors.length === 0 && jobLogs.length > 0) {
       const errorLinePattern =
-        /##\[error\]([\w/.+:\\-]+\.(?:cs|ts|tsx|js|jsx))\((\d+),\d+\):\s*error\s+\w+:\s*(.+?)(?:\s+\[|$)/gm;
+        /##\[error\]([\w/.+:\\-]+\.(?:cs|ts|tsx|js|jsx))\((\d+),\d+\):\s*error\s+(\w+):\s*(.+?)(?:\s+\[|$)/gm;
       let m: RegExpExecArray | null;
       while ((m = errorLinePattern.exec(jobLogs)) !== null) {
         const path = normalizeLogPath(m[1]);
@@ -269,7 +269,7 @@ const getFailedJobs = (repo: string, runId: string): FailedJob[] => {
           start_line: Number(m[2]),
           end_line: Number(m[2]),
           annotation_level: 'failure',
-          message: m[3].trim(),
+          message: `${m[3]}: ${m[4].trim()}`,
         });
       }
       if (errors.length > 0) {
@@ -791,9 +791,16 @@ ${explanation}
 
   ensureLabel(repo, 'ai-fix', '7057ff', 'Auto-generated fix by DevOps Factory');
 
+  const bodyFile = '/tmp/self-heal-pr-body.md';
+  writeFileSync(bodyFile, body);
   const prUrl = sh(
-    `gh pr create --repo ${repo} --head ${branch} --base ${baseBranch} --title "${title}" --body "${body.replace(/"/g, '\\"')}" --label "ai-fix"`
+    `gh pr create --repo ${repo} --head ${branch} --base ${baseBranch} --title "${title}" --body-file ${bodyFile} --label "ai-fix"`
   );
+  try {
+    unlinkSync(bodyFile);
+  } catch {
+    /* ignore */
+  }
 
   return prUrl.match(/(https:\/\/[^\s]+)/)?.[1] || prUrl;
 };
@@ -816,10 +823,16 @@ The AI could not generate a reliable fix for this failure. Manual investigation 
 
   ensureLabel(repo, 'ci-failure', 'e11d48', 'CI failure requiring manual fix');
 
-  const escapedBody = body.replace(/"/g, '\\"');
+  const bodyFile = '/tmp/self-heal-issue-body.md';
+  writeFileSync(bodyFile, body);
   sh(
-    `gh issue create --repo ${repo} --title "${title}" --body "${escapedBody}" --label "ci-failure"`
+    `gh issue create --repo ${repo} --title "${title}" --body-file ${bodyFile} --label "ci-failure"`
   );
+  try {
+    unlinkSync(bodyFile);
+  } catch {
+    /* ignore */
+  }
 
   console.log(`Issue created on ${repo}`);
 };
