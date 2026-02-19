@@ -219,9 +219,9 @@ const parseArgs = (): { repo: string; runId: string } => {
   return { repo, runId };
 };
 
-const sh = (cmd: string): string => {
+const sh = (cmd: string, timeout = 60000): string => {
   try {
-    return execSync(cmd, { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024 }).trim();
+    return execSync(cmd, { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024, timeout }).trim();
   } catch (e: unknown) {
     const err = e as { stdout?: string; stderr?: string };
     return err.stdout?.trim() || err.stderr?.trim() || '';
@@ -811,31 +811,46 @@ const createBranch = (repo: string, branchName: string, baseBranch: string): boo
   return result.includes(branchName) || result.includes(sha);
 };
 
-/** Upload a file using the Git tree/commit API (handles large files via JSON input) */
-const uploadFileViaBlobApi = (
+/** Create a blob for a single file, return SHA or null */
+const createBlob = (repo: string, content: string): string | null => {
+  const tmpFile = `self-heal-blob-${Date.now()}.json`;
+  writeFileSync(tmpFile, JSON.stringify({ content, encoding: 'utf-8' }));
+  const result = sh(`gh api repos/${repo}/git/blobs --input ${tmpFile}`);
+  try {
+    unlinkSync(tmpFile);
+  } catch {
+    /* ignore */
+  }
+  try {
+    return (JSON.parse(result) as { sha: string }).sha;
+  } catch {
+    return null;
+  }
+};
+
+/** Batch upload multiple files in a single atomic commit (no race condition) */
+const uploadFilesBatch = (
   repo: string,
   branch: string,
-  path: string,
-  content: string,
+  files: Array<{ path: string; content: string }>,
   commitMessage: string
 ): boolean => {
   const tmpFile = `self-heal-api-${Date.now()}.json`;
 
   try {
-    // 1. Create blob (always use input file to avoid shell length limits)
-    const contentBase64 = Buffer.from(content).toString('base64');
-    writeFileSync(tmpFile, JSON.stringify({ content: contentBase64, encoding: 'base64' }));
-    const blobResult = sh(`gh api repos/${repo}/git/blobs --input ${tmpFile}`);
-
-    let blobSha: string;
-    try {
-      blobSha = (JSON.parse(blobResult) as { sha: string }).sha;
-    } catch {
-      console.error(`  Failed to create blob for ${path}`);
-      return false;
+    // Step 1: Create all blobs
+    const blobs: Array<{ path: string; sha: string }> = [];
+    for (const file of files) {
+      console.log(`  Creating blob for ${file.path}...`);
+      const sha = createBlob(repo, file.content);
+      if (!sha) {
+        console.error(`  Failed to create blob for ${file.path}`);
+        return false;
+      }
+      blobs.push({ path: file.path, sha });
     }
 
-    // 2. Get current branch tree
+    // Step 2: Get current branch tip
     const refData = ghApi<{ object: { sha: string } }>(`repos/${repo}/git/ref/heads/${branch}`);
     if (!refData) return false;
 
@@ -844,12 +859,12 @@ const uploadFileViaBlobApi = (
     );
     if (!commitData) return false;
 
-    // 3. Create new tree (use JSON input to avoid shell escaping issues)
+    // Step 3: Create single tree with ALL files
     writeFileSync(
       tmpFile,
       JSON.stringify({
         base_tree: commitData.tree.sha,
-        tree: [{ path, mode: '100644', type: 'blob', sha: blobSha }],
+        tree: blobs.map((b) => ({ path: b.path, mode: '100644', type: 'blob', sha: b.sha })),
       })
     );
     const treeResult = sh(`gh api repos/${repo}/git/trees --input ${tmpFile}`);
@@ -858,11 +873,11 @@ const uploadFileViaBlobApi = (
     try {
       treeSha = (JSON.parse(treeResult) as { sha: string }).sha;
     } catch {
-      console.error(`  Failed to create tree for ${path}`);
+      console.error('  Failed to create tree');
       return false;
     }
 
-    // 4. Create commit (use JSON input)
+    // Step 4: Create single commit
     writeFileSync(
       tmpFile,
       JSON.stringify({
@@ -877,21 +892,20 @@ const uploadFileViaBlobApi = (
     try {
       newCommitSha = (JSON.parse(newCommitResult) as { sha: string }).sha;
     } catch {
-      console.error(`  Failed to create commit for ${path}`);
+      console.error('  Failed to create commit');
       return false;
     }
 
-    // 5. Update branch ref
+    // Step 5: Update branch ref (single atomic operation)
     const updateResult = sh(
       `gh api repos/${repo}/git/refs/heads/${branch} -X PATCH -f sha="${newCommitSha}"`
     );
-
     return updateResult.includes(newCommitSha);
   } finally {
     try {
       unlinkSync(tmpFile);
     } catch {
-      // ignore
+      /* ignore */
     }
   }
 };
@@ -903,6 +917,7 @@ const applyFixes = (
   fixes: GeminiFix[]
 ): boolean => {
   let success = true;
+  const filesToUpload: Array<{ path: string; content: string }> = [];
 
   for (const fix of fixes) {
     let finalContent = fix.content;
@@ -916,6 +931,7 @@ const applyFixes = (
         continue;
       }
       finalContent = fullContent;
+      let applied = 0;
       for (const r of fix.replacements) {
         if (!finalContent.includes(r.search)) {
           console.warn(
@@ -924,27 +940,32 @@ const applyFixes = (
           continue;
         }
         finalContent = finalContent.replace(r.search, r.replace);
+        applied++;
       }
-      if (finalContent === fullContent) {
+      if (applied === 0) {
         console.warn(`  No replacements applied in ${fix.path}, skipping`);
+        continue;
+      }
+      if (applied < fix.replacements.length) {
+        console.warn(
+          `  Only ${applied}/${fix.replacements.length} replacements applied in ${fix.path}, rejecting partial fix`
+        );
+        success = false;
         continue;
       }
     }
 
-    console.log(`  Applying fix to ${fix.path} (${Math.round(finalContent.length / 1024)}KB)...`);
+    console.log(`  Preparing fix for ${fix.path} (${Math.round(finalContent.length / 1024)}KB)...`);
+    filesToUpload.push({ path: fix.path, content: finalContent });
+  }
 
-    const ok = uploadFileViaBlobApi(
-      repo,
-      branch,
-      fix.path,
-      finalContent,
-      'fix: AI-generated fix for CI failure'
-    );
+  if (filesToUpload.length === 0) return false;
 
-    if (!ok) {
-      console.error(`  Failed to update ${fix.path}`);
-      success = false;
-    }
+  console.log(`  Uploading ${filesToUpload.length} file(s) in single atomic commit...`);
+  const ok = uploadFilesBatch(repo, branch, filesToUpload, 'fix: AI-generated fix for CI failure');
+  if (!ok) {
+    console.error('  Batch upload failed');
+    return false;
   }
 
   return success;
@@ -1441,9 +1462,28 @@ const main = async (): Promise<void> => {
   }
 
   console.log('Applying fixes...');
-  applyFixes(repo, branchName, defaultBranch, allFixes);
+  const applied = applyFixes(repo, branchName, defaultBranch, allFixes);
+  if (!applied) {
+    console.error('All fixes failed to apply');
+    createIssue(
+      repo,
+      runId,
+      `${explanation}\n\n**Note**: Auto-fix attempted but all replacements failed to apply.`
+    );
+    return;
+  }
 
   const prUrl = createFixPR(repo, branchName, defaultBranch, runId, explanation, usedPatternId);
+  const prValid = prUrl.includes('github.com') && prUrl.includes('/pull/');
+  if (!prValid) {
+    console.error(`PR creation failed (got: ${prUrl.slice(0, 100)})`);
+    createIssue(
+      repo,
+      runId,
+      `${explanation}\n\n**Note**: Fix applied to branch \`${branchName}\` but PR creation failed.`
+    );
+    return;
+  }
   console.log(`\nPR created: ${prUrl}`);
 
   // Auto-merge small fixes from high-confidence patterns

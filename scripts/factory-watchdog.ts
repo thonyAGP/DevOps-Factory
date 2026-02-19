@@ -304,6 +304,12 @@ const main = () => {
   for (const result of results) {
     if (result.status === 'pass') continue;
 
+    // Skip creating issues for informational-only partial failures (transient, not actionable)
+    if (result.status === 'partial_failure' && !hasHealablePatterns(result.patterns)) {
+      console.log(`  [INFO ONLY] ${result.workflow}: transient patterns only, skipping issue`);
+      continue;
+    }
+
     const existing = existingIssues.find((i) => i.title.includes(result.workflow));
     if (existing) {
       console.log(`  [EXISTS] Issue #${existing.number} for ${result.workflow}`);
@@ -326,19 +332,33 @@ const main = () => {
     }
   }
 
-  // Auto-close resolved issues
+  // Auto-close resolved issues + informational-only partial failures
   let closed = 0;
   for (const issue of existingIssues) {
-    const matchingResult = results.find(
-      (r) => r.status === 'pass' && issue.title.includes(r.workflow)
+    // Close if workflow recovered (passing now)
+    const recovered = results.find((r) => r.status === 'pass' && issue.title.includes(r.workflow));
+    // Close informational-only partial failures (no healable patterns = transient, not actionable)
+    const infoOnly = results.find(
+      (r) =>
+        r.status === 'partial_failure' &&
+        issue.title.includes(r.workflow) &&
+        !hasHealablePatterns(r.patterns)
     );
-    if (matchingResult) {
+
+    const closeReason = recovered
+      ? 'Workflow recovered. Auto-closing.'
+      : infoOnly
+        ? 'Only transient/informational patterns detected (no code bugs). Auto-closing.'
+        : null;
+
+    if (closeReason) {
       try {
-        execSync(
-          `gh issue close ${issue.number} --repo ${repo} --comment "Workflow recovered. Auto-closing."`,
-          { encoding: 'utf-8', stdio: 'inherit' }
-        );
-        console.log(`  [CLOSED] Issue #${issue.number} - ${matchingResult.workflow} recovered`);
+        execSync(`gh issue close ${issue.number} --repo ${repo} --comment "${closeReason}"`, {
+          encoding: 'utf-8',
+          stdio: 'inherit',
+        });
+        const label = recovered ? 'recovered' : 'informational-only';
+        console.log(`  [CLOSED] Issue #${issue.number} - ${label}`);
         closed++;
       } catch {
         /* best effort */
