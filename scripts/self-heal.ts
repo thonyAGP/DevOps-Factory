@@ -1183,11 +1183,26 @@ const main = async (): Promise<void> => {
       console.log(`Gemini: ${aiResponse.explanation}`);
     }
 
-    // Safety: reject AI fixes that look suspicious (>50% content change)
+    // Safety: reject AI fixes that look suspicious
     for (const fix of aiResponse.fixes) {
       // Replacement-style fixes are inherently safe (applied on full file)
       if (fix.replacements && fix.replacements.length > 0) {
         allFixes.push(fix);
+        continue;
+      }
+      if (!fix.content) {
+        console.warn(`  Rejected fix for ${fix.path}: no content or replacements`);
+        continue;
+      }
+      // Reject content fixes for files that were sent as partial context
+      const sentContent = fileContents.get(fix.path);
+      if (
+        sentContent?.startsWith('// File: ') &&
+        sentContent.includes('showing context around errors')
+      ) {
+        console.warn(
+          `  Rejected content fix for ${fix.path}: file was sent as partial context, expected replacements`
+        );
         continue;
       }
       const original = fetchFullFileContent(repo, fix.path, defaultBranch);
@@ -1259,7 +1274,10 @@ const main = async (): Promise<void> => {
   console.log(`\nPR created: ${prUrl}`);
 
   // Auto-merge small fixes from high-confidence patterns
-  const totalLinesChanged = allFixes.reduce((sum, f) => sum + f.content.split('\n').length, 0);
+  const totalLinesChanged = allFixes.reduce(
+    (sum, f) => sum + (f.replacements?.length ?? f.content?.split('\n').length ?? 0),
+    0
+  );
   const isSmallFix = allFixes.length <= 3 && totalLinesChanged <= 200;
   const isHighConfidencePattern = usedPatternId && matchedPatternConfidence(usedPatternId) >= 0.9;
 
