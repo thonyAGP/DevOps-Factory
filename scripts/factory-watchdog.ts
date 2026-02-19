@@ -12,26 +12,32 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
 
-const PARTIAL_FAILURE_PATTERNS = [
+// Partial failure patterns split into healable (code bugs) vs informational (env/transient)
+const HEALABLE_PATTERNS = [
   'All providers failed',
   '/bin/sh:',
   'Failed to upload',
-  'ETIMEDOUT',
-  'ECONNREFUSED',
-  'rate limit exceeded',
-  'Could not resolve host',
   'Cannot find module',
-  'GEMINI_API_KEY',
-  'GROQ_API_KEY',
-  'gh: not found',
   'Failed to create PR',
   'All uploads failed',
 ];
 
+const INFORMATIONAL_PATTERNS = [
+  'ETIMEDOUT',
+  'ECONNREFUSED',
+  'rate limit exceeded',
+  'Could not resolve host',
+  'GEMINI_API_KEY',
+  'GROQ_API_KEY',
+  'gh: not found',
+];
+
+const ALL_PARTIAL_PATTERNS = [...HEALABLE_PATTERNS, ...INFORMATIONAL_PATTERNS];
+
 const COOLDOWN_PATH = 'data/self-heal-cooldowns.json';
 const FACTORY_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 
-// Workflows where total failure should trigger self-heal on the factory repo
+// Workflows where failures should trigger self-heal
 const SELF_HEALABLE_WORKFLOWS = [
   'Factory CI',
   'CI Health Check',
@@ -85,9 +91,13 @@ const getRunLogs = (repo: string, runId: number): string => {
 };
 
 const detectPartialFailures = (logs: string): string[] => {
-  return PARTIAL_FAILURE_PATTERNS.filter((pattern) =>
+  return ALL_PARTIAL_PATTERNS.filter((pattern) =>
     logs.toLowerCase().includes(pattern.toLowerCase())
   );
+};
+
+const hasHealablePatterns = (patterns: string[]): boolean => {
+  return patterns.some((p) => HEALABLE_PATTERNS.some((hp) => p.toLowerCase() === hp.toLowerCase()));
 };
 
 const getExistingIssues = (repo: string): Array<{ number: number; title: string }> => {
@@ -116,10 +126,26 @@ const saveCooldown = (repo: string): void => {
   writeFileSync(COOLDOWN_PATH, JSON.stringify(cooldowns, null, 2));
 };
 
-const triggerSelfHeal = (repo: string, run: WorkflowRun): boolean => {
-  // Guard: cooldown 24h for factory
+const getLastSelfHealForRepo = (repo: string): number => {
+  // Local file: works within same CI run
   const cooldowns = loadCooldowns();
-  const lastAttempt = cooldowns[repo] ?? 0;
+  const localTs = cooldowns[repo] ?? 0;
+  if (localTs > 0) return localTs;
+
+  // API fallback: check most recent ai-fix PR (any state) on target repo
+  const prDate = sh(
+    `gh pr list --repo ${repo} --search "head:ai-fix/" --state all --limit 1 --json createdAt --jq ".[0].createdAt" 2>/dev/null`
+  );
+  if (prDate && prDate !== 'null' && prDate !== '') {
+    return new Date(prDate).getTime();
+  }
+
+  return 0;
+};
+
+const triggerSelfHeal = (repo: string, run: WorkflowRun): boolean => {
+  // Guard: cooldown 24h for factory (persistent via API fallback)
+  const lastAttempt = getLastSelfHealForRepo(repo);
   if (Date.now() - lastAttempt < FACTORY_COOLDOWN_MS) {
     const hoursAgo = ((Date.now() - lastAttempt) / 3600000).toFixed(1);
     console.log(`  [SKIP HEAL] ${repo}: last attempt ${hoursAgo}h ago (cooldown 24h)`);
@@ -284,12 +310,16 @@ const main = () => {
       created++;
     }
 
-    // Trigger self-heal for total failures on known healable workflows
-    if (
-      result.status === 'total_failure' &&
+    // Trigger self-heal for:
+    // - Total failures on healable workflows
+    // - Partial failures with healable patterns (code bugs, not env/transient issues)
+    const shouldHeal =
       result.run &&
-      SELF_HEALABLE_WORKFLOWS.includes(result.workflow)
-    ) {
+      SELF_HEALABLE_WORKFLOWS.includes(result.workflow) &&
+      (result.status === 'total_failure' ||
+        (result.status === 'partial_failure' && hasHealablePatterns(result.patterns)));
+
+    if (shouldHeal && result.run) {
       if (triggerSelfHeal(repo, result.run)) healed++;
     }
   }

@@ -15,6 +15,7 @@ export interface ProjectConfig {
   productionUrl?: string;
   testFramework?: 'vitest' | 'xunit' | 'jest' | 'none';
   hasTests?: boolean;
+  ciWorkflow?: string; // CI workflow filename, default 'ci.yml'
 }
 
 export interface CoverageThresholds {
@@ -74,6 +75,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLinkChecker: false,
     vercel: false,
     testFramework: 'none',
+    ciWorkflow: 'factory-ci.yml',
   },
   {
     name: 'Email_Assistant',

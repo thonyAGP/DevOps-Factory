@@ -49,9 +49,10 @@ const sh = (cmd: string): string => {
   }
 };
 
-const getLatestRun = (repo: string): WorkflowRun | null => {
+const getLatestCIRun = (repo: string, ciWorkflow: string = 'ci.yml'): WorkflowRun | null => {
+  // Filter by CI workflow file to avoid masking by other workflows (e.g. DevOps-Factory has 20+)
   const result = sh(
-    `gh api "repos/${repo}/actions/runs?per_page=1&status=completed" --jq ".workflow_runs[0] | {id, conclusion, status, name, html_url, created_at, head_branch}"`
+    `gh api "repos/${repo}/actions/workflows/${ciWorkflow}/runs?per_page=1&status=completed" --jq ".workflow_runs[0] | {id, conclusion, status, name, html_url, created_at, head_branch}"`
   );
   if (!result || result === 'null') return null;
   try {
@@ -157,8 +158,21 @@ const saveCooldown = (repo: string): void => {
 };
 
 const getLastSelfHealForRepo = (repo: string): number => {
+  // Local file: works within same CI run (multi-repo dedup)
   const cooldowns = loadCooldowns();
-  return cooldowns[repo] ?? 0;
+  const localTs = cooldowns[repo] ?? 0;
+  if (localTs > 0) return localTs;
+
+  // API fallback: check most recent ai-fix PR (any state) on target repo
+  // Persists across CI runs since it queries GitHub, not local filesystem
+  const prDate = sh(
+    `gh pr list --repo ${repo} --search "head:ai-fix/" --state all --limit 1 --json createdAt --jq ".[0].createdAt" 2>/dev/null`
+  );
+  if (prDate && prDate !== 'null' && prDate !== '') {
+    return new Date(prDate).getTime();
+  }
+
+  return 0;
 };
 
 const hasOpenAiFixPR = (repo: string): boolean => {
@@ -265,7 +279,7 @@ const main = () => {
 
   for (const project of ciProjects) {
     process.stdout.write(`Checking ${project.name}... `);
-    const run = getLatestRun(project.repo);
+    const run = getLatestCIRun(project.repo, project.ciWorkflow);
 
     if (!run) {
       console.log('no runs found');
