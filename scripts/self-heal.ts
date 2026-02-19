@@ -725,18 +725,20 @@ const applyFixes = (
 };
 
 /** Deterministic fix for StyleCop: trailing whitespace (SA1028) and missing blank line (SA1513) */
+const STYLECOP_FIXABLE = ['SA1028', 'SA1513', 'SA1507', 'SA1402'];
+
 const fixStyleCopIssues = (repo: string, jobs: FailedJob[], branch: string): GeminiFix[] => {
   const fixes: GeminiFix[] = [];
   const filesToFix = new Set<string>();
+  const filesNeedingSuppression = new Set<string>();
 
   for (const job of jobs) {
     for (const a of job.annotations) {
-      if (
-        a.message.includes('SA1028') ||
-        a.message.includes('SA1513') ||
-        a.message.includes('SA1507')
-      ) {
+      if (STYLECOP_FIXABLE.some((code) => a.message.includes(code))) {
         filesToFix.add(a.path);
+      }
+      if (a.message.includes('SA1402')) {
+        filesNeedingSuppression.add(a.path);
       }
     }
   }
@@ -755,6 +757,17 @@ const fixStyleCopIssues = (repo: string, jobs: FailedJob[], branch: string): Gem
 
     // SA1507: collapse multiple blank lines into one
     fixed = fixed.replace(/\n{3,}/g, '\n\n');
+
+    // SA1402: suppress "single type per file" for multi-type files
+    if (filesNeedingSuppression.has(path) && !fixed.includes('#pragma warning disable SA1402')) {
+      const insertIdx = fixed.indexOf('\nnamespace ');
+      if (insertIdx !== -1) {
+        fixed =
+          fixed.slice(0, insertIdx) +
+          '\n\n#pragma warning disable SA1402 // File may only contain a single type\n' +
+          fixed.slice(insertIdx);
+      }
+    }
 
     if (fixed !== content) {
       fixes.push({ path, content: fixed });
