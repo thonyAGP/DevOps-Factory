@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-19T17:02:31.543Z",
+  "timestamp": "2026-02-19T18:42:55.246Z",
   "projects": [
     {
       "name": "ClubMedRoomAssignment",
@@ -8,20 +8,20 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-02-19T13:57:41Z",
+        "created_at": "2026-02-19T17:25:19Z",
         "head_branch": "main",
-        "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/22184741266",
-        "id": 22184741266,
+        "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/22192523507",
+        "id": 22192523507,
         "name": "CI"
       },
       "openPRs": [
         {
-          "created_at": "2026-02-19T16:13:46Z",
-          "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/pull/32",
+          "created_at": "2026-02-19T17:03:16Z",
+          "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/pull/33",
           "labels": ["ai-fix"],
-          "number": 32,
+          "number": 33,
           "state": "OPEN",
-          "title": "fix: CI fix [pattern:auto-1771517616985]",
+          "title": "fix: CI fix [pattern:auto-1771520590027]",
           "user": {
             "login": "thonyAGP"
           }
@@ -44,51 +44,6 @@
           "number": 1,
           "state": "OPEN",
           "title": "feat: Anti-regression infrastructure & MECANO fixes",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 45,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": true
-    },
-    {
-      "name": "Email_Assistant",
-      "fullName": "thonyAGP/Email_Assistant",
-      "stack": "node",
-      "ciStatus": "fail",
-      "lastRun": {
-        "conclusion": "skipped",
-        "created_at": "2026-02-19T16:46:40Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22191124723",
-        "id": 22191124723,
-        "name": "Qodo Merge - PR Review"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-19T16:46:33Z",
-          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/8",
-          "labels": ["enhancement", "Tests", "Review effort 3/5", "Bug fix"],
-          "number": 8,
-          "state": "OPEN",
-          "title": "feat: French AI summaries + navigation fixes + E2E tests",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:43:14Z",
-          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/7",
-          "labels": ["enhancement", "Review effort 2/5"],
-          "number": 7,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
           "user": {
             "login": "thonyAGP"
           }
@@ -607,6 +562,40 @@
           "html_url": "https://github.com/thonyAGP/au-marais/pull/3",
           "labels": [],
           "number": 3,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 75,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true
+    },
+    {
+      "name": "Email_Assistant",
+      "fullName": "thonyAGP/Email_Assistant",
+      "stack": "node",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-19T17:05:23Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22191808207",
+        "id": 22191808207,
+        "name": "Post-Deploy Health Check"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:43:14Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/7",
+          "labels": ["enhancement", "Review effort 2/5"],
+          "number": 7,
           "state": "OPEN",
           "title": "chore: add DevOps-Factory AI workflows",
           "user": {
