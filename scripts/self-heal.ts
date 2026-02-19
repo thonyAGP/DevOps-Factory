@@ -66,6 +66,22 @@ interface PatternDB {
 const PATTERN_DB_PATH = 'data/patterns.json';
 const PATTERN_CONFIDENCE_THRESHOLD = 0.8;
 
+/** Strip CI runner absolute prefixes to get repo-relative paths.
+ * Linux:   /home/runner/work/{repo}/{repo}/actual/path → actual/path
+ * Windows: D:\a\{repo}\{repo}\actual\path → actual/path */
+const normalizeLogPath = (p: string): string => {
+  // Linux GitHub Actions: home/runner/work/{anything}/{anything}/rest
+  const linux = p.match(/home\/runner\/work\/[^/]+\/[^/]+\/(.*)/);
+  if (linux) return linux[1];
+  // Windows GitHub Actions: D/a/{anything}/{anything}/rest (forward-slashed)
+  const win = p.match(/[A-Za-z]\/a\/[^/]+\/[^/]+\/(.*)/);
+  if (win) return win[1];
+  // Windows backslash variant (already converted to forward slashes)
+  const winBack = p.match(/[A-Za-z]:\\a\\[^\\]+\\[^\\]+\\(.*)/);
+  if (winBack) return winBack[1].replace(/\\/g, '/');
+  return p;
+};
+
 // --- Pattern Database ---
 
 const loadPatterns = (): PatternDB => {
@@ -856,18 +872,33 @@ const main = async (): Promise<void> => {
     targetJobs.every((j) => j.annotations.length === 0);
 
   if (hasLogsWithoutAnnotations && fileContents.size === 0) {
-    // Extract file paths from log error messages (e.g. "src/foo.ts(12,5): error TS2345")
-    const filePathPattern = /(?:^|\s)([\w/.+-]+\.(?:ts|tsx|js|jsx|cs|csproj))[\s(:]/gm;
+    // Extract file paths from log error messages using multiple CI-aware patterns
     const logText = targetJobs.map((j) => j.logs).join('\n');
     const extractedPaths = new Set<string>();
-    let match: RegExpExecArray | null;
-    while ((match = filePathPattern.exec(logText)) !== null) {
-      const p = match[1];
-      if (!p.startsWith('node_modules/') && !p.startsWith('.github/')) {
-        extractedPaths.add(p);
+
+    // .NET/TS errors: /path/to/file.cs(line,col) or file.ts(line,col)
+    const errorLocPattern = /([\w/.+:\\-]+\.(?:ts|tsx|js|jsx|cs))\(\d+/g;
+    // csproj references: [/path/to/file.csproj]
+    const csprojPattern = /\[([\w/.+:\\-]+\.csproj)\]/g;
+    // General: whitespace-preceded path
+    const generalPattern = /(?:^|\s)([\w/.+-]+\.(?:ts|tsx|js|jsx|cs|csproj))(?=[\s(:]|$)/gm;
+
+    for (const pattern of [errorLocPattern, csprojPattern, generalPattern]) {
+      let match: RegExpExecArray | null;
+      while ((match = pattern.exec(logText)) !== null) {
+        const p = normalizeLogPath(match[1]);
+        if (
+          !p.startsWith('node_modules/') &&
+          !p.startsWith('.github/') &&
+          !p.startsWith('home/') &&
+          !p.startsWith('usr/')
+        ) {
+          extractedPaths.add(p);
+        }
       }
     }
     console.log(`  Extracted ${extractedPaths.size} file path(s) from logs`);
+    for (const ep of extractedPaths) console.log(`    → ${ep}`);
 
     // Fetch up to 10 files for context
     for (const path of [...extractedPaths].slice(0, 10)) {
