@@ -725,20 +725,28 @@ const applyFixes = (
 };
 
 /** Deterministic fix for StyleCop: trailing whitespace (SA1028) and missing blank line (SA1513) */
-const STYLECOP_FIXABLE = ['SA1028', 'SA1513', 'SA1507', 'SA1402'];
+/** SA codes we can fix deterministically (whitespace/blank lines) */
+const STYLECOP_AUTO_FIX = ['SA1028', 'SA1513', 'SA1507'];
 
 const fixStyleCopIssues = (repo: string, jobs: FailedJob[], branch: string): GeminiFix[] => {
   const fixes: GeminiFix[] = [];
   const filesToFix = new Set<string>();
+  const allSACodes = new Set<string>();
 
   for (const job of jobs) {
     for (const a of job.annotations) {
-      if (STYLECOP_FIXABLE.some((code) => a.message.includes(code))) {
-        filesToFix.add(a.path);
+      // Collect ALL SA codes from annotations
+      const saMatch = a.message.match(/SA\d{4}/);
+      if (saMatch) {
+        allSACodes.add(saMatch[0]);
+        if (STYLECOP_AUTO_FIX.some((code) => a.message.includes(code))) {
+          filesToFix.add(a.path);
+        }
       }
     }
   }
 
+  // Fix SA1028/SA1513/SA1507 deterministically
   for (const path of filesToFix) {
     const content = fetchFullFileContent(repo, path, branch);
     if (!content) continue;
@@ -760,20 +768,34 @@ const fixStyleCopIssues = (repo: string, jobs: FailedJob[], branch: string): Gem
     }
   }
 
-  // SA1402: proactively disable in .editorconfig when fixing .cs files
-  if (filesToFix.size > 0) {
-    const editorconfig = fetchFullFileContent(repo, '.editorconfig', branch);
-    if (editorconfig && !editorconfig.includes('SA1402')) {
-      const anchor = editorconfig.indexOf('dotnet_diagnostic.SA1');
+  // Suppress unfixable SA rules in .editorconfig
+  const editorconfig = fetchFullFileContent(repo, '.editorconfig', branch);
+  if (editorconfig) {
+    let updated = editorconfig;
+    const codesToSuppress = [...allSACodes].filter(
+      (code) => !STYLECOP_AUTO_FIX.includes(code) && !updated.includes(code)
+    );
+
+    if (codesToSuppress.length > 0) {
+      const anchor = updated.lastIndexOf('dotnet_diagnostic.SA');
       if (anchor !== -1) {
-        const lineEnd = editorconfig.indexOf('\n', anchor);
-        const fixed =
-          editorconfig.slice(0, lineEnd + 1) +
-          'dotnet_diagnostic.SA1402.severity = none  # File may only contain a single type\n' +
-          editorconfig.slice(lineEnd + 1);
-        fixes.push({ path: '.editorconfig', content: fixed });
-        console.log('  StyleCop fix: disabled SA1402 in .editorconfig');
+        const lineEnd = updated.indexOf('\n', anchor);
+        const suppressions = codesToSuppress
+          .sort()
+          .map(
+            (code) =>
+              `dotnet_diagnostic.${code}.severity = none  # Auto-suppressed by DevOps-Factory`
+          )
+          .join('\n');
+        updated = updated.slice(0, lineEnd + 1) + suppressions + '\n' + updated.slice(lineEnd + 1);
       }
+    }
+
+    if (updated !== editorconfig) {
+      fixes.push({ path: '.editorconfig', content: updated });
+      console.log(
+        `  StyleCop: suppressed ${codesToSuppress.length} unfixable rule(s) in .editorconfig`
+      );
     }
   }
 
