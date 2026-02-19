@@ -757,7 +757,11 @@ const fixStyleCopIssues = (repo: string, jobs: FailedJob[], branch: string): Gem
       .join('\n');
 
     // SA1513: closing brace should be followed by blank line
-    fixed = fixed.replace(/^(\s*\})\n(\s*[^\s\}])/gm, '$1\n\n$2');
+    // Exclude else/catch/finally/while (do-while) which must directly follow }
+    fixed = fixed.replace(
+      /^([ \t]*\})\n([ \t]*(?!else\b|catch\b|finally\b|while\s*\()[^ \t\n\}])/gm,
+      '$1\n\n$2'
+    );
 
     // SA1507: collapse multiple blank lines into one
     fixed = fixed.replace(/\n{3,}/g, '\n\n');
