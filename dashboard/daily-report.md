@@ -28,7 +28,7 @@
 ### lecteur-magic :white_circle:
 
 - **Health**: 60/100
-- **CI**: none ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22132603920))
+- **CI**: none ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22172057509))
 - **Open PRs**: 1
 
 ### Livret_accueil_Au-Marais :white_circle:
@@ -100,7 +100,7 @@
 ### Email_Assistant :white_check_mark:
 
 - **Health**: 75/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22165273746))
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22171754152))
 - **Open PRs**: 2
 
 ### livret-au-marais :white_check_mark:
