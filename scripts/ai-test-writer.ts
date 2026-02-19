@@ -189,25 +189,32 @@ const buildTestPrompt = (
     }
   }
 
-  return `You are a test engineer. Write Vitest tests for the following TypeScript file.
+  const ext = sourcePath.endsWith('.tsx') ? 'tsx' : 'ts';
+  const isReact = ext === 'tsx' || sourceCode.includes('React') || sourceCode.includes('jsx');
 
-## Rules
-- Use vitest (import { describe, it, expect, vi } from 'vitest')
-- Follow AAA pattern (Arrange / Act / Assert)
-- Name tests: "should [verb] when [condition]"
-- Mock external dependencies with vi.mock()
-- Test exported functions/classes only
-- Cover happy path + at least 1 error case per function
-- Do NOT add comments like "// Arrange" - the code should be self-explanatory
-- Output ONLY the test file content, no explanation
+  const reactRule = isReact
+    ? `- For React components: use vi.mock() to mock ALL imports. Test props, callbacks, and rendered output.
+- Do NOT import @testing-library/react or jsdom. Mock React and test component logic only.
+- If the component uses hooks (useState, useEffect), test the exported component as a function.
+`
+    : '';
 
-## Source file: ${sourcePath}
-\`\`\`typescript
+  return `TASK: Generate a Vitest test file. Output ONLY code. No text before or after the code.
+
+RULES:
+- import { describe, it, expect, vi } from 'vitest'
+- Name: "should [verb] when [condition]"
+- Mock ALL external imports with vi.mock()
+- Test exported functions/components only
+- Cover happy path + 1 error case per export
+- No comments
+${reactRule}
+SOURCE FILE: ${sourcePath}
+\`\`\`${ext}
 ${sourceCode}
 \`\`\`
 ${context}
-## Output format
-Return ONLY valid TypeScript test code. No markdown fences, no explanation.`;
+RESPOND WITH ONLY THE TEST FILE CODE. START WITH "import". NO EXPLANATIONS.`;
 };
 
 const detectProvider = (): AIProvider => {
@@ -295,19 +302,45 @@ const askClaude = (prompt: string): string | null => {
 };
 
 const cleanTestOutput = (raw: string): string | null => {
-  let code = raw.trim();
+  const trimmed = raw.trim();
 
-  // Strip markdown fences
+  // Strategy 1: Extract code from markdown fences (handles text before/after code)
+  const fenceRegex = /```(?:typescript|tsx|ts|js)?\s*\n([\s\S]*?)```/g;
+  const blocks: string[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = fenceRegex.exec(trimmed)) !== null) {
+    blocks.push(match[1].trim());
+  }
+
+  // Pick the block that looks most like a test file
+  const testBlock =
+    blocks.find(
+      (b) =>
+        (b.includes('describe') || b.includes('it(') || b.includes('test(')) && b.includes('import')
+    ) ?? blocks.find((b) => b.includes('describe') || b.includes('it(') || b.includes('test('));
+
+  if (testBlock) return testBlock;
+
+  // Strategy 2: No fences - check if raw output is code (starts with import or has test keywords)
+  let code = trimmed;
   if (code.startsWith('```')) {
-    code = code.replace(/^```(?:typescript|ts)?\n?/, '').replace(/\n?```$/, '');
+    code = code.replace(/^```(?:typescript|tsx|ts|js)?\s*\n?/, '').replace(/\n?```\s*$/, '');
   }
 
-  // Basic validation
-  if (!code.includes('describe') && !code.includes('it(') && !code.includes('test(')) {
-    return null;
+  // Strategy 3: Extract everything from first 'import' line to end
+  if (!code.startsWith('import') && code.includes('\nimport')) {
+    const importIdx = code.indexOf('\nimport');
+    code = code.slice(importIdx + 1);
+    // Trim any trailing non-code (after last closing brace or semicolon)
+    const lastBrace = code.lastIndexOf('});');
+    if (lastBrace > 0) code = code.slice(0, lastBrace + 3);
   }
 
-  return code;
+  if (code.includes('describe') || code.includes('it(') || code.includes('test(')) {
+    return code;
+  }
+
+  return null;
 };
 
 const generateTest = (
@@ -346,15 +379,18 @@ const generateTest = (
     const raw = fn(prompt);
     if (!raw) continue;
 
+    console.log(
+      `    ${name} response: ${Math.round(raw.length / 1024)}KB, starts with: "${raw.slice(0, 80).replace(/\n/g, '\\n')}"`
+    );
     const code = cleanTestOutput(raw);
     if (code) {
-      console.log(`    Generated via ${name}`);
+      console.log(`    Generated via ${name} (${Math.round(code.length / 1024)}KB extracted)`);
       return code;
     }
-    console.log(`    ${name}: invalid output, trying next...`);
+    console.log(`    ${name}: no test code found in response, trying next...`);
   }
 
-  console.log(`    All providers failed`);
+  console.log(`    All providers failed to produce valid test code`);
   return null;
 };
 
