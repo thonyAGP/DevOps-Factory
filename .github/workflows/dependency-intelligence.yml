@@ -39,5 +39,5 @@ jobs:
           git config user.email "devops-factory[bot]@users.noreply.github.com"
           git add data/dep-intel-report.md
           git diff --cached --quiet || git commit -m "chore: update dependency intelligence report" --no-verify
-          git pull --rebase
+          git pull --rebase --autostash
           git push

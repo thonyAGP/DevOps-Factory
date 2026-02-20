@@ -43,5 +43,5 @@ jobs:
           git config user.email "devops-factory[bot]@users.noreply.github.com"
           git add data/claude-review-quota.json
           git diff --cached --quiet || git commit -m "chore: update claude review quota" --no-verify
-          git pull --rebase
+          git pull --rebase --autostash
           git push

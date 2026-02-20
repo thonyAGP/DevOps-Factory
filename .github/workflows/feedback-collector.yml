@@ -40,5 +40,5 @@ jobs:
           git config user.email "devops-factory[bot]@users.noreply.github.com"
           git add data/feedback-log.json data/patterns.json
           git diff --cached --quiet || git commit -m "chore: update feedback and patterns" --no-verify
-          git pull --rebase
+          git pull --rebase --autostash
           git push
