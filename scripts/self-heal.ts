@@ -12,7 +12,7 @@
  */
 
 import { execSync } from 'node:child_process';
-import { writeFileSync, readFileSync, existsSync, unlinkSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync, unlinkSync, rmSync, readdirSync } from 'node:fs';
 
 const GEMINI_MODEL = 'gemini-2.5-flash';
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
@@ -789,6 +789,196 @@ const canAutoFixPrettier = (jobs: FailedJob[]): boolean => {
   );
 };
 
+/** Deterministic fix for Prettier: clone repo, run prettier --write, create PR */
+const fixPrettierIssues = (repo: string, runId: string, defaultBranch: string): string | null => {
+  const tmpDir =
+    `${process.env.RUNNER_TEMP || process.env.TEMP || '/tmp'}/self-heal-prettier-${Date.now()}`.replace(
+      /\\/g,
+      '/'
+    );
+
+  const git = (cmd: string) =>
+    execSync(cmd, { cwd: tmpDir, encoding: 'utf-8', timeout: 60_000, stdio: 'pipe' }).trim();
+
+  try {
+    // 1. Shallow clone
+    console.log(`  Cloning ${repo}...`);
+    execSync(`gh repo clone ${repo} "${tmpDir}" -- --depth 1`, {
+      encoding: 'utf-8',
+      timeout: 120_000,
+      stdio: 'pipe',
+    });
+
+    // 2. Find prettier working directory (root or first subdir with config)
+    const prettierConfigs = [
+      '.prettierrc',
+      '.prettierrc.json',
+      '.prettierrc.yml',
+      '.prettierrc.js',
+      'prettier.config.js',
+      'prettier.config.mjs',
+    ];
+
+    const hasPrettierIn = (dir: string): boolean => {
+      if (prettierConfigs.some((f) => existsSync(`${dir}/${f}`))) return true;
+      try {
+        const pkg = JSON.parse(readFileSync(`${dir}/package.json`, 'utf-8'));
+        return !!pkg.prettier || !!pkg.devDependencies?.prettier || !!pkg.dependencies?.prettier;
+      } catch {
+        return false;
+      }
+    };
+
+    let workDir = '';
+
+    if (hasPrettierIn(tmpDir)) {
+      workDir = tmpDir;
+    } else {
+      // Scan one level deep for subdirectory with prettier
+      const entries = readdirSync(tmpDir, { withFileTypes: true })
+        .filter((d) => d.isDirectory() && !d.name.startsWith('.') && d.name !== 'node_modules')
+        .map((d) => d.name);
+
+      for (const entry of entries) {
+        const subDir = `${tmpDir}/${entry}`;
+        if (hasPrettierIn(subDir)) {
+          workDir = subDir;
+          break;
+        }
+      }
+    }
+
+    if (!workDir) {
+      console.log('  No Prettier config found - skipping');
+      return null;
+    }
+
+    const relDir = workDir === tmpDir ? '(root)' : workDir.split('/').pop() + '/';
+    console.log(`  Prettier config found in: ${relDir}`);
+
+    // 3. Install dependencies
+    console.log('  Installing dependencies...');
+    const pm = existsSync(`${workDir}/pnpm-lock.yaml`)
+      ? 'pnpm'
+      : existsSync(`${workDir}/yarn.lock`)
+        ? 'yarn'
+        : 'npm';
+
+    const install = (cmd: string): boolean => {
+      try {
+        execSync(cmd, { cwd: workDir, encoding: 'utf-8', timeout: 120_000, stdio: 'pipe' });
+        return true;
+      } catch {
+        return false;
+      }
+    };
+
+    const frozen =
+      pm === 'pnpm'
+        ? 'pnpm install --frozen-lockfile --ignore-scripts'
+        : pm === 'yarn'
+          ? 'yarn install --frozen-lockfile --ignore-scripts'
+          : 'npm ci --ignore-scripts';
+
+    if (!install(frozen)) {
+      const loose =
+        pm === 'pnpm'
+          ? 'pnpm install --ignore-scripts'
+          : pm === 'yarn'
+            ? 'yarn install --ignore-scripts'
+            : 'npm install --ignore-scripts';
+      install(loose);
+    }
+
+    // 4. Run prettier --write
+    console.log('  Running prettier --write...');
+    try {
+      execSync(
+        'npx prettier --write "**/*.{ts,tsx,js,jsx,json,css,md,yml,yaml}" --ignore-unknown',
+        {
+          cwd: workDir,
+          encoding: 'utf-8',
+          timeout: 120_000,
+          stdio: 'pipe',
+          maxBuffer: 10 * 1024 * 1024,
+        }
+      );
+    } catch {
+      /* prettier may exit non-zero on parse errors but still format valid files */
+    }
+
+    // 5. Check changes (from repo root)
+    let changed: string;
+    try {
+      changed = execSync('git diff --name-only', {
+        cwd: tmpDir,
+        encoding: 'utf-8',
+        stdio: 'pipe',
+      }).trim();
+    } catch {
+      changed = '';
+    }
+
+    if (!changed) {
+      console.log('  No formatting changes');
+      return null;
+    }
+
+    const fileCount = changed.split('\n').filter(Boolean).length;
+    console.log(`  ${fileCount} file(s) reformatted`);
+
+    // 6. Branch + commit + push
+    const branch = `ai-fix/prettier-${Date.now()}`;
+    git('git config user.name "DevOps Factory Bot"');
+    git('git config user.email "devops-factory[bot]@users.noreply.github.com"');
+    git(`git checkout -b ${branch}`);
+    git('git add -A');
+    git(`git commit -m "style: auto-fix formatting with Prettier (${fileCount} files)"`);
+
+    console.log(`  Pushing ${branch}...`);
+    execSync(`git push origin ${branch}`, {
+      cwd: tmpDir,
+      encoding: 'utf-8',
+      timeout: 120_000,
+      stdio: 'pipe',
+    });
+
+    // 7. Create PR
+    ensureLabel(repo, 'ai-fix', '7057ff', 'Auto-generated fix by DevOps Factory');
+
+    const body = [
+      '## Prettier Formatting Fix',
+      '',
+      `**Failed Run**: https://github.com/${repo}/actions/runs/${runId}`,
+      '**Generated by**: DevOps Factory Self-Healing',
+      '',
+      `Auto-fixed formatting in **${fileCount} file(s)** using Prettier.`,
+      '',
+      '---',
+      '> This PR was automatically generated. No functional changes - formatting only.',
+    ].join('\n');
+
+    const bodyFile = `${tmpDir}/pr-body.md`;
+    writeFileSync(bodyFile, body);
+
+    const prUrl = sh(
+      `gh pr create --repo ${repo} --head ${branch} --base ${defaultBranch} --title "style: auto-fix Prettier formatting (${fileCount} files)" --body-file "${bodyFile}" --label "ai-fix"`
+    );
+
+    return prUrl.match(/(https:\/\/[^\s]+)/)?.[1] || prUrl;
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error(`  Prettier fix failed: ${msg.slice(0, 300)}`);
+    return null;
+  } finally {
+    try {
+      rmSync(tmpDir, { recursive: true, force: true });
+    } catch {
+      /* ignore */
+    }
+  }
+};
+
 // --- Step 5: Apply fixes ---
 
 const getDefaultBranch = (repo: string): string => {
@@ -1165,21 +1355,28 @@ const main = async (): Promise<void> => {
   const buildJobs = jobs.filter(
     (j) => !j.name.toLowerCase().includes('quality') && !j.name.toLowerCase().includes('lint')
   );
-  const hasPrettierOnly = buildJobs.length === 0 && canAutoFixPrettier(jobs);
 
-  if (hasPrettierOnly) {
-    console.log('\nOnly Prettier formatting errors detected - triggering auto-fix...');
-    const factoryRepo = process.env.GITHUB_REPOSITORY || 'thonyAGP/DevOps-Factory';
-    const triggerResult = sh(`gh workflow run auto-fix-prettier.yml --repo ${factoryRepo}`);
-    console.log(triggerResult ? `  Triggered: ${triggerResult}` : '  Auto-fix-prettier triggered');
-    return;
+  const defaultBranch = getDefaultBranch(repo);
+  console.log(`Default branch: ${defaultBranch}\n`);
+
+  // Handle Prettier failures (deterministic - clone + format + PR)
+  if (canAutoFixPrettier(jobs)) {
+    console.log('Prettier formatting errors detected - fixing inline...');
+    const prettierPrUrl = fixPrettierIssues(repo, runId, defaultBranch);
+    if (prettierPrUrl) {
+      console.log(`Prettier fix PR: ${prettierPrUrl}`);
+    }
+
+    if (buildJobs.length === 0) {
+      console.log('\nNo build errors beyond Prettier - done!');
+      return;
+    }
+    console.log('\nContinuing with build error analysis...');
   }
 
   const targetJobs = buildJobs.length > 0 ? buildJobs : jobs;
 
   // 2. Collect files to send to Gemini
-  const defaultBranch = getDefaultBranch(repo);
-  console.log(`Default branch: ${defaultBranch}\n`);
 
   const fileContents = new Map<string, string>();
   const partialContextFiles = new Set<string>(); // Files sent as context windows (not full content)
