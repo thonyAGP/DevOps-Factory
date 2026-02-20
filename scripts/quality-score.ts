@@ -11,6 +11,7 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { KNOWN_PROJECTS, QUALITY_WEIGHTS, COVERAGE_THRESHOLDS } from '../factory.config.js';
+import { logActivity } from './activity-logger.js';
 
 interface WorkflowRun {
   id: number;
@@ -291,6 +292,37 @@ const detectScoreDrops = (
   }
 };
 
+const detectScoreImprovements = (
+  scores: RepoQualityScore[]
+): Array<{ repo: string; gain: number; from: number; to: number }> => {
+  const historyPath = 'data/quality-history.json';
+  if (!existsSync(historyPath)) return [];
+
+  try {
+    const history = JSON.parse(readFileSync(historyPath, 'utf-8')) as QualityHistory;
+    if (history.entries.length < 2) return [];
+
+    const prev = history.entries[history.entries.length - 2];
+    const gains: Array<{ repo: string; gain: number; from: number; to: number }> = [];
+
+    for (const score of scores) {
+      const prevScore = prev.repos.find((r) => r.repo === score.repo);
+      if (prevScore && score.score - prevScore.score >= 5) {
+        gains.push({
+          repo: score.name,
+          gain: score.score - prevScore.score,
+          from: prevScore.score,
+          to: score.score,
+        });
+      }
+    }
+
+    return gains;
+  } catch {
+    return [];
+  }
+};
+
 const generateReport = (
   scores: RepoQualityScore[],
   drops: Array<{ repo: string; drop: number; from: number; to: number }>
@@ -351,8 +383,9 @@ const main = (): void => {
   // Update history
   updateQualityHistory(scores);
 
-  // Detect drops
+  // Detect drops and improvements
   const drops = detectScoreDrops(scores);
+  const improvements = detectScoreImprovements(scores);
 
   // Generate and save report
   const report = generateReport(scores, drops);
@@ -380,6 +413,39 @@ const main = (): void => {
   if (drops.length > 0) {
     console.log(`- ${drops.length} score drop(s) detected`);
   }
+  if (improvements.length > 0) {
+    console.log(`- ${improvements.length} score improvement(s) detected`);
+  }
+
+  // Activity logging
+  for (const drop of drops) {
+    logActivity(
+      'quality-score',
+      'quality-drop',
+      `${drop.from} → ${drop.to} (-${drop.drop}pts)`,
+      'warning',
+      drop.repo
+    );
+  }
+  for (const imp of improvements) {
+    logActivity(
+      'quality-score',
+      'quality-improved',
+      `${imp.from} → ${imp.to} (+${imp.gain}pts)`,
+      'success',
+      imp.repo
+    );
+  }
+
+  const excellent = scores.filter((s) => s.score >= 80).length;
+  const needsWork = scores.filter((s) => s.score < 60).length;
+  const summaryStatus = drops.length > 0 ? 'warning' : 'success';
+  logActivity(
+    'quality-score',
+    'quality-complete',
+    `Avg ${avgScore}/100, ${excellent} excellent, ${needsWork} needs work, ${drops.length} drops, ${improvements.length} improvements`,
+    summaryStatus
+  );
 };
 
 main();
