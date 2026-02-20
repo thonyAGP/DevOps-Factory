@@ -73,6 +73,43 @@ jobs:
             gh workflow run self-heal.yml -f repo="$REPO" -f run_id="$RUN_ID" || echo "  Failed to trigger (workflow may not exist yet)"
           done
 
+      - name: Suppress first-time alerts (grace period for self-heal)
+        id: alert_filter
+        run: |
+          TRACKER="data/alert-tracker.json"
+          CURRENT="dashboard/alert-payload.json"
+
+          if [ ! -f "$CURRENT" ]; then
+            echo "should_email=false" >> "$GITHUB_OUTPUT"
+            # No alerts → clear tracker
+            echo '[]' > "$TRACKER"
+            exit 0
+          fi
+
+          # Current alert keys (type:project)
+          CURRENT_KEYS=$(jq -r '.alerts[] | "\(.type):\(.project)"' "$CURRENT" | sort)
+
+          SHOULD_EMAIL=false
+          if [ -f "$TRACKER" ]; then
+            PREV_KEYS=$(jq -r '.[] | "\(.type):\(.project)"' "$TRACKER" 2>/dev/null || echo "")
+            while IFS= read -r key; do
+              [ -z "$key" ] && continue
+              if echo "$PREV_KEYS" | grep -qxF "$key"; then
+                SHOULD_EMAIL=true
+                echo "  [REPEAT] $key → will notify"
+              else
+                echo "  [NEW] $key → suppressed (self-heal in progress)"
+              fi
+            done <<< "$CURRENT_KEYS"
+          else
+            echo "  First alert detection → suppressing email, self-heal triggered"
+          fi
+
+          echo "should_email=$SHOULD_EMAIL" >> "$GITHUB_OUTPUT"
+
+          # Save current alerts as tracker for next run
+          jq '[.alerts[] | {type, project}]' "$CURRENT" > "$TRACKER"
+
       - name: Remove transient alert file
         run: rm -f dashboard/alert-payload.json
 
@@ -80,7 +117,7 @@ jobs:
         run: |
           git config user.name "DevOps Factory Bot"
           git config user.email "devops-factory[bot]@users.noreply.github.com"
-          git add dashboard/ data/activity-log.json
+          git add dashboard/ data/activity-log.json data/alert-tracker.json
           git diff --cached --quiet || git commit -m "chore: update dashboard"
           git pull --rebase --autostash
           git push
@@ -88,7 +125,7 @@ jobs:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
 
       - name: Send alert email
-        if: steps.alerts.outputs.has_alerts == 'true' && env.SMTP_USER != ''
+        if: steps.alert_filter.outputs.should_email == 'true' && env.SMTP_USER != ''
         env:
           SMTP_USER: ${{ secrets.SMTP_USERNAME }}
         uses: dawidd6/action-send-mail@v3
@@ -97,11 +134,12 @@ jobs:
           server_port: ${{ secrets.SMTP_PORT }}
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
-          subject: 'DevOps Factory Alert - ${{ steps.alerts.outputs.alert_count }} issue(s) detected'
+          subject: 'DevOps Factory Alert - ${{ steps.alerts.outputs.alert_count }} PERSISTENT issue(s)'
           to: ${{ secrets.ALERT_EMAIL }}
           from: DevOps Factory <${{ secrets.SMTP_USERNAME }}>
           body: |
-            DevOps Factory has detected ${{ steps.alerts.outputs.alert_count }} alert(s):
+            DevOps Factory has detected ${{ steps.alerts.outputs.alert_count }} PERSISTENT alert(s)
+            (self-heal was attempted but the issue persists):
 
             ${{ steps.alerts.outputs.alert_body }}
 
