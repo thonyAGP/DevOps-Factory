@@ -52,10 +52,19 @@ const sh = (cmd: string): string => {
   }
 };
 
-const getLatestCIRun = (repo: string, ciWorkflow: string = 'ci.yml'): WorkflowRun | null => {
-  // Filter by CI workflow file to avoid masking by other workflows (e.g. DevOps-Factory has 20+)
+const getDefaultBranch = (repo: string): string => {
+  return sh(`gh api "repos/${repo}" --jq ".default_branch"`) || 'main';
+};
+
+const getLatestCIRun = (
+  repo: string,
+  ciWorkflow: string = 'ci.yml',
+  branch?: string
+): WorkflowRun | null => {
+  // Filter by CI workflow + default branch to avoid ai-fix branch runs masking real failures
+  const branchFilter = branch ? `&branch=${branch}` : '';
   const result = sh(
-    `gh api "repos/${repo}/actions/workflows/${ciWorkflow}/runs?per_page=1&status=completed" --jq ".workflow_runs[0] | {id, conclusion, status, name, html_url, created_at, head_branch}"`
+    `gh api "repos/${repo}/actions/workflows/${ciWorkflow}/runs?per_page=1&status=completed${branchFilter}" --jq ".workflow_runs[0] | {id, conclusion, status, name, html_url, created_at, head_branch}"`
   );
   if (!result || result === 'null') return null;
   try {
@@ -337,16 +346,7 @@ const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
   const { project, run } = result;
   if (!run) return;
 
-  // Guard: only self-heal on default branch (main/master)
-  const defaultBranch = sh(`gh api "repos/${project.repo}" --jq ".default_branch" 2>/dev/null`);
-  if (defaultBranch && run.head_branch !== defaultBranch) {
-    console.log(
-      `  [SKIP HEAL] ${project.name}: failure on ${run.head_branch}, not ${defaultBranch}`
-    );
-    return;
-  }
-
-  // Guard: don't self-heal failures on ai-fix branches (avoid loops)
+  // Guard: don't self-heal failures on ai-fix branches (belt-and-suspenders, main filter is in getLatestCIRun)
   if (run.head_branch.startsWith('ai-fix/')) {
     console.log(`  [SKIP HEAL] ${project.name}: failure on ai-fix branch, skip`);
     return;
@@ -421,7 +421,8 @@ const main = () => {
 
   for (const project of ciProjects) {
     process.stdout.write(`Checking ${project.name}... `);
-    const run = getLatestCIRun(project.repo, project.ciWorkflow);
+    const defaultBranch = getDefaultBranch(project.repo);
+    const run = getLatestCIRun(project.repo, project.ciWorkflow, defaultBranch);
 
     if (!run) {
       console.log('no runs found');
