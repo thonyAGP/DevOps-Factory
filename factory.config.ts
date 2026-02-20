@@ -12,6 +12,7 @@ export interface ProjectConfig {
   hasLighthouse: boolean;
   hasLinkChecker: boolean;
   vercel: boolean;
+  hidden?: boolean;
   productionUrl?: string;
   testFramework?: 'vitest' | 'xunit' | 'jest' | 'none';
   hasTests?: boolean;
@@ -106,6 +107,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLighthouse: false,
     hasLinkChecker: false,
     vercel: false,
+    hidden: true,
   },
   {
     name: 'CasaSync',

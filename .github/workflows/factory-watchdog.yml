@@ -8,7 +8,7 @@ on:
     inputs: {}
 
 permissions:
-  contents: read
+  contents: write
   issues: write
   actions: write
 
@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.FACTORY_PAT }}
 
       - uses: pnpm/action-setup@v4
         with:
@@ -35,3 +37,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+
+      - name: Commit activity log
+        run: |
+          git config user.name "DevOps Factory Bot"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add data/activity-log.json data/self-heal-cooldowns.json
+          git diff --cached --quiet || git commit -m "chore: update activity log" --no-verify
+          git pull --rebase
+          git push
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}

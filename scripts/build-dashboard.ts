@@ -10,7 +10,7 @@
 
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { DASHBOARD_URL } from '../factory.config.js';
+import { DASHBOARD_URL, KNOWN_PROJECTS } from '../factory.config.js';
 import {
   getRecentActivities,
   getActivityStats,
@@ -132,6 +132,20 @@ interface HistoryEntry {
 
 const HISTORY_MAX_DAYS = 90;
 
+const formatDashboardDate = (date: Date): string => {
+  const formatted = date.toLocaleString('en-GB', {
+    timeZone: 'Europe/Madrid',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZoneName: 'short',
+  });
+  return formatted.replace(/\//g, '-').replace(',', '');
+};
+
 const updateHistory = (statuses: ProjectStatus[]): void => {
   const historyPath = 'dashboard/history.json';
   let history: HistoryEntry[] = [];
@@ -239,9 +253,11 @@ const getHealthColor = (score: number): string => {
   return '#ef4444';
 };
 
+const hiddenRepos = new Set(KNOWN_PROJECTS.filter((p) => p.hidden).map((p) => p.repo));
+
 const buildProjectStatuses = (report: ScanReport): ProjectStatus[] => {
   return report.analyses
-    .filter((a) => a.stack !== 'unknown')
+    .filter((a) => a.stack !== 'unknown' && !hiddenRepos.has(a.fullName))
     .map((analysis) => {
       const lastRun = getLatestWorkflowRun(analysis.fullName, analysis.defaultBranch);
       const allPRs = getOpenPRs(analysis.fullName);
@@ -514,7 +530,7 @@ const getFactoryStatusSection = (): string => {
 };
 
 const generateHTML = (statuses: ProjectStatus[]): string => {
-  const timestamp = new Date().toISOString();
+  const timestamp = formatDashboardDate(new Date());
   const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
   const failingCount = statuses.filter((p) => p.ciStatus === 'fail').length;
   const totalAIFixes = statuses.reduce((s, p) => s + p.aiFixPRs.length, 0);

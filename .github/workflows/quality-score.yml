@@ -36,7 +36,7 @@ jobs:
         run: |
           git config user.name "devops-factory[bot]"
           git config user.email "devops-factory[bot]@users.noreply.github.com"
-          git add data/quality-history.json
+          git add data/quality-history.json data/activity-log.json dashboard/quality-report.md dashboard/quality-scores.json
           git diff --cached --quiet || git commit -m "chore: update quality scores" --no-verify
           git pull --rebase
           git push
