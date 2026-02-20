@@ -70,7 +70,7 @@
 ### lecteur-magic :white_circle:
 
 - **Health**: 65/100
-- **CI**: none ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22231491192))
+- **CI**: none ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22235168954))
 - **Open PRs**: 1
 
 ### CasaSync :white_check_mark:
