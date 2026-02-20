@@ -11,6 +11,12 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { DASHBOARD_URL } from '../factory.config.js';
+import {
+  getRecentActivities,
+  getActivityStats,
+  logActivity,
+  type ActivityStatus,
+} from './activity-logger.js';
 
 interface MigrationModule {
   name: string;
@@ -370,6 +376,143 @@ const getMigrationSection = (): string => {
   }
 };
 
+const getStatusIcon = (status: ActivityStatus): string => {
+  switch (status) {
+    case 'success':
+      return '&#9989;';
+    case 'warning':
+      return '&#9888;&#65039;';
+    case 'error':
+      return '&#10060;';
+    case 'info':
+      return '&#8505;&#65039;';
+  }
+};
+
+const getStatusColor = (status: ActivityStatus): string => {
+  switch (status) {
+    case 'success':
+      return '#22c55e';
+    case 'warning':
+      return '#f59e0b';
+    case 'error':
+      return '#ef4444';
+    case 'info':
+      return '#8b949e';
+  }
+};
+
+const getSourceLabel = (source: string): string => {
+  const labels: Record<string, string> = {
+    'scan-and-configure': 'Scanner',
+    'ci-health-check': 'CI Health',
+    'factory-watchdog': 'Watchdog',
+    'build-dashboard': 'Dashboard',
+    'quality-score': 'Quality',
+    'self-heal': 'Self-Heal',
+  };
+  return labels[source] ?? source;
+};
+
+const getSourceColor = (source: string): string => {
+  const colors: Record<string, string> = {
+    'scan-and-configure': '#58a6ff',
+    'ci-health-check': '#f97316',
+    'factory-watchdog': '#a855f7',
+    'build-dashboard': '#22c55e',
+    'quality-score': '#06b6d4',
+    'self-heal': '#ec4899',
+  };
+  return colors[source] ?? '#8b949e';
+};
+
+const formatTimeAgo = (timestamp: string): string => {
+  const diff = Date.now() - new Date(timestamp).getTime();
+  const minutes = Math.floor(diff / 60000);
+  if (minutes < 1) return 'just now';
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
+};
+
+const getFactoryStatusSection = (): string => {
+  const stats = getActivityStats();
+  const recent = getRecentActivities(30);
+  const reversed = [...recent].reverse();
+
+  // Factory health: green if no errors in last 24h, orange if warnings, red if errors
+  const last24hEntries = recent.filter(
+    (e) => Date.now() - new Date(e.timestamp).getTime() < 24 * 60 * 60 * 1000
+  );
+  const recentErrors = last24hEntries.filter((e) => e.status === 'error').length;
+  const recentWarnings = last24hEntries.filter((e) => e.status === 'warning').length;
+
+  const factoryHealth = recentErrors > 0 ? 'error' : recentWarnings > 0 ? 'warning' : 'success';
+  const factoryLabel =
+    recentErrors > 0 ? 'Issues Detected' : recentWarnings > 0 ? 'Warnings' : 'All Systems Healthy';
+  const factoryColor = getStatusColor(factoryHealth);
+
+  // Weekly stats
+  const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const weekEntries = recent.filter((e) => e.timestamp >= oneWeekAgo);
+  const weekPRs = weekEntries.filter((e) => e.action === 'pr-created').length;
+  const weekHeals = weekEntries.filter((e) => e.action.includes('self-heal-triggered')).length;
+  const weekErrors = weekEntries.filter((e) => e.status === 'error').length;
+  const weekScans = weekEntries.filter((e) => e.action === 'scan-complete').length;
+
+  const timelineRows = reversed
+    .slice(0, 20)
+    .map(
+      (e) => `
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="${e.timestamp}">${formatTimeAgo(e.timestamp)}</td>
+              <td><span class="source-badge" style="background:${getSourceColor(e.source)}20;color:${getSourceColor(e.source)};border:1px solid ${getSourceColor(e.source)}40">${getSourceLabel(e.source)}</span></td>
+              <td style="color:${getStatusColor(e.status)}">${getStatusIcon(e.status)}</td>
+              <td>${e.target ? `<strong>${e.target}</strong> - ` : ''}${e.details}</td>
+            </tr>`
+    )
+    .join('');
+
+  return `
+  <div class="factory-status">
+    <h2>Factory Status</h2>
+    <div class="factory-grid">
+      <div class="factory-health-card" style="border-color:${factoryColor}">
+        <div class="factory-health-indicator" style="background:${factoryColor}20;color:${factoryColor}">
+          <span style="font-size:1.4rem">${getStatusIcon(factoryHealth)}</span>
+          <span style="font-weight:bold;font-size:1.1rem">${factoryLabel}</span>
+        </div>
+        <div class="factory-health-detail">
+          <div class="metric"><span class="metric-label">Last activity</span><span>${stats.lastEntry ? formatTimeAgo(stats.lastEntry) : 'Never'}</span></div>
+          <div class="metric"><span class="metric-label">Events (24h)</span><span>${stats.last24h}</span></div>
+          <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:${recentErrors > 0 ? '#ef4444' : '#22c55e'}">${recentErrors}</span></div>
+          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:${recentWarnings > 0 ? '#f59e0b' : '#22c55e'}">${recentWarnings}</span></div>
+        </div>
+      </div>
+
+      <div class="factory-stats-card">
+        <h3>This Week</h3>
+        <div class="metric"><span class="metric-label">Scans completed</span><span class="val">${weekScans}</span></div>
+        <div class="metric"><span class="metric-label">PRs created</span><span class="val">${weekPRs}</span></div>
+        <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">${weekHeals}</span></div>
+        <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:${weekErrors > 0 ? '#ef4444' : '#22c55e'}">${weekErrors}</span></div>
+        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">${stats.total}</span></div>
+      </div>
+    </div>
+
+    <details class="activity-timeline" ${recentErrors > 0 ? 'open' : ''}>
+      <summary>Recent Activity (${reversed.length} events)</summary>
+      <table class="timeline-table">
+        <tbody>
+          ${timelineRows || '<tr><td colspan="4" style="text-align:center;color:#6e7681">No activity recorded yet</td></tr>'}
+        </tbody>
+      </table>
+    </details>
+  </div>`;
+};
+
 const generateHTML = (statuses: ProjectStatus[]): string => {
   const timestamp = new Date().toISOString();
   const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
@@ -654,6 +797,94 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
     }
     .module-chip.has-cmd { border-left: 2px solid #22c55e; }
     .module-chip.has-qry { border-right: 2px solid #58a6ff; }
+
+    /* Factory Status */
+    .factory-status {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .factory-status h2 { color: #a855f7; font-size: 1rem; margin-bottom: 0.8rem; }
+    .factory-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+    @media (max-width: 700px) { .factory-grid { grid-template-columns: 1fr; } }
+    .factory-health-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+      border-left: 3px solid;
+    }
+    .factory-health-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 0.6rem;
+    }
+    .factory-health-detail .metric {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      font-size: 0.85rem;
+    }
+    .factory-stats-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+    }
+    .factory-stats-card h3 {
+      font-size: 0.85rem;
+      color: #8b949e;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .factory-stats-card .metric {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      font-size: 0.85rem;
+    }
+    .factory-stats-card .val { font-weight: bold; }
+    .activity-timeline {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .activity-timeline summary {
+      padding: 0.7rem 1rem;
+      cursor: pointer;
+      color: #8b949e;
+      font-size: 0.85rem;
+      user-select: none;
+    }
+    .activity-timeline[open] { border-color: #a855f7; }
+    .timeline-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    .timeline-table td {
+      padding: 0.4rem 0.6rem;
+      border-top: 1px solid #21262d;
+      vertical-align: middle;
+    }
+    .source-badge {
+      font-size: 0.65rem;
+      padding: 1px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
@@ -681,6 +912,8 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
       <div class="label">AI Fixes</div>
     </div>
   </div>
+
+  ${getFactoryStatusSection()}
 
   ${allClearBanner}
 
@@ -939,6 +1172,13 @@ const main = () => {
   } else {
     console.log('No alerts detected');
   }
+
+  logActivity(
+    'build-dashboard',
+    'dashboard-built',
+    `${statuses.length} projects, avg health ${Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length)}`,
+    alerts.length > 0 ? 'warning' : 'success'
+  );
 
   console.log(`\nDashboard URL: ${DASHBOARD_URL}\n`);
 

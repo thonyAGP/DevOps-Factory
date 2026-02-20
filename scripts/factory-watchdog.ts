@@ -11,6 +11,7 @@
 
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
+import { logActivity } from './activity-logger.js';
 
 // Partial failure patterns split into healable (code bugs) vs informational (env/transient)
 const HEALABLE_PATTERNS = [
@@ -167,9 +168,23 @@ const triggerSelfHeal = (repo: string, run: WorkflowRun): boolean => {
     );
     saveCooldown(repo);
     console.log(`  [HEAL] Triggered self-heal for ${repo} (run ${run.id})`);
+    logActivity(
+      'factory-watchdog',
+      'self-heal-triggered',
+      `Self-heal for workflow (run ${run.id})`,
+      'warning',
+      run.name
+    );
     return true;
   } catch (e) {
     console.error(`  [ERROR] Failed to trigger self-heal:`, e);
+    logActivity(
+      'factory-watchdog',
+      'self-heal-failed',
+      `Failed to trigger self-heal`,
+      'error',
+      run.name
+    );
     return false;
   }
 };
@@ -222,6 +237,13 @@ ${
       { encoding: 'utf-8', stdio: 'inherit' }
     );
     console.log(`  [CREATED] Issue: ${title}`);
+    logActivity(
+      'factory-watchdog',
+      'issue-created',
+      `${result.status}: ${result.workflow}`,
+      result.status === 'total_failure' ? 'error' : 'warning',
+      result.workflow
+    );
   } catch (e) {
     console.error(`  [ERROR] Failed to create issue:`, e);
   }
@@ -376,6 +398,14 @@ const main = () => {
   if (totalFail > 0) console.log(`Total failures: ${totalFail}`);
   if (partialFail > 0) console.log(`Partial failures: ${partialFail}`);
   console.log(`Issues: ${created} created, ${closed} closed, ${healed} self-heals triggered`);
+
+  const watchdogStatus = totalFail > 0 ? 'error' : partialFail > 0 ? 'warning' : 'success';
+  logActivity(
+    'factory-watchdog',
+    'watchdog-complete',
+    `${passing}/${results.length} passing. ${totalFail} failures, ${partialFail} partial. ${healed} self-heals`,
+    watchdogStatus as 'success' | 'warning' | 'error'
+  );
 
   if (totalFail > 0 || partialFail > 0) {
     console.log(`\nWARNING: ${totalFail + partialFail} workflow(s) with issues`);

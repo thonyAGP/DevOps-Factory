@@ -12,6 +12,7 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
 import { KNOWN_PROJECTS, type ProjectConfig } from '../factory.config.js';
+import { logActivity, type ActivityStatus } from './activity-logger.js';
 
 interface WorkflowRun {
   id: number;
@@ -133,8 +134,22 @@ const createIssue = (factoryRepo: string, result: CICheckResult): void => {
       { encoding: 'utf-8', stdio: 'inherit' }
     );
     console.log(`  [CREATED] Issue for ${project.name}`);
+    logActivity(
+      'ci-health-check',
+      'issue-created',
+      `CI failure issue created`,
+      'warning',
+      project.name
+    );
   } catch (e) {
     console.error(`  [ERROR] Failed to create issue for ${project.name}:`, e);
+    logActivity(
+      'ci-health-check',
+      'issue-create-failed',
+      `Failed to create CI failure issue`,
+      'error',
+      project.name
+    );
   }
 };
 
@@ -145,6 +160,13 @@ const closeIssue = (factoryRepo: string, issue: ExistingIssue, projectName: stri
       { encoding: 'utf-8', stdio: 'inherit' }
     );
     console.log(`  [CLOSED] Issue #${issue.number} - ${projectName} recovered`);
+    logActivity(
+      'ci-health-check',
+      'issue-closed',
+      `CI recovered, issue #${issue.number} closed`,
+      'success',
+      projectName
+    );
   } catch (e) {
     console.error(`  [ERROR] Failed to close issue #${issue.number}:`, e);
   }
@@ -196,6 +218,13 @@ const trackFailure = (factoryRepo: string, result: CICheckResult): void => {
   if (entry.consecutiveFailures >= ESCALATION_THRESHOLD && !entry.escalated) {
     console.log(
       `  [ESCALATION] ${result.project.name}: ${entry.consecutiveFailures} consecutive failures`
+    );
+    logActivity(
+      'ci-health-check',
+      'escalation',
+      `${entry.consecutiveFailures} consecutive CI failures`,
+      'error',
+      result.project.name
     );
     const title = `ESCALATION: ${result.project.name} - ${entry.consecutiveFailures} consecutive CI failures`;
     const body = [
@@ -386,8 +415,22 @@ const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
     );
     saveCooldown(project.repo);
     console.log(`  [HEAL] Triggered self-heal for ${project.name} (run ${run.id})`);
+    logActivity(
+      'ci-health-check',
+      'self-heal-triggered',
+      `Self-heal dispatched (run ${run.id})`,
+      'warning',
+      project.name
+    );
   } catch (e) {
     console.error(`  [ERROR] Failed to trigger self-heal for ${project.name}:`, e);
+    logActivity(
+      'ci-health-check',
+      'self-heal-failed',
+      `Failed to trigger self-heal`,
+      'error',
+      project.name
+    );
   }
 };
 
@@ -482,6 +525,14 @@ const main = () => {
   if (noRuns > 0) console.log(`No runs: ${noRuns}`);
   console.log(`Issues: ${created} created, ${updated} updated, ${closed} closed`);
   console.log('');
+
+  const summaryStatus: ActivityStatus = failing > 0 ? 'warning' : 'success';
+  logActivity(
+    'ci-health-check',
+    'check-complete',
+    `${passing}/${ciProjects.length} passing, ${failing} failing. Issues: ${created} created, ${closed} closed`,
+    summaryStatus
+  );
 
   if (failing > 0) {
     console.log(`WARNING: ${failing} CI(s) failing - issues created/updated above`);
