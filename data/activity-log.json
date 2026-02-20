@@ -135,6 +135,21 @@
       "action": "dashboard-built",
       "details": "16 projects, avg health 65",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-02-20T19:12:04.686Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Scan Repos",
+      "details": "total_failure: Scan Repos",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-02-20T19:12:04.687Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/6 passing. 2 failures, 1 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
