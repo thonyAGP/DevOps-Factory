@@ -309,7 +309,7 @@
 <body>
   <div class="header">
     <h1>DevOps Factory Dashboard</h1>
-    <div class="timestamp">Last updated: 20-02-2026 14:13 CET</div>
+    <div class="timestamp">Last updated: 20-02-2026 17:50 CET</div>
   </div>
 
   <div class="summary">
@@ -335,16 +335,16 @@
   <div class="factory-status">
     <h2>Factory Status</h2>
     <div class="factory-grid">
-      <div class="factory-health-card" style="border-color:#22c55e">
-        <div class="factory-health-indicator" style="background:#22c55e20;color:#22c55e">
-          <span style="font-size:1.4rem">&#9989;</span>
-          <span style="font-weight:bold;font-size:1.1rem">All Systems Healthy</span>
+      <div class="factory-health-card" style="border-color:#ef4444">
+        <div class="factory-health-indicator" style="background:#ef444420;color:#ef4444">
+          <span style="font-size:1.4rem">&#10060;</span>
+          <span style="font-weight:bold;font-size:1.1rem">Issues Detected</span>
         </div>
         <div class="factory-health-detail">
-          <div class="metric"><span class="metric-label">Last activity</span><span>26m ago</span></div>
-          <div class="metric"><span class="metric-label">Events (24h)</span><span>1</span></div>
-          <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#22c55e">0</span></div>
-          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#22c55e">0</span></div>
+          <div class="metric"><span class="metric-label">Last activity</span><span>21m ago</span></div>
+          <div class="metric"><span class="metric-label">Events (24h)</span><span>10</span></div>
+          <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#ef4444">1</span></div>
+          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#f59e0b">7</span></div>
         </div>
       </div>
 
@@ -352,19 +352,73 @@
         <h3>This Week</h3>
         <div class="metric"><span class="metric-label">Scans completed</span><span class="val">0</span></div>
         <div class="metric"><span class="metric-label">PRs created</span><span class="val">0</span></div>
-        <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">0</span></div>
-        <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#22c55e">0</span></div>
-        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">1</span></div>
+        <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">5</span></div>
+        <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#ef4444">1</span></div>
+        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">10</span></div>
       </div>
     </div>
 
-    <details class="activity-timeline" >
-      <summary>Recent Activity (1 events)</summary>
+    <details class="activity-timeline" open>
+      <summary>Recent Activity (10 events)</summary>
       <table class="timeline-table">
         <tbody>
           
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T12:47:20.039Z">26m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T16:29:05.838Z">21m ago</td>
+              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td>3/7 passing, 2 failing. Issues: 0 created, 0 closed</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T16:29:05.837Z">21m ago</td>
+              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td><strong>ClubMedRoomAssignment</strong> - Self-heal dispatched (run 22192523507)</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T16:29:01.365Z">21m ago</td>
+              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td><strong>Email_Assistant</strong> - Self-heal dispatched (run 22191711703)</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T15:31:57.378Z">1h ago</td>
+              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td>3/7 passing, 2 failing. Issues: 0 created, 0 closed</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T15:31:57.377Z">1h ago</td>
+              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td><strong>ClubMedRoomAssignment</strong> - Self-heal dispatched (run 22192523507)</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T15:31:52.948Z">1h ago</td>
+              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td><strong>Email_Assistant</strong> - Self-heal dispatched (run 22191711703)</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T13:38:48.248Z">3h ago</td>
+              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
+              <td style="color:#ef4444">&#10060;</td>
+              <td>4/6 passing. 1 failures, 1 partial. 1 self-heals</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T13:38:48.248Z">3h ago</td>
+              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td><strong>CI Health Check</strong> - Self-heal for workflow (run 22225509706)</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T13:13:37.001Z">3h ago</td>
+              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
+              <td style="color:#22c55e">&#9989;</td>
+              <td>16 projects, avg health 65</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T12:47:20.039Z">4h ago</td>
               <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>16 projects, avg health 62</td>
@@ -471,7 +525,7 @@
         <canvas data-sparkline="lecteur-magic" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none <a href="https://github.com/thonyAGP/lecteur-magic/actions/runs/22224558841" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>none <a href="https://github.com/thonyAGP/lecteur-magic/actions/runs/22231491192" target="_blank">(view)</a></span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
