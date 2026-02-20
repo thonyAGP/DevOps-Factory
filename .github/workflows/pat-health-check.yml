@@ -1,0 +1,193 @@
+name: PAT Health Check
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check PAT validity
+        id: pat-check
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+        run: |
+          ERRORS=""
+          WARNINGS=""
+          REPOS_OK=0
+          REPOS_FAIL=0
+
+          echo "=== PAT Health Check - $(date -u +%Y-%m-%dT%H:%M:%SZ) ==="
+
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::FACTORY_PAT secret is empty or missing"
+            echo "pat_valid=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "PAT secret exists"
+
+          AUTH_USER=$(gh api user --jq '.login' 2>/dev/null || echo "FAILED")
+          if [ "$AUTH_USER" = "FAILED" ]; then
+            ERRORS="$ERRORS\n- PAT authentication failed (token may be expired or revoked)"
+            echo "::error::PAT authentication failed"
+          else
+            echo "Authenticated as: $AUTH_USER"
+          fi
+
+          SCOPES=$(gh api -i user 2>/dev/null | grep -i "x-oauth-scopes:" || echo "")
+          if [ -n "$SCOPES" ]; then
+            echo "Token scopes: $SCOPES"
+            if echo "$SCOPES" | grep -q "admin:org"; then
+              WARNINGS="$WARNINGS\n- PAT has admin:org scope (broader than needed)"
+            fi
+          fi
+
+          EXPIRY_HEADER=$(gh api -i user 2>/dev/null | grep -i "github-authentication-token-expiration:" || echo "")
+          if [ -n "$EXPIRY_HEADER" ]; then
+            echo "Token expiry: $EXPIRY_HEADER"
+            EXPIRY_DATE=$(echo "$EXPIRY_HEADER" | sed 's/.*: //' | tr -d '\r')
+            EXPIRY_TS=$(date -d "$EXPIRY_DATE" +%s 2>/dev/null || echo "0")
+            NOW_TS=$(date +%s)
+            DAYS_LEFT=$(( (EXPIRY_TS - NOW_TS) / 86400 ))
+            if [ "$DAYS_LEFT" -lt 7 ] && [ "$DAYS_LEFT" -ge 0 ]; then
+              WARNINGS="$WARNINGS\n- PAT expires in $DAYS_LEFT days ($EXPIRY_DATE)"
+            fi
+            if [ "$DAYS_LEFT" -lt 0 ]; then
+              ERRORS="$ERRORS\n- PAT has expired ($EXPIRY_DATE)"
+            fi
+          fi
+
+          MANAGED_REPOS=(
+            "thonyAGP/DevOps-Factory"
+            "thonyAGP/Email_Assistant"
+            "thonyAGP/ClubMedRoomAssignment"
+            "thonyAGP/CasaSync"
+            "thonyAGP/livret-au-marais"
+            "thonyAGP/au-marais"
+            "thonyAGP/lecteur-magic"
+            "thonyAGP/Utilitaire_Webapp"
+          )
+
+          echo ""
+          echo "=== Repo Access Check ==="
+          for REPO in "${MANAGED_REPOS[@]}"; do
+            PERMS=$(gh api "repos/$REPO" --jq '.permissions | to_entries | map(select(.value == true)) | map(.key) | join(",")' 2>/dev/null || echo "FAILED")
+            if [ "$PERMS" = "FAILED" ]; then
+              ERRORS="$ERRORS\n- Cannot access $REPO (403/404)"
+              REPOS_FAIL=$((REPOS_FAIL + 1))
+              echo "FAIL $REPO - NO ACCESS"
+            else
+              REPOS_OK=$((REPOS_OK + 1))
+              echo "OK   $REPO - permissions: $PERMS"
+              if ! echo "$PERMS" | grep -q "push"; then
+                WARNINGS="$WARNINGS\n- $REPO: no push permission (self-heal disabled)"
+              fi
+            fi
+          done
+
+          echo ""
+          echo "=== Summary ==="
+          echo "Repos OK: $REPOS_OK / ${#MANAGED_REPOS[@]}"
+          echo "Repos FAIL: $REPOS_FAIL"
+
+          if [ -z "$ERRORS" ]; then
+            echo "pat_valid=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "pat_valid=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "repos_ok=$REPOS_OK" >> "$GITHUB_OUTPUT"
+          echo "repos_fail=$REPOS_FAIL" >> "$GITHUB_OUTPUT"
+
+          printf "%b" "$ERRORS" > /tmp/pat-errors.txt
+          printf "%b" "$WARNINGS" > /tmp/pat-warnings.txt
+
+      - name: Create alert issue if PAT is broken
+        if: steps.pat-check.outputs.pat_valid == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ERRORS=$(cat /tmp/pat-errors.txt 2>/dev/null || echo "Unknown error")
+          WARNINGS=$(cat /tmp/pat-warnings.txt 2>/dev/null || echo "")
+
+          EXISTING=$(gh issue list --repo "$GITHUB_REPOSITORY" --label "pat-alert" --state open --json number --jq 'length' 2>/dev/null || echo "0")
+          if [ "$EXISTING" != "0" ]; then
+            echo "Alert issue already exists, skipping"
+            exit 0
+          fi
+
+          gh label create "pat-alert" --repo "$GITHUB_REPOSITORY" --color "b60205" --description "FACTORY_PAT token issue" --force 2>/dev/null || true
+
+          cat > /tmp/pat-issue-body.md << ENDOFBODY
+          ## FACTORY_PAT Health Check FAILED
+
+          **All DevOps-Factory automation depends on this token.** Without a valid PAT:
+          - CI monitoring stops
+          - Self-heal stops
+          - Quality reports stop
+          - Dashboard stops updating
+
+          ### Errors detected
+          $ERRORS
+
+          ### How to fix
+          1. Go to https://github.com/settings/tokens
+          2. Check if FACTORY_PAT is expired or revoked
+          3. Regenerate if needed
+          4. Update the secret: repo Settings > Secrets > FACTORY_PAT
+
+          ---
+          *Auto-generated by PAT Health Check*
+          ENDOFBODY
+
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "[CRITICAL] FACTORY_PAT is broken - all automation stopped" \
+            --body-file /tmp/pat-issue-body.md \
+            --label "pat-alert"
+
+      - name: Auto-close alerts if PAT recovered
+        if: steps.pat-check.outputs.pat_valid == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          WARNINGS=$(cat /tmp/pat-warnings.txt 2>/dev/null || echo "")
+
+          EXISTING=$(gh issue list --repo "$GITHUB_REPOSITORY" --label "pat-alert" --state open --json number --jq '.[].number' 2>/dev/null || echo "")
+          for NUM in $EXISTING; do
+            gh issue close "$NUM" --repo "$GITHUB_REPOSITORY" --comment "PAT health check passed. Auto-closing." 2>/dev/null || true
+            echo "Closed recovered alert #$NUM"
+          done
+
+          if [ -z "$WARNINGS" ]; then
+            echo "All clear, no warnings"
+            exit 0
+          fi
+
+          if echo "$WARNINGS" | grep -q "expires in"; then
+            gh label create "pat-alert" --repo "$GITHUB_REPOSITORY" --color "e3b341" --description "FACTORY_PAT token issue" --force 2>/dev/null || true
+
+            cat > /tmp/pat-warning-body.md << ENDOFBODY
+            ## FACTORY_PAT Expiring Soon
+
+            $WARNINGS
+
+            ### Action needed
+            Renew the token before it expires to avoid automation downtime.
+
+            ---
+            *Auto-generated by PAT Health Check*
+            ENDOFBODY
+
+            gh issue create --repo "$GITHUB_REPOSITORY" \
+              --title "[WARNING] FACTORY_PAT expires soon - renew to avoid downtime" \
+              --body-file /tmp/pat-warning-body.md \
+              --label "pat-alert"
+          fi
