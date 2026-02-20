@@ -11,7 +11,7 @@
 
 - **Health**: 45/100
 - **CI**: fail ([view](https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/22192523507))
-- **Open PRs**: 3
+- **Open PRs**: 4
 
 ### claude-cli-wrapper :white_circle:
 
@@ -23,12 +23,6 @@
 
 - **Health**: 60/100
 - **CI**: none ([view](null))
-- **Open PRs**: 1
-
-### lecteur-magic :white_circle:
-
-- **Health**: 60/100
-- **CI**: none ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22172057509))
 - **Open PRs**: 1
 
 ### Livret_accueil_Au-Marais :white_circle:
@@ -79,10 +73,10 @@
 - **CI**: none ([view](null))
 - **Open PRs**: 1
 
-### Utilitaire_Webapp :white_circle:
+### lecteur-magic :white_circle:
 
 - **Health**: 65/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22206179987))
 - **Open PRs**: 1
 
 ### CasaSync :white_check_mark:
@@ -108,3 +102,9 @@
 - **Health**: 75/100
 - **CI**: pass ([view](https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016))
 - **Open PRs**: 1
+
+### Utilitaire_Webapp :white_check_mark:
+
+- **Health**: 75/100
+- **CI**: pass ([view](https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250))
+- **Open PRs**: 5

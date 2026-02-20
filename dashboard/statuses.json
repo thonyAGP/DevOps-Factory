@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-19T20:40:19.505Z",
+  "timestamp": "2026-02-20T00:51:42.573Z",
   "projects": [
     {
       "name": "ClubMedRoomAssignment",
@@ -15,6 +15,17 @@
         "name": "CI"
       },
       "openPRs": [
+        {
+          "created_at": "2026-02-20T00:40:45Z",
+          "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/pull/36",
+          "labels": ["ai-fix"],
+          "number": 36,
+          "state": "OPEN",
+          "title": "style: auto-fix Prettier formatting (122 files)",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
         {
           "created_at": "2026-02-19T17:03:16Z",
           "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/pull/33",
@@ -119,40 +130,6 @@
         {
           "created_at": "2026-02-18T12:42:19Z",
           "html_url": "https://github.com/thonyAGP/claude-launcher/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 60,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false
-    },
-    {
-      "name": "lecteur-magic",
-      "fullName": "thonyAGP/lecteur-magic",
-      "stack": "node",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-02-19T07:08:04Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/lecteur-magic/actions/runs/22172057509",
-        "id": 22172057509,
-        "name": "Daily Drift Report"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T12:43:41Z",
-          "html_url": "https://github.com/thonyAGP/lecteur-magic/pull/1",
           "labels": [],
           "number": 1,
           "state": "OPEN",
@@ -465,22 +442,22 @@
       "hasHusky": false
     },
     {
-      "name": "Utilitaire_Webapp",
-      "fullName": "thonyAGP/Utilitaire_Webapp",
+      "name": "lecteur-magic",
+      "fullName": "thonyAGP/lecteur-magic",
       "stack": "node",
       "ciStatus": "none",
       "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
+        "conclusion": "success",
+        "created_at": "2026-02-20T00:32:57Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/lecteur-magic/actions/runs/22206179987",
+        "id": 22206179987,
+        "name": "Deploy Migration Dashboard"
       },
       "openPRs": [
         {
-          "created_at": "2026-02-18T12:48:21Z",
-          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/1",
+          "created_at": "2026-02-18T12:43:41Z",
+          "html_url": "https://github.com/thonyAGP/lecteur-magic/pull/1",
           "labels": [],
           "number": 1,
           "state": "OPEN",
@@ -628,6 +605,84 @@
         {
           "created_at": "2026-02-18T12:44:08Z",
           "html_url": "https://github.com/thonyAGP/livret-au-marais/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 75,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true
+    },
+    {
+      "name": "Utilitaire_Webapp",
+      "fullName": "thonyAGP/Utilitaire_Webapp",
+      "stack": "node",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-19T21:51:38Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250",
+        "id": 22201584250,
+        "name": "CI"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-19T23:45:34Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T23:37:50Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T23:09:40Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T22:07:31Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:48:21Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/1",
           "labels": [],
           "number": 1,
           "state": "OPEN",
