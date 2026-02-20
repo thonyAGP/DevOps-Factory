@@ -1,28 +1,110 @@
 {
-  "timestamp": "2026-02-20T11:11:44.702Z",
+  "timestamp": "2026-02-20T12:38:40.786Z",
   "projects": [
     {
-      "name": "CasaSync",
-      "fullName": "thonyAGP/CasaSync",
-      "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "name": "ClubMedRoomAssignment",
+      "fullName": "thonyAGP/ClubMedRoomAssignment",
+      "stack": "node",
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-02-19T17:25:19Z",
+        "head_branch": "main",
+        "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/22192523507",
+        "id": 22192523507,
+        "name": "CI"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-20T00:40:45Z",
+          "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/pull/36",
+          "labels": ["ai-fix"],
+          "number": 36,
+          "state": "OPEN",
+          "title": "style: auto-fix Prettier formatting (122 files)",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T17:03:16Z",
+          "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/pull/33",
+          "labels": ["ai-fix"],
+          "number": 33,
+          "state": "OPEN",
+          "title": "fix: CI fix [pattern:auto-1771520590027]",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:42:48Z",
+          "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/pull/12",
+          "labels": [],
+          "number": 12,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2025-12-23T21:25:37Z",
+          "html_url": "https://github.com/thonyAGP/ClubMedRoomAssignment/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "feat: Anti-regression infrastructure & MECANO fixes",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 60,
+      "healthScore": 45,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
-      "hasHusky": false
+      "hasHusky": true
     },
     {
       "name": "claude-cli-wrapper",
       "fullName": "thonyAGP/claude-cli-wrapper",
       "stack": "node",
       "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T17:02:35Z",
+          "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:41:50Z",
+          "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
       "healthScore": 60,
@@ -36,8 +118,27 @@
       "fullName": "thonyAGP/claude-launcher",
       "stack": "dotnet",
       "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:42:19Z",
+          "html_url": "https://github.com/thonyAGP/claude-launcher/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
       "healthScore": 60,
@@ -51,8 +152,27 @@
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
       "stack": "nextjs",
       "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:44:38Z",
+          "html_url": "https://github.com/thonyAGP/Livret_accueil_Au-Marais/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
       "healthScore": 60,
@@ -66,8 +186,27 @@
       "fullName": "thonyAGP/MCP_Quota_Claude",
       "stack": "node",
       "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:45:08Z",
+          "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
       "healthScore": 60,
@@ -81,8 +220,27 @@
       "fullName": "thonyAGP/Site_1970_Plomberie",
       "stack": "node",
       "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:45:48Z",
+          "html_url": "https://github.com/thonyAGP/Site_1970_Plomberie/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
       "healthScore": 60,
@@ -96,8 +254,38 @@
       "fullName": "thonyAGP/Site_Greg-Assainissement",
       "stack": "nextjs",
       "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T17:03:08Z",
+          "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:46:16Z",
+          "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
       "healthScore": 60,
@@ -111,8 +299,27 @@
       "fullName": "thonyAGP/SqlConnectionTest",
       "stack": "dotnet",
       "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:46:34Z",
+          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
       "healthScore": 60,
@@ -126,8 +333,38 @@
       "fullName": "thonyAGP/statusline",
       "stack": "node",
       "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T17:02:58Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:47:02Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
       "healthScore": 60,
@@ -141,8 +378,27 @@
       "fullName": "thonyAGP/test_codingmenace",
       "stack": "nextjs",
       "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:47:29Z",
+          "html_url": "https://github.com/thonyAGP/test_codingmenace/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
       "healthScore": 60,
@@ -156,8 +412,27 @@
       "fullName": "thonyAGP/Thumbfast",
       "stack": "nextjs",
       "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:47:56Z",
+          "html_url": "https://github.com/thonyAGP/Thumbfast/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
       "healthScore": 60,
@@ -167,12 +442,31 @@
       "hasHusky": false
     },
     {
-      "name": "au-marais",
-      "fullName": "thonyAGP/au-marais",
-      "stack": "nextjs",
+      "name": "lecteur-magic",
+      "fullName": "thonyAGP/lecteur-magic",
+      "stack": "node",
       "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-20T11:25:14Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/lecteur-magic/actions/runs/22222241710",
+        "id": 22222241710,
+        "name": "Deploy OpenSpec Viewer"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:43:41Z",
+          "html_url": "https://github.com/thonyAGP/lecteur-magic/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
       "healthScore": 65,
@@ -182,15 +476,79 @@
       "hasHusky": true
     },
     {
-      "name": "ClubMedRoomAssignment",
-      "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "name": "CasaSync",
+      "fullName": "thonyAGP/CasaSync",
+      "stack": "nextjs",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-18T08:39:02Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/CasaSync/actions/runs/22132524981",
+        "id": 22132524981,
+        "name": "CI"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T23:08:57Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:41:20Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 65,
+      "healthScore": 70,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false
+    },
+    {
+      "name": "au-marais",
+      "fullName": "thonyAGP/au-marais",
+      "stack": "nextjs",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-07T06:36:35Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/au-marais/actions/runs/21775816387",
+        "id": 21775816387,
+        "name": "E2E Tests"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:40:45Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 75,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
@@ -200,27 +558,31 @@
       "name": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
       "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-20T06:49:53Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22214459155",
+        "id": 22214459155,
+        "name": "Monitor Production"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:43:14Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/7",
+          "labels": ["enhancement", "Review effort 2/5"],
+          "number": 7,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 65,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": true
-    },
-    {
-      "name": "lecteur-magic",
-      "fullName": "thonyAGP/lecteur-magic",
-      "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 65,
+      "healthScore": 75,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
@@ -230,12 +592,31 @@
       "name": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
       "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-18T08:28:49Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016",
+        "id": 22132234016,
+        "name": "CI"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:44:08Z",
+          "html_url": "https://github.com/thonyAGP/livret-au-marais/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 65,
+      "healthScore": 75,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
@@ -245,12 +626,75 @@
       "name": "Utilitaire_Webapp",
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "stack": "node",
-      "ciStatus": "none",
-      "lastRun": null,
-      "openPRs": [],
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-19T21:51:38Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250",
+        "id": 22201584250,
+        "name": "CI"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-19T23:45:34Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T23:37:50Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T23:09:40Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T22:07:31Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:48:21Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 65,
+      "healthScore": 75,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,

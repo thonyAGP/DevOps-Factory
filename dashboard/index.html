@@ -309,7 +309,7 @@
 <body>
   <div class="header">
     <h1>DevOps Factory Dashboard</h1>
-    <div class="timestamp">Last updated: 2026-02-20T11:11:44.690Z</div>
+    <div class="timestamp">Last updated: 2026-02-20T12:38:40.777Z</div>
   </div>
 
   <div class="summary">
@@ -318,11 +318,11 @@
       <div class="label">Projects</div>
     </div>
     <div class="summary-item">
-      <div class="number" style="color: #f59e0b">62</div>
+      <div class="number" style="color: #f59e0b">64</div>
       <div class="label">Avg Health</div>
     </div>
     <div class="summary-item">
-      <div class="number" style="color: #22c55e">0</div>
+      <div class="number" style="color: #ef4444">1</div>
       <div class="label">Failing CI</div>
     </div>
     <div class="summary-item">
@@ -335,118 +335,75 @@
   <div class="factory-status">
     <h2>Factory Status</h2>
     <div class="factory-grid">
-      <div class="factory-health-card" style="border-color:#ef4444">
-        <div class="factory-health-indicator" style="background:#ef444420;color:#ef4444">
-          <span style="font-size:1.4rem">&#10060;</span>
-          <span style="font-weight:bold;font-size:1.1rem">Issues Detected</span>
+      <div class="factory-health-card" style="border-color:#22c55e">
+        <div class="factory-health-indicator" style="background:#22c55e20;color:#22c55e">
+          <span style="font-size:1.4rem">&#9989;</span>
+          <span style="font-weight:bold;font-size:1.1rem">All Systems Healthy</span>
         </div>
         <div class="factory-health-detail">
-          <div class="metric"><span class="metric-label">Last activity</span><span>just now</span></div>
-          <div class="metric"><span class="metric-label">Events (24h)</span><span>10</span></div>
-          <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#ef4444">2</span></div>
-          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#f59e0b">2</span></div>
+          <div class="metric"><span class="metric-label">Last activity</span><span>Never</span></div>
+          <div class="metric"><span class="metric-label">Events (24h)</span><span>0</span></div>
+          <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#22c55e">0</span></div>
+          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#22c55e">0</span></div>
         </div>
       </div>
 
       <div class="factory-stats-card">
         <h3>This Week</h3>
-        <div class="metric"><span class="metric-label">Scans completed</span><span class="val">1</span></div>
-        <div class="metric"><span class="metric-label">PRs created</span><span class="val">1</span></div>
-        <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">1</span></div>
-        <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#ef4444">2</span></div>
-        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">10</span></div>
+        <div class="metric"><span class="metric-label">Scans completed</span><span class="val">0</span></div>
+        <div class="metric"><span class="metric-label">PRs created</span><span class="val">0</span></div>
+        <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">0</span></div>
+        <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#22c55e">0</span></div>
+        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">0</span></div>
       </div>
     </div>
 
-    <details class="activity-timeline" open>
-      <summary>Recent Activity (10 events)</summary>
+    <details class="activity-timeline" >
+      <summary>Recent Activity (0 events)</summary>
       <table class="timeline-table">
         <tbody>
-          
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T11:11:10.383Z">just now</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>Email_Assistant</strong> - All workflows present</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T11:11:10.383Z">just now</td>
-              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
-              <td style="color:#ef4444">&#10060;</td>
-              <td><strong>Quality Score</strong> - total_failure: Quality Score</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T11:11:10.382Z">just now</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#ef4444">&#10060;</td>
-              <td><strong>CasaSync</strong> - 3 consecutive CI failures</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T11:11:10.381Z">just now</td>
-              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
-              <td style="color:#22c55e">&#9989;</td>
-              <td>14 projects, avg health 72</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T11:11:10.381Z">just now</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#22c55e">&#9989;</td>
-              <td><strong>Email_Assistant</strong> - CI recovered, issue #42 closed</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T11:11:10.380Z">just now</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#22c55e">&#9989;</td>
-              <td><strong>Site_Au-marais</strong> - Added 3 workflow(s): ci.yml, gitleaks.yml, renovate.json</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T11:11:10.380Z">just now</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>CasaSync</strong> - Self-heal dispatched (run 12345)</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T11:11:10.379Z">just now</td>
-              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td>8/9 passing. 0 failures, 1 partial</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T11:11:10.379Z">just now</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#22c55e">&#9989;</td>
-              <td>Scanned 21 repos (14 active)</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-20T11:11:10.377Z">just now</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#22c55e">&#9989;</td>
-              <td>6/7 passing, 1 failing</td>
-            </tr>
+          <tr><td colspan="4" style="text-align:center;color:#6e7681">No activity recorded yet</td></tr>
         </tbody>
       </table>
     </details>
   </div>
 
-  <div class="all-clear">All 17 projects are healthy</div>
-
   
 
+  
+  <div class="alerts">
+    <div class="section-title alert">Needs Attention (1)</div>
+    
+    <div class="alert-card" style="border-left-color: #ef4444">
+      <div class="alert-header">
+        <div>
+          <span class="status-icon">&#10060;</span>
+          <strong>ClubMedRoomAssignment</strong>
+          <span class="badge badge-node">node</span>
+        </div>
+        <div class="health-score" style="color: #ef4444">45</div>
+      </div>
+      <ul class="issue-list">
+        <li>CI failing <a href="https://github.com/thonyAGP/ClubMedRoomAssignment/actions/runs/22192523507" target="_blank">(view run)</a></li>
+      </ul>
+    </div>
+  </div>
+
   <div class="ok-section">
-    <div class="section-title">Healthy (17)</div>
+    <div class="section-title">Healthy (16)</div>
     <div class="ok-grid">
       
     <details class="ok-card">
       <summary>
-        <span class="status-icon">&#9898;</span>
+        <span class="status-icon">&#9989;</span>
         <strong>au-marais</strong>
         <span class="badge badge-nextjs">nextjs</span>
-        <span class="health-score" style="color: #f59e0b">65</span>
+        <span class="health-score" style="color: #f59e0b">75</span>
         <canvas data-sparkline="au-marais" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/au-marais/actions/runs/21775816387" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
       </div>
@@ -454,15 +411,15 @@
 
     <details class="ok-card">
       <summary>
-        <span class="status-icon">&#9898;</span>
+        <span class="status-icon">&#9989;</span>
         <strong>CasaSync</strong>
         <span class="badge badge-nextjs">nextjs</span>
-        <span class="health-score" style="color: #f59e0b">60</span>
+        <span class="health-score" style="color: #f59e0b">70</span>
         <canvas data-sparkline="CasaSync" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/CasaSync/actions/runs/22132524981" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -478,7 +435,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -494,7 +451,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -502,31 +459,15 @@
 
     <details class="ok-card">
       <summary>
-        <span class="status-icon">&#9898;</span>
-        <strong>ClubMedRoomAssignment</strong>
-        <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #f59e0b">65</span>
-        <canvas data-sparkline="ClubMedRoomAssignment" width="60" height="20"></canvas>
-      </summary>
-      <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
-        <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
-      </div>
-    </details>
-
-    <details class="ok-card">
-      <summary>
-        <span class="status-icon">&#9898;</span>
+        <span class="status-icon">&#9989;</span>
         <strong>Email_Assistant</strong>
         <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #f59e0b">65</span>
+        <span class="health-score" style="color: #f59e0b">75</span>
         <canvas data-sparkline="Email_Assistant" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/Email_Assistant/actions/runs/22214459155" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
       </div>
@@ -541,8 +482,8 @@
         <canvas data-sparkline="lecteur-magic" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>none <a href="https://github.com/thonyAGP/lecteur-magic/actions/runs/22222241710" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
       </div>
@@ -558,7 +499,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -566,15 +507,15 @@
 
     <details class="ok-card">
       <summary>
-        <span class="status-icon">&#9898;</span>
+        <span class="status-icon">&#9989;</span>
         <strong>livret-au-marais</strong>
         <span class="badge badge-nextjs">nextjs</span>
-        <span class="health-score" style="color: #f59e0b">65</span>
+        <span class="health-score" style="color: #f59e0b">75</span>
         <canvas data-sparkline="livret-au-marais" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
       </div>
@@ -590,7 +531,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -606,7 +547,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -622,7 +563,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -638,7 +579,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -654,7 +595,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -670,7 +611,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -686,7 +627,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
       </div>
@@ -694,15 +635,15 @@
 
     <details class="ok-card">
       <summary>
-        <span class="status-icon">&#9898;</span>
+        <span class="status-icon">&#9989;</span>
         <strong>Utilitaire_Webapp</strong>
         <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #f59e0b">65</span>
+        <span class="health-score" style="color: #f59e0b">75</span>
         <canvas data-sparkline="Utilitaire_Webapp" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>0</span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>5</span></div>
         <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
       </div>
