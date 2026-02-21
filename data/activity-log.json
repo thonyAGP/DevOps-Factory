@@ -896,26 +896,38 @@
       "status": "error"
     },
     {
-      "timestamp": "2026-02-21T13:37:20.199Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
+      "timestamp": "2026-02-21T13:35:55.747Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "16 projects, avg health 49",
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-21T13:37:23.666Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
+      "timestamp": "2026-02-21T13:37:03.391Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 17 critical issues",
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-21T13:37:23.667Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
+      "timestamp": "2026-02-21T13:38:16.198Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 0%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-21T13:38:36.182Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 132.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-21T13:38:48.942Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 615min total, 209min wasted, ~$0/mo",
       "status": "warning"
     }
   ]
