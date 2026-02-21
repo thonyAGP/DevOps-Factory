@@ -44,7 +44,14 @@ jobs:
           git config user.email "devops-factory[bot]@users.noreply.github.com"
           git add data/activity-log.json data/self-heal-cooldowns.json
           git diff --cached --quiet || git commit -m "chore: update activity log" --no-verify
-          git pull --rebase --autostash
+          git pull --rebase --autostash || {
+            git checkout --theirs data/activity-log.json 2>/dev/null || true
+            git add data/activity-log.json 2>/dev/null || true
+            GIT_EDITOR=true git rebase --continue --no-verify 2>/dev/null || {
+              git rebase --abort 2>/dev/null
+              git pull --no-rebase --autostash || true
+            }
+          }
           git push
         env:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
