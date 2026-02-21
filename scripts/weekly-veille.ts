@@ -70,8 +70,16 @@ const ghApi = <T>(endpoint: string): T | null => {
 // --- Source configuration ---
 
 const GITHUB_SOURCES: WatchSource[] = [
+  // AI & Coding Assistants
   { name: 'Claude Code', category: 'Claude & Anthropic', repo: 'anthropics/claude-code' },
   { name: 'Aider', category: 'AI Coding Assistants', repo: 'Aider-AI/aider' },
+  {
+    name: 'awesome-claude-code',
+    category: 'Claude & Anthropic',
+    repo: 'hesreallyhim/awesome-claude-code',
+  },
+
+  // Agents & Frameworks
   { name: 'Vercel AI SDK', category: 'Agents & Frameworks', repo: 'vercel/ai' },
   { name: 'LangGraph', category: 'Agents & Frameworks', repo: 'langchain-ai/langgraph' },
   { name: 'CrewAI', category: 'Agents & Frameworks', repo: 'crewAIInc/crewAI' },
@@ -81,11 +89,8 @@ const GITHUB_SOURCES: WatchSource[] = [
     repo: 'openai/openai-agents-python',
   },
   { name: 'Google ADK', category: 'Agents & Frameworks', repo: 'google/adk-python' },
-  {
-    name: 'awesome-claude-code',
-    category: 'Claude & Anthropic',
-    repo: 'hesreallyhim/awesome-claude-code',
-  },
+
+  // MCP & Protocols
   {
     name: 'awesome-mcp-servers',
     category: 'MCP & Protocols',
@@ -93,12 +98,28 @@ const GITHUB_SOURCES: WatchSource[] = [
   },
   { name: 'A2A Protocol', category: 'MCP & Protocols', repo: 'google/A2A' },
   { name: 'MCP Spec', category: 'MCP & Protocols', repo: 'modelcontextprotocol/specification' },
-  { name: 'Vitest', category: 'Dev Tools', repo: 'vitest-dev/vitest' },
-  { name: 'Playwright', category: 'Dev Tools', repo: 'microsoft/playwright' },
-  { name: 'Prisma', category: 'Dev Tools', repo: 'prisma/prisma' },
+
+  // Dev Tools (our stack)
+  { name: 'TypeScript', category: 'Dev Tools', repo: 'microsoft/TypeScript' },
+  { name: 'Node.js', category: 'Dev Tools', repo: 'nodejs/node' },
   { name: 'Next.js', category: 'Dev Tools', repo: 'vercel/next.js' },
   { name: 'Fastify', category: 'Dev Tools', repo: 'fastify/fastify' },
+  { name: 'Prisma', category: 'Dev Tools', repo: 'prisma/prisma' },
+  { name: 'Vitest', category: 'Dev Tools', repo: 'vitest-dev/vitest' },
+  { name: 'Playwright', category: 'Dev Tools', repo: 'microsoft/playwright' },
   { name: 'pnpm', category: 'Dev Tools', repo: 'pnpm/pnpm' },
+  { name: 'ESLint', category: 'Dev Tools', repo: 'eslint/eslint' },
+  { name: 'Zod', category: 'Dev Tools', repo: 'colinhacks/zod' },
+
+  // DevOps & Security Tools (what we deploy)
+  { name: 'Renovate', category: 'DevOps Tools', repo: 'renovatebot/renovate' },
+  { name: 'Trivy', category: 'DevOps Tools', repo: 'aquasecurity/trivy' },
+  { name: 'Gitleaks', category: 'DevOps Tools', repo: 'gitleaks/gitleaks' },
+  { name: 'Semgrep', category: 'DevOps Tools', repo: 'semgrep/semgrep' },
+  { name: 'semantic-release', category: 'DevOps Tools', repo: 'semantic-release/semantic-release' },
+  { name: 'Stryker', category: 'DevOps Tools', repo: 'stryker-mutator/stryker-js' },
+  { name: 'Knip', category: 'DevOps Tools', repo: 'webpro-nl/knip' },
+  { name: 'GitHub Actions', category: 'DevOps Tools', repo: 'actions/runner' },
 ];
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;

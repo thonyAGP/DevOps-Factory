@@ -1,0 +1,193 @@
+# DevOps-Factory: Coverage Tracking & Enforcement
+# Runs tests with coverage on every PR, enforces ratchet pattern
+# Coverage can only go up - blocks PRs that reduce coverage > 2%
+
+name: Coverage Tracking
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect package manager
+        id: detect
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            echo "manager=pnpm" >> $GITHUB_OUTPUT
+          elif [ -f "yarn.lock" ]; then
+            echo "manager=yarn" >> $GITHUB_OUTPUT
+          else
+            echo "manager=npm" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: pnpm/action-setup@v4
+        if: steps.detect.outputs.manager == 'pnpm'
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: ${{ steps.detect.outputs.manager }}
+
+      - name: Install dependencies
+        run: |
+          case "${{ steps.detect.outputs.manager }}" in
+            pnpm) pnpm install --frozen-lockfile ;;
+            yarn) yarn install --frozen-lockfile ;;
+            *) npm ci ;;
+          esac
+
+      - name: Run tests with coverage
+        id: test
+        run: |
+          # Try common test commands that produce coverage
+          if grep -q '"test:coverage"' package.json 2>/dev/null; then
+            ${{ steps.detect.outputs.manager }} run test:coverage || true
+          elif grep -q '"coverage"' package.json 2>/dev/null; then
+            ${{ steps.detect.outputs.manager }} run coverage || true
+          elif grep -q '"vitest"' package.json 2>/dev/null || grep -q '"test"' package.json 2>/dev/null; then
+            npx vitest run --coverage --reporter=json --outputFile=coverage/coverage-summary.json 2>/dev/null || \
+            ${{ steps.detect.outputs.manager }} test -- --coverage 2>/dev/null || true
+          fi
+
+          # Check if coverage was generated
+          if [ -f "coverage/coverage-summary.json" ]; then
+            echo "has_coverage=true" >> $GITHUB_OUTPUT
+            LINES=$(node -e "try{const c=require('./coverage/coverage-summary.json');console.log(c.total.lines.pct)}catch{console.log(0)}")
+            BRANCHES=$(node -e "try{const c=require('./coverage/coverage-summary.json');console.log(c.total.branches.pct)}catch{console.log(0)}")
+            FUNCTIONS=$(node -e "try{const c=require('./coverage/coverage-summary.json');console.log(c.total.functions.pct)}catch{console.log(0)}")
+            echo "lines=$LINES" >> $GITHUB_OUTPUT
+            echo "branches=$BRANCHES" >> $GITHUB_OUTPUT
+            echo "functions=$FUNCTIONS" >> $GITHUB_OUTPUT
+          else
+            echo "has_coverage=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Load baseline
+        if: steps.test.outputs.has_coverage == 'true'
+        id: baseline
+        run: |
+          if [ -f ".coverage-baseline.json" ]; then
+            PREV_LINES=$(node -e "try{console.log(require('./.coverage-baseline.json').lines)}catch{console.log(0)}")
+            PREV_BRANCHES=$(node -e "try{console.log(require('./.coverage-baseline.json').branches)}catch{console.log(0)}")
+            echo "prev_lines=$PREV_LINES" >> $GITHUB_OUTPUT
+            echo "prev_branches=$PREV_BRANCHES" >> $GITHUB_OUTPUT
+            echo "has_baseline=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_baseline=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check ratchet
+        if: steps.test.outputs.has_coverage == 'true' && steps.baseline.outputs.has_baseline == 'true'
+        id: ratchet
+        run: |
+          CURRENT=${{ steps.test.outputs.lines }}
+          PREV=${{ steps.baseline.outputs.prev_lines }}
+          DIFF=$(node -e "console.log(($CURRENT - $PREV).toFixed(1))")
+
+          if (( $(echo "$DIFF < -2" | bc -l) )); then
+            echo "failed=true" >> $GITHUB_OUTPUT
+            echo "delta=$DIFF" >> $GITHUB_OUTPUT
+          else
+            echo "failed=false" >> $GITHUB_OUTPUT
+            echo "delta=$DIFF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment PR
+        if: github.event_name == 'pull_request' && steps.test.outputs.has_coverage == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const lines = parseFloat('${{ steps.test.outputs.lines }}') || 0;
+            const branches = parseFloat('${{ steps.test.outputs.branches }}') || 0;
+            const functions = parseFloat('${{ steps.test.outputs.functions }}') || 0;
+            const hasBaseline = '${{ steps.baseline.outputs.has_baseline }}' === 'true';
+            const prevLines = parseFloat('${{ steps.baseline.outputs.prev_lines }}') || 0;
+            const prevBranches = parseFloat('${{ steps.baseline.outputs.prev_branches }}') || 0;
+            const ratchetFailed = '${{ steps.ratchet.outputs.failed }}' === 'true';
+
+            const delta = (curr, prev) => {
+              const d = (curr - prev).toFixed(1);
+              return d > 0 ? `+${d}%` : `${d}%`;
+            };
+            const icon = (curr, prev) => curr >= prev ? '🟢' : '🔴';
+
+            let body = `## Coverage Report\n\n`;
+            body += `| Metric | Current |`;
+            if (hasBaseline) body += ` Previous | Delta |`;
+            body += `\n|--------|---------|`;
+            if (hasBaseline) body += `----------|-------|`;
+            body += `\n`;
+            body += `| Lines | ${lines}% |`;
+            if (hasBaseline) body += ` ${prevLines}% | ${icon(lines, prevLines)} ${delta(lines, prevLines)} |`;
+            body += `\n`;
+            body += `| Branches | ${branches}% |`;
+            if (hasBaseline) body += ` ${prevBranches}% | ${icon(branches, prevBranches)} ${delta(branches, prevBranches)} |`;
+            body += `\n`;
+            body += `| Functions | ${functions}% ||\n`;
+
+            if (ratchetFailed) {
+              body += `\n> 🔴 **Coverage ratchet failed** - coverage dropped more than 2%. Please add tests.\n`;
+            } else {
+              body += `\n> ✅ Coverage check passed\n`;
+            }
+
+            body += `\n*Generated by DevOps-Factory Coverage Tracking*`;
+
+            // Find and update existing comment or create new one
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.body?.includes('Coverage Report'));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
+
+      - name: Update baseline on main
+        if: github.event_name == 'push' && steps.test.outputs.has_coverage == 'true'
+        run: |
+          cat > .coverage-baseline.json << BASELINE_EOF
+          {
+            "date": "$(date -I)",
+            "lines": ${{ steps.test.outputs.lines }},
+            "branches": ${{ steps.test.outputs.branches }},
+            "functions": ${{ steps.test.outputs.functions }}
+          }
+          BASELINE_EOF
+          git config user.name "DevOps Factory Bot"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add .coverage-baseline.json
+          git diff --cached --quiet || git commit -m "chore: update coverage baseline"
+          git push
+
+      - name: Fail on ratchet
+        if: steps.ratchet.outputs.failed == 'true'
+        run: |
+          echo "::error::Coverage dropped by ${{ steps.ratchet.outputs.delta }}% (max allowed: -2%)"
+          exit 1

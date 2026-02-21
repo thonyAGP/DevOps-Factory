@@ -50,6 +50,12 @@ jobs:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
         continue-on-error: true
 
+      - name: Template drift detection
+        run: pnpm template-drift
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+        continue-on-error: true
+
       - name: Check for alerts
         id: alerts
         run: |

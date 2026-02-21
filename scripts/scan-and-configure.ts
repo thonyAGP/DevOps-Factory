@@ -64,6 +64,8 @@ interface RepoAnalysis {
   hasReleaseDrafter: boolean;
   hasReadmeFreshness: boolean;
   hasConfigDrift: boolean;
+  hasCoverageTracking: boolean;
+  hasSemanticRelease: boolean;
 }
 
 const IGNORED_REPOS = ['DevOps-Factory', 'Parametrage_Claude', 'Migration_Pc1_vers_Pc2', '.github'];
@@ -178,6 +180,10 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
   const hasReleaseDrafter = workflowsDir.includes('release-drafter');
   const hasReadmeFreshness = workflowsDir.includes('readme-freshness');
   const hasConfigDrift = workflowsDir.includes('config-drift');
+  const hasCoverageTracking =
+    workflowsDir.includes('coverage-tracking') || workflowsDir.includes('coverage');
+  const hasSemanticRelease =
+    workflowsDir.includes('semantic-release') || workflowsDir.includes('release.yml');
 
   return {
     repo,
@@ -220,6 +226,8 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
     hasReleaseDrafter,
     hasReadmeFreshness,
     hasConfigDrift,
+    hasCoverageTracking,
+    hasSemanticRelease,
   };
 };
 
@@ -550,6 +558,22 @@ const createConfigPR = (analysis: RepoAnalysis): void => {
     });
   }
 
+  // Phase 2: Coverage tracking (Node.js projects with test framework)
+  if (!analysis.hasCoverageTracking && (analysis.stack === 'node' || analysis.stack === 'nextjs')) {
+    filesToAdd.push({
+      path: '.github/workflows/coverage-tracking.yml',
+      template: `${TEMPLATES_DIR}/coverage-tracking.yml`,
+    });
+  }
+
+  // Phase 2: Semantic release (all active projects)
+  if (!analysis.hasSemanticRelease && analysis.stack !== 'unknown') {
+    filesToAdd.push({
+      path: '.github/workflows/semantic-release.yml',
+      template: `${TEMPLATES_DIR}/semantic-release.yml`,
+    });
+  }
+
   if (filesToAdd.length === 0) {
     console.log(`  [SKIP] ${repo.name}: all workflows present`);
     logActivity('scan-and-configure', 'skip', 'All workflows present', 'info', repo.name);
@@ -677,19 +701,18 @@ const generateReport = (analyses: RepoAnalysis[]): string => {
   report += `**Active projects**: ${active.length}\n`;
   report += `**Fully configured**: ${configured.length}/${active.length}\n\n`;
 
-  report += `| Repo | Stack | CI | Claude | SAST | Supply | Types | Risk | Drift | Release |\n`;
-  report += `|------|-------|----|--------|------|--------|-------|------|-------|---------|\n`;
+  report += `| Repo | Stack | CI | Review | SAST | Supply | Coverage | Drift | Release |\n`;
+  report += `|------|-------|----|--------|------|--------|----------|-------|---------|\n`;
 
   for (const a of analyses.sort((x, y) => x.repo.name.localeCompare(y.repo.name))) {
     const ci = a.hasCI ? 'Y' : '-';
-    const claude = a.hasClaudeReview ? 'Y' : '-';
+    const review = a.hasCodeRabbit ? 'CR' : a.hasClaudeReview ? 'CL' : '-';
     const sast = a.hasSemgrep ? 'Y' : '-';
     const supply = a.hasSupplyChainSecurity ? 'Y' : '-';
-    const types = a.hasTypeCoverage ? 'Y' : '-';
-    const risk = a.hasPrRiskAssessment ? 'Y' : '-';
+    const coverage = a.hasCoverageTracking ? 'Y' : '-';
     const drift = a.hasConfigDrift ? 'Y' : '-';
-    const release = a.hasReleaseDrafter ? 'Y' : '-';
-    report += `| ${a.repo.name} | ${a.stack} | ${ci} | ${claude} | ${sast} | ${supply} | ${types} | ${risk} | ${drift} | ${release} |\n`;
+    const release = a.hasSemanticRelease ? 'SR' : a.hasReleaseDrafter ? 'RD' : '-';
+    report += `| ${a.repo.name} | ${a.stack} | ${ci} | ${review} | ${sast} | ${supply} | ${coverage} | ${drift} | ${release} |\n`;
   }
 
   return report;
@@ -776,6 +799,8 @@ const main = () => {
           hasReleaseDrafter: a.hasReleaseDrafter,
           hasReadmeFreshness: a.hasReadmeFreshness,
           hasConfigDrift: a.hasConfigDrift,
+          hasCoverageTracking: a.hasCoverageTracking,
+          hasSemanticRelease: a.hasSemanticRelease,
           defaultBranch: a.repo.default_branch,
         })),
       },

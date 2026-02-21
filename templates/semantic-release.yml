@@ -1,0 +1,109 @@
+# DevOps-Factory: Semantic Release
+# Automated versioning + changelog + GitHub Release from conventional commits
+# Triggers on push to main/master after PR merge
+# Complements release-drafter (drafter = draft preview, this = actual release)
+
+name: Semantic Release
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    # Only run on merge commits or manual trigger
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.head_commit.message, 'Merge pull request') ||
+      contains(github.event.head_commit.message, 'feat') ||
+      contains(github.event.head_commit.message, 'fix') ||
+      contains(github.event.head_commit.message, 'perf')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Detect package manager
+        id: detect
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            echo "manager=pnpm" >> $GITHUB_OUTPUT
+          elif [ -f "yarn.lock" ]; then
+            echo "manager=yarn" >> $GITHUB_OUTPUT
+          else
+            echo "manager=npm" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: pnpm/action-setup@v4
+        if: steps.detect.outputs.manager == 'pnpm'
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: ${{ steps.detect.outputs.manager }}
+
+      - name: Install semantic-release
+        run: |
+          npm install -g semantic-release \
+            @semantic-release/changelog \
+            @semantic-release/git \
+            conventional-changelog-conventionalcommits
+
+      - name: Create semantic-release config
+        run: |
+          # Only create if no existing config
+          if [ ! -f ".releaserc.json" ] && [ ! -f ".releaserc.yml" ] && [ ! -f "release.config.js" ]; then
+            cat > .releaserc.json << 'RELEASE_EOF'
+          {
+            "branches": ["main", "master"],
+            "plugins": [
+              ["@semantic-release/commit-analyzer", {
+                "preset": "conventionalcommits",
+                "releaseRules": [
+                  { "type": "feat", "release": "minor" },
+                  { "type": "fix", "release": "patch" },
+                  { "type": "perf", "release": "patch" },
+                  { "type": "refactor", "release": "patch" },
+                  { "breaking": true, "release": "major" }
+                ]
+              }],
+              ["@semantic-release/release-notes-generator", {
+                "preset": "conventionalcommits",
+                "presetConfig": {
+                  "types": [
+                    { "type": "feat", "section": "Features" },
+                    { "type": "fix", "section": "Bug Fixes" },
+                    { "type": "perf", "section": "Performance" },
+                    { "type": "refactor", "section": "Refactoring" },
+                    { "type": "docs", "section": "Documentation" },
+                    { "type": "chore", "hidden": true }
+                  ]
+                }
+              }],
+              ["@semantic-release/changelog", {
+                "changelogFile": "CHANGELOG.md"
+              }],
+              ["@semantic-release/git", {
+                "assets": ["CHANGELOG.md", "package.json"],
+                "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+              }],
+              "@semantic-release/github"
+            ]
+          }
+          RELEASE_EOF
+          fi
+
+      - name: Run semantic-release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
