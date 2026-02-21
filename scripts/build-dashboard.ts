@@ -670,6 +670,155 @@ const getPerformanceSection = (statuses: ProjectStatus[]): string => {
   </div>`;
 };
 
+const getDoraSection = (): string => {
+  const doraPath = 'dashboard/dora-metrics.json';
+  if (!existsSync(doraPath)) return '';
+
+  try {
+    const dora = JSON.parse(readFileSync(doraPath, 'utf-8')) as {
+      summary: {
+        overallRating: string;
+        avgDeployFreq: number;
+        avgLeadTime: number;
+        avgMTTR: number;
+        avgChangeFailRate: number;
+        totalRepos: number;
+        eliteCount: number;
+        highCount: number;
+        mediumCount: number;
+        lowCount: number;
+      };
+      repos: Array<{
+        repo: string;
+        rating: string;
+        deploymentFrequency: number;
+        leadTimeHours: number;
+        mttrHours: number;
+        changeFailureRate: number;
+      }>;
+    };
+
+    const s = dora.summary;
+    const ratingColor = (r: string) =>
+      r === 'elite' ? '#22c55e' : r === 'high' ? '#3b82f6' : r === 'medium' ? '#f59e0b' : '#ef4444';
+
+    const repoRows = dora.repos
+      .map(
+        (r) =>
+          `<div class="dora-repo-row">
+        <span>${r.repo}</span>
+        <span><span class="dora-rating" style="background:${ratingColor(r.rating)}30;color:${ratingColor(r.rating)}">${r.rating}</span></span>
+        <span style="color:#8b949e">${r.deploymentFrequency}/wk</span>
+        <span style="color:#8b949e">${r.leadTimeHours}h</span>
+        <span style="color:#8b949e">${r.changeFailureRate}%</span>
+      </div>`
+      )
+      .join('');
+
+    return `
+  <div class="dora-section">
+    <h2>DORA Metrics</h2>
+    <div class="dora-grid">
+      <div class="dora-card" style="border-left:3px solid ${ratingColor(s.overallRating)}">
+        <div class="dora-value" style="color:${ratingColor(s.overallRating)}">${s.overallRating.toUpperCase()}</div>
+        <div class="dora-label">Overall Rating</div>
+      </div>
+      <div class="dora-card">
+        <div class="dora-value" style="color:#a78bfa">${s.avgDeployFreq}</div>
+        <div class="dora-label">Deploys/week</div>
+      </div>
+      <div class="dora-card">
+        <div class="dora-value" style="color:#a78bfa">${s.avgLeadTime}h</div>
+        <div class="dora-label">Lead Time</div>
+      </div>
+      <div class="dora-card">
+        <div class="dora-value" style="color:#a78bfa">${s.avgMTTR}h</div>
+        <div class="dora-label">MTTR</div>
+      </div>
+      <div class="dora-card">
+        <div class="dora-value" style="color:${s.avgChangeFailRate < 15 ? '#22c55e' : s.avgChangeFailRate < 30 ? '#f59e0b' : '#ef4444'}">${s.avgChangeFailRate}%</div>
+        <div class="dora-label">Change Fail Rate</div>
+      </div>
+    </div>
+    <div style="font-size:0.75rem;color:#8b949e;margin-bottom:0.4rem">
+      ${s.eliteCount} elite, ${s.highCount} high, ${s.mediumCount} medium, ${s.lowCount} low (${s.totalRepos} repos)
+    </div>
+    <div class="dora-repo-list">${repoRows}</div>
+  </div>`;
+  } catch {
+    return '';
+  }
+};
+
+const getCostSection = (): string => {
+  const costPath = 'dashboard/cost-report.json';
+  if (!existsSync(costPath)) return '';
+
+  try {
+    const cost = JSON.parse(readFileSync(costPath, 'utf-8')) as {
+      summary: {
+        totalMinutes: number;
+        totalRuns: number;
+        wastedMinutes: number;
+        mostExpensiveRepo: string;
+        mostExpensiveWorkflow: string;
+        totalRecommendations: number;
+        estimatedMonthlyCost: number;
+      };
+      repos: Array<{
+        repo: string;
+        totalMinutes: number;
+        totalRuns: number;
+        recommendations: string[];
+      }>;
+    };
+
+    const s = cost.summary;
+    const wastedPct = s.totalMinutes > 0 ? Math.round((s.wastedMinutes / s.totalMinutes) * 100) : 0;
+    const freeUsed = Math.min(100, Math.round((s.totalMinutes / 2000) * 100));
+    const freeColor = freeUsed >= 90 ? '#ef4444' : freeUsed >= 70 ? '#f59e0b' : '#22c55e';
+
+    const allRecs = cost.repos.flatMap((r) => r.recommendations).slice(0, 5);
+    const recsList =
+      allRecs.length > 0
+        ? `<div class="cost-recs"><strong style="color:#8b949e">Top recommendations:</strong><ul>${allRecs.map((r) => `<li>${r}</li>`).join('')}</ul></div>`
+        : '';
+
+    return `
+  <div class="cost-section">
+    <h2>CI Cost Monitor</h2>
+    <div class="cost-grid">
+      <div class="cost-card">
+        <div class="cost-value" style="color:#34d399">${s.totalMinutes}</div>
+        <div class="cost-label">Minutes (30d)</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-value" style="color:#34d399">${s.totalRuns}</div>
+        <div class="cost-label">Total Runs</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-value" style="color:${wastedPct > 20 ? '#ef4444' : '#f59e0b'}">${s.wastedMinutes}</div>
+        <div class="cost-label">Wasted min (${wastedPct}%)</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-value" style="color:${freeColor}">${freeUsed}%</div>
+        <div class="cost-label">Free tier used</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-value" style="color:${s.estimatedMonthlyCost > 0 ? '#ef4444' : '#22c55e'}">$${s.estimatedMonthlyCost}</div>
+        <div class="cost-label">Est. cost/mo</div>
+      </div>
+    </div>
+    <div style="font-size:0.75rem;color:#8b949e;margin-bottom:0.4rem">
+      Most expensive: ${s.mostExpensiveRepo} | ${s.totalRecommendations} optimization(s) found
+    </div>
+    ${recsList}
+  </div>`;
+  } catch {
+    return '';
+  }
+};
+
 const generateHTML = (statuses: ProjectStatus[]): string => {
   const timestamp = formatDashboardDate(new Date());
   const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
@@ -1102,6 +1251,89 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
       margin-bottom: 1.5rem;
     }
     .performance-posture h2 { color: #06b6d4; font-size: 1rem; margin-bottom: 0.8rem; }
+
+    /* DORA Metrics */
+    .dora-section {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .dora-section h2 { color: #a78bfa; font-size: 1rem; margin-bottom: 0.8rem; }
+    .dora-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .dora-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    .dora-card .dora-value { font-size: 1.4rem; font-weight: bold; }
+    .dora-card .dora-label { font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem; }
+    .dora-rating {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .dora-repo-list {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.8rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .dora-repo-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      border-bottom: 1px solid #21262d;
+    }
+    .dora-repo-row:last-child { border-bottom: none; }
+
+    /* Cost Monitor */
+    .cost-section {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .cost-section h2 { color: #34d399; font-size: 1rem; margin-bottom: 0.8rem; }
+    .cost-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .cost-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    .cost-card .cost-value { font-size: 1.4rem; font-weight: bold; }
+    .cost-card .cost-label { font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem; }
+    .cost-recs {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.8rem;
+    }
+    .cost-recs ul { margin: 0; padding-left: 1.2rem; }
+    .cost-recs li { padding: 0.15rem 0; color: #c9d1d9; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
@@ -1147,6 +1379,10 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
   ${getSecurityPostureSection(statuses)}
 
   ${getPerformanceSection(statuses)}
+
+  ${getDoraSection()}
+
+  ${getCostSection()}
 
   ${allClearBanner}
 
@@ -1275,7 +1511,43 @@ const generateDailyReport = (statuses: ProjectStatus[]): string => {
   body += `- **${avgSecScore}%** avg security score\n`;
   body += `- **${reviewedCount}/${statuses.length}** repos with AI code review\n`;
   const avgPerfReport = Math.round(statuses.reduce((s, p) => s + p.perfScore, 0) / statuses.length);
-  body += `- **${avgPerfReport}%** avg quality score (perf, a11y, coverage, release)\n\n`;
+  body += `- **${avgPerfReport}%** avg quality score (perf, a11y, coverage, release)\n`;
+
+  // DORA metrics summary
+  const doraPath = 'dashboard/dora-metrics.json';
+  if (existsSync(doraPath)) {
+    try {
+      const dora = JSON.parse(readFileSync(doraPath, 'utf-8')) as {
+        summary: {
+          overallRating: string;
+          avgDeployFreq: number;
+          avgLeadTime: number;
+          avgMTTR: number;
+          avgChangeFailRate: number;
+        };
+      };
+      const ds = dora.summary;
+      body += `- **DORA**: ${ds.overallRating.toUpperCase()} (deploy ${ds.avgDeployFreq}/wk, lead ${ds.avgLeadTime}h, MTTR ${ds.avgMTTR}h, CFR ${ds.avgChangeFailRate}%)\n`;
+    } catch {
+      /* ignore */
+    }
+  }
+
+  // Cost summary
+  const costPath = 'dashboard/cost-report.json';
+  if (existsSync(costPath)) {
+    try {
+      const cost = JSON.parse(readFileSync(costPath, 'utf-8')) as {
+        summary: { totalMinutes: number; wastedMinutes: number; estimatedMonthlyCost: number };
+      };
+      const cs = cost.summary;
+      body += `- **CI Cost**: ${cs.totalMinutes}min total, ${cs.wastedMinutes}min wasted, ~$${cs.estimatedMonthlyCost}/mo\n`;
+    } catch {
+      /* ignore */
+    }
+  }
+
+  body += `\n`;
 
   body += `## Per Project\n\n`;
 

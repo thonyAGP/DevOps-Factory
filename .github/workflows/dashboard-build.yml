@@ -56,6 +56,18 @@ jobs:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
         continue-on-error: true
 
+      - name: DORA metrics
+        run: pnpm dora
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+        continue-on-error: true
+
+      - name: CI cost monitor
+        run: pnpm cost-monitor
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+        continue-on-error: true
+
       - name: Check for alerts
         id: alerts
         run: |

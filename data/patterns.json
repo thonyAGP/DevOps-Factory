@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "lastUpdated": "2026-02-19T16:13:36.985Z",
+  "version": 2,
+  "lastUpdated": "2026-02-21T10:00:00.000Z",
   "patterns": [
     {
       "id": "prisma-client-not-generated",
@@ -81,6 +81,266 @@
       "repos_seen": [],
       "occurrences": 0,
       "confidence": 0.6
+    },
+    {
+      "id": "lockfile-outdated",
+      "category": "ci-failure",
+      "signature": "ERR_PNPM_OUTDATED_LOCKFILE",
+      "fix": "Run 'pnpm install --no-frozen-lockfile' and commit updated lockfile",
+      "fixType": "command",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.95
+    },
+    {
+      "id": "npm-lockfile-outdated",
+      "category": "ci-failure",
+      "signature": "npm ci can only install packages when your package.json and package-lock.json",
+      "fix": "Run 'npm install' and commit updated package-lock.json",
+      "fixType": "command",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.95
+    },
+    {
+      "id": "node-version-mismatch",
+      "category": "ci-failure",
+      "signature": "The engine \"node\" is incompatible with this module",
+      "fix": "Update .nvmrc or package.json engines to match CI node version",
+      "fixType": "code-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.85
+    },
+    {
+      "id": "oom-heap",
+      "category": "ci-failure",
+      "signature": "FATAL ERROR: Reached heap limit Allocation failed",
+      "fix": "Add NODE_OPTIONS='--max-old-space-size=4096' to workflow env",
+      "fixType": "workflow-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "oom-javascript-heap",
+      "category": "ci-failure",
+      "signature": "JavaScript heap out of memory",
+      "fix": "Add NODE_OPTIONS='--max-old-space-size=4096' to workflow env",
+      "fixType": "workflow-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "next-image-unoptimized",
+      "category": "ci-failure",
+      "signature": "Image Optimization using the default loader is not compatible",
+      "fix": "Add images: { unoptimized: true } to next.config or use a custom loader",
+      "fixType": "code-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "esbuild-platform",
+      "category": "ci-failure",
+      "signature": "esbuild: Failed to install correctly",
+      "fix": "Delete node_modules, reinstall, or add esbuild to optionalDependencies",
+      "fixType": "command",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.8
+    },
+    {
+      "id": "dotnet-restore-failed",
+      "category": "ci-failure",
+      "signature": "Unable to resolve package",
+      "fix": "Run 'dotnet restore' or check NuGet source configuration",
+      "fixType": "command",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.75
+    },
+    {
+      "id": "dotnet-sa1028-trailing-whitespace",
+      "category": "ci-failure",
+      "signature": "SA1028",
+      "fix": "Remove trailing whitespace from the indicated lines",
+      "fixType": "deterministic",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.95
+    },
+    {
+      "id": "dotnet-sa1513-closing-brace",
+      "category": "ci-failure",
+      "signature": "SA1513",
+      "fix": "Add blank line after closing brace",
+      "fixType": "deterministic",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.95
+    },
+    {
+      "id": "dotnet-sa1507-multiple-blank-lines",
+      "category": "ci-failure",
+      "signature": "SA1507",
+      "fix": "Remove consecutive blank lines, keep only one",
+      "fixType": "deterministic",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.95
+    },
+    {
+      "id": "dotnet-cs0104-ambiguous-ref",
+      "category": "ci-failure",
+      "signature": "CS0104",
+      "fix": "Add full namespace qualifier to disambiguate the type reference",
+      "fixType": "deterministic",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "github-actions-deprecated",
+      "category": "ci-failure",
+      "signature": "Node.js 16 actions are deprecated",
+      "fix": "Update action versions to v4 (checkout, setup-node, etc.)",
+      "fixType": "workflow-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "vercel-build-failed",
+      "category": "ci-failure",
+      "signature": "Error: Command \"next build\" exited with",
+      "fix": "Check build logs for TypeScript/ESLint errors in the Next.js project",
+      "fixType": "ai-required",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.4
+    },
+    {
+      "id": "playwright-browser-missing",
+      "category": "ci-failure",
+      "signature": "browserType.launch: Executable doesn't exist",
+      "fix": "Add 'npx playwright install --with-deps' step before tests",
+      "fixType": "workflow-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.95
+    },
+    {
+      "id": "eslint-flat-config-error",
+      "category": "ci-failure",
+      "signature": "ESLint couldn't find an eslint.config",
+      "fix": "Create eslint.config.mjs or rename .eslintrc to flat config format",
+      "fixType": "ai-required",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.6
+    },
+    {
+      "id": "test-snapshot-mismatch",
+      "category": "ci-failure",
+      "signature": "Snapshot Summary: \\d+ snapshot.* failed",
+      "fix": "Run tests with --update flag to update snapshots, then commit",
+      "fixType": "command",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.85
+    },
+    {
+      "id": "pnpm-missing",
+      "category": "ci-failure",
+      "signature": "pnpm: command not found",
+      "fix": "Add pnpm/action-setup@v4 step before setup-node in workflow",
+      "fixType": "workflow-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.95
+    },
+    {
+      "id": "ts-strict-null",
+      "category": "ci-failure",
+      "signature": "Object is possibly 'null'",
+      "fix": "Add null check or optional chaining before accessing the object",
+      "fixType": "code-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.8
+    },
+    {
+      "id": "ts-strict-undefined",
+      "category": "ci-failure",
+      "signature": "Object is possibly 'undefined'",
+      "fix": "Add undefined check or optional chaining before accessing the object",
+      "fixType": "code-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.8
+    },
+    {
+      "id": "next-missing-suspense",
+      "category": "ci-failure",
+      "signature": "useSearchParams() should be wrapped in a suspense boundary",
+      "fix": "Wrap component using useSearchParams in a Suspense boundary",
+      "fixType": "code-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "dotnet-build-error",
+      "category": "ci-failure",
+      "signature": "Build FAILED",
+      "fix": "Check build output for CS errors and fix compilation issues",
+      "fixType": "ai-required",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.4
+    },
+    {
+      "id": "timeout-exceeded",
+      "category": "ci-failure",
+      "signature": "The job running on runner .* has exceeded the maximum execution time",
+      "fix": "Optimize workflow steps or increase timeout-minutes in the job",
+      "fixType": "workflow-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.7
+    },
+    {
+      "id": "docker-build-failed",
+      "category": "ci-failure",
+      "signature": "ERROR: failed to solve: process .* did not complete successfully",
+      "fix": "Check Dockerfile for errors in the failing stage",
+      "fixType": "ai-required",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.4
+    },
+    {
+      "id": "rate-limit-github-api",
+      "category": "ci-failure",
+      "signature": "API rate limit exceeded",
+      "fix": "Add GITHUB_TOKEN to workflow env or reduce API call frequency",
+      "fixType": "workflow-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.85
+    },
+    {
+      "id": "sharp-platform",
+      "category": "ci-failure",
+      "signature": "Could not load the \"sharp\" module using the",
+      "fix": "Add sharp to dependencies or set NEXT_SHARP_PATH in env",
+      "fixType": "command",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.85
     }
   ]
 }
