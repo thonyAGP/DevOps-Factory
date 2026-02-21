@@ -12,6 +12,7 @@
 
 import { execSync } from 'node:child_process';
 import { writeFileSync, existsSync, readFileSync } from 'node:fs';
+import { devNull } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
 
 interface SecurityWorkflowStatus {
@@ -60,7 +61,7 @@ const sh = (cmd: string): string => {
 const getWorkflowStatus = (repo: string, workflowNames: string[]): SecurityWorkflowStatus => {
   for (const name of workflowNames) {
     const result = sh(
-      `gh api "repos/${repo}/actions/workflows" --jq ".workflows[] | select(.name == \\"${name}\\" or .path | endswith(\\"${name.toLowerCase().replace(/ /g, '-')}.yml\\")) | {id, name, state}" 2>/dev/null`
+      `gh api "repos/${repo}/actions/workflows" --jq ".workflows[] | select(.name == \\"${name}\\" or .path | endswith(\\"${name.toLowerCase().replace(/ /g, '-')}.yml\\")) | {id, name, state}" 2>${devNull}`
     );
 
     if (!result) continue;
@@ -68,7 +69,7 @@ const getWorkflowStatus = (repo: string, workflowNames: string[]): SecurityWorkf
     try {
       const workflow = JSON.parse(result) as { id: number; name: string };
       const runResult = sh(
-        `gh api "repos/${repo}/actions/workflows/${workflow.id}/runs?per_page=1" --jq ".workflow_runs[0] | {conclusion, created_at, html_url}" 2>/dev/null`
+        `gh api "repos/${repo}/actions/workflows/${workflow.id}/runs?per_page=1" --jq ".workflow_runs[0] | {conclusion, created_at, html_url}" 2>${devNull}`
       );
 
       if (runResult && runResult !== 'null') {

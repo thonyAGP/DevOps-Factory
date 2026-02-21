@@ -12,6 +12,7 @@
 
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { jq, devNull } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
 
 interface TemplateDrift {
@@ -72,7 +73,7 @@ const sh = (cmd: string): string => {
 };
 
 const getFileContentFromRepo = (repo: string, path: string): string | null => {
-  const result = sh(`gh api "repos/${repo}/contents/${path}" --jq '.content' 2>/dev/null`);
+  const result = sh(`gh api "repos/${repo}/contents/${path}" --jq ${jq('.content')} 2>${devNull}`);
   if (!result) return null;
   try {
     return Buffer.from(result, 'base64').toString('utf-8');

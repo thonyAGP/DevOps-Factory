@@ -12,6 +12,7 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { KNOWN_PROJECTS } from '../factory.config.js';
+import { jq, devNull } from './shell-utils.js';
 
 interface Coverage {
   lines: number;
@@ -52,7 +53,7 @@ const detectTestFramework = (repo: string, stack: string): string | undefined =>
   // For .NET projects, check xUnit first
   if (stack === 'dotnet') {
     const hasXunit = sh(
-      `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq '.tree[] | select(.path | test("\\\\.Tests\\\\.csproj$")) | .path' 2>/dev/null || echo ''`
+      `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq ${jq('.tree[] | select(.path | test("\\.Tests\\.csproj$")) | .path')} 2>${devNull} || echo ""`
     );
     if (hasXunit) return 'xunit';
     return undefined;
@@ -60,12 +61,12 @@ const detectTestFramework = (repo: string, stack: string): string | undefined =>
 
   // For Node.js projects, check Vitest then Jest
   const hasVitest = sh(
-    `gh api repos/${repo}/contents/vitest.config.ts --jq .size 2>/dev/null || echo 0`
+    `gh api repos/${repo}/contents/vitest.config.ts --jq .size 2>${devNull} || echo 0`
   );
   if (hasVitest !== '0') return 'vitest';
 
   const hasJest = sh(
-    `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq '.tree[] | select(.path | test("jest\\\\.config")) | .path' 2>/dev/null || echo ''`
+    `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq ${jq('.tree[] | select(.path | test("jest\\.config")) | .path')} 2>${devNull} || echo ""`
   );
   if (hasJest) return 'jest';
 
@@ -77,7 +78,7 @@ const countTestFiles = (repo: string, testFramework?: string): number => {
 
   if (testFramework === 'xunit') {
     const result = sh(
-      `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq '[.tree[] | select(.type == "blob") | select(.path | test("\\\\.Tests\\\\.csproj$|Tests\\\\.cs$")) | .path] | length' 2>/dev/null || echo 0`
+      `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq ${jq('[.tree[] | select(.type == "blob") | select(.path | test("\\.Tests\\.csproj$|Tests\\.cs$")) | .path] | length')} 2>${devNull} || echo 0`
     );
     return parseInt(result || '0', 10);
   }
@@ -89,7 +90,7 @@ const countTestFiles = (repo: string, testFramework?: string): number => {
       : '(\\\\.test\\\\.js|\\\\.spec\\\\.js|\\\\.test\\\\.jsx)$';
 
   const result = sh(
-    `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq '[.tree[] | select(.type == "blob") | select(.path | test("${patterns}")) | .path] | length' 2>/dev/null || echo 0`
+    `gh api "repos/${repo}/git/trees/HEAD?recursive=1" --jq ${jq(`[.tree[] | select(.type == "blob") | select(.path | test("${patterns}")) | .path] | length`)} 2>${devNull} || echo 0`
   );
   return parseInt(result || '0', 10);
 };
@@ -98,7 +99,7 @@ const fetchCoverageArtifact = (repo: string): Coverage | undefined => {
   try {
     // Get latest CI workflow run
     const runResult = sh(
-      `gh api "repos/${repo}/actions/runs?per_page=1" --jq '.workflow_runs[0] | {id, status}' 2>/dev/null || echo ''`
+      `gh api "repos/${repo}/actions/runs?per_page=1" --jq ${jq('.workflow_runs[0] | {id, status}')} 2>${devNull} || echo ""`
     );
     if (!runResult) return undefined;
 
@@ -113,7 +114,7 @@ const fetchCoverageArtifact = (repo: string): Coverage | undefined => {
 
     // Get artifacts for the run
     const artifactResult = sh(
-      `gh api "repos/${repo}/actions/runs/${runId}/artifacts?per_page=5" --jq '.artifacts[] | select(.name | test("coverage")) | {id, name}' 2>/dev/null || echo ''`
+      `gh api "repos/${repo}/actions/runs/${runId}/artifacts?per_page=5" --jq ${jq('.artifacts[] | select(.name | test("coverage")) | {id, name}')} 2>${devNull} || echo ""`
     );
 
     if (!artifactResult) return undefined;
@@ -131,7 +132,7 @@ const fetchCoverageArtifact = (repo: string): Coverage | undefined => {
 
     // Download and parse coverage.json from artifact
     const coverageJson = sh(
-      `gh api "repos/${repo}/actions/artifacts/${artifactId}/zip" --jq . 2>/dev/null | unzip -p - coverage.json 2>/dev/null || echo ''`
+      `gh api "repos/${repo}/actions/artifacts/${artifactId}/zip" --jq . 2>${devNull} | unzip -p - coverage.json 2>${devNull} || echo ""`
     );
 
     if (!coverageJson) return undefined;

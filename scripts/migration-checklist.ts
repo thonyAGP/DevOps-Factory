@@ -11,6 +11,7 @@
 
 import { execSync } from 'node:child_process';
 import { writeFileSync, unlinkSync } from 'node:fs';
+import { jq } from './shell-utils.js';
 
 const REPO = 'thonyAGP/lecteur-magic';
 
@@ -41,7 +42,7 @@ const ghApi = <T>(endpoint: string): T | null => {
 
 const getPRFiles = (prNumber: number): PRFile[] => {
   const raw = sh(
-    `gh api "repos/${REPO}/pulls/${prNumber}/files?per_page=100" --jq '[.[] | {filename, status, additions, deletions}]'`
+    `gh api "repos/${REPO}/pulls/${prNumber}/files?per_page=100" --jq ${jq('[.[] | {filename, status, additions, deletions}]')}`
   );
   try {
     return JSON.parse(raw || '[]') as PRFile[];

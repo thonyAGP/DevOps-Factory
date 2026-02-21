@@ -14,6 +14,7 @@
 
 import { execSync } from 'node:child_process';
 import { readFileSync, existsSync } from 'node:fs';
+import { jq, devNull } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
 
 interface Args {
@@ -138,7 +139,7 @@ const createUpdatePR = (
 
   // Check for existing PR
   const existingPR = sh(
-    `gh pr list --repo ${repo.fullName} --head ${branchName} --json number --jq '.[0].number'`
+    `gh pr list --repo ${repo.fullName} --head ${branchName} --json number --jq ${jq('.[0].number')}`
   );
   if (existingPR) {
     console.log(`  [SKIP] ${repo.name}: PR #${existingPR} already exists`);
@@ -152,7 +153,7 @@ const createUpdatePR = (
 
   // Get base SHA
   const baseSha = sh(
-    `gh api repos/${repo.fullName}/git/ref/heads/${repo.defaultBranch} --jq '.object.sha'`
+    `gh api repos/${repo.fullName}/git/ref/heads/${repo.defaultBranch} --jq ${jq('.object.sha')}`
   );
   if (!baseSha) {
     console.log(`  [ERROR] ${repo.name}: cannot get base SHA`);
@@ -161,7 +162,7 @@ const createUpdatePR = (
 
   // Create branch
   sh(
-    `gh api repos/${repo.fullName}/git/refs --method POST -f ref="refs/heads/${branchName}" -f sha="${baseSha}" 2>/dev/null`
+    `gh api repos/${repo.fullName}/git/refs --method POST -f ref="refs/heads/${branchName}" -f sha="${baseSha}" 2>${devNull}`
   );
 
   // Encode content
@@ -169,7 +170,7 @@ const createUpdatePR = (
 
   // Check if file exists (for update vs create)
   const existing = sh(
-    `gh api "repos/${repo.fullName}/contents/${targetPath}?ref=${repo.defaultBranch}" --jq '.sha' 2>/dev/null`
+    `gh api "repos/${repo.fullName}/contents/${targetPath}?ref=${repo.defaultBranch}" --jq ${jq('.sha')} 2>${devNull}`
   );
 
   let uploadCmd = `gh api repos/${repo.fullName}/contents/${targetPath} --method PUT -f message="chore: update ${targetPath} via cross-repo update" -f content="${b64}" -f branch="${branchName}"`;

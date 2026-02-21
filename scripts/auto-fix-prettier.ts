@@ -10,6 +10,7 @@
 
 import { execSync } from 'node:child_process';
 import { existsSync, mkdirSync, rmSync } from 'node:fs';
+import { devNull } from './shell-utils.js';
 import { KNOWN_PROJECTS, GITHUB_OWNER, type ProjectConfig } from '../factory.config.js';
 
 const BRANCH_NAME = 'devops-factory/prettier-fix';
@@ -53,7 +54,7 @@ const getDefaultBranch = (repo: string): string => {
 };
 
 const branchExists = (repo: string): boolean => {
-  const result = sh(`gh api "repos/${repo}/branches/${BRANCH_NAME}" --jq ".name" 2>&1`);
+  const result = sh(`gh api "repos/${repo}/branches/${BRANCH_NAME}" --jq ".name" 2>${devNull}`);
   return result === BRANCH_NAME;
 };
 
@@ -238,7 +239,7 @@ const main = () => {
 
   // Ensure label exists
   sh(
-    `gh label create "${LABEL}" --repo ${GITHUB_OWNER}/DevOps-Factory --color 1d76db --description "Auto-generated Prettier formatting fix" 2>/dev/null`
+    `gh label create "${LABEL}" --repo ${GITHUB_OWNER}/DevOps-Factory --color 1d76db --description "Auto-generated Prettier formatting fix" 2>${devNull}`
   );
 
   // Prepare work directory

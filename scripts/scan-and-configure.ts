@@ -12,6 +12,7 @@
 import { execSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 import { logActivity } from './activity-logger.js';
+import { jq, devNull } from './shell-utils.js';
 
 interface Repo {
   name: string;
@@ -96,7 +97,7 @@ const listRepos = (): Repo[] => {
 };
 
 const fileExistsInRepo = (repo: string, path: string): boolean => {
-  const result = gh(`api repos/${repo}/contents/${path} --jq '.name' 2>/dev/null`);
+  const result = gh(`api repos/${repo}/contents/${path} --jq ${jq('.name')} 2>${devNull}`);
   return result.length > 0;
 };
 
@@ -132,7 +133,7 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
 
   // Check for any CI workflow
   const workflowsDir = gh(
-    `api repos/${repo.full_name}/contents/.github/workflows --jq '.[].name' 2>/dev/null`
+    `api repos/${repo.full_name}/contents/.github/workflows --jq ${jq('.[].name')} 2>${devNull}`
   );
   const hasCI =
     workflowsDir.includes('ci.yml') ||
@@ -623,7 +624,7 @@ const createConfigPR = (analysis: RepoAnalysis): void => {
 
   // Check if PR already exists
   const existingPR = gh(
-    `pr list --repo ${repo.full_name} --head ${branchName} --json number --jq '.[0].number'`
+    `pr list --repo ${repo.full_name} --head ${branchName} --json number --jq ${jq('.[0].number')}`
   );
   if (existingPR) {
     console.log(`  [SKIP] ${repo.name}: PR #${existingPR} already exists`);
@@ -642,7 +643,7 @@ const createConfigPR = (analysis: RepoAnalysis): void => {
   // Create branch and add files via GitHub API (no local clone needed)
   const defaultBranch = repo.default_branch;
   const baseSha = gh(
-    `api repos/${repo.full_name}/git/ref/heads/${defaultBranch} --jq '.object.sha'`
+    `api repos/${repo.full_name}/git/ref/heads/${defaultBranch} --jq ${jq('.object.sha')}`
   );
 
   if (!baseSha) {
@@ -653,7 +654,7 @@ const createConfigPR = (analysis: RepoAnalysis): void => {
 
   // Create branch
   gh(
-    `api repos/${repo.full_name}/git/refs --method POST -f ref="refs/heads/${branchName}" -f sha="${baseSha}" 2>/dev/null`
+    `api repos/${repo.full_name}/git/refs --method POST -f ref="refs/heads/${branchName}" -f sha="${baseSha}" 2>${devNull}`
   );
 
   // Add each file

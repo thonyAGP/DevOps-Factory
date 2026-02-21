@@ -1,0 +1,265 @@
+{
+  "timestamp": "2026-02-21T12:38:32.296Z",
+  "repos": [
+    {
+      "repo": "Email_Assistant",
+      "fullName": "thonyAGP/Email_Assistant",
+      "totalMinutes": 347,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 29,
+          "totalMinutes": 268,
+          "avgMinutes": 9,
+          "failedRuns": 8,
+          "wastedMinutes": 41
+        },
+        {
+          "name": "Post-Deploy Health Check",
+          "runs": 32,
+          "totalMinutes": 32,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Qodo Merge - PR Review",
+          "runs": 18,
+          "totalMinutes": 26,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Monitor Production",
+          "runs": 21,
+          "totalMinutes": 21,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": []
+    },
+    {
+      "repo": "lecteur-magic",
+      "fullName": "thonyAGP/lecteur-magic",
+      "totalMinutes": 100,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "Deploy OpenSpec Viewer",
+          "runs": 44,
+          "totalMinutes": 44,
+          "avgMinutes": 1,
+          "failedRuns": 32,
+          "wastedMinutes": 32
+        },
+        {
+          "name": "Deploy Migration Dashboard",
+          "runs": 34,
+          "totalMinutes": 34,
+          "avgMinutes": 1,
+          "failedRuns": 22,
+          "wastedMinutes": 22
+        },
+        {
+          "name": "Daily Drift Report",
+          "runs": 22,
+          "totalMinutes": 22,
+          "avgMinutes": 1,
+          "failedRuns": 18,
+          "wastedMinutes": 18
+        }
+      ],
+      "recommendations": [
+        "Deploy OpenSpec Viewer: 73% failure rate (32min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 65% failure rate (22min wasted). Fix root cause.",
+        "Daily Drift Report: 82% failure rate (18min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "au-marais",
+      "fullName": "thonyAGP/au-marais",
+      "totalMinutes": 56,
+      "totalRuns": 8,
+      "workflows": [
+        {
+          "name": "E2E Tests",
+          "runs": 8,
+          "totalMinutes": 56,
+          "avgMinutes": 7,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": []
+    },
+    {
+      "repo": "livret-au-marais",
+      "fullName": "thonyAGP/livret-au-marais",
+      "totalMinutes": 51,
+      "totalRuns": 18,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 18,
+          "totalMinutes": 51,
+          "avgMinutes": 3,
+          "failedRuns": 16,
+          "wastedMinutes": 47
+        }
+      ],
+      "recommendations": ["CI: 89% failure rate (47min wasted). Fix root cause."]
+    },
+    {
+      "repo": "ClubMedRoomAssignment",
+      "fullName": "thonyAGP/ClubMedRoomAssignment",
+      "totalMinutes": 38,
+      "totalRuns": 38,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 35,
+          "totalMinutes": 35,
+          "avgMinutes": 1,
+          "failedRuns": 35,
+          "wastedMinutes": 35
+        },
+        {
+          "name": ".github/workflows/ci.yml",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        }
+      ],
+      "recommendations": ["CI: 100% failure rate (35min wasted). Fix root cause."]
+    },
+    {
+      "repo": "CasaSync",
+      "fullName": "thonyAGP/CasaSync",
+      "totalMinutes": 18,
+      "totalRuns": 13,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 13,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 7
+        }
+      ],
+      "recommendations": ["CI: 31% failure rate (7min wasted). Fix root cause."]
+    },
+    {
+      "repo": "Utilitaire_Webapp",
+      "fullName": "thonyAGP/Utilitaire_Webapp",
+      "totalMinutes": 5,
+      "totalRuns": 5,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
+        }
+      ],
+      "recommendations": []
+    },
+    {
+      "repo": "claude-cli-wrapper",
+      "fullName": "thonyAGP/claude-cli-wrapper",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "claude-launcher",
+      "fullName": "thonyAGP/claude-launcher",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "Livret_accueil_Au-Marais",
+      "fullName": "thonyAGP/Livret_accueil_Au-Marais",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "MCP_Quota_Claude",
+      "fullName": "thonyAGP/MCP_Quota_Claude",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "Site_1970_Plomberie",
+      "fullName": "thonyAGP/Site_1970_Plomberie",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "Site_Greg-Assainissement",
+      "fullName": "thonyAGP/Site_Greg-Assainissement",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "SqlConnectionTest",
+      "fullName": "thonyAGP/SqlConnectionTest",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "statusline",
+      "fullName": "thonyAGP/statusline",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "test_codingmenace",
+      "fullName": "thonyAGP/test_codingmenace",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "Thumbfast",
+      "fullName": "thonyAGP/Thumbfast",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    }
+  ],
+  "summary": {
+    "totalMinutes": 615,
+    "totalRuns": 282,
+    "wastedMinutes": 209,
+    "mostExpensiveRepo": "Email_Assistant",
+    "mostExpensiveWorkflow": "CI (Email_Assistant)",
+    "totalRecommendations": 6,
+    "estimatedMonthlyCost": 0
+  }
+}

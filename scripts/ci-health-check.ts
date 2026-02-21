@@ -11,6 +11,7 @@
 
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
+import { devNull } from './shell-utils.js';
 import { KNOWN_PROJECTS, type ProjectConfig } from '../factory.config.js';
 import { logActivity, type ActivityStatus } from './activity-logger.js';
 
@@ -302,7 +303,7 @@ const getLastSelfHealForRepo = (repo: string): number => {
   // API fallback: check most recent ai-fix PR (any state) on target repo
   // Persists across CI runs since it queries GitHub, not local filesystem
   const prDate = sh(
-    `gh pr list --repo ${repo} --search "head:ai-fix/" --state all --limit 1 --json createdAt --jq ".[0].createdAt" 2>/dev/null`
+    `gh pr list --repo ${repo} --search "head:ai-fix/" --state all --limit 1 --json createdAt --jq ".[0].createdAt" 2>${devNull}`
   );
   if (prDate && prDate !== 'null' && prDate !== '') {
     return new Date(prDate).getTime();
@@ -315,7 +316,7 @@ const STALE_PR_MS = 48 * 60 * 60 * 1000; // 48h
 
 const prCIFailed = (repo: string, prNumber: number): boolean => {
   const result = sh(
-    `gh pr checks ${prNumber} --repo ${repo} --json conclusion --jq "[.[] | select(.conclusion == \\"failure\\")] | length" 2>/dev/null`
+    `gh pr checks ${prNumber} --repo ${repo} --json conclusion --jq "[.[] | select(.conclusion == \\"failure\\")] | length" 2>${devNull}`
   );
   return parseInt(result || '0', 10) > 0;
 };
@@ -364,7 +365,7 @@ const hasOpenAiFixPR = (repo: string): boolean => {
 
 const hasRecentAiFixMerge = (repo: string, windowMs: number): boolean => {
   const result = sh(
-    `gh pr list --repo ${repo} --search "head:ai-fix/ is:merged" --state merged --json mergedAt --jq ".[0].mergedAt" 2>/dev/null`
+    `gh pr list --repo ${repo} --search "head:ai-fix/ is:merged" --state merged --json mergedAt --jq ".[0].mergedAt" 2>${devNull}`
   );
   if (!result || result === 'null') return false;
   const mergedAt = new Date(result).getTime();

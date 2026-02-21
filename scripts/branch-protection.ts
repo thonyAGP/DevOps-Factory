@@ -14,6 +14,7 @@
  */
 
 import { execSync } from 'node:child_process';
+import { devNull } from './shell-utils.js';
 import { KNOWN_PROJECTS, type ProjectConfig } from '../factory.config.js';
 
 interface RepoInfo {
@@ -71,7 +72,7 @@ const CI_CHECK_PATTERNS = ['ci', 'build', 'test', 'lint', 'typecheck'];
 
 const getExistingChecks = (repo: string): string[] => {
   const result = sh(
-    `gh api "repos/${repo}/actions/workflows" --jq "[.workflows[].name]" 2>/dev/null`
+    `gh api "repos/${repo}/actions/workflows" --jq "[.workflows[].name]" 2>${devNull}`
   );
   try {
     const all = JSON.parse(result || '[]') as string[];
@@ -203,7 +204,7 @@ const main = () => {
 
   // Ensure label exists
   sh(
-    `gh label create "${LABEL}" --repo ${factoryRepo} --color 0e8a16 --description "Branch protection status" 2>/dev/null`
+    `gh label create "${LABEL}" --repo ${factoryRepo} --color 0e8a16 --description "Branch protection status" 2>${devNull}`
   );
 
   const results: ProtectionResult[] = [];

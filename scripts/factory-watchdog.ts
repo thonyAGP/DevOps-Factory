@@ -11,6 +11,7 @@
 
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
+import { devNull } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
 
 // Partial failure patterns split into healable (code bugs) vs informational (env/transient)
@@ -137,7 +138,7 @@ const getLastSelfHealForRepo = (repo: string): number => {
 
   // API fallback: check most recent ai-fix PR (any state) on target repo
   const prDate = sh(
-    `gh pr list --repo ${repo} --search "head:ai-fix/" --state all --limit 1 --json createdAt --jq ".[0].createdAt" 2>/dev/null`
+    `gh pr list --repo ${repo} --search "head:ai-fix/" --state all --limit 1 --json createdAt --jq ".[0].createdAt" 2>${devNull}`
   );
   if (prDate && prDate !== 'null' && prDate !== '') {
     return new Date(prDate).getTime();

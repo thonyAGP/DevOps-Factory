@@ -12,6 +12,7 @@ import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { KNOWN_PROJECTS, QUALITY_WEIGHTS, COVERAGE_THRESHOLDS } from '../factory.config.js';
 import { logActivity } from './activity-logger.js';
+import { jq, devNull } from './shell-utils.js';
 
 interface WorkflowRun {
   id: number;
@@ -78,7 +79,7 @@ const sh = (cmd: string): string => {
 
 const checkCI = (repo: string, branch: string): boolean => {
   const result = sh(
-    `gh api "repos/${repo}/actions/runs?branch=${branch}&per_page=1" --jq '.workflow_runs[0] | {conclusion}'`
+    `gh api "repos/${repo}/actions/runs?branch=${branch}&per_page=1" --jq ${jq('.workflow_runs[0] | {conclusion}')}`
   );
   if (!result || result === 'null') return false;
   try {
@@ -106,21 +107,21 @@ const getCoverage = (repoName: string): number => {
 
 const checkConfigExists = (repo: string, filePath: string): boolean => {
   const result = sh(
-    `gh api "repos/${repo}/contents/${filePath}" --jq '.size' 2>/dev/null || echo "0"`
+    `gh api "repos/${repo}/contents/${filePath}" --jq ${jq('.size')} 2>${devNull} || echo "0"`
   );
   return result !== '' && result !== '0' && result !== 'null';
 };
 
 const checkBranchProtection = (repo: string, branch: string): boolean => {
   const result = sh(
-    `gh api "repos/${repo}/branches/${branch}/protection" --jq '.enabled' 2>/dev/null || echo "false"`
+    `gh api "repos/${repo}/branches/${branch}/protection" --jq ${jq('.enabled')} 2>${devNull} || echo "false"`
   );
   return result === 'true';
 };
 
 const checkGitleaksWorkflow = (repo: string): boolean => {
   const result = sh(
-    `gh api "repos/${repo}/contents/.github/workflows" --jq '.[] | select(.name == "gitleaks.yml") | .name' 2>/dev/null || echo ""`
+    `gh api "repos/${repo}/contents/.github/workflows" --jq ${jq('.[] | select(.name == "gitleaks.yml") | .name')} 2>${devNull} || echo ""`
   );
   return result.includes('gitleaks');
 };
@@ -147,7 +148,7 @@ const evaluateRepo = (repo: (typeof KNOWN_PROJECTS)[0]): RepoQualityScore => {
   // CI passes
   if (repo.hasCI) {
     const defaultBranch = sh(
-      `gh api "repos/${repo.repo}" --jq '.default_branch' 2>/dev/null || echo "main"`
+      `gh api "repos/${repo.repo}" --jq ${jq('.default_branch')} 2>${devNull} || echo "main"`
     );
     if (checkCI(repo.repo, defaultBranch)) {
       breakdown.ciPasses = QUALITY_WEIGHTS.ciPasses;
@@ -190,7 +191,7 @@ const evaluateRepo = (repo: (typeof KNOWN_PROJECTS)[0]): RepoQualityScore => {
 
   // Branch protection
   const defaultBranch = sh(
-    `gh api "repos/${repo.repo}" --jq '.default_branch' 2>/dev/null || echo "main"`
+    `gh api "repos/${repo.repo}" --jq ${jq('.default_branch')} 2>${devNull} || echo "main"`
   );
   if (checkBranchProtection(repo.repo, defaultBranch)) {
     breakdown.branchProtection = QUALITY_WEIGHTS.branchProtection;

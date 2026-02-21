@@ -17,6 +17,7 @@ import {
   logActivity,
   type ActivityStatus,
 } from './activity-logger.js';
+import { jq } from './shell-utils.js';
 
 interface MigrationModule {
   name: string;
@@ -230,7 +231,7 @@ const sh = (cmd: string): string => {
 
 const getLatestWorkflowRun = (repo: string, branch: string): WorkflowRun | null => {
   const result = sh(
-    `gh api "repos/${repo}/actions/runs?branch=${branch}&per_page=1" --jq '.workflow_runs[0] | {id, conclusion, name, html_url, created_at, head_branch}'`
+    `gh api "repos/${repo}/actions/runs?branch=${branch}&per_page=1" --jq ${jq('.workflow_runs[0] | {id, conclusion, name, html_url, created_at, head_branch}')}`
   );
   if (!result || result === 'null') return null;
   try {
@@ -242,7 +243,7 @@ const getLatestWorkflowRun = (repo: string, branch: string): WorkflowRun | null 
 
 const getOpenPRs = (repo: string): PRInfo[] => {
   const result = sh(
-    `gh pr list --repo ${repo} --json number,title,state,url,author,labels,createdAt --jq '[.[] | {number, title, state, html_url: .url, user: {login: .author.login}, labels: [.labels[].name], created_at: .createdAt}]'`
+    `gh pr list --repo ${repo} --json number,title,state,url,author,labels,createdAt --jq ${jq('[.[] | {number, title, state, html_url: .url, user: {login: .author.login}, labels: [.labels[].name], created_at: .createdAt}]')}`
   );
   try {
     return JSON.parse(result || '[]') as PRInfo[];
