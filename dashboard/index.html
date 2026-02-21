@@ -303,13 +303,147 @@
       border-radius: 4px;
       white-space: nowrap;
     }
+
+    /* Security Posture */
+    .security-posture {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .security-posture h2 { color: #f97316; font-size: 1rem; margin-bottom: 0.8rem; }
+    .security-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0.8rem;
+      align-items: start;
+    }
+    @media (max-width: 600px) { .security-grid { grid-template-columns: 1fr; } }
+    .security-score-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-left: 3px solid;
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .security-score-value { font-size: 2rem; font-weight: bold; }
+    .security-score-label { font-size: 0.75rem; color: #8b949e; margin-top: 0.2rem; }
+    .security-metrics-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+    }
+    .security-metric {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.3rem 0;
+      font-size: 0.85rem;
+    }
+    .security-metric .metric-label { min-width: 120px; }
+
+    /* Performance & Quality */
+    .performance-posture {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .performance-posture h2 { color: #06b6d4; font-size: 1rem; margin-bottom: 0.8rem; }
+
+    /* DORA Metrics */
+    .dora-section {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .dora-section h2 { color: #a78bfa; font-size: 1rem; margin-bottom: 0.8rem; }
+    .dora-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .dora-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    .dora-card .dora-value { font-size: 1.4rem; font-weight: bold; }
+    .dora-card .dora-label { font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem; }
+    .dora-rating {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .dora-repo-list {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.8rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .dora-repo-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      border-bottom: 1px solid #21262d;
+    }
+    .dora-repo-row:last-child { border-bottom: none; }
+
+    /* Cost Monitor */
+    .cost-section {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .cost-section h2 { color: #34d399; font-size: 1rem; margin-bottom: 0.8rem; }
+    .cost-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .cost-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    .cost-card .cost-value { font-size: 1.4rem; font-weight: bold; }
+    .cost-card .cost-label { font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem; }
+    .cost-recs {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.8rem;
+    }
+    .cost-recs ul { margin: 0; padding-left: 1.2rem; }
+    .cost-recs li { padding: 0.15rem 0; color: #c9d1d9; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
 <body>
   <div class="header">
     <h1>DevOps Factory Dashboard</h1>
-    <div class="timestamp">Last updated: 21-02-2026 09:39 CET</div>
+    <div class="timestamp">Last updated: 21-02-2026 14:02 CET</div>
   </div>
 
   <div class="summary">
@@ -318,7 +452,7 @@
       <div class="label">Projects</div>
     </div>
     <div class="summary-item">
-      <div class="number" style="color: #f59e0b">65</div>
+      <div class="number" style="color: #ef4444">49</div>
       <div class="label">Avg Health</div>
     </div>
     <div class="summary-item">
@@ -329,22 +463,34 @@
       <div class="number" style="color: #22c55e">0</div>
       <div class="label">AI Fixes</div>
     </div>
+    <div class="summary-item">
+      <div class="number" style="color: #ef4444">0%</div>
+      <div class="label">Security</div>
+    </div>
+    <div class="summary-item">
+      <div class="number" style="color: #ef4444">0%</div>
+      <div class="label">Review Coverage</div>
+    </div>
+    <div class="summary-item">
+      <div class="number" style="color: #ef4444">0%</div>
+      <div class="label">Quality</div>
+    </div>
   </div>
 
   
   <div class="factory-status">
     <h2>Factory Status</h2>
     <div class="factory-grid">
-      <div class="factory-health-card" style="border-color:#ef4444">
-        <div class="factory-health-indicator" style="background:#ef444420;color:#ef4444">
-          <span style="font-size:1.4rem">&#10060;</span>
-          <span style="font-weight:bold;font-size:1.1rem">Issues Detected</span>
+      <div class="factory-health-card" style="border-color:#f59e0b">
+        <div class="factory-health-indicator" style="background:#f59e0b20;color:#f59e0b">
+          <span style="font-size:1.4rem">&#9888;&#65039;</span>
+          <span style="font-weight:bold;font-size:1.1rem">Warnings</span>
         </div>
         <div class="factory-health-detail">
-          <div class="metric"><span class="metric-label">Last activity</span><span>17m ago</span></div>
-          <div class="metric"><span class="metric-label">Events (24h)</span><span>79</span></div>
-          <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#ef4444">3</span></div>
-          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#f59e0b">18</span></div>
+          <div class="metric"><span class="metric-label">Last activity</span><span>32m ago</span></div>
+          <div class="metric"><span class="metric-label">Events (24h)</span><span>110</span></div>
+          <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#22c55e">0</span></div>
+          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#f59e0b">12</span></div>
         </div>
       </div>
 
@@ -352,140 +498,274 @@
         <h3>This Week</h3>
         <div class="metric"><span class="metric-label">Scans completed</span><span class="val">1</span></div>
         <div class="metric"><span class="metric-label">PRs created</span><span class="val">0</span></div>
-        <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">12</span></div>
-        <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#ef4444">3</span></div>
-        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">79</span></div>
+        <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">8</span></div>
+        <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#22c55e">0</span></div>
+        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">111</span></div>
       </div>
     </div>
 
-    <details class="activity-timeline" open>
+    <details class="activity-timeline" >
       <summary>Recent Activity (30 events)</summary>
       <table class="timeline-table">
         <tbody>
           
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T08:21:45.393Z">17m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:30:30.040Z">32m ago</td>
               <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
               <td style="color:#f59e0b">&#9888;&#65039;</td>
               <td>3/7 passing, 2 failing. Issues: 0 created, 0 closed</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T08:21:45.393Z">17m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:30:30.039Z">32m ago</td>
               <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
               <td style="color:#f59e0b">&#9888;&#65039;</td>
               <td><strong>ClubMedRoomAssignment</strong> - Self-heal dispatched (run 22192523507)</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T08:21:42.392Z">17m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:30:25.728Z">32m ago</td>
               <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
               <td style="color:#f59e0b">&#9888;&#65039;</td>
               <td><strong>Email_Assistant</strong> - Self-heal dispatched (run 22191711703)</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T07:27:36.061Z">1h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td>3/7 passing, 2 failing. Issues: 0 created, 0 closed</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T07:27:36.060Z">1h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>ClubMedRoomAssignment</strong> - Self-heal dispatched (run 22192523507)</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T07:27:31.981Z">1h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>Email_Assistant</strong> - Self-heal dispatched (run 22191711703)</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T07:06:39.043Z">1h ago</td>
-              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
-              <td style="color:#ef4444">&#10060;</td>
-              <td>4/7 passing. 2 failures, 1 partial. 0 self-heals</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T07:06:39.043Z">1h ago</td>
-              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
-              <td style="color:#ef4444">&#10060;</td>
-              <td><strong>Scan Repos</strong> - total_failure: Scan Repos</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T06:33:57.501Z">2h ago</td>
-              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:41.012Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
-              <td>16 projects, avg health 65</td>
+              <td>Scanned 25 repos (17 active)</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T06:32:50.035Z">2h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td>3/7 passing, 2 failing. Issues: 0 created, 0 closed</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:41.003Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>Utilitaire_Webapp</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T06:32:50.035Z">2h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>ClubMedRoomAssignment</strong> - Self-heal dispatched (run 22192523507)</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:37.525Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>Thumbfast</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T06:32:47.261Z">2h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>Email_Assistant</strong> - Self-heal dispatched (run 22191711703)</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:34.274Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>test_codingmenace</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T05:09:18.579Z">3h ago</td>
-              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
-              <td style="color:#22c55e">&#9989;</td>
-              <td>16 projects, avg health 65</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:31.116Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>statusline</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T05:08:10.885Z">3h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td>3/7 passing, 2 failing. Issues: 0 created, 0 closed</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:27.655Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>SqlConnectionTest</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T05:08:10.884Z">3h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>ClubMedRoomAssignment</strong> - Self-heal dispatched (run 22192523507)</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:25.188Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>Site_Greg-Assainissement</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T05:08:07.971Z">3h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>Email_Assistant</strong> - Self-heal dispatched (run 22191711703)</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:21.955Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>Site_1970_Plomberie</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T04:00:14.506Z">4h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td>3/7 passing, 2 failing. Issues: 0 created, 0 closed</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:11.716Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>MCP_Quota_Claude</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T04:00:14.505Z">4h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>ClubMedRoomAssignment</strong> - Self-heal dispatched (run 22192523507)</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:08.307Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>Livret_accueil_Au-Marais</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T04:00:10.710Z">4h ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>Email_Assistant</strong> - Self-heal dispatched (run 22191711703)</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:05.241Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>livret-au-marais</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T03:07:38.525Z">5h ago</td>
-              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
-              <td style="color:#ef4444">&#10060;</td>
-              <td>3/5 passing. 1 failures, 1 partial. 0 self-heals</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:29:02.235Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>lecteur-magic</strong> - PR #1 already open</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:28:59.138Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>Email_Assistant</strong> - PR #7 already open</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:28:55.462Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>ClubMedRoomAssignment</strong> - PR #12 already open</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:28:49.916Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>claude-launcher</strong> - PR #1 already open</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:28:43.338Z">33m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>claude-cli-wrapper</strong> - PR #1 already open</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-21T12:28:40.014Z">34m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>CasaSync</strong> - PR #1 already open</td>
             </tr>
         </tbody>
       </table>
     </details>
+  </div>
+
+  
+  <div class="security-posture">
+    <h2>Security &amp; Review Posture</h2>
+    <div class="security-grid">
+      <div class="security-score-card" style="border-color:#ef4444">
+        <div class="security-score-value" style="color:#ef4444">0%</div>
+        <div class="security-score-label">Avg Security Score</div>
+      </div>
+      <div class="security-metrics-card">
+        <div class="security-metric"><span class="metric-label">Secret scanning</span><div class="progress-bar" style="flex:1"><div class="fill" style="width:0%;background:#ef4444"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">0/16</span></div>
+        <div class="security-metric"><span class="metric-label">SAST (Semgrep)</span><div class="progress-bar" style="flex:1"><div class="fill" style="width:0%;background:#ef4444"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">0/16</span></div>
+        <div class="security-metric"><span class="metric-label">Supply chain</span><div class="progress-bar" style="flex:1"><div class="fill" style="width:0%;background:#ef4444"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">0/16</span></div>
+        <div class="security-metric"><span class="metric-label">License check</span><div class="progress-bar" style="flex:1"><div class="fill" style="width:0%;background:#ef4444"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">0/16</span></div>
+        <div class="security-metric"><span class="metric-label">AI code review</span><div class="progress-bar" style="flex:1"><div class="fill" style="width:0%;background:#ef4444"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">0/16</span></div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="performance-posture">
+    <h2>Performance &amp; Quality</h2>
+    <div class="security-grid">
+      <div class="security-score-card" style="border-color:#ef4444">
+        <div class="security-score-value" style="color:#ef4444">0%</div>
+        <div class="security-score-label">Avg Quality Score</div>
+      </div>
+      <div class="security-metrics-card">
+        <div class="security-metric"><span class="metric-label">Perf budgets</span><div class="progress-bar" style="flex:1"><div class="fill" style="width:0%;background:#ef4444"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">0/16</span></div>
+        <div class="security-metric"><span class="metric-label">Accessibility</span><div class="progress-bar" style="flex:1"><div class="fill" style="width:0%;background:#ef4444"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">0/16</span></div>
+        <div class="security-metric"><span class="metric-label">Coverage tracking</span><div class="progress-bar" style="flex:1"><div class="fill" style="width:0%;background:#ef4444"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">0/16</span></div>
+        <div class="security-metric"><span class="metric-label">Auto docs/changelog</span><div class="progress-bar" style="flex:1"><div class="fill" style="width:0%;background:#ef4444"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">0/16</span></div>
+        <div class="security-metric"><span class="metric-label">Release mgmt</span><div class="progress-bar" style="flex:1"><div class="fill" style="width:0%;background:#ef4444"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">0/16</span></div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="dora-section">
+    <h2>DORA Metrics</h2>
+    <div class="dora-grid">
+      <div class="dora-card" style="border-left:3px solid #f59e0b">
+        <div class="dora-value" style="color:#f59e0b">MEDIUM</div>
+        <div class="dora-label">Overall Rating</div>
+      </div>
+      <div class="dora-card">
+        <div class="dora-value" style="color:#a78bfa">0</div>
+        <div class="dora-label">Deploys/week</div>
+      </div>
+      <div class="dora-card">
+        <div class="dora-value" style="color:#a78bfa">132.7h</div>
+        <div class="dora-label">Lead Time</div>
+      </div>
+      <div class="dora-card">
+        <div class="dora-value" style="color:#a78bfa">0h</div>
+        <div class="dora-label">MTTR</div>
+      </div>
+      <div class="dora-card">
+        <div class="dora-value" style="color:#ef4444">51%</div>
+        <div class="dora-label">Change Fail Rate</div>
+      </div>
+    </div>
+    <div style="font-size:0.75rem;color:#8b949e;margin-bottom:0.4rem">
+      0 elite, 1 high, 5 medium, 0 low (6 repos)
+    </div>
+    <div class="dora-repo-list"><div class="dora-repo-row">
+        <span>au-marais</span>
+        <span><span class="dora-rating" style="background:#f59e0b30;color:#f59e0b">medium</span></span>
+        <span style="color:#8b949e">0/wk</span>
+        <span style="color:#8b949e">264.7h</span>
+        <span style="color:#8b949e">0%</span>
+      </div><div class="dora-repo-row">
+        <span>CasaSync</span>
+        <span><span class="dora-rating" style="background:#f59e0b30;color:#f59e0b">medium</span></span>
+        <span style="color:#8b949e">0/wk</span>
+        <span style="color:#8b949e">0h</span>
+        <span style="color:#8b949e">31%</span>
+      </div><div class="dora-repo-row">
+        <span>ClubMedRoomAssignment</span>
+        <span><span class="dora-rating" style="background:#f59e0b30;color:#f59e0b">medium</span></span>
+        <span style="color:#8b949e">0/wk</span>
+        <span style="color:#8b949e">0h</span>
+        <span style="color:#8b949e">100%</span>
+      </div><div class="dora-repo-row">
+        <span>Email_Assistant</span>
+        <span><span class="dora-rating" style="background:#3b82f630;color:#3b82f6">high</span></span>
+        <span style="color:#8b949e">0/wk</span>
+        <span style="color:#8b949e">0.6h</span>
+        <span style="color:#8b949e">8%</span>
+      </div><div class="dora-repo-row">
+        <span>livret-au-marais</span>
+        <span><span class="dora-rating" style="background:#f59e0b30;color:#f59e0b">medium</span></span>
+        <span style="color:#8b949e">0/wk</span>
+        <span style="color:#8b949e">0h</span>
+        <span style="color:#8b949e">89%</span>
+      </div><div class="dora-repo-row">
+        <span>Utilitaire_Webapp</span>
+        <span><span class="dora-rating" style="background:#f59e0b30;color:#f59e0b">medium</span></span>
+        <span style="color:#8b949e">0/wk</span>
+        <span style="color:#8b949e">0h</span>
+        <span style="color:#8b949e">80%</span>
+      </div></div>
+  </div>
+
+  
+  <div class="cost-section">
+    <h2>CI Cost Monitor</h2>
+    <div class="cost-grid">
+      <div class="cost-card">
+        <div class="cost-value" style="color:#34d399">615</div>
+        <div class="cost-label">Minutes (30d)</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-value" style="color:#34d399">282</div>
+        <div class="cost-label">Total Runs</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-value" style="color:#ef4444">209</div>
+        <div class="cost-label">Wasted min (34%)</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-value" style="color:#22c55e">31%</div>
+        <div class="cost-label">Free tier used</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-value" style="color:#22c55e">$0</div>
+        <div class="cost-label">Est. cost/mo</div>
+      </div>
+    </div>
+    <div style="font-size:0.75rem;color:#8b949e;margin-bottom:0.4rem">
+      Most expensive: Email_Assistant | 6 optimization(s) found
+    </div>
+    <div class="cost-recs"><strong style="color:#8b949e">Top recommendations:</strong><ul><li>Deploy OpenSpec Viewer: 73% failure rate (32min wasted). Fix root cause.</li><li>Deploy Migration Dashboard: 65% failure rate (22min wasted). Fix root cause.</li><li>Daily Drift Report: 82% failure rate (18min wasted). Fix root cause.</li><li>CI: 89% failure rate (47min wasted). Fix root cause.</li><li>CI: 100% failure rate (35min wasted). Fix root cause.</li></ul></div>
   </div>
 
   <div class="all-clear">All 16 projects are healthy</div>
@@ -501,14 +781,16 @@
         <span class="status-icon">&#9989;</span>
         <strong>au-marais</strong>
         <span class="badge badge-nextjs">nextjs</span>
-        <span class="health-score" style="color: #f59e0b">75</span>
+        <span class="health-score" style="color: #ef4444">59</span>
         <canvas data-sparkline="au-marais" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/au-marais/actions/runs/21775816387" target="_blank">(view)</a></span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -517,14 +799,16 @@
         <span class="status-icon">&#9989;</span>
         <strong>CasaSync</strong>
         <span class="badge badge-nextjs">nextjs</span>
-        <span class="health-score" style="color: #f59e0b">70</span>
+        <span class="health-score" style="color: #ef4444">54</span>
         <canvas data-sparkline="CasaSync" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/CasaSync/actions/runs/22132524981" target="_blank">(view)</a></span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -533,14 +817,16 @@
         <span class="status-icon">&#9898;</span>
         <strong>claude-cli-wrapper</strong>
         <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #f59e0b">60</span>
+        <span class="health-score" style="color: #ef4444">44</span>
         <canvas data-sparkline="claude-cli-wrapper" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -549,14 +835,16 @@
         <span class="status-icon">&#9898;</span>
         <strong>claude-launcher</strong>
         <span class="badge badge-dotnet">dotnet</span>
-        <span class="health-score" style="color: #f59e0b">60</span>
+        <span class="health-score" style="color: #ef4444">44</span>
         <canvas data-sparkline="claude-launcher" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -565,14 +853,16 @@
         <span class="status-icon">&#9989;</span>
         <strong>Email_Assistant</strong>
         <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #f59e0b">75</span>
+        <span class="health-score" style="color: #ef4444">59</span>
         <canvas data-sparkline="Email_Assistant" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/Email_Assistant/actions/runs/22252080105" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/Email_Assistant/actions/runs/22256935293" target="_blank">(view)</a></span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -581,14 +871,16 @@
         <span class="status-icon">&#9898;</span>
         <strong>lecteur-magic</strong>
         <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #f59e0b">65</span>
+        <span class="health-score" style="color: #ef4444">49</span>
         <canvas data-sparkline="lecteur-magic" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none <a href="https://github.com/thonyAGP/lecteur-magic/actions/runs/22252303938" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>none <a href="https://github.com/thonyAGP/lecteur-magic/actions/runs/22256170517" target="_blank">(view)</a></span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -597,14 +889,16 @@
         <span class="status-icon">&#9898;</span>
         <strong>Livret_accueil_Au-Marais</strong>
         <span class="badge badge-nextjs">nextjs</span>
-        <span class="health-score" style="color: #f59e0b">60</span>
+        <span class="health-score" style="color: #ef4444">44</span>
         <canvas data-sparkline="Livret_accueil_Au-Marais" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -613,14 +907,16 @@
         <span class="status-icon">&#9989;</span>
         <strong>livret-au-marais</strong>
         <span class="badge badge-nextjs">nextjs</span>
-        <span class="health-score" style="color: #f59e0b">75</span>
+        <span class="health-score" style="color: #ef4444">59</span>
         <canvas data-sparkline="livret-au-marais" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016" target="_blank">(view)</a></span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -629,14 +925,16 @@
         <span class="status-icon">&#9898;</span>
         <strong>MCP_Quota_Claude</strong>
         <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #f59e0b">60</span>
+        <span class="health-score" style="color: #ef4444">44</span>
         <canvas data-sparkline="MCP_Quota_Claude" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -645,14 +943,16 @@
         <span class="status-icon">&#9898;</span>
         <strong>Site_1970_Plomberie</strong>
         <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #f59e0b">60</span>
+        <span class="health-score" style="color: #ef4444">44</span>
         <canvas data-sparkline="Site_1970_Plomberie" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -661,14 +961,16 @@
         <span class="status-icon">&#9898;</span>
         <strong>Site_Greg-Assainissement</strong>
         <span class="badge badge-nextjs">nextjs</span>
-        <span class="health-score" style="color: #f59e0b">60</span>
+        <span class="health-score" style="color: #ef4444">44</span>
         <canvas data-sparkline="Site_Greg-Assainissement" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -677,14 +979,16 @@
         <span class="status-icon">&#9898;</span>
         <strong>SqlConnectionTest</strong>
         <span class="badge badge-dotnet">dotnet</span>
-        <span class="health-score" style="color: #f59e0b">60</span>
+        <span class="health-score" style="color: #ef4444">44</span>
         <canvas data-sparkline="SqlConnectionTest" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -693,14 +997,16 @@
         <span class="status-icon">&#9898;</span>
         <strong>statusline</strong>
         <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #f59e0b">60</span>
+        <span class="health-score" style="color: #ef4444">44</span>
         <canvas data-sparkline="statusline" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -709,14 +1015,16 @@
         <span class="status-icon">&#9898;</span>
         <strong>test_codingmenace</strong>
         <span class="badge badge-nextjs">nextjs</span>
-        <span class="health-score" style="color: #f59e0b">60</span>
+        <span class="health-score" style="color: #ef4444">44</span>
         <canvas data-sparkline="test_codingmenace" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -725,14 +1033,16 @@
         <span class="status-icon">&#9898;</span>
         <strong>Thumbfast</strong>
         <span class="badge badge-nextjs">nextjs</span>
-        <span class="health-score" style="color: #f59e0b">60</span>
+        <span class="health-score" style="color: #ef4444">44</span>
         <canvas data-sparkline="Thumbfast" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
 
@@ -741,14 +1051,16 @@
         <span class="status-icon">&#9989;</span>
         <strong>Utilitaire_Webapp</strong>
         <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #f59e0b">75</span>
+        <span class="health-score" style="color: #ef4444">59</span>
         <canvas data-sparkline="Utilitaire_Webapp" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250" target="_blank">(view)</a></span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>5</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
     </div>
