@@ -1,7 +1,7 @@
-# DevOps-Factory: CodeRabbit Config (AUTO-41)
-# AI Code Review multi-model configuration
+# DevOps-Factory: CodeRabbit Config
+# AI Code Review - replaces Claude API-based reviews (Claude Max compatible)
 # Install CodeRabbit GitHub App first: https://github.com/apps/coderabbitai
-# Then this config customizes behavior per repo
+# Free tier: unlimited public repos, 5 private repos
 
 language: fr
 reviews:
@@ -12,15 +12,24 @@ reviews:
   auto_title_placeholder: '@coderabbitai'
   review_status: true
   collapse_walkthrough: false
+  poem: false
   path_instructions:
     - path: 'src/components/**'
       instructions: 'Focus on React best practices, hooks usage, accessibility, and performance. Check for missing memo/useCallback where needed.'
     - path: 'src/services/**'
       instructions: 'Focus on error handling, input validation with Zod, and proper typing. No any types.'
+    - path: 'src/repositories/**'
+      instructions: 'Check for SQL injection, missing parameterized queries, transaction usage for multi-table operations.'
     - path: 'prisma/**'
       instructions: 'Check for destructive migrations (DROP, ALTER column type). Flag if missing down migration.'
     - path: '**/*.test.*'
-      instructions: 'Verify AAA pattern, meaningful assertions, edge cases covered.'
+      instructions: 'Verify AAA pattern, meaningful assertions, edge cases covered. Test names should follow: should [verb] when [condition].'
+    - path: '.github/workflows/**'
+      instructions: 'Check for security: pinned action versions, minimal permissions, no secrets in logs.'
+    - path: '**/*.{css,scss}'
+      instructions: 'Check for accessibility: color contrast, focus indicators, responsive design.'
+    - path: 'scripts/**'
+      instructions: 'Check for error handling, proper logging, and no hardcoded secrets or paths.'
   tools:
     eslint:
       enabled: true
@@ -29,5 +38,11 @@ reviews:
     github-checks:
       enabled: true
       timeout_ms: 90000
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - main
+      - master
 chat:
   auto_reply: true

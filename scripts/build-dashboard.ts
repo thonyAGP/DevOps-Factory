@@ -72,6 +72,12 @@ interface ScanResult {
   hasGitleaks: boolean;
   hasRenovate: boolean;
   hasHusky: boolean;
+  hasCodeRabbit: boolean;
+  hasLicenseCheck: boolean;
+  hasSemgrep: boolean;
+  hasSupplyChainSecurity: boolean;
+  hasContainerScan: boolean;
+  hasSecurityHeaders: boolean;
   defaultBranch: string;
 }
 
@@ -113,6 +119,11 @@ interface ProjectStatus {
   hasGitleaks: boolean;
   hasRenovate: boolean;
   hasHusky: boolean;
+  hasCodeRabbit: boolean;
+  hasLicenseCheck: boolean;
+  hasSemgrep: boolean;
+  hasSupplyChain: boolean;
+  securityScore: number;
 }
 
 interface HistoryProjectEntry {
@@ -223,6 +234,17 @@ const getOpenPRs = (repo: string): PRInfo[] => {
   }
 };
 
+const calculateSecurityScore = (status: ProjectStatus): number => {
+  let score = 0;
+  const total = 5;
+  if (status.hasGitleaks) score++;
+  if (status.hasLicenseCheck) score++;
+  if (status.hasSemgrep) score++;
+  if (status.hasSupplyChain) score++;
+  if (status.hasCodeRabbit) score++;
+  return Math.round((score / total) * 100);
+};
+
 const calculateHealthScore = (status: ProjectStatus): number => {
   let score = 100;
   if (status.ciStatus === 'fail') score -= 30;
@@ -233,6 +255,9 @@ const calculateHealthScore = (status: ProjectStatus): number => {
   if (!status.hasGitleaks) score -= 5;
   if (!status.hasRenovate) score -= 5;
   if (!status.hasHusky) score -= 5;
+  if (!status.hasCodeRabbit && !status.configured) score -= 5;
+  if (!status.hasLicenseCheck) score -= 3;
+  if (!status.hasSemgrep) score -= 3;
   return Math.max(0, score);
 };
 
@@ -288,8 +313,14 @@ const buildProjectStatuses = (report: ScanReport): ProjectStatus[] => {
         hasGitleaks: analysis.hasGitleaks ?? false,
         hasRenovate: analysis.hasRenovate ?? false,
         hasHusky: analysis.hasHusky ?? false,
+        hasCodeRabbit: analysis.hasCodeRabbit ?? false,
+        hasLicenseCheck: analysis.hasLicenseCheck ?? false,
+        hasSemgrep: analysis.hasSemgrep ?? false,
+        hasSupplyChain: analysis.hasSupplyChainSecurity ?? false,
+        securityScore: 0,
       };
 
+      status.securityScore = calculateSecurityScore(status);
       status.healthScore = calculateHealthScore(status);
       return status;
     });
@@ -529,11 +560,52 @@ const getFactoryStatusSection = (): string => {
   </div>`;
 };
 
+const getSecurityPostureSection = (statuses: ProjectStatus[]): string => {
+  const secAvg = Math.round(statuses.reduce((s, p) => s + p.securityScore, 0) / statuses.length);
+  const secColor = secAvg >= 80 ? '#22c55e' : secAvg >= 50 ? '#f59e0b' : '#ef4444';
+  const withGitleaks = statuses.filter((p) => p.hasGitleaks).length;
+  const withSAST = statuses.filter((p) => p.hasSemgrep).length;
+  const withSupply = statuses.filter((p) => p.hasSupplyChain).length;
+  const withLicense = statuses.filter((p) => p.hasLicenseCheck).length;
+  const withReview = statuses.filter((p) => p.hasCodeRabbit || p.configured).length;
+  const total = statuses.length;
+
+  const bar = (count: number) => {
+    const pct = Math.round((count / total) * 100);
+    const color = pct >= 80 ? '#22c55e' : pct >= 50 ? '#f59e0b' : '#ef4444';
+    return `<div class="progress-bar" style="flex:1"><div class="fill" style="width:${pct}%;background:${color}"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">${count}/${total}</span>`;
+  };
+
+  return `
+  <div class="security-posture">
+    <h2>Security &amp; Review Posture</h2>
+    <div class="security-grid">
+      <div class="security-score-card" style="border-color:${secColor}">
+        <div class="security-score-value" style="color:${secColor}">${secAvg}%</div>
+        <div class="security-score-label">Avg Security Score</div>
+      </div>
+      <div class="security-metrics-card">
+        <div class="security-metric"><span class="metric-label">Secret scanning</span>${bar(withGitleaks)}</div>
+        <div class="security-metric"><span class="metric-label">SAST (Semgrep)</span>${bar(withSAST)}</div>
+        <div class="security-metric"><span class="metric-label">Supply chain</span>${bar(withSupply)}</div>
+        <div class="security-metric"><span class="metric-label">License check</span>${bar(withLicense)}</div>
+        <div class="security-metric"><span class="metric-label">AI code review</span>${bar(withReview)}</div>
+      </div>
+    </div>
+  </div>`;
+};
+
 const generateHTML = (statuses: ProjectStatus[]): string => {
   const timestamp = formatDashboardDate(new Date());
   const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
   const failingCount = statuses.filter((p) => p.ciStatus === 'fail').length;
   const totalAIFixes = statuses.reduce((s, p) => s + p.aiFixPRs.length, 0);
+  const avgSecurity = Math.round(
+    statuses.reduce((s, p) => s + p.securityScore, 0) / statuses.length
+  );
+  const reviewCoverage = Math.round(
+    (statuses.filter((p) => p.hasCodeRabbit || p.configured).length / statuses.length) * 100
+  );
 
   const problemProjects = statuses
     .filter(
@@ -584,7 +656,8 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>${p.ciStatus}${p.lastRun?.html_url ? ` <a href="${p.lastRun.html_url}" target="_blank">(view)</a>` : ''}</span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>${p.openPRs.length}</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span>${p.hasGitleaks ? 'Gitleaks' : 'None'}</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:${p.securityScore >= 80 ? '#22c55e' : p.securityScore >= 40 ? '#f59e0b' : '#ef4444'}">${p.securityScore}% <small>(${[p.hasGitleaks ? 'secrets' : '', p.hasSemgrep ? 'SAST' : '', p.hasSupplyChain ? 'supply' : '', p.hasLicenseCheck ? 'license' : ''].filter(Boolean).join(', ') || 'none'})</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>${p.hasCodeRabbit ? 'CodeRabbit' : p.configured ? 'Claude' : 'None'}</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>${[p.hasHusky ? 'Husky' : '', p.hasRenovate ? 'Renovate' : ''].filter(Boolean).join(', ') || 'None'}</span></div>
       </div>
     </details>`
@@ -901,6 +974,47 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
       border-radius: 4px;
       white-space: nowrap;
     }
+
+    /* Security Posture */
+    .security-posture {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .security-posture h2 { color: #f97316; font-size: 1rem; margin-bottom: 0.8rem; }
+    .security-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0.8rem;
+      align-items: start;
+    }
+    @media (max-width: 600px) { .security-grid { grid-template-columns: 1fr; } }
+    .security-score-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-left: 3px solid;
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .security-score-value { font-size: 2rem; font-weight: bold; }
+    .security-score-label { font-size: 0.75rem; color: #8b949e; margin-top: 0.2rem; }
+    .security-metrics-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+    }
+    .security-metric {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.3rem 0;
+      font-size: 0.85rem;
+    }
+    .security-metric .metric-label { min-width: 120px; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
@@ -927,9 +1041,19 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
       <div class="number" style="color: ${totalAIFixes > 0 ? '#f59e0b' : '#22c55e'}">${totalAIFixes}</div>
       <div class="label">AI Fixes</div>
     </div>
+    <div class="summary-item">
+      <div class="number" style="color: ${avgSecurity >= 80 ? '#22c55e' : avgSecurity >= 50 ? '#f59e0b' : '#ef4444'}">${avgSecurity}%</div>
+      <div class="label">Security</div>
+    </div>
+    <div class="summary-item">
+      <div class="number" style="color: ${reviewCoverage >= 80 ? '#22c55e' : reviewCoverage >= 50 ? '#f59e0b' : '#ef4444'}">${reviewCoverage}%</div>
+      <div class="label">Review Coverage</div>
+    </div>
   </div>
 
   ${getFactoryStatusSection()}
+
+  ${getSecurityPostureSection(statuses)}
 
   ${allClearBanner}
 
@@ -1045,11 +1169,18 @@ const generateDailyReport = (statuses: ProjectStatus[]): string => {
   const pendingAIFixes = statuses.flatMap((p) => p.aiFixPRs.map((pr) => ({ project: p.name, pr })));
   const configuredCount = statuses.filter((p) => p.configured).length;
 
+  const avgSecScore = Math.round(
+    statuses.reduce((s, p) => s + p.securityScore, 0) / statuses.length
+  );
+  const reviewedCount = statuses.filter((p) => p.hasCodeRabbit || p.configured).length;
+
   let body = `## Summary\n`;
   body += `- **${statuses.length}** projects monitored\n`;
   body += `- **${configuredCount}/${statuses.length}** fully configured\n`;
   body += `- **${pendingAIFixes.length}** AI fix PR(s) pending merge\n`;
-  body += `- **${failingProjects.length}** CI failure(s)\n\n`;
+  body += `- **${failingProjects.length}** CI failure(s)\n`;
+  body += `- **${avgSecScore}%** avg security score\n`;
+  body += `- **${reviewedCount}/${statuses.length}** repos with AI code review\n\n`;
 
   body += `## Per Project\n\n`;
 

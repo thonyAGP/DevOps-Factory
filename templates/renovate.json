@@ -13,6 +13,14 @@
   "automerge": false,
   "automergeType": "pr",
   "platformAutomerge": true,
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "minimumReleaseAge": "3 days",
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security", "dependencies"],
+    "automerge": true
+  },
   "packageRules": [
     {
       "description": "Automerge patch-level devDependencies",
@@ -47,6 +55,35 @@
       "description": "Group Next.js ecosystem",
       "matchPackageNames": ["next", "@next/*"],
       "groupName": "nextjs"
+    },
+    {
+      "description": "Group Prisma ecosystem",
+      "matchPackageNames": ["prisma", "@prisma/*"],
+      "groupName": "prisma"
+    },
+    {
+      "description": "Group Playwright ecosystem",
+      "matchPackageNames": ["@playwright/*", "playwright"],
+      "groupName": "playwright"
+    },
+    {
+      "description": "Group NuGet packages (.NET)",
+      "matchManagers": ["nuget"],
+      "groupName": "dotnet-dependencies",
+      "schedule": ["every weekend"]
+    },
+    {
+      "description": "Automerge Docker digest updates",
+      "matchManagers": ["dockerfile"],
+      "matchUpdateTypes": ["digest"],
+      "automerge": true
+    },
+    {
+      "description": "Group GitHub Actions",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions",
+      "automerge": true,
+      "schedule": ["every weekend"]
     }
   ]
 }

@@ -44,6 +44,12 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_ACTIONS: 'true'
 
+      - name: Security posture report
+        run: pnpm security-posture
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+        continue-on-error: true
+
       - name: Check for alerts
         id: alerts
         run: |
