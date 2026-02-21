@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-02-21T18:27:39.130Z",
+  "timestamp": "2026-02-21T20:35:49.225Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 347,
+      "totalMinutes": 341,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
-          "runs": 29,
-          "totalMinutes": 268,
+          "runs": 28,
+          "totalMinutes": 261,
           "avgMinutes": 9,
           "failedRuns": 8,
           "wastedMinutes": 41
@@ -33,8 +33,8 @@
         },
         {
           "name": "Monitor Production",
-          "runs": 21,
-          "totalMinutes": 21,
+          "runs": 22,
+          "totalMinutes": 22,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -116,16 +116,16 @@
     {
       "repo": "ClubMedRoomAssignment",
       "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "totalMinutes": 37,
-      "totalRuns": 37,
+      "totalMinutes": 35,
+      "totalRuns": 35,
       "workflows": [
         {
           "name": "CI",
-          "runs": 34,
-          "totalMinutes": 34,
+          "runs": 32,
+          "totalMinutes": 32,
           "avgMinutes": 1,
-          "failedRuns": 34,
-          "wastedMinutes": 34
+          "failedRuns": 32,
+          "wastedMinutes": 32
         },
         {
           "name": ".github/workflows/ci.yml",
@@ -136,7 +136,7 @@
           "wastedMinutes": 3
         }
       ],
-      "recommendations": ["CI: 100% failure rate (34min wasted). Fix root cause."]
+      "recommendations": ["CI: 100% failure rate (32min wasted). Fix root cause."]
     },
     {
       "repo": "CasaSync",
@@ -254,9 +254,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 614,
-    "totalRuns": 281,
-    "wastedMinutes": 208,
+    "totalMinutes": 606,
+    "totalRuns": 279,
+    "wastedMinutes": 206,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 6,
