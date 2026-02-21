@@ -78,6 +78,14 @@ interface ScanResult {
   hasSupplyChainSecurity: boolean;
   hasContainerScan: boolean;
   hasSecurityHeaders: boolean;
+  hasPerformanceBudget: boolean;
+  hasAccessibilityCheck: boolean;
+  hasLighthouse: boolean;
+  hasAutoChangelog: boolean;
+  hasTypedoc: boolean;
+  hasCoverageTracking: boolean;
+  hasSemanticRelease: boolean;
+  hasReleaseDrafter: boolean;
   defaultBranch: string;
 }
 
@@ -124,6 +132,15 @@ interface ProjectStatus {
   hasSemgrep: boolean;
   hasSupplyChain: boolean;
   securityScore: number;
+  hasPerformanceBudget: boolean;
+  hasAccessibilityCheck: boolean;
+  hasLighthouse: boolean;
+  hasAutoChangelog: boolean;
+  hasTypedoc: boolean;
+  hasCoverageTracking: boolean;
+  hasSemanticRelease: boolean;
+  hasReleaseDrafter: boolean;
+  perfScore: number;
 }
 
 interface HistoryProjectEntry {
@@ -245,6 +262,17 @@ const calculateSecurityScore = (status: ProjectStatus): number => {
   return Math.round((score / total) * 100);
 };
 
+const calculatePerfScore = (status: ProjectStatus): number => {
+  let score = 0;
+  const total = 5;
+  if (status.hasLighthouse || status.hasPerformanceBudget) score++;
+  if (status.hasAccessibilityCheck) score++;
+  if (status.hasCoverageTracking) score++;
+  if (status.hasAutoChangelog || status.hasTypedoc) score++;
+  if (status.hasSemanticRelease || status.hasReleaseDrafter) score++;
+  return Math.round((score / total) * 100);
+};
+
 const calculateHealthScore = (status: ProjectStatus): number => {
   let score = 100;
   if (status.ciStatus === 'fail') score -= 30;
@@ -258,6 +286,8 @@ const calculateHealthScore = (status: ProjectStatus): number => {
   if (!status.hasCodeRabbit && !status.configured) score -= 5;
   if (!status.hasLicenseCheck) score -= 3;
   if (!status.hasSemgrep) score -= 3;
+  if (!status.hasCoverageTracking) score -= 3;
+  if (!status.hasSemanticRelease && !status.hasReleaseDrafter) score -= 2;
   return Math.max(0, score);
 };
 
@@ -318,9 +348,19 @@ const buildProjectStatuses = (report: ScanReport): ProjectStatus[] => {
         hasSemgrep: analysis.hasSemgrep ?? false,
         hasSupplyChain: analysis.hasSupplyChainSecurity ?? false,
         securityScore: 0,
+        hasPerformanceBudget: analysis.hasPerformanceBudget ?? false,
+        hasAccessibilityCheck: analysis.hasAccessibilityCheck ?? false,
+        hasLighthouse: analysis.hasLighthouse ?? false,
+        hasAutoChangelog: analysis.hasAutoChangelog ?? false,
+        hasTypedoc: analysis.hasTypedoc ?? false,
+        hasCoverageTracking: analysis.hasCoverageTracking ?? false,
+        hasSemanticRelease: analysis.hasSemanticRelease ?? false,
+        hasReleaseDrafter: analysis.hasReleaseDrafter ?? false,
+        perfScore: 0,
       };
 
       status.securityScore = calculateSecurityScore(status);
+      status.perfScore = calculatePerfScore(status);
       status.healthScore = calculateHealthScore(status);
       return status;
     });
@@ -595,6 +635,41 @@ const getSecurityPostureSection = (statuses: ProjectStatus[]): string => {
   </div>`;
 };
 
+const getPerformanceSection = (statuses: ProjectStatus[]): string => {
+  const perfAvg = Math.round(statuses.reduce((s, p) => s + p.perfScore, 0) / statuses.length);
+  const perfColor = perfAvg >= 80 ? '#22c55e' : perfAvg >= 50 ? '#f59e0b' : '#ef4444';
+  const withLighthouse = statuses.filter((p) => p.hasLighthouse || p.hasPerformanceBudget).length;
+  const withA11y = statuses.filter((p) => p.hasAccessibilityCheck).length;
+  const withCoverage = statuses.filter((p) => p.hasCoverageTracking).length;
+  const withDocs = statuses.filter((p) => p.hasAutoChangelog || p.hasTypedoc).length;
+  const withRelease = statuses.filter((p) => p.hasSemanticRelease || p.hasReleaseDrafter).length;
+  const total = statuses.length;
+
+  const bar = (count: number) => {
+    const pct = Math.round((count / total) * 100);
+    const color = pct >= 80 ? '#22c55e' : pct >= 50 ? '#f59e0b' : '#ef4444';
+    return `<div class="progress-bar" style="flex:1"><div class="fill" style="width:${pct}%;background:${color}"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">${count}/${total}</span>`;
+  };
+
+  return `
+  <div class="performance-posture">
+    <h2>Performance &amp; Quality</h2>
+    <div class="security-grid">
+      <div class="security-score-card" style="border-color:${perfColor}">
+        <div class="security-score-value" style="color:${perfColor}">${perfAvg}%</div>
+        <div class="security-score-label">Avg Quality Score</div>
+      </div>
+      <div class="security-metrics-card">
+        <div class="security-metric"><span class="metric-label">Perf budgets</span>${bar(withLighthouse)}</div>
+        <div class="security-metric"><span class="metric-label">Accessibility</span>${bar(withA11y)}</div>
+        <div class="security-metric"><span class="metric-label">Coverage tracking</span>${bar(withCoverage)}</div>
+        <div class="security-metric"><span class="metric-label">Auto docs/changelog</span>${bar(withDocs)}</div>
+        <div class="security-metric"><span class="metric-label">Release mgmt</span>${bar(withRelease)}</div>
+      </div>
+    </div>
+  </div>`;
+};
+
 const generateHTML = (statuses: ProjectStatus[]): string => {
   const timestamp = formatDashboardDate(new Date());
   const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
@@ -606,6 +681,7 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
   const reviewCoverage = Math.round(
     (statuses.filter((p) => p.hasCodeRabbit || p.configured).length / statuses.length) * 100
   );
+  const avgPerf = Math.round(statuses.reduce((s, p) => s + p.perfScore, 0) / statuses.length);
 
   const problemProjects = statuses
     .filter(
@@ -659,6 +735,7 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
         <div class="metric"><span class="metric-label">Security</span><span style="color:${p.securityScore >= 80 ? '#22c55e' : p.securityScore >= 40 ? '#f59e0b' : '#ef4444'}">${p.securityScore}% <small>(${[p.hasGitleaks ? 'secrets' : '', p.hasSemgrep ? 'SAST' : '', p.hasSupplyChain ? 'supply' : '', p.hasLicenseCheck ? 'license' : ''].filter(Boolean).join(', ') || 'none'})</small></span></div>
         <div class="metric"><span class="metric-label">Review</span><span>${p.hasCodeRabbit ? 'CodeRabbit' : p.configured ? 'Claude' : 'None'}</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>${[p.hasHusky ? 'Husky' : '', p.hasRenovate ? 'Renovate' : ''].filter(Boolean).join(', ') || 'None'}</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:${p.perfScore >= 80 ? '#22c55e' : p.perfScore >= 40 ? '#f59e0b' : '#ef4444'}">${p.perfScore}% <small>(${[p.hasLighthouse || p.hasPerformanceBudget ? 'perf' : '', p.hasAccessibilityCheck ? 'a11y' : '', p.hasCoverageTracking ? 'cov' : '', p.hasSemanticRelease || p.hasReleaseDrafter ? 'rel' : ''].filter(Boolean).join(', ') || 'none'})</small></span></div>
       </div>
     </details>`
     )
@@ -1015,6 +1092,16 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
       font-size: 0.85rem;
     }
     .security-metric .metric-label { min-width: 120px; }
+
+    /* Performance & Quality */
+    .performance-posture {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .performance-posture h2 { color: #06b6d4; font-size: 1rem; margin-bottom: 0.8rem; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
@@ -1049,11 +1136,17 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
       <div class="number" style="color: ${reviewCoverage >= 80 ? '#22c55e' : reviewCoverage >= 50 ? '#f59e0b' : '#ef4444'}">${reviewCoverage}%</div>
       <div class="label">Review Coverage</div>
     </div>
+    <div class="summary-item">
+      <div class="number" style="color: ${avgPerf >= 80 ? '#22c55e' : avgPerf >= 50 ? '#f59e0b' : '#ef4444'}">${avgPerf}%</div>
+      <div class="label">Quality</div>
+    </div>
   </div>
 
   ${getFactoryStatusSection()}
 
   ${getSecurityPostureSection(statuses)}
+
+  ${getPerformanceSection(statuses)}
 
   ${allClearBanner}
 
@@ -1180,7 +1273,9 @@ const generateDailyReport = (statuses: ProjectStatus[]): string => {
   body += `- **${pendingAIFixes.length}** AI fix PR(s) pending merge\n`;
   body += `- **${failingProjects.length}** CI failure(s)\n`;
   body += `- **${avgSecScore}%** avg security score\n`;
-  body += `- **${reviewedCount}/${statuses.length}** repos with AI code review\n\n`;
+  body += `- **${reviewedCount}/${statuses.length}** repos with AI code review\n`;
+  const avgPerfReport = Math.round(statuses.reduce((s, p) => s + p.perfScore, 0) / statuses.length);
+  body += `- **${avgPerfReport}%** avg quality score (perf, a11y, coverage, release)\n\n`;
 
   body += `## Per Project\n\n`;
 

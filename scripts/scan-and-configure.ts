@@ -66,6 +66,9 @@ interface RepoAnalysis {
   hasConfigDrift: boolean;
   hasCoverageTracking: boolean;
   hasSemanticRelease: boolean;
+  hasLighthouse: boolean;
+  hasAutoChangelog: boolean;
+  hasTypedoc: boolean;
 }
 
 const IGNORED_REPOS = ['DevOps-Factory', 'Parametrage_Claude', 'Migration_Pc1_vers_Pc2', '.github'];
@@ -184,6 +187,11 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
     workflowsDir.includes('coverage-tracking') || workflowsDir.includes('coverage');
   const hasSemanticRelease =
     workflowsDir.includes('semantic-release') || workflowsDir.includes('release.yml');
+  const hasLighthouse =
+    workflowsDir.includes('lighthouse') || workflowsDir.includes('lighthouse-ci');
+  const hasAutoChangelog =
+    workflowsDir.includes('auto-changelog') || workflowsDir.includes('changelog');
+  const hasTypedoc = workflowsDir.includes('typedoc') || workflowsDir.includes('docs-gen');
 
   return {
     repo,
@@ -228,6 +236,9 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
     hasConfigDrift,
     hasCoverageTracking,
     hasSemanticRelease,
+    hasLighthouse,
+    hasAutoChangelog,
+    hasTypedoc,
   };
 };
 
@@ -566,6 +577,36 @@ const createConfigPR = (analysis: RepoAnalysis): void => {
     });
   }
 
+  // Phase 3: Lighthouse CI (frontend projects)
+  if (!analysis.hasLighthouse && analysis.stack === 'nextjs') {
+    filesToAdd.push(
+      {
+        path: '.github/workflows/lighthouse.yml',
+        template: `${TEMPLATES_DIR}/lighthouse.yml`,
+      },
+      {
+        path: '.github/lighthouse-budget.json',
+        template: `${TEMPLATES_DIR}/lighthouse-budget.json`,
+      }
+    );
+  }
+
+  // Phase 3: Auto changelog (all active projects)
+  if (!analysis.hasAutoChangelog && analysis.stack !== 'unknown') {
+    filesToAdd.push({
+      path: '.github/workflows/auto-changelog.yml',
+      template: `${TEMPLATES_DIR}/auto-changelog.yml`,
+    });
+  }
+
+  // Phase 3: TypeDoc generation (Node.js/TS projects)
+  if (!analysis.hasTypedoc && (analysis.stack === 'node' || analysis.stack === 'nextjs')) {
+    filesToAdd.push({
+      path: '.github/workflows/typedoc-gen.yml',
+      template: `${TEMPLATES_DIR}/typedoc-gen.yml`,
+    });
+  }
+
   // Phase 2: Semantic release (all active projects)
   if (!analysis.hasSemanticRelease && analysis.stack !== 'unknown') {
     filesToAdd.push({
@@ -701,8 +742,8 @@ const generateReport = (analyses: RepoAnalysis[]): string => {
   report += `**Active projects**: ${active.length}\n`;
   report += `**Fully configured**: ${configured.length}/${active.length}\n\n`;
 
-  report += `| Repo | Stack | CI | Review | SAST | Supply | Coverage | Drift | Release |\n`;
-  report += `|------|-------|----|--------|------|--------|----------|-------|---------|\n`;
+  report += `| Repo | Stack | CI | Review | SAST | Supply | Coverage | Drift | Release | Perf | Docs |\n`;
+  report += `|------|-------|----|--------|------|--------|----------|-------|---------|----- |------|\n`;
 
   for (const a of analyses.sort((x, y) => x.repo.name.localeCompare(y.repo.name))) {
     const ci = a.hasCI ? 'Y' : '-';
@@ -712,7 +753,9 @@ const generateReport = (analyses: RepoAnalysis[]): string => {
     const coverage = a.hasCoverageTracking ? 'Y' : '-';
     const drift = a.hasConfigDrift ? 'Y' : '-';
     const release = a.hasSemanticRelease ? 'SR' : a.hasReleaseDrafter ? 'RD' : '-';
-    report += `| ${a.repo.name} | ${a.stack} | ${ci} | ${review} | ${sast} | ${supply} | ${coverage} | ${drift} | ${release} |\n`;
+    const perf = a.hasLighthouse ? 'LH' : a.hasPerformanceBudget ? 'PB' : '-';
+    const docs = a.hasAutoChangelog ? 'CL' : a.hasTypedoc ? 'TD' : '-';
+    report += `| ${a.repo.name} | ${a.stack} | ${ci} | ${review} | ${sast} | ${supply} | ${coverage} | ${drift} | ${release} | ${perf} | ${docs} |\n`;
   }
 
   return report;
@@ -801,6 +844,9 @@ const main = () => {
           hasConfigDrift: a.hasConfigDrift,
           hasCoverageTracking: a.hasCoverageTracking,
           hasSemanticRelease: a.hasSemanticRelease,
+          hasLighthouse: a.hasLighthouse,
+          hasAutoChangelog: a.hasAutoChangelog,
+          hasTypedoc: a.hasTypedoc,
           defaultBranch: a.repo.default_branch,
         })),
       },
