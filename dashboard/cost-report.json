@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-22T02:49:35.595Z",
+  "timestamp": "2026-02-22T05:21:19.493Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -50,19 +50,19 @@
       "workflows": [
         {
           "name": "Deploy OpenSpec Viewer",
-          "runs": 43,
-          "totalMinutes": 43,
+          "runs": 42,
+          "totalMinutes": 42,
           "avgMinutes": 1,
-          "failedRuns": 31,
-          "wastedMinutes": 31
+          "failedRuns": 30,
+          "wastedMinutes": 30
         },
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 35,
-          "totalMinutes": 35,
+          "runs": 36,
+          "totalMinutes": 36,
           "avgMinutes": 1,
-          "failedRuns": 23,
-          "wastedMinutes": 23
+          "failedRuns": 24,
+          "wastedMinutes": 24
         },
         {
           "name": "Daily Drift Report",
@@ -74,8 +74,8 @@
         }
       ],
       "recommendations": [
-        "Deploy OpenSpec Viewer: 72% failure rate (31min wasted). Fix root cause.",
-        "Deploy Migration Dashboard: 66% failure rate (23min wasted). Fix root cause.",
+        "Deploy OpenSpec Viewer: 71% failure rate (30min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 67% failure rate (24min wasted). Fix root cause.",
         "Daily Drift Report: 82% failure rate (18min wasted). Fix root cause."
       ]
     },

@@ -443,7 +443,7 @@
 <body>
   <div class="header">
     <h1>DevOps Factory Dashboard</h1>
-    <div class="timestamp">Last updated: 22-02-2026 03:46 CET</div>
+    <div class="timestamp">Last updated: 22-02-2026 06:18 CET</div>
   </div>
 
   <div class="summary">
@@ -481,16 +481,16 @@
   <div class="factory-status">
     <h2>Factory Status</h2>
     <div class="factory-grid">
-      <div class="factory-health-card" style="border-color:#f59e0b">
-        <div class="factory-health-indicator" style="background:#f59e0b20;color:#f59e0b">
-          <span style="font-size:1.4rem">&#9888;&#65039;</span>
-          <span style="font-weight:bold;font-size:1.1rem">Warnings</span>
+      <div class="factory-health-card" style="border-color:#ef4444">
+        <div class="factory-health-indicator" style="background:#ef444420;color:#ef4444">
+          <span style="font-size:1.4rem">&#10060;</span>
+          <span style="font-weight:bold;font-size:1.1rem">Issues Detected</span>
         </div>
         <div class="factory-health-detail">
           <div class="metric"><span class="metric-label">Last activity</span><span>1h ago</span></div>
-          <div class="metric"><span class="metric-label">Events (24h)</span><span>151</span></div>
-          <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#22c55e">0</span></div>
-          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#f59e0b">9</span></div>
+          <div class="metric"><span class="metric-label">Events (24h)</span><span>152</span></div>
+          <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#ef4444">1</span></div>
+          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#f59e0b">10</span></div>
         </div>
       </div>
 
@@ -499,135 +499,135 @@
         <div class="metric"><span class="metric-label">Scans completed</span><span class="val">1</span></div>
         <div class="metric"><span class="metric-label">PRs created</span><span class="val">0</span></div>
         <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">4</span></div>
-        <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#22c55e">0</span></div>
-        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">210</span></div>
+        <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#ef4444">1</span></div>
+        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">219</span></div>
       </div>
     </div>
 
-    <details class="activity-timeline" >
+    <details class="activity-timeline" open>
       <summary>Recent Activity (30 events)</summary>
       <table class="timeline-table">
         <tbody>
           
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:23:16.549Z">1h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:10:03.876Z">1h ago</td>
               <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
               <td style="color:#f59e0b">&#9888;&#65039;</td>
               <td>3/7 passing, 2 failing. Issues: 0 created, 0 closed</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:23:16.548Z">1h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:10:03.875Z">1h ago</td>
               <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
               <td style="color:#f59e0b">&#9888;&#65039;</td>
               <td><strong>ClubMedRoomAssignment</strong> - Self-heal dispatched (run 22192523507)</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:23:13.624Z">1h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:10:00.917Z">1h ago</td>
               <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
               <td style="color:#f59e0b">&#9888;&#65039;</td>
               <td><strong>Email_Assistant</strong> - Self-heal dispatched (run 22191711703)</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:21:16.933Z">1h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T03:21:05.220Z">1h ago</td>
+              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
+              <td style="color:#ef4444">&#10060;</td>
+              <td>3/5 passing. 1 failures, 1 partial. 0 self-heals</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T02:49:35.596Z">2h ago</td>
               <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
               <td style="color:#f59e0b">&#9888;&#65039;</td>
               <td>CI cost: 606min total, 206min wasted, ~$0/mo</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:21:05.431Z">1h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T02:49:21.108Z">2h ago</td>
               <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>DORA: medium, deploy 0/wk, lead 132.7h, MTTR 0h</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:20:47.958Z">1h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T02:48:59.805Z">2h ago</td>
               <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>Drift: 0%, 0 drifted templates</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:20:02.787Z">1h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T02:47:49.092Z">2h ago</td>
               <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
               <td style="color:#f59e0b">&#9888;&#65039;</td>
               <td>Avg score: 35/100, 17 critical issues</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:19:17.823Z">1h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T02:46:43.026Z">2h ago</td>
               <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>16 projects, avg health 49</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:43.958Z">1h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:23:16.549Z">3h ago</td>
+              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td>3/7 passing, 2 failing. Issues: 0 created, 0 closed</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:23:16.548Z">3h ago</td>
+              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td><strong>ClubMedRoomAssignment</strong> - Self-heal dispatched (run 22192523507)</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:23:13.624Z">3h ago</td>
+              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td><strong>Email_Assistant</strong> - Self-heal dispatched (run 22191711703)</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:21:16.933Z">3h ago</td>
+              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td>CI cost: 606min total, 206min wasted, ~$0/mo</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:21:05.431Z">3h ago</td>
+              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
+              <td style="color:#22c55e">&#9989;</td>
+              <td>DORA: medium, deploy 0/wk, lead 132.7h, MTTR 0h</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:20:47.958Z">3h ago</td>
+              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
+              <td style="color:#22c55e">&#9989;</td>
+              <td>Drift: 0%, 0 drifted templates</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:20:02.787Z">3h ago</td>
+              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
+              <td style="color:#f59e0b">&#9888;&#65039;</td>
+              <td>Avg score: 35/100, 17 critical issues</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:19:17.823Z">3h ago</td>
+              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
+              <td style="color:#22c55e">&#9989;</td>
+              <td>16 projects, avg health 49</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:43.958Z">3h ago</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>Scanned 25 repos (17 active)</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:43.950Z">1h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:43.950Z">3h ago</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>Utilitaire_Webapp</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:40.658Z">1h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:40.658Z">3h ago</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>Thumbfast</strong> - PR #1 already open</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:37.419Z">1h ago</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>test_codingmenace</strong> - PR #1 already open</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:34.231Z">1h ago</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>statusline</strong> - PR #1 already open</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:30.711Z">1h ago</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>SqlConnectionTest</strong> - PR #1 already open</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:28.320Z">1h ago</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>Site_Greg-Assainissement</strong> - PR #1 already open</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:24.898Z">1h ago</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>Site_1970_Plomberie</strong> - PR #1 already open</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:14.600Z">1h ago</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>MCP_Quota_Claude</strong> - PR #1 already open</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:11.118Z">1h ago</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>Livret_accueil_Au-Marais</strong> - PR #1 already open</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:08.022Z">1h ago</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>livret-au-marais</strong> - PR #1 already open</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T01:18:04.952Z">1h ago</td>
-              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>lecteur-magic</strong> - PR #1 already open</td>
             </tr>
         </tbody>
       </table>
@@ -875,7 +875,7 @@
         <canvas data-sparkline="lecteur-magic" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none <a href="https://github.com/thonyAGP/lecteur-magic/actions/runs/22257711505" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>none <a href="https://github.com/thonyAGP/lecteur-magic/actions/runs/22270532958" target="_blank">(view)</a></span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
         <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
