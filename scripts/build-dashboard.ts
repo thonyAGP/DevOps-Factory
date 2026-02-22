@@ -913,7 +913,7 @@ const getRecommendationsSection = (): string => {
         highCount: number;
         mediumCount: number;
         lowCount: number;
-        topTemplate: string;
+        topTemplates: Array<{ template: string; count: number }>;
         topRepo: string;
       };
       repos: Array<{
@@ -967,7 +967,7 @@ const getRecommendationsSection = (): string => {
       </div>
     </div>
     <div style="font-size:0.75rem;color:#8b949e;margin-bottom:0.4rem">
-      Most needed template: ${s.topTemplate} | Most actions: ${s.topRepo}
+      Most needed template: ${s.topTemplates?.[0]?.template || 'N/A'} | Most actions: ${s.topRepo}
     </div>
     ${critList}
   </div>`;
