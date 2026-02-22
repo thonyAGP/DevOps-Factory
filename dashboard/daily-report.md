@@ -7,8 +7,8 @@
 - **0/16** repos with AI code review
 - **0%** avg quality score (perf, a11y, coverage, release)
 - **DORA**: MEDIUM (deploy 0/wk, lead 132.7h, MTTR 0h, CFR 51%)
-- **CI Cost**: 450min total, 83min wasted, ~$0/mo
-- **Compliance**: 9/100 avg, 0% review coverage, 1/17 branch protected
+- **CI Cost**: 599min total, 203min wasted, ~$0/mo
+- **Compliance**: 8/100 avg, 0% review coverage, 0/17 branch protected
 
 ## Per Project
 
@@ -64,7 +64,7 @@
 
 ### lecteur-magic :white_circle:
 - **Health**: 49/100
-- **CI**: none ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22276810158))
+- **CI**: none ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22280942412))
 - **Open PRs**: 1
 
 ### CasaSync :white_check_mark:
