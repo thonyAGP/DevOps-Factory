@@ -1542,6 +1542,41 @@
       "action": "scan-complete",
       "details": "Scanned 25 repos (17 active)",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T01:19:17.823Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "16 projects, avg health 49",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T01:20:02.787Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 17 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-22T01:20:47.958Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 0%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T01:21:05.431Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 132.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T01:21:16.933Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 606min total, 206min wasted, ~$0/mo",
+      "status": "warning"
     }
   ]
 }
