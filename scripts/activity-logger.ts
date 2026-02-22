@@ -18,7 +18,8 @@ export type ActivitySource =
   | 'factory-watchdog'
   | 'build-dashboard'
   | 'quality-score'
-  | 'self-heal';
+  | 'self-heal'
+  | 'recommendation-engine';
 
 export interface ActivityEntry {
   timestamp: string;

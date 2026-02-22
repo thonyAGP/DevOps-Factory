@@ -81,10 +81,7 @@ describe('Pattern Database (self-heal-patterns)', () => {
         'package-json',
       ];
       for (const pattern of db.patterns) {
-        expect(validTypes).toContain(
-          pattern.fixType,
-          `Invalid fixType: ${pattern.fixType} in pattern ${pattern.id}`
-        );
+        expect(validTypes).toContain(pattern.fixType);
       }
     });
 

@@ -3,7 +3,7 @@ name: Daily Report
 on:
   schedule:
     # Every day at 7:00 UTC (8:00 Madrid time)
-    - cron: "0 7 * * *"
+    - cron: '0 7 * * *'
   workflow_dispatch:
     inputs: {}
 
@@ -41,4 +41,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_ACTIONS: "true"
+          GITHUB_ACTIONS: 'true'

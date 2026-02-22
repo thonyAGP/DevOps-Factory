@@ -64,8 +64,19 @@ interface PatternDB {
   patterns: Pattern[];
 }
 
+interface CooldownEntry {
+  repo: string;
+  errorSignature: string;
+  attempts: number;
+  lastAttempt: string;
+  status: 'pending' | 'fixed' | 'escalated';
+}
+
 const PATTERN_DB_PATH = 'data/patterns.json';
+const COOLDOWN_DB_PATH = 'data/self-heal-cooldown.json';
 const PATTERN_CONFIDENCE_THRESHOLD = 0.8;
+const COOLDOWN_HOURS = 24;
+const MAX_ATTEMPTS_BEFORE_ESCALATION = 2;
 
 /** Strip CI runner absolute prefixes to get repo-relative paths.
  * Linux:   /home/runner/work/{repo}/{repo}/actual/path → actual/path
@@ -152,6 +163,88 @@ const addNewPattern = (signature: string, fix: string, repo: string): string => 
   writeFileSync(PATTERN_DB_PATH, JSON.stringify(db, null, 2));
   console.log(`  New pattern registered: ${id}`);
   return id;
+};
+
+// --- Cooldown Management (prevent heal loops) ---
+
+const loadCooldown = (): CooldownEntry[] => {
+  if (!existsSync(COOLDOWN_DB_PATH)) return [];
+  try {
+    return JSON.parse(readFileSync(COOLDOWN_DB_PATH, 'utf-8')) as CooldownEntry[];
+  } catch {
+    return [];
+  }
+};
+
+const saveCooldown = (entries: CooldownEntry[]): void => {
+  writeFileSync(COOLDOWN_DB_PATH, JSON.stringify(entries, null, 2));
+};
+
+const cleanOldCooldowns = (): void => {
+  const entries = loadCooldown();
+  const now = Date.now();
+  const sevenDaysMs = 7 * 24 * 60 * 60 * 1000;
+  const filtered = entries.filter((e) => {
+    const lastAttemptTime = new Date(e.lastAttempt).getTime();
+    return now - lastAttemptTime < sevenDaysMs;
+  });
+  if (filtered.length < entries.length) {
+    saveCooldown(filtered);
+  }
+};
+
+const checkCooldown = (repo: string, errorSignature: string): 'proceed' | 'skip' | 'escalate' => {
+  cleanOldCooldowns();
+  const entries = loadCooldown();
+  const entry = entries.find((e) => e.repo === repo && e.errorSignature === errorSignature);
+
+  if (!entry) {
+    return 'proceed';
+  }
+
+  const lastAttemptTime = new Date(entry.lastAttempt).getTime();
+  const now = Date.now();
+  const hoursSinceLastAttempt = (now - lastAttemptTime) / (60 * 60 * 1000);
+
+  if (hoursSinceLastAttempt < COOLDOWN_HOURS) {
+    console.log(
+      `Cooldown active for ${repo} (${errorSignature.slice(0, 40)}...) - last attempt ${Math.round(hoursSinceLastAttempt)}h ago`
+    );
+    return 'skip';
+  }
+
+  if (entry.attempts >= MAX_ATTEMPTS_BEFORE_ESCALATION) {
+    console.log(
+      `Max attempts reached (${entry.attempts}) for ${repo} (${errorSignature.slice(0, 40)}...) - escalating`
+    );
+    return 'escalate';
+  }
+
+  return 'proceed';
+};
+
+const recordAttempt = (repo: string, errorSignature: string, success: boolean): void => {
+  const entries = loadCooldown();
+  let entry = entries.find((e) => e.repo === repo && e.errorSignature === errorSignature);
+
+  if (!entry) {
+    entry = {
+      repo,
+      errorSignature,
+      attempts: 0,
+      lastAttempt: new Date().toISOString(),
+      status: 'pending',
+    };
+    entries.push(entry);
+  }
+
+  entry.attempts++;
+  entry.lastAttempt = new Date().toISOString();
+  if (success) {
+    entry.status = 'fixed';
+  }
+
+  saveCooldown(entries);
 };
 
 // --- Claude CLI (Max plan fallback) ---
@@ -789,6 +882,154 @@ const canAutoFixPrettier = (jobs: FailedJob[]): boolean => {
   );
 };
 
+const canAutoFixLockfile = (jobs: FailedJob[]): boolean => {
+  return jobs.some(
+    (j) =>
+      j.logs.includes('ERR_PNPM_OUTDATED_LOCKFILE') ||
+      j.logs.includes('npm warn old lockfile') ||
+      j.logs.includes('Your lockfile needs to be updated') ||
+      j.logs.includes('--frozen-lockfile')
+  );
+};
+
+const isLikelyFlaky = (jobs: FailedJob[]): boolean => {
+  const flakyPatterns = [
+    'ETIMEDOUT',
+    'ECONNRESET',
+    'socket hang up',
+    'TimeoutError',
+    'Navigation timeout',
+    'Waiting for selector',
+    'flaky',
+    'ENOSPC',
+  ];
+  return jobs.some((j) => flakyPatterns.some((p) => j.logs.includes(p)));
+};
+
+/** Deterministic fix for lockfile issues: clone repo, install, update lockfile, create PR */
+const fixLockfileIssues = (repo: string, runId: string, defaultBranch: string): string | null => {
+  const tmpDir =
+    `${process.env.RUNNER_TEMP || process.env.TEMP || '/tmp'}/self-heal-lockfile-${Date.now()}`.replace(
+      /\\/g,
+      '/'
+    );
+
+  const git = (cmd: string) =>
+    execSync(cmd, { cwd: tmpDir, encoding: 'utf-8', timeout: 60_000, stdio: 'pipe' }).trim();
+
+  try {
+    // 1. Shallow clone
+    console.log(`  Cloning ${repo}...`);
+    execSync(`gh repo clone ${repo} "${tmpDir}" -- --depth 1`, {
+      encoding: 'utf-8',
+      timeout: 120_000,
+      stdio: 'pipe',
+    });
+
+    // 2. Detect package manager
+    const pm = existsSync(`${tmpDir}/pnpm-lock.yaml`)
+      ? 'pnpm'
+      : existsSync(`${tmpDir}/yarn.lock`)
+        ? 'yarn'
+        : 'npm';
+
+    console.log(`  Detected package manager: ${pm}`);
+
+    // 3. Install dependencies (this updates lockfile)
+    console.log('  Installing dependencies to update lockfile...');
+    const installCmd =
+      pm === 'pnpm'
+        ? 'pnpm install --ignore-scripts'
+        : pm === 'yarn'
+          ? 'yarn install --ignore-scripts'
+          : 'npm install --ignore-scripts';
+
+    try {
+      execSync(installCmd, {
+        cwd: tmpDir,
+        encoding: 'utf-8',
+        timeout: 120_000,
+        stdio: 'pipe',
+        maxBuffer: 10 * 1024 * 1024,
+      });
+    } catch {
+      console.log('  Install failed but continuing - lockfile may still be updated');
+    }
+
+    // 4. Check changes
+    let changed: string;
+    try {
+      changed = execSync('git diff --name-only', {
+        cwd: tmpDir,
+        encoding: 'utf-8',
+        stdio: 'pipe',
+      }).trim();
+    } catch {
+      changed = '';
+    }
+
+    if (!changed) {
+      console.log('  No lockfile changes');
+      return null;
+    }
+
+    const fileCount = changed.split('\n').filter(Boolean).length;
+    console.log(`  ${fileCount} file(s) updated`);
+
+    // 5. Branch + commit + push
+    const branch = `ai-fix/lockfile-${Date.now()}`;
+    git('git config user.name "DevOps Factory Bot"');
+    git('git config user.email "devops-factory[bot]@users.noreply.github.com"');
+    git(`git checkout -b ${branch}`);
+    git('git add -A');
+    git(
+      `git commit -m "chore: update ${pm === 'pnpm' ? 'pnpm' : pm === 'yarn' ? 'yarn' : 'npm'} lockfile (${fileCount} files)"`
+    );
+
+    console.log(`  Pushing ${branch}...`);
+    execSync(`git push origin ${branch}`, {
+      cwd: tmpDir,
+      encoding: 'utf-8',
+      timeout: 120_000,
+      stdio: 'pipe',
+    });
+
+    // 6. Create PR
+    ensureLabel(repo, 'ai-fix', '7057ff', 'Auto-generated fix by DevOps Factory');
+
+    const body = [
+      `## ${pm.toUpperCase()} Lockfile Update`,
+      '',
+      `**Failed Run**: https://github.com/${repo}/actions/runs/${runId}`,
+      '**Generated by**: DevOps Factory Self-Healing',
+      '',
+      `Auto-updated lockfile in **${fileCount} file(s)** using \`${installCmd}\`.`,
+      '',
+      '---',
+      '> This PR was automatically generated to fix lockfile consistency issues.',
+    ].join('\n');
+
+    const bodyFile = `${tmpDir}/pr-body.md`;
+    writeFileSync(bodyFile, body);
+
+    const prUrl = sh(
+      `gh pr create --repo ${repo} --head ${branch} --base ${defaultBranch} --title "chore: update ${pm} lockfile (${fileCount} files)" --body-file "${bodyFile}" --label "ai-fix"`
+    );
+
+    return prUrl.match(/(https:\/\/[^\s]+)/)?.[1] || prUrl;
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error(`  Lockfile fix failed: ${msg.slice(0, 300)}`);
+    return null;
+  } finally {
+    try {
+      rmSync(tmpDir, { recursive: true, force: true });
+    } catch {
+      /* ignore */
+    }
+  }
+};
+
 /** Deterministic fix for Prettier: clone repo, run prettier --write, create PR */
 const fixPrettierIssues = (repo: string, runId: string, defaultBranch: string): string | null => {
   const tmpDir =
@@ -1298,6 +1539,76 @@ ${explanation}
   return prUrl.match(/(https:\/\/[^\s]+)/)?.[1] || prUrl;
 };
 
+const getErrorSignature = (jobs: FailedJob[]): string => {
+  // Try annotation message first
+  const annotation = jobs
+    .flatMap((j) => j.annotations)
+    .find((a) => a.message && a.message.length > 10);
+  if (annotation) {
+    return annotation.message.slice(0, 80);
+  }
+
+  // Fall back to first error log line
+  for (const job of jobs) {
+    const lines = job.logs.split('\n');
+    for (const line of lines) {
+      if (/error\s+(TS|CS|MSB|ERR_)/i.test(line)) {
+        return line.trim().slice(0, 80);
+      }
+    }
+  }
+
+  return 'unknown-error';
+};
+
+const createEscalationIssue = (
+  repo: string,
+  runId: string,
+  errorSignature: string,
+  previousAttempts: number
+): void => {
+  const title = `ESCALATION: Repeated CI failure (run #${runId})`;
+  const body = `## Escalation: Repeated CI Failure
+
+**Failed Run**: https://github.com/${repo}/actions/runs/${runId}
+**Analyzed by**: DevOps Factory Self-Healing
+
+### Error Signature
+\`\`\`
+${errorSignature}
+\`\`\`
+
+### Escalation Reason
+This error has been automatically detected **${previousAttempts} times** in the last 24 hours.
+Self-healing has been temporarily disabled (cooldown) to prevent heal loops.
+
+### Next Steps
+1. **Immediate**: Review the failed run logs manually
+2. **Root Cause**: Identify if this is a transient or systemic issue
+3. **Fix**: Either:
+   - Fix the underlying issue directly (preferred)
+   - Update \`data/patterns.json\` with a verified fix pattern
+4. **Resume**: Self-healing will automatically resume after 24 hours
+
+---
+> Generated by DevOps Factory - Escalation System`;
+
+  ensureLabel(repo, 'escalation', 'ff6b00', 'Escalation: Manual intervention required');
+
+  const bodyFile = '/tmp/self-heal-escalation-body.md';
+  writeFileSync(bodyFile, body);
+  sh(
+    `gh issue create --repo ${repo} --title "${title}" --body-file ${bodyFile} --label "escalation"`
+  );
+  try {
+    unlinkSync(bodyFile);
+  } catch {
+    /* ignore */
+  }
+
+  console.log(`Escalation issue created on ${repo}`);
+};
+
 const createIssue = (repo: string, runId: string, explanation: string): void => {
   const title = `CI failure requires manual fix (run #${runId})`;
   const body = `## CI Failure - Manual Intervention Needed
@@ -1358,6 +1669,44 @@ const main = async (): Promise<void> => {
 
   const defaultBranch = getDefaultBranch(repo);
   console.log(`Default branch: ${defaultBranch}\n`);
+
+  // 0b. Cooldown check (prevent heal loops)
+  const errorSig = getErrorSignature(jobs);
+  const cooldownResult = checkCooldown(repo, errorSig);
+  if (cooldownResult === 'skip') {
+    console.log('Cooldown active - skipping');
+    return;
+  }
+  if (cooldownResult === 'escalate') {
+    createEscalationIssue(repo, runId, errorSig, MAX_ATTEMPTS_BEFORE_ESCALATION);
+    recordAttempt(repo, errorSig, false);
+    return;
+  }
+
+  // 0c. Flaky test detection - re-run failed jobs instead of fixing
+  if (isLikelyFlaky(jobs)) {
+    console.log('Likely flaky test detected - re-running failed jobs...');
+    sh(`gh run rerun ${runId} --repo ${repo} --failed`);
+    recordAttempt(repo, errorSig, true);
+    console.log('Failed jobs re-triggered for flaky test retry');
+    return;
+  }
+
+  // 0d. Lockfile fix (deterministic - clone + install + PR)
+  if (canAutoFixLockfile(jobs)) {
+    console.log('Lockfile consistency errors detected - fixing inline...');
+    const lockfilePrUrl = fixLockfileIssues(repo, runId, defaultBranch);
+    if (lockfilePrUrl) {
+      console.log(`Lockfile fix PR: ${lockfilePrUrl}`);
+    }
+
+    if (buildJobs.length === 0) {
+      recordAttempt(repo, errorSig, !!lockfilePrUrl);
+      console.log('\nNo build errors beyond lockfile - done!');
+      return;
+    }
+    console.log('\nContinuing with build error analysis...');
+  }
 
   // Handle Prettier failures (deterministic - clone + format + PR)
   if (canAutoFixPrettier(jobs)) {
@@ -1646,6 +1995,7 @@ const main = async (): Promise<void> => {
   if (allFixes.length === 0) {
     console.log('\nNo fixes found - creating issue...');
     createIssue(repo, runId, explanation || 'Could not determine a fix');
+    recordAttempt(repo, errorSig, false);
     return;
   }
 
@@ -1655,6 +2005,7 @@ const main = async (): Promise<void> => {
   if (!createBranch(repo, branchName, defaultBranch)) {
     console.error('Failed to create branch');
     createIssue(repo, runId, explanation);
+    recordAttempt(repo, errorSig, false);
     return;
   }
 
@@ -1667,6 +2018,7 @@ const main = async (): Promise<void> => {
       runId,
       `${explanation}\n\n**Note**: Auto-fix attempted but all replacements failed to apply.`
     );
+    recordAttempt(repo, errorSig, false);
     return;
   }
 
@@ -1679,9 +2031,11 @@ const main = async (): Promise<void> => {
       runId,
       `${explanation}\n\n**Note**: Fix applied to branch \`${branchName}\` but PR creation failed.`
     );
+    recordAttempt(repo, errorSig, false);
     return;
   }
   console.log(`\nPR created: ${prUrl}`);
+  recordAttempt(repo, errorSig, true);
 
   // Auto-merge small fixes from high-confidence patterns
   const totalLinesChanged = allFixes.reduce(

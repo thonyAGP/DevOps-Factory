@@ -901,6 +901,81 @@ const getComplianceSection = (): string => {
   }
 };
 
+const getRecommendationsSection = (): string => {
+  const recPath = 'dashboard/recommendations.json';
+  if (!existsSync(recPath)) return '';
+
+  try {
+    const data = JSON.parse(readFileSync(recPath, 'utf-8')) as {
+      summary: {
+        totalRecommendations: number;
+        criticalCount: number;
+        highCount: number;
+        mediumCount: number;
+        lowCount: number;
+        topTemplate: string;
+        topRepo: string;
+      };
+      repos: Array<{
+        repo: string;
+        healthScore: number;
+        recommendations: Array<{
+          template: string;
+          priority: string;
+          reason: string;
+        }>;
+      }>;
+    };
+
+    const s = data.summary;
+    const criticals = data.repos
+      .flatMap((r) =>
+        r.recommendations
+          .filter((rec) => rec.priority === 'critical')
+          .map((rec) => `${r.repo}: ${rec.reason}`)
+      )
+      .slice(0, 5);
+
+    const critList =
+      criticals.length > 0
+        ? `<div class="rec-gaps"><strong style="color:#ef4444">Critical actions:</strong><ul>${criticals.map((c) => `<li>${c}</li>`).join('')}</ul></div>`
+        : '';
+
+    return `
+  <div class="rec-section">
+    <h2>Smart Recommendations</h2>
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="rec-value" style="color:#ef4444">${s.criticalCount}</div>
+        <div class="rec-label">Critical</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-value" style="color:#f59e0b">${s.highCount}</div>
+        <div class="rec-label">High</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-value" style="color:#3b82f6">${s.mediumCount}</div>
+        <div class="rec-label">Medium</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-value" style="color:#6b7280">${s.lowCount}</div>
+        <div class="rec-label">Low</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-value" style="color:#22c55e">${s.totalRecommendations}</div>
+        <div class="rec-label">Total</div>
+      </div>
+    </div>
+    <div style="font-size:0.75rem;color:#8b949e;margin-bottom:0.4rem">
+      Most needed template: ${s.topTemplate} | Most actions: ${s.topRepo}
+    </div>
+    ${critList}
+  </div>`;
+  } catch {
+    return '';
+  }
+};
+
 const generateHTML = (statuses: ProjectStatus[]): string => {
   const timestamp = formatDashboardDate(new Date());
   const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
@@ -1448,6 +1523,38 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
     }
     .compliance-gaps ul { margin: 0; padding-left: 1.2rem; }
     .compliance-gaps li { padding: 0.15rem 0; color: #c9d1d9; }
+    .rec-section {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .rec-section h2 { color: #3b82f6; font-size: 1rem; margin-bottom: 0.8rem; }
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .rec-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    .rec-card .rec-value { font-size: 1.4rem; font-weight: bold; }
+    .rec-card .rec-label { font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem; }
+    .rec-gaps {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.8rem;
+    }
+    .rec-gaps ul { margin: 0; padding-left: 1.2rem; }
+    .rec-gaps li { padding: 0.15rem 0; color: #c9d1d9; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
@@ -1499,6 +1606,8 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
   ${getCostSection()}
 
   ${getComplianceSection()}
+
+  ${getRecommendationsSection()}
 
   ${allClearBanner}
 
