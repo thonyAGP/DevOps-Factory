@@ -31,6 +31,6 @@ export default [
   },
   prettierConfig,
   {
-    ignores: ['dist/', 'node_modules/', 'coverage/', 'dashboard/', '*.config.mjs'],
+    ignores: ['dist/', 'node_modules/', 'coverage/', 'dashboard/', '*.config.mjs', 'vitest.config.ts'],
   },
 ];
