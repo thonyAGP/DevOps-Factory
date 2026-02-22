@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-02-22T13:07:16.630Z",
+  "timestamp": "2026-02-22T12:34:55.793Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 334,
+      "totalMinutes": 341,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
-          "runs": 27,
-          "totalMinutes": 253,
+          "runs": 28,
+          "totalMinutes": 261,
           "avgMinutes": 9,
           "failedRuns": 8,
           "wastedMinutes": 41
@@ -33,51 +33,14 @@
         },
         {
           "name": "Monitor Production",
-          "runs": 24,
-          "totalMinutes": 24,
+          "runs": 23,
+          "totalMinutes": 23,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         }
       ],
       "recommendations": []
-    },
-    {
-      "repo": "lecteur-magic",
-      "fullName": "thonyAGP/lecteur-magic",
-      "totalMinutes": 100,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Deploy Migration Dashboard",
-          "runs": 39,
-          "totalMinutes": 39,
-          "avgMinutes": 1,
-          "failedRuns": 27,
-          "wastedMinutes": 27
-        },
-        {
-          "name": "Deploy OpenSpec Viewer",
-          "runs": 39,
-          "totalMinutes": 39,
-          "avgMinutes": 1,
-          "failedRuns": 25,
-          "wastedMinutes": 25
-        },
-        {
-          "name": "Daily Drift Report",
-          "runs": 22,
-          "totalMinutes": 22,
-          "avgMinutes": 1,
-          "failedRuns": 17,
-          "wastedMinutes": 17
-        }
-      ],
-      "recommendations": [
-        "Deploy Migration Dashboard: 69% failure rate (27min wasted). Fix root cause.",
-        "Deploy OpenSpec Viewer: 64% failure rate (25min wasted). Fix root cause.",
-        "Daily Drift Report: 77% failure rate (17min wasted). Fix root cause."
-      ]
     },
     {
       "repo": "au-marais",
@@ -95,25 +58,6 @@
         }
       ],
       "recommendations": []
-    },
-    {
-      "repo": "livret-au-marais",
-      "fullName": "thonyAGP/livret-au-marais",
-      "totalMinutes": 51,
-      "totalRuns": 18,
-      "workflows": [
-        {
-          "name": "CI",
-          "runs": 18,
-          "totalMinutes": 51,
-          "avgMinutes": 3,
-          "failedRuns": 16,
-          "wastedMinutes": 47
-        }
-      ],
-      "recommendations": [
-        "CI: 89% failure rate (47min wasted). Fix root cause."
-      ]
     },
     {
       "repo": "ClubMedRoomAssignment",
@@ -162,23 +106,6 @@
       ]
     },
     {
-      "repo": "Utilitaire_Webapp",
-      "fullName": "thonyAGP/Utilitaire_Webapp",
-      "totalMinutes": 5,
-      "totalRuns": 5,
-      "workflows": [
-        {
-          "name": "CI",
-          "runs": 5,
-          "totalMinutes": 5,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
-        }
-      ],
-      "recommendations": []
-    },
-    {
       "repo": "claude-cli-wrapper",
       "fullName": "thonyAGP/claude-cli-wrapper",
       "totalMinutes": 0,
@@ -195,8 +122,24 @@
       "recommendations": []
     },
     {
+      "repo": "lecteur-magic",
+      "fullName": "thonyAGP/lecteur-magic",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
       "repo": "Livret_accueil_Au-Marais",
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "livret-au-marais",
+      "fullName": "thonyAGP/livret-au-marais",
       "totalMinutes": 0,
       "totalRuns": 0,
       "workflows": [],
@@ -257,15 +200,23 @@
       "totalRuns": 0,
       "workflows": [],
       "recommendations": []
+    },
+    {
+      "repo": "Utilitaire_Webapp",
+      "fullName": "thonyAGP/Utilitaire_Webapp",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
     }
   ],
   "summary": {
-    "totalMinutes": 599,
-    "totalRuns": 279,
-    "wastedMinutes": 203,
+    "totalMinutes": 450,
+    "totalRuns": 156,
+    "wastedMinutes": 83,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
-    "totalRecommendations": 6,
+    "totalRecommendations": 2,
     "estimatedMonthlyCost": 0
   }
 }

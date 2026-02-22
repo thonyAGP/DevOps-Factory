@@ -2985,7 +2985,263 @@
       "status": "success"
     },
     {
-      "timestamp": "2026-02-22T12:29:23.015Z",
+      "timestamp": "2026-02-22T12:19:05.178Z",
+      "source": "scan-and-configure",
+      "action": "scan_repos",
+      "details": "Scanned 5 repositories",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.181Z",
+      "source": "ci-health-check",
+      "action": "health_check",
+      "details": "Detected failing build",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.182Z",
+      "source": "factory-watchdog",
+      "action": "check_quota",
+      "details": "Quota at 80%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.184Z",
+      "source": "build-dashboard",
+      "action": "generate",
+      "details": "Dashboard generated",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.185Z",
+      "source": "self-heal",
+      "action": "fix_applied",
+      "target": "repo-name",
+      "details": "Fixed prettier formatting",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.186Z",
+      "source": "quality-score",
+      "action": "calculate",
+      "details": "Score updated to 92%",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.188Z",
+      "source": "scan-and-configure",
+      "action": "test",
+      "details": "Test entry",
+      "status": "success"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_1",
+      "details": "Scanned repo 1",
+      "status": "success",
+      "timestamp": "2026-02-22T12:19:05.191Z"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_2",
+      "details": "Scanned repo 2",
+      "status": "success",
+      "timestamp": "2026-02-22T12:19:05.191Z"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_3",
+      "details": "Scanned repo 3",
+      "status": "success",
+      "timestamp": "2026-02-22T12:19:05.191Z"
+    },
+    {
+      "source": "factory-watchdog",
+      "action": "a",
+      "details": "A",
+      "status": "info",
+      "timestamp": "2026-02-22T12:19:05.193Z"
+    },
+    {
+      "source": "factory-watchdog",
+      "action": "b",
+      "details": "B",
+      "status": "info",
+      "timestamp": "2026-02-22T12:19:05.193Z"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.197Z",
+      "source": "ci-health-check",
+      "action": "latest_test",
+      "details": "Latest test entry",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.199Z",
+      "source": "scan-and-configure",
+      "action": "filter_test",
+      "details": "Testing filter",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.203Z",
+      "source": "scan-and-configure",
+      "action": "stats_test",
+      "details": "Stats test",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.206Z",
+      "source": "factory-watchdog",
+      "action": "24h_test",
+      "details": "24h test entry",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.208Z",
+      "source": "scan-and-configure",
+      "action": "struct_test",
+      "target": "test-target",
+      "details": "Testing structure",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:19:05.738Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "223 recommendations across 26 repos (12 critical, 155 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.395Z",
+      "source": "scan-and-configure",
+      "action": "scan_repos",
+      "details": "Scanned 5 repositories",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.399Z",
+      "source": "ci-health-check",
+      "action": "health_check",
+      "details": "Detected failing build",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.401Z",
+      "source": "factory-watchdog",
+      "action": "check_quota",
+      "details": "Quota at 80%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.402Z",
+      "source": "build-dashboard",
+      "action": "generate",
+      "details": "Dashboard generated",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.404Z",
+      "source": "self-heal",
+      "action": "fix_applied",
+      "target": "repo-name",
+      "details": "Fixed prettier formatting",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.406Z",
+      "source": "quality-score",
+      "action": "calculate",
+      "details": "Score updated to 92%",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.407Z",
+      "source": "scan-and-configure",
+      "action": "test",
+      "details": "Test entry",
+      "status": "success"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_1",
+      "details": "Scanned repo 1",
+      "status": "success",
+      "timestamp": "2026-02-22T12:26:57.410Z"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_2",
+      "details": "Scanned repo 2",
+      "status": "success",
+      "timestamp": "2026-02-22T12:26:57.410Z"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_3",
+      "details": "Scanned repo 3",
+      "status": "success",
+      "timestamp": "2026-02-22T12:26:57.410Z"
+    },
+    {
+      "source": "factory-watchdog",
+      "action": "a",
+      "details": "A",
+      "status": "info",
+      "timestamp": "2026-02-22T12:26:57.412Z"
+    },
+    {
+      "source": "factory-watchdog",
+      "action": "b",
+      "details": "B",
+      "status": "info",
+      "timestamp": "2026-02-22T12:26:57.412Z"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.418Z",
+      "source": "ci-health-check",
+      "action": "latest_test",
+      "details": "Latest test entry",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.419Z",
+      "source": "scan-and-configure",
+      "action": "filter_test",
+      "details": "Testing filter",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.424Z",
+      "source": "scan-and-configure",
+      "action": "stats_test",
+      "details": "Stats test",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.427Z",
+      "source": "factory-watchdog",
+      "action": "24h_test",
+      "details": "24h test entry",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.429Z",
+      "source": "scan-and-configure",
+      "action": "struct_test",
+      "target": "test-target",
+      "details": "Testing structure",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:26:57.937Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "223 recommendations across 26 repos (12 critical, 155 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T12:28:15.368Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "au-marais",
@@ -2993,7 +3249,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:29:28.870Z",
+      "timestamp": "2026-02-22T12:28:45.224Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "CasaSync",
@@ -3001,7 +3257,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:29:32.373Z",
+      "timestamp": "2026-02-22T12:29:00.330Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "claude-cli-wrapper",
@@ -3009,7 +3265,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:29:38.950Z",
+      "timestamp": "2026-02-22T12:29:30.729Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "claude-launcher",
@@ -3017,7 +3273,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:29:44.573Z",
+      "timestamp": "2026-02-22T12:29:56.174Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "ClubMedRoomAssignment",
@@ -3025,7 +3281,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:29:48.144Z",
+      "timestamp": "2026-02-22T12:30:11.296Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "Email_Assistant",
@@ -3033,7 +3289,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:29:51.440Z",
+      "timestamp": "2026-02-22T12:30:26.342Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "lecteur-magic",
@@ -3041,7 +3297,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:29:54.521Z",
+      "timestamp": "2026-02-22T12:30:43.626Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "livret-au-marais",
@@ -3049,7 +3305,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:29:57.446Z",
+      "timestamp": "2026-02-22T12:30:58.345Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "Livret_accueil_Au-Marais",
@@ -3057,7 +3313,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:30:00.793Z",
+      "timestamp": "2026-02-22T12:31:15.667Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "MCP_Quota_Claude",
@@ -3065,7 +3321,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:30:11.485Z",
+      "timestamp": "2026-02-22T12:32:08.451Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "Site_1970_Plomberie",
@@ -3073,7 +3329,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:30:15.100Z",
+      "timestamp": "2026-02-22T12:32:20.722Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "Site_Greg-Assainissement",
@@ -3081,7 +3337,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:30:17.687Z",
+      "timestamp": "2026-02-22T12:32:31.682Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "SqlConnectionTest",
@@ -3089,7 +3345,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:30:21.093Z",
+      "timestamp": "2026-02-22T12:32:44.580Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "statusline",
@@ -3097,7 +3353,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:30:24.283Z",
+      "timestamp": "2026-02-22T12:32:57.032Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "test_codingmenace",
@@ -3105,7 +3361,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:30:27.420Z",
+      "timestamp": "2026-02-22T12:33:08.024Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "Thumbfast",
@@ -3113,7 +3369,7 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:30:30.720Z",
+      "timestamp": "2026-02-22T12:33:19.292Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
       "target": "Utilitaire_Webapp",
@@ -3121,119 +3377,63 @@
       "status": "info"
     },
     {
-      "timestamp": "2026-02-22T12:30:30.729Z",
+      "timestamp": "2026-02-22T12:33:19.300Z",
       "source": "scan-and-configure",
       "action": "scan-complete",
-      "details": "Scanned 25 repos (17 active)",
+      "details": "Scanned 26 repos (17 active)",
       "status": "success"
     },
     {
-      "timestamp": "2026-02-22T12:31:04.013Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "16 projects, avg health 49",
+      "timestamp": "2026-02-22T12:33:38.148Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 40/100, 0 excellent, 16 needs work, 0 drops, 0 improvements",
       "status": "success"
     },
     {
-      "timestamp": "2026-02-22T12:31:50.600Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 17 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-02-22T12:32:35.142Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 0%, 0 drifted templates",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-02-22T12:32:53.295Z",
+      "timestamp": "2026-02-22T12:34:24.553Z",
       "source": "build-dashboard",
       "action": "dora-metrics",
       "details": "DORA: medium, deploy 0/wk, lead 132.7h, MTTR 0h",
       "status": "success"
     },
     {
-      "timestamp": "2026-02-22T12:33:04.963Z",
+      "timestamp": "2026-02-22T12:34:55.795Z",
       "source": "build-dashboard",
       "action": "cost-monitor",
-      "details": "CI cost: 606min total, 203min wasted, ~$0/mo",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-02-22T12:33:37.690Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 8/100, branch protection 0/17, CI 7/17, review coverage 0%",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-02-22T12:33:38.394Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "225 recommendations across 25 repos (11 critical, 156 high)",
+      "details": "CI cost: 450min total, 83min wasted, ~$0/mo",
       "status": "success"
     },
     {
-      "timestamp": "2026-02-22T13:04:16.982Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "16 projects, avg health 49",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-02-22T13:05:27.260Z",
+      "timestamp": "2026-02-22T12:38:22.652Z",
       "source": "build-dashboard",
       "action": "security-posture",
       "details": "Avg score: 35/100, 17 critical issues",
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-22T13:06:41.588Z",
+      "timestamp": "2026-02-22T12:41:55.144Z",
       "source": "build-dashboard",
       "action": "template-drift",
       "details": "Drift: 0%, 0 drifted templates",
       "status": "success"
     },
     {
-      "timestamp": "2026-02-22T13:07:01.769Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: medium, deploy 0/wk, lead 132.7h, MTTR 0h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-02-22T13:07:16.631Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 599min total, 203min wasted, ~$0/mo",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-02-22T13:08:03.476Z",
+      "timestamp": "2026-02-22T14:00:47.744Z",
       "source": "build-dashboard",
       "action": "compliance-report",
-      "details": "Compliance: avg 8/100, branch protection 0/17, CI 7/17, review coverage 0%",
+      "details": "Compliance: avg 9/100, branch protection 1/17, CI 7/17, review coverage 0%",
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-22T13:08:04.201Z",
+      "timestamp": "2026-02-22T14:00:51.257Z",
       "source": "scan-and-configure",
       "action": "recommendations-generated",
-      "details": "225 recommendations across 25 repos (11 critical, 156 high)",
+      "details": "225 recommendations across 26 repos (11 critical, 155 high)",
       "status": "success"
     },
     {
-      "timestamp": "2026-02-22T13:25:16.985Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "4/6 passing. 1 failures, 1 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-02-22T13:38:35.582Z",
+      "timestamp": "2026-02-22T14:01:14.564Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
       "target": "Email_Assistant",
@@ -3241,7 +3441,7 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-22T13:38:38.112Z",
+      "timestamp": "2026-02-22T14:01:19.926Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
       "target": "ClubMedRoomAssignment",
@@ -3249,11 +3449,25 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-22T13:38:38.114Z",
+      "timestamp": "2026-02-22T14:01:19.930Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-22T14:01:49.431Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "16 projects, avg health 49",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T14:02:13.734Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "5/7 passing. 1 failures, 1 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }

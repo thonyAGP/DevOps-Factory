@@ -1,12 +1,12 @@
 # Template Recommendations Report
 
-Generated: 2/22/2026, 1:08:04 PM
+Generated: 22/02/2026 15:00:51
 
 ## Executive Summary
 
 - **Total Recommendations**: 225
-- **Critical**: 11 | **High**: 156 | **Medium**: 31 | **Low**: 27
-- **Average Health Score**: 24.2/100
+- **Critical**: 11 | **High**: 155 | **Medium**: 32 | **Low**: 27
+- **Average Health Score**: 23.3/100
 - **Top Template**: gitleaks.yml (17 repos)
 - **Most Improved Repo**: au-marais
 
@@ -189,7 +189,6 @@ Generated: 2/22/2026, 1:08:04 PM
 
 - **Health Score**: 55/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 89%
 
 #### High Priority
 
@@ -217,10 +216,6 @@ Generated: 2/22/2026, 1:08:04 PM
   - Reason: No SAST (static analysis) detected
   - Effort: minimal
   - Impact: Static analysis for bugs, security issues, and anti-patterns
-- **type-coverage.yml**
-  - Reason: Improve TypeScript coverage
-  - Effort: minimal
-  - Impact: Ensures TypeScript coverage and type safety
 
 #### Medium Priority
 
@@ -252,6 +247,10 @@ Generated: 2/22/2026, 1:08:04 PM
   - Reason: Secure npm dependency chain
   - Effort: minimal
   - Impact: Secures npm dependencies with SBOM and license checks
+- **type-coverage.yml**
+  - Reason: Improve TypeScript coverage
+  - Effort: minimal
+  - Impact: Ensures TypeScript coverage and type safety
 
 #### Low Priority
 
@@ -691,7 +690,6 @@ Generated: 2/22/2026, 1:08:04 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 80%
 
 #### High Priority
 
@@ -821,7 +819,6 @@ Generated: 2/22/2026, 1:08:04 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 70%
 
 #### Critical Priority
 
