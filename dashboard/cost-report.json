@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-22T04:34:18.542Z",
+  "timestamp": "2026-02-22T12:33:04.962Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -49,34 +49,34 @@
       "totalRuns": 100,
       "workflows": [
         {
-          "name": "Deploy OpenSpec Viewer",
-          "runs": 43,
-          "totalMinutes": 43,
+          "name": "Deploy Migration Dashboard",
+          "runs": 39,
+          "totalMinutes": 39,
           "avgMinutes": 1,
-          "failedRuns": 31,
-          "wastedMinutes": 31
+          "failedRuns": 27,
+          "wastedMinutes": 27
         },
         {
-          "name": "Deploy Migration Dashboard",
-          "runs": 35,
-          "totalMinutes": 35,
+          "name": "Deploy OpenSpec Viewer",
+          "runs": 39,
+          "totalMinutes": 39,
           "avgMinutes": 1,
-          "failedRuns": 23,
-          "wastedMinutes": 23
+          "failedRuns": 25,
+          "wastedMinutes": 25
         },
         {
           "name": "Daily Drift Report",
           "runs": 22,
           "totalMinutes": 22,
           "avgMinutes": 1,
-          "failedRuns": 18,
-          "wastedMinutes": 18
+          "failedRuns": 17,
+          "wastedMinutes": 17
         }
       ],
       "recommendations": [
-        "Deploy OpenSpec Viewer: 72% failure rate (31min wasted). Fix root cause.",
-        "Deploy Migration Dashboard: 66% failure rate (23min wasted). Fix root cause.",
-        "Daily Drift Report: 82% failure rate (18min wasted). Fix root cause."
+        "Deploy Migration Dashboard: 69% failure rate (27min wasted). Fix root cause.",
+        "Deploy OpenSpec Viewer: 64% failure rate (25min wasted). Fix root cause.",
+        "Daily Drift Report: 77% failure rate (17min wasted). Fix root cause."
       ]
     },
     {
@@ -262,7 +262,7 @@
   "summary": {
     "totalMinutes": 606,
     "totalRuns": 279,
-    "wastedMinutes": 206,
+    "wastedMinutes": 203,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 6,

@@ -469,13 +469,45 @@
     }
     .compliance-gaps ul { margin: 0; padding-left: 1.2rem; }
     .compliance-gaps li { padding: 0.15rem 0; color: #c9d1d9; }
+    .rec-section {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .rec-section h2 { color: #3b82f6; font-size: 1rem; margin-bottom: 0.8rem; }
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .rec-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    .rec-card .rec-value { font-size: 1.4rem; font-weight: bold; }
+    .rec-card .rec-label { font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem; }
+    .rec-gaps {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.8rem;
+    }
+    .rec-gaps ul { margin: 0; padding-left: 1.2rem; }
+    .rec-gaps li { padding: 0.15rem 0; color: #c9d1d9; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
 <body>
   <div class="header">
     <h1>DevOps Factory Dashboard</h1>
-    <div class="timestamp">Last updated: 22-02-2026 11:56 CET</div>
+    <div class="timestamp">Last updated: 22-02-2026 13:31 CET</div>
   </div>
 
   <div class="summary">
@@ -513,16 +545,16 @@
   <div class="factory-status">
     <h2>Factory Status</h2>
     <div class="factory-grid">
-      <div class="factory-health-card" style="border-color:#f59e0b">
-        <div class="factory-health-indicator" style="background:#f59e0b20;color:#f59e0b">
-          <span style="font-size:1.4rem">&#9888;&#65039;</span>
-          <span style="font-weight:bold;font-size:1.1rem">Warnings</span>
+      <div class="factory-health-card" style="border-color:#22c55e">
+        <div class="factory-health-indicator" style="background:#22c55e20;color:#22c55e">
+          <span style="font-size:1.4rem">&#9989;</span>
+          <span style="font-weight:bold;font-size:1.1rem">All Systems Healthy</span>
         </div>
         <div class="factory-health-detail">
           <div class="metric"><span class="metric-label">Last activity</span><span>just now</span></div>
-          <div class="metric"><span class="metric-label">Events (24h)</span><span>80</span></div>
+          <div class="metric"><span class="metric-label">Events (24h)</span><span>315</span></div>
           <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#22c55e">0</span></div>
-          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#f59e0b">7</span></div>
+          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#22c55e">0</span></div>
         </div>
       </div>
 
@@ -532,7 +564,7 @@
         <div class="metric"><span class="metric-label">PRs created</span><span class="val">0</span></div>
         <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">0</span></div>
         <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#22c55e">0</span></div>
-        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">167</span></div>
+        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">426</span></div>
       </div>
     </div>
 
@@ -542,124 +574,124 @@
         <tbody>
           
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T10:55:54.587Z">just now</td>
-              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td>Compliance: avg 9/100, branch protection 1/17, CI 7/17, review coverage 0%</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T10:53:22.737Z">2m ago</td>
-              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td>Compliance: avg 1/100, branch protection 1/17, CI 0/17, review coverage 0%</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:41:42.481Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:30:30.729Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
-              <td>Scanned 26 repos (17 active)</td>
+              <td>Scanned 25 repos (17 active)</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:41:42.461Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:30:30.720Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>Utilitaire_Webapp</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:41:25.274Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:30:27.420Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>Thumbfast</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:40:55.253Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:30:24.283Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>test_codingmenace</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:40:40.713Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:30:21.093Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>statusline</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:40:14.976Z">6h ago</td>
-              <td><span class="source-badge" style="background:#06b6d420;color:#06b6d4;border:1px solid #06b6d440">Quality</span></td>
-              <td style="color:#22c55e">&#9989;</td>
-              <td>Avg 41/100, 0 excellent, 16 needs work, 0 drops, 1 improvements</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:40:14.974Z">6h ago</td>
-              <td><span class="source-badge" style="background:#06b6d420;color:#06b6d4;border:1px solid #06b6d440">Quality</span></td>
-              <td style="color:#22c55e">&#9989;</td>
-              <td><strong>DevOps-Factory</strong> - 35 → 55 (+20pts)</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:40:13.949Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:30:17.687Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>SqlConnectionTest</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:40:05.323Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:30:15.100Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>Site_Greg-Assainissement</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:39:28.610Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:30:11.485Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>Site_1970_Plomberie</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:37:50.705Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:30:00.793Z">1m ago</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>MCP_Quota_Claude</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:37:36.955Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:29:57.446Z">1m ago</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>Livret_accueil_Au-Marais</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:37:32.458Z">6h ago</td>
-              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
-              <td style="color:#22c55e">&#9989;</td>
-              <td>16 projects, avg health 49</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:37:01.766Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:29:54.521Z">1m ago</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>livret-au-marais</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:36:27.816Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:29:51.440Z">1m ago</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>lecteur-magic</strong> - PR #1 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:36:10.558Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:29:48.144Z">1m ago</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>Email_Assistant</strong> - PR #7 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:35:27.583Z">6h ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:29:44.573Z">1m ago</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td><strong>ClubMedRoomAssignment</strong> - PR #12 already open</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T04:34:18.544Z">6h ago</td>
-              <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td>CI cost: 606min total, 206min wasted, ~$0/mo</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:29:38.950Z">1m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>claude-launcher</strong> - PR #1 already open</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:29:32.373Z">1m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>claude-cli-wrapper</strong> - PR #1 already open</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:29:28.870Z">1m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>CasaSync</strong> - PR #1 already open</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:29:23.015Z">1m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#8b949e">&#8505;&#65039;</td>
+              <td><strong>au-marais</strong> - PR #3 already open</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:10:43.651Z">20m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#22c55e">&#9989;</td>
+              <td>223 recommendations across 26 repos (12 critical, 155 high)</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T12:10:43.124Z">20m ago</td>
+              <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
+              <td style="color:#22c55e">&#9989;</td>
+              <td><strong>test-target</strong> - Testing structure</td>
             </tr>
         </tbody>
       </table>
@@ -831,6 +863,37 @@
     <div class="compliance-gaps"><strong style="color:#8b949e">Compliance gaps:</strong><ul><li>au-marais: no branch protection</li><li>au-marais: compliance score 20/100</li><li>CasaSync: no branch protection</li><li>CasaSync: compliance score 20/100</li><li>ClubMedRoomAssignment: no branch protection</li><li>ClubMedRoomAssignment: compliance score 20/100</li></ul></div>
   </div>
 
+  
+  <div class="rec-section">
+    <h2>Smart Recommendations</h2>
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="rec-value" style="color:#ef4444">12</div>
+        <div class="rec-label">Critical</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-value" style="color:#f59e0b">155</div>
+        <div class="rec-label">High</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-value" style="color:#3b82f6">31</div>
+        <div class="rec-label">Medium</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-value" style="color:#6b7280">25</div>
+        <div class="rec-label">Low</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-value" style="color:#22c55e">223</div>
+        <div class="rec-label">Total</div>
+      </div>
+    </div>
+    <div style="font-size:0.75rem;color:#8b949e;margin-bottom:0.4rem">
+      Most needed template: undefined | Most actions: au-marais
+    </div>
+    <div class="rec-gaps"><strong style="color:#ef4444">Critical actions:</strong><ul><li>Livret_accueil_Au-Marais: No CI workflow detected</li><li>Site_Greg-Assainissement: No CI workflow detected</li><li>test_codingmenace: No CI workflow detected</li><li>Thumbfast: No CI workflow detected</li><li>claude-cli-wrapper: No CI workflow detected</li></ul></div>
+  </div>
+
   <div class="all-clear">All 16 projects are healthy</div>
 
   
@@ -938,7 +1001,7 @@
         <canvas data-sparkline="lecteur-magic" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none <a href="https://github.com/thonyAGP/lecteur-magic/actions/runs/22272506371" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>none <a href="https://github.com/thonyAGP/lecteur-magic/actions/runs/22276810158" target="_blank">(view)</a></span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
         <div class="metric"><span class="metric-label">Review</span><span>None</span></div>

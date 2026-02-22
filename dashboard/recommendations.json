@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-22T12:10:43.638Z",
+  "timestamp": "2026-02-22T12:33:38.378Z",
   "repos": [
     {
       "repo": "au-marais",
@@ -361,6 +361,113 @@
           "reason": "Secure npm dependency chain",
           "effort": "minimal",
           "impact": "Secures npm dependencies with SBOM and license checks"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "low",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        },
+        {
+          "template": "release-drafter.yml",
+          "priority": "low",
+          "reason": "Auto-generate release notes",
+          "effort": "minimal",
+          "impact": "Auto-drafts release notes from PRs and commits"
+        },
+        {
+          "template": "mutation-testing.yml",
+          "priority": "low",
+          "reason": "Validate test quality",
+          "effort": "significant",
+          "impact": "Validates test quality by introducing code mutations"
+        }
+      ]
+    },
+    {
+      "repo": "ClubMedRoomAssignment",
+      "fullName": "thonyAGP/ClubMedRoomAssignment",
+      "healthScore": 35,
+      "stack": "node",
+      "ciFailureRate": 100,
+      "recommendations": [
+        {
+          "template": "gitleaks.yml",
+          "priority": "high",
+          "reason": "No secret scanning detected",
+          "effort": "minimal",
+          "impact": "Prevents accidental secret leaks in commits"
+        },
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+        },
+        {
+          "template": "coverage-tracking.yml",
+          "priority": "high",
+          "reason": "Low health score (35) - needs test coverage tracking",
+          "effort": "moderate",
+          "impact": "Tracks test coverage over time and prevents regressions"
+        },
+        {
+          "template": "renovate.json",
+          "priority": "high",
+          "reason": "No dependency update automation detected",
+          "effort": "minimal",
+          "impact": "Automated dependency updates with intelligent grouping"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "semgrep.yml",
+          "priority": "high",
+          "reason": "No SAST (static analysis) detected",
+          "effort": "minimal",
+          "impact": "Static analysis for bugs, security issues, and anti-patterns"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "supply-chain-security.yml",
+          "priority": "high",
+          "reason": "Secure npm dependency chain",
+          "effort": "minimal",
+          "impact": "Secures npm dependencies with SBOM and license checks"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "high",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "stale-bot.yml",
@@ -1121,104 +1228,11 @@
       ]
     },
     {
-      "repo": "ClubMedRoomAssignment",
-      "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "healthScore": 35,
-      "stack": "node",
-      "ciFailureRate": 100,
-      "recommendations": [
-        {
-          "template": "ci-standard.yml",
-          "priority": "critical",
-          "reason": "No CI workflow detected",
-          "effort": "moderate",
-          "impact": "Enables automated testing and deployment"
-        },
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
-          "template": "auto-label.yml",
-          "priority": "high",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "coverage-tracking.yml",
-          "priority": "high",
-          "reason": "Low health score (35) - needs test coverage tracking",
-          "effort": "moderate",
-          "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "high",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
       "repo": "lecteur-magic",
       "fullName": "thonyAGP/lecteur-magic",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 73,
+      "ciFailureRate": 70,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1716,14 +1730,6 @@
       ]
     },
     {
-      "repo": "aiblueprint-cli-premium",
-      "fullName": "Melvynx/aiblueprint-cli-premium",
-      "healthScore": 0,
-      "stack": "unknown",
-      "ciFailureRate": 0,
-      "recommendations": []
-    },
-    {
       "repo": "analyse-negocio",
       "fullName": "thonyAGP/analyse-negocio",
       "healthScore": 0,
@@ -1789,11 +1795,11 @@
     }
   ],
   "summary": {
-    "totalRecommendations": 223,
-    "criticalCount": 12,
-    "highCount": 155,
+    "totalRecommendations": 225,
+    "criticalCount": 11,
+    "highCount": 156,
     "mediumCount": 31,
-    "lowCount": 25,
+    "lowCount": 27,
     "topTemplates": [
       {
         "template": "gitleaks.yml",
@@ -1837,6 +1843,6 @@
       }
     ],
     "topRepo": "au-marais",
-    "avgHealthScore": 23.26923076923077
+    "avgHealthScore": 24.2
   }
 }
