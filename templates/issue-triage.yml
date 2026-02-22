@@ -1,0 +1,209 @@
+# DevOps-Factory: Automated Issue Triage
+# Auto-labels and assigns priority to issues based on title/body keywords
+# Runs on issue open/edit events
+
+name: Issue Triage
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  triage:
+    name: Auto-Triage Issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure labels exist
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = [
+              { name: 'bug', color: 'FF0000', description: 'Bug report or error' },
+              { name: 'enhancement', color: '00FF00', description: 'Feature request or improvement' },
+              { name: 'documentation', color: '0075CA', description: 'Documentation or README update' },
+              { name: 'question', color: 'FFA500', description: 'Question or help request' },
+              { name: 'security', color: 'FF1493', description: 'Security vulnerability or concern' },
+              { name: 'performance', color: '9370DB', description: 'Performance optimization' },
+              { name: 'priority/high', color: 'FF0000', description: 'High priority - resolve ASAP' },
+              { name: 'priority/medium', color: 'FFA500', description: 'Medium priority - schedule soon' },
+              { name: 'priority/low', color: 'CCCCCC', description: 'Low priority - nice to have' },
+            ];
+
+            for (const label of labels) {
+              try {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label.name,
+                  color: label.color,
+                  description: label.description,
+                });
+                console.log(`Created label: ${label.name}`);
+              } catch (error) {
+                if (error.status === 422) {
+                  console.log(`Label ${label.name} already exists`);
+                } else {
+                  console.error(`Error creating label ${label.name}:`, error.message);
+                }
+              }
+            }
+
+      - name: Analyze and apply labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const text = `${issue.title} ${issue.body || ''}`.toLowerCase();
+
+            // Category patterns
+            const categories = {
+              bug: ['bug', 'error', 'crash', 'fix', 'broken', 'issue', 'failed', 'not working', 'regression'],
+              enhancement: ['feature', 'add', 'new', 'implement', 'improve', 'enhancement', 'request'],
+              documentation: ['docs', 'documentation', 'readme', 'comment', 'doc', 'update docs', 'clarify'],
+              question: ['question', 'how to', 'help', 'how do', 'can i', 'is it possible', 'support'],
+              security: ['security', 'vulnerability', 'cve', 'exploit', 'sql injection', 'xss', 'csrf', 'auth'],
+              performance: ['performance', 'slow', 'optimize', 'speed', 'latency', 'memory', 'efficient']
+            };
+
+            // Priority patterns
+            const priorityPatterns = {
+              high: ['critical', 'urgent', 'asap', 'production', 'down', 'broken', 'blocking', 'blocker', 'emergency'],
+              low: ['minor', 'low', 'nice to have', 'cosmetic', 'trivial', 'enhancement only', 'future']
+            };
+
+            let labelsToAdd = [];
+
+            // Detect category labels
+            for (const [category, keywords] of Object.entries(categories)) {
+              const hasKeyword = keywords.some(keyword => text.includes(keyword));
+              if (hasKeyword) {
+                labelsToAdd.push(category);
+                console.log(`Detected ${category} issue`);
+              }
+            }
+
+            // Detect priority - high takes precedence, then low, default to medium
+            let priority = 'priority/medium';
+            const hasHighPriority = priorityPatterns.high.some(keyword => text.includes(keyword));
+            const hasLowPriority = priorityPatterns.low.some(keyword => text.includes(keyword));
+
+            if (hasHighPriority && !hasLowPriority) {
+              priority = 'priority/high';
+              console.log('Detected HIGH priority issue');
+            } else if (hasLowPriority && !hasHighPriority) {
+              priority = 'priority/low';
+              console.log('Detected LOW priority issue');
+            } else {
+              console.log('Assigning default MEDIUM priority');
+            }
+
+            labelsToAdd.push(priority);
+
+            // Remove duplicate labels
+            labelsToAdd = [...new Set(labelsToAdd)];
+
+            // Get existing labels
+            const { data: existingLabels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+            });
+
+            const existingLabelNames = existingLabels.map(l => l.name);
+
+            // Remove old priority labels if different one will be applied
+            const oldPriorityLabels = existingLabelNames.filter(l => l.startsWith('priority/'));
+            for (const label of oldPriorityLabels) {
+              if (label !== priority) {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  name: label,
+                }).catch(() => {});
+              }
+            }
+
+            // Only add labels that aren't already applied
+            const newLabels = labelsToAdd.filter(l => !existingLabelNames.includes(l));
+
+            if (newLabels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: newLabels,
+              });
+              console.log(`Added labels: ${newLabels.join(', ')}`);
+            } else {
+              console.log('No new labels to add');
+            }
+
+      - name: Post triage comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const text = `${issue.title} ${issue.body || ''}`.toLowerCase();
+
+            // Determine if this needs special attention
+            const isBug = text.includes('bug') || text.includes('error') || text.includes('crash');
+            const isSecurity = text.includes('security') || text.includes('vulnerability');
+
+            if (isBug) {
+              const bugComment = `🔍 **Bug Report Detected**
+
+Thank you for reporting this issue! Here's how to help us fix it faster:
+
+1. **Minimal Reproduction**: If possible, provide a minimal code example or steps to reproduce
+2. **Environment**: Include Node/Python/other version, OS, and relevant dependencies
+3. **Expected vs Actual**: Clearly state what should happen vs what does happen
+4. **Logs**: Include relevant error messages or logs (sanitized for secrets)
+
+Our team will triage this and start investigating soon.`;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: bugComment,
+              });
+            } else if (isSecurity) {
+              const securityComment = `🔐 **Security Issue Detected**
+
+⚠️ **IMPORTANT**: If this is a security vulnerability, please do NOT discuss sensitive details publicly.
+
+Please email security@[your-domain] with:
+- Vulnerability description
+- Steps to reproduce
+- Proposed fix (if any)
+- Timeline for disclosure
+
+We take security seriously and will respond within 24-48 hours.`;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: securityComment,
+              });
+            } else {
+              const triageComment = `✅ **Issue Triaged**
+
+Your issue has been automatically categorized and prioritized. Our team will review it shortly.
+
+**Need help?** Check our [documentation](#) or [discussions](#) for common questions.`;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: triageComment,
+              });
+            }
+
+            console.log(`Posted triage comment on issue #${issue.number}`);

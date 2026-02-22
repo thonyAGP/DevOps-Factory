@@ -1,0 +1,336 @@
+# DevOps-Factory: Incident Response Automation
+# Automated triage, notification, rollback, and post-mortem for critical incidents
+# Triggered via workflow_dispatch or repository_dispatch (incident event)
+
+name: Incident Response
+
+on:
+  workflow_dispatch:
+    inputs:
+      severity:
+        description: 'Incident severity level'
+        required: true
+        type: choice
+        options:
+          - critical
+          - high
+          - medium
+      description:
+        description: 'Brief description of the incident'
+        required: true
+        type: string
+      affected_repo:
+        description: 'Affected repository (optional)'
+        required: false
+        type: string
+  repository_dispatch:
+    types: [incident]
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  triage:
+    name: Incident Triage
+    runs-on: ubuntu-latest
+    outputs:
+      issue_number: ${{ steps.create_issue.outputs.issue_number }}
+      severity: ${{ steps.set_severity.outputs.severity }}
+    steps:
+      - name: Determine severity
+        id: set_severity
+        run: |
+          SEVERITY="${{ github.event.inputs.severity || 'high' }}"
+          echo "severity=$SEVERITY" >> $GITHUB_OUTPUT
+
+      - name: Create incident issue
+        id: create_issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const severity = '${{ steps.set_severity.outputs.severity }}';
+            const description = `${{ github.event.inputs.description }}` || `${{ github.event.client_payload.description }}`;
+            const affectedRepo = `${{ github.event.inputs.affected_repo }}` || `${{ github.event.client_payload.affected_repo }}` || 'Unknown';
+            const timestamp = new Date().toISOString();
+
+            const severityEmoji = {
+              'critical': '🔴',
+              'high': '🟠',
+              'medium': '🟡'
+            };
+
+            const body = `${severityEmoji[severity] || '⚪'} **Incident Report**
+
+**Severity**: ${severity.toUpperCase()}
+**Affected Repository**: ${affectedRepo}
+**Reported At**: ${timestamp}
+**Reported By**: @${context.actor}
+
+## Description
+${description}
+
+## Timeline
+- **Detected**: ${timestamp} by @${context.actor}
+- **Status**: 🟡 INVESTIGATING
+- **Last Updated**: ${timestamp}
+
+## Impact Assessment
+- [ ] Determine customer impact
+- [ ] Identify affected services
+- [ ] Estimate time to resolution
+
+## Response Actions
+- [ ] Notify team
+- [ ] Begin investigation
+- [ ] Attempt rollback (if critical)
+- [ ] Deploy hotfix
+- [ ] Monitor recovery
+
+## Resolution
+*To be filled during incident resolution*
+
+## Post-Mortem
+*To be scheduled after resolution*
+`;
+
+            const { data: issue } = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[INCIDENT-${severity.toUpperCase()}] ${description.substring(0, 60)}`,
+              body: body,
+              labels: ['incident', `severity/${severity}`],
+            });
+
+            core.setOutput('issue_number', issue.number);
+            console.log(`Created incident issue #${issue.number}`);
+
+  notify:
+    name: Incident Notification
+    runs-on: ubuntu-latest
+    needs: triage
+    steps:
+      - name: Post notification comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = ${{ needs.triage.outputs.issue_number }};
+            const severity = '${{ needs.triage.outputs.severity }}';
+            const description = `${{ github.event.inputs.description }}` || `${{ github.event.client_payload.description }}`;
+
+            const comment = `## 📢 Incident Notification
+
+**Severity**: \`${severity}\`
+**Issue**: #${issueNumber}
+
+### Timeline
+- **Detection**: ${{ github.event.head_commit.timestamp || 'now' }}
+- **Reporter**: @${{ github.actor }}
+- **CI Trigger**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+### Next Steps
+1. Acknowledge receipt of this incident
+2. Review the incident details in issue #${issueNumber}
+3. Follow the response actions in the issue
+4. Update status regularly in comments
+
+🔗 [View Incident Details](#${issueNumber})
+`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: comment,
+            });
+
+            console.log('Posted notification comment');
+
+  rollback:
+    name: Critical Incident Rollback
+    runs-on: ubuntu-latest
+    needs: triage
+    if: needs.triage.outputs.severity == 'critical'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find last stable release
+        id: find_release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Get last successful release
+            const { data: releases } = await github.rest.repos.listReleases({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 10,
+            });
+
+            const stableRelease = releases.find(r => !r.prerelease && !r.draft);
+
+            if (!stableRelease) {
+              console.log('No stable release found for rollback');
+              core.setOutput('has_release', 'false');
+              return;
+            }
+
+            core.setOutput('has_release', 'true');
+            core.setOutput('release_tag', stableRelease.tag_name);
+            core.setOutput('release_name', stableRelease.name);
+            console.log(`Found stable release: ${stableRelease.tag_name}`);
+
+      - name: Create rollback PR
+        if: steps.find_release.outputs.has_release == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const releaseTag = '${{ steps.find_release.outputs.release_tag }}';
+            const releaseName = '${{ steps.find_release.outputs.release_name }}';
+            const issueNumber = ${{ needs.triage.outputs.issue_number }};
+
+            const prBody = `## Automated Rollback PR
+
+**Incident**: #${issueNumber}
+**Target**: \`${releaseTag}\` (${releaseName})
+**Reason**: Critical incident detected - reverting to last stable release
+**Created**: $(date)
+
+### Changes
+This PR reverts all changes since release \`${releaseTag}\`.
+
+### Testing
+- [ ] Verify builds successfully
+- [ ] Test critical flows
+- [ ] Confirm no data loss
+- [ ] Check logs for errors
+
+### Merge
+Once approved and tested, merge this PR to restore stability.
+`;
+
+            try {
+              const { data: pr } = await github.rest.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `[ROLLBACK] Revert to ${releaseTag} - Critical Incident #${issueNumber}`,
+                head: `rollback/${releaseTag}`,
+                base: context.ref.split('/').pop(),
+                body: prBody,
+                draft: true,
+              });
+
+              // Add comment to incident issue with PR link
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `🔄 **Rollback PR Created**: #${pr.number}\n\nRevert to stable release: \`${releaseTag}\`\n\nDraft PR ready for review and merge.`,
+              });
+
+              console.log(`Created rollback PR #${pr.number}`);
+            } catch (error) {
+              console.log('Could not create rollback PR (branch may already exist):', error.message);
+            }
+
+  post-mortem:
+    name: Schedule Post-Mortem
+    runs-on: ubuntu-latest
+    needs: triage
+    if: always()
+    steps:
+      - name: Create post-mortem issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const incidentIssue = ${{ needs.triage.outputs.issue_number }};
+            const severity = '${{ needs.triage.outputs.severity }}';
+
+            const postMortemBody = `# Post-Mortem: Incident #${incidentIssue}
+
+**Severity**: \`${severity}\`
+**Incident Link**: #${incidentIssue}
+
+## Executive Summary
+*What happened in a few sentences*
+
+## Timeline
+| Time | Event |
+|------|-------|
+| | Detection |
+| | Investigation started |
+| | Root cause identified |
+| | Fix deployed |
+| | Recovery verified |
+| | Incident resolved |
+
+## Root Cause Analysis
+### What failed?
+*Technical details of what went wrong*
+
+### Why did it fail?
+*Root cause investigation*
+
+### Contributing factors
+- [ ] Factor 1
+- [ ] Factor 2
+- [ ] Factor 3
+
+## Impact
+- **Duration**: X minutes
+- **Affected Services**:
+- **Customer Impact**:
+- **Revenue Impact**:
+
+## Resolution
+### Immediate Actions Taken
+1. Action 1
+2. Action 2
+3. Action 3
+
+### Long-term Fixes Required
+1. Fix 1 - Prevention of similar incidents
+2. Fix 2 - Monitoring improvement
+3. Fix 3 - Documentation update
+
+## Action Items
+| Item | Owner | Due Date | Status |
+|------|-------|----------|--------|
+| | | | |
+
+## Lessons Learned
+- What did we learn?
+- What should we do differently next time?
+- How do we prevent recurrence?
+
+## References
+- [Related Issue](#${incidentIssue})
+- [Pull Request(s)](#)
+- [Monitoring/Logs](#)
+
+---
+**Post-Mortem Completed**: \`TODO\`
+**Review Participants**:
+**Approved By**:
+`;
+
+            const { data: pmIssue } = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[POST-MORTEM] Incident #${incidentIssue} Analysis`,
+              body: postMortemBody,
+              labels: ['post-mortem', `severity/${severity}`],
+            });
+
+            // Link post-mortem to incident
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: incidentIssue,
+              body: `📋 **Post-Mortem Issue**: #${pmIssue.number}\n\nPost-mortem analysis created. Please fill out details as the incident is resolved.`,
+            });
+
+            console.log(`Created post-mortem issue #${pmIssue.number}`);

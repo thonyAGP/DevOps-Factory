@@ -820,6 +820,87 @@ const getCostSection = (): string => {
   }
 };
 
+const getComplianceSection = (): string => {
+  const compPath = 'dashboard/compliance-report.json';
+  if (!existsSync(compPath)) return '';
+
+  try {
+    const report = JSON.parse(readFileSync(compPath, 'utf-8')) as {
+      period: string;
+      summary: {
+        totalRepos: number;
+        totalPRsMerged: number;
+        prsWithReview: number;
+        reviewCoverage: number;
+        totalDeployments: number;
+        avgComplianceScore: number;
+        reposWithBranchProtection: number;
+        reposWithCI: number;
+      };
+      repos: Array<{
+        repo: string;
+        score: number;
+        branchProtection: boolean;
+        codeReview: boolean;
+        ciEnabled: boolean;
+      }>;
+    };
+
+    const s = report.summary;
+    const scoreColor =
+      s.avgComplianceScore >= 70 ? '#22c55e' : s.avgComplianceScore >= 40 ? '#f59e0b' : '#ef4444';
+    const reviewColor =
+      s.reviewCoverage >= 70 ? '#22c55e' : s.reviewCoverage >= 40 ? '#f59e0b' : '#ef4444';
+
+    const gaps: string[] = [];
+    for (const r of report.repos) {
+      if (!r.branchProtection) gaps.push(`${r.repo}: no branch protection`);
+      if (!r.ciEnabled) gaps.push(`${r.repo}: no CI`);
+      if (r.score < 40) gaps.push(`${r.repo}: compliance score ${r.score}/100`);
+    }
+    const gapsList =
+      gaps.length > 0
+        ? `<div class="compliance-gaps"><strong style="color:#8b949e">Compliance gaps:</strong><ul>${gaps
+            .slice(0, 6)
+            .map((g) => `<li>${g}</li>`)
+            .join('')}</ul></div>`
+        : '';
+
+    return `
+  <div class="compliance-section">
+    <h2>Compliance &amp; Audit</h2>
+    <div class="compliance-grid">
+      <div class="compliance-card">
+        <div class="compliance-value" style="color:${scoreColor}">${s.avgComplianceScore}</div>
+        <div class="compliance-label">Avg Score /100</div>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-value" style="color:#f59e0b">${s.totalPRsMerged}</div>
+        <div class="compliance-label">PRs Merged (30d)</div>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-value" style="color:${reviewColor}">${s.reviewCoverage}%</div>
+        <div class="compliance-label">Review Coverage</div>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-value" style="color:#a78bfa">${s.totalDeployments}</div>
+        <div class="compliance-label">Deployments</div>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-value" style="color:#22c55e">${s.reposWithBranchProtection}</div>
+        <div class="compliance-label">Branch Protected</div>
+      </div>
+    </div>
+    <div style="font-size:0.75rem;color:#8b949e;margin-bottom:0.4rem">
+      Period: ${report.period} | ${s.reposWithCI}/${s.totalRepos} repos with CI
+    </div>
+    ${gapsList}
+  </div>`;
+  } catch {
+    return '';
+  }
+};
+
 const generateHTML = (statuses: ProjectStatus[]): string => {
   const timestamp = formatDashboardDate(new Date());
   const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
@@ -1335,6 +1416,38 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
     }
     .cost-recs ul { margin: 0; padding-left: 1.2rem; }
     .cost-recs li { padding: 0.15rem 0; color: #c9d1d9; }
+    .compliance-section {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .compliance-section h2 { color: #f59e0b; font-size: 1rem; margin-bottom: 0.8rem; }
+    .compliance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .compliance-card {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    .compliance-card .compliance-value { font-size: 1.4rem; font-weight: bold; }
+    .compliance-card .compliance-label { font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem; }
+    .compliance-gaps {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.8rem;
+    }
+    .compliance-gaps ul { margin: 0; padding-left: 1.2rem; }
+    .compliance-gaps li { padding: 0.15rem 0; color: #c9d1d9; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
@@ -1384,6 +1497,8 @@ const generateHTML = (statuses: ProjectStatus[]): string => {
   ${getDoraSection()}
 
   ${getCostSection()}
+
+  ${getComplianceSection()}
 
   ${allClearBanner}
 
@@ -1543,6 +1658,26 @@ const generateDailyReport = (statuses: ProjectStatus[]): string => {
       };
       const cs = cost.summary;
       body += `- **CI Cost**: ${cs.totalMinutes}min total, ${cs.wastedMinutes}min wasted, ~$${cs.estimatedMonthlyCost}/mo\n`;
+    } catch {
+      /* ignore */
+    }
+  }
+
+  // Compliance summary
+  const compPath = 'dashboard/compliance-report.json';
+  if (existsSync(compPath)) {
+    try {
+      const comp = JSON.parse(readFileSync(compPath, 'utf-8')) as {
+        summary: {
+          avgComplianceScore: number;
+          reviewCoverage: number;
+          totalPRsMerged: number;
+          reposWithBranchProtection: number;
+          totalRepos: number;
+        };
+      };
+      const cs = comp.summary;
+      body += `- **Compliance**: ${cs.avgComplianceScore}/100 avg, ${cs.reviewCoverage}% review coverage, ${cs.reposWithBranchProtection}/${cs.totalRepos} branch protected\n`;
     } catch {
       /* ignore */
     }

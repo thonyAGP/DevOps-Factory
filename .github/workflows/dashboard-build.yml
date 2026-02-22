@@ -68,6 +68,12 @@ jobs:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
         continue-on-error: true
 
+      - name: Compliance report
+        run: pnpm compliance
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+        continue-on-error: true
+
       - name: Check for alerts
         id: alerts
         run: |

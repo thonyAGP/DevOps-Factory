@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-22T08:42:47.008Z",
+  "timestamp": "2026-02-22T04:34:18.542Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -50,33 +50,33 @@
       "workflows": [
         {
           "name": "Deploy OpenSpec Viewer",
-          "runs": 41,
-          "totalMinutes": 41,
+          "runs": 43,
+          "totalMinutes": 43,
           "avgMinutes": 1,
-          "failedRuns": 28,
-          "wastedMinutes": 28
+          "failedRuns": 31,
+          "wastedMinutes": 31
         },
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 37,
-          "totalMinutes": 37,
+          "runs": 35,
+          "totalMinutes": 35,
           "avgMinutes": 1,
-          "failedRuns": 25,
-          "wastedMinutes": 25
+          "failedRuns": 23,
+          "wastedMinutes": 23
         },
         {
           "name": "Daily Drift Report",
           "runs": 22,
           "totalMinutes": 22,
           "avgMinutes": 1,
-          "failedRuns": 17,
-          "wastedMinutes": 17
+          "failedRuns": 18,
+          "wastedMinutes": 18
         }
       ],
       "recommendations": [
-        "Deploy OpenSpec Viewer: 68% failure rate (28min wasted). Fix root cause.",
-        "Deploy Migration Dashboard: 68% failure rate (25min wasted). Fix root cause.",
-        "Daily Drift Report: 77% failure rate (17min wasted). Fix root cause."
+        "Deploy OpenSpec Viewer: 72% failure rate (31min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 66% failure rate (23min wasted). Fix root cause.",
+        "Daily Drift Report: 82% failure rate (18min wasted). Fix root cause."
       ]
     },
     {
@@ -111,7 +111,9 @@
           "wastedMinutes": 47
         }
       ],
-      "recommendations": ["CI: 89% failure rate (47min wasted). Fix root cause."]
+      "recommendations": [
+        "CI: 89% failure rate (47min wasted). Fix root cause."
+      ]
     },
     {
       "repo": "ClubMedRoomAssignment",
@@ -136,7 +138,9 @@
           "wastedMinutes": 3
         }
       ],
-      "recommendations": ["CI: 100% failure rate (32min wasted). Fix root cause."]
+      "recommendations": [
+        "CI: 100% failure rate (32min wasted). Fix root cause."
+      ]
     },
     {
       "repo": "CasaSync",
@@ -153,7 +157,9 @@
           "wastedMinutes": 7
         }
       ],
-      "recommendations": ["CI: 31% failure rate (7min wasted). Fix root cause."]
+      "recommendations": [
+        "CI: 31% failure rate (7min wasted). Fix root cause."
+      ]
     },
     {
       "repo": "Utilitaire_Webapp",
@@ -256,7 +262,7 @@
   "summary": {
     "totalMinutes": 606,
     "totalRuns": 279,
-    "wastedMinutes": 204,
+    "wastedMinutes": 206,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 6,
