@@ -7,8 +7,8 @@
 - **0/16** repos with AI code review
 - **0%** avg quality score (perf, a11y, coverage, release)
 - **DORA**: MEDIUM (deploy 0/wk, lead 132.7h, MTTR 0h, CFR 51%)
-- **CI Cost**: 606min total, 206min wasted, ~$0/mo
-- **Compliance**: 9/100 avg, 0% review coverage, 1/17 branch protected
+- **CI Cost**: 606min total, 203min wasted, ~$0/mo
+- **Compliance**: 8/100 avg, 0% review coverage, 0/17 branch protected
 
 ## Per Project
 
@@ -79,7 +79,7 @@
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 59/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22272168466))
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22277310783))
 - **Open PRs**: 1
 
 ### livret-au-marais :white_check_mark:

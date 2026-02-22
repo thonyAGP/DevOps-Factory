@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 2/22/2026, 12:33:37 PM
+**Generated**: 2/22/2026, 1:08:03 PM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 7/17 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 11 |
-| Deployments (30d) | 76 |
+| Deployments (30d) | 77 |
 | PRs with Review | 0/11 |
 
 ## Repository Compliance
@@ -180,7 +180,7 @@
 - #3 - Claude/resume work za jh8 (by thonyAGP)
 - #2 - feat: add Google/Microsoft Calendar integration (by thonyAGP)
 
-**Recent Deployments**: 38 successful deploys in 30 days
+**Recent Deployments**: 39 successful deploys in 30 days
 
 ---
 
