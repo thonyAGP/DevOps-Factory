@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-22T18:28:17.333Z",
+  "timestamp": "2026-02-22T20:37:38.595Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -17,8 +17,8 @@
         },
         {
           "name": "Post-Deploy Health Check",
-          "runs": 31,
-          "totalMinutes": 31,
+          "runs": 30,
+          "totalMinutes": 30,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -33,8 +33,8 @@
         },
         {
           "name": "Monitor Production",
-          "runs": 24,
-          "totalMinutes": 24,
+          "runs": 25,
+          "totalMinutes": 25,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -50,33 +50,33 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 55,
-          "totalMinutes": 55,
+          "runs": 59,
+          "totalMinutes": 59,
           "avgMinutes": 1,
-          "failedRuns": 43,
-          "wastedMinutes": 43
+          "failedRuns": 47,
+          "wastedMinutes": 47
         },
         {
           "name": "Deploy OpenSpec Viewer",
-          "runs": 28,
-          "totalMinutes": 28,
+          "runs": 25,
+          "totalMinutes": 25,
           "avgMinutes": 1,
-          "failedRuns": 12,
-          "wastedMinutes": 12
+          "failedRuns": 9,
+          "wastedMinutes": 9
         },
         {
           "name": "Daily Drift Report",
-          "runs": 17,
-          "totalMinutes": 17,
+          "runs": 16,
+          "totalMinutes": 16,
           "avgMinutes": 1,
-          "failedRuns": 12,
-          "wastedMinutes": 12
+          "failedRuns": 11,
+          "wastedMinutes": 11
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 78% failure rate (43min wasted). Fix root cause.",
-        "Deploy OpenSpec Viewer: 43% failure rate (12min wasted). Fix root cause.",
-        "Daily Drift Report: 71% failure rate (12min wasted). Fix root cause."
+        "Deploy Migration Dashboard: 80% failure rate (47min wasted). Fix root cause.",
+        "Deploy OpenSpec Viewer: 36% failure rate (9min wasted). Fix root cause.",
+        "Daily Drift Report: 69% failure rate (11min wasted). Fix root cause."
       ]
     },
     {
