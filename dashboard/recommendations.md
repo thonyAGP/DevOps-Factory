@@ -1,12 +1,12 @@
 # Template Recommendations Report
 
-Generated: 2/22/2026, 4:43:01 PM
+Generated: 2/22/2026, 6:29:05 PM
 
 ## Executive Summary
 
 - **Total Recommendations**: 225
 - **Critical**: 11 | **High**: 156 | **Medium**: 31 | **Low**: 27
-- **Average Health Score**: 23.3/100
+- **Average Health Score**: 24.2/100
 - **Top Template**: gitleaks.yml (17 repos)
 - **Most Improved Repo**: au-marais
 
@@ -821,7 +821,7 @@ Generated: 2/22/2026, 4:43:01 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 68%
+- **CI Failure Rate**: 64%
 
 #### Critical Priority
 
