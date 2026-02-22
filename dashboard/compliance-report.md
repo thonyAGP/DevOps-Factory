@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 22/02/2026 15:00:47
+**Generated**: 2/22/2026, 2:17:40 PM
 **Period**: 30-day window
 
 ## Summary
@@ -8,8 +8,8 @@
 | Metric | Value |
 |--------|-------|
 | Total Repos | 17 |
-| Avg Compliance Score | 9/100 |
-| Repos with Branch Protection | 1/17 |
+| Avg Compliance Score | 8/100 |
+| Repos with Branch Protection | 0/17 |
 | Repos with CI | 7/17 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 11 |
@@ -20,11 +20,11 @@
 
 | Repo | Score | Branch Prot | CI | Review | Security |
 |------|-------|-------------|----|------------|----------|
-| lecteur-magic | 🔴 40/100 | ✓ | ✓ | ✗ | 0 |
 | au-marais | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | CasaSync | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | ClubMedRoomAssignment | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Email_Assistant | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
+| lecteur-magic | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | livret-au-marais | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Utilitaire_Webapp | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | claude-cli-wrapper | 🔴 0/100 | ✗ | ✗ | ✗ | 0 |
@@ -40,11 +40,12 @@
 
 ## Compliance Gaps
 
-### ⚠️ No Branch Protection (16)
+### ⚠️ No Branch Protection (17)
 - au-marais
 - CasaSync
 - ClubMedRoomAssignment
 - Email_Assistant
+- lecteur-magic
 - livret-au-marais
 - Utilitaire_Webapp
 - claude-cli-wrapper
@@ -76,11 +77,11 @@
 - **Email_Assistant**: 6 PRs merged without review
 
 ### 🔴 Low Compliance Score < 60 (17)
-- lecteur-magic: 40/100
 - au-marais: 20/100
 - CasaSync: 20/100
 - ClubMedRoomAssignment: 20/100
 - Email_Assistant: 20/100
+- lecteur-magic: 20/100
 - livret-au-marais: 20/100
 - Utilitaire_Webapp: 20/100
 - claude-cli-wrapper: 0/100
@@ -103,20 +104,6 @@
 5. **Monitor review coverage** - target 100% reviewed PRs
 
 ## Detailed Repository Breakdown
-
-### lecteur-magic | ❌ NEEDS WORK (40/100)
-
-**Full Name**: `thonyAGP/lecteur-magic`
-
-**Controls**:
-- Branch Protection: ✓
-- Code Review Required: ✗
-- CI/CD Enabled: ✓
-- Security Findings: 0 alerts
-
-**Recent Deployments**: 23 successful deploys in 30 days
-
----
 
 ### au-marais | ❌ NEEDS WORK (20/100)
 
@@ -194,6 +181,20 @@
 - #2 - feat: add Google/Microsoft Calendar integration (by thonyAGP)
 
 **Recent Deployments**: 39 successful deploys in 30 days
+
+---
+
+### lecteur-magic | ❌ NEEDS WORK (20/100)
+
+**Full Name**: `thonyAGP/lecteur-magic`
+
+**Controls**:
+- Branch Protection: ✗
+- Code Review Required: ✗
+- CI/CD Enabled: ✓
+- Security Findings: 0 alerts
+
+**Recent Deployments**: 23 successful deploys in 30 days
 
 ---
 

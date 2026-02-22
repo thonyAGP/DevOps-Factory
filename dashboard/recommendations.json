@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-22T14:00:51.243Z",
+  "timestamp": "2026-02-22T14:17:41.369Z",
   "repos": [
     {
       "repo": "au-marais",
@@ -262,7 +262,7 @@
       "fullName": "thonyAGP/livret-au-marais",
       "healthScore": 55,
       "stack": "nextjs",
-      "ciFailureRate": 0,
+      "ciFailureRate": 89,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -305,6 +305,13 @@
           "reason": "No SAST (static analysis) detected",
           "effort": "minimal",
           "impact": "Static analysis for bugs, security issues, and anti-patterns"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "high",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "auto-label.yml",
@@ -354,13 +361,6 @@
           "reason": "Secure npm dependency chain",
           "effort": "minimal",
           "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "medium",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "stale-bot.yml",
@@ -1032,7 +1032,7 @@
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 0,
+      "ciFailureRate": 80,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -1232,7 +1232,7 @@
       "fullName": "thonyAGP/lecteur-magic",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 0,
+      "ciFailureRate": 70,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1805,8 +1805,8 @@
   "summary": {
     "totalRecommendations": 225,
     "criticalCount": 11,
-    "highCount": 155,
-    "mediumCount": 32,
+    "highCount": 156,
+    "mediumCount": 31,
     "lowCount": 27,
     "topTemplates": [
       {
