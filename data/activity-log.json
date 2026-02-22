@@ -1956,11 +1956,39 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-22T08:41:52.853Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 41/100, 0 excellent, 16 needs work, 0 drops, 0 improvements",
+      "timestamp": "2026-02-22T08:41:08.398Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "16 projects, avg health 49",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T08:41:46.026Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 17 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-22T08:42:20.129Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 0%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T08:42:36.308Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 132.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-22T08:42:47.009Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 606min total, 204min wasted, ~$0/mo",
+      "status": "warning"
     }
   ]
 }

@@ -1,6 +1,7 @@
-## Quality Score Report - 2026-02-22
+## Quality Score Report - 2026-02-21
 
 ### Summary
+
 - **Average Score**: 41/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
@@ -9,6 +10,7 @@
 ### Per Repository
 
 #### Email_Assistant
+
 - **Score**: 55/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -19,6 +21,7 @@
 - **Gitleaks**: ✗
 
 #### CasaSync
+
 - **Score**: 55/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -29,6 +32,7 @@
 - **Gitleaks**: ✗
 
 #### Livret_accueil_Au-Marais
+
 - **Score**: 55/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -39,6 +43,7 @@
 - **Gitleaks**: ✗
 
 #### Site_Au-marais
+
 - **Score**: 55/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -49,6 +54,7 @@
 - **Gitleaks**: ✗
 
 #### Lecteur_Magic
+
 - **Score**: 55/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -59,6 +65,7 @@
 - **Gitleaks**: ✗
 
 #### DevOps-Factory
+
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -69,6 +76,7 @@
 - **Gitleaks**: ✗
 
 #### ClubMedRoomAssignment
+
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -79,6 +87,7 @@
 - **Gitleaks**: ✗
 
 #### API_Claude
+
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -89,6 +98,7 @@
 - **Gitleaks**: ✗
 
 #### MCP_Quota_Claude
+
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -99,6 +109,7 @@
 - **Gitleaks**: ✗
 
 #### Statusline
+
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -109,6 +120,7 @@
 - **Gitleaks**: ✗
 
 #### Site_Greg-Assainissement
+
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -119,6 +131,7 @@
 - **Gitleaks**: ✗
 
 #### Site_1970_Plomberie
+
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -129,6 +142,7 @@
 - **Gitleaks**: ✗
 
 #### Thumbfast_createur_images
+
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -139,6 +153,7 @@
 - **Gitleaks**: ✗
 
 #### Utilitaire_Webapp
+
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -149,6 +164,7 @@
 - **Gitleaks**: ✗
 
 #### test_codingmenace
+
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -159,6 +175,7 @@
 - **Gitleaks**: ✗
 
 #### SqlConnectionTest
+
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -167,4 +184,3 @@
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✗
-
