@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-23T12:47:49.000Z",
+  "timestamp": "2026-02-23T13:23:07.566Z",
   "period": "30-day window",
   "repos": [
     {
@@ -249,6 +249,14 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-02-23T12:53:57Z",
+          "workflow": "Monitor Production"
+        },
         {
           "branch": "devops-factory/test-scaffold",
           "repo": "thonyAGP/Email_Assistant",
@@ -552,14 +560,6 @@
           "status": "success",
           "timestamp": "2026-02-19T11:29:24Z",
           "workflow": "CI"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "a1628df03843e4363b904e6465d2714f7c984783",
-          "status": "success",
-          "timestamp": "2026-02-19T06:55:13Z",
-          "workflow": "Monitor Production"
         }
       ],
       "securityFindings": [],

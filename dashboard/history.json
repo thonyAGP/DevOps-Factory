@@ -456,16 +456,11 @@
   },
   {
     "date": "2026-02-23",
-    "avgHealth": 46,
-    "failingCI": 1,
-    "passingCI": 4,
+    "avgHealth": 48,
+    "failingCI": 0,
+    "passingCI": 5,
     "totalOpenPRs": 29,
     "perProject": [
-      {
-        "name": "Email_Assistant",
-        "health": 29,
-        "ciStatus": "fail"
-      },
       {
         "name": "claude-cli-wrapper",
         "health": 44,
@@ -533,6 +528,11 @@
       },
       {
         "name": "au-marais",
+        "health": 59,
+        "ciStatus": "pass"
+      },
+      {
+        "name": "Email_Assistant",
         "health": 59,
         "ciStatus": "pass"
       },

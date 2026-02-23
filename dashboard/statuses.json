@@ -1,68 +1,6 @@
 {
-  "timestamp": "2026-02-23T12:44:40.002Z",
+  "timestamp": "2026-02-23T13:20:37.953Z",
   "projects": [
-    {
-      "name": "Email_Assistant",
-      "fullName": "thonyAGP/Email_Assistant",
-      "stack": "node",
-      "ciStatus": "fail",
-      "lastRun": {
-        "conclusion": "skipped",
-        "created_at": "2026-02-23T07:54:53Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22297381575",
-        "id": 22297381575,
-        "name": "Qodo Merge - PR Review"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-23T07:54:50Z",
-          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/75",
-          "labels": [],
-          "number": 75,
-          "state": "OPEN",
-          "title": "test: add skeleton test files",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:43:14Z",
-          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/7",
-          "labels": [
-            "enhancement",
-            "Review effort 2/5"
-          ],
-          "number": 7,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 29,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": true,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
     {
       "name": "claude-cli-wrapper",
       "fullName": "thonyAGP/claude-cli-wrapper",
@@ -838,6 +776,68 @@
           "html_url": "https://github.com/thonyAGP/au-marais/pull/3",
           "labels": [],
           "number": 3,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 59,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Email_Assistant",
+      "fullName": "thonyAGP/Email_Assistant",
+      "stack": "node",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-23T12:53:57Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22306968530",
+        "id": 22306968530,
+        "name": "Monitor Production"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-23T07:54:50Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/75",
+          "labels": [],
+          "number": 75,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:43:14Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/7",
+          "labels": [
+            "enhancement",
+            "Review effort 2/5"
+          ],
+          "number": 7,
           "state": "OPEN",
           "title": "chore: add DevOps-Factory AI workflows",
           "user": {

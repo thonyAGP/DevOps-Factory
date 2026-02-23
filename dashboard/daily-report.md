@@ -2,7 +2,7 @@
 - **16** projects monitored
 - **0/16** fully configured
 - **0** AI fix PR(s) pending merge
-- **1** CI failure(s)
+- **0** CI failure(s)
 - **0%** avg security score
 - **0/16** repos with AI code review
 - **0%** avg quality score (perf, a11y, coverage, release)
@@ -11,11 +11,6 @@
 - **Compliance**: 8/100 avg, 0% review coverage, 0/17 branch protected
 
 ## Per Project
-
-### Email_Assistant :x:
-- **Health**: 29/100
-- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22297381575))
-- **Open PRs**: 2
 
 ### claude-cli-wrapper :white_circle:
 - **Health**: 44/100
@@ -86,6 +81,11 @@
 - **Health**: 59/100
 - **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/21775816387))
 - **Open PRs**: 1
+
+### Email_Assistant :white_check_mark:
+- **Health**: 59/100
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22306968530))
+- **Open PRs**: 2
 
 ### livret-au-marais :white_check_mark:
 - **Health**: 59/100
