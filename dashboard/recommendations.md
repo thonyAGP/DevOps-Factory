@@ -1,12 +1,12 @@
 # Template Recommendations Report
 
-Generated: 2/23/2026, 5:11:11 PM
+Generated: 2/23/2026, 6:56:53 PM
 
 ## Executive Summary
 
 - **Total Recommendations**: 225
-- **Critical**: 11 | **High**: 156 | **Medium**: 31 | **Low**: 27
-- **Average Health Score**: 24.2/100
+- **Critical**: 11 | **High**: 156 | **Medium**: 32 | **Low**: 26
+- **Average Health Score**: 22.8/100
 - **Top Template**: gitleaks.yml (17 repos)
 - **Most Improved Repo**: au-marais
 
@@ -272,6 +272,7 @@ Generated: 2/23/2026, 5:11:11 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
+- **CI Failure Rate**: 100%
 
 #### High Priority
 
@@ -816,9 +817,9 @@ Generated: 2/23/2026, 5:11:11 PM
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
 
-### lecteur-magic
+### magic-migration
 
-- **Health Score**: 35/100
+- **Health Score**: 0/100
 - **Stack**: node
 - **CI Failure Rate**: 35%
 
@@ -840,7 +841,7 @@ Generated: 2/23/2026, 5:11:11 PM
   - Effort: minimal
   - Impact: Automatically labels issues and PRs for better organization
 - **coverage-tracking.yml**
-  - Reason: Low health score (35) - needs test coverage tracking
+  - Reason: Low health score (0) - needs test coverage tracking
   - Effort: moderate
   - Impact: Tracks test coverage over time and prevents regressions
 - **renovate.json**
@@ -872,7 +873,7 @@ Generated: 2/23/2026, 5:11:11 PM
   - Effort: minimal
   - Impact: Ensures TypeScript coverage and type safety
 
-#### Low Priority
+#### Medium Priority
 
 - **stale-bot.yml**
   - Reason: Auto-close stale issues and PRs

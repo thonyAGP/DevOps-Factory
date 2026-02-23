@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-23T17:11:11.537Z",
+  "timestamp": "2026-02-23T18:56:53.119Z",
   "repos": [
     {
       "repo": "au-marais",
@@ -390,7 +390,7 @@
       "fullName": "thonyAGP/ClubMedRoomAssignment",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 0,
+      "ciFailureRate": 100,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -1228,9 +1228,9 @@
       ]
     },
     {
-      "repo": "lecteur-magic",
-      "fullName": "thonyAGP/lecteur-magic",
-      "healthScore": 35,
+      "repo": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
+      "healthScore": 0,
       "stack": "node",
       "ciFailureRate": 35,
       "recommendations": [
@@ -1258,7 +1258,7 @@
         {
           "template": "coverage-tracking.yml",
           "priority": "high",
-          "reason": "Low health score (35) - needs test coverage tracking",
+          "reason": "Low health score (0) - needs test coverage tracking",
           "effort": "moderate",
           "impact": "Tracks test coverage over time and prevents regressions"
         },
@@ -1313,7 +1313,7 @@
         },
         {
           "template": "stale-bot.yml",
-          "priority": "low",
+          "priority": "medium",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
@@ -1798,8 +1798,8 @@
     "totalRecommendations": 225,
     "criticalCount": 11,
     "highCount": 156,
-    "mediumCount": 31,
-    "lowCount": 27,
+    "mediumCount": 32,
+    "lowCount": 26,
     "topTemplates": [
       {
         "template": "gitleaks.yml",
@@ -1843,6 +1843,6 @@
       }
     ],
     "topRepo": "au-marais",
-    "avgHealthScore": 24.2
+    "avgHealthScore": 22.8
   }
 }

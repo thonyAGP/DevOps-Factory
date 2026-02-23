@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 2/23/2026, 5:11:10 PM
+**Generated**: 2/23/2026, 6:56:52 PM
 **Period**: 30-day window
 
 ## Summary
@@ -24,8 +24,8 @@
 | CasaSync | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | ClubMedRoomAssignment | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Email_Assistant | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
-| lecteur-magic | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | livret-au-marais | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
+| magic-migration | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Utilitaire_Webapp | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | claude-cli-wrapper | 🔴 0/100 | ✗ | ✗ | ✗ | 0 |
 | claude-launcher | 🔴 0/100 | ✗ | ✗ | ✗ | 0 |
@@ -45,8 +45,8 @@
 - CasaSync
 - ClubMedRoomAssignment
 - Email_Assistant
-- lecteur-magic
 - livret-au-marais
+- magic-migration
 - Utilitaire_Webapp
 - claude-cli-wrapper
 - claude-launcher
@@ -81,8 +81,8 @@
 - CasaSync: 20/100
 - ClubMedRoomAssignment: 20/100
 - Email_Assistant: 20/100
-- lecteur-magic: 20/100
 - livret-au-marais: 20/100
+- magic-migration: 20/100
 - Utilitaire_Webapp: 20/100
 - claude-cli-wrapper: 0/100
 - claude-launcher: 0/100
@@ -184,20 +184,6 @@
 
 ---
 
-### lecteur-magic | ❌ NEEDS WORK (20/100)
-
-**Full Name**: `thonyAGP/lecteur-magic`
-
-**Controls**:
-- Branch Protection: ✗
-- Code Review Required: ✗
-- CI/CD Enabled: ✓
-- Security Findings: 0 alerts
-
-**Recent Deployments**: 9 successful deploys in 30 days
-
----
-
 ### livret-au-marais | ❌ NEEDS WORK (20/100)
 
 **Full Name**: `thonyAGP/livret-au-marais`
@@ -209,6 +195,20 @@
 - Security Findings: 0 alerts
 
 **Recent Deployments**: 2 successful deploys in 30 days
+
+---
+
+### magic-migration | ❌ NEEDS WORK (20/100)
+
+**Full Name**: `thonyAGP/magic-migration`
+
+**Controls**:
+- Branch Protection: ✗
+- Code Review Required: ✗
+- CI/CD Enabled: ✓
+- Security Findings: 0 alerts
+
+**Recent Deployments**: 9 successful deploys in 30 days
 
 ---
 

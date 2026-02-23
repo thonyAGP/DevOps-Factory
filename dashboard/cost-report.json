@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-23T17:10:21.363Z",
+  "timestamp": "2026-02-23T18:56:11.040Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -45,8 +45,8 @@
       ]
     },
     {
-      "repo": "lecteur-magic",
-      "fullName": "thonyAGP/lecteur-magic",
+      "repo": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
       "totalMinutes": 100,
       "totalRuns": 100,
       "workflows": [
@@ -117,6 +117,33 @@
       ]
     },
     {
+      "repo": "ClubMedRoomAssignment",
+      "fullName": "thonyAGP/ClubMedRoomAssignment",
+      "totalMinutes": 35,
+      "totalRuns": 35,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 32,
+          "totalMinutes": 32,
+          "avgMinutes": 1,
+          "failedRuns": 32,
+          "wastedMinutes": 32
+        },
+        {
+          "name": ".github/workflows/ci.yml",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        }
+      ],
+      "recommendations": [
+        "CI: 100% failure rate (32min wasted). Fix root cause."
+      ]
+    },
+    {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
       "totalMinutes": 19,
@@ -165,14 +192,6 @@
     {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
-      "totalMinutes": 0,
-      "totalRuns": 0,
-      "workflows": [],
-      "recommendations": []
-    },
-    {
-      "repo": "ClubMedRoomAssignment",
-      "fullName": "thonyAGP/ClubMedRoomAssignment",
       "totalMinutes": 0,
       "totalRuns": 0,
       "workflows": [],
@@ -244,12 +263,12 @@
     }
   ],
   "summary": {
-    "totalMinutes": 555,
-    "totalRuns": 246,
-    "wastedMinutes": 171,
+    "totalMinutes": 590,
+    "totalRuns": 281,
+    "wastedMinutes": 206,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
-    "totalRecommendations": 6,
+    "totalRecommendations": 7,
     "estimatedMonthlyCost": 0
   }
 }
