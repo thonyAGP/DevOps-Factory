@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "lastUpdated": "2026-02-21T10:00:00.000Z",
+  "patterns": [
+    {
+      "id": "prisma-client-not-generated",
+      "category": "ci-failure",
+      "signature": "Cannot find module '.prisma/client'",
+      "fix": "Add 'prisma generate' before build",
+      "fixType": "package-json",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "prettier-format-error",
+      "category": "ci-failure",
+      "signature": "Run Prettier with --write to fix",
+      "fix": "Run 'prettier --write .' on affected files",
+      "fixType": "command",
+      "repos_seen": ["thonyAGP/CasaSync"],
+      "occurrences": 1,
+      "confidence": 0.95
+    }
+  ]
+}

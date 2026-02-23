@@ -111,13 +111,15 @@ const getTargetRepos = (
 
   let targets = report.analyses.filter((a) => a.stack !== 'unknown');
 
-  if (args.stack && args.stack.length > 0) {
-    targets = targets.filter((a) => args.stack!.includes(a.stack));
+  const { stack: stackFilter, repos: reposFilter } = args;
+
+  if (stackFilter && stackFilter.length > 0) {
+    targets = targets.filter((a) => stackFilter.includes(a.stack));
   }
 
-  if (args.repos && args.repos.length > 0) {
+  if (reposFilter && reposFilter.length > 0) {
     targets = targets.filter(
-      (a) => args.repos!.includes(a.name) || args.repos!.includes(a.fullName)
+      (a) => reposFilter.includes(a.name) || reposFilter.includes(a.fullName)
     );
   }
 
