@@ -1,6 +1,6 @@
 {
   "repo": "thonyAGP/lecteur-magic",
-  "lastUpdated": "2026-02-18T23:31:40.854Z",
+  "lastUpdated": "2026-02-23T07:12:10.471Z",
   "snapshots": [
     {
       "date": "2026-02-18",
@@ -224,6 +224,230 @@
       "overall": {
         "progressPercent": 86,
         "totalFiles": 10602
+      }
+    },
+    {
+      "date": "2026-02-23",
+      "backend": {
+        "modules": [
+          {
+            "name": "Articles",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": true,
+            "handlerCount": 3
+          },
+          {
+            "name": "CaisseDevises",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": true,
+            "handlerCount": 2
+          },
+          {
+            "name": "Change",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 5
+          },
+          {
+            "name": "ChangementCompte",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 14
+          },
+          {
+            "name": "Coffre",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": true,
+            "handlerCount": 3
+          },
+          {
+            "name": "Depot",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 2
+          },
+          {
+            "name": "Details",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": true,
+            "handlerCount": 3
+          },
+          {
+            "name": "Devises",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": true,
+            "handlerCount": 3
+          },
+          {
+            "name": "DevisesRef",
+            "hasCommands": false,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 2
+          },
+          {
+            "name": "Divers",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 8
+          },
+          {
+            "name": "EasyCheckOut",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": true,
+            "handlerCount": 7
+          },
+          {
+            "name": "Ecarts",
+            "hasCommands": false,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 1
+          },
+          {
+            "name": "Extrait",
+            "hasCommands": false,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 9
+          },
+          {
+            "name": "EzCard",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 6
+          },
+          {
+            "name": "Factures",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 2
+          },
+          {
+            "name": "Garanties",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 6
+          },
+          {
+            "name": "Identification",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 5
+          },
+          {
+            "name": "Members",
+            "hasCommands": false,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 1
+          },
+          {
+            "name": "Menus",
+            "hasCommands": false,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 4
+          },
+          {
+            "name": "Parametres",
+            "hasCommands": false,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 2
+          },
+          {
+            "name": "PrinterManagement",
+            "hasCommands": true,
+            "hasQueries": false,
+            "hasValidators": false,
+            "handlerCount": 1
+          },
+          {
+            "name": "Sessions",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": true,
+            "handlerCount": 3
+          },
+          {
+            "name": "Solde",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 3
+          },
+          {
+            "name": "Telephone",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 4
+          },
+          {
+            "name": "Utilitaires",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 10
+          },
+          {
+            "name": "Ventes",
+            "hasCommands": true,
+            "hasQueries": true,
+            "hasValidators": true,
+            "handlerCount": 20
+          },
+          {
+            "name": "Zooms",
+            "hasCommands": false,
+            "hasQueries": true,
+            "hasValidators": false,
+            "handlerCount": 10
+          }
+        ],
+        "moduleCount": 27,
+        "totalHandlers": 139,
+        "domainEntities": 39,
+        "apiEndpointFiles": 1,
+        "testFiles": 44,
+        "testCount": 132,
+        "csFiles": 282
+      },
+      "frontend": {
+        "reactComponents": 456,
+        "tsFiles": 825,
+        "htmlPages": 15,
+        "hasStorybook": true
+      },
+      "specs": {
+        "totalSpecs": 8088,
+        "annotatedPrograms": 7,
+        "migrationPatterns": 17,
+        "migrationDocs": 936
+      },
+      "tools": {
+        "csprojCount": 11,
+        "kbIndexed": true,
+        "mcpServer": true
+      },
+      "overall": {
+        "progressPercent": 86,
+        "totalFiles": 12437
       }
     }
   ]
