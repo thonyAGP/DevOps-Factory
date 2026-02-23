@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-22T20:37:38.595Z",
+  "timestamp": "2026-02-23T01:20:39.733Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -50,33 +50,33 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 59,
-          "totalMinutes": 59,
+          "runs": 72,
+          "totalMinutes": 72,
           "avgMinutes": 1,
-          "failedRuns": 47,
-          "wastedMinutes": 47
+          "failedRuns": 60,
+          "wastedMinutes": 60
         },
         {
           "name": "Deploy OpenSpec Viewer",
-          "runs": 25,
-          "totalMinutes": 25,
+          "runs": 19,
+          "totalMinutes": 19,
           "avgMinutes": 1,
-          "failedRuns": 9,
-          "wastedMinutes": 9
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Daily Drift Report",
-          "runs": 16,
-          "totalMinutes": 16,
+          "runs": 9,
+          "totalMinutes": 9,
           "avgMinutes": 1,
-          "failedRuns": 11,
-          "wastedMinutes": 11
+          "failedRuns": 4,
+          "wastedMinutes": 4
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 80% failure rate (47min wasted). Fix root cause.",
-        "Deploy OpenSpec Viewer: 36% failure rate (9min wasted). Fix root cause.",
-        "Daily Drift Report: 69% failure rate (11min wasted). Fix root cause."
+        "Deploy Migration Dashboard: 83% failure rate (60min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 72 very short runs. Consider concurrency groups or debouncing.",
+        "Daily Drift Report: 44% failure rate (4min wasted). Fix root cause."
       ]
     },
     {
@@ -262,7 +262,7 @@
   "summary": {
     "totalMinutes": 599,
     "totalRuns": 279,
-    "wastedMinutes": 201,
+    "wastedMinutes": 199,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 6,
