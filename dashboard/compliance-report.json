@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-23T18:56:52.440Z",
+  "timestamp": "2026-02-23T20:57:52.288Z",
   "period": "30-day window",
   "repos": [
     {
@@ -238,17 +238,17 @@
           "number": 3,
           "reviewers": [],
           "title": "Claude/resume work za jh8"
-        },
-        {
-          "author": "thonyAGP",
-          "labels": [],
-          "mergedAt": "2026-01-24T19:27:09Z",
-          "number": 2,
-          "reviewers": [],
-          "title": "feat: add Google/Microsoft Calendar integration"
         }
       ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-02-23T18:56:43Z",
+          "workflow": "Monitor Production"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/Email_Assistant",
@@ -552,14 +552,6 @@
           "status": "success",
           "timestamp": "2026-02-19T11:29:24Z",
           "workflow": "Qodo Merge - PR Review"
-        },
-        {
-          "branch": "feat/phase-11-quality-hardening",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "fab443057878cde7f5d69f2e3eb28e6cff375271",
-          "status": "success",
-          "timestamp": "2026-02-19T11:29:24Z",
-          "workflow": "CI"
         }
       ],
       "securityFindings": [],
@@ -664,14 +656,6 @@
           "status": "success",
           "timestamp": "2026-02-22T07:06:15Z",
           "workflow": "Deploy OpenSpec Viewer"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/magic-migration",
-          "sha": "ea6e57d8af747e544456d9fecf15f37c92cb365f",
-          "status": "success",
-          "timestamp": "2026-02-22T06:56:38Z",
-          "workflow": "Daily Drift Report"
         }
       ],
       "securityFindings": [],
@@ -813,10 +797,10 @@
   ],
   "summary": {
     "totalRepos": 17,
-    "totalPRsMerged": 11,
+    "totalPRsMerged": 10,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 63,
+    "totalDeployments": 62,
     "avgComplianceScore": 8,
     "reposWithBranchProtection": 0,
     "reposWithCI": 7
