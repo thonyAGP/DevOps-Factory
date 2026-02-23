@@ -1,8 +1,10 @@
-# DevOps-Factory: Claude Code PR Review Template
-# Triggered on PR open/update - reviews code with Claude Haiku (cost-efficient)
-# Escalates to Sonnet for complex changes (>500 lines or security-sensitive)
+# DevOps-Factory: AI Code Review Template (CodeRabbit)
+# REPLACED: Was using ANTHROPIC_API_KEY (incompatible with Claude Max subscription)
+# Now uses CodeRabbit (free, no API key needed) for automated PR reviews
+#
+# Setup: Add .coderabbit.yaml to repo root (see coderabbit-config.yaml template)
 
-name: Claude Code Review
+name: AI Code Review
 
 on:
   pull_request:
@@ -11,28 +13,25 @@ on:
 permissions:
   contents: read
   pull-requests: write
-  issues: read
 
 concurrency:
-  group: claude-review-${{ github.event.pull_request.number }}
+  group: ai-review-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
   review:
     runs-on: ubuntu-latest
-    # Skip if no API key configured, or if bot PR (except ai-fix labeled)
+    # Skip bot PRs (except ai-fix labeled)
     if: |
-      secrets.ANTHROPIC_API_KEY != '' && (
-        github.event.pull_request.user.login != 'github-actions[bot]' ||
-        contains(github.event.pull_request.labels.*.name, 'ai-fix')
-      )
+      github.event.pull_request.user.login != 'github-actions[bot]' ||
+      contains(github.event.pull_request.labels.*.name, 'ai-fix')
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Get PR diff
-        id: diff
+      - name: Get PR stats
+        id: stats
         run: |
           DIFF=$(gh pr diff ${{ github.event.pull_request.number }} --repo ${{ github.repository }})
           LINES=$(echo "$DIFF" | wc -l)
@@ -40,42 +39,38 @@ jobs:
 
           # Detect security-sensitive files
           SECURITY_FILES=$(echo "$DIFF" | grep -E '^\+\+\+.*\.(env|secret|key|auth|password|token|credential)' || true)
-          if [ -n "$SECURITY_FILES" ]; then
-            echo "security_sensitive=true" >> $GITHUB_OUTPUT
-          else
-            echo "security_sensitive=false" >> $GITHUB_OUTPUT
-          fi
+          echo "security_sensitive=$( [ -n "$SECURITY_FILES" ] && echo true || echo false )" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Determine model
-        id: model
+      - name: Security warning
+        if: steps.stats.outputs.security_sensitive == 'true'
         run: |
-          LINES=${{ steps.diff.outputs.lines }}
-          SECURITY=${{ steps.diff.outputs.security_sensitive }}
-          if [ "$LINES" -gt 500 ] || [ "$SECURITY" = "true" ]; then
-            echo "model=claude-sonnet-4-5-20250929" >> $GITHUB_OUTPUT
-            echo "reason=Large diff ($LINES lines) or security-sensitive files" >> $GITHUB_OUTPUT
-          else
-            echo "model=claude-haiku-4-5-20251001" >> $GITHUB_OUTPUT
-            echo "reason=Standard review ($LINES lines)" >> $GITHUB_OUTPUT
-          fi
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --body "## Security Notice
 
-      - name: Claude Review
-        uses: anthropics/claude-code-action@v1
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          model: ${{ steps.model.outputs.model }}
-          direct_prompt: |
-            Review this PR focusing on:
-            1. **Bugs**: Logic errors, edge cases, potential runtime errors
-            2. **Security**: Injection, XSS, hardcoded secrets, OWASP top 10
-            3. **Performance**: N+1 queries, unnecessary re-renders, memory leaks
-            4. **TypeScript**: any types, missing error handling, unsafe assertions
+          This PR modifies security-sensitive files. Please ensure:
+          - No secrets or credentials are committed
+          - Environment variables are properly documented
+          - Auth logic changes have been reviewed by a human
 
-            Model selection: ${{ steps.model.outputs.reason }}
+          _Detected by DevOps-Factory security scanner_"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            Be concise. Only comment on actual issues, not style preferences.
-            Use inline suggestions with ```suggestion blocks when possible.
-            If the code looks good, say so briefly.
-          timeout_minutes: 10
+      - name: PR size label
+        run: |
+          LINES=${{ steps.stats.outputs.lines }}
+          if [ "$LINES" -lt 50 ]; then SIZE="XS";
+          elif [ "$LINES" -lt 200 ]; then SIZE="S";
+          elif [ "$LINES" -lt 500 ]; then SIZE="M";
+          elif [ "$LINES" -lt 1000 ]; then SIZE="L";
+          else SIZE="XL"; fi
+          gh pr edit ${{ github.event.pull_request.number }} --add-label "size/$SIZE"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+# NOTE: CodeRabbit reviews are triggered automatically via .coderabbit.yaml
+# No API key required - CodeRabbit app handles review as a GitHub App
+# Config template: templates/coderabbit-config.yaml

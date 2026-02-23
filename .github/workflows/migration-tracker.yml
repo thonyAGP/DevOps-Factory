@@ -2,7 +2,7 @@ name: Migration Tracker
 
 on:
   schedule:
-    - cron: '0 6 * * 1' # Every Monday at 6am UTC
+    - cron: '30 5 * * 1' # Monday 5:30am UTC (staggered)
   workflow_dispatch: {}
 
 permissions:

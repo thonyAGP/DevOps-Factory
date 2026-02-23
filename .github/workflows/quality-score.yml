@@ -9,6 +9,10 @@ permissions:
   contents: write
   issues: write
 
+concurrency:
+  group: data-writer-quality
+  cancel-in-progress: false
+
 jobs:
   quality:
     runs-on: ubuntu-latest

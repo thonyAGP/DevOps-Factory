@@ -2,7 +2,7 @@ name: Test Scaffold Generator
 
 on:
   schedule:
-    - cron: '0 7 * * 1' # Monday 7am UTC (after coverage audit)
+    - cron: '0 6 * * 1' # Monday 6am UTC (after coverage audit, staggered)
   workflow_dispatch:
 
 permissions:

@@ -1,6 +1,8 @@
-# DevOps-Factory: Self-Healing CI Template
-# Triggered when CI fails on main/master - analyzes logs and creates a fix PR
-# Uses Claude Sonnet for code analysis and fix generation
+# DevOps-Factory: Self-Healing CI Template (Gemini-powered)
+# REPLACED: Was using ANTHROPIC_API_KEY (incompatible with Claude Max subscription)
+# Now uses Gemini API (free tier) for CI failure analysis and auto-fix
+#
+# Required secret: GEMINI_API_KEY (free at https://aistudio.google.com/apikey)
 
 name: Self-Healing CI
 
@@ -15,10 +17,14 @@ permissions:
   pull-requests: write
   actions: read
 
+concurrency:
+  group: self-heal-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: true
+
 jobs:
   analyze-and-fix:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'failure' && secrets.ANTHROPIC_API_KEY != ''
+    if: github.event.workflow_run.conclusion == 'failure' && vars.SELF_HEAL_ENABLED == 'true'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,118 +37,82 @@ jobs:
           RUN_ID=${{ github.event.workflow_run.id }}
 
           # Get failed jobs
-          JOBS=$(gh api repos/${{ github.repository }}/actions/runs/$RUN_ID/jobs --jq '.jobs[] | select(.conclusion == "failure")')
-
-          # Get logs for failed jobs
-          FAILED_JOBS=$(echo "$JOBS" | jq -r '.name')
+          FAILED_JOBS=$(gh api repos/${{ github.repository }}/actions/runs/$RUN_ID/jobs \
+            --jq '[.jobs[] | select(.conclusion == "failure") | .name] | join(", ")')
           echo "failed_jobs=$FAILED_JOBS" >> $GITHUB_OUTPUT
 
-          # Download logs
+          # Download and trim logs
           gh run view $RUN_ID --log-failed --repo ${{ github.repository }} > /tmp/ci-logs.txt 2>&1 || true
+          tail -400 /tmp/ci-logs.txt > /tmp/ci-logs-trimmed.txt
 
-          # Trim to last 200 lines per job (avoid token bloat)
-          tail -600 /tmp/ci-logs.txt > /tmp/ci-logs-trimmed.txt
+          # Extract error summary
+          grep -iE '(error|fail|exception|cannot find|not found|unexpected)' /tmp/ci-logs.txt | head -30 > /tmp/error-summary.txt || true
+          {
+            echo "error_summary<<EOF"
+            cat /tmp/error-summary.txt
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create fix branch
-        id: branch
+      - name: Analyze with Gemini
+        id: analysis
+        if: env.GEMINI_KEY != ''
+        env:
+          GEMINI_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          BRANCH="ai-fix/ci-$(date +%Y%m%d-%H%M%S)"
-          git checkout -b "$BRANCH"
-          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          LOGS=$(cat /tmp/ci-logs-trimmed.txt | head -c 8000)
 
-      - name: Claude Fix
-        uses: anthropics/claude-code-action@v1
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          model: claude-sonnet-4-5-20250929
-          direct_prompt: |
-            The CI pipeline has failed. Analyze the error logs below and fix the issue.
+          PROMPT="Analyze this CI failure and suggest a fix. Be concise.
 
-            ## Failed jobs
-            ${{ steps.logs.outputs.failed_jobs }}
+          Failed jobs: ${{ steps.logs.outputs.failed_jobs }}
 
-            ## Error logs (last 600 lines)
-            $(cat /tmp/ci-logs-trimmed.txt)
+          Error logs:
+          $LOGS
 
-            ## Instructions
-            1. Identify the root cause of the CI failure
-            2. Make the minimal fix needed to resolve it
-            3. Do NOT make unrelated changes
-            4. If the fix requires a dependency update, update package.json/lockfile
-            5. If you cannot determine the fix with confidence, create a detailed issue instead
+          Respond with JSON: {\"root_cause\": \"...\", \"fix_description\": \"...\", \"fix_type\": \"typescript|test|lint|dependency|config|unknown\", \"confidence\": 0.0-1.0}"
 
-            Common CI failures:
-            - TypeScript errors: fix type issues
-            - Test failures: fix the test or the code it tests
-            - Lint errors: fix the lint violations
-            - Build errors: fix import/export issues
-            - Dependency issues: update or pin versions
-          timeout_minutes: 15
-          allowed_tools: "Edit,Write,Read,Glob,Grep,Bash"
+          RESPONSE=$(curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$GEMINI_KEY" \
+            -H 'Content-Type: application/json' \
+            -d "$(jq -n --arg p "$PROMPT" '{contents: [{parts: [{text: $p}]}]}')")
 
-      - name: Check for changes
-        id: changes
+          echo "$RESPONSE" | jq -r '.candidates[0].content.parts[0].text' > /tmp/analysis.txt
+
+          CONFIDENCE=$(jq -r '.confidence // 0' /tmp/analysis.txt 2>/dev/null || echo "0")
+          echo "confidence=$CONFIDENCE" >> $GITHUB_OUTPUT
+
+          FIX_TYPE=$(jq -r '.fix_type // "unknown"' /tmp/analysis.txt 2>/dev/null || echo "unknown")
+          echo "fix_type=$FIX_TYPE" >> $GITHUB_OUTPUT
+
+      - name: Create diagnostic issue
         run: |
-          if git diff --quiet; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-          else
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+          ANALYSIS=""
+          if [ -f /tmp/analysis.txt ]; then
+            ANALYSIS=$(cat /tmp/analysis.txt)
           fi
 
-      - name: Commit and create PR
-        if: steps.changes.outputs.has_changes == 'true'
-        run: |
-          git config user.name "DevOps Factory Bot"
-          git config user.email "devops-factory[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "fix(ci): auto-fix CI failure
-
-          Failed workflow: ${{ github.event.workflow_run.name }}
-          Run: ${{ github.event.workflow_run.html_url }}
-
-          Co-Authored-By: Claude Sonnet <noreply@anthropic.com>"
-
-          git push origin ${{ steps.branch.outputs.branch }}
-
-          gh pr create \
-            --title "fix(ci): Auto-fix CI failure" \
-            --body "$(cat <<'EOF'
-          ## Auto-Fix PR
-
-          **Triggered by**: CI failure on `${{ github.event.workflow_run.head_branch }}`
-          **Failed run**: ${{ github.event.workflow_run.html_url }}
-          **Failed jobs**: ${{ steps.logs.outputs.failed_jobs }}
-
-          This PR was automatically generated by DevOps-Factory self-healing.
-          Please review the changes before merging.
-
-          > Generated by AI - review carefully before merge
-
-          EOF
-          )" \
-            --label "ai-fix" \
-            --head "${{ steps.branch.outputs.branch }}"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create issue if no fix found
-        if: steps.changes.outputs.has_changes == 'false'
-        run: |
           gh issue create \
-            --title "CI failure needs manual investigation" \
-            --body "$(cat <<'EOF'
-          ## CI Failure - Manual Investigation Needed
+            --title "CI failure: ${{ steps.logs.outputs.failed_jobs }}" \
+            --body "$(cat <<EOF
+          ## CI Failure Analysis
 
           **Failed run**: ${{ github.event.workflow_run.html_url }}
           **Failed jobs**: ${{ steps.logs.outputs.failed_jobs }}
+          **Branch**: ${{ github.event.workflow_run.head_branch }}
 
-          Self-healing could not determine a fix automatically.
-          Please investigate the failed workflow run.
+          ### Error Summary
+          \`\`\`
+          ${{ steps.logs.outputs.error_summary }}
+          \`\`\`
 
+          ### AI Analysis
+          $ANALYSIS
+
+          ---
+          _Generated by DevOps-Factory self-healing (Gemini)_
           EOF
           )" \
-            --label "bug,needs-triage"
+            --label "bug,ai-analysis"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true

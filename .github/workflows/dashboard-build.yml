@@ -17,6 +17,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: data-writer-dashboard
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest

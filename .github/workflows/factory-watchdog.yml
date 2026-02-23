@@ -12,6 +12,10 @@ permissions:
   issues: write
   actions: write
 
+concurrency:
+  group: data-writer-watchdog
+  cancel-in-progress: false
+
 jobs:
   watchdog:
     runs-on: ubuntu-latest

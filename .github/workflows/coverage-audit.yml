@@ -2,7 +2,7 @@ name: Coverage Audit
 
 on:
   schedule:
-    - cron: '0 6 * * 1' # Monday 6am UTC
+    - cron: '0 5 * * 1' # Monday 5am UTC (staggered)
   workflow_dispatch:
 
 permissions:

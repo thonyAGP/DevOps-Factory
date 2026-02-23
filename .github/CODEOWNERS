@@ -1,0 +1,19 @@
+# DevOps-Factory Code Owners
+# Protects critical files from accidental modification
+
+# Workflows - require review before changes
+.github/workflows/ @thonyAGP
+
+# Core configuration
+factory.config.ts @thonyAGP
+tsconfig.json @thonyAGP
+vitest.config.ts @thonyAGP
+
+# Security-sensitive files
+.github/CODEOWNERS @thonyAGP
+
+# Templates deployed to other repos
+templates/ @thonyAGP
+
+# Core modules
+scripts/core/ @thonyAGP
