@@ -5087,27 +5087,196 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-23T12:44:17.069Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
-      "status": "warning"
+      "timestamp": "2026-02-23T12:41:57.746Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "au-marais",
+      "details": "PR #3 already open",
+      "status": "info"
     },
     {
-      "timestamp": "2026-02-23T12:44:20.426Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
+      "timestamp": "2026-02-23T12:42:08.616Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "CasaSync",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:42:14.984Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "claude-cli-wrapper",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:42:31.423Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "claude-launcher",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:42:42.025Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
       "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
+      "details": "PR #12 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:42:48.702Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Email_Assistant",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:42:54.878Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "lecteur-magic",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:43:00.525Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "livret-au-marais",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:43:05.938Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:43:12.402Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "MCP_Quota_Claude",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:43:31.531Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Site_1970_Plomberie",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:43:37.676Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Site_Greg-Assainissement",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:43:42.099Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "SqlConnectionTest",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:43:48.377Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "statusline",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:43:54.283Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "test_codingmenace",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:44:00.053Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Thumbfast",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:44:05.911Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Utilitaire_Webapp",
+      "details": "PR #1 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T12:44:05.921Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 25 repos (17 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T12:44:40.003Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "16 projects, avg health 46",
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-23T12:44:20.429Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
+      "timestamp": "2026-02-23T12:45:34.515Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 17 critical issues",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-23T12:46:32.161Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 0%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T12:46:53.772Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 132.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T12:47:08.205Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 590min total, 205min wasted, ~$0/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-23T12:47:49.016Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 8/100, branch protection 0/17, CI 7/17, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-23T12:47:49.687Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "225 recommendations across 25 repos (11 critical, 156 high)",
+      "status": "success"
     }
   ]
 }
