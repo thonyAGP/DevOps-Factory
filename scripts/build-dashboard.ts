@@ -456,7 +456,7 @@ const getMigrationSection = (): string => {
       <div class="module-grid" style="margin-top:0.5rem">
         ${moduleChips}
       </div>
-      <div style="font-size:0.7rem;color:#6e7681;margin-top:0.4rem">
+      <div style="font-size:0.7rem;color:#848d97;margin-top:0.4rem">
         Green border = Commands | Blue border = Queries
       </div>
     </details>
@@ -508,7 +508,7 @@ const getSourceColor = (source: string): string => {
   const colors: Record<string, string> = {
     'scan-and-configure': '#58a6ff',
     'ci-health-check': '#f97316',
-    'factory-watchdog': '#a855f7',
+    'factory-watchdog': '#b87eff',
     'build-dashboard': '#22c55e',
     'quality-score': '#06b6d4',
     'self-heal': '#ec4899',
@@ -557,7 +557,7 @@ const getFactoryStatusSection = (): string => {
     .map(
       (e) => `
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="${e.timestamp}">${formatTimeAgo(e.timestamp)}</td>
+              <td style="color:#848d97;white-space:nowrap;font-size:0.75rem" title="${e.timestamp}">${formatTimeAgo(e.timestamp)}</td>
               <td><span class="source-badge" style="background:${getSourceColor(e.source)}20;color:${getSourceColor(e.source)};border:1px solid ${getSourceColor(e.source)}40">${getSourceLabel(e.source)}</span></td>
               <td style="color:${getStatusColor(e.status)}">${getStatusIcon(e.status)}</td>
               <td>${e.target ? `<strong>${e.target}</strong> - ` : ''}${e.details}</td>
@@ -596,7 +596,7 @@ const getFactoryStatusSection = (): string => {
       <summary>Recent Activity (${reversed.length} events)</summary>
       <table class="timeline-table">
         <tbody>
-          ${timelineRows || '<tr><td colspan="4" style="text-align:center;color:#6e7681">No activity recorded yet</td></tr>'}
+          ${timelineRows || '<tr><td colspan="4" style="text-align:center;color:#848d97">No activity recorded yet</td></tr>'}
         </tbody>
       </table>
     </details>
@@ -703,7 +703,7 @@ const getDoraSection = (): string => {
 
     const s = dora.summary;
     const ratingColor = (r: string) =>
-      r === 'elite' ? '#22c55e' : r === 'high' ? '#3b82f6' : r === 'medium' ? '#f59e0b' : '#ef4444';
+      r === 'elite' ? '#22c55e' : r === 'high' ? '#60a5fa' : r === 'medium' ? '#f59e0b' : '#ef4444';
 
     const repoRows = dora.repos
       .map(
@@ -956,7 +956,7 @@ const getRecommendationsSection = (): string => {
         <div class="rec-label">High</div>
       </div>
       <div class="rec-card">
-        <div class="rec-value" style="color:#3b82f6">${s.mediumCount}</div>
+        <div class="rec-value" style="color:#60a5fa">${s.mediumCount}</div>
         <div class="rec-label">Medium</div>
       </div>
       <div class="rec-card">

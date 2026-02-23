@@ -4634,6 +4634,276 @@
       "action": "dashboard-built",
       "details": "16 projects, avg health 46",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.215Z",
+      "source": "scan-and-configure",
+      "action": "scan_repos",
+      "details": "Scanned 5 repositories",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.228Z",
+      "source": "ci-health-check",
+      "action": "health_check",
+      "details": "Detected failing build",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.236Z",
+      "source": "factory-watchdog",
+      "action": "check_quota",
+      "details": "Quota at 80%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.242Z",
+      "source": "build-dashboard",
+      "action": "generate",
+      "details": "Dashboard generated",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.249Z",
+      "source": "self-heal",
+      "action": "fix_applied",
+      "target": "repo-name",
+      "details": "Fixed prettier formatting",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.258Z",
+      "source": "quality-score",
+      "action": "calculate",
+      "details": "Score updated to 92%",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.264Z",
+      "source": "scan-and-configure",
+      "action": "test",
+      "details": "Test entry",
+      "status": "success"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_1",
+      "details": "Scanned repo 1",
+      "status": "success",
+      "timestamp": "2026-02-23T09:45:16.273Z"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_2",
+      "details": "Scanned repo 2",
+      "status": "success",
+      "timestamp": "2026-02-23T09:45:16.273Z"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_3",
+      "details": "Scanned repo 3",
+      "status": "success",
+      "timestamp": "2026-02-23T09:45:16.273Z"
+    },
+    {
+      "source": "factory-watchdog",
+      "action": "a",
+      "details": "A",
+      "status": "info",
+      "timestamp": "2026-02-23T09:45:16.280Z"
+    },
+    {
+      "source": "factory-watchdog",
+      "action": "b",
+      "details": "B",
+      "status": "info",
+      "timestamp": "2026-02-23T09:45:16.280Z"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.301Z",
+      "source": "ci-health-check",
+      "action": "latest_test",
+      "details": "Latest test entry",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.309Z",
+      "source": "scan-and-configure",
+      "action": "filter_test",
+      "details": "Testing filter",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.336Z",
+      "source": "scan-and-configure",
+      "action": "stats_test",
+      "details": "Stats test",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.346Z",
+      "source": "factory-watchdog",
+      "action": "24h_test",
+      "details": "24h test entry",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:16.356Z",
+      "source": "scan-and-configure",
+      "action": "struct_test",
+      "target": "test-target",
+      "details": "Testing structure",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T09:45:17.422Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "225 recommendations across 26 repos (11 critical, 155 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T10:09:50.903Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "16 projects, avg health 46",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-23T10:11:25.716Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "16 projects, avg health 46",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.127Z",
+      "source": "scan-and-configure",
+      "action": "scan_repos",
+      "details": "Scanned 5 repositories",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.138Z",
+      "source": "ci-health-check",
+      "action": "health_check",
+      "details": "Detected failing build",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.146Z",
+      "source": "factory-watchdog",
+      "action": "check_quota",
+      "details": "Quota at 80%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.153Z",
+      "source": "build-dashboard",
+      "action": "generate",
+      "details": "Dashboard generated",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.160Z",
+      "source": "self-heal",
+      "action": "fix_applied",
+      "target": "repo-name",
+      "details": "Fixed prettier formatting",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.170Z",
+      "source": "quality-score",
+      "action": "calculate",
+      "details": "Score updated to 92%",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.189Z",
+      "source": "scan-and-configure",
+      "action": "test",
+      "details": "Test entry",
+      "status": "success"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_1",
+      "details": "Scanned repo 1",
+      "status": "success",
+      "timestamp": "2026-02-23T10:13:09.198Z"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_2",
+      "details": "Scanned repo 2",
+      "status": "success",
+      "timestamp": "2026-02-23T10:13:09.198Z"
+    },
+    {
+      "source": "scan-and-configure",
+      "action": "scan_3",
+      "details": "Scanned repo 3",
+      "status": "success",
+      "timestamp": "2026-02-23T10:13:09.198Z"
+    },
+    {
+      "source": "factory-watchdog",
+      "action": "a",
+      "details": "A",
+      "status": "info",
+      "timestamp": "2026-02-23T10:13:09.258Z"
+    },
+    {
+      "source": "factory-watchdog",
+      "action": "b",
+      "details": "B",
+      "status": "info",
+      "timestamp": "2026-02-23T10:13:09.258Z"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.279Z",
+      "source": "ci-health-check",
+      "action": "latest_test",
+      "details": "Latest test entry",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.288Z",
+      "source": "scan-and-configure",
+      "action": "filter_test",
+      "details": "Testing filter",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.312Z",
+      "source": "scan-and-configure",
+      "action": "stats_test",
+      "details": "Stats test",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.320Z",
+      "source": "factory-watchdog",
+      "action": "24h_test",
+      "details": "24h test entry",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:09.329Z",
+      "source": "scan-and-configure",
+      "action": "struct_test",
+      "target": "test-target",
+      "details": "Testing structure",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T10:13:12.169Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "225 recommendations across 26 repos (11 critical, 155 high)",
+      "status": "success"
     }
   ]
 }

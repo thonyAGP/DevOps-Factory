@@ -8,12 +8,12 @@ export const getStyles = (): string => `
       --border-subtle: #21262d;
       --text-primary: #c9d1d9;
       --text-secondary: #8b949e;
-      --text-muted: #6e7681;
+      --text-muted: #848d97;
       --accent-blue: #58a6ff;
       --accent-green: #22c55e;
       --accent-red: #ef4444;
       --accent-orange: #f59e0b;
-      --accent-purple: #a855f7;
+      --accent-purple: #b87eff;
       --accent-cyan: #06b6d4;
       --accent-pink: #ec4899;
       --accent-teal: #34d399;
@@ -291,7 +291,7 @@ export const getStyles = (): string => `
 
     /* Migration */
     .migration { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; }
-    .migration h2 { color: #8b5cf6; font-size: 1rem; margin-bottom: 0.8rem; }
+    .migration h2 { color: #a78bfa; font-size: 1rem; margin-bottom: 0.8rem; }
     .migration-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.8rem; margin-bottom: 1rem; }
     .migration-card { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.8rem 1rem; }
     .migration-card h3 { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.03em; }
