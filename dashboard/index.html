@@ -5,98 +5,176 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevOps Factory - Dashboard</title>
   <style>
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-tertiary: #0d1117;
+      --border: #30363d;
+      --border-active: #58a6ff;
+      --border-subtle: #21262d;
+      --text-primary: #c9d1d9;
+      --text-secondary: #8b949e;
+      --text-muted: #6e7681;
+      --accent-blue: #58a6ff;
+      --accent-green: #22c55e;
+      --accent-red: #ef4444;
+      --accent-orange: #f59e0b;
+      --accent-purple: #a855f7;
+      --accent-cyan: #06b6d4;
+      --accent-pink: #ec4899;
+      --accent-teal: #34d399;
+    }
+    [data-theme="light"] {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f6f8fa;
+      --bg-tertiary: #ffffff;
+      --border: #d0d7de;
+      --border-active: #0969da;
+      --border-subtle: #d8dee4;
+      --text-primary: #1f2937;
+      --text-secondary: #57606a;
+      --text-muted: #6e7781;
+      --accent-blue: #0969da;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0d1117;
-      color: #c9d1d9;
-      padding: 2rem;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 1rem 2rem;
     }
-    a { color: #58a6ff; text-decoration: none; }
+    a { color: var(--accent-blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
+    /* Skip link for a11y */
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--accent-blue); color: #fff;
+      padding: 0.5rem 1rem; z-index: 1000;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { left: 0; }
+
+    /* Sticky nav */
+    .sticky-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 0 -1rem 1.5rem;
+    }
+    .sticky-nav h1 {
+      color: var(--accent-blue); font-size: 1.2rem;
+      margin-right: auto;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex; gap: 0.4rem; flex-wrap: wrap;
+    }
+    .nav-links a {
+      font-size: 0.7rem; padding: 3px 8px;
+      border-radius: 4px; background: var(--bg-tertiary);
+      border: 1px solid var(--border); color: var(--text-secondary);
+    }
+    .nav-links a:hover { border-color: var(--accent-blue); color: var(--accent-blue); text-decoration: none; }
+
+    /* Controls bar */
+    .controls {
+      display: flex; gap: 0.5rem; align-items: center;
+      flex-wrap: wrap; margin-bottom: 1rem;
+    }
+    .search-input {
+      background: var(--bg-tertiary); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.4rem 0.8rem;
+      color: var(--text-primary); font-size: 0.85rem;
+      flex: 1; min-width: 180px; max-width: 300px;
+    }
+    .search-input:focus { outline: none; border-color: var(--accent-blue); }
+    .search-input::placeholder { color: var(--text-muted); }
+    .sort-select {
+      background: var(--bg-tertiary); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.4rem 0.6rem;
+      color: var(--text-primary); font-size: 0.8rem;
+    }
+    .filter-btn {
+      background: var(--bg-tertiary); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.35rem 0.7rem;
+      color: var(--text-secondary); font-size: 0.75rem;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--accent-blue); color: var(--accent-blue);
+      background: rgba(88,166,255,0.1);
+    }
+    .theme-toggle, .export-btn {
+      background: var(--bg-tertiary); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.35rem 0.7rem;
+      color: var(--text-secondary); font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .theme-toggle:hover, .export-btn:hover {
+      border-color: var(--accent-blue); color: var(--accent-blue);
+    }
+
     /* Header */
-    .header { text-align: center; margin-bottom: 1.5rem; }
-    .header h1 { color: #58a6ff; font-size: 1.8rem; }
-    .header .timestamp { color: #8b949e; font-size: 0.8rem; margin-top: 0.3rem; }
+    .header { text-align: center; margin-bottom: 1rem; padding-top: 0.5rem; }
+    .header .timestamp { color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.3rem; }
 
     /* Summary strip */
     .summary {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
+      display: flex; gap: 0.8rem; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 1.5rem;
     }
     .summary-item {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 0.8rem 1.5rem;
-      text-align: center;
-      min-width: 120px;
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.6rem 1.2rem;
+      text-align: center; min-width: 100px;
     }
-    .summary-item .number { font-size: 1.6rem; font-weight: bold; }
-    .summary-item .label { color: #8b949e; font-size: 0.75rem; }
+    .summary-item .number { font-size: 1.4rem; font-weight: bold; }
+    .summary-item .label { color: var(--text-secondary); font-size: 0.7rem; }
 
-    /* All clear banner */
+    /* All clear */
     .all-clear {
-      background: rgba(34,197,94,0.1);
-      border: 1px solid #22c55e;
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      color: #22c55e;
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
+      background: rgba(34,197,94,0.1); border: 1px solid var(--accent-green);
+      border-radius: 8px; padding: 1rem; text-align: center;
+      color: var(--accent-green); font-weight: bold; margin-bottom: 1.5rem;
     }
 
     /* Section titles */
     .section-title {
-      font-size: 1rem;
-      color: #8b949e;
-      margin-bottom: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      font-size: 1rem; color: var(--text-secondary);
+      margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;
     }
-    .section-title.alert { color: #ef4444; }
+    .section-title.alert { color: var(--accent-red); }
 
-    /* Alert cards - problems */
+    /* Section cards (shared) */
+    .section-card {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem;
+    }
+    .section-card h2 { font-size: 1rem; margin-bottom: 0.8rem; }
+
+    /* Alert cards */
     .alerts { margin-bottom: 2rem; }
     .alert-card {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-left: 4px solid #ef4444;
-      border-radius: 8px;
-      padding: 1rem 1.2rem;
-      margin-bottom: 0.8rem;
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-left: 4px solid var(--accent-red);
+      border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 0.8rem;
     }
-    .alert-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.6rem;
-    }
-    .issue-list {
-      list-style: none;
-      padding: 0;
-    }
+    .alert-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+    .issue-list { list-style: none; padding: 0; }
     .issue-list li {
-      padding: 0.3rem 0;
-      padding-left: 1.2rem;
-      position: relative;
-      font-size: 0.9rem;
+      padding: 0.3rem 0; padding-left: 1.2rem;
+      position: relative; font-size: 0.9rem;
     }
-    .issue-list li::before {
-      content: "\26A0";
-      position: absolute;
-      left: 0;
-    }
+    .issue-list li::before { content: "\26A0"; position: absolute; left: 0; }
 
-    /* OK cards - compact expandable */
+    /* OK cards */
     .ok-section { margin-bottom: 2rem; }
     .ok-grid {
       display: grid;
@@ -104,30 +182,22 @@
       gap: 0.5rem;
     }
     .ok-card {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      overflow: hidden;
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden;
     }
     .ok-card summary {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1rem;
-      cursor: pointer;
-      list-style: none;
-      user-select: none;
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1rem; cursor: pointer;
+      list-style: none; user-select: none;
     }
     .ok-card summary::-webkit-details-marker { display: none; }
     .ok-card summary .health-score { margin-left: auto; font-size: 0.9rem; font-weight: bold; }
     .ok-card summary canvas { flex-shrink: 0; }
-    .ok-card[open] { border-color: #58a6ff; }
-    .ok-detail { padding: 0 1rem 0.8rem; border-top: 1px solid #21262d; }
+    .ok-card[open] { border-color: var(--border-active); }
+    .ok-detail { padding: 0 1rem 0.8rem; border-top: 1px solid var(--border-subtle); }
     .ok-detail .metric {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.3rem 0;
-      font-size: 0.85rem;
+      display: flex; justify-content: space-between;
+      padding: 0.3rem 0; font-size: 0.85rem;
     }
 
     /* Shared */
@@ -139,388 +209,186 @@
     .badge-dotnet { background: #512bd4; color: #fff; }
     .badge-fastify { background: #000; color: #fff; }
     .badge-astro { background: #ff5d01; color: #fff; }
-    .metric-label { color: #8b949e; }
+    .metric-label { color: var(--text-secondary); }
+    .val { font-weight: bold; }
+
+    /* Progress bar */
+    .progress-bar {
+      background: var(--border-subtle); border-radius: 4px;
+      height: 8px; margin-top: 0.5rem; overflow: hidden;
+    }
+    .progress-bar .fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
 
     /* Trends */
     .trends {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem;
     }
-    .trends h2 { color: #58a6ff; font-size: 1rem; margin-bottom: 0.8rem; }
+    .trends h2 { color: var(--accent-blue); font-size: 1rem; margin-bottom: 0.8rem; }
     .trends canvas { max-height: 220px; }
 
-    /* Migration section */
-    .migration {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-    .migration h2 { color: #8b5cf6; font-size: 1rem; margin-bottom: 0.8rem; }
-    .migration-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 0.8rem;
-      margin-bottom: 1rem;
-    }
-    .migration-card {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.8rem 1rem;
-    }
-    .migration-card h3 {
-      font-size: 0.85rem;
-      color: #8b949e;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-    .migration-stat {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.2rem 0;
-      font-size: 0.85rem;
-    }
-    .migration-stat .val { font-weight: bold; }
-    .progress-bar {
-      background: #21262d;
-      border-radius: 4px;
-      height: 8px;
-      margin-top: 0.5rem;
-      overflow: hidden;
-    }
-    .progress-bar .fill {
-      height: 100%;
-      border-radius: 4px;
-      transition: width 0.3s;
-    }
-    .module-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin-top: 0.5rem;
-    }
-    .module-chip {
-      font-size: 0.7rem;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: rgba(139,92,246,0.15);
-      color: #a78bfa;
-      border: 1px solid rgba(139,92,246,0.3);
-    }
-    .module-chip.has-cmd { border-left: 2px solid #22c55e; }
-    .module-chip.has-qry { border-right: 2px solid #58a6ff; }
+    /* Factory status */
+    .factory-status { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; }
+    .factory-status h2 { color: var(--accent-purple); font-size: 1rem; margin-bottom: 0.8rem; }
+    .factory-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem; }
+    .factory-health-card { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.8rem 1rem; border-left: 3px solid; }
+    .factory-health-indicator { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; border-radius: 6px; margin-bottom: 0.6rem; }
+    .factory-health-detail .metric { display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.85rem; }
+    .factory-stats-card { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.8rem 1rem; }
+    .factory-stats-card h3 { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.03em; }
+    .factory-stats-card .metric { display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.85rem; }
+    .activity-timeline { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; overflow: hidden; }
+    .activity-timeline summary { padding: 0.7rem 1rem; cursor: pointer; color: var(--text-secondary); font-size: 0.85rem; user-select: none; }
+    .activity-timeline[open] { border-color: var(--accent-purple); }
+    .timeline-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .timeline-table td { padding: 0.4rem 0.6rem; border-top: 1px solid var(--border-subtle); vertical-align: middle; }
+    .source-badge { font-size: 0.65rem; padding: 1px 6px; border-radius: 4px; white-space: nowrap; }
 
-    /* Factory Status */
-    .factory-status {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-    .factory-status h2 { color: #a855f7; font-size: 1rem; margin-bottom: 0.8rem; }
-    .factory-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.8rem;
-      margin-bottom: 0.8rem;
-    }
-    @media (max-width: 700px) { .factory-grid { grid-template-columns: 1fr; } }
-    .factory-health-card {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.8rem 1rem;
-      border-left: 3px solid;
-    }
-    .factory-health-indicator {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.5rem 0.8rem;
-      border-radius: 6px;
-      margin-bottom: 0.6rem;
-    }
-    .factory-health-detail .metric {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.25rem 0;
-      font-size: 0.85rem;
-    }
-    .factory-stats-card {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.8rem 1rem;
-    }
-    .factory-stats-card h3 {
-      font-size: 0.85rem;
-      color: #8b949e;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-    .factory-stats-card .metric {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.25rem 0;
-      font-size: 0.85rem;
-    }
-    .factory-stats-card .val { font-weight: bold; }
-    .activity-timeline {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    .activity-timeline summary {
-      padding: 0.7rem 1rem;
-      cursor: pointer;
-      color: #8b949e;
-      font-size: 0.85rem;
-      user-select: none;
-    }
-    .activity-timeline[open] { border-color: #a855f7; }
-    .timeline-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.8rem;
-    }
-    .timeline-table td {
-      padding: 0.4rem 0.6rem;
-      border-top: 1px solid #21262d;
-      vertical-align: middle;
-    }
-    .source-badge {
-      font-size: 0.65rem;
-      padding: 1px 6px;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-
-    /* Security Posture */
-    .security-posture {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
+    /* Security & Performance posture */
+    .security-posture, .performance-posture { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; }
     .security-posture h2 { color: #f97316; font-size: 1rem; margin-bottom: 0.8rem; }
-    .security-grid {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 0.8rem;
-      align-items: start;
-    }
-    @media (max-width: 600px) { .security-grid { grid-template-columns: 1fr; } }
-    .security-score-card {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-left: 3px solid;
-      border-radius: 6px;
-      padding: 1rem;
-      text-align: center;
-    }
+    .performance-posture h2 { color: var(--accent-cyan); font-size: 1rem; margin-bottom: 0.8rem; }
+    .security-grid { display: grid; grid-template-columns: 140px 1fr; gap: 0.8rem; align-items: start; }
+    .security-score-card { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-left: 3px solid; border-radius: 6px; padding: 1rem; text-align: center; }
     .security-score-value { font-size: 2rem; font-weight: bold; }
-    .security-score-label { font-size: 0.75rem; color: #8b949e; margin-top: 0.2rem; }
-    .security-metrics-card {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.8rem 1rem;
-    }
-    .security-metric {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.3rem 0;
-      font-size: 0.85rem;
-    }
+    .security-score-label { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    .security-metrics-card { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.8rem 1rem; }
+    .security-metric { display: flex; align-items: center; gap: 0.6rem; padding: 0.3rem 0; font-size: 0.85rem; }
     .security-metric .metric-label { min-width: 120px; }
 
-    /* Performance & Quality */
-    .performance-posture {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-    .performance-posture h2 { color: #06b6d4; font-size: 1rem; margin-bottom: 0.8rem; }
-
-    /* DORA Metrics */
-    .dora-section {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
+    /* DORA */
+    .dora-section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; }
     .dora-section h2 { color: #a78bfa; font-size: 1rem; margin-bottom: 0.8rem; }
-    .dora-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 0.6rem;
-      margin-bottom: 0.8rem;
-    }
-    .dora-card {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.8rem;
-      text-align: center;
-    }
+    .dora-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.6rem; margin-bottom: 0.8rem; }
+    .dora-card { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.8rem; text-align: center; }
     .dora-card .dora-value { font-size: 1.4rem; font-weight: bold; }
-    .dora-card .dora-label { font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem; }
-    .dora-rating {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.7rem;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    .dora-repo-list {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.6rem 0.8rem;
-      font-size: 0.8rem;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-    .dora-repo-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.25rem 0;
-      border-bottom: 1px solid #21262d;
-    }
+    .dora-card .dora-label { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    .dora-rating { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; }
+    .dora-repo-list { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.6rem 0.8rem; font-size: 0.8rem; max-height: 200px; overflow-y: auto; }
+    .dora-repo-row { display: flex; justify-content: space-between; padding: 0.25rem 0; border-bottom: 1px solid var(--border-subtle); }
     .dora-repo-row:last-child { border-bottom: none; }
 
-    /* Cost Monitor */
-    .cost-section {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-    .cost-section h2 { color: #34d399; font-size: 1rem; margin-bottom: 0.8rem; }
-    .cost-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 0.6rem;
-      margin-bottom: 0.8rem;
-    }
-    .cost-card {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.8rem;
-      text-align: center;
-    }
+    /* Cost */
+    .cost-section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; }
+    .cost-section h2 { color: var(--accent-teal); font-size: 1rem; margin-bottom: 0.8rem; }
+    .cost-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.6rem; margin-bottom: 0.8rem; }
+    .cost-card { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.8rem; text-align: center; }
     .cost-card .cost-value { font-size: 1.4rem; font-weight: bold; }
-    .cost-card .cost-label { font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem; }
-    .cost-recs {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.6rem 0.8rem;
-      font-size: 0.8rem;
-    }
-    .cost-recs ul { margin: 0; padding-left: 1.2rem; }
-    .cost-recs li { padding: 0.15rem 0; color: #c9d1d9; }
-    .compliance-section {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-    .compliance-section h2 { color: #f59e0b; font-size: 1rem; margin-bottom: 0.8rem; }
-    .compliance-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 0.6rem;
-      margin-bottom: 0.8rem;
-    }
-    .compliance-card {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.8rem;
-      text-align: center;
-    }
+    .cost-card .cost-label { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    .cost-recs, .compliance-gaps, .rec-gaps { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.6rem 0.8rem; font-size: 0.8rem; }
+    .cost-recs ul, .compliance-gaps ul, .rec-gaps ul { margin: 0; padding-left: 1.2rem; }
+    .cost-recs li, .compliance-gaps li, .rec-gaps li { padding: 0.15rem 0; color: var(--text-primary); }
+
+    /* Compliance */
+    .compliance-section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; }
+    .compliance-section h2 { color: var(--accent-orange); font-size: 1rem; margin-bottom: 0.8rem; }
+    .compliance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.6rem; margin-bottom: 0.8rem; }
+    .compliance-card { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.8rem; text-align: center; }
     .compliance-card .compliance-value { font-size: 1.4rem; font-weight: bold; }
-    .compliance-card .compliance-label { font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem; }
-    .compliance-gaps {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.6rem 0.8rem;
-      font-size: 0.8rem;
-    }
-    .compliance-gaps ul { margin: 0; padding-left: 1.2rem; }
-    .compliance-gaps li { padding: 0.15rem 0; color: #c9d1d9; }
-    .rec-section {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
+    .compliance-card .compliance-label { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.2rem; }
+
+    /* Recommendations */
+    .rec-section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; }
     .rec-section h2 { color: #3b82f6; font-size: 1rem; margin-bottom: 0.8rem; }
-    .rec-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 0.6rem;
-      margin-bottom: 0.8rem;
-    }
-    .rec-card {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.8rem;
-      text-align: center;
-    }
+    .rec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.6rem; margin-bottom: 0.8rem; }
+    .rec-card { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.8rem; text-align: center; }
     .rec-card .rec-value { font-size: 1.4rem; font-weight: bold; }
-    .rec-card .rec-label { font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem; }
-    .rec-gaps {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 6px;
-      padding: 0.6rem 0.8rem;
-      font-size: 0.8rem;
+    .rec-card .rec-label { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.2rem; }
+
+    /* Migration */
+    .migration { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; }
+    .migration h2 { color: #8b5cf6; font-size: 1rem; margin-bottom: 0.8rem; }
+    .migration-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.8rem; margin-bottom: 1rem; }
+    .migration-card { background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.8rem 1rem; }
+    .migration-card h3 { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.03em; }
+    .migration-stat { display: flex; justify-content: space-between; padding: 0.2rem 0; font-size: 0.85rem; }
+    .module-grid { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
+    .module-chip { font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
+    .module-chip.has-cmd { border-left: 2px solid var(--accent-green); }
+    .module-chip.has-qry { border-right: 2px solid var(--accent-blue); }
+
+    /* Back to top */
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--accent-blue); color: #fff;
+      border: none; border-radius: 50%;
+      width: 40px; height: 40px; font-size: 1.2rem;
+      cursor: pointer; opacity: 0; transition: opacity 0.3s;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 50;
     }
-    .rec-gaps ul { margin: 0; padding-left: 1.2rem; }
-    .rec-gaps li { padding: 0.15rem 0; color: #c9d1d9; }
-  </style>
+    .back-to-top.visible { opacity: 1; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body { padding: 0 0.5rem 1rem; }
+      .sticky-nav { padding: 0.4rem 0.5rem; }
+      .sticky-nav h1 { font-size: 1rem; }
+      .nav-links { display: none; }
+      .factory-grid { grid-template-columns: 1fr; }
+      .security-grid { grid-template-columns: 1fr; }
+      .ok-grid { grid-template-columns: 1fr; }
+      .summary { gap: 0.4rem; }
+      .summary-item { min-width: 80px; padding: 0.5rem 0.8rem; }
+      .summary-item .number { font-size: 1.1rem; }
+      .controls { flex-direction: column; align-items: stretch; }
+      .search-input { max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .summary-item { min-width: 70px; padding: 0.4rem 0.6rem; }
+      .summary-item .number { font-size: 1rem; }
+      .summary-item .label { font-size: 0.6rem; }
+    }
+</style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="sticky-nav" aria-label="Dashboard navigation">
+    <h1>DevOps Factory</h1>
+    <div class="nav-links">
+      <a href="#factory-status">Status</a>
+      <a href="#security">Security</a>
+      <a href="#dora">DORA</a>
+      <a href="#cost">Cost</a>
+      <a href="#projects">Projects</a>
+      <a href="#trends">Trends</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">Light</button>
+  </nav>
+
+  <main id="main-content">
   <div class="header">
-    <h1>DevOps Factory Dashboard</h1>
-    <div class="timestamp">Last updated: 22-02-2026 15:09 CET</div>
+    <div class="timestamp">Last updated: 23-02-2026 10:22 CET</div>
   </div>
 
-  <div class="summary">
+  <section class="controls" aria-label="Dashboard controls">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search projects..." aria-label="Search projects">
+    <select class="sort-select" id="sortSelect" aria-label="Sort projects">
+      <option value="name">Sort: Name</option>
+      <option value="health-desc">Sort: Health (high first)</option>
+      <option value="health-asc">Sort: Health (low first)</option>
+      <option value="stack">Sort: Stack</option>
+    </select>
+    <button class="filter-btn active" data-stack="all">All</button>
+    <button class="filter-btn" data-stack="dotnet">dotnet</button>
+    <button class="filter-btn" data-stack="nextjs">nextjs</button>
+    <button class="filter-btn" data-stack="node">node</button>
+    <button class="export-btn" id="exportBtn" aria-label="Export as CSV">Export CSV</button>
+  </section>
+
+  <section class="summary" aria-label="Summary metrics">
     <div class="summary-item">
       <div class="number">16</div>
       <div class="label">Projects</div>
     </div>
     <div class="summary-item">
-      <div class="number" style="color: #ef4444">49</div>
+      <div class="number" style="color: #ef4444">46</div>
       <div class="label">Avg Health</div>
     </div>
     <div class="summary-item">
-      <div class="number" style="color: #22c55e">0</div>
+      <div class="number" style="color: #ef4444">1</div>
       <div class="label">Failing CI</div>
     </div>
     <div class="summary-item">
@@ -551,8 +419,8 @@
           <span style="font-weight:bold;font-size:1.1rem">Issues Detected</span>
         </div>
         <div class="factory-health-detail">
-          <div class="metric"><span class="metric-label">Last activity</span><span>4m ago</span></div>
-          <div class="metric"><span class="metric-label">Events (24h)</span><span>368</span></div>
+          <div class="metric"><span class="metric-label">Last activity</span><span>just now</span></div>
+          <div class="metric"><span class="metric-label">Events (24h)</span><span>472</span></div>
           <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#ef4444">1</span></div>
           <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#f59e0b">1</span></div>
         </div>
@@ -564,7 +432,7 @@
         <div class="metric"><span class="metric-label">PRs created</span><span class="val">0</span></div>
         <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">0</span></div>
         <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#ef4444">1</span></div>
-        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">510</span></div>
+        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">637</span></div>
       </div>
     </div>
 
@@ -574,121 +442,121 @@
         <tbody>
           
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.844Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:51.092Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>225 recommendations across 26 repos (11 critical, 155 high)</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.291Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:50.003Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td><strong>test-target</strong> - Testing structure</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.288Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.992Z">just now</td>
               <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>24h test entry</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.286Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.982Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>Stats test</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.281Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.951Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>Testing filter</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.279Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.944Z">just now</td>
               <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>Latest test entry</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.273Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.924Z">just now</td>
               <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td>B</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.273Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.924Z">just now</td>
               <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td>A</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.272Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.918Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>Scanned repo 3</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.272Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.918Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>Scanned repo 2</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.272Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.918Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>Scanned repo 1</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.268Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.908Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>Test entry</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.266Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.902Z">just now</td>
               <td><span class="source-badge" style="background:#06b6d420;color:#06b6d4;border:1px solid #06b6d440">Quality</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>Score updated to 92%</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.264Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.894Z">just now</td>
               <td><span class="source-badge" style="background:#ec489920;color:#ec4899;border:1px solid #ec489940">Self-Heal</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td><strong>repo-name</strong> - Fixed prettier formatting</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.262Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.888Z">just now</td>
               <td><span class="source-badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e40">Dashboard</span></td>
               <td style="color:#8b949e">&#8505;&#65039;</td>
               <td>Dashboard generated</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.260Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.882Z">just now</td>
               <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
               <td style="color:#f59e0b">&#9888;&#65039;</td>
               <td>Quota at 80%</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.259Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.874Z">just now</td>
               <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
               <td style="color:#ef4444">&#10060;</td>
               <td>Detected failing build</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:05:48.255Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T09:21:49.861Z">just now</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>Scanned 5 repositories</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:04:56.961Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T08:59:32.249Z">22m ago</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td>225 recommendations across 26 repos (11 critical, 155 high)</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-22T14:04:56.378Z">4m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-02-23T08:59:29.493Z">22m ago</td>
               <td><span class="source-badge" style="background:#58a6ff20;color:#58a6ff;border:1px solid #58a6ff40">Scanner</span></td>
               <td style="color:#22c55e">&#9989;</td>
               <td><strong>test-target</strong> - Testing structure</td>
@@ -894,15 +762,46 @@
     <div class="rec-gaps"><strong style="color:#ef4444">Critical actions:</strong><ul><li>Livret_accueil_Au-Marais: No CI workflow detected</li><li>Site_Greg-Assainissement: No CI workflow detected</li><li>test_codingmenace: No CI workflow detected</li><li>Thumbfast: No CI workflow detected</li><li>claude-cli-wrapper: No CI workflow detected</li></ul></div>
   </div>
 
-  <div class="all-clear">All 16 projects are healthy</div>
-
   
 
+  
+  <div class="alerts">
+    <div class="section-title alert">Needs Attention (2)</div>
+    
+    <div class="alert-card" data-project="Email_Assistant" data-stack="node" data-health="29" data-ci="fail" style="border-left-color: #ef4444">
+      <div class="alert-header">
+        <div>
+          <span class="status-icon">&#10060;</span>
+          <strong>Email_Assistant</strong>
+          <span class="badge badge-node">node</span>
+        </div>
+        <div class="health-score" style="color: #ef4444">29</div>
+      </div>
+      <ul class="issue-list">
+        <li>CI failing <a href="https://github.com/thonyAGP/Email_Assistant/actions/runs/22297381575" target="_blank">(view run)</a></li>
+      </ul>
+    </div>
+
+    <div class="alert-card" data-project="Utilitaire_Webapp" data-stack="node" data-health="49" data-ci="pass" style="border-left-color: #f59e0b">
+      <div class="alert-header">
+        <div>
+          <span class="status-icon">&#9989;</span>
+          <strong>Utilitaire_Webapp</strong>
+          <span class="badge badge-node">node</span>
+        </div>
+        <div class="health-score" style="color: #ef4444">49</div>
+      </div>
+      <ul class="issue-list">
+        <li>6 open PRs (backlog growing)</li>
+      </ul>
+    </div>
+  </div>
+
   <div class="ok-section">
-    <div class="section-title">Healthy (16)</div>
+    <div class="section-title">Healthy (14)</div>
     <div class="ok-grid">
       
-    <details class="ok-card">
+    <details class="ok-card" data-project="au-marais" data-stack="nextjs" data-health="59" data-ci="pass">
       <summary>
         <span class="status-icon">&#9989;</span>
         <strong>au-marais</strong>
@@ -920,7 +819,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="CasaSync" data-stack="nextjs" data-health="54" data-ci="pass">
       <summary>
         <span class="status-icon">&#9989;</span>
         <strong>CasaSync</strong>
@@ -930,7 +829,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/CasaSync/actions/runs/22132524981" target="_blank">(view)</a></span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>3</span></div>
         <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
         <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
@@ -938,7 +837,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="claude-cli-wrapper" data-stack="node" data-health="44" data-ci="none">
       <summary>
         <span class="status-icon">&#9898;</span>
         <strong>claude-cli-wrapper</strong>
@@ -956,7 +855,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="claude-launcher" data-stack="dotnet" data-health="44" data-ci="none">
       <summary>
         <span class="status-icon">&#9898;</span>
         <strong>claude-launcher</strong>
@@ -974,25 +873,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
-      <summary>
-        <span class="status-icon">&#9989;</span>
-        <strong>Email_Assistant</strong>
-        <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #ef4444">59</span>
-        <canvas data-sparkline="Email_Assistant" width="60" height="20"></canvas>
-      </summary>
-      <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/Email_Assistant/actions/runs/22277310783" target="_blank">(view)</a></span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
-        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
-        <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
-        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
-      </div>
-    </details>
-
-    <details class="ok-card">
+    <details class="ok-card" data-project="lecteur-magic" data-stack="node" data-health="49" data-ci="none">
       <summary>
         <span class="status-icon">&#9898;</span>
         <strong>lecteur-magic</strong>
@@ -1001,7 +882,7 @@
         <canvas data-sparkline="lecteur-magic" width="60" height="20"></canvas>
       </summary>
       <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>none <a href="https://github.com/thonyAGP/lecteur-magic/actions/runs/22276810158" target="_blank">(view)</a></span></div>
+        <div class="metric"><span class="metric-label">CI</span><span>none <a href="https://github.com/thonyAGP/lecteur-magic/actions/runs/22296360643" target="_blank">(view)</a></span></div>
         <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
         <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
         <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
@@ -1010,7 +891,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="Livret_accueil_Au-Marais" data-stack="nextjs" data-health="44" data-ci="none">
       <summary>
         <span class="status-icon">&#9898;</span>
         <strong>Livret_accueil_Au-Marais</strong>
@@ -1028,7 +909,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="livret-au-marais" data-stack="nextjs" data-health="59" data-ci="pass">
       <summary>
         <span class="status-icon">&#9989;</span>
         <strong>livret-au-marais</strong>
@@ -1046,7 +927,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="MCP_Quota_Claude" data-stack="node" data-health="44" data-ci="none">
       <summary>
         <span class="status-icon">&#9898;</span>
         <strong>MCP_Quota_Claude</strong>
@@ -1056,7 +937,7 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
         <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
         <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
@@ -1064,7 +945,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="Site_1970_Plomberie" data-stack="node" data-health="44" data-ci="none">
       <summary>
         <span class="status-icon">&#9898;</span>
         <strong>Site_1970_Plomberie</strong>
@@ -1082,7 +963,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="Site_Greg-Assainissement" data-stack="nextjs" data-health="44" data-ci="none">
       <summary>
         <span class="status-icon">&#9898;</span>
         <strong>Site_Greg-Assainissement</strong>
@@ -1100,7 +981,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="SqlConnectionTest" data-stack="dotnet" data-health="44" data-ci="none">
       <summary>
         <span class="status-icon">&#9898;</span>
         <strong>SqlConnectionTest</strong>
@@ -1118,7 +999,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="statusline" data-stack="node" data-health="44" data-ci="none">
       <summary>
         <span class="status-icon">&#9898;</span>
         <strong>statusline</strong>
@@ -1136,7 +1017,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="test_codingmenace" data-stack="nextjs" data-health="44" data-ci="none">
       <summary>
         <span class="status-icon">&#9898;</span>
         <strong>test_codingmenace</strong>
@@ -1154,7 +1035,7 @@
       </div>
     </details>
 
-    <details class="ok-card">
+    <details class="ok-card" data-project="Thumbfast" data-stack="nextjs" data-health="44" data-ci="none">
       <summary>
         <span class="status-icon">&#9898;</span>
         <strong>Thumbfast</strong>
@@ -1164,28 +1045,10 @@
       </summary>
       <div class="ok-detail">
         <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>1</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>2</span></div>
         <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
         <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
-        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
-      </div>
-    </details>
-
-    <details class="ok-card">
-      <summary>
-        <span class="status-icon">&#9989;</span>
-        <strong>Utilitaire_Webapp</strong>
-        <span class="badge badge-node">node</span>
-        <span class="health-score" style="color: #ef4444">59</span>
-        <canvas data-sparkline="Utilitaire_Webapp" width="60" height="20"></canvas>
-      </summary>
-      <div class="ok-detail">
-        <div class="metric"><span class="metric-label">CI</span><span>pass <a href="https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250" target="_blank">(view)</a></span></div>
-        <div class="metric"><span class="metric-label">Open PRs</span><span>5</span></div>
-        <div class="metric"><span class="metric-label">Security</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
-        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
-        <div class="metric"><span class="metric-label">Quality</span><span>Husky</span></div>
         <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#ef4444">0% <small>(none)</small></span></div>
       </div>
     </details>
@@ -1351,5 +1214,128 @@
       })
       .catch(() => {});
   </script>
+
+  </main>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
+
+  
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('df-theme') || 'dark';
+    if (savedTheme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    if (themeToggle) {
+      themeToggle.textContent = savedTheme === 'light' ? 'Dark' : 'Light';
+      themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'light' ? '' : 'light';
+        document.documentElement.setAttribute('data-theme', next || '');
+        localStorage.setItem('df-theme', next || 'dark');
+        themeToggle.textContent = next === 'light' ? 'Dark' : 'Light';
+      });
+    }
+
+    // Search
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        const q = searchInput.value.toLowerCase();
+        document.querySelectorAll('[data-project]').forEach(el => {
+          const name = el.getAttribute('data-project').toLowerCase();
+          const stack = el.getAttribute('data-stack') || '';
+          el.style.display = (name.includes(q) || stack.includes(q)) ? '' : 'none';
+        });
+      });
+    }
+
+    // Stack filters
+    document.querySelectorAll('.filter-btn[data-stack]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isActive = btn.classList.toggle('active');
+        const stack = btn.getAttribute('data-stack');
+
+        if (stack === 'all') {
+          document.querySelectorAll('.filter-btn[data-stack]').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          document.querySelectorAll('[data-project]').forEach(el => el.style.display = '');
+          return;
+        }
+
+        document.querySelector('.filter-btn[data-stack="all"]')?.classList.remove('active');
+        const activeFilters = [...document.querySelectorAll('.filter-btn[data-stack].active')]
+          .map(b => b.getAttribute('data-stack'))
+          .filter(s => s !== 'all');
+
+        if (activeFilters.length === 0) {
+          document.querySelector('.filter-btn[data-stack="all"]')?.classList.add('active');
+          document.querySelectorAll('[data-project]').forEach(el => el.style.display = '');
+          return;
+        }
+
+        document.querySelectorAll('[data-project]').forEach(el => {
+          const s = el.getAttribute('data-stack');
+          el.style.display = activeFilters.includes(s) ? '' : 'none';
+        });
+      });
+    });
+
+    // Sort
+    const sortSelect = document.getElementById('sortSelect');
+    if (sortSelect) {
+      sortSelect.addEventListener('change', () => {
+        const grid = document.querySelector('.ok-grid');
+        const alertsContainer = document.querySelector('.alerts');
+        if (!grid) return;
+
+        const cards = [...grid.querySelectorAll('[data-project]')];
+        const sortBy = sortSelect.value;
+
+        cards.sort((a, b) => {
+          if (sortBy === 'name') return a.getAttribute('data-project').localeCompare(b.getAttribute('data-project'));
+          if (sortBy === 'health-asc') return Number(a.getAttribute('data-health')) - Number(b.getAttribute('data-health'));
+          if (sortBy === 'health-desc') return Number(b.getAttribute('data-health')) - Number(a.getAttribute('data-health'));
+          if (sortBy === 'stack') return (a.getAttribute('data-stack') || '').localeCompare(b.getAttribute('data-stack') || '');
+          return 0;
+        });
+
+        cards.forEach(card => grid.appendChild(card));
+      });
+    }
+
+    // Export CSV
+    const exportBtn = document.getElementById('exportBtn');
+    if (exportBtn) {
+      exportBtn.addEventListener('click', () => {
+        const rows = [['Project', 'Stack', 'Health', 'CI Status']];
+        document.querySelectorAll('[data-project]').forEach(el => {
+          rows.push([
+            el.getAttribute('data-project'),
+            el.getAttribute('data-stack') || '',
+            el.getAttribute('data-health') || '',
+            el.getAttribute('data-ci') || '',
+          ]);
+        });
+        const csv = rows.map(r => r.join(',')).join('\n');
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'devops-factory-export.csv';
+        a.click(); URL.revokeObjectURL(url);
+      });
+    }
+
+    // Back to top
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+      window.addEventListener('scroll', () => {
+        backToTop.classList.toggle('visible', window.scrollY > 400);
+      });
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+
 </body>
 </html>

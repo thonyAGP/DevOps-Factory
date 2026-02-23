@@ -1,6 +1,68 @@
 {
-  "timestamp": "2026-02-22T14:01:49.430Z",
+  "timestamp": "2026-02-23T09:22:17.828Z",
   "projects": [
+    {
+      "name": "Email_Assistant",
+      "fullName": "thonyAGP/Email_Assistant",
+      "stack": "node",
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "skipped",
+        "created_at": "2026-02-23T07:54:53Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22297381575",
+        "id": 22297381575,
+        "name": "Qodo Merge - PR Review"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-23T07:54:50Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/75",
+          "labels": [],
+          "number": 75,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:43:14Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/7",
+          "labels": [
+            "enhancement",
+            "Review effort 2/5"
+          ],
+          "number": 7,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 29,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
     {
       "name": "claude-cli-wrapper",
       "fullName": "thonyAGP/claude-cli-wrapper",
@@ -170,6 +232,17 @@
         "name": null
       },
       "openPRs": [
+        {
+          "created_at": "2026-02-23T07:55:54Z",
+          "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
         {
           "created_at": "2026-02-18T12:45:08Z",
           "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/1",
@@ -481,6 +554,17 @@
       },
       "openPRs": [
         {
+          "created_at": "2026-02-23T07:56:18Z",
+          "html_url": "https://github.com/thonyAGP/Thumbfast/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
           "created_at": "2026-02-18T12:47:56Z",
           "html_url": "https://github.com/thonyAGP/Thumbfast/pull/1",
           "labels": [],
@@ -520,17 +604,120 @@
       "stack": "node",
       "ciStatus": "none",
       "lastRun": {
-        "conclusion": "failure",
-        "created_at": "2026-02-22T12:06:14Z",
+        "conclusion": "success",
+        "created_at": "2026-02-23T07:13:10Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/lecteur-magic/actions/runs/22276810158",
-        "id": 22276810158,
-        "name": "Deploy Migration Dashboard"
+        "html_url": "https://github.com/thonyAGP/lecteur-magic/actions/runs/22296360643",
+        "id": 22296360643,
+        "name": "Daily Drift Report"
       },
       "openPRs": [
         {
           "created_at": "2026-02-18T12:43:41Z",
           "html_url": "https://github.com/thonyAGP/lecteur-magic/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 49,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Utilitaire_Webapp",
+      "fullName": "thonyAGP/Utilitaire_Webapp",
+      "stack": "node",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-19T21:51:38Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250",
+        "id": 22201584250,
+        "name": "CI"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-23T07:56:35Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/6",
+          "labels": [],
+          "number": 6,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T23:45:34Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T23:37:50Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T23:09:40Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T22:07:31Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:48:21Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/1",
           "labels": [],
           "number": 1,
           "state": "OPEN",
@@ -576,6 +763,17 @@
         "name": "CI"
       },
       "openPRs": [
+        {
+          "created_at": "2026-02-23T07:55:34Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
         {
           "created_at": "2026-02-18T23:08:57Z",
           "html_url": "https://github.com/thonyAGP/CasaSync/pull/2",
@@ -670,57 +868,6 @@
       "perfScore": 0
     },
     {
-      "name": "Email_Assistant",
-      "fullName": "thonyAGP/Email_Assistant",
-      "stack": "node",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-02-22T12:38:53Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22277310783",
-        "id": 22277310783,
-        "name": "Monitor Production"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T12:43:14Z",
-          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/7",
-          "labels": [
-            "enhancement",
-            "Review effort 2/5"
-          ],
-          "number": 7,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 59,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": true,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
       "name": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
       "stack": "nextjs",
@@ -737,98 +884,6 @@
         {
           "created_at": "2026-02-18T12:44:08Z",
           "html_url": "https://github.com/thonyAGP/livret-au-marais/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 59,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": true,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "Utilitaire_Webapp",
-      "fullName": "thonyAGP/Utilitaire_Webapp",
-      "stack": "node",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-02-19T21:51:38Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250",
-        "id": 22201584250,
-        "name": "CI"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-19T23:45:34Z",
-          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/5",
-          "labels": [],
-          "number": 5,
-          "state": "OPEN",
-          "title": "test: add AI-generated tests",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-19T23:37:50Z",
-          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/4",
-          "labels": [],
-          "number": 4,
-          "state": "OPEN",
-          "title": "test: add AI-generated tests",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-19T23:09:40Z",
-          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/3",
-          "labels": [],
-          "number": 3,
-          "state": "OPEN",
-          "title": "test: add AI-generated tests",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-19T22:07:31Z",
-          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/2",
-          "labels": [],
-          "number": 2,
-          "state": "OPEN",
-          "title": "test: add AI-generated tests",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:48:21Z",
-          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/1",
           "labels": [],
           "number": 1,
           "state": "OPEN",
