@@ -2,7 +2,7 @@
 - **16** projects monitored
 - **0/16** fully configured
 - **0** AI fix PR(s) pending merge
-- **0** CI failure(s)
+- **1** CI failure(s)
 - **0%** avg security score
 - **0/16** repos with AI code review
 - **0%** avg quality score (perf, a11y, coverage, release)
@@ -11,6 +11,11 @@
 - **Compliance**: 8/100 avg, 0% review coverage, 0/17 branch protected
 
 ## Per Project
+
+### Email_Assistant :x:
+- **Health**: 29/100
+- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22297381575))
+- **Open PRs**: 2
 
 ### claude-cli-wrapper :white_circle:
 - **Health**: 44/100
@@ -30,7 +35,7 @@
 ### MCP_Quota_Claude :white_circle:
 - **Health**: 44/100
 - **CI**: none ([view](null))
-- **Open PRs**: 1
+- **Open PRs**: 2
 
 ### Site_1970_Plomberie :white_circle:
 - **Health**: 44/100
@@ -60,35 +65,30 @@
 ### Thumbfast :white_circle:
 - **Health**: 44/100
 - **CI**: none ([view](null))
-- **Open PRs**: 1
+- **Open PRs**: 2
 
 ### lecteur-magic :white_circle:
 - **Health**: 49/100
-- **CI**: none ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22288087702))
+- **CI**: none ([view](https://github.com/thonyAGP/lecteur-magic/actions/runs/22296360643))
 - **Open PRs**: 1
+
+### Utilitaire_Webapp :white_check_mark:
+- **Health**: 49/100
+- **CI**: pass ([view](https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250))
+- **Open PRs**: 6
 
 ### CasaSync :white_check_mark:
 - **Health**: 54/100
 - **CI**: pass ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22132524981))
-- **Open PRs**: 2
+- **Open PRs**: 3
 
 ### au-marais :white_check_mark:
 - **Health**: 59/100
 - **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/21775816387))
 - **Open PRs**: 1
 
-### Email_Assistant :white_check_mark:
-- **Health**: 59/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22290144317))
-- **Open PRs**: 1
-
 ### livret-au-marais :white_check_mark:
 - **Health**: 59/100
 - **CI**: pass ([view](https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016))
 - **Open PRs**: 1
-
-### Utilitaire_Webapp :white_check_mark:
-- **Health**: 59/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250))
-- **Open PRs**: 5
 

@@ -4969,27 +4969,53 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-23T08:59:39.576Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Email_Assistant",
-      "details": "55 → 35 (-20pts)",
+      "timestamp": "2026-02-23T08:58:49.307Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "16 projects, avg health 46",
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-23T08:59:39.578Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "Lecteur_Magic",
-      "details": "35 → 55 (+20pts)",
+      "timestamp": "2026-02-23T08:59:38.109Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 17 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-23T09:00:27.809Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 0%, 0 drifted templates",
       "status": "success"
     },
     {
-      "timestamp": "2026-02-23T08:59:39.580Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 40/100, 0 excellent, 16 needs work, 1 drops, 1 improvements",
+      "timestamp": "2026-02-23T09:00:47.127Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 132.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-23T09:01:02.632Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 590min total, 205min wasted, ~$0/mo",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-23T09:01:39.017Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 8/100, branch protection 0/17, CI 7/17, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-23T09:01:39.650Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "225 recommendations across 25 repos (11 critical, 156 high)",
+      "status": "success"
     }
   ]
 }

@@ -456,11 +456,16 @@
   },
   {
     "date": "2026-02-23",
-    "avgHealth": 49,
-    "failingCI": 0,
-    "passingCI": 5,
-    "totalOpenPRs": 24,
+    "avgHealth": 46,
+    "failingCI": 1,
+    "passingCI": 4,
+    "totalOpenPRs": 29,
     "perProject": [
+      {
+        "name": "Email_Assistant",
+        "health": 29,
+        "ciStatus": "fail"
+      },
       {
         "name": "claude-cli-wrapper",
         "health": 44,
@@ -517,6 +522,11 @@
         "ciStatus": "none"
       },
       {
+        "name": "Utilitaire_Webapp",
+        "health": 49,
+        "ciStatus": "pass"
+      },
+      {
         "name": "CasaSync",
         "health": 54,
         "ciStatus": "pass"
@@ -527,17 +537,7 @@
         "ciStatus": "pass"
       },
       {
-        "name": "Email_Assistant",
-        "health": 59,
-        "ciStatus": "pass"
-      },
-      {
         "name": "livret-au-marais",
-        "health": 59,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "Utilitaire_Webapp",
         "health": 59,
         "ciStatus": "pass"
       }

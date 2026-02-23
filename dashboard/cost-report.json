@@ -1,23 +1,31 @@
 {
-  "timestamp": "2026-02-23T06:59:28.510Z",
+  "timestamp": "2026-02-23T09:01:02.630Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 327,
+      "totalMinutes": 323,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
           "runs": 26,
-          "totalMinutes": 245,
+          "totalMinutes": 240,
           "avgMinutes": 9,
-          "failedRuns": 8,
-          "wastedMinutes": 41
+          "failedRuns": 9,
+          "wastedMinutes": 46
         },
         {
           "name": "Post-Deploy Health Check",
-          "runs": 29,
+          "runs": 30,
+          "totalMinutes": 30,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Qodo Merge - PR Review",
+          "runs": 20,
           "totalMinutes": 29,
           "avgMinutes": 1,
           "failedRuns": 0,
@@ -25,23 +33,15 @@
         },
         {
           "name": "Monitor Production",
-          "runs": 27,
-          "totalMinutes": 27,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Qodo Merge - PR Review",
-          "runs": 18,
-          "totalMinutes": 26,
+          "runs": 24,
+          "totalMinutes": 24,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         }
       ],
       "recommendations": [
-        "CI: 31% failure rate (41min wasted). Fix root cause."
+        "CI: 35% failure rate (46min wasted). Fix root cause."
       ]
     },
     {
@@ -71,14 +71,14 @@
           "runs": 9,
           "totalMinutes": 9,
           "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
+          "failedRuns": 3,
+          "wastedMinutes": 3
         }
       ],
       "recommendations": [
         "Deploy Migration Dashboard: 83% failure rate (60min wasted). Fix root cause.",
         "Deploy Migration Dashboard: 72 very short runs. Consider concurrency groups or debouncing.",
-        "Daily Drift Report: 44% failure rate (4min wasted). Fix root cause."
+        "Daily Drift Report: 33% failure rate (3min wasted). Fix root cause."
       ]
     },
     {
@@ -147,38 +147,40 @@
     {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
-      "totalMinutes": 18,
-      "totalRuns": 13,
+      "totalMinutes": 19,
+      "totalRuns": 14,
       "workflows": [
         {
           "name": "CI",
-          "runs": 13,
-          "totalMinutes": 18,
+          "runs": 14,
+          "totalMinutes": 19,
           "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 7
+          "failedRuns": 5,
+          "wastedMinutes": 8
         }
       ],
       "recommendations": [
-        "CI: 31% failure rate (7min wasted). Fix root cause."
+        "CI: 36% failure rate (8min wasted). Fix root cause."
       ]
     },
     {
       "repo": "Utilitaire_Webapp",
       "fullName": "thonyAGP/Utilitaire_Webapp",
-      "totalMinutes": 5,
-      "totalRuns": 5,
+      "totalMinutes": 6,
+      "totalRuns": 6,
       "workflows": [
         {
           "name": "CI",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 6,
+          "totalMinutes": 6,
           "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
+          "failedRuns": 5,
+          "wastedMinutes": 5
         }
       ],
-      "recommendations": []
+      "recommendations": [
+        "CI: 83% failure rate (5min wasted). Fix root cause."
+      ]
     },
     {
       "repo": "claude-cli-wrapper",
@@ -262,12 +264,12 @@
     }
   ],
   "summary": {
-    "totalMinutes": 592,
-    "totalRuns": 279,
-    "wastedMinutes": 199,
+    "totalMinutes": 590,
+    "totalRuns": 281,
+    "wastedMinutes": 205,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
-    "totalRecommendations": 7,
+    "totalRecommendations": 8,
     "estimatedMonthlyCost": 0
   }
 }

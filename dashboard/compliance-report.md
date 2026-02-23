@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 2/23/2026, 7:00:03 AM
+**Generated**: 2/23/2026, 9:01:39 AM
 **Period**: 30-day window
 
 ## Summary
@@ -180,7 +180,7 @@
 - #3 - Claude/resume work za jh8 (by thonyAGP)
 - #2 - feat: add Google/Microsoft Calendar integration (by thonyAGP)
 
-**Recent Deployments**: 40 successful deploys in 30 days
+**Recent Deployments**: 39 successful deploys in 30 days
 
 ---
 
@@ -194,7 +194,7 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 7 successful deploys in 30 days
+**Recent Deployments**: 8 successful deploys in 30 days
 
 ---
 

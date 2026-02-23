@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-23T07:00:03.130Z",
+  "timestamp": "2026-02-23T09:01:39.002Z",
   "period": "30-day window",
   "repos": [
     {
@@ -249,6 +249,30 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "devops-factory/test-scaffold",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "1d5953a3b29ff67bc82ef3983da3fef4010d3e8a",
+          "status": "success",
+          "timestamp": "2026-02-23T07:59:23Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "devops-factory/test-scaffold",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "979584e3dde434a4f4f52245324a5aa66bb9b716",
+          "status": "success",
+          "timestamp": "2026-02-23T07:57:06Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "devops-factory/test-scaffold",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "1d5953a3b29ff67bc82ef3983da3fef4010d3e8a",
+          "status": "success",
+          "timestamp": "2026-02-23T07:54:53Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/Email_Assistant",
@@ -536,38 +560,6 @@
           "status": "success",
           "timestamp": "2026-02-19T06:55:13Z",
           "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "a1628df03843e4363b904e6465d2714f7c984783",
-          "status": "success",
-          "timestamp": "2026-02-19T01:48:46Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "a1628df03843e4363b904e6465d2714f7c984783",
-          "status": "success",
-          "timestamp": "2026-02-18T18:45:59Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "feat/phase-11-quality-hardening",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "46ea112c10fa0da37d2ba3ad0e8d0d8dff27c1df",
-          "status": "success",
-          "timestamp": "2026-02-18T16:47:05Z",
-          "workflow": "Post-Deploy Health Check"
-        },
-        {
-          "branch": "feat/phase-11-quality-hardening",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "46ea112c10fa0da37d2ba3ad0e8d0d8dff27c1df",
-          "status": "success",
-          "timestamp": "2026-02-18T16:27:22Z",
-          "workflow": "Qodo Merge - PR Review"
         }
       ],
       "securityFindings": [],
@@ -581,6 +573,14 @@
       "fullName": "thonyAGP/lecteur-magic",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/lecteur-magic",
+          "sha": "6c26b837c9155a0374546db0e9f98fb21bd748d5",
+          "status": "success",
+          "timestamp": "2026-02-23T07:13:10Z",
+          "workflow": "Daily Drift Report"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/lecteur-magic",
