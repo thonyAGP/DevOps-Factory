@@ -7116,27 +7116,53 @@
       "status": "success"
     },
     {
-      "timestamp": "2026-02-24T18:51:57.494Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
+      "timestamp": "2026-02-24T18:51:43.021Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "16 projects, avg health 48",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-24T18:52:32.511Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 17 critical issues",
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-24T18:52:01.488Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
+      "timestamp": "2026-02-24T18:53:24.025Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 0%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-24T18:53:46.061Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 132.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-24T18:54:00.854Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 573min total, 210min wasted, ~$0/mo",
       "status": "warning"
     },
     {
-      "timestamp": "2026-02-24T18:52:01.491Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
+      "timestamp": "2026-02-24T18:54:40.608Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 8/100, branch protection 0/17, CI 7/17, review coverage 0%",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-24T18:54:41.283Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "224 recommendations across 25 repos (11 critical, 155 high)",
+      "status": "success"
     }
   ]
 }
