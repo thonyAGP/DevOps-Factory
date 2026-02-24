@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-02-24T18:54:00.852Z",
+  "timestamp": "2026-02-24T20:46:24.121Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 306,
+      "totalMinutes": 305,
       "totalRuns": 100,
       "workflows": [
         {
@@ -16,17 +16,9 @@
           "wastedMinutes": 46
         },
         {
-          "name": "Qodo Merge - PR Review",
-          "runs": 20,
-          "totalMinutes": 29,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
           "name": "Monitor Production",
-          "runs": 28,
-          "totalMinutes": 28,
+          "runs": 29,
+          "totalMinutes": 29,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -35,6 +27,14 @@
           "name": "Post-Deploy Health Check",
           "runs": 28,
           "totalMinutes": 28,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Qodo Merge - PR Review",
+          "runs": 19,
+          "totalMinutes": 27,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -52,19 +52,19 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 76,
-          "totalMinutes": 76,
+          "runs": 75,
+          "totalMinutes": 75,
           "avgMinutes": 1,
-          "failedRuns": 65,
-          "wastedMinutes": 65
+          "failedRuns": 66,
+          "wastedMinutes": 66
         },
         {
           "name": "Deploy OpenSpec Viewer",
-          "runs": 18,
-          "totalMinutes": 18,
+          "runs": 19,
+          "totalMinutes": 19,
           "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Daily Drift Report",
@@ -84,8 +84,8 @@
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 86% failure rate (65min wasted). Fix root cause.",
-        "Deploy Migration Dashboard: 76 very short runs. Consider concurrency groups or debouncing."
+        "Deploy Migration Dashboard: 88% failure rate (66min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 75 very short runs. Consider concurrency groups or debouncing."
       ]
     },
     {
@@ -271,9 +271,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 573,
+    "totalMinutes": 572,
     "totalRuns": 281,
-    "wastedMinutes": 210,
+    "wastedMinutes": 212,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,

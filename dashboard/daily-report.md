@@ -69,7 +69,7 @@
 
 ### magic-migration :white_circle:
 - **Health**: 52/100
-- **CI**: none ([view](https://github.com/thonyAGP/magic-migration/actions/runs/22343270674))
+- **CI**: none ([view](https://github.com/thonyAGP/magic-migration/actions/runs/22365776587))
 - **Open PRs**: 1
 
 ### CasaSync :white_check_mark:
@@ -84,7 +84,7 @@
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 59/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22351759975))
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22365484648))
 - **Open PRs**: 2
 
 ### livret-au-marais :white_check_mark:
