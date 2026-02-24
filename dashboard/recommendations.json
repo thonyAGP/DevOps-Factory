@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-24T09:02:48.838Z",
+  "timestamp": "2026-02-24T12:46:36.645Z",
   "repos": [
     {
       "repo": "au-marais",
@@ -1228,99 +1228,6 @@
       ]
     },
     {
-      "repo": "magic-migration",
-      "fullName": "thonyAGP/magic-migration",
-      "healthScore": 0,
-      "stack": "node",
-      "ciFailureRate": 51,
-      "recommendations": [
-        {
-          "template": "ci-standard.yml",
-          "priority": "critical",
-          "reason": "No CI workflow detected",
-          "effort": "moderate",
-          "impact": "Enables automated testing and deployment"
-        },
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
-          "template": "auto-label.yml",
-          "priority": "high",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "coverage-tracking.yml",
-          "priority": "high",
-          "reason": "Low health score (0) - needs test coverage tracking",
-          "effort": "moderate",
-          "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "high",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "medium",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
       "repo": "MCP_Quota_Claude",
       "fullName": "thonyAGP/MCP_Quota_Claude",
       "healthScore": 35,
@@ -1600,6 +1507,92 @@
       ]
     },
     {
+      "repo": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
+      "healthScore": 0,
+      "stack": "node",
+      "ciFailureRate": 51,
+      "recommendations": [
+        {
+          "template": "ci-standard.yml",
+          "priority": "critical",
+          "reason": "No CI workflow detected",
+          "effort": "moderate",
+          "impact": "Enables automated testing and deployment"
+        },
+        {
+          "template": "gitleaks.yml",
+          "priority": "high",
+          "reason": "No secret scanning detected",
+          "effort": "minimal",
+          "impact": "Prevents accidental secret leaks in commits"
+        },
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "renovate.json",
+          "priority": "high",
+          "reason": "No dependency update automation detected",
+          "effort": "minimal",
+          "impact": "Automated dependency updates with intelligent grouping"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "semgrep.yml",
+          "priority": "high",
+          "reason": "No SAST (static analysis) detected",
+          "effort": "minimal",
+          "impact": "Static analysis for bugs, security issues, and anti-patterns"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "supply-chain-security.yml",
+          "priority": "high",
+          "reason": "Secure npm dependency chain",
+          "effort": "minimal",
+          "impact": "Secures npm dependencies with SBOM and license checks"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "high",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "medium",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        }
+      ]
+    },
+    {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
       "healthScore": 0,
@@ -1795,9 +1788,9 @@
     }
   ],
   "summary": {
-    "totalRecommendations": 225,
+    "totalRecommendations": 224,
     "criticalCount": 11,
-    "highCount": 156,
+    "highCount": 155,
     "mediumCount": 32,
     "lowCount": 26,
     "topTemplates": [
@@ -1830,15 +1823,15 @@
         "count": 17
       },
       {
-        "template": "coverage-tracking.yml",
-        "count": 15
-      },
-      {
         "template": "dead-code-detection.yml",
         "count": 15
       },
       {
         "template": "supply-chain-security.yml",
+        "count": 15
+      },
+      {
+        "template": "type-coverage.yml",
         "count": 15
       }
     ],

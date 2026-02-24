@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-24T08:58:21.448Z",
+  "timestamp": "2026-02-24T12:44:04.502Z",
   "projects": [
     {
       "name": "claude-cli-wrapper",
@@ -537,54 +537,6 @@
       "perfScore": 0
     },
     {
-      "name": "magic-migration",
-      "fullName": "thonyAGP/magic-migration",
-      "stack": "node",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": "failure",
-        "created_at": "2026-02-24T08:46:12Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/22343270674",
-        "id": 22343270674,
-        "name": "Deploy Migration Dashboard"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T12:43:41Z",
-          "html_url": "https://github.com/thonyAGP/magic-migration/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 49,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": true,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
       "name": "Utilitaire_Webapp",
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "stack": "node",
@@ -686,6 +638,54 @@
       "hasSemanticRelease": false,
       "hasReleaseDrafter": false,
       "perfScore": 0
+    },
+    {
+      "name": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-02-24T08:46:12Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/22343270674",
+        "id": 22343270674,
+        "name": "Deploy Migration Dashboard"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:43:41Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 52,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": true,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 20
     },
     {
       "name": "CasaSync",
