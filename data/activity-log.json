@@ -6464,6 +6464,29 @@
       "action": "check-complete",
       "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-24T08:59:19.554Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Lecteur_Magic",
+      "details": "55 → 35 (-20pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-24T08:59:19.559Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Email_Assistant",
+      "details": "35 → 55 (+20pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-02-24T08:59:19.563Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 40/100, 0 excellent, 16 needs work, 1 drops, 1 improvements",
+      "status": "warning"
     }
   ]
 }
