@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 2/24/2026, 1:26:08 PM
+**Generated**: 2/24/2026, 5:15:58 PM
 **Period**: 30-day window
 
 ## Summary
@@ -12,9 +12,9 @@
 | Repos with Branch Protection | 0/17 |
 | Repos with CI | 7/17 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 10 |
+| PRs Merged (30d) | 9 |
 | Deployments (30d) | 61 |
-| PRs with Review | 0/10 |
+| PRs with Review | 0/9 |
 
 ## Repository Compliance
 
@@ -74,7 +74,7 @@
 ### ⚠️ No Code Review (3)
 - **au-marais**: 2 PRs merged without review
 - **ClubMedRoomAssignment**: 3 PRs merged without review
-- **Email_Assistant**: 5 PRs merged without review
+- **Email_Assistant**: 4 PRs merged without review
 
 ### 🔴 Low Compliance Score < 60 (17)
 - au-marais: 20/100
@@ -170,14 +170,13 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/5 PRs (0%)
+**Review Coverage**: 0/4 PRs (0%)
 
 **PRs Without Review**:
 - #8 - feat: French AI summaries + navigation fixes + E2E tests (by thonyAGP)
 - #6 - feat: Phase 11 quality hardening - E2E tests, folder/snooze fixes, 94% coverage (by thonyAGP)
 - #5 - test: boost API route coverage from 52% to 82% (by thonyAGP)
 - #4 - test: boost API route coverage from 26% to 52% + Groq SDK + ESLint cleanup (by thonyAGP)
-- #3 - Claude/resume work za jh8 (by thonyAGP)
 
 **Recent Deployments**: 39 successful deploys in 30 days
 
