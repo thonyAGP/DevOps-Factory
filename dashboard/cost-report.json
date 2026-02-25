@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-25T06:57:36.214Z",
+  "timestamp": "2026-02-25T09:01:20.047Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -52,8 +52,8 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 75,
-          "totalMinutes": 75,
+          "runs": 74,
+          "totalMinutes": 74,
           "avgMinutes": 1,
           "failedRuns": 66,
           "wastedMinutes": 66
@@ -68,8 +68,8 @@
         },
         {
           "name": "Daily Drift Report",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 6,
+          "totalMinutes": 6,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -84,8 +84,8 @@
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 88% failure rate (66min wasted). Fix root cause.",
-        "Deploy Migration Dashboard: 75 very short runs. Consider concurrency groups or debouncing."
+        "Deploy Migration Dashboard: 89% failure rate (66min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 74 very short runs. Consider concurrency groups or debouncing."
       ]
     },
     {
