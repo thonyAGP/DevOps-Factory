@@ -7590,6 +7590,29 @@
       "action": "watchdog-complete",
       "details": "3/5 passing. 1 failures, 1 partial. 1 self-heals",
       "status": "error"
+    },
+    {
+      "timestamp": "2026-02-25T04:13:02.357Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 22191711703)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-25T04:13:04.858Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "ClubMedRoomAssignment",
+      "details": "Self-heal dispatched (run 22192523507)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-25T04:13:04.861Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
