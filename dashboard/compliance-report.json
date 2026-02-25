@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-25T18:58:44.994Z",
+  "timestamp": "2026-02-25T20:46:30.204Z",
   "period": "30-day window",
   "repos": [
     {
@@ -233,6 +233,14 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-02-25T18:59:09Z",
+          "workflow": "Monitor Production"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/Email_Assistant",
@@ -536,14 +544,6 @@
           "status": "success",
           "timestamp": "2026-02-19T14:16:31Z",
           "workflow": "CI"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "a175c26692825a6604d8a78590dc14ff3c0bf2a6",
-          "status": "success",
-          "timestamp": "2026-02-19T14:11:10Z",
-          "workflow": "Post-Deploy Health Check"
         }
       ],
       "securityFindings": [],
@@ -585,6 +585,30 @@
       "fullName": "thonyAGP/magic-migration",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "56152fc6fc3d797b59edbd767aad97daa6c0d61b",
+          "status": "success",
+          "timestamp": "2026-02-25T20:19:08Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "6d9811a9dad8ef6ef7a5227026d47e54c85fe73b",
+          "status": "success",
+          "timestamp": "2026-02-25T20:08:55Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "a3ac54b9068c07d73379c6025292661b9b136d3d",
+          "status": "success",
+          "timestamp": "2026-02-25T19:11:54Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/magic-migration",
@@ -688,30 +712,6 @@
           "status": "success",
           "timestamp": "2026-02-24T07:08:07Z",
           "workflow": "Daily Drift Report"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/magic-migration",
-          "sha": "9d063a745b670afdd542c619e3948dcede124c1a",
-          "status": "success",
-          "timestamp": "2026-02-23T15:57:25Z",
-          "workflow": "Deploy OpenSpec Viewer"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/magic-migration",
-          "sha": "6c26b837c9155a0374546db0e9f98fb21bd748d5",
-          "status": "success",
-          "timestamp": "2026-02-23T07:13:10Z",
-          "workflow": "Daily Drift Report"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/magic-migration",
-          "sha": "f1df72d390074d9974be8f4c745a68b1d3f5cc59",
-          "status": "success",
-          "timestamp": "2026-02-22T23:51:38Z",
-          "workflow": "Deploy OpenSpec Viewer"
         }
       ],
       "securityFindings": [],

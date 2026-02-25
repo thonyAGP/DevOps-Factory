@@ -2,15 +2,20 @@
 - **16** projects monitored
 - **0/16** fully configured
 - **0** AI fix PR(s) pending merge
-- **0** CI failure(s)
+- **1** CI failure(s)
 - **0%** avg security score
 - **0/16** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
-- **DORA**: MEDIUM (deploy 0/wk, lead 132.7h, MTTR 0.4h, CFR 56%)
-- **CI Cost**: 554min total, 217min wasted, ~$0/mo
+- **DORA**: MEDIUM (deploy 0/wk, lead 132.7h, MTTR 0.2h, CFR 56%)
+- **CI Cost**: 554min total, 218min wasted, ~$0/mo
 - **Compliance**: 8/100 avg, 0% review coverage, 0/17 branch protected
 
 ## Per Project
+
+### magic-migration :x:
+- **Health**: 32/100
+- **CI**: fail ([view](https://github.com/thonyAGP/magic-migration/actions/runs/22414293807))
+- **Open PRs**: 1
 
 ### claude-cli-wrapper :white_circle:
 - **Health**: 44/100
@@ -79,16 +84,11 @@
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 59/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22397747617))
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22411409951))
 - **Open PRs**: 2
 
 ### livret-au-marais :white_check_mark:
 - **Health**: 59/100
 - **CI**: pass ([view](https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016))
-- **Open PRs**: 1
-
-### magic-migration :white_check_mark:
-- **Health**: 62/100
-- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/22409513627))
 - **Open PRs**: 1
 

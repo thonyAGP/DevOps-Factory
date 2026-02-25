@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-25T18:58:06.143Z",
+  "timestamp": "2026-02-25T20:45:41.550Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -17,8 +17,8 @@
         },
         {
           "name": "Monitor Production",
-          "runs": 32,
-          "totalMinutes": 32,
+          "runs": 33,
+          "totalMinutes": 33,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -33,8 +33,8 @@
         },
         {
           "name": "Qodo Merge - PR Review",
-          "runs": 18,
-          "totalMinutes": 26,
+          "runs": 17,
+          "totalMinutes": 25,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -47,32 +47,40 @@
     {
       "repo": "magic-migration",
       "fullName": "thonyAGP/magic-migration",
-      "totalMinutes": 100,
+      "totalMinutes": 105,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 57,
-          "totalMinutes": 57,
+          "runs": 52,
+          "totalMinutes": 52,
           "avgMinutes": 1,
-          "failedRuns": 57,
-          "wastedMinutes": 57
+          "failedRuns": 52,
+          "wastedMinutes": 52
         },
         {
           "name": "Deploy OpenSpec Viewer",
-          "runs": 25,
-          "totalMinutes": 25,
+          "runs": 27,
+          "totalMinutes": 27,
           "avgMinutes": 1,
           "failedRuns": 6,
           "wastedMinutes": 6
         },
         {
           "name": "E2E Tests",
-          "runs": 12,
-          "totalMinutes": 12,
+          "runs": 14,
+          "totalMinutes": 18,
           "avgMinutes": 1,
-          "failedRuns": 12,
-          "wastedMinutes": 12
+          "failedRuns": 14,
+          "wastedMinutes": 18
+        },
+        {
+          "name": "Expression Coverage Check",
+          "runs": 3,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 4
         },
         {
           "name": "Daily Drift Report",
@@ -81,19 +89,11 @@
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
-        },
-        {
-          "name": "Expression Coverage Check",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (57min wasted). Fix root cause.",
-        "E2E Tests: 100% failure rate (12min wasted). Fix root cause."
+        "Deploy Migration Dashboard: 100% failure rate (52min wasted). Fix root cause.",
+        "E2E Tests: 100% failure rate (18min wasted). Fix root cause."
       ]
     },
     {
@@ -279,9 +279,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 554,
+    "totalMinutes": 559,
     "totalRuns": 281,
-    "wastedMinutes": 218,
+    "wastedMinutes": 221,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,
