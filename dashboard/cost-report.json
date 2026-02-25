@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-25T17:15:48.984Z",
+  "timestamp": "2026-02-25T18:58:06.143Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -52,11 +52,11 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 58,
-          "totalMinutes": 58,
+          "runs": 57,
+          "totalMinutes": 57,
           "avgMinutes": 1,
-          "failedRuns": 58,
-          "wastedMinutes": 58
+          "failedRuns": 57,
+          "wastedMinutes": 57
         },
         {
           "name": "Deploy OpenSpec Viewer",
@@ -68,16 +68,16 @@
         },
         {
           "name": "E2E Tests",
-          "runs": 10,
-          "totalMinutes": 10,
+          "runs": 12,
+          "totalMinutes": 12,
           "avgMinutes": 1,
-          "failedRuns": 10,
-          "wastedMinutes": 10
+          "failedRuns": 12,
+          "wastedMinutes": 12
         },
         {
           "name": "Daily Drift Report",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -92,8 +92,8 @@
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (58min wasted). Fix root cause.",
-        "E2E Tests: 100% failure rate (10min wasted). Fix root cause."
+        "Deploy Migration Dashboard: 100% failure rate (57min wasted). Fix root cause.",
+        "E2E Tests: 100% failure rate (12min wasted). Fix root cause."
       ]
     },
     {
@@ -281,7 +281,7 @@
   "summary": {
     "totalMinutes": 554,
     "totalRuns": 281,
-    "wastedMinutes": 217,
+    "wastedMinutes": 218,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,

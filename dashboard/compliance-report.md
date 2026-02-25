@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 2/25/2026, 5:16:22 PM
+**Generated**: 2/25/2026, 6:58:44 PM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 7/17 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 9 |
-| Deployments (30d) | 68 |
+| Deployments (30d) | 70 |
 | PRs with Review | 0/9 |
 
 ## Repository Compliance
@@ -206,7 +206,7 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 14 successful deploys in 30 days
+**Recent Deployments**: 16 successful deploys in 30 days
 
 ---
 

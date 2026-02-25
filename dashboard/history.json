@@ -634,16 +634,11 @@
   },
   {
     "date": "2026-02-25",
-    "avgHealth": 47,
-    "failingCI": 1,
-    "passingCI": 5,
+    "avgHealth": 49,
+    "failingCI": 0,
+    "passingCI": 6,
     "totalOpenPRs": 29,
     "perProject": [
-      {
-        "name": "magic-migration",
-        "health": 32,
-        "ciStatus": "fail"
-      },
       {
         "name": "claude-cli-wrapper",
         "health": 44,
@@ -717,6 +712,11 @@
       {
         "name": "livret-au-marais",
         "health": 59,
+        "ciStatus": "pass"
+      },
+      {
+        "name": "magic-migration",
+        "health": 62,
         "ciStatus": "pass"
       }
     ]
