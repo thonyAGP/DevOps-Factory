@@ -1,24 +1,24 @@
 {
-  "timestamp": "2026-02-25T12:46:32.277Z",
+  "timestamp": "2026-02-25T13:23:48.537Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 296,
+      "totalMinutes": 287,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
-          "runs": 23,
-          "totalMinutes": 211,
+          "runs": 22,
+          "totalMinutes": 201,
           "avgMinutes": 9,
           "failedRuns": 9,
           "wastedMinutes": 46
         },
         {
           "name": "Monitor Production",
-          "runs": 31,
-          "totalMinutes": 31,
+          "runs": 32,
+          "totalMinutes": 32,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -41,7 +41,7 @@
         }
       ],
       "recommendations": [
-        "CI: 39% failure rate (46min wasted). Fix root cause."
+        "CI: 41% failure rate (46min wasted). Fix root cause."
       ]
     },
     {
@@ -52,35 +52,35 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 66,
-          "totalMinutes": 66,
+          "runs": 64,
+          "totalMinutes": 64,
           "avgMinutes": 1,
-          "failedRuns": 66,
-          "wastedMinutes": 66
+          "failedRuns": 64,
+          "wastedMinutes": 64
         },
         {
           "name": "Deploy OpenSpec Viewer",
-          "runs": 24,
-          "totalMinutes": 24,
+          "runs": 25,
+          "totalMinutes": 25,
           "avgMinutes": 1,
           "failedRuns": 6,
           "wastedMinutes": 6
         },
         {
+          "name": "E2E Tests",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 5,
+          "wastedMinutes": 5
+        },
+        {
           "name": "Daily Drift Report",
-          "runs": 6,
-          "totalMinutes": 6,
+          "runs": 5,
+          "totalMinutes": 5,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
-        },
-        {
-          "name": "E2E Tests",
-          "runs": 3,
-          "totalMinutes": 3,
-          "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
         },
         {
           "name": "Expression Coverage Check",
@@ -92,8 +92,8 @@
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (66min wasted). Fix root cause.",
-        "Deploy Migration Dashboard: 66 very short runs. Consider concurrency groups or debouncing."
+        "Deploy Migration Dashboard: 100% failure rate (64min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 64 very short runs. Consider concurrency groups or debouncing."
       ]
     },
     {
@@ -279,7 +279,7 @@
     }
   ],
   "summary": {
-    "totalMinutes": 563,
+    "totalMinutes": 554,
     "totalRuns": 281,
     "wastedMinutes": 217,
     "mostExpensiveRepo": "Email_Assistant",

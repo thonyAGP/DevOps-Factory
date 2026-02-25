@@ -1,6 +1,54 @@
 {
-  "timestamp": "2026-02-25T12:44:32.068Z",
+  "timestamp": "2026-02-25T13:21:27.782Z",
   "projects": [
+    {
+      "name": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
+      "stack": "node",
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-02-25T12:49:30Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/22397584215",
+        "id": 22397584215,
+        "name": "E2E Tests"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:43:41Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 32,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": true,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 20
+    },
     {
       "name": "claude-cli-wrapper",
       "fullName": "thonyAGP/claude-cli-wrapper",
@@ -764,10 +812,10 @@
       "ciStatus": "pass",
       "lastRun": {
         "conclusion": "success",
-        "created_at": "2026-02-25T06:56:49Z",
+        "created_at": "2026-02-25T12:54:18Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22385860046",
-        "id": 22385860046,
+        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22397747617",
+        "id": 22397747617,
         "name": "Monitor Production"
       },
       "openPRs": [
@@ -866,54 +914,6 @@
       "hasSemanticRelease": false,
       "hasReleaseDrafter": false,
       "perfScore": 0
-    },
-    {
-      "name": "magic-migration",
-      "fullName": "thonyAGP/magic-migration",
-      "stack": "node",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-02-25T12:34:52Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/22397087502",
-        "id": 22397087502,
-        "name": "Deploy OpenSpec Viewer"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T12:43:41Z",
-          "html_url": "https://github.com/thonyAGP/magic-migration/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 62,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": true,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": true,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 20
     }
   ]
 }
