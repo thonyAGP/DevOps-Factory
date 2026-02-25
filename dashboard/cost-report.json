@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-25T13:23:48.537Z",
+  "timestamp": "2026-02-25T17:15:48.984Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -52,11 +52,11 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 64,
-          "totalMinutes": 64,
+          "runs": 58,
+          "totalMinutes": 58,
           "avgMinutes": 1,
-          "failedRuns": 64,
-          "wastedMinutes": 64
+          "failedRuns": 58,
+          "wastedMinutes": 58
         },
         {
           "name": "Deploy OpenSpec Viewer",
@@ -68,11 +68,11 @@
         },
         {
           "name": "E2E Tests",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 10,
+          "totalMinutes": 10,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 10,
+          "wastedMinutes": 10
         },
         {
           "name": "Daily Drift Report",
@@ -84,16 +84,16 @@
         },
         {
           "name": "Expression Coverage Check",
-          "runs": 1,
-          "totalMinutes": 1,
+          "runs": 2,
+          "totalMinutes": 2,
           "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
+          "failedRuns": 2,
+          "wastedMinutes": 2
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (64min wasted). Fix root cause.",
-        "Deploy Migration Dashboard: 64 very short runs. Consider concurrency groups or debouncing."
+        "Deploy Migration Dashboard: 100% failure rate (58min wasted). Fix root cause.",
+        "E2E Tests: 100% failure rate (10min wasted). Fix root cause."
       ]
     },
     {
