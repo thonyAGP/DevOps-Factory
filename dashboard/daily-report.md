@@ -75,7 +75,7 @@
 ### CasaSync :white_check_mark:
 - **Health**: 54/100
 - **CI**: pass ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22132524981))
-- **Open PRs**: 0
+- **Open PRs**: 3
 
 ### au-marais :white_check_mark:
 - **Health**: 59/100
