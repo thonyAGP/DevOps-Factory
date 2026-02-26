@@ -9343,6 +9343,21 @@
       "action": "recommendations-generated",
       "details": "226 recommendations across 25 repos (10 critical, 156 high)",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-02-26T07:32:28.857Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-triggered",
+      "target": "CI Health Check",
+      "details": "Self-heal for workflow (run 22431285637)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-26T07:32:28.862Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "5/7 passing. 1 failures, 1 partial. 1 self-heals",
+      "status": "error"
     }
   ]
 }
