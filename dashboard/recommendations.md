@@ -1,6 +1,6 @@
 # Template Recommendations Report
 
-Generated: 2/26/2026, 12:47:32 PM
+Generated: 2/26/2026, 1:24:53 PM
 
 ## Executive Summary
 
@@ -340,7 +340,7 @@ Generated: 2/26/2026, 12:47:32 PM
 
 - **Health Score**: 55/100
 - **Stack**: node
-- **CI Failure Rate**: 10%
+- **CI Failure Rate**: 11%
 
 #### High Priority
 
