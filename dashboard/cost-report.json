@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-26T06:52:15.844Z",
+  "timestamp": "2026-02-26T08:59:12.264Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -17,8 +17,8 @@
         },
         {
           "name": "Monitor Production",
-          "runs": 34,
-          "totalMinutes": 34,
+          "runs": 35,
+          "totalMinutes": 35,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -33,8 +33,8 @@
         },
         {
           "name": "Qodo Merge - PR Review",
-          "runs": 16,
-          "totalMinutes": 24,
+          "runs": 15,
+          "totalMinutes": 23,
           "avgMinutes": 2,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -52,11 +52,11 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 52,
-          "totalMinutes": 52,
+          "runs": 51,
+          "totalMinutes": 51,
           "avgMinutes": 1,
-          "failedRuns": 52,
-          "wastedMinutes": 52
+          "failedRuns": 51,
+          "wastedMinutes": 51
         },
         {
           "name": "Deploy OpenSpec Viewer",
@@ -75,24 +75,24 @@
           "wastedMinutes": 18
         },
         {
+          "name": "Daily Drift Report",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
           "name": "Expression Coverage Check",
           "runs": 3,
           "totalMinutes": 4,
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 4
-        },
-        {
-          "name": "Daily Drift Report",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (52min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 100% failure rate (51min wasted). Fix root cause.",
         "E2E Tests: 100% failure rate (18min wasted). Fix root cause."
       ]
     },
@@ -281,7 +281,7 @@
   "summary": {
     "totalMinutes": 559,
     "totalRuns": 281,
-    "wastedMinutes": 221,
+    "wastedMinutes": 220,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,
