@@ -1,24 +1,24 @@
 {
-  "timestamp": "2026-02-27T01:16:29.849Z",
+  "timestamp": "2026-02-27T02:40:57.152Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 278,
+      "totalMinutes": 264,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
-          "runs": 21,
-          "totalMinutes": 191,
+          "runs": 20,
+          "totalMinutes": 176,
           "avgMinutes": 9,
           "failedRuns": 9,
           "wastedMinutes": 46
         },
         {
           "name": "Monitor Production",
-          "runs": 37,
-          "totalMinutes": 37,
+          "runs": 38,
+          "totalMinutes": 38,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -41,7 +41,7 @@
         }
       ],
       "recommendations": [
-        "CI: 43% failure rate (46min wasted). Fix root cause."
+        "CI: 45% failure rate (46min wasted). Fix root cause."
       ]
     },
     {
@@ -279,7 +279,7 @@
     }
   ],
   "summary": {
-    "totalMinutes": 550,
+    "totalMinutes": 536,
     "totalRuns": 281,
     "wastedMinutes": 220,
     "mostExpensiveRepo": "Email_Assistant",
