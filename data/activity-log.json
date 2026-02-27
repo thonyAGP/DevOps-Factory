@@ -10625,6 +10625,29 @@
       "action": "recommendations-generated",
       "details": "226 recommendations across 25 repos (10 critical, 156 high)",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-02-27T05:45:26.251Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 22191711703)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-27T05:45:28.502Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "ClubMedRoomAssignment",
+      "details": "Self-heal dispatched (run 22192523507)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-27T05:45:28.506Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
