@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 2/28/2026, 1:12:03 AM
+**Generated**: 2/28/2026, 2:30:18 AM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 7/17 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 9 |
-| Deployments (30d) | 75 |
+| Deployments (30d) | 76 |
 | PRs with Review | 0/9 |
 
 ## Repository Compliance
@@ -178,7 +178,7 @@
 - #5 - test: boost API route coverage from 52% to 82% (by thonyAGP)
 - #4 - test: boost API route coverage from 26% to 52% + Groq SDK + ESLint cleanup (by thonyAGP)
 
-**Recent Deployments**: 42 successful deploys in 30 days
+**Recent Deployments**: 43 successful deploys in 30 days
 
 ---
 
