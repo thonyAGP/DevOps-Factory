@@ -79,7 +79,7 @@
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 59/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22543577413))
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22549694572))
 - **Open PRs**: 2
 
 ### livret-au-marais :white_check_mark:
