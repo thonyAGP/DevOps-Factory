@@ -7,7 +7,7 @@
 - **0/16** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
 - **DORA**: MEDIUM (deploy 0/wk, lead 132.7h, MTTR 0.1h, CFR 56%)
-- **CI Cost**: 512min total, 219min wasted, ~$0/mo
+- **CI Cost**: 510min total, 219min wasted, ~$0/mo
 - **Compliance**: 8/100 avg, 0% review coverage, 0/17 branch protected
 
 ## Per Project
@@ -79,7 +79,7 @@
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 59/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22533605157))
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22537834382))
 - **Open PRs**: 2
 
 ### livret-au-marais :white_check_mark:
@@ -89,6 +89,6 @@
 
 ### magic-migration :white_check_mark:
 - **Health**: 62/100
-- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/22515567280))
-- **Open PRs**: 1
+- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/22538051585))
+- **Open PRs**: 2
 
