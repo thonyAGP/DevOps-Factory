@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-01T12:33:22.230Z",
+  "timestamp": "2026-03-01T13:05:20.907Z",
   "period": "30-day window",
   "repos": [
     {
@@ -233,6 +233,14 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-01T12:38:10Z",
+          "workflow": "Monitor Production"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/Email_Assistant",
@@ -584,14 +592,6 @@
           "status": "success",
           "timestamp": "2026-02-19T16:48:40Z",
           "workflow": "Post-Deploy Health Check"
-        },
-        {
-          "branch": "feat/french-ai-navigation-fixes",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "755bc2106763c161b7a1382c7a0ee593fabfb8dd",
-          "status": "success",
-          "timestamp": "2026-02-19T16:46:36Z",
-          "workflow": "Qodo Merge - PR Review"
         }
       ],
       "securityFindings": [],
