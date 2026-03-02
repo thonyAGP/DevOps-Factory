@@ -15912,147 +15912,27 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-03-02T18:34:15.073Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "au-marais",
-      "details": "PR #3 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:34:22.064Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "CasaSync",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:34:25.738Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "claude-cli-wrapper",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:34:33.143Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "claude-launcher",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:34:39.588Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "ClubMedRoomAssignment",
-      "details": "PR #12 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:34:43.592Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
+      "timestamp": "2026-03-02T18:35:50.069Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
       "target": "Email_Assistant",
-      "details": "PR #7 already open",
-      "status": "info"
+      "details": "Self-heal dispatched (run 22191711703)",
+      "status": "warning"
     },
     {
-      "timestamp": "2026-03-02T18:34:47.115Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "livret-au-marais",
-      "details": "PR #1 already open",
-      "status": "info"
+      "timestamp": "2026-03-02T18:35:53.051Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "ClubMedRoomAssignment",
+      "details": "Self-heal dispatched (run 22192523507)",
+      "status": "warning"
     },
     {
-      "timestamp": "2026-03-02T18:34:50.350Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:34:54.041Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "magic-migration",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:34:57.968Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "MCP_Quota_Claude",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:35:09.209Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Site_1970_Plomberie",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:35:12.858Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Site_Greg-Assainissement",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:35:18.152Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "SqlConnectionTest",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:35:21.881Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "statusline",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:35:25.458Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "test_codingmenace",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:35:29.255Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Thumbfast",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:35:32.959Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Utilitaire_Webapp",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-02T18:35:32.974Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 26 repos (17 active)",
-      "status": "success"
+      "timestamp": "2026-03-02T18:35:53.058Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
