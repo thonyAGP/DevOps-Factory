@@ -368,11 +368,8 @@ export type EscalationTracker = z.infer<typeof EscalationSchema>;
 
 const AlertEntrySchema = z
   .object({
-    repo: z.string(),
     type: z.string(),
-    message: z.string(),
-    timestamp: z.string(),
-    resolved: z.boolean(),
+    project: z.string(),
   })
   .passthrough();
 

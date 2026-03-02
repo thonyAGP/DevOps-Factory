@@ -1,46 +1,100 @@
 {
-  "timestamp": "2026-02-22T12:34:55.793Z",
+  "timestamp": "2026-03-02T18:39:15.810Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 341,
+      "totalMinutes": 228,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
-          "runs": 28,
-          "totalMinutes": 261,
-          "avgMinutes": 9,
-          "failedRuns": 8,
-          "wastedMinutes": 41
+          "runs": 17,
+          "totalMinutes": 142,
+          "avgMinutes": 8,
+          "failedRuns": 9,
+          "wastedMinutes": 46
+        },
+        {
+          "name": "Monitor Production",
+          "runs": 49,
+          "totalMinutes": 49,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
         },
         {
           "name": "Post-Deploy Health Check",
-          "runs": 31,
-          "totalMinutes": 31,
+          "runs": 23,
+          "totalMinutes": 23,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "Qodo Merge - PR Review",
-          "runs": 18,
-          "totalMinutes": 26,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Monitor Production",
-          "runs": 23,
-          "totalMinutes": 23,
+          "runs": 11,
+          "totalMinutes": 14,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         }
       ],
-      "recommendations": []
+      "recommendations": [
+        "CI: 53% failure rate (46min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
+      "totalMinutes": 107,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "Deploy Migration Dashboard",
+          "runs": 45,
+          "totalMinutes": 45,
+          "avgMinutes": 1,
+          "failedRuns": 45,
+          "wastedMinutes": 45
+        },
+        {
+          "name": "Deploy OpenSpec Viewer",
+          "runs": 26,
+          "totalMinutes": 26,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
+        },
+        {
+          "name": "E2E Tests",
+          "runs": 16,
+          "totalMinutes": 22,
+          "avgMinutes": 1,
+          "failedRuns": 16,
+          "wastedMinutes": 22
+        },
+        {
+          "name": "Daily Drift Report",
+          "runs": 8,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Expression Coverage Check",
+          "runs": 5,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 5,
+          "wastedMinutes": 6
+        }
+      ],
+      "recommendations": [
+        "Deploy Migration Dashboard: 100% failure rate (45min wasted). Fix root cause.",
+        "E2E Tests: 100% failure rate (22min wasted). Fix root cause."
+      ]
     },
     {
       "repo": "au-marais",
@@ -58,6 +112,25 @@
         }
       ],
       "recommendations": []
+    },
+    {
+      "repo": "livret-au-marais",
+      "fullName": "thonyAGP/livret-au-marais",
+      "totalMinutes": 51,
+      "totalRuns": 18,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 18,
+          "totalMinutes": 51,
+          "avgMinutes": 3,
+          "failedRuns": 16,
+          "wastedMinutes": 47
+        }
+      ],
+      "recommendations": [
+        "CI: 89% failure rate (47min wasted). Fix root cause."
+      ]
     },
     {
       "repo": "ClubMedRoomAssignment",
@@ -89,20 +162,39 @@
     {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
-      "totalMinutes": 18,
-      "totalRuns": 13,
+      "totalMinutes": 19,
+      "totalRuns": 14,
       "workflows": [
         {
           "name": "CI",
-          "runs": 13,
-          "totalMinutes": 18,
+          "runs": 14,
+          "totalMinutes": 19,
           "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 7
+          "failedRuns": 5,
+          "wastedMinutes": 8
         }
       ],
       "recommendations": [
-        "CI: 31% failure rate (7min wasted). Fix root cause."
+        "CI: 36% failure rate (8min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "Utilitaire_Webapp",
+      "fullName": "thonyAGP/Utilitaire_Webapp",
+      "totalMinutes": 6,
+      "totalRuns": 6,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 6,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 5,
+          "wastedMinutes": 5
+        }
+      ],
+      "recommendations": [
+        "CI: 83% failure rate (5min wasted). Fix root cause."
       ]
     },
     {
@@ -122,24 +214,8 @@
       "recommendations": []
     },
     {
-      "repo": "lecteur-magic",
-      "fullName": "thonyAGP/lecteur-magic",
-      "totalMinutes": 0,
-      "totalRuns": 0,
-      "workflows": [],
-      "recommendations": []
-    },
-    {
       "repo": "Livret_accueil_Au-Marais",
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
-      "totalMinutes": 0,
-      "totalRuns": 0,
-      "workflows": [],
-      "recommendations": []
-    },
-    {
-      "repo": "livret-au-marais",
-      "fullName": "thonyAGP/livret-au-marais",
       "totalMinutes": 0,
       "totalRuns": 0,
       "workflows": [],
@@ -200,23 +276,15 @@
       "totalRuns": 0,
       "workflows": [],
       "recommendations": []
-    },
-    {
-      "repo": "Utilitaire_Webapp",
-      "fullName": "thonyAGP/Utilitaire_Webapp",
-      "totalMinutes": 0,
-      "totalRuns": 0,
-      "workflows": [],
-      "recommendations": []
     }
   ],
   "summary": {
-    "totalMinutes": 450,
-    "totalRuns": 156,
-    "wastedMinutes": 83,
+    "totalMinutes": 502,
+    "totalRuns": 281,
+    "wastedMinutes": 220,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
-    "totalRecommendations": 2,
+    "totalRecommendations": 7,
     "estimatedMonthlyCost": 0
   }
 }

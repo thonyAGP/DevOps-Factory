@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 22/02/2026 15:00:47
+**Generated**: 3/2/2026, 6:40:05 PM
 **Period**: 30-day window
 
 ## Summary
@@ -8,24 +8,24 @@
 | Metric | Value |
 |--------|-------|
 | Total Repos | 17 |
-| Avg Compliance Score | 9/100 |
-| Repos with Branch Protection | 1/17 |
+| Avg Compliance Score | 8/100 |
+| Repos with Branch Protection | 0/17 |
 | Repos with CI | 7/17 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 11 |
-| Deployments (30d) | 77 |
-| PRs with Review | 0/11 |
+| PRs Merged (30d) | 10 |
+| Deployments (30d) | 83 |
+| PRs with Review | 0/10 |
 
 ## Repository Compliance
 
 | Repo | Score | Branch Prot | CI | Review | Security |
 |------|-------|-------------|----|------------|----------|
-| lecteur-magic | 🔴 40/100 | ✓ | ✓ | ✗ | 0 |
 | au-marais | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | CasaSync | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | ClubMedRoomAssignment | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Email_Assistant | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | livret-au-marais | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
+| magic-migration | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Utilitaire_Webapp | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | claude-cli-wrapper | 🔴 0/100 | ✗ | ✗ | ✗ | 0 |
 | claude-launcher | 🔴 0/100 | ✗ | ✗ | ✗ | 0 |
@@ -40,12 +40,13 @@
 
 ## Compliance Gaps
 
-### ⚠️ No Branch Protection (16)
+### ⚠️ No Branch Protection (17)
 - au-marais
 - CasaSync
 - ClubMedRoomAssignment
 - Email_Assistant
 - livret-au-marais
+- magic-migration
 - Utilitaire_Webapp
 - claude-cli-wrapper
 - claude-launcher
@@ -70,18 +71,19 @@
 - test_codingmenace
 - Thumbfast
 
-### ⚠️ No Code Review (3)
+### ⚠️ No Code Review (4)
 - **au-marais**: 2 PRs merged without review
 - **ClubMedRoomAssignment**: 3 PRs merged without review
-- **Email_Assistant**: 6 PRs merged without review
+- **Email_Assistant**: 4 PRs merged without review
+- **magic-migration**: 1 PRs merged without review
 
 ### 🔴 Low Compliance Score < 60 (17)
-- lecteur-magic: 40/100
 - au-marais: 20/100
 - CasaSync: 20/100
 - ClubMedRoomAssignment: 20/100
 - Email_Assistant: 20/100
 - livret-au-marais: 20/100
+- magic-migration: 20/100
 - Utilitaire_Webapp: 20/100
 - claude-cli-wrapper: 0/100
 - claude-launcher: 0/100
@@ -103,20 +105,6 @@
 5. **Monitor review coverage** - target 100% reviewed PRs
 
 ## Detailed Repository Breakdown
-
-### lecteur-magic | ❌ NEEDS WORK (40/100)
-
-**Full Name**: `thonyAGP/lecteur-magic`
-
-**Controls**:
-- Branch Protection: ✓
-- Code Review Required: ✗
-- CI/CD Enabled: ✓
-- Security Findings: 0 alerts
-
-**Recent Deployments**: 23 successful deploys in 30 days
-
----
 
 ### au-marais | ❌ NEEDS WORK (20/100)
 
@@ -183,17 +171,15 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/6 PRs (0%)
+**Review Coverage**: 0/4 PRs (0%)
 
 **PRs Without Review**:
 - #8 - feat: French AI summaries + navigation fixes + E2E tests (by thonyAGP)
 - #6 - feat: Phase 11 quality hardening - E2E tests, folder/snooze fixes, 94% coverage (by thonyAGP)
 - #5 - test: boost API route coverage from 52% to 82% (by thonyAGP)
 - #4 - test: boost API route coverage from 26% to 52% + Groq SDK + ESLint cleanup (by thonyAGP)
-- #3 - Claude/resume work za jh8 (by thonyAGP)
-- #2 - feat: add Google/Microsoft Calendar integration (by thonyAGP)
 
-**Recent Deployments**: 39 successful deploys in 30 days
+**Recent Deployments**: 48 successful deploys in 30 days
 
 ---
 
@@ -208,6 +194,25 @@
 - Security Findings: 0 alerts
 
 **Recent Deployments**: 2 successful deploys in 30 days
+
+---
+
+### magic-migration | ❌ NEEDS WORK (20/100)
+
+**Full Name**: `thonyAGP/magic-migration`
+
+**Controls**:
+- Branch Protection: ✗
+- Code Review Required: ✗
+- CI/CD Enabled: ✓
+- Security Findings: 0 alerts
+
+**Review Coverage**: 0/1 PRs (0%)
+
+**PRs Without Review**:
+- #10 - feat(qa): QA Session Complete - Version Badge + Security Fixes (by thonyAGP)
+
+**Recent Deployments**: 20 successful deploys in 30 days
 
 ---
 

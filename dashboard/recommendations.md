@@ -1,12 +1,12 @@
 # Template Recommendations Report
 
-Generated: 25/02/2026 15:52:30
+Generated: 02/03/2026 21:26:59
 
 ## Executive Summary
 
-- **Total Recommendations**: 225
-- **Critical**: 11 | **High**: 155 | **Medium**: 32 | **Low**: 27
-- **Average Health Score**: 23.3/100
+- **Total Recommendations**: 226
+- **Critical**: 10 | **High**: 156 | **Medium**: 34 | **Low**: 26
+- **Average Health Score**: 21.9/100
 - **Top Template**: gitleaks.yml (17 repos)
 - **Most Improved Repo**: au-marais
 
@@ -106,7 +106,7 @@ Generated: 25/02/2026 15:52:30
 
 - **Health Score**: 55/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 31%
+- **CI Failure Rate**: 36%
 
 #### High Priority
 
@@ -189,6 +189,7 @@ Generated: 25/02/2026 15:52:30
 
 - **Health Score**: 55/100
 - **Stack**: nextjs
+- **CI Failure Rate**: 89%
 
 #### High Priority
 
@@ -216,6 +217,10 @@ Generated: 25/02/2026 15:52:30
   - Reason: No SAST (static analysis) detected
   - Effort: minimal
   - Impact: Static analysis for bugs, security issues, and anti-patterns
+- **type-coverage.yml**
+  - Reason: Improve TypeScript coverage
+  - Effort: minimal
+  - Impact: Ensures TypeScript coverage and type safety
 
 #### Medium Priority
 
@@ -247,10 +252,6 @@ Generated: 25/02/2026 15:52:30
   - Reason: Secure npm dependency chain
   - Effort: minimal
   - Impact: Secures npm dependencies with SBOM and license checks
-- **type-coverage.yml**
-  - Reason: Improve TypeScript coverage
-  - Effort: minimal
-  - Impact: Ensures TypeScript coverage and type safety
 
 #### Low Priority
 
@@ -339,7 +340,7 @@ Generated: 25/02/2026 15:52:30
 
 - **Health Score**: 55/100
 - **Stack**: node
-- **CI Failure Rate**: 7%
+- **CI Failure Rate**: 13%
 
 #### High Priority
 
@@ -690,6 +691,7 @@ Generated: 25/02/2026 15:52:30
 
 - **Health Score**: 35/100
 - **Stack**: node
+- **CI Failure Rate**: 83%
 
 #### High Priority
 
@@ -753,17 +755,11 @@ Generated: 25/02/2026 15:52:30
   - Effort: significant
   - Impact: Validates test quality by introducing code mutations
 
-### claude-cli-wrapper
+### magic-migration
 
-- **Health Score**: 35/100
+- **Health Score**: 0/100
 - **Stack**: node
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
+- **CI Failure Rate**: 65%
 
 #### High Priority
 
@@ -775,10 +771,10 @@ Generated: 25/02/2026 15:52:30
   - Reason: Would improve issue/PR organization
   - Effort: minimal
   - Impact: Automatically labels issues and PRs for better organization
-- **coverage-tracking.yml**
-  - Reason: Low health score (35) - needs test coverage tracking
-  - Effort: moderate
-  - Impact: Tracks test coverage over time and prevents regressions
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
 - **renovate.json**
   - Reason: No dependency update automation detected
   - Effort: minimal
@@ -808,14 +804,22 @@ Generated: 25/02/2026 15:52:30
   - Effort: minimal
   - Impact: Ensures TypeScript coverage and type safety
 
-#### Low Priority
+#### Medium Priority
 
 - **stale-bot.yml**
   - Reason: Auto-close stale issues and PRs
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
+- **release-drafter.yml**
+  - Reason: Auto-generate release notes
+  - Effort: minimal
+  - Impact: Auto-drafts release notes from PRs and commits
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
 
-### lecteur-magic
+### claude-cli-wrapper
 
 - **Health Score**: 35/100
 - **Stack**: node

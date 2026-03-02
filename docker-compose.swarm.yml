@@ -1,0 +1,233 @@
+version: '3.8'
+
+# Code Quality Swarm - MVP Version
+# 3 agents légers: Test Generator, Code Reviewer, Bug Detector
+# Infrastructure minimale: Redis (cache) + PostgreSQL (résultats)
+
+services:
+  # === Infrastructure ===
+
+  redis:
+    image: redis:7-alpine
+    container_name: swarm-redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - swarm-network
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: swarm-db
+    environment:
+      POSTGRES_DB: swarm_results
+      POSTGRES_USER: swarm
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-swarm_local_dev}
+      POSTGRES_INITDB_ARGS: '--encoding=UTF8 --locale=C'
+    ports:
+      - '5433:5432' # Port 5433 pour éviter conflit avec PostgreSQL local
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./infra/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U swarm']
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - swarm-network
+
+  # === Agents ===
+
+  agent-test-generator:
+    build:
+      context: ./agents/test-generator
+      dockerfile: Dockerfile
+    container_name: swarm-agent-test-generator
+    environment:
+      NODE_ENV: production
+      AGENT_ID: test-generator
+      AGENT_MODEL: claude-haiku-4-5 # Économique
+      REDIS_URL: redis://redis:6379
+      DB_URL: postgresql://swarm:${DB_PASSWORD:-swarm_local_dev}@postgres:5432/swarm_results
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      LOG_LEVEL: info
+      MAX_CONCURRENT_TASKS: 3
+    volumes:
+      - ./projects:/workspace:ro # Lecture seule des projets
+      - ./output:/output # Écriture des tests générés
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - swarm-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  agent-code-reviewer:
+    build:
+      context: ./agents/code-reviewer
+      dockerfile: Dockerfile
+    container_name: swarm-agent-code-reviewer
+    environment:
+      NODE_ENV: production
+      AGENT_ID: code-reviewer
+      AGENT_MODEL: claude-sonnet-4-5 # Qualité reviews
+      REDIS_URL: redis://redis:6379
+      DB_URL: postgresql://swarm:${DB_PASSWORD:-swarm_local_dev}@postgres:5432/swarm_results
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      LOG_LEVEL: info
+      MAX_CONCURRENT_TASKS: 2
+    volumes:
+      - ./projects:/workspace:ro
+      - ./output:/output
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - swarm-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+
+  agent-bug-detector:
+    build:
+      context: ./agents/bug-detector
+      dockerfile: Dockerfile
+    container_name: swarm-agent-bug-detector
+    environment:
+      NODE_ENV: production
+      AGENT_ID: bug-detector
+      AGENT_MODEL: claude-haiku-4-5 # Rapide pour pattern matching
+      REDIS_URL: redis://redis:6379
+      DB_URL: postgresql://swarm:${DB_PASSWORD:-swarm_local_dev}@postgres:5432/swarm_results
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      LOG_LEVEL: info
+      MAX_CONCURRENT_TASKS: 5
+    volumes:
+      - ./projects:/workspace:ro
+      - ./output:/output
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - swarm-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  # === Coordinator ===
+
+  coordinator:
+    build:
+      context: ./coordinator
+      dockerfile: Dockerfile
+    container_name: swarm-coordinator
+    environment:
+      NODE_ENV: production
+      REDIS_URL: redis://redis:6379
+      DB_URL: postgresql://swarm:${DB_PASSWORD:-swarm_local_dev}@postgres:5432/swarm_results
+      PORT: 3100
+      LOG_LEVEL: info
+      # Seuils de décision
+      MIN_COVERAGE_THRESHOLD: 70
+      MAX_COMPLEXITY_THRESHOLD: 10
+      BLOCK_ON_CRITICAL_BUGS: 'true'
+    ports:
+      - '3100:3100'
+    volumes:
+      - ./output:/output
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - swarm-network
+    healthcheck:
+      test: ['CMD', 'wget', '--no-verbose', '--tries=1', '--spider', 'http://localhost:3100/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # === Dashboard (optionnel) ===
+
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    container_name: swarm-dashboard
+    environment:
+      NODE_ENV: production
+      API_URL: http://coordinator:3100
+      PORT: 3000
+    ports:
+      - '3102:3000' # Port 3102 pour éviter conflits
+    depends_on:
+      coordinator:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - swarm-network
+
+  # === Scheduler (cron jobs) ===
+
+  scheduler:
+    build:
+      context: ./scheduler
+      dockerfile: Dockerfile
+    container_name: swarm-scheduler
+    environment:
+      NODE_ENV: production
+      REDIS_URL: redis://redis:6379
+      COORDINATOR_URL: http://coordinator:3100
+      # Schedules (cron format)
+      SCHEDULE_DAILY: '0 2 * * *' # 2h du matin quotidien
+      SCHEDULE_WEEKLY: '0 3 * * 0' # Dimanche 3h hebdo
+      # Projets à scanner (liste séparée par virgules)
+      PROJECTS: 'DevOps-Factory,CasaSync,EmailAssistant'
+      LOG_LEVEL: info
+    volumes:
+      - ./projects:/workspace:ro
+    depends_on:
+      - coordinator
+    restart: unless-stopped
+    networks:
+      - swarm-network
+
+networks:
+  swarm-network:
+    driver: bridge
+    name: swarm-network
+
+volumes:
+  redis-data:
+    name: swarm-redis-data
+  postgres-data:
+    name: swarm-postgres-data
