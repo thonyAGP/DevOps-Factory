@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-02T08:58:03.054Z",
+  "timestamp": "2026-03-02T12:40:33.734Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -47,16 +47,16 @@
     {
       "repo": "magic-migration",
       "fullName": "thonyAGP/magic-migration",
-      "totalMinutes": 105,
+      "totalMinutes": 107,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 49,
-          "totalMinutes": 49,
+          "runs": 45,
+          "totalMinutes": 45,
           "avgMinutes": 1,
-          "failedRuns": 49,
-          "wastedMinutes": 49
+          "failedRuns": 45,
+          "wastedMinutes": 45
         },
         {
           "name": "Deploy OpenSpec Viewer",
@@ -68,11 +68,11 @@
         },
         {
           "name": "E2E Tests",
-          "runs": 14,
-          "totalMinutes": 18,
+          "runs": 16,
+          "totalMinutes": 22,
           "avgMinutes": 1,
-          "failedRuns": 14,
-          "wastedMinutes": 18
+          "failedRuns": 16,
+          "wastedMinutes": 22
         },
         {
           "name": "Daily Drift Report",
@@ -84,16 +84,16 @@
         },
         {
           "name": "Expression Coverage Check",
-          "runs": 3,
-          "totalMinutes": 4,
+          "runs": 5,
+          "totalMinutes": 6,
           "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 4
+          "failedRuns": 5,
+          "wastedMinutes": 6
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (49min wasted). Fix root cause.",
-        "E2E Tests: 100% failure rate (18min wasted). Fix root cause."
+        "Deploy Migration Dashboard: 100% failure rate (45min wasted). Fix root cause.",
+        "E2E Tests: 100% failure rate (22min wasted). Fix root cause."
       ]
     },
     {
@@ -279,9 +279,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 500,
+    "totalMinutes": 502,
     "totalRuns": 281,
-    "wastedMinutes": 218,
+    "wastedMinutes": 220,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,

@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/2/2026, 8:58:47 AM
+**Generated**: 3/2/2026, 12:41:09 PM
 **Period**: 30-day window
 
 ## Summary
@@ -12,9 +12,9 @@
 | Repos with Branch Protection | 0/17 |
 | Repos with CI | 7/17 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 9 |
+| PRs Merged (30d) | 10 |
 | Deployments (30d) | 82 |
-| PRs with Review | 0/9 |
+| PRs with Review | 0/10 |
 
 ## Repository Compliance
 
@@ -71,10 +71,11 @@
 - test_codingmenace
 - Thumbfast
 
-### ⚠️ No Code Review (3)
+### ⚠️ No Code Review (4)
 - **au-marais**: 2 PRs merged without review
 - **ClubMedRoomAssignment**: 3 PRs merged without review
 - **Email_Assistant**: 4 PRs merged without review
+- **magic-migration**: 1 PRs merged without review
 
 ### 🔴 Low Compliance Score < 60 (17)
 - au-marais: 20/100
@@ -205,6 +206,11 @@
 - Code Review Required: ✗
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
+
+**Review Coverage**: 0/1 PRs (0%)
+
+**PRs Without Review**:
+- #10 - feat(qa): QA Session Complete - Version Badge + Security Fixes (by thonyAGP)
 
 **Recent Deployments**: 20 successful deploys in 30 days
 
