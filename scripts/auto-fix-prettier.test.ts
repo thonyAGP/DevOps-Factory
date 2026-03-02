@@ -124,7 +124,7 @@ describe('auto-fix-prettier logic', () => {
     });
 
     it('should use frozen lockfile for yarn', () => {
-      const pm = 'yarn';
+      const pm: string = 'yarn';
       const cmd =
         pm === 'pnpm'
           ? 'pnpm install --frozen-lockfile --ignore-scripts'
@@ -136,7 +136,7 @@ describe('auto-fix-prettier logic', () => {
     });
 
     it('should use npm ci for npm', () => {
-      const pm = 'npm';
+      const pm: string = 'npm';
       const cmd =
         pm === 'pnpm'
           ? 'pnpm install --frozen-lockfile --ignore-scripts'
