@@ -82,7 +82,7 @@ describe('pr-description logic', () => {
 
     it('should require description if empty', () => {
       const body = '';
-      const needsDescription = !body || body.length < MIN_LENGTH;
+      const needsDescription = body.length === 0 || body.length < MIN_LENGTH;
 
       expect(needsDescription).toBe(true);
     });
@@ -155,9 +155,9 @@ describe('pr-description logic', () => {
       const data: Record<string, unknown> = {};
 
       const prInfo: PRInfo = {
-        title: (data.title as string) || 'Unknown PR',
-        body: (data.body as string) || '',
-        filesChanged: (data.changed_files as number) || 0,
+        title: typeof data.title === 'string' ? data.title : 'Unknown PR',
+        body: typeof data.body === 'string' ? data.body : '',
+        filesChanged: typeof data.changed_files === 'number' ? data.changed_files : 0,
       };
 
       expect(prInfo.title).toBe('Unknown PR');

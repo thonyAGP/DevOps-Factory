@@ -111,7 +111,7 @@ describe('dependency-intelligence logic', () => {
   describe('Severity Prioritization', () => {
     it('should order critical severity first', () => {
       const severities = ['low', 'critical', 'medium', 'high'];
-      const order = { critical: 0, high: 1, medium: 2, low: 3 };
+      const order: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 };
 
       const sorted = severities.sort((a, b) => order[a] - order[b]);
 
@@ -130,7 +130,10 @@ describe('dependency-intelligence logic', () => {
 
   describe('Dependency Counting', () => {
     it('should count total dependencies', () => {
-      const pkg = {
+      const pkg: {
+        dependencies?: Record<string, string>;
+        devDependencies?: Record<string, string>;
+      } = {
         dependencies: { a: '1.0.0', b: '2.0.0' },
         devDependencies: { c: '3.0.0' },
       };
@@ -142,7 +145,10 @@ describe('dependency-intelligence logic', () => {
     });
 
     it('should handle zero dependencies', () => {
-      const pkg = {};
+      const pkg: {
+        dependencies?: Record<string, string>;
+        devDependencies?: Record<string, string>;
+      } = {};
 
       const totalDeps =
         Object.keys(pkg.dependencies || {}).length + Object.keys(pkg.devDependencies || {}).length;

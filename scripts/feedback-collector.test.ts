@@ -128,7 +128,7 @@ describe('feedback-collector logic', () => {
 
     it('should not change confidence for open PRs', () => {
       const currentConfidence = 0.7;
-      const outcome = 'open';
+      const outcome: string = 'open';
 
       const delta = outcome === 'merged' ? 0.1 : outcome === 'closed' ? -0.15 : 0;
       const newConfidence = currentConfidence + delta;
