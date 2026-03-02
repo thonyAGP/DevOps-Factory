@@ -35,8 +35,18 @@ interface ActivityLog {
   entries: ActivityEntry[];
 }
 
-const LOG_PATH = 'data/activity-log.json';
+// Configurable log path (can be overridden for testing)
+let LOG_PATH = 'data/activity-log.json';
 const MAX_AGE_DAYS = 30;
+
+// Allow tests to override log path
+export const __setLogPath = (path: string): void => {
+  LOG_PATH = path;
+};
+
+export const __resetLogPath = (): void => {
+  LOG_PATH = 'data/activity-log.json';
+};
 
 const ensureDir = (filePath: string): void => {
   const dir = dirname(filePath);
