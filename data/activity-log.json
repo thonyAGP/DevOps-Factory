@@ -28932,10 +28932,34 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-03-03T07:25:07.771Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "0/2 passing. 0 failures, 2 partial. 0 self-heals",
+      "timestamp": "2026-03-03T07:25:04.171Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-03T07:25:07.687Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "ClubMedRoomAssignment",
+      "details": "Self-heal dispatched (run 22192523507)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-03T07:25:11.360Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "CasaSync",
+      "details": "Self-heal dispatched (run 22598290782)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-03T07:25:11.372Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/7 passing, 4 failing. Issues: 0 created, 0 closed",
       "status": "warning"
     }
   ]
