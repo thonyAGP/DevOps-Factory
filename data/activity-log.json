@@ -40594,6 +40594,37 @@
       "action": "check-complete",
       "details": "1/7 passing, 4 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-03T16:12:09.691Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 22191711703)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-03T16:12:12.015Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "ClubMedRoomAssignment",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-03T16:12:16.919Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "CasaSync",
+      "details": "Self-heal dispatched (run 22598290782)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-03T16:12:16.934Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/7 passing, 4 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
