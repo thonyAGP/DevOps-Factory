@@ -1,34 +1,6 @@
 {
-  "timestamp": "2026-02-22T12:33:38.147Z",
+  "timestamp": "2026-03-03T08:53:47.831Z",
   "scores": [
-    {
-      "name": "Email_Assistant",
-      "repo": "thonyAGP/Email_Assistant",
-      "score": 55,
-      "breakdown": {
-        "ciPasses": 20,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0
-      }
-    },
-    {
-      "name": "CasaSync",
-      "repo": "thonyAGP/CasaSync",
-      "score": 55,
-      "breakdown": {
-        "ciPasses": 20,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0
-      }
-    },
     {
       "name": "Livret_accueil_Au-Marais",
       "repo": "thonyAGP/livret-au-marais",
@@ -58,8 +30,36 @@
       }
     },
     {
+      "name": "Lecteur_Magic",
+      "repo": "thonyAGP/lecteur-magic",
+      "score": 55,
+      "breakdown": {
+        "ciPasses": 20,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0
+      }
+    },
+    {
       "name": "DevOps-Factory",
       "repo": "thonyAGP/DevOps-Factory",
+      "score": 35,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0
+      }
+    },
+    {
+      "name": "Email_Assistant",
+      "repo": "thonyAGP/Email_Assistant",
       "score": 35,
       "breakdown": {
         "ciPasses": 0,
@@ -86,8 +86,8 @@
       }
     },
     {
-      "name": "Lecteur_Magic",
-      "repo": "thonyAGP/lecteur-magic",
+      "name": "CasaSync",
+      "repo": "thonyAGP/CasaSync",
       "score": 35,
       "breakdown": {
         "ciPasses": 0,
@@ -226,5 +226,18 @@
       }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "Email_Assistant",
+      "drop": 20,
+      "from": 55,
+      "to": 35
+    },
+    {
+      "repo": "CasaSync",
+      "drop": 20,
+      "from": 55,
+      "to": 35
+    }
+  ]
 }
