@@ -1168,11 +1168,16 @@
   },
   {
     "date": "2026-03-03",
-    "avgHealth": 47,
-    "failingCI": 1,
-    "passingCI": 5,
-    "totalOpenPRs": 37,
+    "avgHealth": 45,
+    "failingCI": 2,
+    "passingCI": 4,
+    "totalOpenPRs": 38,
     "perProject": [
+      {
+        "name": "Email_Assistant",
+        "health": 19,
+        "ciStatus": "fail"
+      },
       {
         "name": "CasaSync",
         "health": 29,
@@ -1227,11 +1232,6 @@
         "name": "Thumbfast",
         "health": 44,
         "ciStatus": "none"
-      },
-      {
-        "name": "Email_Assistant",
-        "health": 49,
-        "ciStatus": "pass"
       },
       {
         "name": "Utilitaire_Webapp",
