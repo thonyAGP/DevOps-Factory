@@ -3,6 +3,29 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 vi.mock('node:child_process');
 vi.mock('node:fs');
 
+// Define interfaces for test data structures to avoid 'unknown' errors
+interface TestMergedPR {
+  reviewers?: string[];
+  number?: number;
+}
+
+interface TestRepoSummary {
+  mergedPRs?: TestMergedPR[];
+  score?: number;
+  repo?: string;
+  branchProtection?: boolean;
+  ciEnabled?: boolean;
+  deployments?: any[];
+}
+
+interface TestSecurityFinding {
+  type: string;
+  severity: string;
+  repo?: string;
+  count?: number;
+  lastScan?: string;
+}
+
 describe('compliance-report', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -264,7 +287,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty PR list', () => {
-      const prs: unknown[] = [];
+      const prs: TestMergedPR[] = [];
 
       const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
@@ -570,10 +593,10 @@ describe('compliance-report', () => {
 
   describe('Edge Cases', () => {
     it('should handle empty repos list', () => {
-      const repos: unknown[] = [];
+      const repos: TestRepoSummary[] = [];
 
-      const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
-      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
+      const totalPRs = repos.reduce((s, r) => s + (r.mergedPRs?.length || 0), 0);
+      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + (r.score || 0), 0) / repos.length : 0;
 
       expect(totalPRs).toBe(0);
       expect(avgScore).toBe(0);
@@ -649,7 +672,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty security findings', () => {
-      const findings: unknown[] = [];
+      const findings: TestSecurityFinding[] = [];
 
       const bySeverity = new Map();
       for (const finding of findings) {
