@@ -309,7 +309,12 @@ ${diff.slice(0, 40000)}
     });
 
     it('should provide default values when API returns null', () => {
-      const data: unknown = null;
+      interface MinimalPRData {
+        title?: string;
+        body?: string;
+        changed_files?: number;
+      }
+      const data: MinimalPRData | null = null;
       const prInfo = {
         title: data?.title || 'Unknown PR',
         body: data?.body || '',
