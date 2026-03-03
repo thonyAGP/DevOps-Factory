@@ -31087,26 +31087,34 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-03-03T08:53:47.840Z",
-      "source": "quality-score",
-      "action": "quality-drop",
+      "timestamp": "2026-03-03T08:53:57.188Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
       "target": "Email_Assistant",
-      "details": "55 → 35 (-20pts)",
+      "details": "Self-heal dispatched (run 22191711703)",
       "status": "warning"
     },
     {
-      "timestamp": "2026-03-03T08:53:47.854Z",
-      "source": "quality-score",
-      "action": "quality-drop",
+      "timestamp": "2026-03-03T08:54:01.249Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "ClubMedRoomAssignment",
+      "details": "Self-heal dispatched (run 22192523507)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-03T08:54:04.298Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
       "target": "CasaSync",
-      "details": "55 → 35 (-20pts)",
+      "details": "Self-heal dispatched (run 22598290782)",
       "status": "warning"
     },
     {
-      "timestamp": "2026-03-03T08:53:47.868Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 39/100, 0 excellent, 16 needs work, 2 drops, 0 improvements",
+      "timestamp": "2026-03-03T08:54:04.310Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/7 passing, 4 failing. Issues: 0 created, 0 closed",
       "status": "warning"
     }
   ]
