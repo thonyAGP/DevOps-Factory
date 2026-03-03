@@ -6,16 +6,16 @@
 - **0%** avg security score
 - **0/16** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
-- **DORA**: MEDIUM (deploy 0/wk, lead 132.7h, MTTR 0h, CFR 57%)
-- **CI Cost**: 480min total, 246min wasted, ~$0/mo
+- **DORA**: MEDIUM (deploy 0/wk, lead 0.6h, MTTR 0.1h, CFR 57%)
+- **CI Cost**: 462min total, 250min wasted, ~$0/mo
 - **Compliance**: 8/100 avg, 0% review coverage, 0/17 branch protected
 
 ## Per Project
 
 ### Email_Assistant :x:
 - **Health**: 19/100
-- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22611671019))
-- **Open PRs**: 8
+- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22618043719))
+- **Open PRs**: 9
 
 ### CasaSync :x:
 - **Health**: 29/100
