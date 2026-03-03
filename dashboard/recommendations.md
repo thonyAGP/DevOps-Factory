@@ -1,11 +1,11 @@
 # Template Recommendations Report
 
-Generated: 3/3/2026, 5:01:15 PM
+Generated: 3/3/2026, 6:42:04 PM
 
 ## Executive Summary
 
 - **Total Recommendations**: 226
-- **Critical**: 10 | **High**: 156 | **Medium**: 34 | **Low**: 26
+- **Critical**: 10 | **High**: 154 | **Medium**: 36 | **Low**: 26
 - **Average Health Score**: 21.9/100
 - **Top Template**: gitleaks.yml (17 repos)
 - **Most Improved Repo**: au-marais
@@ -106,7 +106,6 @@ Generated: 3/3/2026, 5:01:15 PM
 
 - **Health Score**: 55/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 40%
 
 #### High Priority
 
@@ -134,10 +133,6 @@ Generated: 3/3/2026, 5:01:15 PM
   - Reason: No SAST (static analysis) detected
   - Effort: minimal
   - Impact: Static analysis for bugs, security issues, and anti-patterns
-- **type-coverage.yml**
-  - Reason: Improve TypeScript coverage
-  - Effort: minimal
-  - Impact: Ensures TypeScript coverage and type safety
 
 #### Medium Priority
 
@@ -169,6 +164,10 @@ Generated: 3/3/2026, 5:01:15 PM
   - Reason: Secure npm dependency chain
   - Effort: minimal
   - Impact: Secures npm dependencies with SBOM and license checks
+- **type-coverage.yml**
+  - Reason: Improve TypeScript coverage
+  - Effort: minimal
+  - Impact: Ensures TypeScript coverage and type safety
 
 #### Low Priority
 
@@ -189,7 +188,6 @@ Generated: 3/3/2026, 5:01:15 PM
 
 - **Health Score**: 55/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 89%
 
 #### High Priority
 
@@ -217,10 +215,6 @@ Generated: 3/3/2026, 5:01:15 PM
   - Reason: No SAST (static analysis) detected
   - Effort: minimal
   - Impact: Static analysis for bugs, security issues, and anti-patterns
-- **type-coverage.yml**
-  - Reason: Improve TypeScript coverage
-  - Effort: minimal
-  - Impact: Ensures TypeScript coverage and type safety
 
 #### Medium Priority
 
@@ -252,6 +246,10 @@ Generated: 3/3/2026, 5:01:15 PM
   - Reason: Secure npm dependency chain
   - Effort: minimal
   - Impact: Secures npm dependencies with SBOM and license checks
+- **type-coverage.yml**
+  - Reason: Improve TypeScript coverage
+  - Effort: minimal
+  - Impact: Ensures TypeScript coverage and type safety
 
 #### Low Priority
 
@@ -272,7 +270,6 @@ Generated: 3/3/2026, 5:01:15 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 100%
 
 #### High Priority
 
@@ -340,7 +337,6 @@ Generated: 3/3/2026, 5:01:15 PM
 
 - **Health Score**: 55/100
 - **Stack**: node
-- **CI Failure Rate**: 25%
 
 #### High Priority
 
@@ -691,7 +687,6 @@ Generated: 3/3/2026, 5:01:15 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 83%
 
 #### High Priority
 
@@ -759,7 +754,6 @@ Generated: 3/3/2026, 5:01:15 PM
 
 - **Health Score**: 0/100
 - **Stack**: node
-- **CI Failure Rate**: 65%
 
 #### High Priority
 

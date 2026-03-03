@@ -44064,110 +44064,52 @@
       "status": "success"
     },
     {
-      "timestamp": "2026-03-03T18:39:22.152Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
+      "timestamp": "2026-03-03T18:38:59.589Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "16 projects, avg health 45",
       "status": "warning"
     },
     {
-      "timestamp": "2026-03-03T18:39:25.887Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
+      "timestamp": "2026-03-03T18:40:09.370Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 17 critical issues",
       "status": "warning"
     },
     {
-      "timestamp": "2026-03-03T18:39:30.307Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 22598290782)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-03T18:39:30.325Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "1/7 passing, 4 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-03T18:40:21.070Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-03T18:40:24.585Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-03T18:40:28.343Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 22598290782)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-03T18:40:28.358Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "1/7 passing, 4 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-03T18:40:40.118Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-03T18:40:43.165Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-03T18:40:46.500Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 22598290782)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-03T18:40:46.514Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "1/7 passing, 4 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-03T18:41:31.629Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/7 passing, 0 failing. Issues: 0 created, 0 closed",
+      "timestamp": "2026-03-03T18:41:16.592Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 0%, 0 drifted templates",
       "status": "success"
     },
     {
-      "timestamp": "2026-03-03T18:41:52.605Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/7 passing, 0 failing. Issues: 0 created, 0 closed",
+      "timestamp": "2026-03-03T18:41:26.358Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: high, deploy 0/wk, lead 132.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-03T18:41:30.573Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 0min total, 0min wasted, ~$0/mo",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-03T18:42:03.975Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 0/100, branch protection 0/17, CI 0/17, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-03T18:42:04.687Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "226 recommendations across 26 repos (10 critical, 154 high)",
       "status": "success"
     }
   ]

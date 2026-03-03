@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-03T17:01:15.584Z",
+  "timestamp": "2026-03-03T18:42:04.662Z",
   "repos": [
     {
       "repo": "au-marais",
@@ -134,7 +134,7 @@
       "fullName": "thonyAGP/CasaSync",
       "healthScore": 55,
       "stack": "nextjs",
-      "ciFailureRate": 40,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -177,13 +177,6 @@
           "reason": "No SAST (static analysis) detected",
           "effort": "minimal",
           "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "auto-label.yml",
@@ -233,6 +226,13 @@
           "reason": "Secure npm dependency chain",
           "effort": "minimal",
           "impact": "Secures npm dependencies with SBOM and license checks"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "medium",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "stale-bot.yml",
@@ -262,7 +262,7 @@
       "fullName": "thonyAGP/livret-au-marais",
       "healthScore": 55,
       "stack": "nextjs",
-      "ciFailureRate": 89,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -305,13 +305,6 @@
           "reason": "No SAST (static analysis) detected",
           "effort": "minimal",
           "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "auto-label.yml",
@@ -363,6 +356,13 @@
           "impact": "Secures npm dependencies with SBOM and license checks"
         },
         {
+          "template": "type-coverage.yml",
+          "priority": "medium",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
+        },
+        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
@@ -390,7 +390,7 @@
       "fullName": "thonyAGP/ClubMedRoomAssignment",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 100,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -497,7 +497,7 @@
       "fullName": "thonyAGP/Email_Assistant",
       "healthScore": 55,
       "stack": "node",
-      "ciFailureRate": 25,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -1032,7 +1032,7 @@
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 83,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -1139,7 +1139,7 @@
       "fullName": "thonyAGP/magic-migration",
       "healthScore": 0,
       "stack": "node",
-      "ciFailureRate": 65,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -1812,8 +1812,8 @@
   "summary": {
     "totalRecommendations": 226,
     "criticalCount": 10,
-    "highCount": 156,
-    "mediumCount": 34,
+    "highCount": 154,
+    "mediumCount": 36,
     "lowCount": 26,
     "topTemplates": [
       {

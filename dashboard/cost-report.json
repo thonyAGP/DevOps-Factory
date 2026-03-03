@@ -1,201 +1,21 @@
 {
-  "timestamp": "2026-03-03T17:00:34.702Z",
+  "timestamp": "2026-03-03T18:41:30.564Z",
   "repos": [
-    {
-      "repo": "Email_Assistant",
-      "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 164,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "CI",
-          "runs": 15,
-          "totalMinutes": 76,
-          "avgMinutes": 5,
-          "failedRuns": 15,
-          "wastedMinutes": 76
-        },
-        {
-          "name": "Monitor Production",
-          "runs": 48,
-          "totalMinutes": 48,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Qodo Merge - PR Review",
-          "runs": 20,
-          "totalMinutes": 23,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Post-Deploy Health Check",
-          "runs": 17,
-          "totalMinutes": 17,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": [
-        "CI: 100% failure rate (76min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "magic-migration",
-      "fullName": "thonyAGP/magic-migration",
-      "totalMinutes": 107,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Deploy Migration Dashboard",
-          "runs": 44,
-          "totalMinutes": 44,
-          "avgMinutes": 1,
-          "failedRuns": 44,
-          "wastedMinutes": 44
-        },
-        {
-          "name": "Deploy OpenSpec Viewer",
-          "runs": 26,
-          "totalMinutes": 26,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
-        },
-        {
-          "name": "E2E Tests",
-          "runs": 16,
-          "totalMinutes": 22,
-          "avgMinutes": 1,
-          "failedRuns": 16,
-          "wastedMinutes": 22
-        },
-        {
-          "name": "Daily Drift Report",
-          "runs": 9,
-          "totalMinutes": 9,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Expression Coverage Check",
-          "runs": 5,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 6
-        }
-      ],
-      "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (44min wasted). Fix root cause.",
-        "E2E Tests: 100% failure rate (22min wasted). Fix root cause."
-      ]
-    },
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
-      "totalMinutes": 56,
-      "totalRuns": 8,
-      "workflows": [
-        {
-          "name": "E2E Tests",
-          "runs": 8,
-          "totalMinutes": 56,
-          "avgMinutes": 7,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
       "recommendations": []
-    },
-    {
-      "repo": "livret-au-marais",
-      "fullName": "thonyAGP/livret-au-marais",
-      "totalMinutes": 51,
-      "totalRuns": 18,
-      "workflows": [
-        {
-          "name": "CI",
-          "runs": 18,
-          "totalMinutes": 51,
-          "avgMinutes": 3,
-          "failedRuns": 16,
-          "wastedMinutes": 47
-        }
-      ],
-      "recommendations": [
-        "CI: 89% failure rate (47min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "ClubMedRoomAssignment",
-      "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "totalMinutes": 35,
-      "totalRuns": 35,
-      "workflows": [
-        {
-          "name": "CI",
-          "runs": 32,
-          "totalMinutes": 32,
-          "avgMinutes": 1,
-          "failedRuns": 32,
-          "wastedMinutes": 32
-        },
-        {
-          "name": ".github/workflows/ci.yml",
-          "runs": 3,
-          "totalMinutes": 3,
-          "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
-        }
-      ],
-      "recommendations": [
-        "CI: 100% failure rate (32min wasted). Fix root cause."
-      ]
     },
     {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
-      "totalMinutes": 20,
-      "totalRuns": 15,
-      "workflows": [
-        {
-          "name": "CI",
-          "runs": 15,
-          "totalMinutes": 20,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 9
-        }
-      ],
-      "recommendations": [
-        "CI: 40% failure rate (9min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "Utilitaire_Webapp",
-      "fullName": "thonyAGP/Utilitaire_Webapp",
-      "totalMinutes": 6,
-      "totalRuns": 6,
-      "workflows": [
-        {
-          "name": "CI",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
-        }
-      ],
-      "recommendations": [
-        "CI: 83% failure rate (5min wasted). Fix root cause."
-      ]
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
     },
     {
       "repo": "claude-cli-wrapper",
@@ -214,8 +34,40 @@
       "recommendations": []
     },
     {
+      "repo": "ClubMedRoomAssignment",
+      "fullName": "thonyAGP/ClubMedRoomAssignment",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "Email_Assistant",
+      "fullName": "thonyAGP/Email_Assistant",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
       "repo": "Livret_accueil_Au-Marais",
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "livret-au-marais",
+      "fullName": "thonyAGP/livret-au-marais",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
+    },
+    {
+      "repo": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
       "totalMinutes": 0,
       "totalRuns": 0,
       "workflows": [],
@@ -276,15 +128,23 @@
       "totalRuns": 0,
       "workflows": [],
       "recommendations": []
+    },
+    {
+      "repo": "Utilitaire_Webapp",
+      "fullName": "thonyAGP/Utilitaire_Webapp",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
     }
   ],
   "summary": {
-    "totalMinutes": 439,
-    "totalRuns": 282,
-    "wastedMinutes": 250,
-    "mostExpensiveRepo": "Email_Assistant",
-    "mostExpensiveWorkflow": "CI (Email_Assistant)",
-    "totalRecommendations": 7,
+    "totalMinutes": 0,
+    "totalRuns": 0,
+    "wastedMinutes": 0,
+    "mostExpensiveRepo": "au-marais",
+    "mostExpensiveWorkflow": "none (none)",
+    "totalRecommendations": 0,
     "estimatedMonthlyCost": 0
   }
 }
