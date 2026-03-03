@@ -309,11 +309,16 @@ ${diff.slice(0, 40000)}
     });
 
     it('should provide default values when API returns null', () => {
-      const data: unknown = null;
+      interface MockPRData {
+        title?: string;
+        body?: string;
+        filesChanged?: number;
+      }
+      const data: MockPRData | null = null;
       const prInfo = {
         title: data?.title || 'Unknown PR',
         body: data?.body || '',
-        filesChanged: data?.changed_files || 0,
+        filesChanged: data?.filesChanged || 0,
       };
 
       expect(prInfo.title).toBe('Unknown PR');
