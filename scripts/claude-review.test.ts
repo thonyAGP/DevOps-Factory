@@ -280,6 +280,8 @@ ${diff.slice(0, 40000)}
     });
   });
 
+  interface MockPRData { title?: string; body?: string; changed_files?: number; }
+
   describe('getPRInfo', () => {
     it('should return PR info with correct structure', () => {
       const prInfo = {
@@ -311,9 +313,9 @@ ${diff.slice(0, 40000)}
     it('should provide default values when API returns null', () => {
       const data: unknown = null;
       const prInfo = {
-        title: data?.title || 'Unknown PR',
-        body: data?.body || '',
-        filesChanged: data?.changed_files || 0,
+        title: (data as MockPRData)?.title || 'Unknown PR',
+        body: (data as MockPRData)?.body || '',
+        filesChanged: (data as MockPRData)?.changed_files || 0,
       };
 
       expect(prInfo.title).toBe('Unknown PR');
