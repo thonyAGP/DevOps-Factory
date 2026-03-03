@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-03T05:18:27.060Z",
+  "timestamp": "2026-03-03T06:44:24.906Z",
   "period": "30-day window",
   "repos": [
     {
@@ -233,6 +233,30 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-03T06:43:28Z",
+          "workflow": "Monitor Production"
+        },
+        {
+          "branch": "ai-fix/ci-1772518071057",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "3ece42eb3bdd07533b9e942121fccb159c104e43",
+          "status": "success",
+          "timestamp": "2026-03-03T06:10:20Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "ai-fix/ci-1772518071057",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "3ece42eb3bdd07533b9e942121fccb159c104e43",
+          "status": "success",
+          "timestamp": "2026-03-03T06:07:59Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
         {
           "branch": "ai-fix/ci-1772510104022",
           "repo": "thonyAGP/Email_Assistant",
@@ -528,46 +552,6 @@
           "status": "success",
           "timestamp": "2026-02-24T01:45:32Z",
           "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-02-23T18:56:43Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-02-23T12:53:57Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "devops-factory/test-scaffold",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "1d5953a3b29ff67bc82ef3983da3fef4010d3e8a",
-          "status": "success",
-          "timestamp": "2026-02-23T07:59:23Z",
-          "workflow": "Post-Deploy Health Check"
-        },
-        {
-          "branch": "devops-factory/test-scaffold",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "979584e3dde434a4f4f52245324a5aa66bb9b716",
-          "status": "success",
-          "timestamp": "2026-02-23T07:57:06Z",
-          "workflow": "Post-Deploy Health Check"
-        },
-        {
-          "branch": "devops-factory/test-scaffold",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "1d5953a3b29ff67bc82ef3983da3fef4010d3e8a",
-          "status": "success",
-          "timestamp": "2026-02-23T07:54:53Z",
-          "workflow": "Qodo Merge - PR Review"
         }
       ],
       "securityFindings": [],
@@ -921,7 +905,7 @@
     "totalPRsMerged": 10,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 77,
+    "totalDeployments": 75,
     "avgComplianceScore": 8,
     "reposWithBranchProtection": 0,
     "reposWithCI": 7
