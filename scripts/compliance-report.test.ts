@@ -3,6 +3,44 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 vi.mock('node:child_process');
 vi.mock('node:fs');
 
+interface SecurityFinding {
+  repo: string;
+  type: string;
+  severity: string;
+  count: number;
+  lastScan: string;
+}
+
+interface MergedPR {
+  number: number;
+  title: string;
+  author: string;
+  mergedAt: string;
+  reviewers: string[];
+  labels: string[];
+}
+
+interface Deployment {
+  repo: string;
+  sha: string;
+  branch: string;
+  timestamp: string;
+  workflow: string;
+  status: string;
+}
+
+interface RepoSummary {
+  repo?: string;
+  fullName?: string;
+  mergedPRs?: MergedPR[];
+  deployments?: Deployment[];
+  securityFindings?: SecurityFinding[];
+  branchProtection?: boolean;
+  codeReview?: boolean;
+  ciEnabled?: boolean;
+  score?: number;
+}
+
 describe('compliance-report', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -264,7 +302,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty PR list', () => {
-      const prs: unknown[] = [];
+      const prs: MergedPR[] = []; // Fix: Type prs array
 
       const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
@@ -570,10 +608,10 @@ describe('compliance-report', () => {
 
   describe('Edge Cases', () => {
     it('should handle empty repos list', () => {
-      const repos: unknown[] = [];
+      const repos: RepoSummary[] = []; // Fix: Type repos array
 
-      const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
-      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
+      const totalPRs = repos.reduce((s, r) => s + (r.mergedPRs?.length || 0), 0);
+      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + (r.score || 0), 0) / repos.length : 0; // Fix: Handle optional score
 
       expect(totalPRs).toBe(0);
       expect(avgScore).toBe(0);
@@ -626,7 +664,7 @@ describe('compliance-report', () => {
 
   describe('Security Findings Aggregation', () => {
     it('should aggregate findings by severity', () => {
-      const findings = [
+      const findings: SecurityFinding[] = [ // Fix: Type findings array
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type2', severity: 'medium', count: 1, lastScan: '2024-01-01' },
