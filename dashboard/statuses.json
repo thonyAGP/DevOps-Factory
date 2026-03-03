@@ -1,20 +1,40 @@
 {
-  "timestamp": "2026-03-03T18:38:59.582Z",
+  "timestamp": "2026-03-03T20:39:51.819Z",
   "projects": [
     {
       "name": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
       "stack": "node",
-      "ciStatus": "fail",
-      "lastRun": {
-        "conclusion": "skipped",
-        "created_at": "2026-03-03T15:16:37Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22629527707",
-        "id": 22629527707,
-        "name": "Qodo Merge - PR Review"
-      },
+      "ciStatus": "none",
+      "lastRun": null,
       "openPRs": [
+        {
+          "created_at": "2026-03-03T20:00:47Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/1369",
+          "labels": [
+            "ai-fix"
+          ],
+          "number": 1369,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-03T19:55:56Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/1350",
+          "labels": [
+            "ai-fix",
+            "Review effort 1/5"
+          ],
+          "number": 1350,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
         {
           "created_at": "2026-03-03T15:16:27Z",
           "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/1120",
@@ -151,616 +171,11 @@
       ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 19,
+      "healthScore": 39,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
       "hasHusky": true,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "CasaSync",
-      "fullName": "thonyAGP/CasaSync",
-      "stack": "nextjs",
-      "ciStatus": "fail",
-      "lastRun": {
-        "conclusion": "failure",
-        "created_at": "2026-03-02T22:18:08Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/CasaSync/actions/runs/22598290782",
-        "id": 22598290782,
-        "name": "CI"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-23T07:55:34Z",
-          "html_url": "https://github.com/thonyAGP/CasaSync/pull/3",
-          "labels": [],
-          "number": 3,
-          "state": "OPEN",
-          "title": "test: add skeleton test files",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T23:08:57Z",
-          "html_url": "https://github.com/thonyAGP/CasaSync/pull/2",
-          "labels": [],
-          "number": 2,
-          "state": "OPEN",
-          "title": "test: add AI-generated tests",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:41:20Z",
-          "html_url": "https://github.com/thonyAGP/CasaSync/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 29,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": true,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "claude-cli-wrapper",
-      "fullName": "thonyAGP/claude-cli-wrapper",
-      "stack": "node",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T17:02:35Z",
-          "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/pull/2",
-          "labels": [],
-          "number": 2,
-          "state": "OPEN",
-          "title": "test: add skeleton test files",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:41:50Z",
-          "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "claude-launcher",
-      "fullName": "thonyAGP/claude-launcher",
-      "stack": "dotnet",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T12:42:19Z",
-          "html_url": "https://github.com/thonyAGP/claude-launcher/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "Livret_accueil_Au-Marais",
-      "fullName": "thonyAGP/Livret_accueil_Au-Marais",
-      "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T12:44:38Z",
-          "html_url": "https://github.com/thonyAGP/Livret_accueil_Au-Marais/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "MCP_Quota_Claude",
-      "fullName": "thonyAGP/MCP_Quota_Claude",
-      "stack": "node",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-23T07:55:54Z",
-          "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/2",
-          "labels": [],
-          "number": 2,
-          "state": "OPEN",
-          "title": "test: add skeleton test files",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:45:08Z",
-          "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "Site_1970_Plomberie",
-      "fullName": "thonyAGP/Site_1970_Plomberie",
-      "stack": "node",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T12:45:48Z",
-          "html_url": "https://github.com/thonyAGP/Site_1970_Plomberie/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "Site_Greg-Assainissement",
-      "fullName": "thonyAGP/Site_Greg-Assainissement",
-      "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T17:03:08Z",
-          "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/pull/2",
-          "labels": [],
-          "number": 2,
-          "state": "OPEN",
-          "title": "test: add skeleton test files",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:46:16Z",
-          "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "SqlConnectionTest",
-      "fullName": "thonyAGP/SqlConnectionTest",
-      "stack": "dotnet",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T12:46:34Z",
-          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "statusline",
-      "fullName": "thonyAGP/statusline",
-      "stack": "node",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T17:02:58Z",
-          "html_url": "https://github.com/thonyAGP/statusline/pull/2",
-          "labels": [],
-          "number": 2,
-          "state": "OPEN",
-          "title": "test: add skeleton test files",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:47:02Z",
-          "html_url": "https://github.com/thonyAGP/statusline/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "test_codingmenace",
-      "fullName": "thonyAGP/test_codingmenace",
-      "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-18T12:47:29Z",
-          "html_url": "https://github.com/thonyAGP/test_codingmenace/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "Thumbfast",
-      "fullName": "thonyAGP/Thumbfast",
-      "stack": "nextjs",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-02-23T07:56:18Z",
-          "html_url": "https://github.com/thonyAGP/Thumbfast/pull/2",
-          "labels": [],
-          "number": 2,
-          "state": "OPEN",
-          "title": "test: add skeleton test files",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:47:56Z",
-          "html_url": "https://github.com/thonyAGP/Thumbfast/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
       "hasCodeRabbit": false,
       "hasLicenseCheck": false,
       "hasSemgrep": false,
@@ -780,15 +195,8 @@
       "name": "Utilitaire_Webapp",
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "stack": "node",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-02-19T21:51:38Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250",
-        "id": 22201584250,
-        "name": "CI"
-      },
+      "ciStatus": "none",
+      "lastRun": null,
       "openPRs": [
         {
           "created_at": "2026-02-23T07:56:35Z",
@@ -859,6 +267,512 @@
       ],
       "aiFixPRs": [],
       "renovatePRs": [],
+      "healthScore": 39,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "claude-cli-wrapper",
+      "fullName": "thonyAGP/claude-cli-wrapper",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": null,
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T17:02:35Z",
+          "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:41:50Z",
+          "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "claude-launcher",
+      "fullName": "thonyAGP/claude-launcher",
+      "stack": "dotnet",
+      "ciStatus": "none",
+      "lastRun": null,
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:42:19Z",
+          "html_url": "https://github.com/thonyAGP/claude-launcher/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Livret_accueil_Au-Marais",
+      "fullName": "thonyAGP/Livret_accueil_Au-Marais",
+      "stack": "nextjs",
+      "ciStatus": "none",
+      "lastRun": null,
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:44:38Z",
+          "html_url": "https://github.com/thonyAGP/Livret_accueil_Au-Marais/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "MCP_Quota_Claude",
+      "fullName": "thonyAGP/MCP_Quota_Claude",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": null,
+      "openPRs": [
+        {
+          "created_at": "2026-02-23T07:55:54Z",
+          "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:45:08Z",
+          "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Site_1970_Plomberie",
+      "fullName": "thonyAGP/Site_1970_Plomberie",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": null,
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:45:48Z",
+          "html_url": "https://github.com/thonyAGP/Site_1970_Plomberie/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Site_Greg-Assainissement",
+      "fullName": "thonyAGP/Site_Greg-Assainissement",
+      "stack": "nextjs",
+      "ciStatus": "none",
+      "lastRun": null,
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T17:03:08Z",
+          "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:46:16Z",
+          "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "SqlConnectionTest",
+      "fullName": "thonyAGP/SqlConnectionTest",
+      "stack": "dotnet",
+      "ciStatus": "none",
+      "lastRun": null,
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:46:34Z",
+          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "statusline",
+      "fullName": "thonyAGP/statusline",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": null,
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T17:02:58Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:47:02Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "test_codingmenace",
+      "fullName": "thonyAGP/test_codingmenace",
+      "stack": "nextjs",
+      "ciStatus": "none",
+      "lastRun": null,
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:47:29Z",
+          "html_url": "https://github.com/thonyAGP/test_codingmenace/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Thumbfast",
+      "fullName": "thonyAGP/Thumbfast",
+      "stack": "nextjs",
+      "ciStatus": "none",
+      "lastRun": null,
+      "openPRs": [
+        {
+          "created_at": "2026-02-23T07:56:18Z",
+          "html_url": "https://github.com/thonyAGP/Thumbfast/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:47:56Z",
+          "html_url": "https://github.com/thonyAGP/Thumbfast/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "au-marais",
+      "fullName": "thonyAGP/au-marais",
+      "stack": "nextjs",
+      "ciStatus": "none",
+      "lastRun": null,
+      "openPRs": [
+        {
+          "created_at": "2026-02-18T12:40:45Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
       "healthScore": 49,
       "configured": false,
       "hasGitleaks": false,
@@ -880,24 +794,39 @@
       "perfScore": 0
     },
     {
-      "name": "au-marais",
-      "fullName": "thonyAGP/au-marais",
+      "name": "CasaSync",
+      "fullName": "thonyAGP/CasaSync",
       "stack": "nextjs",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-02-07T06:36:35Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/au-marais/actions/runs/21775816387",
-        "id": 21775816387,
-        "name": "E2E Tests"
-      },
+      "ciStatus": "none",
+      "lastRun": null,
       "openPRs": [
         {
-          "created_at": "2026-02-18T12:40:45Z",
-          "html_url": "https://github.com/thonyAGP/au-marais/pull/3",
+          "created_at": "2026-02-23T07:55:34Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/3",
           "labels": [],
           "number": 3,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T23:08:57Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:41:20Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/1",
+          "labels": [],
+          "number": 1,
           "state": "OPEN",
           "title": "chore: add DevOps-Factory AI workflows",
           "user": {
@@ -907,7 +836,7 @@
       ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 59,
+      "healthScore": 49,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
@@ -931,15 +860,8 @@
       "name": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
       "stack": "nextjs",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-02-18T08:28:49Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016",
-        "id": 22132234016,
-        "name": "CI"
-      },
+      "ciStatus": "none",
+      "lastRun": null,
       "openPRs": [
         {
           "created_at": "2026-02-18T12:44:08Z",
@@ -955,7 +877,7 @@
       ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 59,
+      "healthScore": 49,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
@@ -979,15 +901,8 @@
       "name": "magic-migration",
       "fullName": "thonyAGP/magic-migration",
       "stack": "node",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-03-03T07:00:43Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/22612050066",
-        "id": 22612050066,
-        "name": "Daily Drift Report"
-      },
+      "ciStatus": "none",
+      "lastRun": null,
       "openPRs": [
         {
           "created_at": "2026-03-01T08:18:53Z",
@@ -1014,7 +929,7 @@
       ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 62,
+      "healthScore": 52,
       "configured": false,
       "hasGitleaks": false,
       "hasRenovate": false,
