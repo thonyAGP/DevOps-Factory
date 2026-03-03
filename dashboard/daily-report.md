@@ -2,7 +2,7 @@
 - **16** projects monitored
 - **0/16** fully configured
 - **0** AI fix PR(s) pending merge
-- **1** CI failure(s)
+- **2** CI failure(s)
 - **0%** avg security score
 - **0/16** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
@@ -11,6 +11,11 @@
 - **Compliance**: 8/100 avg, 0% review coverage, 0/17 branch protected
 
 ## Per Project
+
+### CasaSync :x:
+- **Health**: 29/100
+- **CI**: fail ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22598290782))
+- **Open PRs**: 3
 
 ### magic-migration :x:
 - **Health**: 32/100
@@ -72,11 +77,6 @@
 - **CI**: pass ([view](https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250))
 - **Open PRs**: 6
 
-### CasaSync :white_check_mark:
-- **Health**: 54/100
-- **CI**: pass ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22132524981))
-- **Open PRs**: 3
-
 ### au-marais :white_check_mark:
 - **Health**: 59/100
 - **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/21775816387))
@@ -84,8 +84,8 @@
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 59/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22590368574))
-- **Open PRs**: 2
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22604490654))
+- **Open PRs**: 5
 
 ### livret-au-marais :white_check_mark:
 - **Health**: 59/100

@@ -1,6 +1,6 @@
 # Template Recommendations Report
 
-Generated: 3/2/2026, 8:46:46 PM
+Generated: 3/3/2026, 2:46:17 AM
 
 ## Executive Summary
 
@@ -106,7 +106,7 @@ Generated: 3/2/2026, 8:46:46 PM
 
 - **Health Score**: 55/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 36%
+- **CI Failure Rate**: 40%
 
 #### High Priority
 
@@ -340,7 +340,7 @@ Generated: 3/2/2026, 8:46:46 PM
 
 - **Health Score**: 55/100
 - **Stack**: node
-- **CI Failure Rate**: 13%
+- **CI Failure Rate**: 18%
 
 #### High Priority
 

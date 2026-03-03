@@ -1,47 +1,47 @@
 {
-  "timestamp": "2026-03-02T20:46:13.777Z",
+  "timestamp": "2026-03-03T02:45:48.540Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 228,
+      "totalMinutes": 208,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
           "runs": 17,
-          "totalMinutes": 142,
-          "avgMinutes": 8,
-          "failedRuns": 9,
-          "wastedMinutes": 46
+          "totalMinutes": 122,
+          "avgMinutes": 7,
+          "failedRuns": 12,
+          "wastedMinutes": 61
         },
         {
           "name": "Monitor Production",
-          "runs": 50,
-          "totalMinutes": 50,
+          "runs": 51,
+          "totalMinutes": 51,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "Post-Deploy Health Check",
-          "runs": 23,
-          "totalMinutes": 23,
+          "runs": 19,
+          "totalMinutes": 19,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "Qodo Merge - PR Review",
-          "runs": 10,
-          "totalMinutes": 13,
+          "runs": 13,
+          "totalMinutes": 16,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         }
       ],
       "recommendations": [
-        "CI: 53% failure rate (46min wasted). Fix root cause."
+        "CI: 71% failure rate (61min wasted). Fix root cause."
       ]
     },
     {
@@ -162,20 +162,20 @@
     {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
-      "totalMinutes": 19,
-      "totalRuns": 14,
+      "totalMinutes": 20,
+      "totalRuns": 15,
       "workflows": [
         {
           "name": "CI",
-          "runs": 14,
-          "totalMinutes": 19,
+          "runs": 15,
+          "totalMinutes": 20,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 8
+          "failedRuns": 6,
+          "wastedMinutes": 9
         }
       ],
       "recommendations": [
-        "CI: 36% failure rate (8min wasted). Fix root cause."
+        "CI: 40% failure rate (9min wasted). Fix root cause."
       ]
     },
     {
@@ -279,9 +279,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 502,
-    "totalRuns": 281,
-    "wastedMinutes": 220,
+    "totalMinutes": 483,
+    "totalRuns": 282,
+    "wastedMinutes": 236,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,
