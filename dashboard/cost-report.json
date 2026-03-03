@@ -1,24 +1,24 @@
 {
-  "timestamp": "2026-03-03T02:45:48.540Z",
+  "timestamp": "2026-03-03T05:17:57.672Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 208,
+      "totalMinutes": 201,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
           "runs": 17,
-          "totalMinutes": 122,
+          "totalMinutes": 115,
           "avgMinutes": 7,
-          "failedRuns": 12,
-          "wastedMinutes": 61
+          "failedRuns": 13,
+          "wastedMinutes": 66
         },
         {
           "name": "Monitor Production",
-          "runs": 51,
-          "totalMinutes": 51,
+          "runs": 50,
+          "totalMinutes": 50,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -33,15 +33,15 @@
         },
         {
           "name": "Qodo Merge - PR Review",
-          "runs": 13,
-          "totalMinutes": 16,
+          "runs": 14,
+          "totalMinutes": 17,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         }
       ],
       "recommendations": [
-        "CI: 71% failure rate (61min wasted). Fix root cause."
+        "CI: 76% failure rate (66min wasted). Fix root cause."
       ]
     },
     {
@@ -279,9 +279,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 483,
+    "totalMinutes": 476,
     "totalRuns": 282,
-    "wastedMinutes": 236,
+    "wastedMinutes": 241,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,
