@@ -1,24 +1,24 @@
 {
-  "timestamp": "2026-03-03T06:43:49.849Z",
+  "timestamp": "2026-03-03T08:54:58.374Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 205,
+      "totalMinutes": 187,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
-          "runs": 18,
-          "totalMinutes": 120,
-          "avgMinutes": 7,
-          "failedRuns": 14,
-          "wastedMinutes": 71
+          "runs": 17,
+          "totalMinutes": 101,
+          "avgMinutes": 6,
+          "failedRuns": 15,
+          "wastedMinutes": 76
         },
         {
           "name": "Monitor Production",
-          "runs": 47,
-          "totalMinutes": 47,
+          "runs": 48,
+          "totalMinutes": 48,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -41,7 +41,7 @@
         }
       ],
       "recommendations": [
-        "CI: 78% failure rate (71min wasted). Fix root cause."
+        "CI: 88% failure rate (76min wasted). Fix root cause."
       ]
     },
     {
@@ -52,11 +52,11 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 45,
-          "totalMinutes": 45,
+          "runs": 44,
+          "totalMinutes": 44,
           "avgMinutes": 1,
-          "failedRuns": 45,
-          "wastedMinutes": 45
+          "failedRuns": 44,
+          "wastedMinutes": 44
         },
         {
           "name": "Deploy OpenSpec Viewer",
@@ -76,8 +76,8 @@
         },
         {
           "name": "Daily Drift Report",
-          "runs": 8,
-          "totalMinutes": 8,
+          "runs": 9,
+          "totalMinutes": 9,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -92,7 +92,7 @@
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (45min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 100% failure rate (44min wasted). Fix root cause.",
         "E2E Tests: 100% failure rate (22min wasted). Fix root cause."
       ]
     },
@@ -279,9 +279,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 480,
+    "totalMinutes": 462,
     "totalRuns": 282,
-    "wastedMinutes": 246,
+    "wastedMinutes": 250,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,
