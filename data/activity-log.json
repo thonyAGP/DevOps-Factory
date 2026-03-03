@@ -38350,11 +38350,35 @@
       "status": "success"
     },
     {
-      "timestamp": "2026-03-03T14:51:13.205Z",
+      "timestamp": "2026-03-03T14:51:33.138Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 22191711703)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-03T14:51:37.117Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "ClubMedRoomAssignment",
+      "details": "Self-heal dispatched (run 22192523507)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-03T14:51:41.243Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "CasaSync",
+      "details": "Self-heal dispatched (run 22598290782)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-03T14:51:41.258Z",
       "source": "ci-health-check",
       "action": "check-complete",
-      "details": "0/7 passing, 0 failing. Issues: 0 created, 0 closed",
-      "status": "success"
+      "details": "1/7 passing, 4 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
