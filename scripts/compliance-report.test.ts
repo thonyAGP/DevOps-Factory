@@ -3,6 +3,53 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 vi.mock('node:child_process');
 vi.mock('node:fs');
 
+// --- Start of added interfaces for type safety --- 
+interface MergedPR {
+  number: number;
+  title?: string;
+  author?: string;
+  mergedAt?: string;
+  reviewers?: string[];
+  labels?: string[];
+}
+
+interface Deployment {
+  repo?: string;
+  sha?: string;
+  branch?: string;
+  timestamp?: string;
+  workflow?: string;
+  status?: string;
+}
+
+interface SecurityFinding {
+  repo: string;
+  type: string;
+  severity: string;
+  count: number;
+  lastScan: string;
+}
+
+interface RepoWithMergedPRs {
+  mergedPRs: Array<{ number: number }>;
+}
+
+interface RepoWithBranchProtection {
+  repo: string;
+  branchProtection: boolean;
+}
+
+interface RepoWithCIEnabled {
+  repo: string;
+  ciEnabled: boolean;
+}
+
+interface RepoWithScore {
+  score: number;
+}
+// --- End of added interfaces for type safety ---
+
+
 describe('compliance-report', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -264,7 +311,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty PR list', () => {
-      const prs: unknown[] = [];
+      const prs: MergedPR[] = [];
 
       const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
@@ -275,7 +322,7 @@ describe('compliance-report', () => {
 
   describe('Summary Aggregation', () => {
     it('should sum merged PRs across all repos', () => {
-      const repos = [
+      const repos: RepoWithMergedPRs[] = [
         { mergedPRs: [{ number: 1 }, { number: 2 }] },
         { mergedPRs: [{ number: 3 }] },
         { mergedPRs: [] },
@@ -287,7 +334,7 @@ describe('compliance-report', () => {
     });
 
     it('should count repos with branch protection', () => {
-      const repos = [
+      const repos: RepoWithBranchProtection[] = [
         { repo: 'repo1', branchProtection: true },
         { repo: 'repo2', branchProtection: false },
         { repo: 'repo3', branchProtection: true },
@@ -626,7 +673,7 @@ describe('compliance-report', () => {
 
   describe('Security Findings Aggregation', () => {
     it('should aggregate findings by severity', () => {
-      const findings = [
+      const findings: SecurityFinding[] = [
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type2', severity: 'medium', count: 1, lastScan: '2024-01-01' },
@@ -649,7 +696,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty security findings', () => {
-      const findings: unknown[] = [];
+      const findings: SecurityFinding[] = [];
 
       const bySeverity = new Map();
       for (const finding of findings) {
