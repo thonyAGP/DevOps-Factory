@@ -570,10 +570,14 @@ describe('compliance-report', () => {
 
   describe('Edge Cases', () => {
     it('should handle empty repos list', () => {
-      const repos: unknown[] = [];
+      interface RepoWithScoreAndPRs {
+        mergedPRs?: { number: number }[];
+        score?: number;
+      }
+      const repos: RepoWithScoreAndPRs[] = [];
 
-      const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
-      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
+      const totalPRs = repos.reduce((s, r) => s + (r.mergedPRs?.length || 0), 0);
+      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + (r.score || 0), 0) / repos.length : 0;
 
       expect(totalPRs).toBe(0);
       expect(avgScore).toBe(0);
@@ -649,9 +653,13 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty security findings', () => {
-      const findings: unknown[] = [];
+      interface SecurityFinding {
+        type: string;
+        severity: string;
+      }
+      const findings: SecurityFinding[] = [];
 
-      const bySeverity = new Map();
+      const bySeverity = new Map<string, { count: number }>();
       for (const finding of findings) {
         const key = `${finding.type}:${finding.severity}`;
         if (!bySeverity.has(key)) {
