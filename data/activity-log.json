@@ -30528,7 +30528,7 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-03-03T08:19:04.712Z",
+      "timestamp": "2026-03-03T08:19:04.224Z",
       "source": "ci-health-check",
       "action": "self-heal-failed",
       "target": "Email_Assistant",
@@ -30536,10 +30536,26 @@
       "status": "error"
     },
     {
-      "timestamp": "2026-03-03T08:19:04.724Z",
+      "timestamp": "2026-03-03T08:19:06.140Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "ClubMedRoomAssignment",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-03T08:19:08.545Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-03T08:19:08.557Z",
       "source": "ci-health-check",
       "action": "check-complete",
-      "details": "0/7 passing, 2 failing. Issues: 0 created, 0 closed",
+      "details": "0/7 passing, 4 failing. Issues: 0 created, 0 closed",
       "status": "warning"
     }
   ]
