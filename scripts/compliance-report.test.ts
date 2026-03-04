@@ -570,7 +570,7 @@ describe('compliance-report', () => {
 
   describe('Edge Cases', () => {
     it('should handle empty repos list', () => {
-      const repos: unknown[] = [];
+      const repos: Array<{ score: number; mergedPRs?: any[] }> = [];
 
       const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
       const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
@@ -633,7 +633,7 @@ describe('compliance-report', () => {
       ];
 
       const bySeverity = new Map<string, { count: number }>();
-      for (const finding of findings) {
+      for (const finding of findings as Array<{ type: string; severity: string }>) {
         const key = `${finding.type}:${finding.severity}`;
         const existing = bySeverity.get(key);
         if (existing) {
