@@ -205,7 +205,7 @@ describe('compliance-report', () => {
         },
       ];
 
-      const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
+      const reviewed = prs.filter((pr) => (pr as any).reviewers && (pr as any).reviewers.length > 0);
       const coverage = (reviewed.length / prs.length) * 100;
 
       expect(coverage).toBeCloseTo(66.67, 1);
@@ -572,8 +572,8 @@ describe('compliance-report', () => {
     it('should handle empty repos list', () => {
       const repos: unknown[] = [];
 
-      const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
-      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
+      const totalPRs = repos.reduce((s, r) => s + (r as any).mergedPRs?.length || 0, 0);
+      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + (r as any).score, 0) / repos.length : 0;
 
       expect(totalPRs).toBe(0);
       expect(avgScore).toBe(0);
@@ -634,7 +634,7 @@ describe('compliance-report', () => {
 
       const bySeverity = new Map<string, { count: number }>();
       for (const finding of findings) {
-        const key = `${finding.type}:${finding.severity}`;
+        const key = `${(finding as any).type}:${(finding as any).severity}`;
         const existing = bySeverity.get(key);
         if (existing) {
           existing.count++;
