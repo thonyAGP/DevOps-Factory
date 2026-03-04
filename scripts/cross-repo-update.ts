@@ -13,7 +13,8 @@
  */
 
 import { execSync } from 'node:child_process';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, writeFileSync, unlinkSync } from 'node:fs';
+import { join } from 'node:path';
 import { jq, devNull } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
 
@@ -173,11 +174,23 @@ const createUpdatePR = (
     `gh api "repos/${repo.fullName}/contents/${targetPath}?ref=${repo.defaultBranch}" --jq ${jq('.sha')} 2>${devNull}`
   );
 
-  let uploadCmd = `gh api repos/${repo.fullName}/contents/${targetPath} --method PUT -f message="chore: update ${targetPath} via cross-repo update" -f content="${b64}" -f branch="${branchName}"`;
-  if (existing) {
-    uploadCmd += ` -f sha="${existing}"`;
+  // Use temp file to avoid command line length limits on Windows
+  const tempFile = join(process.cwd(), '.tmp-cross-update.json');
+  const payload = {
+    message: `chore: update ${targetPath} via cross-repo update`,
+    content: b64,
+    branch: branchName,
+    ...(existing && { sha: existing }),
+  };
+
+  try {
+    writeFileSync(tempFile, JSON.stringify(payload));
+    sh(`gh api repos/${repo.fullName}/contents/${targetPath} --method PUT --input "${tempFile}"`);
+  } finally {
+    if (existsSync(tempFile)) {
+      unlinkSync(tempFile);
+    }
   }
-  sh(uploadCmd);
 
   // Create PR
   const prUrl = sh(
