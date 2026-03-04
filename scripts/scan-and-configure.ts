@@ -13,6 +13,7 @@ import { execSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 import { logActivity } from './activity-logger.js';
 import { jq, devNull } from './shell-utils.js';
+import { getCached, setCache } from './cache-manager.js';
 
 interface Repo {
   name: string;
@@ -73,6 +74,7 @@ interface RepoAnalysis {
 }
 
 const IGNORED_REPOS = ['DevOps-Factory', 'Parametrage_Claude', 'Migration_Pc1_vers_Pc2', '.github'];
+const INACTIVE_THRESHOLD_DAYS = 90;
 
 const TEMPLATES_DIR = 'templates';
 
@@ -89,16 +91,69 @@ const ghJson = <T>(cmd: string): T => {
   return JSON.parse(result || '[]') as T;
 };
 
+const isRepoActive = (repo: Repo): boolean => {
+  const cacheKey = `active-${repo.name}`;
+  const cached = getCached<boolean>(cacheKey);
+  if (cached !== null) {
+    console.log(`  ✅ Cache hit: ${repo.name} is ${cached ? 'active' : 'inactive'}`);
+    return cached;
+  }
+
+  const lastPush = gh(`api repos/${repo.full_name} --jq .pushed_at`);
+  if (!lastPush) {
+    setCache(cacheKey, false);
+    return false;
+  }
+
+  const daysSinceLastPush = (Date.now() - new Date(lastPush).getTime()) / 86400000;
+  const active = daysSinceLastPush < INACTIVE_THRESHOLD_DAYS;
+
+  console.log(
+    `  🔍 ${repo.name}: ${Math.floor(daysSinceLastPush)}d since last push → ${active ? 'ACTIVE' : 'INACTIVE'}`
+  );
+  setCache(cacheKey, active);
+  return active;
+};
+
 const listRepos = (): Repo[] => {
+  const cacheKey = 'repos-list';
+  const cached = getCached<Repo[]>(cacheKey);
+
+  if (cached) {
+    console.log(`✅ Using cached repos list (${cached.length} repos)`);
+    return cached;
+  }
+
+  console.log('🔍 Fetching repos from GitHub API...');
   const repos = ghJson<Repo[]>(
     'api user/repos --paginate --jq "[.[] | {name, full_name, default_branch, archived, fork, private: .private, language}]"'
   );
-  return repos.filter((r) => !r.archived && !r.fork && !IGNORED_REPOS.includes(r.name));
+
+  const nonArchivedNonFork = repos.filter(
+    (r) => !r.archived && !r.fork && !IGNORED_REPOS.includes(r.name)
+  );
+  console.log(`📦 Found ${repos.length} repos, ${nonArchivedNonFork.length} non-archived/non-fork`);
+
+  console.log('🔍 Filtering inactive repos (>90 days)...');
+  const active = nonArchivedNonFork.filter(isRepoActive);
+
+  const inactive = nonArchivedNonFork.length - active.length;
+  console.log(`✅ Filtered to ${active.length} active repos (${inactive} inactive repos excluded)`);
+
+  setCache(cacheKey, active);
+  return active;
 };
 
 const fileExistsInRepo = (repo: string, path: string): boolean => {
+  const cacheKey = `file-exists-${repo}-${path}`;
+  const cached = getCached<boolean>(cacheKey);
+  if (cached !== null) return cached;
+
   const result = gh(`api repos/${repo}/contents/${path} --jq ${jq('.name')} 2>${devNull}`);
-  return result.length > 0;
+  const exists = result.length > 0;
+
+  setCache(cacheKey, exists);
+  return exists;
 };
 
 const analyzeRepo = (repo: Repo): RepoAnalysis => {

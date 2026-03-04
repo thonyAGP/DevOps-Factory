@@ -375,7 +375,10 @@ describe('security-posture logic', () => {
       const repos: unknown[] = [];
 
       const distribution: Record<string, number> = { A: 0, B: 0, C: 0, D: 0, F: 0 };
-      for (const r of repos) distribution[r.grade]++;
+      for (const r of repos) {
+        const typedR = r as { grade: string };
+        distribution[typedR.grade]++;
+      }
 
       const totalCount = Object.values(distribution).reduce((a, b) => a + b, 0);
       expect(totalCount).toBe(0);
@@ -385,18 +388,29 @@ describe('security-posture logic', () => {
   describe('Summary calculations', () => {
     const calculateSummary = (repos: unknown[]) => {
       const avgScore =
-        repos.length > 0 ? Math.round(repos.reduce((s, r) => s + r.score, 0) / repos.length) : 0;
-      const reposWithSecurity = repos.filter((r) => r.score >= 60).length;
-      const criticalIssues = repos.reduce(
-        (s, r) =>
+        repos.length > 0
+          ? Math.round(
+              repos.reduce((s: number, r) => {
+                const typedR = r as { score: number };
+                return s + typedR.score;
+              }, 0) / repos.length
+            )
+          : 0;
+      const reposWithSecurity = repos.filter((r) => {
+        const typedR = r as { score: number };
+        return typedR.score >= 60;
+      }).length;
+      const criticalIssues = repos.reduce((s: number, r) => {
+        const typedR = r as { issues?: string[] };
+        return (
           s +
-          (r.issues
-            ? r.issues.filter(
+          (typedR.issues
+            ? typedR.issues.filter(
                 (i: string) => i.includes('secret') || i.includes('vulnerabilities detected')
               ).length
-            : 0),
-        0
-      );
+            : 0)
+        );
+      }, 0);
 
       return { avgScore, reposWithSecurity, criticalIssues };
     };

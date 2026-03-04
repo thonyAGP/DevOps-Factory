@@ -484,8 +484,14 @@ describe('coverage-baseline', () => {
     it('should handle empty entries array', () => {
       const entries: unknown[] = [];
 
-      const withCoverage = entries.filter((e) => e.status === 'collected');
-      const noTests = entries.filter((e) => !e.hasTests);
+      const withCoverage = entries.filter((e) => {
+        const typedE = e as { status: string };
+        return typedE.status === 'collected';
+      });
+      const noTests = entries.filter((e) => {
+        const typedE = e as { hasTests: boolean };
+        return !typedE.hasTests;
+      });
 
       expect(withCoverage).toHaveLength(0);
       expect(noTests).toHaveLength(0);

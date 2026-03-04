@@ -266,7 +266,10 @@ describe('compliance-report', () => {
     it('should handle empty PR list', () => {
       const prs: unknown[] = [];
 
-      const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
+      const reviewed = prs.filter((pr) => {
+        const typedPr = pr as { reviewers?: unknown[] };
+        return typedPr.reviewers && typedPr.reviewers.length > 0;
+      });
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
 
       expect(coverage).toBe(0);
@@ -572,8 +575,17 @@ describe('compliance-report', () => {
     it('should handle empty repos list', () => {
       const repos: unknown[] = [];
 
-      const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
-      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
+      const totalPRs = repos.reduce((s: number, r) => {
+        const typedR = r as { mergedPRs?: unknown[] };
+        return s + (typedR.mergedPRs?.length || 0);
+      }, 0);
+      const avgScore =
+        repos.length > 0
+          ? repos.reduce((s: number, r) => {
+              const typedR = r as { score: number };
+              return s + typedR.score;
+            }, 0) / repos.length
+          : 0;
 
       expect(totalPRs).toBe(0);
       expect(avgScore).toBe(0);
@@ -653,7 +665,8 @@ describe('compliance-report', () => {
 
       const bySeverity = new Map();
       for (const finding of findings) {
-        const key = `${finding.type}:${finding.severity}`;
+        const typedFinding = finding as { type: string; severity: string };
+        const key = `${typedFinding.type}:${typedFinding.severity}`;
         if (!bySeverity.has(key)) {
           bySeverity.set(key, { count: 1 });
         }

@@ -2,8 +2,8 @@ name: Build Dashboard
 
 on:
   schedule:
-    # Every 4 hours
-    - cron: '0 */4 * * *'
+    # Every 6 hours (reduced from 4h to save API quota)
+    - cron: '0 */6 * * *'
   workflow_dispatch:
     inputs: {}
   # Also run after scan completes

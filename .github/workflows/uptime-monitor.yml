@@ -6,7 +6,8 @@ name: Uptime Monitor
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    # Every 30 minutes (reduced from 5min to save API quota)
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 permissions:

@@ -2,8 +2,8 @@ name: Factory Watchdog
 
 on:
   schedule:
-    # Every 6 hours
-    - cron: '30 */6 * * *'
+    # Every 12 hours (reduced from 6h to save API quota)
+    - cron: '30 */12 * * *'
   workflow_dispatch:
     inputs: {}
 

@@ -188,10 +188,15 @@ node-version: 20`;
 
   describe('Veille data parsing', () => {
     const extractLatestStableVersion = (updates: unknown[], source: string): string | null => {
+      type Update = { source: string; version?: string; date: string };
       const sourceUpdates = updates
-        .filter((u) => u.source === source && u.version)
         .filter((u) => {
-          const v = u.version || '';
+          const typedU = u as Update;
+          return typedU.source === source && typedU.version;
+        })
+        .filter((u) => {
+          const typedU = u as Update;
+          const v = typedU.version || '';
           return (
             !v.includes('alpha') &&
             !v.includes('beta') &&
@@ -199,9 +204,13 @@ node-version: 20`;
             !v.includes('rc')
           );
         })
-        .sort((a, b) => b.date.localeCompare(a.date));
+        .sort((a, b) => {
+          const typedA = a as Update;
+          const typedB = b as Update;
+          return typedB.date.localeCompare(typedA.date);
+        });
 
-      return sourceUpdates.length > 0 ? sourceUpdates[0].version || null : null;
+      return sourceUpdates.length > 0 ? (sourceUpdates[0] as Update).version || null : null;
     };
 
     it('should extract latest stable version', () => {
@@ -297,7 +306,10 @@ node-version: 20`;
 
   describe('Breaking change detection', () => {
     const hasBreakingUpdate = (updates: unknown[], source: string): boolean => {
-      return updates.some((u) => u.source === source && u.breaking);
+      return updates.some((u) => {
+        const typedU = u as { source: string; breaking?: boolean };
+        return typedU.source === source && typedU.breaking;
+      });
     };
 
     it('should detect breaking change flag', () => {

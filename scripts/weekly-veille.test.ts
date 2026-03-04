@@ -45,7 +45,10 @@ describe('weekly-veille logic', () => {
 
   describe('Release filtering', () => {
     const getRecentReleases = (releases: unknown[], sinceDate: string) => {
-      return releases.filter((r) => r.published_at >= sinceDate);
+      return releases.filter((r) => {
+        const typedR = r as { published_at: string };
+        return typedR.published_at >= sinceDate;
+      });
     };
 
     it('should filter releases by date', () => {
@@ -58,7 +61,7 @@ describe('weekly-veille logic', () => {
       const recent = getRecentReleases(releases, '2024-03-05');
 
       expect(recent).toHaveLength(2);
-      expect(recent[0].tag_name).toBe('v1.0.0');
+      expect((recent[0] as { tag_name: string }).tag_name).toBe('v1.0.0');
     });
 
     it('should include releases on exact date', () => {
@@ -78,7 +81,7 @@ describe('weekly-veille logic', () => {
       const recent = getRecentReleases(releases, '2024-03-05');
 
       expect(recent).toHaveLength(1);
-      expect(recent[0].tag_name).toBe('v1.0.1');
+      expect((recent[0] as { tag_name: string }).tag_name).toBe('v1.0.1');
     });
 
     it('should return empty array if no recent releases', () => {
@@ -149,7 +152,15 @@ describe('weekly-veille logic', () => {
 
   describe('Update structure creation', () => {
     const createUpdate = (release: unknown, source: string, category: string) => {
-      const bodyPreview = (release.body || '').slice(0, 500);
+      type Release = {
+        body?: string;
+        tag_name: string;
+        published_at: string;
+        name?: string;
+        html_url: string;
+      };
+      const typedRelease = release as Release;
+      const bodyPreview = (typedRelease.body || '').slice(0, 500);
       const isBreaking =
         bodyPreview.toLowerCase().includes('breaking') ||
         bodyPreview.toLowerCase().includes('major');
@@ -158,10 +169,10 @@ describe('weekly-veille logic', () => {
         source,
         category,
         type: 'release' as const,
-        version: release.tag_name,
-        date: release.published_at.split('T')[0],
-        summary: release.name || release.tag_name,
-        url: release.html_url,
+        version: typedRelease.tag_name,
+        date: typedRelease.published_at.split('T')[0],
+        summary: typedRelease.name || typedRelease.tag_name,
+        url: typedRelease.html_url,
         breaking: isBreaking,
       };
     };
@@ -220,6 +231,13 @@ describe('weekly-veille logic', () => {
 
   describe('Markdown report generation', () => {
     const generateMarkdownReport = (updates: unknown[]): string => {
+      type Update = {
+        category: string;
+        breaking?: boolean;
+        version?: string;
+        date?: string;
+        source?: string;
+      };
       const lines: string[] = [
         `## Veille Technologique - Semaine du 2024-03-10`,
         '',
@@ -227,17 +245,30 @@ describe('weekly-veille logic', () => {
         '',
       ];
 
-      const categories = [...new Set(updates.map((u) => u.category))];
+      const categories = [
+        ...new Set(
+          updates.map((u) => {
+            const typedU = u as Update;
+            return typedU.category;
+          })
+        ),
+      ];
 
       for (const cat of categories) {
-        const catUpdates = updates.filter((u) => u.category === cat);
+        const catUpdates = updates.filter((u) => {
+          const typedU = u as Update;
+          return typedU.category === cat;
+        });
         lines.push(`### ${cat}`);
         lines.push('');
         lines.push('| Projet | Version | Date | Breaking |');
         lines.push('|--------|---------|------|----------|');
         for (const u of catUpdates) {
-          const breakBadge = u.breaking ? '**OUI**' : '-';
-          lines.push(`| ${u.source} | ${u.version || '-'} | ${u.date} | ${breakBadge} |`);
+          const typedU = u as Update;
+          const breakBadge = typedU.breaking ? '**OUI**' : '-';
+          lines.push(
+            `| ${typedU.source || '-'} | ${typedU.version || '-'} | ${typedU.date || '-'} | ${breakBadge} |`
+          );
         }
         lines.push('');
       }
@@ -359,12 +390,15 @@ describe('weekly-veille logic', () => {
   });
 
   describe('History management', () => {
-    const saveReport = (report: unknown, history: unknown[] = []) => {
+    const saveReport = (
+      report: unknown,
+      history: unknown[] = []
+    ): { date: string; updates: never[] }[] => {
       const newHistory = [report, ...history];
       if (newHistory.length > 12) {
-        return newHistory.slice(0, 12);
+        return newHistory.slice(0, 12) as { date: string; updates: never[] }[];
       }
-      return newHistory;
+      return newHistory as { date: string; updates: never[] }[];
     };
 
     it('should add new report to front of history', () => {
@@ -374,8 +408,8 @@ describe('weekly-veille logic', () => {
       let history = [report2];
       history = saveReport(report1, history);
 
-      expect(history[0].date).toBe('2024-03-10');
-      expect(history[1].date).toBe('2024-03-03');
+      expect((history[0] as { date: string }).date).toBe('2024-03-10');
+      expect((history[1] as { date: string }).date).toBe('2024-03-03');
     });
 
     it('should keep last 12 weeks', () => {
@@ -387,7 +421,7 @@ describe('weekly-veille logic', () => {
       }
 
       expect(history).toHaveLength(12);
-      expect(history[0].date).toBe('2024-01-15'); // Most recent
+      expect((history[0] as { date: string }).date).toBe('2024-01-15'); // Most recent
     });
 
     it('should handle initial empty history', () => {
