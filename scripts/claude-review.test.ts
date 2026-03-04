@@ -308,8 +308,14 @@ ${diff.slice(0, 40000)}
       expect(prInfo.filesChanged).toBe(0);
     });
 
+    interface PRData {
+      title: string;
+      body: string;
+      changed_files: number;
+    }
+
     it('should provide default values when API returns null', () => {
-      const data: unknown = null;
+      const data: PRData | null = null;
       const prInfo = {
         title: data?.title || 'Unknown PR',
         body: data?.body || '',
