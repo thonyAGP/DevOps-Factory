@@ -264,7 +264,8 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty PR list', () => {
-      const prs: unknown[] = [];
+      interface MinimalPR { reviewers?: string[]; }
+      const prs: MinimalPR[] = [];
 
       const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
@@ -320,7 +321,8 @@ describe('compliance-report', () => {
     });
 
     it('should count total deployments', () => {
-      const repos = [
+      interface RepoWithDeployments { deployments: any[]; }
+      const repos: RepoWithDeployments[] = [
         { deployments: [{ repo: 'r1' }, { repo: 'r1' }] },
         { deployments: [{ repo: 'r2' }] },
         { deployments: [] },
@@ -649,7 +651,8 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty security findings', () => {
-      const findings: unknown[] = [];
+      interface MinimalSecurityFinding { type: string; severity: string; }
+      const findings: MinimalSecurityFinding[] = [];
 
       const bySeverity = new Map();
       for (const finding of findings) {
