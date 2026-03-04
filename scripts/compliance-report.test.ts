@@ -177,8 +177,17 @@ describe('compliance-report', () => {
   });
 
   describe('PR Review Coverage', () => {
+    interface PRForTest {
+      number: number;
+      title: string;
+      author: string;
+      mergedAt: string;
+      reviewers?: string[];
+      labels: string[];
+    }
+
     it('should calculate coverage from reviewed PRs', () => {
-      const prs = [
+      const prs: PRForTest[] = [
         {
           number: 1,
           title: 'PR1',
@@ -212,7 +221,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle 0% review coverage', () => {
-      const prs = [
+      const prs: PRForTest[] = [
         {
           number: 1,
           title: 'PR1',
@@ -238,7 +247,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle 100% review coverage', () => {
-      const prs = [
+      const prs: PRForTest[] = [
         {
           number: 1,
           title: 'PR1',
@@ -264,7 +273,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty PR list', () => {
-      const prs: unknown[] = [];
+      const prs: PRForTest[] = [];
 
       const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
@@ -569,11 +578,16 @@ describe('compliance-report', () => {
   });
 
   describe('Edge Cases', () => {
+    interface RepoForTest {
+      mergedPRs?: { number: number }[];
+      score?: number;
+    }
+
     it('should handle empty repos list', () => {
-      const repos: unknown[] = [];
+      const repos: RepoForTest[] = [];
 
       const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
-      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
+      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score!, 0) / repos.length : 0;
 
       expect(totalPRs).toBe(0);
       expect(avgScore).toBe(0);
@@ -625,8 +639,16 @@ describe('compliance-report', () => {
   });
 
   describe('Security Findings Aggregation', () => {
+    interface SecurityFinding {
+      repo: string;
+      type: string;
+      severity: string;
+      count: number;
+      lastScan: string;
+    }
+
     it('should aggregate findings by severity', () => {
-      const findings = [
+      const findings: SecurityFinding[] = [
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type2', severity: 'medium', count: 1, lastScan: '2024-01-01' },
@@ -649,7 +671,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty security findings', () => {
-      const findings: unknown[] = [];
+      const findings: SecurityFinding[] = [];
 
       const bySeverity = new Map();
       for (const finding of findings) {
