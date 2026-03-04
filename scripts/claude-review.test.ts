@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
 
+interface MinimalPRData {
+  title?: string;
+  body?: string;
+  filesChanged?: number;
+}
+
 describe('claude-review', () => {
   describe('parseArgs', () => {
     it('should parse --repo and --pr arguments correctly', () => {
@@ -309,11 +315,11 @@ ${diff.slice(0, 40000)}
     });
 
     it('should provide default values when API returns null', () => {
-      const data: unknown = null;
+      const data: MinimalPRData | null = null;
       const prInfo = {
         title: data?.title || 'Unknown PR',
         body: data?.body || '',
-        filesChanged: data?.changed_files || 0,
+        filesChanged: data?.filesChanged || 0,
       };
 
       expect(prInfo.title).toBe('Unknown PR');
