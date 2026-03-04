@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
 
 describe('claude-review', () => {
+  interface PRInfoAPIResponse { title?: string; body?: string; changed_files?: number; }
+
   describe('parseArgs', () => {
     it('should parse --repo and --pr arguments correctly', () => {
       process.argv = ['node', 'script.ts', '--repo', 'owner/repo', '--pr', '123'];
@@ -309,12 +311,13 @@ ${diff.slice(0, 40000)}
     });
 
     it('should provide default values when API returns null', () => {
-      const data: unknown = null;
+      const data: PRInfoAPIResponse | null = null;
       const prInfo = {
         title: data?.title || 'Unknown PR',
         body: data?.body || '',
         filesChanged: data?.changed_files || 0,
       };
+
 
       expect(prInfo.title).toBe('Unknown PR');
       expect(prInfo.body).toBe('');
