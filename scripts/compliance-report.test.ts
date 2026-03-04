@@ -264,7 +264,10 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty PR list', () => {
-      const prs: unknown[] = [];
+      interface MergedPRForTest {
+        reviewers?: unknown[];
+      }
+      const prs: MergedPRForTest[] = [];
 
       const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
@@ -570,10 +573,14 @@ describe('compliance-report', () => {
 
   describe('Edge Cases', () => {
     it('should handle empty repos list', () => {
-      const repos: unknown[] = [];
+      interface RepoWithMetricsForTest {
+        mergedPRs?: { length: number }[];
+        score?: number;
+      }
+      const repos: RepoWithMetricsForTest[] = [];
 
-      const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
-      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
+      const totalPRs = repos.reduce((s, r) => s + (r.mergedPRs?.length || 0), 0);
+      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + (r.score || 0), 0) / repos.length : 0;
 
       expect(totalPRs).toBe(0);
       expect(avgScore).toBe(0);
@@ -625,8 +632,16 @@ describe('compliance-report', () => {
   });
 
   describe('Security Findings Aggregation', () => {
+    interface SecurityFindingForTest {
+      repo: string;
+      type: string;
+      severity: string;
+      count: number;
+      lastScan: string;
+    }
+
     it('should aggregate findings by severity', () => {
-      const findings = [
+      const findings: SecurityFindingForTest[] = [
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type2', severity: 'medium', count: 1, lastScan: '2024-01-01' },
@@ -649,9 +664,9 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty security findings', () => {
-      const findings: unknown[] = [];
+      const findings: SecurityFindingForTest[] = [];
 
-      const bySeverity = new Map();
+      const bySeverity = new Map<string, { count: number }>();
       for (const finding of findings) {
         const key = `${finding.type}:${finding.severity}`;
         if (!bySeverity.has(key)) {
