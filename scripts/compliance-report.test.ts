@@ -3,6 +3,28 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 vi.mock('node:child_process');
 vi.mock('node:fs');
 
+interface MergedPR {
+  number: number;
+  title: string;
+  author: string;
+  mergedAt: string;
+  reviewers: string[];
+  labels: string[];
+}
+
+interface RepoSummaryForTest {
+  score: number;
+  mergedPRs: MergedPR[];
+}
+
+interface SecurityFinding {
+  repo: string;
+  type: string;
+  severity: string;
+  count: number;
+  lastScan: string;
+}
+
 describe('compliance-report', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -264,7 +286,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty PR list', () => {
-      const prs: unknown[] = [];
+      const prs: MergedPR[] = [];
 
       const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
@@ -570,7 +592,7 @@ describe('compliance-report', () => {
 
   describe('Edge Cases', () => {
     it('should handle empty repos list', () => {
-      const repos: unknown[] = [];
+      const repos: RepoSummaryForTest[] = [];
 
       const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
       const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
@@ -633,7 +655,7 @@ describe('compliance-report', () => {
       ];
 
       const bySeverity = new Map<string, { count: number }>();
-      for (const finding of findings) {
+      for (const finding: SecurityFinding of findings) {
         const key = `${finding.type}:${finding.severity}`;
         const existing = bySeverity.get(key);
         if (existing) {
@@ -649,7 +671,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty security findings', () => {
-      const findings: unknown[] = [];
+      const findings: SecurityFinding[] = [];
 
       const bySeverity = new Map();
       for (const finding of findings) {
