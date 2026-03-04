@@ -3,6 +3,35 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 vi.mock('node:child_process');
 vi.mock('node:fs');
 
+interface MergedPR {
+  number: number;
+  title?: string;
+  author?: string;
+  mergedAt?: string;
+  reviewers?: string[];
+  labels?: string[];
+}
+
+interface RepoWithPRs {
+  repo: string;
+  fullName?: string;
+  mergedPRs: MergedPR[];
+  deployments?: unknown[];
+  securityFindings?: unknown[];
+  branchProtection?: boolean;
+  codeReview?: boolean;
+  ciEnabled?: boolean;
+  score?: number;
+}
+
+interface SecurityFinding {
+  repo: string;
+  type: string;
+  severity: string;
+  count: number;
+  lastScan: string;
+}
+
 describe('compliance-report', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -264,7 +293,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty PR list', () => {
-      const prs: unknown[] = [];
+      const prs: MergedPR[] = [];
 
       const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
@@ -275,10 +304,10 @@ describe('compliance-report', () => {
 
   describe('Summary Aggregation', () => {
     it('should sum merged PRs across all repos', () => {
-      const repos = [
-        { mergedPRs: [{ number: 1 }, { number: 2 }] },
-        { mergedPRs: [{ number: 3 }] },
-        { mergedPRs: [] },
+      const repos: RepoWithPRs[] = [
+        { repo: 'repo1', mergedPRs: [{ number: 1 }, { number: 2 }] },
+        { repo: 'repo2', mergedPRs: [{ number: 3 }] },
+        { repo: 'repo3', mergedPRs: [] },
       ];
 
       const total = repos.reduce((s, r) => s + r.mergedPRs.length, 0);
@@ -287,7 +316,7 @@ describe('compliance-report', () => {
     });
 
     it('should count repos with branch protection', () => {
-      const repos = [
+      const repos: RepoWithPRs[] = [
         { repo: 'repo1', branchProtection: true },
         { repo: 'repo2', branchProtection: false },
         { repo: 'repo3', branchProtection: true },
@@ -299,7 +328,7 @@ describe('compliance-report', () => {
     });
 
     it('should count repos with CI enabled', () => {
-      const repos = [
+      const repos: RepoWithPRs[] = [
         { repo: 'repo1', ciEnabled: true },
         { repo: 'repo2', ciEnabled: false },
         { repo: 'repo3', ciEnabled: true },
@@ -312,7 +341,7 @@ describe('compliance-report', () => {
     });
 
     it('should calculate average compliance score', () => {
-      const repos = [{ score: 80 }, { score: 70 }, { score: 90 }, { score: 60 }];
+      const repos: RepoWithPRs[] = [{ repo: 'r1', score: 80 }, { repo: 'r2', score: 70 }, { repo: 'r3', score: 90 }, { repo: 'r4', score: 60 }];
 
       const avg = Math.round(repos.reduce((s, r) => s + r.score, 0) / repos.length);
 
@@ -320,10 +349,10 @@ describe('compliance-report', () => {
     });
 
     it('should count total deployments', () => {
-      const repos = [
-        { deployments: [{ repo: 'r1' }, { repo: 'r1' }] },
-        { deployments: [{ repo: 'r2' }] },
-        { deployments: [] },
+      const repos: RepoWithPRs[] = [
+        { repo: 'repo1', deployments: [{ repo: 'r1' }, { repo: 'r1' }] },
+        { repo: 'repo2', deployments: [{ repo: 'r2' }] },
+        { repo: 'repo3', deployments: [] },
       ];
 
       const total = repos.reduce((s, r) => s + r.deployments.length, 0);
@@ -384,7 +413,7 @@ describe('compliance-report', () => {
 
   describe('Compliance Gaps Detection', () => {
     it('should identify repos without branch protection', () => {
-      const repos = [
+      const repos: RepoWithPRs[] = [
         { repo: 'repo1', branchProtection: true },
         { repo: 'repo2', branchProtection: false },
         { repo: 'repo3', branchProtection: false },
@@ -397,7 +426,7 @@ describe('compliance-report', () => {
     });
 
     it('should identify repos without CI', () => {
-      const repos = [
+      const repos: RepoWithPRs[] = [
         { repo: 'repo1', ciEnabled: true },
         { repo: 'repo2', ciEnabled: false },
       ];
@@ -409,7 +438,7 @@ describe('compliance-report', () => {
     });
 
     it('should identify repos with low review coverage', () => {
-      const repos = [
+      const repos: RepoWithPRs[] = [
         {
           repo: 'repo1',
           mergedPRs: [
@@ -626,7 +655,7 @@ describe('compliance-report', () => {
 
   describe('Security Findings Aggregation', () => {
     it('should aggregate findings by severity', () => {
-      const findings = [
+      const findings: SecurityFinding[] = [
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type2', severity: 'medium', count: 1, lastScan: '2024-01-01' },
