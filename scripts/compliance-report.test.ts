@@ -205,7 +205,7 @@ describe('compliance-report', () => {
         },
       ];
 
-      const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
+      const reviewed = prs.filter((pr: { reviewers?: unknown[] }) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = (reviewed.length / prs.length) * 100;
 
       expect(coverage).toBeCloseTo(66.67, 1);
@@ -314,7 +314,7 @@ describe('compliance-report', () => {
     it('should calculate average compliance score', () => {
       const repos = [{ score: 80 }, { score: 70 }, { score: 90 }, { score: 60 }];
 
-      const avg = Math.round(repos.reduce((s, r) => s + r.score, 0) / repos.length);
+      const avg = Math.round(repos.reduce((s, r: { score: number }) => s + r.score, 0) / repos.length);
 
       expect(avg).toBe(75);
     });
@@ -633,7 +633,7 @@ describe('compliance-report', () => {
       ];
 
       const bySeverity = new Map<string, { count: number }>();
-      for (const finding of findings) {
+      for (const finding: { type: string; severity: string } of findings) {
         const key = `${finding.type}:${finding.severity}`;
         const existing = bySeverity.get(key);
         if (existing) {
