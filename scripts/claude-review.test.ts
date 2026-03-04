@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
 
+interface GitHubPRData {
+  title?: string;
+  body?: string;
+  changed_files?: number;
+}
+
 describe('claude-review', () => {
   describe('parseArgs', () => {
     it('should parse --repo and --pr arguments correctly', () => {
@@ -309,7 +315,7 @@ ${diff.slice(0, 40000)}
     });
 
     it('should provide default values when API returns null', () => {
-      const data: unknown = null;
+      const data: GitHubPRData | null = null; // Fix: Explicitly type data
       const prInfo = {
         title: data?.title || 'Unknown PR',
         body: data?.body || '',
