@@ -264,7 +264,8 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty PR list', () => {
-      const prs: unknown[] = [];
+      type MergedPRForFilter = { reviewers?: string[] | null; };
+      const prs: MergedPRForFilter[] = [];
 
       const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
@@ -570,7 +571,8 @@ describe('compliance-report', () => {
 
   describe('Edge Cases', () => {
     it('should handle empty repos list', () => {
-      const repos: unknown[] = [];
+      type RepoForAggregation = { mergedPRs?: { number: number }[]; score: number; };
+      const repos: RepoForAggregation[] = [];
 
       const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
       const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
@@ -633,7 +635,7 @@ describe('compliance-report', () => {
       ];
 
       const bySeverity = new Map<string, { count: number }>();
-      for (const finding of findings) {
+      for (const finding: { type: string; severity: string; } of findings) {
         const key = `${finding.type}:${finding.severity}`;
         const existing = bySeverity.get(key);
         if (existing) {
@@ -649,7 +651,8 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty security findings', () => {
-      const findings: unknown[] = [];
+      type SecurityFindingForEmpty = { type: string; severity: string; };
+      const findings: SecurityFindingForEmpty[] = [];
 
       const bySeverity = new Map();
       for (const finding of findings) {
