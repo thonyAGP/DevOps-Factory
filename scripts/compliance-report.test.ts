@@ -570,10 +570,14 @@ describe('compliance-report', () => {
 
   describe('Edge Cases', () => {
     it('should handle empty repos list', () => {
-      const repos: unknown[] = [];
+      interface RepoForEdgeCase {
+        mergedPRs?: { length: number }[];
+        score?: number;
+      }
+      const repos: RepoForEdgeCase[] = [];
 
-      const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
-      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
+      const totalPRs = repos.reduce((s, r) => s + (r.mergedPRs?.length || 0), 0);
+      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + (r.score || 0), 0) / repos.length : 0;
 
       expect(totalPRs).toBe(0);
       expect(avgScore).toBe(0);
@@ -626,7 +630,14 @@ describe('compliance-report', () => {
 
   describe('Security Findings Aggregation', () => {
     it('should aggregate findings by severity', () => {
-      const findings = [
+      interface SecurityFinding {
+        repo: string;
+        type: string;
+        severity: string;
+        count: number;
+        lastScan: string;
+      }
+      const findings: SecurityFinding[] = [
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type2', severity: 'medium', count: 1, lastScan: '2024-01-01' },
