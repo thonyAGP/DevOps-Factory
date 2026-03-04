@@ -3,6 +3,35 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 vi.mock('node:child_process');
 vi.mock('node:fs');
 
+interface MergedPR {
+  number: number;
+  title: string;
+  author: string;
+  mergedAt: string;
+  reviewers: string[];
+  labels: string[];
+}
+
+interface SecurityFinding {
+  repo: string;
+  type: string;
+  severity: string;
+  count: number;
+  lastScan: string;
+}
+
+interface RepoSummaryItem {
+  repo?: string;
+  fullName?: string;
+  mergedPRs?: MergedPR[];
+  deployments?: { repo: string }[];
+  securityFindings?: SecurityFinding[];
+  branchProtection?: boolean;
+  codeReview?: boolean;
+  ciEnabled?: boolean;
+  score?: number;
+}
+
 describe('compliance-report', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -264,7 +293,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty PR list', () => {
-      const prs: unknown[] = [];
+      const prs: MergedPR[] = [];
 
       const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
@@ -409,7 +438,7 @@ describe('compliance-report', () => {
     });
 
     it('should identify repos with low review coverage', () => {
-      const repos = [
+      const repos: RepoSummaryItem[] = [
         {
           repo: 'repo1',
           mergedPRs: [
@@ -626,7 +655,7 @@ describe('compliance-report', () => {
 
   describe('Security Findings Aggregation', () => {
     it('should aggregate findings by severity', () => {
-      const findings = [
+      const findings: SecurityFinding[] = [
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type2', severity: 'medium', count: 1, lastScan: '2024-01-01' },
@@ -649,7 +678,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty security findings', () => {
-      const findings: unknown[] = [];
+      const findings: SecurityFinding[] = [];
 
       const bySeverity = new Map();
       for (const finding of findings) {
