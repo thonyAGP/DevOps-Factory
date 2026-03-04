@@ -309,12 +309,13 @@ ${diff.slice(0, 40000)}
     });
 
     it('should provide default values when API returns null', () => {
-      const data: unknown = null;
+      const data: any = null;
       const prInfo = {
         title: data?.title || 'Unknown PR',
         body: data?.body || '',
         filesChanged: data?.changed_files || 0,
       };
+
 
       expect(prInfo.title).toBe('Unknown PR');
       expect(prInfo.body).toBe('');
