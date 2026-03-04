@@ -309,11 +309,16 @@ ${diff.slice(0, 40000)}
     });
 
     it('should provide default values when API returns null', () => {
+      interface PrApiData {
+        title?: string;
+        body?: string;
+        changed_files?: number;
+      }
       const data: unknown = null;
       const prInfo = {
-        title: data?.title || 'Unknown PR',
-        body: data?.body || '',
-        filesChanged: data?.changed_files || 0,
+        title: (data as PrApiData)?.title || 'Unknown PR',
+        body: (data as PrApiData)?.body || '',
+        filesChanged: (data as PrApiData)?.changed_files || 0,
       };
 
       expect(prInfo.title).toBe('Unknown PR');
