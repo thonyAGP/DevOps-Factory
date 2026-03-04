@@ -281,8 +281,14 @@ ${diff.slice(0, 40000)}
   });
 
   describe('getPRInfo', () => {
+    interface PRData {
+      title: string;
+      body: string;
+      changed_files: number;
+    }
+
     it('should return PR info with correct structure', () => {
-      const prInfo = {
+      const prInfo: PRData = {
         title: 'Test PR',
         body: 'Description',
         filesChanged: 3,
@@ -297,7 +303,7 @@ ${diff.slice(0, 40000)}
     });
 
     it('should handle missing PR data gracefully', () => {
-      const prInfo = {
+      const prInfo: PRData = {
         title: 'Unknown PR',
         body: '',
         filesChanged: 0,
@@ -309,7 +315,7 @@ ${diff.slice(0, 40000)}
     });
 
     it('should provide default values when API returns null', () => {
-      const data: unknown = null;
+      const data: PRData | null = null;
       const prInfo = {
         title: data?.title || 'Unknown PR',
         body: data?.body || '',
