@@ -309,7 +309,7 @@ ${diff.slice(0, 40000)}
     });
 
     it('should provide default values when API returns null', () => {
-      const data: unknown = null;
+      const data: any = null; // Changed from unknown to any to allow property access for testing default values
       const prInfo = {
         title: data?.title || 'Unknown PR',
         body: data?.body || '',
