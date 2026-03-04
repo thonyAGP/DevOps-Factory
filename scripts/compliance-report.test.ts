@@ -3,6 +3,14 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 vi.mock('node:child_process');
 vi.mock('node:fs');
 
+interface SecurityFinding {
+  repo: string;
+  type: string;
+  severity: string;
+  count: number;
+  lastScan: string;
+}
+
 describe('compliance-report', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -264,7 +272,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty PR list', () => {
-      const prs: unknown[] = [];
+      const prs: { reviewers?: string[] }[] = [];
 
       const reviewed = prs.filter((pr) => pr.reviewers && pr.reviewers.length > 0);
       const coverage = prs.length > 0 ? (reviewed.length / prs.length) * 100 : 0;
@@ -275,7 +283,7 @@ describe('compliance-report', () => {
 
   describe('Summary Aggregation', () => {
     it('should sum merged PRs across all repos', () => {
-      const repos = [
+      const repos: { mergedPRs: { number: number }[] }[] = [
         { mergedPRs: [{ number: 1 }, { number: 2 }] },
         { mergedPRs: [{ number: 3 }] },
         { mergedPRs: [] },
@@ -287,7 +295,7 @@ describe('compliance-report', () => {
     });
 
     it('should count repos with branch protection', () => {
-      const repos = [
+      const repos: { repo: string; branchProtection: boolean }[] = [
         { repo: 'repo1', branchProtection: true },
         { repo: 'repo2', branchProtection: false },
         { repo: 'repo3', branchProtection: true },
@@ -312,7 +320,7 @@ describe('compliance-report', () => {
     });
 
     it('should calculate average compliance score', () => {
-      const repos = [{ score: 80 }, { score: 70 }, { score: 90 }, { score: 60 }];
+      const repos: { score: number }[] = [{ score: 80 }, { score: 70 }, { score: 90 }, { score: 60 }];
 
       const avg = Math.round(repos.reduce((s, r) => s + r.score, 0) / repos.length);
 
@@ -320,7 +328,7 @@ describe('compliance-report', () => {
     });
 
     it('should count total deployments', () => {
-      const repos = [
+      const repos: { deployments: { repo: string }[] }[] = [
         { deployments: [{ repo: 'r1' }, { repo: 'r1' }] },
         { deployments: [{ repo: 'r2' }] },
         { deployments: [] },
@@ -626,7 +634,7 @@ describe('compliance-report', () => {
 
   describe('Security Findings Aggregation', () => {
     it('should aggregate findings by severity', () => {
-      const findings = [
+      const findings: SecurityFinding[] = [
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type2', severity: 'medium', count: 1, lastScan: '2024-01-01' },
@@ -649,7 +657,7 @@ describe('compliance-report', () => {
     });
 
     it('should handle empty security findings', () => {
-      const findings: unknown[] = [];
+      const findings: SecurityFinding[] = [];
 
       const bySeverity = new Map();
       for (const finding of findings) {
