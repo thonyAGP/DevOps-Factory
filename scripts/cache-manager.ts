@@ -32,11 +32,19 @@ if (!existsSync(CACHE_DIR)) {
 }
 
 /**
+ * Sanitize cache key to prevent path traversal and filesystem errors
+ */
+const sanitizeKey = (key: string): string => {
+  return key.replace(/[/\\:*?"<>|]/g, '_');
+};
+
+/**
  * Get cached data if exists and not expired
  * @returns Data if valid cache hit, null otherwise
  */
 export const getCached = <T>(key: string): T | null => {
-  const path = join(CACHE_DIR, `${key}.json`);
+  const sanitizedKey = sanitizeKey(key);
+  const path = join(CACHE_DIR, `${sanitizedKey}.json`);
   if (!existsSync(path)) return null;
 
   try {
@@ -66,7 +74,8 @@ export const getCached = <T>(key: string): T | null => {
  * Store data in cache with current timestamp
  */
 export const setCache = <T>(key: string, data: T): void => {
-  const path = join(CACHE_DIR, `${key}.json`);
+  const sanitizedKey = sanitizeKey(key);
+  const path = join(CACHE_DIR, `${sanitizedKey}.json`);
   const entry: CacheEntry<T> = {
     data,
     timestamp: Date.now(),
@@ -85,7 +94,8 @@ export const setCache = <T>(key: string, data: T): void => {
  */
 export const clearCache = (key?: string): void => {
   if (key) {
-    const path = join(CACHE_DIR, `${key}.json`);
+    const sanitizedKey = sanitizeKey(key);
+    const path = join(CACHE_DIR, `${sanitizedKey}.json`);
     if (existsSync(path)) {
       unlinkSync(path);
       console.log(`✅ Cache cleared for key: ${key}`);
