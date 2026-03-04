@@ -1,52 +1,17 @@
-## Quality Score Report - 2026-02-22
+## Quality Score Report - 2026-03-04
 
 ### Summary
-- **Average Score**: 40/100
+- **Average Score**: 35/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 16
 
+### Score Drops (≥5 points)
+- **Livret_accueil_Au-Marais**: 55 → 35 (-20)
+- **Site_Au-marais**: 55 → 35 (-20)
+- **Lecteur_Magic**: 55 → 35 (-20)
+
 ### Per Repository
-
-#### Email_Assistant
-- **Score**: 55/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-
-#### CasaSync
-- **Score**: 55/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-
-#### Livret_accueil_Au-Marais
-- **Score**: 55/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-
-#### Site_Au-marais
-- **Score**: 55/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
 
 #### DevOps-Factory
 - **Score**: 35/100
@@ -58,7 +23,47 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✗
 
+#### Email_Assistant
+- **Score**: 35/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+
 #### ClubMedRoomAssignment
+- **Score**: 35/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+
+#### CasaSync
+- **Score**: 35/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+
+#### Livret_accueil_Au-Marais
+- **Score**: 35/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+
+#### Site_Au-marais
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
