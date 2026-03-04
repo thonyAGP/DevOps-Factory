@@ -3,6 +3,21 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 vi.mock('node:child_process');
 vi.mock('node:fs');
 
+// Define a type for SecurityFinding
+interface SecurityFinding {
+  repo: string;
+  type: string;
+  severity: string;
+  count: number;
+  lastScan: string;
+}
+
+// Define a type for the repo objects in the 'should handle empty repos list' test
+interface RepoWithPRsAndScore {
+  mergedPRs?: { number: number }[];
+  score?: number;
+}
+
 describe('compliance-report', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -570,10 +585,10 @@ describe('compliance-report', () => {
 
   describe('Edge Cases', () => {
     it('should handle empty repos list', () => {
-      const repos: unknown[] = [];
+      const repos: RepoWithPRsAndScore[] = [];
 
-      const totalPRs = repos.reduce((s, r) => s + r.mergedPRs?.length || 0, 0);
-      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + r.score, 0) / repos.length : 0;
+      const totalPRs = repos.reduce((s, r) => s + (r.mergedPRs?.length || 0), 0);
+      const avgScore = repos.length > 0 ? repos.reduce((s, r) => s + (r.score || 0), 0) / repos.length : 0;
 
       expect(totalPRs).toBe(0);
       expect(avgScore).toBe(0);
@@ -626,7 +641,7 @@ describe('compliance-report', () => {
 
   describe('Security Findings Aggregation', () => {
     it('should aggregate findings by severity', () => {
-      const findings = [
+      const findings: SecurityFinding[] = [
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type1', severity: 'high', count: 1, lastScan: '2024-01-01' },
         { repo: 'test', type: 'type2', severity: 'medium', count: 1, lastScan: '2024-01-01' },
@@ -652,8 +667,8 @@ describe('compliance-report', () => {
       const findings: unknown[] = [];
 
       const bySeverity = new Map();
-      for (const finding of findings) {
-        const key = `${finding.type}:${finding.severity}`;
+      for (const finding of findings as SecurityFinding[]) {
+        const key = `${finding.type}:${finding.severity}`; 
         if (!bySeverity.has(key)) {
           bySeverity.set(key, { count: 1 });
         }
