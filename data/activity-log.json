@@ -64449,6 +64449,45 @@
       "action": "check-complete",
       "details": "1/7 passing, 4 failing. Issues: 1 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-04T16:08:23.757Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "DevOps-Factory",
+      "details": "Self-heal dispatched (run 22677868916)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-04T16:08:27.205Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 22191711703)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-04T16:08:31.166Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "ClubMedRoomAssignment",
+      "details": "Self-heal dispatched (run 22192523507)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-04T16:08:33.867Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-04T16:08:33.888Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/7 passing, 4 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
