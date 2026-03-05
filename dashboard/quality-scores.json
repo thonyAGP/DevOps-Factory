@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-04T08:51:05.580Z",
+  "timestamp": "2026-03-05T08:55:11.054Z",
   "scores": [
     {
-      "name": "DevOps-Factory",
-      "repo": "thonyAGP/DevOps-Factory",
-      "score": 35,
+      "name": "Email_Assistant",
+      "repo": "thonyAGP/Email_Assistant",
+      "score": 55,
       "breakdown": {
-        "ciPasses": 0,
+        "ciPasses": 20,
         "coverageAboveThreshold": 0,
         "prettierClean": 10,
         "eslintZeroWarnings": 15,
@@ -16,8 +16,50 @@
       }
     },
     {
-      "name": "Email_Assistant",
-      "repo": "thonyAGP/Email_Assistant",
+      "name": "Livret_accueil_Au-Marais",
+      "repo": "thonyAGP/livret-au-marais",
+      "score": 55,
+      "breakdown": {
+        "ciPasses": 20,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0
+      }
+    },
+    {
+      "name": "Site_Au-marais",
+      "repo": "thonyAGP/au-marais",
+      "score": 55,
+      "breakdown": {
+        "ciPasses": 20,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0
+      }
+    },
+    {
+      "name": "Lecteur_Magic",
+      "repo": "thonyAGP/lecteur-magic",
+      "score": 55,
+      "breakdown": {
+        "ciPasses": 20,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0
+      }
+    },
+    {
+      "name": "DevOps-Factory",
+      "repo": "thonyAGP/DevOps-Factory",
       "score": 35,
       "breakdown": {
         "ciPasses": 0,
@@ -46,48 +88,6 @@
     {
       "name": "CasaSync",
       "repo": "thonyAGP/CasaSync",
-      "score": 35,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0
-      }
-    },
-    {
-      "name": "Livret_accueil_Au-Marais",
-      "repo": "thonyAGP/livret-au-marais",
-      "score": 35,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0
-      }
-    },
-    {
-      "name": "Site_Au-marais",
-      "repo": "thonyAGP/au-marais",
-      "score": 35,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0
-      }
-    },
-    {
-      "name": "Lecteur_Magic",
-      "repo": "thonyAGP/lecteur-magic",
       "score": 35,
       "breakdown": {
         "ciPasses": 0,
@@ -226,24 +226,5 @@
       }
     }
   ],
-  "drops": [
-    {
-      "repo": "Livret_accueil_Au-Marais",
-      "drop": 20,
-      "from": 55,
-      "to": 35
-    },
-    {
-      "repo": "Site_Au-marais",
-      "drop": 20,
-      "from": 55,
-      "to": 35
-    },
-    {
-      "repo": "Lecteur_Magic",
-      "drop": 20,
-      "from": 55,
-      "to": 35
-    }
-  ]
+  "drops": []
 }
