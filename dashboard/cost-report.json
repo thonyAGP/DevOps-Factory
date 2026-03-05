@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-05T13:03:52.179Z",
+  "timestamp": "2026-03-05T19:19:25.415Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -139,14 +139,14 @@
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
-      "totalMinutes": 80,
-      "totalRuns": 15,
+      "totalMinutes": 62,
+      "totalRuns": 14,
       "workflows": [
         {
           "name": "E2E Tests",
-          "runs": 12,
-          "totalMinutes": 76,
-          "avgMinutes": 6,
+          "runs": 11,
+          "totalMinutes": 58,
+          "avgMinutes": 5,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
@@ -266,16 +266,16 @@
     {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
-      "totalMinutes": 28,
-      "totalRuns": 22,
+      "totalMinutes": 24,
+      "totalRuns": 20,
       "workflows": [
         {
           "name": "CI",
-          "runs": 19,
-          "totalMinutes": 24,
+          "runs": 17,
+          "totalMinutes": 20,
           "avgMinutes": 1,
-          "failedRuns": 10,
-          "wastedMinutes": 13
+          "failedRuns": 8,
+          "wastedMinutes": 9
         },
         {
           "name": "Security Scan (SAST)",
@@ -303,7 +303,7 @@
         }
       ],
       "recommendations": [
-        "CI: 53% failure rate (13min wasted). Fix root cause."
+        "CI: 47% failure rate (9min wasted). Fix root cause."
       ]
     },
     {
@@ -593,9 +593,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 547,
-    "totalRuns": 333,
-    "wastedMinutes": 305,
+    "totalMinutes": 525,
+    "totalRuns": 330,
+    "wastedMinutes": 301,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,
