@@ -2,13 +2,13 @@
 - **16** projects monitored
 - **0/16** fully configured
 - **0** AI fix PR(s) pending merge
-- **2** CI failure(s)
+- **1** CI failure(s)
 - **0%** avg security score
 - **0/16** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
-- **DORA**: HIGH (deploy 0/wk, lead 132.7h, MTTR 0h, CFR 0%)
-- **CI Cost**: 0min total, 0min wasted, ~$0/mo
-- **Compliance**: 0/100 avg, 0% review coverage, 0/17 branch protected
+- **DORA**: MEDIUM (deploy 0/wk, lead 45.7h, MTTR 1.6h, CFR 54%)
+- **CI Cost**: 547min total, 306min wasted, ~$0/mo
+- **Compliance**: 20/100 avg, 0% review coverage, 0/17 branch protected
 
 ## Per Project
 
@@ -16,11 +16,6 @@
 - **Health**: 19/100
 - **CI**: fail ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22598290782))
 - **Open PRs**: 7
-
-### Email_Assistant :x:
-- **Health**: 19/100
-- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22691862035))
-- **Open PRs**: 19
 
 ### claude-cli-wrapper :white_circle:
 - **Health**: 44/100
@@ -71,6 +66,11 @@
 - **Health**: 44/100
 - **CI**: none ([view](null))
 - **Open PRs**: 5
+
+### Email_Assistant :white_check_mark:
+- **Health**: 49/100
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/22698327246))
+- **Open PRs**: 19
 
 ### Utilitaire_Webapp :white_check_mark:
 - **Health**: 49/100

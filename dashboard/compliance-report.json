@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-05T01:04:50.018Z",
+  "timestamp": "2026-03-05T02:12:02.410Z",
   "period": "30-day window",
   "repos": [
     {
@@ -306,6 +306,14 @@
       ],
       "deployments": [
         {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-05T01:44:36Z",
+          "workflow": "Monitor Production"
+        },
+        {
           "branch": "devops-factory/cross-update--github-workflows-coverage-tracking-yml",
           "repo": "thonyAGP/Email_Assistant",
           "sha": "f1709047377563c4067b75d554db8728f8b82de5",
@@ -520,14 +528,6 @@
           "status": "success",
           "timestamp": "2026-03-03T12:43:00Z",
           "workflow": "Monitor Production"
-        },
-        {
-          "branch": "ai-fix/ci-1772532357122",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "bfe76d82e5b8f4fa537958636cb96f7ffa04593f",
-          "status": "success",
-          "timestamp": "2026-03-03T10:08:22Z",
-          "workflow": "Post-Deploy Health Check"
         }
       ],
       "securityFindings": [],
