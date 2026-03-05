@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-03T20:41:22.203Z",
+  "timestamp": "2026-03-05T01:04:50.018Z",
   "period": "30-day window",
   "repos": [
     {
@@ -13,55 +13,195 @@
           "number": 2,
           "reviewers": [],
           "title": "Release: Observability, CI/CD, Client Portal"
-        },
-        {
-          "author": "thonyAGP",
-          "labels": [],
-          "mergedAt": "2026-02-02T22:15:21Z",
-          "number": 1,
-          "reviewers": [],
-          "title": "feat: reservation system, email tracking & admin improvements"
         }
       ],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-coverage-tracking-yml",
+          "repo": "thonyAGP/au-marais",
+          "sha": "16dde94dfa096bd4f27bf58bfa2889826d01af2d",
+          "status": "success",
+          "timestamp": "2026-03-04T22:13:42Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
+          "repo": "thonyAGP/au-marais",
+          "sha": "c3c29dc025b11fb83a2f192b0b78b12c0bbf4943",
+          "status": "success",
+          "timestamp": "2026-03-04T19:13:28Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "devops-factory/cross-update-renovate-json",
+          "repo": "thonyAGP/au-marais",
+          "sha": "9ce7b9fe8cacc3479619cd6e9c0af8eb2164173b",
+          "status": "success",
+          "timestamp": "2026-03-04T19:12:10Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/au-marais",
+          "sha": "ee4fcd568f9228433187fddc71a3f2b70b96c710",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:59Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/au-marais",
+          "sha": "ee4fcd568f9228433187fddc71a3f2b70b96c710",
+          "status": "success",
+          "timestamp": "2026-03-04T19:09:44Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/au-marais",
+          "sha": "3ca99be32af707beaed1ccbefd49d4031a06664a",
+          "status": "success",
+          "timestamp": "2026-02-18T12:43:02Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/au-marais",
+          "sha": "b14f21a1040e471ec2d2287fe8ccc8d1f1243559",
+          "status": "success",
+          "timestamp": "2026-02-18T12:41:48Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/au-marais",
+          "sha": "a1ddc9454f05986d50ee658222caaba4d2f597f5",
+          "status": "success",
+          "timestamp": "2026-02-07T06:36:35Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "develop",
+          "repo": "thonyAGP/au-marais",
+          "sha": "b513bd29ff0305da5d1b098a8cf300551e76f40a",
+          "status": "success",
+          "timestamp": "2026-02-06T18:05:55Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/au-marais",
+          "sha": "68992d1be0771815fb3325671947e1371fd8a6ae",
+          "status": "success",
+          "timestamp": "2026-02-06T17:25:21Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "develop",
+          "repo": "thonyAGP/au-marais",
+          "sha": "83f7eade40522dc79bb9870de155615a71372546",
+          "status": "success",
+          "timestamp": "2026-02-06T17:14:45Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "develop",
+          "repo": "thonyAGP/au-marais",
+          "sha": "a0755eaa92f425932c2e66ef2898a78d2bf3f521",
+          "status": "success",
+          "timestamp": "2026-02-03T23:00:32Z",
+          "workflow": "E2E Tests"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-coverage-tracking-yml",
+          "repo": "thonyAGP/CasaSync",
+          "sha": "82645cf004492a40734ce3305633a256764c6e4b",
+          "status": "success",
+          "timestamp": "2026-03-04T22:12:40Z",
+          "workflow": "Coverage Tracking"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/CasaSync",
+          "sha": "544c8209467fd6618e64e12faa4c9cb178fd239c",
+          "status": "success",
+          "timestamp": "2026-03-04T19:09:50Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/CasaSync",
+          "sha": "170d027f9f5f7f50c1671c72d1bcf07526f347e1",
+          "status": "success",
+          "timestamp": "2026-02-18T12:41:24Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/CasaSync",
+          "sha": "ed8e3aab3fbc1fd2a26af0790a7ae25baccb4ab1",
+          "status": "success",
+          "timestamp": "2026-02-18T08:39:02Z",
+          "workflow": "CI"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "claude-cli-wrapper",
       "fullName": "thonyAGP/claude-cli-wrapper",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/claude-cli-wrapper",
+          "sha": "28f96f986e8140e4b8ccb2461f2313acc000d06b",
+          "status": "success",
+          "timestamp": "2026-03-04T19:09:56Z",
+          "workflow": "Secret Scanning"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/claude-launcher",
+          "sha": "4e344ef3513f85a994e81383d90b79d3288d26e0",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:01Z",
+          "workflow": "Secret Scanning"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "ClubMedRoomAssignment",
@@ -98,12 +238,21 @@
           "title": "fix: AI-generated CI fix"
         }
       ],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/ClubMedRoomAssignment",
+          "sha": "c7bc69bd6a335a648c7f305493e77b9c2cab2cab",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:05Z",
+          "workflow": "Secret Scanning"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "Email_Assistant",
@@ -155,34 +304,317 @@
           "title": "test: boost API route coverage from 26% to 52% + Groq SDK + ESLint cleanup"
         }
       ],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-coverage-tracking-yml",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "f1709047377563c4067b75d554db8728f8b82de5",
+          "status": "success",
+          "timestamp": "2026-03-04T22:16:05Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-coverage-tracking-yml",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "f1709047377563c4067b75d554db8728f8b82de5",
+          "status": "success",
+          "timestamp": "2026-03-04T22:12:52Z",
+          "workflow": "Coverage Tracking"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-coverage-tracking-yml",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "f1709047377563c4067b75d554db8728f8b82de5",
+          "status": "success",
+          "timestamp": "2026-03-04T22:12:52Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "2468ca8566fd91740ef3162f82dca9e5118ff5c1",
+          "status": "success",
+          "timestamp": "2026-03-04T19:21:52Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "devops-factory/cross-update-renovate-json",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "eb33daca46f70543ba22fafbf4a2856304a010ac",
+          "status": "success",
+          "timestamp": "2026-03-04T19:19:36Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "32f399da0b5d2f41e09e00d6a95d02f6975ca06d",
+          "status": "success",
+          "timestamp": "2026-03-04T19:16:20Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "2468ca8566fd91740ef3162f82dca9e5118ff5c1",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:30Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
+          "branch": "devops-factory/cross-update-renovate-json",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "eb33daca46f70543ba22fafbf4a2856304a010ac",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:21Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "32f399da0b5d2f41e09e00d6a95d02f6975ca06d",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:10Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "32f399da0b5d2f41e09e00d6a95d02f6975ca06d",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:10Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-04T18:40:49Z",
+          "workflow": "Monitor Production"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-04T12:43:50Z",
+          "workflow": "Monitor Production"
+        },
+        {
+          "branch": "ai-fix/ci-1772626168520",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "d3fe0bd5899071f66d549a1f5bd24ce35475bb24",
+          "status": "success",
+          "timestamp": "2026-03-04T12:11:56Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-04T06:40:41Z",
+          "workflow": "Monitor Production"
+        },
+        {
+          "branch": "ai-fix/ci-1772600315082",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "5cb89f5f23fbe5fb745a14ca1e4ffa84b86b99c9",
+          "status": "success",
+          "timestamp": "2026-03-04T05:00:56Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "ai-fix/ci-1772600315082",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "5cb89f5f23fbe5fb745a14ca1e4ffa84b86b99c9",
+          "status": "success",
+          "timestamp": "2026-03-04T04:58:42Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
+          "branch": "ai-fix/ci-1772589428678",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "adc762f56ca488224a30e50e6b4f9cec44611309",
+          "status": "success",
+          "timestamp": "2026-03-04T01:59:38Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "ai-fix/ci-1772589428678",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "adc762f56ca488224a30e50e6b4f9cec44611309",
+          "status": "success",
+          "timestamp": "2026-03-04T01:57:17Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-04T01:41:57Z",
+          "workflow": "Monitor Production"
+        },
+        {
+          "branch": "ai-fix/ci-1772568041685",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "ba3e38b84aa0d0b0a2ef7e834e0ac05df6137503",
+          "status": "success",
+          "timestamp": "2026-03-03T20:03:08Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "ai-fix/ci-1772568041685",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "ba3e38b84aa0d0b0a2ef7e834e0ac05df6137503",
+          "status": "success",
+          "timestamp": "2026-03-03T20:00:50Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
+          "branch": "ai-fix/ci-1772567751040",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "95b4b7bfca7de770fb9160154524f62b44b710db",
+          "status": "success",
+          "timestamp": "2026-03-03T19:58:18Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "ai-fix/ci-1772567751040",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "95b4b7bfca7de770fb9160154524f62b44b710db",
+          "status": "success",
+          "timestamp": "2026-03-03T19:56:00Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-03T18:40:37Z",
+          "workflow": "Monitor Production"
+        },
+        {
+          "branch": "ai-fix/ci-1772550982214",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "e3db2635f0a6f075fe521db5e7d31768d19aba15",
+          "status": "success",
+          "timestamp": "2026-03-03T15:18:46Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "ai-fix/ci-1772550982214",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "e3db2635f0a6f075fe521db5e7d31768d19aba15",
+          "status": "success",
+          "timestamp": "2026-03-03T15:16:31Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-03T12:43:00Z",
+          "workflow": "Monitor Production"
+        },
+        {
+          "branch": "ai-fix/ci-1772532357122",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "bfe76d82e5b8f4fa537958636cb96f7ffa04593f",
+          "status": "success",
+          "timestamp": "2026-03-03T10:08:22Z",
+          "workflow": "Post-Deploy Health Check"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "Livret_accueil_Au-Marais",
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/Livret_accueil_Au-Marais",
+          "sha": "bc7e07936ab8aaf80402f4dfe21aea4f17a5b58b",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:16Z",
+          "workflow": "Secret Scanning"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "5ea80b0d60ed7192065b0845cbbfc84a79457b1e",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:41Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "devops-factory/cross-update-renovate-json",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "35c5e4084a98c85f6415423840fe74b2c95602ad",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:32Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "6b8c421912046fd59376dda34b3071404185ee4e",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:19Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "6b8c421912046fd59376dda34b3071404185ee4e",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:18Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "f2787b82887c896ac8940d65503af33c9093eb63",
+          "status": "success",
+          "timestamp": "2026-02-18T12:44:12Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "880ee0f8397eae91cb6cb26685314642922c2722",
+          "status": "success",
+          "timestamp": "2026-02-18T08:28:49Z",
+          "workflow": "CI"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "magic-migration",
@@ -197,110 +629,391 @@
           "title": "feat(qa): QA Session Complete - Version Badge + Security Fixes"
         }
       ],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "5903991b688f430a9e76216b729e6b3f2d3064e9",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:24Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "fb17c702b0b5b954f72e7d0d5211194b77718897",
+          "status": "success",
+          "timestamp": "2026-03-04T06:57:03Z",
+          "workflow": "Daily Drift Report"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "fb17c702b0b5b954f72e7d0d5211194b77718897",
+          "status": "success",
+          "timestamp": "2026-03-03T07:00:43Z",
+          "workflow": "Daily Drift Report"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "576c27b31b7252f56cb910500b8649a01ccb8ad1",
+          "status": "success",
+          "timestamp": "2026-03-02T09:52:39Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "56152fc6fc3d797b59edbd767aad97daa6c0d61b",
+          "status": "success",
+          "timestamp": "2026-03-02T07:06:09Z",
+          "workflow": "Daily Drift Report"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "56152fc6fc3d797b59edbd767aad97daa6c0d61b",
+          "status": "success",
+          "timestamp": "2026-03-01T06:54:30Z",
+          "workflow": "Daily Drift Report"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "56152fc6fc3d797b59edbd767aad97daa6c0d61b",
+          "status": "success",
+          "timestamp": "2026-02-28T06:48:04Z",
+          "workflow": "Daily Drift Report"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "56152fc6fc3d797b59edbd767aad97daa6c0d61b",
+          "status": "success",
+          "timestamp": "2026-02-27T07:02:16Z",
+          "workflow": "Daily Drift Report"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "56152fc6fc3d797b59edbd767aad97daa6c0d61b",
+          "status": "success",
+          "timestamp": "2026-02-26T07:07:42Z",
+          "workflow": "Daily Drift Report"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "56152fc6fc3d797b59edbd767aad97daa6c0d61b",
+          "status": "success",
+          "timestamp": "2026-02-25T20:19:08Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "6d9811a9dad8ef6ef7a5227026d47e54c85fe73b",
+          "status": "success",
+          "timestamp": "2026-02-25T20:08:55Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "a3ac54b9068c07d73379c6025292661b9b136d3d",
+          "status": "success",
+          "timestamp": "2026-02-25T19:11:54Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "d03408f30c44ec93b04329524adc572e82bc99a6",
+          "status": "success",
+          "timestamp": "2026-02-25T18:05:31Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "be67b5a88507712c155c0e5539d96f00e1ff90d0",
+          "status": "success",
+          "timestamp": "2026-02-25T17:23:05Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "1b70fc21d97e9916f035553aad3047ecddd3f87d",
+          "status": "success",
+          "timestamp": "2026-02-25T17:01:03Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "9c129fc9f449146bf39ea1b25ea16c3148db84b9",
+          "status": "success",
+          "timestamp": "2026-02-25T16:38:34Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "c5098c91dc1fb8e847db18a8674a4e63dbceb513",
+          "status": "success",
+          "timestamp": "2026-02-25T14:46:39Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "6a7e30839bc253f1d5586d4da076b599b1f1f8e5",
+          "status": "success",
+          "timestamp": "2026-02-25T14:29:39Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "3cc2bcfe6af206aa7c3667f06e742a31e58b81b3",
+          "status": "success",
+          "timestamp": "2026-02-25T13:23:08Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "a6891c21dd2c627f9b7e15a2fad559ec6df2b263",
+          "status": "success",
+          "timestamp": "2026-02-25T12:34:52Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "MCP_Quota_Claude",
       "fullName": "thonyAGP/MCP_Quota_Claude",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/MCP_Quota_Claude",
+          "sha": "536d2d8109557c22007bfeefb9c1c20d69724dc7",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:33Z",
+          "workflow": "Secret Scanning"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "Site_1970_Plomberie",
       "fullName": "thonyAGP/Site_1970_Plomberie",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/Site_1970_Plomberie",
+          "sha": "e126f6e589291429d6969dd9313813167b5648bb",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:39Z",
+          "workflow": "Secret Scanning"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "Site_Greg-Assainissement",
       "fullName": "thonyAGP/Site_Greg-Assainissement",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/Site_Greg-Assainissement",
+          "sha": "24848a6e793c9542f768d5c69a88dd5d11b7ed69",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:45Z",
+          "workflow": "Secret Scanning"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "ac310a5015ac9e669ca86b7885fd3acc7723ffb8",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:50Z",
+          "workflow": "Secret Scanning"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "statusline",
       "fullName": "thonyAGP/statusline",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/statusline",
+          "sha": "4b67a8c344c1450ccf69025f79a0c6d0ac906b08",
+          "status": "success",
+          "timestamp": "2026-03-04T19:10:55Z",
+          "workflow": "Secret Scanning"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "test_codingmenace",
       "fullName": "thonyAGP/test_codingmenace",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
+          "repo": "thonyAGP/test_codingmenace",
+          "sha": "c7bba4629124745230efa13d552ccc5f07e725ec",
+          "status": "success",
+          "timestamp": "2026-03-04T19:11:20Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/test_codingmenace",
+          "sha": "5beb96b9dd2c24e1100edc4b581898ce7b51e099",
+          "status": "success",
+          "timestamp": "2026-03-04T19:11:03Z",
+          "workflow": "Secret Scanning"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "Thumbfast",
       "fullName": "thonyAGP/Thumbfast",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
+          "repo": "thonyAGP/Thumbfast",
+          "sha": "05bd31f8607c392941a6dddf8959b19d38a4abd7",
+          "status": "success",
+          "timestamp": "2026-03-04T19:11:26Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/Thumbfast",
+          "sha": "c0cbda864a810dd1e94a28fb26a28f836d7e4832",
+          "status": "success",
+          "timestamp": "2026-03-04T19:11:05Z",
+          "workflow": "Secret Scanning"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     },
     {
       "repo": "Utilitaire_Webapp",
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
+          "repo": "thonyAGP/Utilitaire_Webapp",
+          "sha": "e78ecf52a6c5d69c727ed66001a085db5badf453",
+          "status": "success",
+          "timestamp": "2026-03-04T19:11:31Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "devops-factory/cross-update-renovate-json",
+          "repo": "thonyAGP/Utilitaire_Webapp",
+          "sha": "8c3052188e7d104a307bddef64e1aea0ac2ba30f",
+          "status": "success",
+          "timestamp": "2026-03-04T19:11:17Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/Utilitaire_Webapp",
+          "sha": "959d8ea36d1e3188946b35e33c7c418380a6db4c",
+          "status": "success",
+          "timestamp": "2026-03-04T19:11:10Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
+          "repo": "thonyAGP/Utilitaire_Webapp",
+          "sha": "959d8ea36d1e3188946b35e33c7c418380a6db4c",
+          "status": "success",
+          "timestamp": "2026-03-04T19:11:10Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Utilitaire_Webapp",
+          "sha": "2e59f51093ab1c3c2b20ef1bb5db7f07413cfb35",
+          "status": "success",
+          "timestamp": "2026-02-19T21:51:38Z",
+          "workflow": "CI"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     }
   ],
   "summary": {
     "totalRepos": 17,
-    "totalPRsMerged": 10,
+    "totalPRsMerged": 9,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 0,
-    "avgComplianceScore": 0,
+    "totalDeployments": 88,
+    "avgComplianceScore": 20,
     "reposWithBranchProtection": 0,
-    "reposWithCI": 0
+    "reposWithCI": 17
   }
 }

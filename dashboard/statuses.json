@@ -1,4 +1,1668 @@
 {
-  "timestamp": "2026-03-04T16:56:19.580Z",
-  "projects": []
+  "timestamp": "2026-03-05T01:01:56.001Z",
+  "projects": [
+    {
+      "name": "CasaSync",
+      "fullName": "thonyAGP/CasaSync",
+      "stack": "nextjs",
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-03-02T22:18:08Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/CasaSync/actions/runs/22598290782",
+        "id": 22598290782,
+        "name": "CI"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T22:12:36Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/74",
+          "labels": [],
+          "number": 74,
+          "state": "OPEN",
+          "title": "feat: add test coverage tracking",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:04Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/73",
+          "labels": [],
+          "number": 73,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:09:57Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/72",
+          "labels": [],
+          "number": 72,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:09:46Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/71",
+          "labels": [],
+          "number": 71,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-23T07:55:34Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T23:08:57Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:41:20Z",
+          "html_url": "https://github.com/thonyAGP/CasaSync/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 19,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Email_Assistant",
+      "fullName": "thonyAGP/Email_Assistant",
+      "stack": "node",
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "skipped",
+        "created_at": "2026-03-04T22:12:54Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/22691862035",
+        "id": 22691862035,
+        "name": "Qodo Merge - PR Review"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T22:12:47Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/2415",
+          "labels": [],
+          "number": 2415,
+          "state": "OPEN",
+          "title": "feat: add test coverage tracking",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:26Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/2411",
+          "labels": [],
+          "number": 2411,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:18Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/2410",
+          "labels": [],
+          "number": 2410,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:06Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/2409",
+          "labels": [],
+          "number": 2409,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T12:09:33Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/2099",
+          "labels": [
+            "ai-fix",
+            "Review effort 1/5"
+          ],
+          "number": 2099,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T04:58:39Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/1752",
+          "labels": [
+            "Review effort 3/5",
+            "ai-fix"
+          ],
+          "number": 1752,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T01:57:14Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/1602",
+          "labels": [
+            "ai-fix",
+            "Review effort 1/5"
+          ],
+          "number": 1602,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-03T20:00:47Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/1369",
+          "labels": [
+            "ai-fix"
+          ],
+          "number": 1369,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-03T19:55:56Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/1350",
+          "labels": [
+            "ai-fix",
+            "Review effort 1/5"
+          ],
+          "number": 1350,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-03T15:16:27Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/1120",
+          "labels": [
+            "ai-fix",
+            "Review effort 1/5"
+          ],
+          "number": 1120,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-03T10:06:01Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/864",
+          "labels": [
+            "ai-fix"
+          ],
+          "number": 864,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-03T06:46:00Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/665",
+          "labels": [
+            "ai-fix"
+          ],
+          "number": 665,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-03T06:07:56Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/649",
+          "labels": [
+            "ai-fix",
+            "Review effort 1/5"
+          ],
+          "number": 649,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-03T03:55:08Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/516",
+          "labels": [
+            "ai-fix"
+          ],
+          "number": 516,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-02T22:47:15Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/355",
+          "labels": [
+            "ai-fix",
+            "Review effort 1/5"
+          ],
+          "number": 355,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-02T22:13:22Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/310",
+          "labels": [
+            "ai-fix",
+            "Review effort 5/5"
+          ],
+          "number": 310,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-02T21:01:37Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/239",
+          "labels": [
+            "ai-fix"
+          ],
+          "number": 239,
+          "state": "OPEN",
+          "title": "fix: AI-generated CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-23T07:54:50Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/75",
+          "labels": [],
+          "number": 75,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:43:14Z",
+          "html_url": "https://github.com/thonyAGP/Email_Assistant/pull/7",
+          "labels": [
+            "enhancement",
+            "Review effort 2/5"
+          ],
+          "number": 7,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 19,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "claude-cli-wrapper",
+      "fullName": "thonyAGP/claude-cli-wrapper",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:10:10Z",
+          "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:02Z",
+          "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:09:51Z",
+          "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T17:02:35Z",
+          "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:41:50Z",
+          "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "claude-launcher",
+      "fullName": "thonyAGP/claude-launcher",
+      "stack": "dotnet",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:10:14Z",
+          "html_url": "https://github.com/thonyAGP/claude-launcher/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:07Z",
+          "html_url": "https://github.com/thonyAGP/claude-launcher/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:09:56Z",
+          "html_url": "https://github.com/thonyAGP/claude-launcher/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:42:19Z",
+          "html_url": "https://github.com/thonyAGP/claude-launcher/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Livret_accueil_Au-Marais",
+      "fullName": "thonyAGP/Livret_accueil_Au-Marais",
+      "stack": "nextjs",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:10:32Z",
+          "html_url": "https://github.com/thonyAGP/Livret_accueil_Au-Marais/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:22Z",
+          "html_url": "https://github.com/thonyAGP/Livret_accueil_Au-Marais/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:11Z",
+          "html_url": "https://github.com/thonyAGP/Livret_accueil_Au-Marais/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:44:38Z",
+          "html_url": "https://github.com/thonyAGP/Livret_accueil_Au-Marais/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "MCP_Quota_Claude",
+      "fullName": "thonyAGP/MCP_Quota_Claude",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:10:49Z",
+          "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:37Z",
+          "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:27Z",
+          "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-23T07:55:54Z",
+          "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:45:08Z",
+          "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Site_1970_Plomberie",
+      "fullName": "thonyAGP/Site_1970_Plomberie",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:10:54Z",
+          "html_url": "https://github.com/thonyAGP/Site_1970_Plomberie/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:43Z",
+          "html_url": "https://github.com/thonyAGP/Site_1970_Plomberie/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:34Z",
+          "html_url": "https://github.com/thonyAGP/Site_1970_Plomberie/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:45:48Z",
+          "html_url": "https://github.com/thonyAGP/Site_1970_Plomberie/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Site_Greg-Assainissement",
+      "fullName": "thonyAGP/Site_Greg-Assainissement",
+      "stack": "nextjs",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:10:59Z",
+          "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:47Z",
+          "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:39Z",
+          "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T17:03:08Z",
+          "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:46:16Z",
+          "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "SqlConnectionTest",
+      "fullName": "thonyAGP/SqlConnectionTest",
+      "stack": "dotnet",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:11:04Z",
+          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:54Z",
+          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:45Z",
+          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:46:34Z",
+          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "statusline",
+      "fullName": "thonyAGP/statusline",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:11:11Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:59Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:50Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T17:02:58Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:47:02Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "test_codingmenace",
+      "fullName": "thonyAGP/test_codingmenace",
+      "stack": "nextjs",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:11:17Z",
+          "html_url": "https://github.com/thonyAGP/test_codingmenace/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:11:03Z",
+          "html_url": "https://github.com/thonyAGP/test_codingmenace/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:55Z",
+          "html_url": "https://github.com/thonyAGP/test_codingmenace/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:47:29Z",
+          "html_url": "https://github.com/thonyAGP/test_codingmenace/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Thumbfast",
+      "fullName": "thonyAGP/Thumbfast",
+      "stack": "nextjs",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:11:22Z",
+          "html_url": "https://github.com/thonyAGP/Thumbfast/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:11:08Z",
+          "html_url": "https://github.com/thonyAGP/Thumbfast/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:11:00Z",
+          "html_url": "https://github.com/thonyAGP/Thumbfast/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-23T07:56:18Z",
+          "html_url": "https://github.com/thonyAGP/Thumbfast/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:47:56Z",
+          "html_url": "https://github.com/thonyAGP/Thumbfast/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 44,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "Utilitaire_Webapp",
+      "fullName": "thonyAGP/Utilitaire_Webapp",
+      "stack": "node",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-19T21:51:38Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250",
+        "id": 22201584250,
+        "name": "CI"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:11:27Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/9",
+          "labels": [],
+          "number": 9,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:11:14Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/8",
+          "labels": [],
+          "number": 8,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:11:05Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/7",
+          "labels": [],
+          "number": 7,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-23T07:56:35Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/6",
+          "labels": [],
+          "number": 6,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T23:45:34Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T23:37:50Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T23:09:40Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-19T22:07:31Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add AI-generated tests",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:48:21Z",
+          "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 49,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "au-marais",
+      "fullName": "thonyAGP/au-marais",
+      "stack": "nextjs",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-07T06:36:35Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/au-marais/actions/runs/21775816387",
+        "id": 21775816387,
+        "name": "E2E Tests"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T22:12:19Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/7",
+          "labels": [],
+          "number": 7,
+          "state": "OPEN",
+          "title": "feat: add test coverage tracking",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:09:59Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/6",
+          "labels": [],
+          "number": 6,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:09:53Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:09:41Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:40:45Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 59,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "livret-au-marais",
+      "fullName": "thonyAGP/livret-au-marais",
+      "stack": "nextjs",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-18T08:28:49Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016",
+        "id": 22132234016,
+        "name": "CI"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:10:37Z",
+          "html_url": "https://github.com/thonyAGP/livret-au-marais/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:27Z",
+          "html_url": "https://github.com/thonyAGP/livret-au-marais/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:16Z",
+          "html_url": "https://github.com/thonyAGP/livret-au-marais/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:44:08Z",
+          "html_url": "https://github.com/thonyAGP/livret-au-marais/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 59,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
+      "stack": "node",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-03-04T06:57:03Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/22658623768",
+        "id": 22658623768,
+        "name": "Daily Drift Report"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:10:43Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/22",
+          "labels": [],
+          "number": 22,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:33Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/21",
+          "labels": [],
+          "number": 21,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:21Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/20",
+          "labels": [],
+          "number": 20,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-01T08:18:53Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/9",
+          "labels": [],
+          "number": 9,
+          "state": "OPEN",
+          "title": "security: Remove AWS secret from git history",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:43:41Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 62,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": true,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 20
+    }
+  ]
 }
