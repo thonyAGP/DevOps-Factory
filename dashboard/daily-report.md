@@ -6,8 +6,8 @@
 - **0%** avg security score
 - **0/16** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
-- **DORA**: MEDIUM (deploy 0/wk, lead 45.7h, MTTR 1.7h, CFR 54%)
-- **CI Cost**: 547min total, 305min wasted, ~$0/mo
+- **DORA**: MEDIUM (deploy 0/wk, lead 45.7h, MTTR 1.7h, CFR 53%)
+- **CI Cost**: 525min total, 301min wasted, ~$0/mo
 - **Compliance**: 20/100 avg, 0% review coverage, 0/17 branch protected
 
 ## Per Project
