@@ -1,20 +1,11 @@
 {
-  "timestamp": "2026-03-08T12:52:35.314Z",
+  "timestamp": "2026-03-08T18:37:52.103Z",
   "period": "30-day window",
   "repos": [
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
-      "mergedPRs": [
-        {
-          "author": "thonyAGP",
-          "labels": [],
-          "mergedAt": "2026-02-06T17:23:46Z",
-          "number": 2,
-          "reviewers": [],
-          "title": "Release: Observability, CI/CD, Client Portal"
-        }
-      ],
+      "mergedPRs": [],
       "deployments": [
         {
           "branch": "devops-factory/cross-update--github-workflows-coverage-tracking-yml",
@@ -310,6 +301,14 @@
           "repo": "thonyAGP/Email_Assistant",
           "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
           "status": "success",
+          "timestamp": "2026-03-08T18:27:03Z",
+          "workflow": "Monitor Production"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
           "timestamp": "2026-03-08T12:37:57Z",
           "workflow": "Monitor Production"
         },
@@ -568,14 +567,6 @@
           "status": "success",
           "timestamp": "2026-03-04T01:57:17Z",
           "workflow": "Qodo Merge - PR Review"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-04T01:41:57Z",
-          "workflow": "Monitor Production"
         }
       ],
       "securityFindings": [],
@@ -1080,7 +1071,7 @@
   ],
   "summary": {
     "totalRepos": 17,
-    "totalPRsMerged": 9,
+    "totalPRsMerged": 8,
     "prsWithReview": 0,
     "reviewCoverage": 0,
     "totalDeployments": 97,

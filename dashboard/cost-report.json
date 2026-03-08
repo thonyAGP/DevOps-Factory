@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-08T12:52:08.168Z",
+  "timestamp": "2026-03-08T18:37:22.440Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -172,59 +172,18 @@
       ]
     },
     {
-      "repo": "au-marais",
-      "fullName": "thonyAGP/au-marais",
-      "totalMinutes": 57,
-      "totalRuns": 13,
-      "workflows": [
-        {
-          "name": "E2E Tests",
-          "runs": 10,
-          "totalMinutes": 53,
-          "avgMinutes": 5,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 2,
-          "avgMinutes": 2,
-          "failedRuns": 1,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": []
-    },
-    {
       "repo": "ClubMedRoomAssignment",
       "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "totalMinutes": 43,
-      "totalRuns": 41,
+      "totalMinutes": 42,
+      "totalRuns": 40,
       "workflows": [
         {
           "name": "CI",
-          "runs": 35,
-          "totalMinutes": 36,
+          "runs": 34,
+          "totalMinutes": 35,
           "avgMinutes": 1,
-          "failedRuns": 35,
-          "wastedMinutes": 36
+          "failedRuns": 34,
+          "wastedMinutes": 35
         },
         {
           "name": ".github/workflows/ci.yml",
@@ -260,8 +219,49 @@
         }
       ],
       "recommendations": [
-        "CI: 100% failure rate (36min wasted). Fix root cause."
+        "CI: 100% failure rate (35min wasted). Fix root cause."
       ]
+    },
+    {
+      "repo": "au-marais",
+      "fullName": "thonyAGP/au-marais",
+      "totalMinutes": 41,
+      "totalRuns": 10,
+      "workflows": [
+        {
+          "name": "E2E Tests",
+          "runs": 7,
+          "totalMinutes": 37,
+          "avgMinutes": 5,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 2,
+          "avgMinutes": 2,
+          "failedRuns": 1,
+          "wastedMinutes": 2
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": []
     },
     {
       "repo": "CasaSync",
@@ -593,9 +593,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 519,
-    "totalRuns": 328,
-    "wastedMinutes": 297,
+    "totalMinutes": 502,
+    "totalRuns": 324,
+    "wastedMinutes": 296,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,

@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/8/2026, 12:52:35 PM
+**Generated**: 3/8/2026, 6:37:52 PM
 **Period**: 30-day window
 
 ## Summary
@@ -12,9 +12,9 @@
 | Repos with Branch Protection | 0/17 |
 | Repos with CI | 17/17 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 9 |
+| PRs Merged (30d) | 8 |
 | Deployments (30d) | 97 |
-| PRs with Review | 0/9 |
+| PRs with Review | 0/8 |
 
 ## Repository Compliance
 
@@ -59,8 +59,7 @@
 - Thumbfast
 - Utilitaire_Webapp
 
-### ⚠️ No Code Review (4)
-- **au-marais**: 1 PRs merged without review
+### ⚠️ No Code Review (3)
 - **ClubMedRoomAssignment**: 3 PRs merged without review
 - **Email_Assistant**: 4 PRs merged without review
 - **magic-migration**: 1 PRs merged without review
@@ -103,11 +102,6 @@
 - Code Review Required: ✗
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
-
-**Review Coverage**: 0/1 PRs (0%)
-
-**PRs Without Review**:
-- #2 - Release: Observability, CI/CD, Client Portal (by thonyAGP)
 
 **Recent Deployments**: 12 successful deploys in 30 days
 
