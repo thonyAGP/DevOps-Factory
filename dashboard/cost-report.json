@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-09T07:04:41.021Z",
+  "timestamp": "2026-03-09T12:37:23.019Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -76,11 +76,11 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 38,
-          "totalMinutes": 38,
+          "runs": 37,
+          "totalMinutes": 37,
           "avgMinutes": 1,
-          "failedRuns": 38,
-          "wastedMinutes": 38
+          "failedRuns": 37,
+          "wastedMinutes": 37
         },
         {
           "name": "Deploy OpenSpec Viewer",
@@ -100,8 +100,8 @@
         },
         {
           "name": "Daily Drift Report",
-          "runs": 14,
-          "totalMinutes": 14,
+          "runs": 15,
+          "totalMinutes": 15,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -132,7 +132,7 @@
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (38min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 100% failure rate (37min wasted). Fix root cause.",
         "E2E Tests: 100% failure rate (22min wasted). Fix root cause."
       ]
     },
@@ -595,7 +595,7 @@
   "summary": {
     "totalMinutes": 496,
     "totalRuns": 323,
-    "wastedMinutes": 296,
+    "wastedMinutes": 295,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,
