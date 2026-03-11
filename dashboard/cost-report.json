@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-10T18:53:55.983Z",
+  "timestamp": "2026-03-11T01:02:13.837Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -71,32 +71,32 @@
     {
       "repo": "magic-migration",
       "fullName": "thonyAGP/magic-migration",
-      "totalMinutes": 108,
+      "totalMinutes": 110,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 36,
-          "totalMinutes": 36,
+          "runs": 33,
+          "totalMinutes": 33,
           "avgMinutes": 1,
-          "failedRuns": 36,
-          "wastedMinutes": 36
-        },
-        {
-          "name": "Deploy OpenSpec Viewer",
-          "runs": 25,
-          "totalMinutes": 25,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
+          "failedRuns": 33,
+          "wastedMinutes": 33
         },
         {
           "name": "E2E Tests",
-          "runs": 16,
-          "totalMinutes": 22,
+          "runs": 18,
+          "totalMinutes": 26,
           "avgMinutes": 1,
-          "failedRuns": 16,
-          "wastedMinutes": 22
+          "failedRuns": 18,
+          "wastedMinutes": 26
+        },
+        {
+          "name": "Deploy OpenSpec Viewer",
+          "runs": 24,
+          "totalMinutes": 24,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
         },
         {
           "name": "Daily Drift Report",
@@ -108,11 +108,11 @@
         },
         {
           "name": "Expression Coverage Check",
-          "runs": 5,
-          "totalMinutes": 6,
+          "runs": 7,
+          "totalMinutes": 8,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 6
+          "failedRuns": 7,
+          "wastedMinutes": 8
         },
         {
           "name": "Security Scan (SAST)",
@@ -132,8 +132,9 @@
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (36min wasted). Fix root cause.",
-        "E2E Tests: 100% failure rate (22min wasted). Fix root cause."
+        "Deploy Migration Dashboard: 100% failure rate (33min wasted). Fix root cause.",
+        "E2E Tests: 100% failure rate (26min wasted). Fix root cause.",
+        "Expression Coverage Check: 100% failure rate (8min wasted). Fix root cause."
       ]
     },
     {
@@ -593,12 +594,12 @@
     }
   ],
   "summary": {
-    "totalMinutes": 491,
+    "totalMinutes": 493,
     "totalRuns": 323,
-    "wastedMinutes": 289,
+    "wastedMinutes": 292,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
-    "totalRecommendations": 7,
+    "totalRecommendations": 8,
     "estimatedMonthlyCost": 0
   }
 }

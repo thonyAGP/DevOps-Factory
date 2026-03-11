@@ -77,6 +77,11 @@
 - **CI**: pass ([view](https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250))
 - **Open PRs**: 9
 
+### magic-migration :white_check_mark:
+- **Health**: 52/100
+- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/22890938833))
+- **Open PRs**: 6
+
 ### au-marais :white_check_mark:
 - **Health**: 59/100
 - **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/21775816387))
@@ -86,9 +91,4 @@
 - **Health**: 59/100
 - **CI**: pass ([view](https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016))
 - **Open PRs**: 4
-
-### magic-migration :white_check_mark:
-- **Health**: 62/100
-- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/22890938833))
-- **Open PRs**: 5
 

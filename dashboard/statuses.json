@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-10T18:50:37.090Z",
+  "timestamp": "2026-03-11T00:59:19.958Z",
   "projects": [
     {
       "name": "CasaSync",
@@ -1400,6 +1400,109 @@
       "perfScore": 0
     },
     {
+      "name": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
+      "stack": "node",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-03-10T06:58:51Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/22890938833",
+        "id": 22890938833,
+        "name": "Daily Drift Report"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-10T20:55:58Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/23",
+          "labels": [],
+          "number": 23,
+          "state": "OPEN",
+          "title": "feat(xfit-s): XFIT-S codegen pipeline — types from KB, business rules extractor, parser gap identified",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:43Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/22",
+          "labels": [],
+          "number": 22,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:33Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/21",
+          "labels": [],
+          "number": 21,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:21Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/20",
+          "labels": [],
+          "number": 20,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-01T08:18:53Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/9",
+          "labels": [],
+          "number": 9,
+          "state": "OPEN",
+          "title": "security: Remove AWS secret from git history",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:43:41Z",
+          "html_url": "https://github.com/thonyAGP/magic-migration/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 52,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": true,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 20
+    },
+    {
       "name": "au-marais",
       "fullName": "thonyAGP/au-marais",
       "stack": "nextjs",
@@ -1571,98 +1674,6 @@
       "hasSemanticRelease": false,
       "hasReleaseDrafter": false,
       "perfScore": 0
-    },
-    {
-      "name": "magic-migration",
-      "fullName": "thonyAGP/magic-migration",
-      "stack": "node",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-03-10T06:58:51Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/22890938833",
-        "id": 22890938833,
-        "name": "Daily Drift Report"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-03-04T19:10:43Z",
-          "html_url": "https://github.com/thonyAGP/magic-migration/pull/22",
-          "labels": [],
-          "number": 22,
-          "state": "OPEN",
-          "title": "chore: add SAST with Semgrep",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-03-04T19:10:33Z",
-          "html_url": "https://github.com/thonyAGP/magic-migration/pull/21",
-          "labels": [],
-          "number": 21,
-          "state": "OPEN",
-          "title": "chore: add automated dependency updates with Renovate",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-03-04T19:10:21Z",
-          "html_url": "https://github.com/thonyAGP/magic-migration/pull/20",
-          "labels": [],
-          "number": 20,
-          "state": "OPEN",
-          "title": "chore: add secret scanning with Gitleaks",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-03-01T08:18:53Z",
-          "html_url": "https://github.com/thonyAGP/magic-migration/pull/9",
-          "labels": [],
-          "number": 9,
-          "state": "OPEN",
-          "title": "security: Remove AWS secret from git history",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:43:41Z",
-          "html_url": "https://github.com/thonyAGP/magic-migration/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 62,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": true,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": true,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 20
     }
   ]
 }
