@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-12T06:59:57.966Z",
+  "timestamp": "2026-03-12T12:34:17.508Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -76,11 +76,11 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 32,
-          "totalMinutes": 32,
+          "runs": 31,
+          "totalMinutes": 31,
           "avgMinutes": 1,
-          "failedRuns": 32,
-          "wastedMinutes": 32
+          "failedRuns": 31,
+          "wastedMinutes": 31
         },
         {
           "name": "E2E Tests",
@@ -100,8 +100,8 @@
         },
         {
           "name": "Daily Drift Report",
-          "runs": 17,
-          "totalMinutes": 18,
+          "runs": 18,
+          "totalMinutes": 19,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -132,7 +132,7 @@
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (32min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 100% failure rate (31min wasted). Fix root cause.",
         "E2E Tests: 100% failure rate (26min wasted). Fix root cause.",
         "Expression Coverage Check: 100% failure rate (8min wasted). Fix root cause."
       ]
@@ -140,16 +140,16 @@
     {
       "repo": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
-      "totalMinutes": 54,
-      "totalRuns": 15,
+      "totalMinutes": 53,
+      "totalRuns": 14,
       "workflows": [
         {
           "name": "CI",
-          "runs": 13,
-          "totalMinutes": 52,
+          "runs": 12,
+          "totalMinutes": 51,
           "avgMinutes": 4,
-          "failedRuns": 8,
-          "wastedMinutes": 39
+          "failedRuns": 7,
+          "wastedMinutes": 38
         },
         {
           "name": "Security Scan (SAST)",
@@ -169,7 +169,7 @@
         }
       ],
       "recommendations": [
-        "CI: 62% failure rate (39min wasted). Fix root cause."
+        "CI: 58% failure rate (38min wasted). Fix root cause."
       ]
     },
     {
@@ -602,9 +602,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 478,
-    "totalRuns": 315,
-    "wastedMinutes": 273,
+    "totalMinutes": 477,
+    "totalRuns": 314,
+    "wastedMinutes": 271,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 8,
