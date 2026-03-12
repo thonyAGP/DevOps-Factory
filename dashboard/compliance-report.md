@@ -1,16 +1,16 @@
 # Compliance & Audit Report
 
-**Generated**: 3/11/2026, 6:58:30 PM
+**Generated**: 3/12/2026, 12:59:41 AM
 **Period**: 30-day window
 
 ## Summary
 
 | Metric | Value |
 |--------|-------|
-| Total Repos | 17 |
-| Avg Compliance Score | 20/100 |
-| Repos with Branch Protection | 0/17 |
-| Repos with CI | 17/17 |
+| Total Repos | 18 |
+| Avg Compliance Score | 19/100 |
+| Repos with Branch Protection | 0/18 |
+| Repos with CI | 17/18 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 8 |
 | Deployments (30d) | 105 |
@@ -37,10 +37,11 @@
 | test_codingmenace | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Thumbfast | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Utilitaire_Webapp | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
+| zentra | 🔴 0/100 | ✗ | ✗ | ✗ | 0 |
 
 ## Compliance Gaps
 
-### ⚠️ No Branch Protection (17)
+### ⚠️ No Branch Protection (18)
 - au-marais
 - CasaSync
 - claude-cli-wrapper
@@ -58,13 +59,17 @@
 - test_codingmenace
 - Thumbfast
 - Utilitaire_Webapp
+- zentra
+
+### ⚠️ No CI Pipeline (1)
+- zentra
 
 ### ⚠️ No Code Review (3)
 - **ClubMedRoomAssignment**: 3 PRs merged without review
 - **Email_Assistant**: 4 PRs merged without review
 - **magic-migration**: 1 PRs merged without review
 
-### 🔴 Low Compliance Score < 60 (17)
+### 🔴 Low Compliance Score < 60 (18)
 - au-marais: 20/100
 - CasaSync: 20/100
 - claude-cli-wrapper: 20/100
@@ -82,6 +87,7 @@
 - test_codingmenace: 20/100
 - Thumbfast: 20/100
 - Utilitaire_Webapp: 20/100
+- zentra: 0/100
 
 ## Recommendations
 
@@ -348,5 +354,17 @@
 - Security Findings: 0 alerts
 
 **Recent Deployments**: 5 successful deploys in 30 days
+
+---
+
+### zentra | ❌ NEEDS WORK (0/100)
+
+**Full Name**: `thonyAGP/zentra`
+
+**Controls**:
+- Branch Protection: ✗
+- Code Review Required: ✗
+- CI/CD Enabled: ✗
+- Security Findings: 0 alerts
 
 ---

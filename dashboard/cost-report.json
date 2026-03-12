@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-11T18:57:43.958Z",
+  "timestamp": "2026-03-12T00:58:50.163Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -140,16 +140,16 @@
     {
       "repo": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
-      "totalMinutes": 57,
-      "totalRuns": 18,
+      "totalMinutes": 54,
+      "totalRuns": 15,
       "workflows": [
         {
           "name": "CI",
-          "runs": 16,
-          "totalMinutes": 55,
-          "avgMinutes": 3,
-          "failedRuns": 11,
-          "wastedMinutes": 42
+          "runs": 13,
+          "totalMinutes": 52,
+          "avgMinutes": 4,
+          "failedRuns": 8,
+          "wastedMinutes": 39
         },
         {
           "name": "Security Scan (SAST)",
@@ -169,7 +169,7 @@
         }
       ],
       "recommendations": [
-        "CI: 69% failure rate (42min wasted). Fix root cause."
+        "CI: 62% failure rate (39min wasted). Fix root cause."
       ]
     },
     {
@@ -591,12 +591,20 @@
         }
       ],
       "recommendations": []
+    },
+    {
+      "repo": "zentra",
+      "fullName": "thonyAGP/zentra",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
     }
   ],
   "summary": {
-    "totalMinutes": 485,
-    "totalRuns": 318,
-    "wastedMinutes": 281,
+    "totalMinutes": 482,
+    "totalRuns": 315,
+    "wastedMinutes": 278,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 8,
