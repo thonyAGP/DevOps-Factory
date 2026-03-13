@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-13T06:58:39.256Z",
+  "timestamp": "2026-03-13T12:34:50.734Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -76,11 +76,11 @@
       "workflows": [
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 31,
-          "totalMinutes": 31,
+          "runs": 30,
+          "totalMinutes": 30,
           "avgMinutes": 1,
-          "failedRuns": 31,
-          "wastedMinutes": 31
+          "failedRuns": 30,
+          "wastedMinutes": 30
         },
         {
           "name": "E2E Tests",
@@ -100,8 +100,8 @@
         },
         {
           "name": "Daily Drift Report",
-          "runs": 18,
-          "totalMinutes": 19,
+          "runs": 19,
+          "totalMinutes": 20,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -132,7 +132,7 @@
         }
       ],
       "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (31min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 100% failure rate (30min wasted). Fix root cause.",
         "E2E Tests: 100% failure rate (26min wasted). Fix root cause.",
         "Expression Coverage Check: 100% failure rate (8min wasted). Fix root cause."
       ]
@@ -602,7 +602,7 @@
   "summary": {
     "totalMinutes": 439,
     "totalRuns": 307,
-    "wastedMinutes": 233,
+    "wastedMinutes": 232,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 7,

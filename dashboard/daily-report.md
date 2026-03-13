@@ -84,7 +84,7 @@
 
 ### magic-migration :white_check_mark:
 - **Health**: 52/100
-- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/22990483218))
+- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/23040041537))
 - **Open PRs**: 6
 
 ### au-marais :white_check_mark:
