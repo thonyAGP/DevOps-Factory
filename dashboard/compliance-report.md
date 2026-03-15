@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/14/2026, 6:42:15 PM
+**Generated**: 3/15/2026, 1:15:42 AM
 **Period**: 30-day window
 
 ## Summary
@@ -8,12 +8,12 @@
 | Metric | Value |
 |--------|-------|
 | Total Repos | 18 |
-| Avg Compliance Score | 19/100 |
+| Avg Compliance Score | 20/100 |
 | Repos with Branch Protection | 0/18 |
-| Repos with CI | 17/18 |
+| Repos with CI | 18/18 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 8 |
-| Deployments (30d) | 113 |
+| Deployments (30d) | 114 |
 | PRs with Review | 0/8 |
 
 ## Repository Compliance
@@ -37,7 +37,7 @@
 | test_codingmenace | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Thumbfast | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Utilitaire_Webapp | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
-| zentra | 🔴 0/100 | ✗ | ✗ | ✗ | 0 |
+| zentra | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 
 ## Compliance Gaps
 
@@ -59,9 +59,6 @@
 - test_codingmenace
 - Thumbfast
 - Utilitaire_Webapp
-- zentra
-
-### ⚠️ No CI Pipeline (1)
 - zentra
 
 ### ⚠️ No Code Review (3)
@@ -87,7 +84,7 @@
 - test_codingmenace: 20/100
 - Thumbfast: 20/100
 - Utilitaire_Webapp: 20/100
-- zentra: 0/100
+- zentra: 20/100
 
 ## Recommendations
 
@@ -357,14 +354,16 @@
 
 ---
 
-### zentra | ❌ NEEDS WORK (0/100)
+### zentra | ❌ NEEDS WORK (20/100)
 
 **Full Name**: `thonyAGP/zentra`
 
 **Controls**:
 - Branch Protection: ✗
 - Code Review Required: ✗
-- CI/CD Enabled: ✗
+- CI/CD Enabled: ✓
 - Security Findings: 0 alerts
+
+**Recent Deployments**: 1 successful deploys in 30 days
 
 ---

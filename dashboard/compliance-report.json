@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-14T18:42:15.011Z",
+  "timestamp": "2026-03-15T01:15:42.753Z",
   "period": "30-day window",
   "repos": [
     {
@@ -1200,12 +1200,21 @@
       "repo": "zentra",
       "fullName": "thonyAGP/zentra",
       "mergedPRs": [],
-      "deployments": [],
+      "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/zentra",
+          "sha": "1456c16b26f5be974b1117547f9c3104fca83bf8",
+          "status": "success",
+          "timestamp": "2026-03-14T22:31:47Z",
+          "workflow": "npm_and_yarn in /. - Update #1279521487"
+        }
+      ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
+      "ciEnabled": true,
+      "score": 20
     }
   ],
   "summary": {
@@ -1213,9 +1222,9 @@
     "totalPRsMerged": 8,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 113,
-    "avgComplianceScore": 19,
+    "totalDeployments": 114,
+    "avgComplianceScore": 20,
     "reposWithBranchProtection": 0,
-    "reposWithCI": 17
+    "reposWithCI": 18
   }
 }

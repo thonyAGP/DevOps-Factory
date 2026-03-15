@@ -2,7 +2,7 @@
 - **17** projects monitored
 - **0/17** fully configured
 - **0** AI fix PR(s) pending merge
-- **1** CI failure(s)
+- **2** CI failure(s)
 - **0%** avg security score
 - **0/17** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
@@ -16,6 +16,11 @@
 - **Health**: 19/100
 - **CI**: fail ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22598290782))
 - **Open PRs**: 7
+
+### zentra :x:
+- **Health**: 19/100
+- **CI**: fail ([view](https://github.com/thonyAGP/zentra/actions/runs/23099715155))
+- **Open PRs**: 6
 
 ### claude-cli-wrapper :white_circle:
 - **Health**: 44/100
@@ -66,11 +71,6 @@
 - **Health**: 44/100
 - **CI**: none ([view](null))
 - **Open PRs**: 5
-
-### zentra :white_circle:
-- **Health**: 44/100
-- **CI**: none ([view](null))
-- **Open PRs**: 1
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 49/100

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-14T18:39:31.251Z",
+  "timestamp": "2026-03-15T01:11:38.666Z",
   "projects": [
     {
       "name": "CasaSync",
@@ -84,6 +84,124 @@
         {
           "created_at": "2026-02-18T12:41:20Z",
           "html_url": "https://github.com/thonyAGP/CasaSync/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 19,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "zentra",
+      "fullName": "thonyAGP/zentra",
+      "stack": "node",
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-03-15T00:31:20Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/zentra/actions/runs/23099715155",
+        "id": 23099715155,
+        "name": "CI"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-14T22:57:30Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/6",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "number": 6,
+          "state": "OPEN",
+          "title": "chore(deps-dev): bump prisma from 5.22.0 to 7.5.0",
+          "user": {
+            "login": "app/dependabot"
+          }
+        },
+        {
+          "created_at": "2026-03-14T22:56:13Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/5",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "number": 5,
+          "state": "OPEN",
+          "title": "chore(deps): bump zod from 3.25.76 to 4.3.6",
+          "user": {
+            "login": "app/dependabot"
+          }
+        },
+        {
+          "created_at": "2026-03-14T22:55:09Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/4",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore(deps): bump @prisma/client from 5.22.0 to 7.5.0",
+          "user": {
+            "login": "app/dependabot"
+          }
+        },
+        {
+          "created_at": "2026-03-14T22:53:48Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/3",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore(deps-dev): bump webpack-cli from 5.1.4 to 7.0.0",
+          "user": {
+            "login": "app/dependabot"
+          }
+        },
+        {
+          "created_at": "2026-03-14T22:52:29Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/2",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "number": 2,
+          "state": "OPEN",
+          "title": "chore(deps): bump the minor-and-patch group with 18 updates",
+          "user": {
+            "login": "app/dependabot"
+          }
+        },
+        {
+          "created_at": "2026-03-12T00:54:41Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/1",
           "labels": [],
           "number": 1,
           "state": "OPEN",
@@ -949,54 +1067,6 @@
         {
           "created_at": "2026-02-18T12:47:56Z",
           "html_url": "https://github.com/thonyAGP/Thumbfast/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
-      "name": "zentra",
-      "fullName": "thonyAGP/zentra",
-      "stack": "node",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-03-12T00:54:41Z",
-          "html_url": "https://github.com/thonyAGP/zentra/pull/1",
           "labels": [],
           "number": 1,
           "state": "OPEN",

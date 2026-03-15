@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-14T18:41:41.393Z",
+  "timestamp": "2026-03-15T01:14:56.114Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -228,6 +228,34 @@
         }
       ],
       "recommendations": []
+    },
+    {
+      "repo": "zentra",
+      "fullName": "thonyAGP/zentra",
+      "totalMinutes": 34,
+      "totalRuns": 9,
+      "workflows": [
+        {
+          "name": "npm_and_yarn in /. - Update #1279521487",
+          "runs": 1,
+          "totalMinutes": 26,
+          "avgMinutes": 26,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "CI",
+          "runs": 8,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 8,
+          "wastedMinutes": 8
+        }
+      ],
+      "recommendations": [
+        "npm_and_yarn in /. - Update #1279521487: avg 26min/run. Consider caching, parallelization, or splitting.",
+        "CI: 100% failure rate (8min wasted). Fix root cause."
+      ]
     },
     {
       "repo": "CasaSync",
@@ -589,23 +617,15 @@
         }
       ],
       "recommendations": []
-    },
-    {
-      "repo": "zentra",
-      "fullName": "thonyAGP/zentra",
-      "totalMinutes": 0,
-      "totalRuns": 0,
-      "workflows": [],
-      "recommendations": []
     }
   ],
   "summary": {
-    "totalMinutes": 431,
-    "totalRuns": 307,
-    "wastedMinutes": 221,
+    "totalMinutes": 465,
+    "totalRuns": 316,
+    "wastedMinutes": 229,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
-    "totalRecommendations": 7,
+    "totalRecommendations": 9,
     "estimatedMonthlyCost": 0
   }
 }
