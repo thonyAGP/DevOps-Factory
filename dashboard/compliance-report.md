@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/16/2026, 7:21:36 AM
+**Generated**: 3/16/2026, 12:46:32 PM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 18/18 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 8 |
-| Deployments (30d) | 116 |
+| Deployments (30d) | 120 |
 | PRs with Review | 0/8 |
 
 ## Repository Compliance
@@ -238,7 +238,7 @@
 **PRs Without Review**:
 - #10 - feat(qa): QA Session Complete - Version Badge + Security Fixes (by thonyAGP)
 
-**Recent Deployments**: 27 successful deploys in 30 days
+**Recent Deployments**: 28 successful deploys in 30 days
 
 ---
 
@@ -364,6 +364,6 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 1 successful deploys in 30 days
+**Recent Deployments**: 4 successful deploys in 30 days
 
 ---
