@@ -2,7 +2,7 @@
 - **17** projects monitored
 - **0/17** fully configured
 - **0** AI fix PR(s) pending merge
-- **1** CI failure(s)
+- **2** CI failure(s)
 - **0%** avg security score
 - **0/17** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
@@ -16,6 +16,11 @@
 - **Health**: 19/100
 - **CI**: fail ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22598290782))
 - **Open PRs**: 7
+
+### zentra :x:
+- **Health**: 19/100
+- **CI**: fail ([view](https://github.com/thonyAGP/zentra/actions/runs/23155732802))
+- **Open PRs**: 6
 
 ### claude-cli-wrapper :white_circle:
 - **Health**: 44/100
@@ -69,18 +74,13 @@
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 49/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23144907254))
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23160712633))
 - **Open PRs**: 19
 
 ### Utilitaire_Webapp :white_check_mark:
 - **Health**: 49/100
 - **CI**: pass ([view](https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250))
 - **Open PRs**: 9
-
-### zentra :white_check_mark:
-- **Health**: 49/100
-- **CI**: pass ([view](https://github.com/thonyAGP/zentra/actions/runs/23133687096))
-- **Open PRs**: 6
 
 ### magic-migration :white_check_mark:
 - **Health**: 52/100

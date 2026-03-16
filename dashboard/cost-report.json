@@ -1,24 +1,24 @@
 {
-  "timestamp": "2026-03-16T13:17:32.429Z",
+  "timestamp": "2026-03-16T19:05:47.310Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 157,
+      "totalMinutes": 153,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
-          "runs": 11,
-          "totalMinutes": 60,
-          "avgMinutes": 5,
-          "failedRuns": 11,
-          "wastedMinutes": 60
+          "runs": 10,
+          "totalMinutes": 55,
+          "avgMinutes": 6,
+          "failedRuns": 10,
+          "wastedMinutes": 55
         },
         {
           "name": "Monitor Production",
-          "runs": 53,
-          "totalMinutes": 53,
+          "runs": 54,
+          "totalMinutes": 54,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -65,7 +65,7 @@
         }
       ],
       "recommendations": [
-        "CI: 100% failure rate (60min wasted). Fix root cause."
+        "CI: 100% failure rate (55min wasted). Fix root cause."
       ]
     },
     {
@@ -140,8 +140,8 @@
     {
       "repo": "zentra",
       "fullName": "thonyAGP/zentra",
-      "totalMinutes": 67,
-      "totalRuns": 15,
+      "totalMinutes": 76,
+      "totalRuns": 20,
       "workflows": [
         {
           "name": "npm_and_yarn in /. - Update #1279521487",
@@ -161,11 +161,27 @@
         },
         {
           "name": "CI",
-          "runs": 11,
-          "totalMinutes": 11,
+          "runs": 14,
+          "totalMinutes": 14,
           "avgMinutes": 1,
-          "failedRuns": 11,
-          "wastedMinutes": 11
+          "failedRuns": 14,
+          "wastedMinutes": 14
+        },
+        {
+          "name": "npm_and_yarn in / for prisma - Update #1281236938",
+          "runs": 1,
+          "totalMinutes": 3,
+          "avgMinutes": 3,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "npm_and_yarn in / for prisma - Update #1281233727",
+          "runs": 1,
+          "totalMinutes": 3,
+          "avgMinutes": 3,
+          "failedRuns": 0,
+          "wastedMinutes": 0
         },
         {
           "name": "npm_and_yarn in / for zod - Update #1280542987",
@@ -187,7 +203,7 @@
       "recommendations": [
         "npm_and_yarn in /. - Update #1279521487: avg 26min/run. Consider caching, parallelization, or splitting.",
         "npm_and_yarn in / for next, reflect-metadata, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, @anthropic-ai/sdk - Update #1280539937: avg 24min/run. Consider caching, parallelization, or splitting.",
-        "CI: 100% failure rate (11min wasted). Fix root cause."
+        "CI: 100% failure rate (14min wasted). Fix root cause."
       ]
     },
     {
@@ -645,9 +661,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 494,
-    "totalRuns": 322,
-    "wastedMinutes": 225,
+    "totalMinutes": 499,
+    "totalRuns": 327,
+    "wastedMinutes": 223,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 10,
