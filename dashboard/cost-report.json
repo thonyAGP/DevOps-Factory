@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-17T07:09:12.861Z",
+  "timestamp": "2026-03-17T12:44:27.004Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -69,80 +69,19 @@
       ]
     },
     {
-      "repo": "magic-migration",
-      "fullName": "thonyAGP/magic-migration",
-      "totalMinutes": 111,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Deploy Migration Dashboard",
-          "runs": 27,
-          "totalMinutes": 27,
-          "avgMinutes": 1,
-          "failedRuns": 27,
-          "wastedMinutes": 27
-        },
-        {
-          "name": "E2E Tests",
-          "runs": 18,
-          "totalMinutes": 26,
-          "avgMinutes": 1,
-          "failedRuns": 18,
-          "wastedMinutes": 26
-        },
-        {
-          "name": "Deploy OpenSpec Viewer",
-          "runs": 24,
-          "totalMinutes": 24,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
-        },
-        {
-          "name": "Daily Drift Report",
-          "runs": 22,
-          "totalMinutes": 23,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Expression Coverage Check",
-          "runs": 7,
-          "totalMinutes": 8,
-          "avgMinutes": 1,
-          "failedRuns": 7,
-          "wastedMinutes": 8
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 2,
-          "avgMinutes": 2,
-          "failedRuns": 1,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": [
-        "Deploy Migration Dashboard: 100% failure rate (27min wasted). Fix root cause.",
-        "E2E Tests: 100% failure rate (26min wasted). Fix root cause.",
-        "Expression Coverage Check: 100% failure rate (8min wasted). Fix root cause."
-      ]
-    },
-    {
       "repo": "zentra",
       "fullName": "thonyAGP/zentra",
-      "totalMinutes": 76,
-      "totalRuns": 20,
+      "totalMinutes": 139,
+      "totalRuns": 25,
       "workflows": [
+        {
+          "name": "npm_and_yarn in / for next, reflect-metadata, @commitlint/cli, @commitlint/config-conventional, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, zustand, @anthropic-ai/sdk - Update #1282109348",
+          "runs": 1,
+          "totalMinutes": 55,
+          "avgMinutes": 55,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
         {
           "name": "npm_and_yarn in /. - Update #1279521487",
           "runs": 1,
@@ -161,11 +100,27 @@
         },
         {
           "name": "CI",
-          "runs": 14,
-          "totalMinutes": 14,
+          "runs": 16,
+          "totalMinutes": 16,
           "avgMinutes": 1,
-          "failedRuns": 14,
-          "wastedMinutes": 14
+          "failedRuns": 16,
+          "wastedMinutes": 16
+        },
+        {
+          "name": "npm_and_yarn in / for prisma - Update #1282110151",
+          "runs": 1,
+          "totalMinutes": 3,
+          "avgMinutes": 3,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "npm_and_yarn in / for prisma - Update #1282109333",
+          "runs": 1,
+          "totalMinutes": 3,
+          "avgMinutes": 3,
+          "failedRuns": 0,
+          "wastedMinutes": 0
         },
         {
           "name": "npm_and_yarn in / for prisma - Update #1281236938",
@@ -201,9 +156,79 @@
         }
       ],
       "recommendations": [
+        "npm_and_yarn in / for next, reflect-metadata, @commitlint/cli, @commitlint/config-conventional, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, zustand, @anthropic-ai/sdk - Update #1282109348: avg 55min/run. Consider caching, parallelization, or splitting.",
         "npm_and_yarn in /. - Update #1279521487: avg 26min/run. Consider caching, parallelization, or splitting.",
         "npm_and_yarn in / for next, reflect-metadata, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, @anthropic-ai/sdk - Update #1280539937: avg 24min/run. Consider caching, parallelization, or splitting.",
-        "CI: 100% failure rate (14min wasted). Fix root cause."
+        "CI: 100% failure rate (16min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
+      "totalMinutes": 111,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "E2E Tests",
+          "runs": 18,
+          "totalMinutes": 26,
+          "avgMinutes": 1,
+          "failedRuns": 18,
+          "wastedMinutes": 26
+        },
+        {
+          "name": "Deploy Migration Dashboard",
+          "runs": 26,
+          "totalMinutes": 26,
+          "avgMinutes": 1,
+          "failedRuns": 26,
+          "wastedMinutes": 26
+        },
+        {
+          "name": "Daily Drift Report",
+          "runs": 23,
+          "totalMinutes": 24,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Deploy OpenSpec Viewer",
+          "runs": 24,
+          "totalMinutes": 24,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
+        },
+        {
+          "name": "Expression Coverage Check",
+          "runs": 7,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 7,
+          "wastedMinutes": 8
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 2,
+          "avgMinutes": 2,
+          "failedRuns": 1,
+          "wastedMinutes": 2
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": [
+        "E2E Tests: 100% failure rate (26min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 100% failure rate (26min wasted). Fix root cause.",
+        "Expression Coverage Check: 100% failure rate (8min wasted). Fix root cause."
       ]
     },
     {
@@ -661,12 +686,12 @@
     }
   ],
   "summary": {
-    "totalMinutes": 499,
-    "totalRuns": 327,
-    "wastedMinutes": 223,
+    "totalMinutes": 562,
+    "totalRuns": 332,
+    "wastedMinutes": 224,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "Monitor Production (Email_Assistant)",
-    "totalRecommendations": 10,
+    "totalRecommendations": 11,
     "estimatedMonthlyCost": 0
   }
 }
