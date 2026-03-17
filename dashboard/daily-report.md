@@ -69,8 +69,8 @@
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 49/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23195427362))
-- **Open PRs**: 19
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23211272542))
+- **Open PRs**: 20
 
 ### Utilitaire_Webapp :white_check_mark:
 - **Health**: 49/100
@@ -79,7 +79,7 @@
 
 ### zentra :white_check_mark:
 - **Health**: 49/100
-- **CI**: pass ([view](https://github.com/thonyAGP/zentra/actions/runs/23185557632))
+- **CI**: pass ([view](https://github.com/thonyAGP/zentra/actions/runs/23203931143))
 - **Open PRs**: 6
 
 ### magic-migration :white_check_mark:
