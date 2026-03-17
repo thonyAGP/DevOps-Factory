@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-17T01:05:38.760Z",
+  "timestamp": "2026-03-17T02:10:27.564Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -7,6 +7,14 @@
       "totalMinutes": 153,
       "totalRuns": 100,
       "workflows": [
+        {
+          "name": "Monitor Production",
+          "runs": 55,
+          "totalMinutes": 55,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
         {
           "name": "CI",
           "runs": 10,
@@ -16,17 +24,9 @@
           "wastedMinutes": 55
         },
         {
-          "name": "Monitor Production",
-          "runs": 54,
-          "totalMinutes": 54,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
           "name": "Qodo Merge - PR Review",
-          "runs": 22,
-          "totalMinutes": 28,
+          "runs": 21,
+          "totalMinutes": 27,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
@@ -665,7 +665,7 @@
     "totalRuns": 327,
     "wastedMinutes": 223,
     "mostExpensiveRepo": "Email_Assistant",
-    "mostExpensiveWorkflow": "CI (Email_Assistant)",
+    "mostExpensiveWorkflow": "Monitor Production (Email_Assistant)",
     "totalRecommendations": 10,
     "estimatedMonthlyCost": 0
   }
