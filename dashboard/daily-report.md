@@ -69,7 +69,7 @@
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 49/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23211272542))
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23225273729))
 - **Open PRs**: 20
 
 ### Utilitaire_Webapp :white_check_mark:
