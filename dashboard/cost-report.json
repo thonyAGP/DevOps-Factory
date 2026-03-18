@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-18T07:06:28.077Z",
+  "timestamp": "2026-03-18T12:46:01.755Z",
   "repos": [
     {
       "repo": "zentra",
@@ -190,29 +190,21 @@
     {
       "repo": "magic-migration",
       "fullName": "thonyAGP/magic-migration",
-      "totalMinutes": 111,
+      "totalMinutes": 112,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "E2E Tests",
-          "runs": 18,
-          "totalMinutes": 26,
+          "runs": 19,
+          "totalMinutes": 28,
           "avgMinutes": 1,
-          "failedRuns": 18,
-          "wastedMinutes": 26
-        },
-        {
-          "name": "Deploy Migration Dashboard",
-          "runs": 26,
-          "totalMinutes": 26,
-          "avgMinutes": 1,
-          "failedRuns": 26,
-          "wastedMinutes": 26
+          "failedRuns": 19,
+          "wastedMinutes": 28
         },
         {
           "name": "Daily Drift Report",
-          "runs": 23,
-          "totalMinutes": 24,
+          "runs": 24,
+          "totalMinutes": 25,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -226,12 +218,20 @@
           "wastedMinutes": 6
         },
         {
-          "name": "Expression Coverage Check",
-          "runs": 7,
-          "totalMinutes": 8,
+          "name": "Deploy Migration Dashboard",
+          "runs": 23,
+          "totalMinutes": 23,
           "avgMinutes": 1,
-          "failedRuns": 7,
-          "wastedMinutes": 8
+          "failedRuns": 23,
+          "wastedMinutes": 23
+        },
+        {
+          "name": "Expression Coverage Check",
+          "runs": 8,
+          "totalMinutes": 9,
+          "avgMinutes": 1,
+          "failedRuns": 8,
+          "wastedMinutes": 9
         },
         {
           "name": "Security Scan (SAST)",
@@ -251,21 +251,21 @@
         }
       ],
       "recommendations": [
-        "E2E Tests: 100% failure rate (26min wasted). Fix root cause.",
-        "Deploy Migration Dashboard: 100% failure rate (26min wasted). Fix root cause.",
-        "Expression Coverage Check: 100% failure rate (8min wasted). Fix root cause."
+        "E2E Tests: 100% failure rate (28min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 100% failure rate (23min wasted). Fix root cause.",
+        "Expression Coverage Check: 100% failure rate (9min wasted). Fix root cause."
       ]
     },
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
-      "totalMinutes": 90,
-      "totalRuns": 19,
+      "totalMinutes": 105,
+      "totalRuns": 22,
       "workflows": [
         {
           "name": "E2E Tests",
-          "runs": 16,
-          "totalMinutes": 86,
+          "runs": 19,
+          "totalMinutes": 101,
           "avgMinutes": 5,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -711,8 +711,8 @@
     }
   ],
   "summary": {
-    "totalMinutes": 680,
-    "totalRuns": 347,
+    "totalMinutes": 696,
+    "totalRuns": 350,
     "wastedMinutes": 221,
     "mostExpensiveRepo": "zentra",
     "mostExpensiveWorkflow": "E2E Tests (au-marais)",

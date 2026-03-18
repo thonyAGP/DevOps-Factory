@@ -7,7 +7,7 @@
 - **0/17** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
 - **DORA**: MEDIUM (deploy 0/wk, lead 0.6h, MTTR 6.4h, CFR 44%)
-- **CI Cost**: 684min total, 226min wasted, ~$0/mo
+- **CI Cost**: 680min total, 221min wasted, ~$0/mo
 - **Compliance**: 20/100 avg, 0% review coverage, 0/18 branch protected
 
 ## Per Project
@@ -84,7 +84,7 @@
 
 ### magic-migration :white_check_mark:
 - **Health**: 52/100
-- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/23182763534))
+- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/23242254222))
 - **Open PRs**: 6
 
 ### au-marais :white_check_mark:
