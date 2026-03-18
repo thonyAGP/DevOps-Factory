@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-18T02:15:44.888Z",
+  "timestamp": "2026-03-18T07:06:28.077Z",
   "repos": [
     {
       "repo": "zentra",
@@ -123,24 +123,24 @@
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 157,
+      "totalMinutes": 153,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "Monitor Production",
-          "runs": 57,
-          "totalMinutes": 61,
+          "runs": 58,
+          "totalMinutes": 62,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "CI",
-          "runs": 10,
-          "totalMinutes": 55,
+          "runs": 9,
+          "totalMinutes": 50,
           "avgMinutes": 6,
-          "failedRuns": 10,
-          "wastedMinutes": 55
+          "failedRuns": 9,
+          "wastedMinutes": 50
         },
         {
           "name": "Qodo Merge - PR Review",
@@ -184,7 +184,7 @@
         }
       ],
       "recommendations": [
-        "CI: 100% failure rate (55min wasted). Fix root cause."
+        "CI: 100% failure rate (50min wasted). Fix root cause."
       ]
     },
     {
@@ -711,9 +711,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 684,
+    "totalMinutes": 680,
     "totalRuns": 347,
-    "wastedMinutes": 226,
+    "wastedMinutes": 221,
     "mostExpensiveRepo": "zentra",
     "mostExpensiveWorkflow": "E2E Tests (au-marais)",
     "totalRecommendations": 12,
