@@ -69,7 +69,7 @@
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 49/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23245882081))
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23261685530))
 - **Open PRs**: 20
 
 ### Utilitaire_Webapp :white_check_mark:
@@ -84,7 +84,7 @@
 
 ### magic-migration :white_check_mark:
 - **Health**: 52/100
-- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/23242254222))
+- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/23251960043))
 - **Open PRs**: 6
 
 ### au-marais :white_check_mark:

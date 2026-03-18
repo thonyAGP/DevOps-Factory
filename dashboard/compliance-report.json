@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-18T13:17:21.399Z",
+  "timestamp": "2026-03-18T19:03:18.146Z",
   "period": "30-day window",
   "repos": [
     {
@@ -7,6 +7,22 @@
       "fullName": "thonyAGP/au-marais",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "develop",
+          "repo": "thonyAGP/au-marais",
+          "sha": "6602ccb960e10d4cc061270066b14b5c93e04900",
+          "status": "success",
+          "timestamp": "2026-03-18T15:34:22Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "develop",
+          "repo": "thonyAGP/au-marais",
+          "sha": "6f89fc7cfb2a05da474f60fa3a9d68a6dbbf2e6b",
+          "status": "success",
+          "timestamp": "2026-03-18T15:18:16Z",
+          "workflow": "E2E Tests"
+        },
         {
           "branch": "develop",
           "repo": "thonyAGP/au-marais",
@@ -405,6 +421,14 @@
           "repo": "thonyAGP/Email_Assistant",
           "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
           "status": "success",
+          "timestamp": "2026-03-18T18:53:14Z",
+          "workflow": "Monitor Production"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
           "timestamp": "2026-03-18T13:00:12Z",
           "workflow": "Monitor Production"
         },
@@ -775,14 +799,6 @@
           "status": "success",
           "timestamp": "2026-03-07T12:36:44Z",
           "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-07T06:33:34Z",
-          "workflow": "Monitor Production"
         }
       ],
       "securityFindings": [],
@@ -885,6 +901,14 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "e6c558948551a4cbb023934d1f994163735cecc1",
+          "status": "success",
+          "timestamp": "2026-03-18T15:13:56Z",
+          "workflow": "Deploy OpenSpec Viewer"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/magic-migration",
@@ -1422,7 +1446,7 @@
     "totalPRsMerged": 8,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 139,
+    "totalDeployments": 142,
     "avgComplianceScore": 20,
     "reposWithBranchProtection": 0,
     "reposWithCI": 18
