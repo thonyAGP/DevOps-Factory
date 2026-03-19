@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-19T13:06:21.121Z",
+  "timestamp": "2026-03-19T19:00:08.523Z",
   "projects": [
     {
       "name": "CasaSync",
@@ -1007,16 +1007,119 @@
       "perfScore": 0
     },
     {
+      "name": "au-marais",
+      "fullName": "thonyAGP/au-marais",
+      "stack": "nextjs",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-02-07T06:36:35Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/au-marais/actions/runs/21775816387",
+        "id": 21775816387,
+        "name": "E2E Tests"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-19T18:28:51Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/8",
+          "labels": [],
+          "number": 8,
+          "state": "OPEN",
+          "title": "Admin improvements: calendar, reservations & mobile fixes",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T22:12:19Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/7",
+          "labels": [],
+          "number": 7,
+          "state": "OPEN",
+          "title": "feat: add test coverage tracking",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:09:59Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/6",
+          "labels": [],
+          "number": 6,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:09:53Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:09:41Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:40:45Z",
+          "html_url": "https://github.com/thonyAGP/au-marais/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 49,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
       "name": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
       "stack": "node",
       "ciStatus": "pass",
       "lastRun": {
         "conclusion": "success",
-        "created_at": "2026-03-19T12:53:56Z",
+        "created_at": "2026-03-19T18:51:12Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/23295823038",
-        "id": 23295823038,
+        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/23311527675",
+        "id": 23311527675,
         "name": "Monitor Production"
       },
       "openPRs": [
@@ -1634,98 +1737,6 @@
       "hasSemanticRelease": false,
       "hasReleaseDrafter": false,
       "perfScore": 20
-    },
-    {
-      "name": "au-marais",
-      "fullName": "thonyAGP/au-marais",
-      "stack": "nextjs",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-02-07T06:36:35Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/au-marais/actions/runs/21775816387",
-        "id": 21775816387,
-        "name": "E2E Tests"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-03-04T22:12:19Z",
-          "html_url": "https://github.com/thonyAGP/au-marais/pull/7",
-          "labels": [],
-          "number": 7,
-          "state": "OPEN",
-          "title": "feat: add test coverage tracking",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-03-04T19:09:59Z",
-          "html_url": "https://github.com/thonyAGP/au-marais/pull/6",
-          "labels": [],
-          "number": 6,
-          "state": "OPEN",
-          "title": "chore: add SAST with Semgrep",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-03-04T19:09:53Z",
-          "html_url": "https://github.com/thonyAGP/au-marais/pull/5",
-          "labels": [],
-          "number": 5,
-          "state": "OPEN",
-          "title": "chore: add automated dependency updates with Renovate",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-03-04T19:09:41Z",
-          "html_url": "https://github.com/thonyAGP/au-marais/pull/4",
-          "labels": [],
-          "number": 4,
-          "state": "OPEN",
-          "title": "chore: add secret scanning with Gitleaks",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:40:45Z",
-          "html_url": "https://github.com/thonyAGP/au-marais/pull/3",
-          "labels": [],
-          "number": 3,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 59,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": true,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
     },
     {
       "name": "livret-au-marais",

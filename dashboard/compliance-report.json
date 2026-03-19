@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-19T13:09:32.793Z",
+  "timestamp": "2026-03-19T19:04:55.738Z",
   "period": "30-day window",
   "repos": [
     {
@@ -7,6 +7,22 @@
       "fullName": "thonyAGP/au-marais",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "develop",
+          "repo": "thonyAGP/au-marais",
+          "sha": "14336e52aa6b68278f2c33fc9fcc48d30f601dd1",
+          "status": "success",
+          "timestamp": "2026-03-19T18:15:26Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "develop",
+          "repo": "thonyAGP/au-marais",
+          "sha": "b5df532fe3b5decc67f12f02b95f91e2ebbb0563",
+          "status": "success",
+          "timestamp": "2026-03-19T15:30:06Z",
+          "workflow": "E2E Tests"
+        },
         {
           "branch": "develop",
           "repo": "thonyAGP/au-marais",
@@ -440,30 +456,17 @@
           "number": 6,
           "reviewers": [],
           "title": "feat: Phase 11 quality hardening - E2E tests, folder/snooze fixes, 94% coverage"
-        },
-        {
-          "author": "thonyAGP",
-          "labels": [
-            "Tests",
-            "Review effort 3/5"
-          ],
-          "mergedAt": "2026-02-17T18:09:58Z",
-          "number": 5,
-          "reviewers": [],
-          "title": "test: boost API route coverage from 52% to 82%"
-        },
-        {
-          "author": "thonyAGP",
-          "labels": [
-            "Review effort 4/5"
-          ],
-          "mergedAt": "2026-02-17T16:52:28Z",
-          "number": 4,
-          "reviewers": [],
-          "title": "test: boost API route coverage from 26% to 52% + Groq SDK + ESLint cleanup"
         }
       ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-19T18:51:12Z",
+          "workflow": "Monitor Production"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/Email_Assistant",
@@ -838,14 +841,6 @@
           "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
           "status": "success",
           "timestamp": "2026-03-08T12:37:57Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-08T06:36:33Z",
           "workflow": "Monitor Production"
         }
       ],
@@ -1499,10 +1494,10 @@
   ],
   "summary": {
     "totalRepos": 18,
-    "totalPRsMerged": 8,
+    "totalPRsMerged": 6,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 149,
+    "totalDeployments": 151,
     "avgComplianceScore": 20,
     "reposWithBranchProtection": 0,
     "reposWithCI": 18

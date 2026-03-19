@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/19/2026, 1:09:32 PM
+**Generated**: 3/19/2026, 7:04:55 PM
 **Period**: 30-day window
 
 ## Summary
@@ -12,9 +12,9 @@
 | Repos with Branch Protection | 0/18 |
 | Repos with CI | 18/18 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 8 |
-| Deployments (30d) | 149 |
-| PRs with Review | 0/8 |
+| PRs Merged (30d) | 6 |
+| Deployments (30d) | 151 |
+| PRs with Review | 0/6 |
 
 ## Repository Compliance
 
@@ -63,7 +63,7 @@
 
 ### ⚠️ No Code Review (3)
 - **ClubMedRoomAssignment**: 3 PRs merged without review
-- **Email_Assistant**: 4 PRs merged without review
+- **Email_Assistant**: 2 PRs merged without review
 - **magic-migration**: 1 PRs merged without review
 
 ### 🔴 Low Compliance Score < 60 (18)
@@ -106,7 +106,7 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 33 successful deploys in 30 days
+**Recent Deployments**: 35 successful deploys in 30 days
 
 ---
 
@@ -183,13 +183,11 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/4 PRs (0%)
+**Review Coverage**: 0/2 PRs (0%)
 
 **PRs Without Review**:
 - #8 - feat: French AI summaries + navigation fixes + E2E tests (by thonyAGP)
 - #6 - feat: Phase 11 quality hardening - E2E tests, folder/snooze fixes, 94% coverage (by thonyAGP)
-- #5 - test: boost API route coverage from 52% to 82% (by thonyAGP)
-- #4 - test: boost API route coverage from 26% to 52% + Groq SDK + ESLint cleanup (by thonyAGP)
 
 **Recent Deployments**: 48 successful deploys in 30 days
 
