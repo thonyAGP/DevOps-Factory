@@ -2546,13 +2546,18 @@
   },
   {
     "date": "2026-03-19",
-    "avgHealth": 46,
-    "failingCI": 1,
-    "passingCI": 6,
+    "avgHealth": 44,
+    "failingCI": 2,
+    "passingCI": 5,
     "totalOpenPRs": 102,
     "perProject": [
       {
         "name": "CasaSync",
+        "health": 19,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "zentra",
         "health": 19,
         "ciStatus": "fail"
       },
@@ -2592,11 +2597,6 @@
         "ciStatus": "none"
       },
       {
-        "name": "statusline",
-        "health": 44,
-        "ciStatus": "none"
-      },
-      {
         "name": "test_codingmenace",
         "health": 44,
         "ciStatus": "none"
@@ -2612,12 +2612,12 @@
         "ciStatus": "pass"
       },
       {
-        "name": "Utilitaire_Webapp",
+        "name": "statusline",
         "health": 49,
-        "ciStatus": "pass"
+        "ciStatus": "none"
       },
       {
-        "name": "zentra",
+        "name": "Utilitaire_Webapp",
         "health": 49,
         "ciStatus": "pass"
       },

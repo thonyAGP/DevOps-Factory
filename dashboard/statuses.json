@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-19T06:59:33.474Z",
+  "timestamp": "2026-03-19T12:35:24.295Z",
   "projects": [
     {
       "name": "CasaSync",
@@ -84,6 +84,124 @@
         {
           "created_at": "2026-02-18T12:41:20Z",
           "html_url": "https://github.com/thonyAGP/CasaSync/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 19,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
+      "name": "zentra",
+      "fullName": "thonyAGP/zentra",
+      "stack": "node",
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-03-19T10:30:04Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/zentra/actions/runs/23290630351",
+        "id": 23290630351,
+        "name": "CI"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-16T08:24:22Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/16",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "number": 16,
+          "state": "OPEN",
+          "title": "chore(deps): bump the minor-and-patch group across 1 directory with 21 updates",
+          "user": {
+            "login": "app/dependabot"
+          }
+        },
+        {
+          "created_at": "2026-03-14T22:57:30Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/6",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "number": 6,
+          "state": "OPEN",
+          "title": "chore(deps-dev): bump prisma from 5.22.0 to 7.5.0",
+          "user": {
+            "login": "app/dependabot"
+          }
+        },
+        {
+          "created_at": "2026-03-14T22:56:13Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/5",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "number": 5,
+          "state": "OPEN",
+          "title": "chore(deps): bump zod from 3.25.76 to 4.3.6",
+          "user": {
+            "login": "app/dependabot"
+          }
+        },
+        {
+          "created_at": "2026-03-14T22:55:09Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/4",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore(deps): bump @prisma/client from 5.22.0 to 7.5.0",
+          "user": {
+            "login": "app/dependabot"
+          }
+        },
+        {
+          "created_at": "2026-03-14T22:53:48Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/3",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore(deps-dev): bump webpack-cli from 5.1.4 to 7.0.0",
+          "user": {
+            "login": "app/dependabot"
+          }
+        },
+        {
+          "created_at": "2026-03-12T00:54:41Z",
+          "html_url": "https://github.com/thonyAGP/zentra/pull/1",
           "labels": [],
           "number": 1,
           "state": "OPEN",
@@ -716,98 +834,6 @@
       "perfScore": 0
     },
     {
-      "name": "statusline",
-      "fullName": "thonyAGP/statusline",
-      "stack": "node",
-      "ciStatus": "none",
-      "lastRun": {
-        "conclusion": null,
-        "created_at": null,
-        "head_branch": null,
-        "html_url": null,
-        "id": null,
-        "name": null
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-03-04T19:11:11Z",
-          "html_url": "https://github.com/thonyAGP/statusline/pull/5",
-          "labels": [],
-          "number": 5,
-          "state": "OPEN",
-          "title": "chore: add SAST with Semgrep",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-03-04T19:10:59Z",
-          "html_url": "https://github.com/thonyAGP/statusline/pull/4",
-          "labels": [],
-          "number": 4,
-          "state": "OPEN",
-          "title": "chore: add automated dependency updates with Renovate",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-03-04T19:10:50Z",
-          "html_url": "https://github.com/thonyAGP/statusline/pull/3",
-          "labels": [],
-          "number": 3,
-          "state": "OPEN",
-          "title": "chore: add secret scanning with Gitleaks",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T17:02:58Z",
-          "html_url": "https://github.com/thonyAGP/statusline/pull/2",
-          "labels": [],
-          "number": 2,
-          "state": "OPEN",
-          "title": "test: add skeleton test files",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-02-18T12:47:02Z",
-          "html_url": "https://github.com/thonyAGP/statusline/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 44,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
       "name": "test_codingmenace",
       "fullName": "thonyAGP/test_codingmenace",
       "stack": "nextjs",
@@ -1279,6 +1305,98 @@
       "perfScore": 0
     },
     {
+      "name": "statusline",
+      "fullName": "thonyAGP/statusline",
+      "stack": "node",
+      "ciStatus": "none",
+      "lastRun": {
+        "conclusion": null,
+        "created_at": null,
+        "head_branch": null,
+        "html_url": null,
+        "id": null,
+        "name": null
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-04T19:11:11Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/5",
+          "labels": [],
+          "number": 5,
+          "state": "OPEN",
+          "title": "chore: add SAST with Semgrep",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:59Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/4",
+          "labels": [],
+          "number": 4,
+          "state": "OPEN",
+          "title": "chore: add automated dependency updates with Renovate",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-04T19:10:50Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/3",
+          "labels": [],
+          "number": 3,
+          "state": "OPEN",
+          "title": "chore: add secret scanning with Gitleaks",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T17:02:58Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/2",
+          "labels": [],
+          "number": 2,
+          "state": "OPEN",
+          "title": "test: add skeleton test files",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-02-18T12:47:02Z",
+          "html_url": "https://github.com/thonyAGP/statusline/pull/1",
+          "labels": [],
+          "number": 1,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 49,
+      "configured": false,
+      "hasGitleaks": false,
+      "hasRenovate": false,
+      "hasHusky": true,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": false,
+      "hasSemgrep": false,
+      "hasSupplyChain": false,
+      "securityScore": 0,
+      "hasPerformanceBudget": false,
+      "hasAccessibilityCheck": false,
+      "hasLighthouse": false,
+      "hasAutoChangelog": false,
+      "hasTypedoc": false,
+      "hasCoverageTracking": false,
+      "hasSemanticRelease": false,
+      "hasReleaseDrafter": false,
+      "perfScore": 0
+    },
+    {
       "name": "Utilitaire_Webapp",
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "stack": "node",
@@ -1415,135 +1533,17 @@
       "perfScore": 0
     },
     {
-      "name": "zentra",
-      "fullName": "thonyAGP/zentra",
-      "stack": "node",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-03-17T16:06:47Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/zentra/actions/runs/23203931143",
-        "id": 23203931143,
-        "name": "npm_and_yarn in / for prisma - Update #1282435745"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-03-16T08:24:22Z",
-          "html_url": "https://github.com/thonyAGP/zentra/pull/16",
-          "labels": [
-            "dependencies",
-            "javascript"
-          ],
-          "number": 16,
-          "state": "OPEN",
-          "title": "chore(deps): bump the minor-and-patch group across 1 directory with 21 updates",
-          "user": {
-            "login": "app/dependabot"
-          }
-        },
-        {
-          "created_at": "2026-03-14T22:57:30Z",
-          "html_url": "https://github.com/thonyAGP/zentra/pull/6",
-          "labels": [
-            "dependencies",
-            "javascript"
-          ],
-          "number": 6,
-          "state": "OPEN",
-          "title": "chore(deps-dev): bump prisma from 5.22.0 to 7.5.0",
-          "user": {
-            "login": "app/dependabot"
-          }
-        },
-        {
-          "created_at": "2026-03-14T22:56:13Z",
-          "html_url": "https://github.com/thonyAGP/zentra/pull/5",
-          "labels": [
-            "dependencies",
-            "javascript"
-          ],
-          "number": 5,
-          "state": "OPEN",
-          "title": "chore(deps): bump zod from 3.25.76 to 4.3.6",
-          "user": {
-            "login": "app/dependabot"
-          }
-        },
-        {
-          "created_at": "2026-03-14T22:55:09Z",
-          "html_url": "https://github.com/thonyAGP/zentra/pull/4",
-          "labels": [
-            "dependencies",
-            "javascript"
-          ],
-          "number": 4,
-          "state": "OPEN",
-          "title": "chore(deps): bump @prisma/client from 5.22.0 to 7.5.0",
-          "user": {
-            "login": "app/dependabot"
-          }
-        },
-        {
-          "created_at": "2026-03-14T22:53:48Z",
-          "html_url": "https://github.com/thonyAGP/zentra/pull/3",
-          "labels": [
-            "dependencies",
-            "javascript"
-          ],
-          "number": 3,
-          "state": "OPEN",
-          "title": "chore(deps-dev): bump webpack-cli from 5.1.4 to 7.0.0",
-          "user": {
-            "login": "app/dependabot"
-          }
-        },
-        {
-          "created_at": "2026-03-12T00:54:41Z",
-          "html_url": "https://github.com/thonyAGP/zentra/pull/1",
-          "labels": [],
-          "number": 1,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 49,
-      "configured": false,
-      "hasGitleaks": false,
-      "hasRenovate": false,
-      "hasHusky": true,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": false,
-      "hasSemgrep": false,
-      "hasSupplyChain": false,
-      "securityScore": 0,
-      "hasPerformanceBudget": false,
-      "hasAccessibilityCheck": false,
-      "hasLighthouse": false,
-      "hasAutoChangelog": false,
-      "hasTypedoc": false,
-      "hasCoverageTracking": false,
-      "hasSemanticRelease": false,
-      "hasReleaseDrafter": false,
-      "perfScore": 0
-    },
-    {
       "name": "magic-migration",
       "fullName": "thonyAGP/magic-migration",
       "stack": "node",
       "ciStatus": "pass",
       "lastRun": {
         "conclusion": "success",
-        "created_at": "2026-03-18T15:13:56Z",
+        "created_at": "2026-03-19T07:04:58Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/23251960043",
-        "id": 23251960043,
-        "name": "Deploy OpenSpec Viewer"
+        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/23283756105",
+        "id": 23283756105,
+        "name": "Daily Drift Report"
       },
       "openPRs": [
         {
