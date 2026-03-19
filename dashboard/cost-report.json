@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-19T01:07:57.828Z",
+  "timestamp": "2026-03-19T02:15:38.505Z",
   "repos": [
     {
       "repo": "zentra",
@@ -128,8 +128,8 @@
       "workflows": [
         {
           "name": "Monitor Production",
-          "runs": 60,
-          "totalMinutes": 64,
+          "runs": 61,
+          "totalMinutes": 65,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -152,8 +152,8 @@
         },
         {
           "name": "Post-Deploy Health Check",
-          "runs": 10,
-          "totalMinutes": 10,
+          "runs": 9,
+          "totalMinutes": 9,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -184,6 +184,7 @@
         }
       ],
       "recommendations": [
+        "Monitor Production: 61 very short runs. Consider concurrency groups or debouncing.",
         "CI: 100% failure rate (50min wasted). Fix root cause."
       ]
     },
@@ -716,7 +717,7 @@
     "wastedMinutes": 220,
     "mostExpensiveRepo": "zentra",
     "mostExpensiveWorkflow": "E2E Tests (au-marais)",
-    "totalRecommendations": 12,
+    "totalRecommendations": 13,
     "estimatedMonthlyCost": 0
   }
 }
