@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-19T12:38:29.021Z",
+  "timestamp": "2026-03-19T13:08:50.377Z",
   "repos": [
     {
       "repo": "zentra",
@@ -164,13 +164,13 @@
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 148,
+      "totalMinutes": 147,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "Monitor Production",
-          "runs": 62,
-          "totalMinutes": 66,
+          "runs": 63,
+          "totalMinutes": 67,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -185,8 +185,8 @@
         },
         {
           "name": "Qodo Merge - PR Review",
-          "runs": 18,
-          "totalMinutes": 24,
+          "runs": 17,
+          "totalMinutes": 22,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
@@ -225,7 +225,7 @@
         }
       ],
       "recommendations": [
-        "Monitor Production: 62 very short runs. Consider concurrency groups or debouncing.",
+        "Monitor Production: 63 very short runs. Consider concurrency groups or debouncing.",
         "CI: 100% failure rate (44min wasted). Fix root cause."
       ]
     },
@@ -712,7 +712,7 @@
     }
   ],
   "summary": {
-    "totalMinutes": 737,
+    "totalMinutes": 736,
     "totalRuns": 361,
     "wastedMinutes": 216,
     "mostExpensiveRepo": "zentra",
