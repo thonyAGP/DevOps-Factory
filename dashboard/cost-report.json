@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-20T06:59:35.199Z",
+  "timestamp": "2026-03-20T12:34:12.168Z",
   "repos": [
     {
       "repo": "zentra",
@@ -123,13 +123,13 @@
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
-      "totalMinutes": 158,
-      "totalRuns": 32,
+      "totalMinutes": 169,
+      "totalRuns": 34,
       "workflows": [
         {
           "name": "E2E Tests",
-          "runs": 29,
-          "totalMinutes": 154,
+          "runs": 31,
+          "totalMinutes": 165,
           "avgMinutes": 5,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -245,8 +245,8 @@
         },
         {
           "name": "Daily Drift Report",
-          "runs": 25,
-          "totalMinutes": 26,
+          "runs": 26,
+          "totalMinutes": 27,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -261,11 +261,11 @@
         },
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 21,
-          "totalMinutes": 21,
+          "runs": 20,
+          "totalMinutes": 20,
           "avgMinutes": 1,
-          "failedRuns": 21,
-          "wastedMinutes": 21
+          "failedRuns": 20,
+          "wastedMinutes": 20
         },
         {
           "name": "Expression Coverage Check",
@@ -294,31 +294,23 @@
       ],
       "recommendations": [
         "E2E Tests: 100% failure rate (28min wasted). Fix root cause.",
-        "Deploy Migration Dashboard: 100% failure rate (21min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 100% failure rate (20min wasted). Fix root cause.",
         "Expression Coverage Check: 100% failure rate (9min wasted). Fix root cause."
       ]
     },
     {
       "repo": "ClubMedRoomAssignment",
       "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "totalMinutes": 42,
-      "totalRuns": 40,
+      "totalMinutes": 36,
+      "totalRuns": 34,
       "workflows": [
         {
           "name": "CI",
-          "runs": 34,
-          "totalMinutes": 35,
+          "runs": 31,
+          "totalMinutes": 32,
           "avgMinutes": 1,
-          "failedRuns": 34,
-          "wastedMinutes": 35
-        },
-        {
-          "name": ".github/workflows/ci.yml",
-          "runs": 3,
-          "totalMinutes": 3,
-          "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
+          "failedRuns": 31,
+          "wastedMinutes": 32
         },
         {
           "name": "Security Scan (SAST)",
@@ -346,22 +338,22 @@
         }
       ],
       "recommendations": [
-        "CI: 100% failure rate (35min wasted). Fix root cause."
+        "CI: 100% failure rate (32min wasted). Fix root cause."
       ]
     },
     {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
-      "totalMinutes": 24,
-      "totalRuns": 20,
+      "totalMinutes": 13,
+      "totalRuns": 11,
       "workflows": [
         {
           "name": "CI",
-          "runs": 17,
-          "totalMinutes": 20,
+          "runs": 8,
+          "totalMinutes": 9,
           "avgMinutes": 1,
-          "failedRuns": 8,
-          "wastedMinutes": 9
+          "failedRuns": 7,
+          "wastedMinutes": 7
         },
         {
           "name": "Security Scan (SAST)",
@@ -389,19 +381,19 @@
         }
       ],
       "recommendations": [
-        "CI: 47% failure rate (9min wasted). Fix root cause."
+        "CI: 88% failure rate (7min wasted). Fix root cause."
       ]
     },
     {
       "repo": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
-      "totalMinutes": 15,
-      "totalRuns": 7,
+      "totalMinutes": 13,
+      "totalRuns": 6,
       "workflows": [
         {
           "name": "CI",
-          "runs": 5,
-          "totalMinutes": 13,
+          "runs": 4,
+          "totalMinutes": 11,
           "avgMinutes": 3,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -712,9 +704,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 746,
-    "totalRuns": 363,
-    "wastedMinutes": 216,
+    "totalMinutes": 738,
+    "totalRuns": 349,
+    "wastedMinutes": 207,
     "mostExpensiveRepo": "zentra",
     "mostExpensiveWorkflow": "E2E Tests (au-marais)",
     "totalRecommendations": 13,

@@ -67,11 +67,6 @@
 - **CI**: none ([view](null))
 - **Open PRs**: 5
 
-### au-marais :white_check_mark:
-- **Health**: 49/100
-- **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/21775816387))
-- **Open PRs**: 6
-
 ### Email_Assistant :white_check_mark:
 - **Health**: 49/100
 - **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23332226823))
@@ -89,8 +84,13 @@
 
 ### magic-migration :white_check_mark:
 - **Health**: 52/100
-- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/23283756105))
+- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/23332594662))
 - **Open PRs**: 6
+
+### au-marais :white_check_mark:
+- **Health**: 59/100
+- **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/23332693239))
+- **Open PRs**: 5
 
 ### livret-au-marais :white_check_mark:
 - **Health**: 59/100

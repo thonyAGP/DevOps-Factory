@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/20/2026, 7:00:14 AM
+**Generated**: 3/20/2026, 12:34:54 PM
 **Period**: 30-day window
 
 ## Summary
@@ -12,9 +12,9 @@
 | Repos with Branch Protection | 0/18 |
 | Repos with CI | 18/18 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 6 |
-| Deployments (30d) | 151 |
-| PRs with Review | 0/6 |
+| PRs Merged (30d) | 7 |
+| Deployments (30d) | 154 |
+| PRs with Review | 0/7 |
 
 ## Repository Compliance
 
@@ -61,7 +61,8 @@
 - Utilitaire_Webapp
 - zentra
 
-### ⚠️ No Code Review (3)
+### ⚠️ No Code Review (4)
+- **au-marais**: 1 PRs merged without review
 - **ClubMedRoomAssignment**: 3 PRs merged without review
 - **Email_Assistant**: 2 PRs merged without review
 - **magic-migration**: 1 PRs merged without review
@@ -106,7 +107,12 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 35 successful deploys in 30 days
+**Review Coverage**: 0/1 PRs (0%)
+
+**PRs Without Review**:
+- #8 - Admin improvements: calendar, reservations & mobile fixes (by thonyAGP)
+
+**Recent Deployments**: 37 successful deploys in 30 days
 
 ---
 
@@ -236,7 +242,7 @@
 **PRs Without Review**:
 - #10 - feat(qa): QA Session Complete - Version Badge + Security Fixes (by thonyAGP)
 
-**Recent Deployments**: 30 successful deploys in 30 days
+**Recent Deployments**: 31 successful deploys in 30 days
 
 ---
 
