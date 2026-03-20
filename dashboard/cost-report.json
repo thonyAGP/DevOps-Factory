@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-20T13:04:00.495Z",
+  "timestamp": "2026-03-20T18:54:09.700Z",
   "repos": [
     {
       "repo": "zentra",
@@ -169,8 +169,8 @@
       "workflows": [
         {
           "name": "Monitor Production",
-          "runs": 66,
-          "totalMinutes": 70,
+          "runs": 67,
+          "totalMinutes": 71,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -185,8 +185,8 @@
         },
         {
           "name": "Qodo Merge - PR Review",
-          "runs": 16,
-          "totalMinutes": 21,
+          "runs": 15,
+          "totalMinutes": 20,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
@@ -225,7 +225,7 @@
         }
       ],
       "recommendations": [
-        "Monitor Production: 66 very short runs. Consider concurrency groups or debouncing.",
+        "Monitor Production: 67 very short runs. Consider concurrency groups or debouncing.",
         "CI: 100% failure rate (38min wasted). Fix root cause."
       ]
     },
@@ -301,16 +301,16 @@
     {
       "repo": "ClubMedRoomAssignment",
       "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "totalMinutes": 35,
-      "totalRuns": 33,
+      "totalMinutes": 33,
+      "totalRuns": 31,
       "workflows": [
         {
           "name": "CI",
-          "runs": 30,
-          "totalMinutes": 31,
+          "runs": 28,
+          "totalMinutes": 29,
           "avgMinutes": 1,
-          "failedRuns": 30,
-          "wastedMinutes": 31
+          "failedRuns": 28,
+          "wastedMinutes": 29
         },
         {
           "name": "Security Scan (SAST)",
@@ -338,7 +338,7 @@
         }
       ],
       "recommendations": [
-        "CI: 100% failure rate (31min wasted). Fix root cause."
+        "CI: 100% failure rate (29min wasted). Fix root cause."
       ]
     },
     {
@@ -704,9 +704,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 717,
-    "totalRuns": 344,
-    "wastedMinutes": 200,
+    "totalMinutes": 715,
+    "totalRuns": 342,
+    "wastedMinutes": 198,
     "mostExpensiveRepo": "zentra",
     "mostExpensiveWorkflow": "E2E Tests (au-marais)",
     "totalRecommendations": 13,
