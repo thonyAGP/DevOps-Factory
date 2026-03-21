@@ -2,12 +2,12 @@
 - **17** projects monitored
 - **0/17** fully configured
 - **0** AI fix PR(s) pending merge
-- **3** CI failure(s)
+- **2** CI failure(s)
 - **0%** avg security score
 - **0/17** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
 - **DORA**: MEDIUM (deploy 0/wk, lead 16.7h, MTTR 6.9h, CFR 48%)
-- **CI Cost**: 715min total, 198min wasted, ~$0/mo
+- **CI Cost**: 714min total, 197min wasted, ~$0/mo
 - **Compliance**: 20/100 avg, 0% review coverage, 0/18 branch protected
 
 ## Per Project
@@ -16,11 +16,6 @@
 - **Health**: 19/100
 - **CI**: fail ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22598290782))
 - **Open PRs**: 7
-
-### Email_Assistant :x:
-- **Health**: 19/100
-- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23359400012))
-- **Open PRs**: 21
 
 ### zentra :x:
 - **Health**: 19/100
@@ -71,6 +66,11 @@
 - **Health**: 44/100
 - **CI**: none ([view](null))
 - **Open PRs**: 5
+
+### Email_Assistant :white_check_mark:
+- **Health**: 49/100
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23369093920))
+- **Open PRs**: 21
 
 ### statusline :white_circle:
 - **Health**: 49/100
