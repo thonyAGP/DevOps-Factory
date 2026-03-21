@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/21/2026, 6:46:43 AM
+**Generated**: 3/21/2026, 12:27:24 PM
 **Period**: 30-day window
 
 ## Summary
@@ -12,9 +12,9 @@
 | Repos with Branch Protection | 0/18 |
 | Repos with CI | 18/18 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 7 |
-| Deployments (30d) | 152 |
-| PRs with Review | 0/7 |
+| PRs Merged (30d) | 6 |
+| Deployments (30d) | 154 |
+| PRs with Review | 0/6 |
 
 ## Repository Compliance
 
@@ -63,7 +63,7 @@
 
 ### ⚠️ No Code Review (4)
 - **au-marais**: 1 PRs merged without review
-- **ClubMedRoomAssignment**: 3 PRs merged without review
+- **ClubMedRoomAssignment**: 2 PRs merged without review
 - **Email_Assistant**: 2 PRs merged without review
 - **magic-migration**: 1 PRs merged without review
 
@@ -168,12 +168,11 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/3 PRs (0%)
+**Review Coverage**: 0/2 PRs (0%)
 
 **PRs Without Review**:
 - #32 - fix: CI fix [pattern:auto-1771517616985] (by thonyAGP)
 - #26 - fix: AI-generated CI fix (by thonyAGP)
-- #18 - fix: AI-generated CI fix (by thonyAGP)
 
 **Recent Deployments**: 1 successful deploys in 30 days
 
@@ -368,6 +367,6 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 10 successful deploys in 30 days
+**Recent Deployments**: 12 successful deploys in 30 days
 
 ---
