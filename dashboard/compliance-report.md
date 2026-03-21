@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/20/2026, 6:54:51 PM
+**Generated**: 3/21/2026, 1:02:21 AM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 18/18 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 7 |
-| Deployments (30d) | 154 |
+| Deployments (30d) | 152 |
 | PRs with Review | 0/7 |
 
 ## Repository Compliance
@@ -195,7 +195,7 @@
 - #8 - feat: French AI summaries + navigation fixes + E2E tests (by thonyAGP)
 - #6 - feat: Phase 11 quality hardening - E2E tests, folder/snooze fixes, 94% coverage (by thonyAGP)
 
-**Recent Deployments**: 48 successful deploys in 30 days
+**Recent Deployments**: 46 successful deploys in 30 days
 
 ---
 

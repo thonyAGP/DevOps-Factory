@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-20T18:54:09.700Z",
+  "timestamp": "2026-03-21T01:01:34.019Z",
   "repos": [
     {
       "repo": "zentra",
@@ -377,49 +377,6 @@
       ]
     },
     {
-      "repo": "CasaSync",
-      "fullName": "thonyAGP/CasaSync",
-      "totalMinutes": 11,
-      "totalRuns": 10,
-      "workflows": [
-        {
-          "name": "CI",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 7,
-          "wastedMinutes": 7
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 2,
-          "avgMinutes": 2,
-          "failedRuns": 1,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": [
-        "CI: 100% failure rate (7min wasted). Fix root cause."
-      ]
-    },
-    {
       "repo": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
       "totalMinutes": 11,
@@ -451,6 +408,49 @@
         }
       ],
       "recommendations": []
+    },
+    {
+      "repo": "CasaSync",
+      "fullName": "thonyAGP/CasaSync",
+      "totalMinutes": 10,
+      "totalRuns": 9,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 6,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 2,
+          "avgMinutes": 2,
+          "failedRuns": 1,
+          "wastedMinutes": 2
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": [
+        "CI: 100% failure rate (6min wasted). Fix root cause."
+      ]
     },
     {
       "repo": "Site_1970_Plomberie",
@@ -704,9 +704,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 715,
-    "totalRuns": 342,
-    "wastedMinutes": 198,
+    "totalMinutes": 714,
+    "totalRuns": 341,
+    "wastedMinutes": 197,
     "mostExpensiveRepo": "zentra",
     "mostExpensiveWorkflow": "E2E Tests (au-marais)",
     "totalRecommendations": 13,

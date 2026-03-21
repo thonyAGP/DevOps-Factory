@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-20T18:54:51.025Z",
+  "timestamp": "2026-03-21T01:02:21.133Z",
   "period": "30-day window",
   "repos": [
     {
@@ -485,6 +485,22 @@
       ],
       "deployments": [
         {
+          "branch": "ai-fix/ci-1774035185274",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "55ff3b0eb1897c0b3c1fc8e27c1bb1633d3e1b84",
+          "status": "success",
+          "timestamp": "2026-03-20T19:35:32Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "ai-fix/ci-1774035185274",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "55ff3b0eb1897c0b3c1fc8e27c1bb1633d3e1b84",
+          "status": "success",
+          "timestamp": "2026-03-20T19:33:12Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
           "branch": "master",
           "repo": "thonyAGP/Email_Assistant",
           "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
@@ -834,38 +850,6 @@
           "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
           "status": "success",
           "timestamp": "2026-03-10T12:51:03Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-10T06:41:25Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-10T01:28:41Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-09T18:44:24Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-09T12:52:31Z",
           "workflow": "Monitor Production"
         }
       ],
@@ -1530,7 +1514,7 @@
     "totalPRsMerged": 7,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 154,
+    "totalDeployments": 152,
     "avgComplianceScore": 20,
     "reposWithBranchProtection": 0,
     "reposWithCI": 18
