@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/21/2026, 12:55:03 PM
+**Generated**: 3/21/2026, 6:41:07 PM
 **Period**: 30-day window
 
 ## Summary
@@ -12,9 +12,9 @@
 | Repos with Branch Protection | 0/18 |
 | Repos with CI | 18/18 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 6 |
+| PRs Merged (30d) | 2 |
 | Deployments (30d) | 154 |
-| PRs with Review | 0/6 |
+| PRs with Review | 0/2 |
 
 ## Repository Compliance
 
@@ -61,10 +61,8 @@
 - Utilitaire_Webapp
 - zentra
 
-### ⚠️ No Code Review (4)
+### ⚠️ No Code Review (2)
 - **au-marais**: 1 PRs merged without review
-- **ClubMedRoomAssignment**: 2 PRs merged without review
-- **Email_Assistant**: 2 PRs merged without review
 - **magic-migration**: 1 PRs merged without review
 
 ### 🔴 Low Compliance Score < 60 (18)
@@ -168,12 +166,6 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/2 PRs (0%)
-
-**PRs Without Review**:
-- #32 - fix: CI fix [pattern:auto-1771517616985] (by thonyAGP)
-- #26 - fix: AI-generated CI fix (by thonyAGP)
-
 **Recent Deployments**: 1 successful deploys in 30 days
 
 ---
@@ -187,12 +179,6 @@
 - Code Review Required: ✗
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
-
-**Review Coverage**: 0/2 PRs (0%)
-
-**PRs Without Review**:
-- #8 - feat: French AI summaries + navigation fixes + E2E tests (by thonyAGP)
-- #6 - feat: Phase 11 quality hardening - E2E tests, folder/snooze fixes, 94% coverage (by thonyAGP)
 
 **Recent Deployments**: 46 successful deploys in 30 days
 

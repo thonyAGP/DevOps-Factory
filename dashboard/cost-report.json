@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-21T12:54:13.982Z",
+  "timestamp": "2026-03-21T18:40:22.224Z",
   "repos": [
     {
       "repo": "zentra",
@@ -181,24 +181,24 @@
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 142,
+      "totalMinutes": 138,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "Monitor Production",
-          "runs": 69,
-          "totalMinutes": 73,
+          "runs": 70,
+          "totalMinutes": 74,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "CI",
-          "runs": 7,
-          "totalMinutes": 38,
-          "avgMinutes": 5,
-          "failedRuns": 7,
-          "wastedMinutes": 38
+          "runs": 6,
+          "totalMinutes": 33,
+          "avgMinutes": 6,
+          "failedRuns": 6,
+          "wastedMinutes": 33
         },
         {
           "name": "Qodo Merge - PR Review",
@@ -242,8 +242,8 @@
         }
       ],
       "recommendations": [
-        "Monitor Production: 69 very short runs. Consider concurrency groups or debouncing.",
-        "CI: 100% failure rate (38min wasted). Fix root cause."
+        "Monitor Production: 70 very short runs. Consider concurrency groups or debouncing.",
+        "CI: 100% failure rate (33min wasted). Fix root cause."
       ]
     },
     {
@@ -313,49 +313,6 @@
         "E2E Tests: 100% failure rate (28min wasted). Fix root cause.",
         "Deploy Migration Dashboard: 100% failure rate (19min wasted). Fix root cause.",
         "Expression Coverage Check: 100% failure rate (9min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "ClubMedRoomAssignment",
-      "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "totalMinutes": 24,
-      "totalRuns": 22,
-      "workflows": [
-        {
-          "name": "CI",
-          "runs": 19,
-          "totalMinutes": 20,
-          "avgMinutes": 1,
-          "failedRuns": 19,
-          "wastedMinutes": 20
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 2,
-          "avgMinutes": 2,
-          "failedRuns": 1,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": [
-        "CI: 100% failure rate (20min wasted). Fix root cause."
       ]
     },
     {
@@ -468,6 +425,47 @@
       "recommendations": [
         "CI: 100% failure rate (6min wasted). Fix root cause."
       ]
+    },
+    {
+      "repo": "ClubMedRoomAssignment",
+      "fullName": "thonyAGP/ClubMedRoomAssignment",
+      "totalMinutes": 10,
+      "totalRuns": 8,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 5,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 5,
+          "wastedMinutes": 6
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 2,
+          "avgMinutes": 2,
+          "failedRuns": 1,
+          "wastedMinutes": 2
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": []
     },
     {
       "repo": "Site_1970_Plomberie",
@@ -721,12 +719,12 @@
     }
   ],
   "summary": {
-    "totalMinutes": 743,
-    "totalRuns": 335,
-    "wastedMinutes": 188,
+    "totalMinutes": 725,
+    "totalRuns": 321,
+    "wastedMinutes": 169,
     "mostExpensiveRepo": "zentra",
     "mostExpensiveWorkflow": "E2E Tests (au-marais)",
-    "totalRecommendations": 14,
+    "totalRecommendations": 13,
     "estimatedMonthlyCost": 0
   }
 }

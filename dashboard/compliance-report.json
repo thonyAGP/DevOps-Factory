@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-21T12:55:03.282Z",
+  "timestamp": "2026-03-21T18:41:07.818Z",
   "period": "30-day window",
   "repos": [
     {
@@ -406,28 +406,7 @@
     {
       "repo": "ClubMedRoomAssignment",
       "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "mergedPRs": [
-        {
-          "author": "thonyAGP",
-          "labels": [
-            "ai-fix"
-          ],
-          "mergedAt": "2026-02-19T17:25:16Z",
-          "number": 32,
-          "reviewers": [],
-          "title": "fix: CI fix [pattern:auto-1771517616985]"
-        },
-        {
-          "author": "thonyAGP",
-          "labels": [
-            "ai-fix"
-          ],
-          "mergedAt": "2026-02-19T13:57:38Z",
-          "number": 26,
-          "reviewers": [],
-          "title": "fix: AI-generated CI fix"
-        }
-      ],
+      "mergedPRs": [],
       "deployments": [
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
@@ -447,33 +426,16 @@
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "mergedPRs": [
-        {
-          "author": "thonyAGP",
-          "labels": [
-            "enhancement",
-            "Tests",
-            "Review effort 3/5",
-            "Bug fix"
-          ],
-          "mergedAt": "2026-02-19T17:02:42Z",
-          "number": 8,
-          "reviewers": [],
-          "title": "feat: French AI summaries + navigation fixes + E2E tests"
-        },
-        {
-          "author": "thonyAGP",
-          "labels": [
-            "enhancement",
-            "Tests"
-          ],
-          "mergedAt": "2026-02-19T14:08:40Z",
-          "number": 6,
-          "reviewers": [],
-          "title": "feat: Phase 11 quality hardening - E2E tests, folder/snooze fixes, 94% coverage"
-        }
-      ],
+      "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-21T18:29:34Z",
+          "workflow": "Monitor Production"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/Email_Assistant",
@@ -832,14 +794,6 @@
           "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
           "status": "success",
           "timestamp": "2026-03-11T12:50:07Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-11T06:44:53Z",
           "workflow": "Monitor Production"
         }
       ],
@@ -1517,7 +1471,7 @@
   ],
   "summary": {
     "totalRepos": 18,
-    "totalPRsMerged": 6,
+    "totalPRsMerged": 2,
     "prsWithReview": 0,
     "reviewCoverage": 0,
     "totalDeployments": 154,
