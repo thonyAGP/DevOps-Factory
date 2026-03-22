@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "lastUpdated": "2026-02-21T10:00:00.000Z",
+  "lastUpdated": "2026-03-22T19:55:00Z",
   "patterns": [
     {
       "id": "prisma-client-not-generated",
@@ -348,7 +348,9 @@
       "signature": "No pnpm version is specified",
       "fix": "Add version: 9 to pnpm/action-setup step in workflow, or add packageManager field to package.json",
       "fixType": "workflow-edit",
-      "repos_seen": ["thonyAGP/zentra"],
+      "repos_seen": [
+        "thonyAGP/zentra"
+      ],
       "occurrences": 1,
       "confidence": 0.95
     },
@@ -358,7 +360,9 @@
       "signature": ".env: not found",
       "fix": "Add conditional check before sourcing .env files in CI scripts, or create .env.ci template",
       "fixType": "workflow-edit",
-      "repos_seen": ["thonyAGP/magic-migration"],
+      "repos_seen": [
+        "thonyAGP/magic-migration"
+      ],
       "occurrences": 1,
       "confidence": 0.85
     },
@@ -368,7 +372,9 @@
       "signature": "Cannot find module 'react'",
       "fix": "Add React/Next.js types to tsconfig or exclude frontend files from backend typecheck",
       "fixType": "code-edit",
-      "repos_seen": ["thonyAGP/Email_Assistant"],
+      "repos_seen": [
+        "thonyAGP/Email_Assistant"
+      ],
       "occurrences": 1,
       "confidence": 0.8
     },
@@ -378,7 +384,9 @@
       "signature": "Cannot find module 'next/",
       "fix": "Exclude Next.js files from backend tsconfig or install @types/react",
       "fixType": "code-edit",
-      "repos_seen": ["thonyAGP/Email_Assistant"],
+      "repos_seen": [
+        "thonyAGP/Email_Assistant"
+      ],
       "occurrences": 1,
       "confidence": 0.8
     },
@@ -408,9 +416,23 @@
       "signature": "Please specify it by one of the following ways",
       "fix": "Add version: 9 to pnpm/action-setup@v4 step in workflow file",
       "fixType": "workflow-edit",
-      "repos_seen": ["thonyAGP/zentra"],
+      "repos_seen": [
+        "thonyAGP/zentra"
+      ],
       "occurrences": 1,
       "confidence": 0.95
+    },
+    {
+      "id": "pnpm-version-conflict-packagemanager",
+      "category": "ci-failure",
+      "signature": "Multiple versions of pnpm specified",
+      "fix": "Remove version from pnpm/action-setup when packageManager is set in package.json",
+      "fixType": "workflow-edit",
+      "confidence": 0.95,
+      "repos_seen": [
+        "thonyAGP/ClubMedRoomAssignment"
+      ],
+      "occurrences": 1
     }
   ]
 }
