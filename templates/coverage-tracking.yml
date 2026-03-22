@@ -49,7 +49,26 @@ jobs:
             *) npm ci ;;
           esac
 
+      - name: Check if tests exist
+        id: check
+        run: |
+          HAS_TESTS=false
+          if grep -q '"test"' package.json 2>/dev/null; then
+            # Verify it's not just a placeholder "echo \"Error: no test specified\" && exit 1"
+            TEST_SCRIPT=$(node -e "try{console.log(require('./package.json').scripts?.test||'')}catch{}")
+            if [ -n "$TEST_SCRIPT" ] && ! echo "$TEST_SCRIPT" | grep -q "no test specified"; then
+              HAS_TESTS=true
+            fi
+          fi
+          if grep -q '"vitest"' package.json 2>/dev/null || \
+             grep -q '"jest"' package.json 2>/dev/null || \
+             grep -q '"test:coverage"' package.json 2>/dev/null; then
+            HAS_TESTS=true
+          fi
+          echo "has_tests=$HAS_TESTS" >> $GITHUB_OUTPUT
+
       - name: Run tests with coverage
+        if: steps.check.outputs.has_tests == 'true'
         id: test
         run: |
           # Try common test commands that produce coverage
@@ -75,8 +94,12 @@ jobs:
             echo "has_coverage=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Skip notice
+        if: steps.check.outputs.has_tests != 'true'
+        run: echo "No test framework detected - skipping coverage tracking"
+
       - name: Load baseline
-        if: steps.test.outputs.has_coverage == 'true'
+        if: steps.check.outputs.has_tests == 'true' && steps.test.outputs.has_coverage == 'true'
         id: baseline
         run: |
           if [ -f ".coverage-baseline.json" ]; then
@@ -90,7 +113,7 @@ jobs:
           fi
 
       - name: Check ratchet
-        if: steps.test.outputs.has_coverage == 'true' && steps.baseline.outputs.has_baseline == 'true'
+        if: steps.check.outputs.has_tests == 'true' && steps.test.outputs.has_coverage == 'true' && steps.baseline.outputs.has_baseline == 'true'
         id: ratchet
         run: |
           CURRENT=${{ steps.test.outputs.lines }}
@@ -106,7 +129,7 @@ jobs:
           fi
 
       - name: Comment PR
-        if: github.event_name == 'pull_request' && steps.test.outputs.has_coverage == 'true'
+        if: github.event_name == 'pull_request' && steps.check.outputs.has_tests == 'true' && steps.test.outputs.has_coverage == 'true'
         uses: actions/github-script@v7
         with:
           script: |
@@ -170,7 +193,7 @@ jobs:
             }
 
       - name: Update baseline on main
-        if: github.event_name == 'push' && steps.test.outputs.has_coverage == 'true'
+        if: github.event_name == 'push' && steps.check.outputs.has_tests == 'true' && steps.test.outputs.has_coverage == 'true'
         run: |
           cat > .coverage-baseline.json << BASELINE_EOF
           {
@@ -187,7 +210,7 @@ jobs:
           git push
 
       - name: Fail on ratchet
-        if: steps.ratchet.outputs.failed == 'true'
+        if: steps.check.outputs.has_tests == 'true' && steps.ratchet.outputs.failed == 'true'
         run: |
           echo "::error::Coverage dropped by ${{ steps.ratchet.outputs.delta }}% (max allowed: -2%)"
           exit 1

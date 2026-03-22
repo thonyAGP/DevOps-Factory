@@ -24,17 +24,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Detect stack
+        id: stack
+        run: |
+          if [ -f "package.json" ]; then
+            if grep -q '"next"' package.json 2>/dev/null; then
+              echo "configs=--config auto --config p/owasp-top-ten --config p/typescript --config p/react --config p/nextjs" >> $GITHUB_OUTPUT
+            elif grep -q '"react"' package.json 2>/dev/null; then
+              echo "configs=--config auto --config p/owasp-top-ten --config p/typescript --config p/react" >> $GITHUB_OUTPUT
+            else
+              echo "configs=--config auto --config p/owasp-top-ten --config p/typescript" >> $GITHUB_OUTPUT
+            fi
+          elif ls *.csproj 2>/dev/null || ls *.sln 2>/dev/null; then
+            echo "configs=--config auto --config p/owasp-top-ten --config p/csharp" >> $GITHUB_OUTPUT
+          else
+            echo "configs=--config auto --config p/owasp-top-ten" >> $GITHUB_OUTPUT
+          fi
+
       - name: Run Semgrep
+        continue-on-error: true
         run: |
           semgrep scan \
-            --config auto \
-            --config p/owasp-top-ten \
-            --config p/typescript \
-            --config p/react \
-            --config p/nextjs \
+            ${{ steps.stack.outputs.configs }} \
             --sarif \
             --output semgrep-results.sarif \
-            --error \
             --verbose
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}

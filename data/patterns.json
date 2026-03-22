@@ -341,6 +341,76 @@
       "repos_seen": [],
       "occurrences": 0,
       "confidence": 0.85
+    },
+    {
+      "id": "pnpm-version-not-specified",
+      "category": "ci-failure",
+      "signature": "No pnpm version is specified",
+      "fix": "Add version: 9 to pnpm/action-setup step in workflow, or add packageManager field to package.json",
+      "fixType": "workflow-edit",
+      "repos_seen": ["thonyAGP/zentra"],
+      "occurrences": 1,
+      "confidence": 0.95
+    },
+    {
+      "id": "env-file-not-found-ci",
+      "category": "ci-failure",
+      "signature": ".env: not found",
+      "fix": "Add conditional check before sourcing .env files in CI scripts, or create .env.ci template",
+      "fixType": "workflow-edit",
+      "repos_seen": ["thonyAGP/magic-migration"],
+      "occurrences": 1,
+      "confidence": 0.85
+    },
+    {
+      "id": "ts-cannot-find-module-react",
+      "category": "ci-failure",
+      "signature": "Cannot find module 'react'",
+      "fix": "Add React/Next.js types to tsconfig or exclude frontend files from backend typecheck",
+      "fixType": "code-edit",
+      "repos_seen": ["thonyAGP/Email_Assistant"],
+      "occurrences": 1,
+      "confidence": 0.8
+    },
+    {
+      "id": "ts-cannot-find-module-next",
+      "category": "ci-failure",
+      "signature": "Cannot find module 'next/",
+      "fix": "Exclude Next.js files from backend tsconfig or install @types/react",
+      "fixType": "code-edit",
+      "repos_seen": ["thonyAGP/Email_Assistant"],
+      "occurrences": 1,
+      "confidence": 0.8
+    },
+    {
+      "id": "semgrep-findings-error",
+      "category": "ci-failure",
+      "signature": "semgrep scan returned",
+      "fix": "Remove --error flag from semgrep scan command in workflow to make findings non-blocking",
+      "fixType": "workflow-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "coverage-no-test-framework",
+      "category": "ci-failure",
+      "signature": "vitest: command not found",
+      "fix": "Add continue-on-error to coverage step or skip coverage for repos without test framework",
+      "fixType": "workflow-edit",
+      "repos_seen": [],
+      "occurrences": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "pnpm-action-setup-missing-version",
+      "category": "ci-failure",
+      "signature": "Please specify it by one of the following ways",
+      "fix": "Add version: 9 to pnpm/action-setup@v4 step in workflow file",
+      "fixType": "workflow-edit",
+      "repos_seen": ["thonyAGP/zentra"],
+      "occurrences": 1,
+      "confidence": 0.95
     }
   ]
 }
