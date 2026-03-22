@@ -1,8 +1,8 @@
 /**
  * self-heal.ts
  *
- * Analyzes CI failures using pattern database + Claude/Gemini and creates fix PRs.
- * Priority: Pattern DB (free, instant) → Claude via CLI (Max plan) → Gemini Flash (fallback)
+ * Analyzes CI failures using pattern database + free AI APIs and creates fix PRs.
+ * Priority: Pattern DB (free, instant) → Groq (free, fast) → Gemini (free) → Cerebras (free)
  *
  * Uses GitHub annotations API for structured errors + sibling file search
  * for context discovery. Works entirely via GitHub API (no local clone).
@@ -16,6 +16,24 @@ import { writeFileSync, readFileSync, existsSync, unlinkSync, rmSync, readdirSyn
 
 const GEMINI_MODEL = 'gemini-2.5-flash';
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+
+// --- Free AI providers (OpenAI-compatible) ---
+const AI_PROVIDERS = [
+  {
+    name: 'Groq',
+    envKey: 'GROQ_API_KEY',
+    url: 'https://api.groq.com/openai/v1/chat/completions',
+    model: 'llama-3.3-70b-versatile',
+    timeout: 60_000,
+  },
+  {
+    name: 'Cerebras',
+    envKey: 'CEREBRAS_API_KEY',
+    url: 'https://api.cerebras.ai/v1/chat/completions',
+    model: 'llama-3.3-70b',
+    timeout: 90_000,
+  },
+] as const;
 const MAX_LOG_LINES = 400;
 const MAX_FILE_SIZE = 50_000;
 
@@ -247,55 +265,55 @@ const recordAttempt = (repo: string, errorSignature: string, success: boolean): 
   saveCooldown(entries);
 };
 
-// --- Claude API (replaces CLI which doesn't work on runners) ---
+// --- OpenAI-compatible AI provider (Groq, Cerebras, etc.) ---
 
-const CLAUDE_API_URL = 'https://api.anthropic.com/v1/messages';
-const CLAUDE_MODEL = 'claude-haiku-4-5-20251001';
-
-const askClaude = async (
+const askOpenAIProvider = async (
+  provider: (typeof AI_PROVIDERS)[number],
   jobs: FailedJob[],
   files: Map<string, string>,
   patternHint = ''
 ): Promise<GeminiResponse> => {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env[provider.envKey];
   if (!apiKey) {
-    console.log('ANTHROPIC_API_KEY not set - skipping Claude');
-    return { fixes: [], explanation: 'Missing ANTHROPIC_API_KEY' };
+    console.log(`${provider.envKey} not set - skipping ${provider.name}`);
+    return { fixes: [], explanation: `Missing ${provider.envKey}` };
   }
 
   const prompt = buildPrompt(jobs, files) + patternHint;
-  console.log(`Asking Claude API (prompt: ${Math.round(prompt.length / 1024)}KB)...`);
+  console.log(
+    `Asking ${provider.name} (${provider.model}, ${Math.round(prompt.length / 1024)}KB)...`
+  );
 
   try {
-    const response = await fetch(CLAUDE_API_URL, {
+    const response = await fetch(provider.url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: CLAUDE_MODEL,
+        model: provider.model,
         max_tokens: 8192,
+        temperature: 0.2,
         messages: [{ role: 'user', content: prompt }],
       }),
-      signal: AbortSignal.timeout(120_000),
+      signal: AbortSignal.timeout(provider.timeout),
     });
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error(`Claude API error ${response.status}: ${errText.slice(0, 200)}`);
-      return { fixes: [], explanation: `Claude API error: ${response.status}` };
+      console.error(`${provider.name} API error ${response.status}: ${errText.slice(0, 200)}`);
+      return { fixes: [], explanation: `${provider.name} API error: ${response.status}` };
     }
 
     const data = (await response.json()) as {
-      content?: Array<{ type: string; text?: string }>;
+      choices?: Array<{ message?: { content?: string } }>;
     };
 
-    const text = data.content?.find((c) => c.type === 'text')?.text;
+    const text = data.choices?.[0]?.message?.content;
     if (!text) {
-      console.error('No response from Claude API');
-      return { fixes: [], explanation: 'Empty response from Claude' };
+      console.error(`No response from ${provider.name}`);
+      return { fixes: [], explanation: `Empty response from ${provider.name}` };
     }
 
     // Extract JSON from response
@@ -309,7 +327,7 @@ const askClaude = async (
             : fix.content
               ? `${Math.round(fix.content.length / 1024)}KB content`
               : 'empty';
-          console.log(`  [Claude] fix: ${fix.path} (${mode})`);
+          console.log(`  [${provider.name}] fix: ${fix.path} (${mode})`);
         }
         return parsed;
       } catch {
@@ -317,11 +335,14 @@ const askClaude = async (
       }
     }
 
-    return { fixes: [], explanation: `Claude response (non-JSON): ${text.slice(0, 500)}` };
+    return {
+      fixes: [],
+      explanation: `${provider.name} response (non-JSON): ${text.slice(0, 500)}`,
+    };
   } catch (e: unknown) {
     const err = e as { message?: string };
-    console.error(`Claude API failed: ${err.message?.slice(0, 200)}`);
-    return { fixes: [], explanation: 'Claude API unavailable' };
+    console.error(`${provider.name} failed: ${err.message?.slice(0, 200)}`);
+    return { fixes: [], explanation: `${provider.name} unavailable` };
   }
 };
 
@@ -2140,13 +2161,20 @@ const main = async (): Promise<void> => {
     console.log(`\nTotal files for AI analysis: ${fileContents.size}`);
     let aiResponse: GeminiResponse = { fixes: [], explanation: '' };
 
-    const claudeResponse = await askClaude(targetJobs, fileContents, patternHint);
-    if (claudeResponse.fixes.length > 0) {
-      console.log(`Claude: ${claudeResponse.explanation}`);
-      aiResponse = claudeResponse;
-    } else {
-      // Step 4c: Fall back to Gemini
-      console.log('Claude unavailable/empty, falling back to Gemini...');
+    // Try free AI providers in order: Groq → Gemini → Cerebras
+    for (const provider of AI_PROVIDERS) {
+      const result = await askOpenAIProvider(provider, targetJobs, fileContents, patternHint);
+      if (result.fixes.length > 0) {
+        console.log(`${provider.name}: ${result.explanation}`);
+        aiResponse = result;
+        break;
+      }
+      console.log(`${provider.name}: no fixes, trying next provider...`);
+    }
+
+    // Fallback to Gemini if no provider returned fixes
+    if (aiResponse.fixes.length === 0) {
+      console.log('All OpenAI-compatible providers failed, trying Gemini...');
       aiResponse = await askGemini(targetJobs, fileContents, patternHint);
       console.log(`Gemini: ${aiResponse.explanation}`);
     }

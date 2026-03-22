@@ -38,8 +38,9 @@ jobs:
         run: pnpm self-heal -- --repo "${{ inputs.repo }}" --run-id "${{ inputs.run_id }}"
         env:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
 
       - name: Commit pattern DB updates
         run: |
