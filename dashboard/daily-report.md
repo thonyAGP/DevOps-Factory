@@ -13,9 +13,9 @@
 ## Per Project
 
 ### CasaSync :x:
-- **Health**: 19/100
+- **Health**: 29/100
 - **CI**: fail ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22598290782))
-- **Open PRs**: 7
+- **Open PRs**: 0
 
 ### claude-cli-wrapper :white_circle:
 - **Health**: 44/100
@@ -60,27 +60,17 @@
 ### test_codingmenace :white_circle:
 - **Health**: 44/100
 - **CI**: none ([view](null))
-- **Open PRs**: 4
+- **Open PRs**: 0
 
 ### Thumbfast :white_circle:
 - **Health**: 44/100
 - **CI**: none ([view](null))
-- **Open PRs**: 5
-
-### Email_Assistant :white_check_mark:
-- **Health**: 49/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23403254412))
-- **Open PRs**: 21
+- **Open PRs**: 0
 
 ### statusline :white_circle:
 - **Health**: 49/100
 - **CI**: none ([view](null))
-- **Open PRs**: 5
-
-### Utilitaire_Webapp :white_check_mark:
-- **Health**: 49/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250))
-- **Open PRs**: 9
+- **Open PRs**: 0
 
 ### zentra :white_check_mark:
 - **Health**: 49/100
@@ -95,10 +85,20 @@
 ### au-marais :white_check_mark:
 - **Health**: 59/100
 - **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/23332693239))
-- **Open PRs**: 5
+- **Open PRs**: 0
+
+### Email_Assistant :white_check_mark:
+- **Health**: 59/100
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23409616300))
+- **Open PRs**: 0
 
 ### livret-au-marais :white_check_mark:
 - **Health**: 59/100
 - **CI**: pass ([view](https://github.com/thonyAGP/livret-au-marais/actions/runs/22132234016))
 - **Open PRs**: 4
+
+### Utilitaire_Webapp :white_check_mark:
+- **Health**: 59/100
+- **CI**: pass ([view](https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/22201584250))
+- **Open PRs**: 0
 
