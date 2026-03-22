@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-22T06:56:57.057Z",
+  "timestamp": "2026-03-22T12:26:17.692Z",
   "repos": [
     {
       "repo": "zentra",
@@ -254,8 +254,8 @@
       "workflows": [
         {
           "name": "Daily Drift Report",
-          "runs": 27,
-          "totalMinutes": 28,
+          "runs": 28,
+          "totalMinutes": 29,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -278,11 +278,11 @@
         },
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 19,
-          "totalMinutes": 19,
+          "runs": 18,
+          "totalMinutes": 18,
           "avgMinutes": 1,
-          "failedRuns": 19,
-          "wastedMinutes": 19
+          "failedRuns": 18,
+          "wastedMinutes": 18
         },
         {
           "name": "Expression Coverage Check",
@@ -311,7 +311,7 @@
       ],
       "recommendations": [
         "E2E Tests: 100% failure rate (28min wasted). Fix root cause.",
-        "Deploy Migration Dashboard: 100% failure rate (19min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 100% failure rate (18min wasted). Fix root cause.",
         "Expression Coverage Check: 100% failure rate (9min wasted). Fix root cause."
       ]
     },
@@ -727,7 +727,7 @@
   "summary": {
     "totalMinutes": 729,
     "totalRuns": 317,
-    "wastedMinutes": 163,
+    "wastedMinutes": 162,
     "mostExpensiveRepo": "zentra",
     "mostExpensiveWorkflow": "E2E Tests (au-marais)",
     "totalRecommendations": 12,
