@@ -1,19 +1,19 @@
 # Compliance & Audit Report
 
-**Generated**: 3/21/2026, 6:41:07 PM
+**Generated**: 3/22/2026, 1:10:12 AM
 **Period**: 30-day window
 
 ## Summary
 
 | Metric | Value |
 |--------|-------|
-| Total Repos | 18 |
-| Avg Compliance Score | 20/100 |
-| Repos with Branch Protection | 0/18 |
-| Repos with CI | 18/18 |
+| Total Repos | 19 |
+| Avg Compliance Score | 19/100 |
+| Repos with Branch Protection | 0/19 |
+| Repos with CI | 18/19 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 2 |
-| Deployments (30d) | 154 |
+| Deployments (30d) | 156 |
 | PRs with Review | 0/2 |
 
 ## Repository Compliance
@@ -38,10 +38,11 @@
 | Thumbfast | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Utilitaire_Webapp | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | zentra | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
+| LB2I-Fiscal-Manager | 🔴 0/100 | ✗ | ✗ | ✗ | 0 |
 
 ## Compliance Gaps
 
-### ⚠️ No Branch Protection (18)
+### ⚠️ No Branch Protection (19)
 - au-marais
 - CasaSync
 - claude-cli-wrapper
@@ -60,12 +61,16 @@
 - Thumbfast
 - Utilitaire_Webapp
 - zentra
+- LB2I-Fiscal-Manager
+
+### ⚠️ No CI Pipeline (1)
+- LB2I-Fiscal-Manager
 
 ### ⚠️ No Code Review (2)
 - **au-marais**: 1 PRs merged without review
 - **magic-migration**: 1 PRs merged without review
 
-### 🔴 Low Compliance Score < 60 (18)
+### 🔴 Low Compliance Score < 60 (19)
 - au-marais: 20/100
 - CasaSync: 20/100
 - claude-cli-wrapper: 20/100
@@ -84,6 +89,7 @@
 - Thumbfast: 20/100
 - Utilitaire_Webapp: 20/100
 - zentra: 20/100
+- LB2I-Fiscal-Manager: 0/100
 
 ## Recommendations
 
@@ -110,7 +116,7 @@
 **PRs Without Review**:
 - #8 - Admin improvements: calendar, reservations & mobile fixes (by thonyAGP)
 
-**Recent Deployments**: 37 successful deploys in 30 days
+**Recent Deployments**: 39 successful deploys in 30 days
 
 ---
 
@@ -354,5 +360,17 @@
 - Security Findings: 0 alerts
 
 **Recent Deployments**: 12 successful deploys in 30 days
+
+---
+
+### LB2I-Fiscal-Manager | ❌ NEEDS WORK (0/100)
+
+**Full Name**: `thonyAGP/LB2I-Fiscal-Manager`
+
+**Controls**:
+- Branch Protection: ✗
+- Code Review Required: ✗
+- CI/CD Enabled: ✗
+- Security Findings: 0 alerts
 
 ---

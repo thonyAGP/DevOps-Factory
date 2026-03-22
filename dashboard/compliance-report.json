@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-21T18:41:07.818Z",
+  "timestamp": "2026-03-22T01:10:12.349Z",
   "period": "30-day window",
   "repos": [
     {
@@ -16,6 +16,22 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "develop",
+          "repo": "thonyAGP/au-marais",
+          "sha": "f9d006bb8e0e8c293f27d30f5112db4bd6f77b2d",
+          "status": "success",
+          "timestamp": "2026-03-21T21:21:00Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "develop",
+          "repo": "thonyAGP/au-marais",
+          "sha": "1cb15a2836ac50c1749d289e194599f2bb875ad4",
+          "status": "success",
+          "timestamp": "2026-03-21T21:06:53Z",
+          "workflow": "E2E Tests"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/au-marais",
@@ -1467,15 +1483,26 @@
       "codeReview": false,
       "ciEnabled": true,
       "score": 20
+    },
+    {
+      "repo": "LB2I-Fiscal-Manager",
+      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
+      "mergedPRs": [],
+      "deployments": [],
+      "securityFindings": [],
+      "branchProtection": false,
+      "codeReview": false,
+      "ciEnabled": false,
+      "score": 0
     }
   ],
   "summary": {
-    "totalRepos": 18,
+    "totalRepos": 19,
     "totalPRsMerged": 2,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 154,
-    "avgComplianceScore": 20,
+    "totalDeployments": 156,
+    "avgComplianceScore": 19,
     "reposWithBranchProtection": 0,
     "reposWithCI": 18
   }

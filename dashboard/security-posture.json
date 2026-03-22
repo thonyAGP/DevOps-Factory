@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-21T18:38:27.154Z",
+  "timestamp": "2026-03-22T01:07:20.250Z",
   "repos": [
     {
       "repo": "au-marais",
@@ -254,6 +254,56 @@
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
+      "workflows": {
+        "gitleaks": {
+          "name": "Secret Scanning",
+          "lastRun": null,
+          "conclusion": "not_found",
+          "url": null
+        },
+        "supplyChain": {
+          "name": "Supply Chain Security",
+          "lastRun": null,
+          "conclusion": "not_found",
+          "url": null
+        },
+        "containerScan": {
+          "name": "Container Scan",
+          "lastRun": null,
+          "conclusion": "not_found",
+          "url": null
+        },
+        "securityHeaders": {
+          "name": "Security Headers",
+          "lastRun": null,
+          "conclusion": "not_found",
+          "url": null
+        },
+        "licenseCheck": {
+          "name": "License Check",
+          "lastRun": null,
+          "conclusion": "not_found",
+          "url": null
+        },
+        "semgrep": {
+          "name": "Semgrep SAST",
+          "lastRun": null,
+          "conclusion": "not_found",
+          "url": null
+        }
+      },
+      "score": 35,
+      "grade": "F",
+      "issues": [
+        "No secret scanning configured",
+        "No supply chain security scanning",
+        "No license compliance check",
+        "No SAST scanning configured"
+      ]
+    },
+    {
+      "repo": "LB2I-Fiscal-Manager",
+      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
       "workflows": {
         "gitleaks": {
           "name": "Secret Scanning",
@@ -905,14 +955,14 @@
   "summary": {
     "avgScore": 35,
     "reposWithSecurityWorkflows": 0,
-    "totalRepos": 18,
-    "criticalIssues": 18,
+    "totalRepos": 19,
+    "criticalIssues": 19,
     "gradeDistribution": {
       "A": 0,
       "B": 0,
       "C": 0,
       "D": 0,
-      "F": 18
+      "F": 19
     }
   }
 }

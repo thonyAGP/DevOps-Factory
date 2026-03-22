@@ -1,13 +1,13 @@
 ## Summary
-- **17** projects monitored
-- **0/17** fully configured
+- **18** projects monitored
+- **0/18** fully configured
 - **0** AI fix PR(s) pending merge
 - **1** CI failure(s)
 - **0%** avg security score
-- **0/17** repos with AI code review
+- **0/18** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
-- **DORA**: MEDIUM (deploy 0/wk, lead 11.3h, MTTR 6.9h, CFR 47%)
-- **CI Cost**: 743min total, 188min wasted, ~$0/mo
+- **DORA**: MEDIUM (deploy 0/wk, lead 12.6h, MTTR 6.9h, CFR 46%)
+- **CI Cost**: 725min total, 169min wasted, ~$0/mo
 - **Compliance**: 20/100 avg, 0% review coverage, 0/18 branch protected
 
 ## Per Project
@@ -26,6 +26,11 @@
 - **Health**: 44/100
 - **CI**: none ([view](null))
 - **Open PRs**: 4
+
+### LB2I-Fiscal-Manager :white_circle:
+- **Health**: 44/100
+- **CI**: none ([view](null))
+- **Open PRs**: 1
 
 ### Livret_accueil_Au-Marais :white_circle:
 - **Health**: 44/100
