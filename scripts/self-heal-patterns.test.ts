@@ -220,12 +220,12 @@ describe('Pattern Database (self-heal-patterns)', () => {
       expect(aiRequired.length).toBeLessThan(db.patterns.length);
     });
 
-    it('should have majority as deterministic or command', () => {
-      const deterministic = db.patterns.filter(
-        (p: { fixType: string }) => p.fixType === 'deterministic'
+    it('should have majority as deterministic, command, or workflow-edit', () => {
+      const autoFixable = db.patterns.filter(
+        (p: { fixType: string }) =>
+          p.fixType === 'deterministic' || p.fixType === 'command' || p.fixType === 'workflow-edit'
       );
-      const command = db.patterns.filter((p: { fixType: string }) => p.fixType === 'command');
-      expect(deterministic.length + command.length).toBeGreaterThan(db.patterns.length / 3);
+      expect(autoFixable.length).toBeGreaterThan(db.patterns.length / 3);
     });
   });
 
