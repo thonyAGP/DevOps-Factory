@@ -2,13 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-02-20T12:47:20.039Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "16 projects, avg health 62",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-02-20T13:13:37.001Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -88665,6 +88658,55 @@
       "action": "check-complete",
       "details": "2/7 passing, 3 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-22T12:53:20.268Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "18 projects, avg health 46",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-22T12:54:30.068Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 19 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-22T12:55:55.727Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 0%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-22T12:56:26.255Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 12.6h, MTTR 6.9h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-22T12:56:41.582Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 729min total, 162min wasted, ~$0/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-22T12:57:36.652Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 19/100, branch protection 0/19, CI 18/19, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-22T12:57:37.392Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "253 recommendations across 27 repos (11 critical, 186 high)",
+      "status": "success"
     }
   ]
 }
