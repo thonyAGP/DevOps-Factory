@@ -1061,7 +1061,12 @@ const fixLockfileIssues = (repo: string, runId: string, defaultBranch: string): 
       stdio: 'pipe',
     });
 
-    // 6. Create PR
+    // 6. Create PR (with dedup check)
+    if (isDuplicateFix(repo, 'lockfile')) {
+      console.log('  [DEDUP] Skipping duplicate fix - lockfile PR already closed recently');
+      return null;
+    }
+
     ensureLabel(repo, 'ai-fix', '7057ff', 'Auto-generated fix by DevOps Factory');
 
     const body = [
@@ -1254,7 +1259,12 @@ const fixPrettierIssues = (repo: string, runId: string, defaultBranch: string): 
       stdio: 'pipe',
     });
 
-    // 7. Create PR
+    // 7. Create PR (with dedup check)
+    if (isDuplicateFix(repo, 'Prettier')) {
+      console.log('  [DEDUP] Skipping duplicate fix - Prettier PR already closed recently');
+      return null;
+    }
+
     ensureLabel(repo, 'ai-fix', '7057ff', 'Auto-generated fix by DevOps Factory');
 
     const body = [
@@ -1411,6 +1421,29 @@ const uploadFilesBatch = (
   }
 };
 
+/**
+ * Check if all proposed fixes are already applied in the repo.
+ * Compares proposed content with current file content on the base branch.
+ * Returns true if ALL fixes are already present (no diff), meaning the PR would be a no-op.
+ */
+export const isFixAlreadyApplied = (
+  repo: string,
+  baseBranch: string,
+  fixes: Array<{ path: string; content: string }>
+): boolean => {
+  if (fixes.length === 0) return true;
+
+  for (const fix of fixes) {
+    const current = fetchFullFileContent(repo, fix.path, baseBranch);
+    // If we can't fetch the file, be conservative: assume fix is NOT applied
+    if (current === null) return false;
+    // If content differs, fix is not yet applied
+    if (current !== fix.content) return false;
+  }
+
+  return true;
+};
+
 const applyFixes = (
   repo: string,
   branch: string,
@@ -1456,11 +1489,21 @@ const applyFixes = (
       }
     }
 
+    // Pre-check: skip files where the fix is already applied
+    const currentContent = fetchFullFileContent(repo, fix.path, baseBranch);
+    if (currentContent !== null && currentContent === finalContent) {
+      console.log(`  [PRE-CHECK] Fix already applied in ${fix.path}, skipping`);
+      continue;
+    }
+
     console.log(`  Preparing fix for ${fix.path} (${Math.round(finalContent.length / 1024)}KB)...`);
     filesToUpload.push({ path: fix.path, content: finalContent });
   }
 
-  if (filesToUpload.length === 0) return false;
+  if (filesToUpload.length === 0) {
+    console.log('  [PRE-CHECK] All fixes already applied, skipping PR creation');
+    return false;
+  }
 
   console.log(`  Uploading ${filesToUpload.length} file(s) in single atomic commit...`);
   const ok = uploadFilesBatch(repo, branch, filesToUpload, 'fix: AI-generated fix for CI failure');
@@ -1634,6 +1677,80 @@ const tryAutoMerge = (
     console.log(
       `  Auto-merge: confidence ${confidence} < ${AUTO_MERGE_CONFIDENCE_THRESHOLD} (pattern: ${patternId ?? 'n/a'}) — PR #${prNumber} left for human review`
     );
+  }
+};
+
+// --- Deduplication: prevent re-submitting fixes already closed ---
+
+const DEDUP_WINDOW_HOURS = 72;
+
+/**
+ * Check if a similar fix PR has already been closed recently.
+ * Prevents re-submitting the same fix that was already rejected/closed.
+ *
+ * @param repo - owner/name
+ * @param titlePattern - substring to match in PR titles (e.g. "lockfile", "Prettier", pattern ID)
+ * @param changedFiles - files being modified in the new fix (for fuzzy matching)
+ * @returns true if a duplicate closed PR was found within the dedup window
+ */
+const isDuplicateFix = (
+  repo: string,
+  titlePattern: string,
+  changedFiles: string[] = []
+): boolean => {
+  try {
+    const raw = sh(
+      `gh pr list --repo ${repo} --state closed --limit 20 --json title,closedAt,files --label "ai-fix"`,
+      120_000
+    );
+    if (!raw) return false;
+
+    const closedPRs = JSON.parse(raw) as Array<{
+      title: string;
+      closedAt: string;
+      files?: Array<{ path: string }>;
+    }>;
+
+    const now = Date.now();
+    const windowMs = DEDUP_WINDOW_HOURS * 60 * 60 * 1000;
+
+    for (const pr of closedPRs) {
+      const closedTime = new Date(pr.closedAt).getTime();
+      if (now - closedTime > windowMs) continue; // Outside dedup window
+
+      // Match by title pattern (pattern ID, lockfile, prettier, etc.)
+      if (titlePattern && pr.title.includes(titlePattern)) {
+        console.log(
+          `  [DEDUP] Found closed PR "${pr.title}" (closed ${Math.round((now - closedTime) / 3600000)}h ago) matching pattern "${titlePattern}"`
+        );
+        return true;
+      }
+
+      // For AI-generated PRs without specific pattern: compare changed files
+      if (
+        changedFiles.length > 0 &&
+        pr.files &&
+        pr.files.length > 0 &&
+        pr.title.includes('AI-generated CI fix')
+      ) {
+        const prFilePaths = pr.files.map((f) => f.path);
+        const overlap = changedFiles.filter((f) => prFilePaths.includes(f));
+        // If 80%+ of changed files overlap with a closed PR, it's a duplicate
+        if (overlap.length > 0 && overlap.length >= changedFiles.length * 0.8) {
+          console.log(
+            `  [DEDUP] Found closed AI-fix PR "${pr.title}" with ${overlap.length}/${changedFiles.length} overlapping files (closed ${Math.round((now - closedTime) / 3600000)}h ago)`
+          );
+          return true;
+        }
+      }
+    }
+
+    return false;
+  } catch (e: unknown) {
+    // Don't block PR creation if dedup check fails
+    const msg = e instanceof Error ? e.message : String(e);
+    console.log(`  [DEDUP] Check failed (non-blocking): ${msg.slice(0, 200)}`);
+    return false;
   }
 };
 
@@ -2045,6 +2162,14 @@ const main = async (): Promise<void> => {
         const wfExplanation = workflowFixes
           .map((f) => `Fixed workflow issue in ${f.path}`)
           .join('. ');
+        // Dedup check for workflow fixes
+        const wfChangedFiles = workflowFixes.map((f) => f.path);
+        if (isDuplicateFix(repo, 'workflow', wfChangedFiles)) {
+          console.log('  [DEDUP] Skipping duplicate fix - workflow PR already closed recently');
+          recordAttempt(repo, errorSig, false);
+          return;
+        }
+
         console.log('Applying workflow fixes...');
         const applied = applyFixes(repo, branchName, defaultBranch, workflowFixes);
         if (applied) {
@@ -2322,6 +2447,15 @@ const main = async (): Promise<void> => {
       runId,
       `${explanation}\n\n**Note**: Auto-fix attempted but all replacements failed to apply.`
     );
+    recordAttempt(repo, errorSig, false);
+    return;
+  }
+
+  // Dedup check for AI-generated fix PRs
+  const fixChangedFiles = allFixes.map((f) => f.path);
+  const dedupPattern = usedPatternId ? `pattern:${usedPatternId}` : 'AI-generated CI fix';
+  if (isDuplicateFix(repo, dedupPattern, fixChangedFiles)) {
+    console.log('  [DEDUP] Skipping duplicate fix - similar PR already closed recently');
     recordAttempt(repo, errorSig, false);
     return;
   }

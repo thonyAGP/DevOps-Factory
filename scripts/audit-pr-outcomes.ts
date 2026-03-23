@@ -43,6 +43,10 @@ interface PatternScoresFile {
     merged: number;
     closed: number;
     overallSuccessRate: number;
+    excluded: {
+      configPRs: number;
+      titles: string[];
+    };
   };
 }
 
@@ -219,12 +223,37 @@ const fetchClosedPRs = (repo: string): PRRecord[] => {
   return records;
 };
 
+// --- PR classification ---
+
+/**
+ * Determine if a PR is a scan-and-configure PR (tooling setup)
+ * rather than a self-heal PR (CI fix).
+ *
+ * Config PRs: adding Renovate, Gitleaks, Semgrep, workflows, etc.
+ * Self-heal PRs: fix CI failures, Prettier auto-fix, etc.
+ */
+const isConfigPR = (title: string): boolean => {
+  // Explicit config patterns — tooling setup, not CI fixes
+  const configPatterns = [
+    /^chore:\s*add\s+/i, // "chore: add <tool>" — always config
+    /^feat:\s*add\s+test\s+coverage/i, // "feat: add test coverage tracking"
+  ];
+
+  if (configPatterns.some((p) => p.test(title))) return true;
+
+  return false;
+};
+
 // --- Score calculation ---
 
 const calculateScores = (allPRs: PRRecord[]): PatternScoresFile => {
+  // Separate config PRs from self-heal PRs
+  const configPRs = allPRs.filter((pr) => isConfigPR(pr.title));
+  const selfHealPRs = allPRs.filter((pr) => !isConfigPR(pr.title));
+
   const patterns: Record<string, PatternScore> = {};
 
-  for (const pr of allPRs) {
+  for (const pr of selfHealPRs) {
     const id = pr.patternId ?? 'unknown';
 
     if (!patterns[id]) {
@@ -252,18 +281,22 @@ const calculateScores = (allPRs: PRRecord[]): PatternScoresFile => {
       score.total > 0 ? Math.round((score.merged / score.total) * 1000) / 1000 : 0;
   }
 
-  const totalMerged = allPRs.filter((pr) => pr.merged).length;
-  const totalClosed = allPRs.filter((pr) => !pr.merged).length;
+  const totalMerged = selfHealPRs.filter((pr) => pr.merged).length;
+  const totalClosed = selfHealPRs.filter((pr) => !pr.merged).length;
 
   return {
     timestamp: new Date().toISOString(),
     patterns,
     summary: {
-      totalPRs: allPRs.length,
+      totalPRs: selfHealPRs.length,
       merged: totalMerged,
       closed: totalClosed,
       overallSuccessRate:
-        allPRs.length > 0 ? Math.round((totalMerged / allPRs.length) * 1000) / 1000 : 0,
+        selfHealPRs.length > 0 ? Math.round((totalMerged / selfHealPRs.length) * 1000) / 1000 : 0,
+      excluded: {
+        configPRs: configPRs.length,
+        titles: configPRs.map((pr) => pr.title),
+      },
     },
   };
 };
@@ -361,11 +394,17 @@ const main = async (): Promise<void> => {
   const updatedCount = updatePatternConfidence(scores);
 
   // Print summary
-  console.log('\n--- Summary ---');
+  console.log('\n--- Summary (self-heal PRs only) ---');
   console.log(`Total PRs:     ${scores.summary.totalPRs}`);
   console.log(`Merged:        ${scores.summary.merged}`);
   console.log(`Closed:        ${scores.summary.closed}`);
   console.log(`Success Rate:  ${(scores.summary.overallSuccessRate * 100).toFixed(1)}%`);
+  if (scores.summary.excluded.configPRs > 0) {
+    console.log(`\nExcluded config PRs: ${scores.summary.excluded.configPRs}`);
+    for (const title of scores.summary.excluded.titles) {
+      console.log(`  - ${title}`);
+    }
+  }
 
   console.log('\nBy pattern:');
   const sortedPatterns = Object.entries(scores.patterns).sort(([, a], [, b]) => b.total - a.total);
@@ -379,7 +418,7 @@ const main = async (): Promise<void> => {
   logActivity(
     'scan-and-configure',
     'audit-pr-outcomes',
-    `Audited ${scores.summary.totalPRs} PRs: ${scores.summary.merged} merged, ${scores.summary.closed} closed (${(scores.summary.overallSuccessRate * 100).toFixed(1)}% success). ${updatedCount} confidence scores updated.`,
+    `Audited ${scores.summary.totalPRs} self-heal PRs: ${scores.summary.merged} merged, ${scores.summary.closed} closed (${(scores.summary.overallSuccessRate * 100).toFixed(1)}% success). ${scores.summary.excluded.configPRs} config PRs excluded. ${updatedCount} confidence scores updated.`,
     'info'
   );
 
