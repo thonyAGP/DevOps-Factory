@@ -2,51 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-02-21T06:32:47.261Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-02-21T06:32:50.035Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-02-21T06:32:50.035Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-02-21T06:33:57.501Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "16 projects, avg health 65",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-02-21T07:06:39.043Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Scan Repos",
-      "details": "total_failure: Scan Repos",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-02-21T07:06:39.043Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "4/7 passing. 2 failures, 1 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-02-21T07:27:31.981Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -88964,6 +88919,55 @@
       "action": "check-complete",
       "details": "2/7 passing, 3 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T07:11:21.284Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "18 projects, avg health 48",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T07:12:12.658Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 19 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T07:13:04.230Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 0%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-23T07:13:34.000Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 12.6h, MTTR 6.9h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-23T07:13:48.299Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 738min total, 156min wasted, ~$0/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T07:14:27.953Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 19/100, branch protection 0/19, CI 18/19, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T07:14:28.689Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "251 recommendations across 27 repos (11 critical, 184 high)",
+      "status": "success"
     }
   ]
 }

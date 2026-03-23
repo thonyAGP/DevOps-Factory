@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-23T02:26:54.215Z",
+  "timestamp": "2026-03-23T07:14:27.915Z",
   "period": "30-day window",
   "repos": [
     {
@@ -465,6 +465,14 @@
           "repo": "thonyAGP/Email_Assistant",
           "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
           "status": "success",
+          "timestamp": "2026-03-23T07:03:39Z",
+          "workflow": "Monitor Production"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
           "timestamp": "2026-03-23T01:51:50Z",
           "workflow": "Monitor Production"
         },
@@ -819,14 +827,6 @@
           "status": "success",
           "timestamp": "2026-03-18T06:56:21Z",
           "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-18T01:50:33Z",
-          "workflow": "Monitor Production"
         }
       ],
       "securityFindings": [],
@@ -849,6 +849,14 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Livret_accueil_Au-Marais",
+          "sha": "db61d33c3e425744487d7152a0798559a1327cbd",
+          "status": "success",
+          "timestamp": "2026-03-23T05:26:02Z",
+          "workflow": "Security Scan (SAST)"
+        },
         {
           "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
           "repo": "thonyAGP/Livret_accueil_Au-Marais",
@@ -1256,6 +1264,14 @@
       ],
       "deployments": [
         {
+          "branch": "master",
+          "repo": "thonyAGP/Site_Greg-Assainissement",
+          "sha": "16754d525943bb2af0c55b002e869e1b08ad7c15",
+          "status": "success",
+          "timestamp": "2026-03-23T05:41:50Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
           "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
           "repo": "thonyAGP/Site_Greg-Assainissement",
           "sha": "b9bddfdb21881999ba314d1788425c255f1fe00b",
@@ -1559,7 +1575,7 @@
     "totalPRsMerged": 4,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 161,
+    "totalDeployments": 163,
     "avgComplianceScore": 19,
     "reposWithBranchProtection": 0,
     "reposWithCI": 18

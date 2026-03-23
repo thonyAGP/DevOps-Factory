@@ -7,7 +7,7 @@
 - **0/18** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
 - **DORA**: MEDIUM (deploy 0/wk, lead 12.6h, MTTR 6.9h, CFR 44%)
-- **CI Cost**: 731min total, 156min wasted, ~$0/mo
+- **CI Cost**: 736min total, 156min wasted, ~$0/mo
 - **Compliance**: 19/100 avg, 0% review coverage, 0/19 branch protected
 
 ## Per Project
@@ -59,12 +59,12 @@
 
 ### Livret_accueil_Au-Marais :white_circle:
 - **Health**: 47/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/Livret_accueil_Au-Marais/actions/runs/23422811499))
 - **Open PRs**: 3
 
 ### Site_Greg-Assainissement :white_circle:
 - **Health**: 47/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/Site_Greg-Assainissement/actions/runs/23423215727))
 - **Open PRs**: 4
 
 ### statusline :white_circle:
@@ -89,7 +89,7 @@
 
 ### Email_Assistant :white_check_mark:
 - **Health**: 59/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23418046455))
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23425432819))
 - **Open PRs**: 1
 
 ### livret-au-marais :white_check_mark:

@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/23/2026, 2:26:54 AM
+**Generated**: 3/23/2026, 7:14:27 AM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 18/19 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 4 |
-| Deployments (30d) | 161 |
+| Deployments (30d) | 163 |
 | PRs with Review | 0/4 |
 
 ## Repository Compliance
@@ -207,7 +207,7 @@
 **PRs Without Review**:
 - #4 - chore: add SAST with Semgrep (by thonyAGP)
 
-**Recent Deployments**: 2 successful deploys in 30 days
+**Recent Deployments**: 3 successful deploys in 30 days
 
 ---
 
@@ -287,7 +287,7 @@
 **PRs Without Review**:
 - #5 - chore: add SAST with Semgrep (by thonyAGP)
 
-**Recent Deployments**: 2 successful deploys in 30 days
+**Recent Deployments**: 3 successful deploys in 30 days
 
 ---
 
