@@ -1,22 +1,15 @@
-## Quality Score Report - 2026-03-22
+## Quality Score Report - 2026-03-23
 
 ### Summary
-- **Average Score**: 40/100
+- **Average Score**: 39/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 16
 
-### Per Repository
+### Score Drops (≥5 points)
+- **Email_Assistant**: 55 → 35 (-20)
 
-#### Email_Assistant
-- **Score**: 55/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+### Per Repository
 
 #### Livret_accueil_Au-Marais
 - **Score**: 55/100
@@ -49,6 +42,16 @@
 - **Gitleaks**: ✗
 
 #### DevOps-Factory
+- **Score**: 35/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+
+#### Email_Assistant
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗

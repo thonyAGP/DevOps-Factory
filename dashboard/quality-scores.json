@@ -1,20 +1,6 @@
 {
-  "timestamp": "2026-03-22T08:45:00.911Z",
+  "timestamp": "2026-03-23T09:07:20.566Z",
   "scores": [
-    {
-      "name": "Email_Assistant",
-      "repo": "thonyAGP/Email_Assistant",
-      "score": 55,
-      "breakdown": {
-        "ciPasses": 20,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0
-      }
-    },
     {
       "name": "Livret_accueil_Au-Marais",
       "repo": "thonyAGP/livret-au-marais",
@@ -60,6 +46,20 @@
     {
       "name": "DevOps-Factory",
       "repo": "thonyAGP/DevOps-Factory",
+      "score": 35,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0
+      }
+    },
+    {
+      "name": "Email_Assistant",
+      "repo": "thonyAGP/Email_Assistant",
       "score": 35,
       "breakdown": {
         "ciPasses": 0,
@@ -226,5 +226,12 @@
       }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "Email_Assistant",
+      "drop": 20,
+      "from": 55,
+      "to": 35
+    }
+  ]
 }
