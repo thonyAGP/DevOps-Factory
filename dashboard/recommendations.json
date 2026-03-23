@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-23T18:40:16.635Z",
+  "timestamp": "2026-03-23T18:47:22.511Z",
   "repos": [
     {
       "repo": "au-marais",
@@ -9,13 +9,6 @@
       "ciFailureRate": 33,
       "recommendations": [
         {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
           "template": "qodo-merge.yml",
           "priority": "high",
           "reason": "Free code reviews without API key requirement",
@@ -35,20 +28,6 @@
           "reason": "Low health score (55) - needs test coverage tracking",
           "effort": "moderate",
           "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
         },
         {
           "template": "type-coverage.yml",
@@ -98,262 +77,6 @@
           "reason": "Enforce maintainable PR sizes",
           "effort": "minimal",
           "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "medium",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "release-drafter.yml",
-          "priority": "low",
-          "reason": "Auto-generate release notes",
-          "effort": "minimal",
-          "impact": "Auto-drafts release notes from PRs and commits"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
-        }
-      ]
-    },
-    {
-      "repo": "livret-au-marais",
-      "fullName": "thonyAGP/livret-au-marais",
-      "healthScore": 55,
-      "stack": "nextjs",
-      "ciFailureRate": 17,
-      "recommendations": [
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "lighthouse.yml",
-          "priority": "high",
-          "reason": "Low health score (55) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
-          "template": "coverage-tracking.yml",
-          "priority": "high",
-          "reason": "Low health score (55) - needs test coverage tracking",
-          "effort": "moderate",
-          "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
-          "template": "auto-label.yml",
-          "priority": "medium",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "accessibility-check.yml",
-          "priority": "medium",
-          "reason": "No accessibility scanning detected",
-          "effort": "minimal",
-          "impact": "Ensures WCAG compliance and accessibility standards"
-        },
-        {
-          "template": "semantic-release.yml",
-          "priority": "medium",
-          "reason": "Automate versioning from commits",
-          "effort": "moderate",
-          "impact": "Automated versioning and release notes from git commits"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "medium",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "medium",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "medium",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "medium",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "release-drafter.yml",
-          "priority": "low",
-          "reason": "Auto-generate release notes",
-          "effort": "minimal",
-          "impact": "Auto-drafts release notes from PRs and commits"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
-        }
-      ]
-    },
-    {
-      "repo": "CasaSync",
-      "fullName": "thonyAGP/CasaSync",
-      "healthScore": 35,
-      "stack": "nextjs",
-      "ciFailureRate": 31,
-      "recommendations": [
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
-          "template": "auto-label.yml",
-          "priority": "high",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "lighthouse.yml",
-          "priority": "high",
-          "reason": "Low health score (35) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
-          "template": "accessibility-check.yml",
-          "priority": "high",
-          "reason": "No accessibility scanning detected",
-          "effort": "minimal",
-          "impact": "Ensures WCAG compliance and accessibility standards"
-        },
-        {
-          "template": "coverage-tracking.yml",
-          "priority": "high",
-          "reason": "Low health score (35) - needs test coverage tracking",
-          "effort": "moderate",
-          "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "high",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "stale-bot.yml",
@@ -414,13 +137,6 @@
           "impact": "Tracks test coverage over time and prevents regressions"
         },
         {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
           "template": "container-scan.yml",
           "priority": "high",
           "reason": "Enhance container security scanning",
@@ -486,109 +202,102 @@
       ]
     },
     {
-      "repo": "LB2I-Fiscal-Manager",
-      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
-      "healthScore": 0,
+      "repo": "livret-au-marais",
+      "fullName": "thonyAGP/livret-au-marais",
+      "healthScore": 55,
       "stack": "nextjs",
-      "ciFailureRate": 0,
+      "ciFailureRate": 11,
       "recommendations": [
         {
-          "template": "ci-standard.yml",
-          "priority": "critical",
-          "reason": "No CI workflow detected",
-          "effort": "moderate",
-          "impact": "Enables automated testing and deployment"
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
         },
         {
-          "template": "gitleaks.yml",
+          "template": "lighthouse.yml",
           "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
+          "reason": "Low health score (55) - needs performance tracking",
+          "effort": "moderate",
+          "impact": "Tracks performance, accessibility, and SEO metrics"
+        },
+        {
+          "template": "coverage-tracking.yml",
+          "priority": "high",
+          "reason": "Low health score (55) - needs test coverage tracking",
+          "effort": "moderate",
+          "impact": "Tracks test coverage over time and prevents regressions"
         },
         {
           "template": "auto-label.yml",
-          "priority": "high",
+          "priority": "medium",
           "reason": "Would improve issue/PR organization",
           "effort": "minimal",
           "impact": "Automatically labels issues and PRs for better organization"
         },
         {
-          "template": "lighthouse.yml",
-          "priority": "high",
-          "reason": "Low health score (0) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
           "template": "accessibility-check.yml",
-          "priority": "high",
+          "priority": "medium",
           "reason": "No accessibility scanning detected",
           "effort": "minimal",
           "impact": "Ensures WCAG compliance and accessibility standards"
         },
         {
-          "template": "coverage-tracking.yml",
-          "priority": "high",
-          "reason": "Low health score (0) - needs test coverage tracking",
+          "template": "semantic-release.yml",
+          "priority": "medium",
+          "reason": "Automate versioning from commits",
           "effort": "moderate",
-          "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
+          "impact": "Automated versioning and release notes from git commits"
         },
         {
           "template": "container-scan.yml",
-          "priority": "high",
+          "priority": "medium",
           "reason": "Enhance container security scanning",
           "effort": "moderate",
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
           "template": "dead-code-detection.yml",
-          "priority": "high",
+          "priority": "medium",
           "reason": "Detect and remove unused code",
           "effort": "minimal",
           "impact": "Detects and reports unused code with Knip"
         },
         {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
           "template": "pr-size-limit.yml",
-          "priority": "high",
+          "priority": "medium",
           "reason": "Enforce maintainable PR sizes",
           "effort": "minimal",
           "impact": "Enforces PR size limits for code review quality"
         },
         {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
           "template": "type-coverage.yml",
-          "priority": "high",
+          "priority": "medium",
           "reason": "Improve TypeScript coverage",
           "effort": "minimal",
           "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "stale-bot.yml",
-          "priority": "medium",
+          "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
+        },
+        {
+          "template": "release-drafter.yml",
+          "priority": "low",
+          "reason": "Auto-generate release notes",
+          "effort": "minimal",
+          "impact": "Auto-drafts release notes from PRs and commits"
+        },
+        {
+          "template": "mutation-testing.yml",
+          "priority": "low",
+          "reason": "Validate test quality",
+          "effort": "significant",
+          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -640,13 +349,6 @@
           "reason": "Low health score (35) - needs test coverage tracking",
           "effort": "moderate",
           "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
         },
         {
           "template": "container-scan.yml",
@@ -749,13 +451,6 @@
           "impact": "Tracks test coverage over time and prevents regressions"
         },
         {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
           "template": "container-scan.yml",
           "priority": "high",
           "reason": "Enhance container security scanning",
@@ -811,7 +506,7 @@
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 46,
+      "ciFailureRate": 48,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -842,13 +537,6 @@
           "impact": "Tracks test coverage over time and prevents regressions"
         },
         {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
           "template": "container-scan.yml",
           "priority": "high",
           "reason": "Enhance container security scanning",
@@ -914,126 +602,12 @@
       ]
     },
     {
-      "repo": "zentra",
-      "fullName": "thonyAGP/zentra",
-      "healthScore": 0,
-      "stack": "node",
-      "ciFailureRate": 5,
-      "recommendations": [
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
-          "template": "auto-label.yml",
-          "priority": "high",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "coverage-tracking.yml",
-          "priority": "high",
-          "reason": "Low health score (0) - needs test coverage tracking",
-          "effort": "moderate",
-          "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "high",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "medium",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "release-drafter.yml",
-          "priority": "medium",
-          "reason": "Auto-generate release notes",
-          "effort": "minimal",
-          "impact": "Auto-drafts release notes from PRs and commits"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "medium",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
-        }
-      ]
-    },
-    {
-      "repo": "Email_Assistant",
-      "fullName": "thonyAGP/Email_Assistant",
+      "repo": "CasaSync",
+      "fullName": "thonyAGP/CasaSync",
       "healthScore": 35,
-      "stack": "node",
-      "ciFailureRate": 17,
+      "stack": "nextjs",
+      "ciFailureRate": 31,
       "recommendations": [
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
         {
           "template": "auto-label.yml",
           "priority": "high",
@@ -1042,18 +616,32 @@
           "impact": "Automatically labels issues and PRs for better organization"
         },
         {
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+        },
+        {
+          "template": "lighthouse.yml",
+          "priority": "high",
+          "reason": "Low health score (35) - needs performance tracking",
+          "effort": "moderate",
+          "impact": "Tracks performance, accessibility, and SEO metrics"
+        },
+        {
+          "template": "accessibility-check.yml",
+          "priority": "high",
+          "reason": "No accessibility scanning detected",
+          "effort": "minimal",
+          "impact": "Ensures WCAG compliance and accessibility standards"
+        },
+        {
           "template": "coverage-tracking.yml",
           "priority": "high",
           "reason": "Low health score (35) - needs test coverage tracking",
           "effort": "moderate",
           "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
         },
         {
           "template": "container-scan.yml",
@@ -1070,25 +658,11 @@
           "impact": "Detects and reports unused code with Knip"
         },
         {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
           "template": "pr-size-limit.yml",
           "priority": "high",
           "reason": "Enforce maintainable PR sizes",
           "effort": "minimal",
           "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
         },
         {
           "template": "type-coverage.yml",
@@ -1125,7 +699,7 @@
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
       "healthScore": 0,
       "stack": "nextjs",
-      "ciFailureRate": 25,
+      "ciFailureRate": 20,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1133,13 +707,6 @@
           "reason": "No CI workflow detected",
           "effort": "moderate",
           "impact": "Enables automated testing and deployment"
-        },
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
         },
         {
           "template": "auto-label.yml",
@@ -1170,13 +737,6 @@
           "impact": "Tracks test coverage over time and prevents regressions"
         },
         {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
           "template": "container-scan.yml",
           "priority": "high",
           "reason": "Enhance container security scanning",
@@ -1217,106 +777,6 @@
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "magic-migration",
-      "fullName": "thonyAGP/magic-migration",
-      "healthScore": 0,
-      "stack": "node",
-      "ciFailureRate": 54,
-      "recommendations": [
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
-          "template": "auto-label.yml",
-          "priority": "high",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "high",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "medium",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "release-drafter.yml",
-          "priority": "medium",
-          "reason": "Auto-generate release notes",
-          "effort": "minimal",
-          "impact": "Auto-drafts release notes from PRs and commits"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "medium",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -1325,7 +785,7 @@
       "fullName": "thonyAGP/Site_Greg-Assainissement",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 25,
+      "ciFailureRate": 20,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1333,13 +793,6 @@
           "reason": "No CI workflow detected",
           "effort": "moderate",
           "impact": "Enables automated testing and deployment"
-        },
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
         },
         {
           "template": "auto-label.yml",
@@ -1370,13 +823,6 @@
           "impact": "Tracks test coverage over time and prevents regressions"
         },
         {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
           "template": "container-scan.yml",
           "priority": "high",
           "reason": "Enhance container security scanning",
@@ -1389,285 +835,6 @@
           "reason": "Detect and remove unused code",
           "effort": "minimal",
           "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "claude-cli-wrapper",
-      "fullName": "thonyAGP/claude-cli-wrapper",
-      "healthScore": 35,
-      "stack": "node",
-      "ciFailureRate": 50,
-      "recommendations": [
-        {
-          "template": "ci-standard.yml",
-          "priority": "critical",
-          "reason": "No CI workflow detected",
-          "effort": "moderate",
-          "impact": "Enables automated testing and deployment"
-        },
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
-          "template": "auto-label.yml",
-          "priority": "high",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "coverage-tracking.yml",
-          "priority": "high",
-          "reason": "Low health score (35) - needs test coverage tracking",
-          "effort": "moderate",
-          "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "high",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "MCP_Quota_Claude",
-      "fullName": "thonyAGP/MCP_Quota_Claude",
-      "healthScore": 35,
-      "stack": "node",
-      "ciFailureRate": 50,
-      "recommendations": [
-        {
-          "template": "ci-standard.yml",
-          "priority": "critical",
-          "reason": "No CI workflow detected",
-          "effort": "moderate",
-          "impact": "Enables automated testing and deployment"
-        },
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
-          "template": "auto-label.yml",
-          "priority": "high",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "coverage-tracking.yml",
-          "priority": "high",
-          "reason": "Low health score (35) - needs test coverage tracking",
-          "effort": "moderate",
-          "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "high",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "Site_1970_Plomberie",
-      "fullName": "thonyAGP/Site_1970_Plomberie",
-      "healthScore": 35,
-      "stack": "node",
-      "ciFailureRate": 50,
-      "recommendations": [
-        {
-          "template": "ci-standard.yml",
-          "priority": "critical",
-          "reason": "No CI workflow detected",
-          "effort": "moderate",
-          "impact": "Enables automated testing and deployment"
-        },
-        {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
-          "template": "auto-label.yml",
-          "priority": "high",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "coverage-tracking.yml",
-          "priority": "high",
-          "reason": "Low health score (35) - needs test coverage tracking",
-          "effort": "moderate",
-          "impact": "Tracks test coverage over time and prevents regressions"
-        },
-        {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "high",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
         },
         {
           "template": "pr-size-limit.yml",
@@ -1735,13 +902,6 @@
           "impact": "Tracks test coverage over time and prevents regressions"
         },
         {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
           "template": "container-scan.yml",
           "priority": "high",
           "reason": "Enhance container security scanning",
@@ -1793,6 +953,524 @@
       ]
     },
     {
+      "repo": "LB2I-Fiscal-Manager",
+      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
+      "healthScore": 0,
+      "stack": "nextjs",
+      "ciFailureRate": 0,
+      "recommendations": [
+        {
+          "template": "ci-standard.yml",
+          "priority": "critical",
+          "reason": "No CI workflow detected",
+          "effort": "moderate",
+          "impact": "Enables automated testing and deployment"
+        },
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "lighthouse.yml",
+          "priority": "high",
+          "reason": "Low health score (0) - needs performance tracking",
+          "effort": "moderate",
+          "impact": "Tracks performance, accessibility, and SEO metrics"
+        },
+        {
+          "template": "accessibility-check.yml",
+          "priority": "high",
+          "reason": "No accessibility scanning detected",
+          "effort": "minimal",
+          "impact": "Ensures WCAG compliance and accessibility standards"
+        },
+        {
+          "template": "coverage-tracking.yml",
+          "priority": "high",
+          "reason": "Low health score (0) - needs test coverage tracking",
+          "effort": "moderate",
+          "impact": "Tracks test coverage over time and prevents regressions"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "high",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "medium",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        }
+      ]
+    },
+    {
+      "repo": "zentra",
+      "fullName": "thonyAGP/zentra",
+      "healthScore": 0,
+      "stack": "node",
+      "ciFailureRate": 5,
+      "recommendations": [
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+        },
+        {
+          "template": "coverage-tracking.yml",
+          "priority": "high",
+          "reason": "Low health score (0) - needs test coverage tracking",
+          "effort": "moderate",
+          "impact": "Tracks test coverage over time and prevents regressions"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "high",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "medium",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        },
+        {
+          "template": "release-drafter.yml",
+          "priority": "medium",
+          "reason": "Auto-generate release notes",
+          "effort": "minimal",
+          "impact": "Auto-drafts release notes from PRs and commits"
+        },
+        {
+          "template": "mutation-testing.yml",
+          "priority": "medium",
+          "reason": "Validate test quality",
+          "effort": "significant",
+          "impact": "Validates test quality by introducing code mutations"
+        }
+      ]
+    },
+    {
+      "repo": "claude-cli-wrapper",
+      "fullName": "thonyAGP/claude-cli-wrapper",
+      "healthScore": 35,
+      "stack": "node",
+      "ciFailureRate": 50,
+      "recommendations": [
+        {
+          "template": "ci-standard.yml",
+          "priority": "critical",
+          "reason": "No CI workflow detected",
+          "effort": "moderate",
+          "impact": "Enables automated testing and deployment"
+        },
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "coverage-tracking.yml",
+          "priority": "high",
+          "reason": "Low health score (35) - needs test coverage tracking",
+          "effort": "moderate",
+          "impact": "Tracks test coverage over time and prevents regressions"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "supply-chain-security.yml",
+          "priority": "high",
+          "reason": "Secure npm dependency chain",
+          "effort": "minimal",
+          "impact": "Secures npm dependencies with SBOM and license checks"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "high",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "low",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        }
+      ]
+    },
+    {
+      "repo": "Email_Assistant",
+      "fullName": "thonyAGP/Email_Assistant",
+      "healthScore": 35,
+      "stack": "node",
+      "ciFailureRate": 17,
+      "recommendations": [
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "coverage-tracking.yml",
+          "priority": "high",
+          "reason": "Low health score (35) - needs test coverage tracking",
+          "effort": "moderate",
+          "impact": "Tracks test coverage over time and prevents regressions"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "high",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "low",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        },
+        {
+          "template": "release-drafter.yml",
+          "priority": "low",
+          "reason": "Auto-generate release notes",
+          "effort": "minimal",
+          "impact": "Auto-drafts release notes from PRs and commits"
+        },
+        {
+          "template": "mutation-testing.yml",
+          "priority": "low",
+          "reason": "Validate test quality",
+          "effort": "significant",
+          "impact": "Validates test quality by introducing code mutations"
+        }
+      ]
+    },
+    {
+      "repo": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
+      "healthScore": 0,
+      "stack": "node",
+      "ciFailureRate": 51,
+      "recommendations": [
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "high",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "medium",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        },
+        {
+          "template": "release-drafter.yml",
+          "priority": "medium",
+          "reason": "Auto-generate release notes",
+          "effort": "minimal",
+          "impact": "Auto-drafts release notes from PRs and commits"
+        },
+        {
+          "template": "mutation-testing.yml",
+          "priority": "medium",
+          "reason": "Validate test quality",
+          "effort": "significant",
+          "impact": "Validates test quality by introducing code mutations"
+        }
+      ]
+    },
+    {
+      "repo": "MCP_Quota_Claude",
+      "fullName": "thonyAGP/MCP_Quota_Claude",
+      "healthScore": 35,
+      "stack": "node",
+      "ciFailureRate": 50,
+      "recommendations": [
+        {
+          "template": "ci-standard.yml",
+          "priority": "critical",
+          "reason": "No CI workflow detected",
+          "effort": "moderate",
+          "impact": "Enables automated testing and deployment"
+        },
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "coverage-tracking.yml",
+          "priority": "high",
+          "reason": "Low health score (35) - needs test coverage tracking",
+          "effort": "moderate",
+          "impact": "Tracks test coverage over time and prevents regressions"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "supply-chain-security.yml",
+          "priority": "high",
+          "reason": "Secure npm dependency chain",
+          "effort": "minimal",
+          "impact": "Secures npm dependencies with SBOM and license checks"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "high",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "low",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        }
+      ]
+    },
+    {
+      "repo": "Site_1970_Plomberie",
+      "fullName": "thonyAGP/Site_1970_Plomberie",
+      "healthScore": 35,
+      "stack": "node",
+      "ciFailureRate": 50,
+      "recommendations": [
+        {
+          "template": "ci-standard.yml",
+          "priority": "critical",
+          "reason": "No CI workflow detected",
+          "effort": "moderate",
+          "impact": "Enables automated testing and deployment"
+        },
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "coverage-tracking.yml",
+          "priority": "high",
+          "reason": "Low health score (35) - needs test coverage tracking",
+          "effort": "moderate",
+          "impact": "Tracks test coverage over time and prevents regressions"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "supply-chain-security.yml",
+          "priority": "high",
+          "reason": "Secure npm dependency chain",
+          "effort": "minimal",
+          "impact": "Secures npm dependencies with SBOM and license checks"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "high",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "low",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        }
+      ]
+    },
+    {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
       "healthScore": 0,
@@ -1807,13 +1485,6 @@
           "impact": "Enables automated testing and deployment"
         },
         {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
           "template": "auto-label.yml",
           "priority": "high",
           "reason": "Would improve issue/PR organization",
@@ -1821,25 +1492,11 @@
           "impact": "Automatically labels issues and PRs for better organization"
         },
         {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
           "template": "container-scan.yml",
           "priority": "high",
           "reason": "Enhance container security scanning",
           "effort": "moderate",
           "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
         },
         {
           "template": "pr-size-limit.yml",
@@ -1872,13 +1529,6 @@
           "impact": "Enables automated testing and deployment"
         },
         {
-          "template": "gitleaks.yml",
-          "priority": "high",
-          "reason": "No secret scanning detected",
-          "effort": "minimal",
-          "impact": "Prevents accidental secret leaks in commits"
-        },
-        {
           "template": "auto-label.yml",
           "priority": "high",
           "reason": "Would improve issue/PR organization",
@@ -1886,25 +1536,11 @@
           "impact": "Automatically labels issues and PRs for better organization"
         },
         {
-          "template": "renovate.json",
-          "priority": "high",
-          "reason": "No dependency update automation detected",
-          "effort": "minimal",
-          "impact": "Automated dependency updates with intelligent grouping"
-        },
-        {
           "template": "container-scan.yml",
           "priority": "high",
           "reason": "Enhance container security scanning",
           "effort": "moderate",
           "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "semgrep.yml",
-          "priority": "high",
-          "reason": "No SAST (static analysis) detected",
-          "effort": "minimal",
-          "impact": "Static analysis for bugs, security issues, and anti-patterns"
         },
         {
           "template": "pr-size-limit.yml",
@@ -1988,20 +1624,12 @@
     }
   ],
   "summary": {
-    "totalRecommendations": 250,
+    "totalRecommendations": 198,
     "criticalCount": 11,
-    "highCount": 189,
-    "mediumCount": 24,
+    "highCount": 139,
+    "mediumCount": 22,
     "lowCount": 26,
     "topTemplates": [
-      {
-        "template": "gitleaks.yml",
-        "count": 19
-      },
-      {
-        "template": "renovate.json",
-        "count": 19
-      },
       {
         "template": "auto-label.yml",
         "count": 19
@@ -2019,10 +1647,6 @@
         "count": 19
       },
       {
-        "template": "semgrep.yml",
-        "count": 17
-      },
-      {
         "template": "type-coverage.yml",
         "count": 17
       },
@@ -2031,8 +1655,20 @@
         "count": 17
       },
       {
+        "template": "coverage-tracking.yml",
+        "count": 16
+      },
+      {
+        "template": "ci-standard.yml",
+        "count": 11
+      },
+      {
         "template": "supply-chain-security.yml",
-        "count": 17
+        "count": 10
+      },
+      {
+        "template": "lighthouse.yml",
+        "count": 8
       }
     ],
     "topRepo": "au-marais",

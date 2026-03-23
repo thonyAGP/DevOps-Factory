@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-23T18:40:15.870Z",
+  "timestamp": "2026-03-23T18:47:21.781Z",
   "period": "30-day window",
   "repos": [
     {
@@ -714,12 +714,36 @@
       ],
       "deployments": [
         {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "c3c1d61133b5beba3fefc7ea03447cc78a738949",
+          "status": "success",
+          "timestamp": "2026-03-23T18:45:55Z",
+          "workflow": "Monitor Production"
+        },
+        {
           "branch": "devops-factory/add-workflows",
           "repo": "thonyAGP/Email_Assistant",
           "sha": "bf51ffb88caeb872dc12b014f338384fd37f13d0",
           "status": "success",
           "timestamp": "2026-03-23T18:38:43Z",
           "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "bf51ffb88caeb872dc12b014f338384fd37f13d0",
+          "status": "success",
+          "timestamp": "2026-03-23T18:38:43Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "bf51ffb88caeb872dc12b014f338384fd37f13d0",
+          "status": "success",
+          "timestamp": "2026-03-23T18:38:43Z",
+          "workflow": "Qodo Merge - PR Review"
         },
         {
           "branch": "master",
@@ -1016,14 +1040,6 @@
           "status": "success",
           "timestamp": "2026-03-22T16:36:19Z",
           "workflow": "Qodo Merge - PR Review"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-22T16:36:16Z",
-          "workflow": "Qodo Merge - PR Review"
         }
       ],
       "securityFindings": [],
@@ -1061,6 +1077,14 @@
           "status": "success",
           "timestamp": "2026-03-23T18:39:02Z",
           "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/LB2I-Fiscal-Manager",
+          "sha": "68a9de157536ac7b4e886117788141c22db7c65f",
+          "status": "success",
+          "timestamp": "2026-03-23T18:39:02Z",
+          "workflow": "Security Scan (SAST)"
         },
         {
           "branch": "devops-factory/add-security-workflows",
@@ -1115,6 +1139,22 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/Livret_accueil_Au-Marais",
+          "sha": "f1fdcd5992b664446fd51cfc20e5c39451a9b30f",
+          "status": "success",
+          "timestamp": "2026-03-23T18:41:33Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/Livret_accueil_Au-Marais",
+          "sha": "f1fdcd5992b664446fd51cfc20e5c39451a9b30f",
+          "status": "success",
+          "timestamp": "2026-03-23T18:41:33Z",
+          "workflow": "Security Scan (SAST)"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/Livret_accueil_Au-Marais",
@@ -1182,7 +1222,23 @@
           "sha": "9ed0ada463f794ca5f78cc4e9453742624b93bde",
           "status": "success",
           "timestamp": "2026-03-23T18:39:23Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "9ed0ada463f794ca5f78cc4e9453742624b93bde",
+          "status": "success",
+          "timestamp": "2026-03-23T18:39:23Z",
           "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "9ed0ada463f794ca5f78cc4e9453742624b93bde",
+          "status": "success",
+          "timestamp": "2026-03-23T18:39:23Z",
+          "workflow": "CI"
         },
         {
           "branch": "master",
@@ -1325,6 +1381,22 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "86d8a143952afac0373ecbe1961cf43004b12ae8",
+          "status": "success",
+          "timestamp": "2026-03-23T18:40:07Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "86d8a143952afac0373ecbe1961cf43004b12ae8",
+          "status": "success",
+          "timestamp": "2026-03-23T18:40:07Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "devops-factory/add-security-workflows",
           "repo": "thonyAGP/magic-migration",
@@ -1588,14 +1660,6 @@
           "status": "success",
           "timestamp": "2026-02-25T20:19:08Z",
           "workflow": "Deploy OpenSpec Viewer"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/magic-migration",
-          "sha": "6d9811a9dad8ef6ef7a5227026d47e54c85fe73b",
-          "status": "success",
-          "timestamp": "2026-02-25T20:08:55Z",
-          "workflow": "Deploy OpenSpec Viewer"
         }
       ],
       "securityFindings": [],
@@ -1643,6 +1707,14 @@
       ],
       "deployments": [
         {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/MCP_Quota_Claude",
+          "sha": "74179a417217ea598dff189d88cb205ec41adbf5",
+          "status": "success",
+          "timestamp": "2026-03-23T18:40:31Z",
+          "workflow": "Secret Scanning"
+        },
+        {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
           "repo": "thonyAGP/MCP_Quota_Claude",
           "sha": "536d2d8109557c22007bfeefb9c1c20d69724dc7",
@@ -1687,6 +1759,14 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/Site_1970_Plomberie",
+          "sha": "1997ce5eb1adb45941f0fec6747b7397fda96405",
+          "status": "success",
+          "timestamp": "2026-03-23T18:41:03Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
           "repo": "thonyAGP/Site_1970_Plomberie",
@@ -1740,6 +1820,22 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/Site_Greg-Assainissement",
+          "sha": "9ce9635d2f6f152b75fdbf1877ac1b8dd9c0d6ad",
+          "status": "success",
+          "timestamp": "2026-03-23T18:41:27Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/Site_Greg-Assainissement",
+          "sha": "9ce9635d2f6f152b75fdbf1877ac1b8dd9c0d6ad",
+          "status": "success",
+          "timestamp": "2026-03-23T18:41:27Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/Site_Greg-Assainissement",
@@ -1801,6 +1897,14 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "9e41f800b01b7ffa55ff9d7c2e17063154b74686",
+          "status": "success",
+          "timestamp": "2026-03-23T18:41:43Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
           "repo": "thonyAGP/SqlConnectionTest",
@@ -2051,6 +2155,22 @@
       ],
       "deployments": [
         {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/zentra",
+          "sha": "5500476ec2692ba6a9cf68d7c9489f7d11d31ac3",
+          "status": "success",
+          "timestamp": "2026-03-23T18:43:15Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/zentra",
+          "sha": "5500476ec2692ba6a9cf68d7c9489f7d11d31ac3",
+          "status": "success",
+          "timestamp": "2026-03-23T18:43:15Z",
+          "workflow": "Secret Scanning"
+        },
+        {
           "branch": "devops-factory/add-security-workflows",
           "repo": "thonyAGP/zentra",
           "sha": "8f56af3009593cf685c77b916da980bfd7cd0fc9",
@@ -2169,14 +2289,6 @@
           "status": "success",
           "timestamp": "2026-03-16T08:00:57Z",
           "workflow": "npm_and_yarn in / for next, reflect-metadata, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, @anthropic-ai/sdk - Update #1280539937"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/zentra",
-          "sha": "1456c16b26f5be974b1117547f9c3104fca83bf8",
-          "status": "success",
-          "timestamp": "2026-03-14T22:31:47Z",
-          "workflow": "npm_and_yarn in /. - Update #1279521487"
         }
       ],
       "securityFindings": [],
@@ -2191,7 +2303,7 @@
     "totalPRsMerged": 54,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 187,
+    "totalDeployments": 201,
     "avgComplianceScore": 20,
     "reposWithBranchProtection": 0,
     "reposWithCI": 19
