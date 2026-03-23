@@ -30,7 +30,7 @@ const AI_PROVIDERS = [
     name: 'Cerebras',
     envKey: 'CEREBRAS_API_KEY',
     url: 'https://api.cerebras.ai/v1/chat/completions',
-    model: 'llama-3.3-70b',
+    model: 'llama3.1-8b',
     timeout: 90_000,
   },
 ] as const;
