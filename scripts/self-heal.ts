@@ -960,6 +960,18 @@ const isLikelyFlaky = (jobs: FailedJob[]): boolean => {
   return jobs.some((j) => flakyPatterns.some((p) => j.logs.includes(p)));
 };
 
+/** Configure git remote auth for push after gh clone */
+const configureGitAuth = (tmpDir: string, repo: string) => {
+  const ghToken = process.env.GH_TOKEN || process.env.GITHUB_TOKEN || '';
+  if (ghToken) {
+    execSync(`git remote set-url origin https://x-access-token:${ghToken}@github.com/${repo}.git`, {
+      cwd: tmpDir,
+      encoding: 'utf-8',
+      stdio: 'pipe',
+    });
+  }
+};
+
 /** Deterministic fix for lockfile issues: clone repo, install, update lockfile, create PR */
 const fixLockfileIssues = (repo: string, runId: string, defaultBranch: string): string | null => {
   const tmpDir =
@@ -1034,6 +1046,7 @@ const fixLockfileIssues = (repo: string, runId: string, defaultBranch: string): 
     const branch = `ai-fix/lockfile-${Date.now()}`;
     git('git config user.name "DevOps Factory Bot"');
     git('git config user.email "devops-factory[bot]@users.noreply.github.com"');
+    configureGitAuth(tmpDir, repo);
     git(`git checkout -b ${branch}`);
     git('git add -A');
     git(
@@ -1226,6 +1239,9 @@ const fixPrettierIssues = (repo: string, runId: string, defaultBranch: string): 
     const branch = `ai-fix/prettier-${Date.now()}`;
     git('git config user.name "DevOps Factory Bot"');
     git('git config user.email "devops-factory[bot]@users.noreply.github.com"');
+
+    configureGitAuth(tmpDir, repo);
+
     git(`git checkout -b ${branch}`);
     git('git add -A');
     git(`git commit -m "style: auto-fix formatting with Prettier (${fileCount} files)"`);
