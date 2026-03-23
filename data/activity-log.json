@@ -2,20 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-02-21T02:33:49.621Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "16 projects, avg health 65",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-02-21T03:07:38.525Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "3/5 passing. 1 failures, 1 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-02-21T04:00:10.710Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -88954,6 +88940,21 @@
       "action": "recommendations-generated",
       "details": "251 recommendations across 27 repos (11 critical, 184 high)",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-03-23T03:27:31.025Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-triggered",
+      "target": "CI Health Check",
+      "details": "Self-heal for workflow (run 23418836918)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T03:27:31.059Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "4/5 passing. 1 failures, 0 partial. 1 self-heals",
+      "status": "error"
     }
   ]
 }
