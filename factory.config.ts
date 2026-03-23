@@ -452,6 +452,32 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
   },
 ];
 
+export type NotifyEvent =
+  | 'pr_created'
+  | 'auto_merge'
+  | 'circuit_breaker'
+  | 'healing_failed'
+  | 'healing_verified'
+  | 'repo_promoted'
+  | 'pattern_degraded';
+
+export interface WebhookConfig {
+  url: string; // Discord/Telegram/Slack/custom webhook URL
+  events: NotifyEvent[]; // Which events trigger a notification
+  enabled: boolean;
+}
+
+/**
+ * Webhook configuration for push notifications.
+ * Set url to your Discord/Telegram/Slack webhook.
+ * Use env var FACTORY_WEBHOOK_URL to override at runtime.
+ */
+export const WEBHOOK_CONFIG: WebhookConfig = {
+  url: '', // Set via FACTORY_WEBHOOK_URL env var or hardcode here
+  events: ['pr_created', 'auto_merge', 'circuit_breaker', 'healing_failed', 'pattern_degraded'],
+  enabled: true,
+};
+
 export const GITHUB_OWNER = 'thonyAGP';
 
 export const DASHBOARD_URL = 'https://thonyagp.github.io/DevOps-Factory/';

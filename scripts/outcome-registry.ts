@@ -19,14 +19,29 @@ import { KNOWN_PROJECTS } from '../factory.config.js';
 import { devNull } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
 import { getCached, setCache } from './cache-manager.js';
+import { notify } from './notify.js';
+import { indexFix, cleanupDegradedPatterns } from './knowledge-graph.js';
 
 // --- Types ---
+
+type CloseReason =
+  | 'merged' // Successfully merged
+  | 'healing_verified' // Merged AND CI confirmed green after merge
+  | 'healing_failed' // Merged BUT CI still red after merge (bad fix)
+  | 'reverted' // Merged then reverted (detected via revert commits)
+  | 'rejected' // Closed with fix-rejected label (explicit negative)
+  | 'superseded' // Closed because a newer fix PR replaced it
+  | 'manual_close' // Closed without label (neutral)
+  | 'open' // Still open
+  | 'unknown'; // Legacy entries without closeReason
 
 interface OutcomeEntry {
   repo: string;
   prNumber: number;
   patternId: string;
   state: 'merged' | 'closed' | 'open';
+  rejected: boolean; // true if label `fix-rejected` was applied (strong negative signal)
+  closeReason: CloseReason;
   createdAt: string;
   closedAt: string | null;
   mergedAt: string | null;
@@ -36,6 +51,9 @@ interface PatternStat {
   total: number;
   merged: number;
   closed: number;
+  rejected: number; // PRs explicitly marked fix-rejected (strong negative signal)
+  healingFailed: number; // PRs merged but CI still red after (bad fix)
+  reverted: number; // PRs merged then reverted
   successRate: number;
   autoMergeEligible: boolean;
 }
@@ -91,6 +109,7 @@ interface PatternDB {
 const SCORES_PATH = 'data/pattern-scores.json';
 const REGISTRY_PATH = 'data/outcome-registry.json';
 const PATTERN_DB_PATH = 'data/patterns.json';
+const FACTORY_CONFIG_PATH = 'factory.config.ts';
 const LOOKBACK_DAYS = 7;
 
 // Promotion/demotion thresholds
@@ -98,6 +117,10 @@ const MIN_PRS_FOR_ADJUSTMENT = 5;
 const PROMOTE_THRESHOLD = 0.85;
 const DEGRADE_THRESHOLD = 0.3;
 const MIN_CONFIDENCE = 0.1;
+
+// Repo state promotion thresholds
+const MIN_MERGED_FOR_GRADUATION = 3; // 3+ merged PRs to graduate
+const MIN_SUCCESS_RATE_FOR_GRADUATION = 0.7; // 70%+ success rate
 
 // --- Shell helper ---
 
@@ -146,6 +169,19 @@ const isFactoryPR = (author: string, body: string, labels: string[]): boolean =>
   if (/DevOps Factory Bot/i.test(author)) return true;
   if (/self-heal/i.test(body)) return true;
   return false;
+};
+
+// --- Close reason inference ---
+
+const inferCloseReason = (
+  state: OutcomeEntry['state'],
+  labels: string[],
+  isMerged: boolean
+): CloseReason => {
+  if (state === 'open') return 'open';
+  if (isMerged) return 'merged'; // May be upgraded to healing_verified/healing_failed/reverted later
+  if (labels.includes('fix-rejected')) return 'rejected';
+  return 'manual_close';
 };
 
 // --- GitHub API ---
@@ -224,6 +260,8 @@ const fetchRecentPRs = (repo: string): OutcomeEntry[] => {
         prNumber: pr.number,
         patternId: extractPatternId(pr.title, body),
         state: prState,
+        rejected: labels.includes('fix-rejected'),
+        closeReason: inferCloseReason(prState, labels, isMerged),
         createdAt: pr.createdAt,
         closedAt: pr.closedAt ?? null,
         mergedAt: pr.mergedAt ?? null,
@@ -271,6 +309,8 @@ const fetchRecentPRs = (repo: string): OutcomeEntry[] => {
         prNumber: pr.number,
         patternId: extractPatternId(pr.title, body),
         state: prState,
+        rejected: labels.includes('fix-rejected'),
+        closeReason: inferCloseReason(prState, labels, isMerged),
         createdAt: pr.createdAt,
         closedAt: pr.closedAt ?? null,
         mergedAt: pr.mergedAt ?? null,
@@ -331,6 +371,9 @@ const calculatePatternStats = (outcomes: OutcomeEntry[]): Record<string, Pattern
         total: 0,
         merged: 0,
         closed: 0,
+        rejected: 0,
+        healingFailed: 0,
+        reverted: 0,
         successRate: 0,
         autoMergeEligible: false,
       };
@@ -345,6 +388,16 @@ const calculatePatternStats = (outcomes: OutcomeEntry[]): Record<string, Pattern
       stat.closed++;
     }
     // 'open' PRs are counted in total but not in merged/closed
+
+    if (outcome.rejected) {
+      stat.rejected++;
+    }
+    if (outcome.closeReason === 'healing_failed') {
+      stat.healingFailed++;
+    }
+    if (outcome.closeReason === 'reverted') {
+      stat.reverted++;
+    }
   }
 
   // Calculate success rates based on resolved PRs (merged + closed)
@@ -374,6 +427,9 @@ const enrichWithAuditData = (
         total: auditScore.total,
         merged: auditScore.merged,
         closed: auditScore.closed,
+        rejected: 0,
+        healingFailed: 0,
+        reverted: 0,
         successRate: resolved > 0 ? Math.round((auditScore.merged / resolved) * 1000) / 1000 : 0,
         autoMergeEligible: false,
       };
@@ -402,10 +458,12 @@ const enrichWithAuditData = (
 
 // --- Update pattern confidence in patterns.json ---
 
-const updatePatternConfidence = (patternStats: Record<string, PatternStat>): number => {
+const updatePatternConfidence = (
+  patternStats: Record<string, PatternStat>
+): { updated: number; degradedIds: string[] } => {
   if (!existsSync(PATTERN_DB_PATH)) {
     console.log('  No patterns.json found, skipping confidence update');
-    return 0;
+    return { updated: 0, degradedIds: [] };
   }
 
   let db: PatternDB;
@@ -413,10 +471,11 @@ const updatePatternConfidence = (patternStats: Record<string, PatternStat>): num
     db = JSON.parse(readFileSync(PATTERN_DB_PATH, 'utf-8')) as PatternDB;
   } catch {
     console.warn('  Failed to parse patterns.json');
-    return 0;
+    return { updated: 0, degradedIds: [] };
   }
 
   let updated = 0;
+  const degradedIds: string[] = [];
 
   for (const pattern of db.patterns) {
     const stat = patternStats[pattern.id];
@@ -424,6 +483,29 @@ const updatePatternConfidence = (patternStats: Record<string, PatternStat>): num
 
     const observedRate = stat.successRate;
     let newConfidence = pattern.confidence;
+
+    // Strong penalties for negative signals (rejected, reverted, healing_failed)
+    const negativeCount = stat.rejected + stat.reverted;
+    const healFailCount = stat.healingFailed;
+    if (negativeCount > 0 || healFailCount > 0) {
+      const rejectionPenalty = negativeCount * 0.15; // -15% per rejection/revert
+      const healFailPenalty = healFailCount * 0.1; // -10% per healing failure
+      const totalPenalty = rejectionPenalty + healFailPenalty;
+      newConfidence = Math.max(MIN_CONFIDENCE, pattern.confidence - totalPenalty);
+      const reasons: string[] = [];
+      if (stat.rejected > 0) reasons.push(`${stat.rejected} rejected`);
+      if (stat.reverted > 0) reasons.push(`${stat.reverted} reverted`);
+      if (healFailCount > 0) reasons.push(`${healFailCount} heal-failed`);
+      console.log(
+        `  PENALTY ${pattern.id}: ${pattern.confidence} -> ${newConfidence} (${reasons.join(', ')}, -${(totalPenalty * 100).toFixed(0)}%)`
+      );
+      newConfidence = Math.max(MIN_CONFIDENCE, Math.min(0.99, newConfidence));
+      if (newConfidence !== pattern.confidence) {
+        pattern.confidence = newConfidence;
+        updated++;
+      }
+      continue;
+    }
 
     if (stat.total >= MIN_PRS_FOR_ADJUSTMENT && observedRate >= PROMOTE_THRESHOLD) {
       // Promote: set confidence to observed rate
@@ -437,6 +519,12 @@ const updatePatternConfidence = (patternStats: Record<string, PatternStat>): num
       console.log(
         `  DEGRADE ${pattern.id}: ${pattern.confidence} -> ${newConfidence} (${stat.merged}/${stat.total}, ${(observedRate * 100).toFixed(1)}%)`
       );
+      notify('pattern_degraded', {
+        patternId: pattern.id,
+        confidence: newConfidence,
+        message: `${stat.merged}/${stat.total} merged (${(observedRate * 100).toFixed(1)}%)`,
+      });
+      if (newConfidence < 0.3) degradedIds.push(pattern.id);
     } else {
       // Not enough data or in the middle range: blend 30% existing + 70% observed
       const blended = Math.round((0.3 * pattern.confidence + 0.7 * observedRate) * 100) / 100;
@@ -465,7 +553,251 @@ const updatePatternConfidence = (patternStats: Record<string, PatternStat>): num
     console.log('\n  No confidence scores changed');
   }
 
-  return updated;
+  return { updated, degradedIds };
+};
+
+// --- Revert detection: check if merged PRs were reverted ---
+
+/**
+ * Scan recent commits on the default branch for "Revert" commits that reference
+ * a merged healing PR. If found, mark the outcome as 'reverted'.
+ */
+const detectReverts = (outcomes: OutcomeEntry[]): number => {
+  const mergedOutcomes = outcomes.filter(
+    (o) => o.state === 'merged' && o.closeReason !== 'reverted'
+  );
+  if (mergedOutcomes.length === 0) return 0;
+
+  // Group by repo for efficient API calls
+  const byRepo = new Map<string, OutcomeEntry[]>();
+  for (const o of mergedOutcomes) {
+    const list = byRepo.get(o.repo) || [];
+    list.push(o);
+    byRepo.set(o.repo, list);
+  }
+
+  let reverted = 0;
+
+  for (const [repo, entries] of byRepo) {
+    // Fetch recent commits looking for "Revert" in the message
+    const raw = sh(
+      `gh api repos/${repo}/commits?per_page=50 --jq '.[].commit.message' 2>${devNull}`,
+      30_000
+    );
+    if (!raw) continue;
+
+    const commitMessages = raw.split('\n');
+    const revertMessages = commitMessages.filter((m) => /^revert/i.test(m.trim()));
+
+    for (const entry of entries) {
+      // Check if any revert commit mentions this PR number
+      const prRef = `#${entry.prNumber}`;
+      const isReverted = revertMessages.some((m) => m.includes(prRef));
+
+      if (isReverted) {
+        entry.closeReason = 'reverted';
+        entry.rejected = true; // Treat reverts as strong negative signal
+        console.log(`  [REVERT] ${repo} PR #${entry.prNumber} was reverted`);
+        reverted++;
+      }
+    }
+  }
+
+  return reverted;
+};
+
+// --- Healing verification: check CI after merge ---
+
+const HEALING_VERIFICATION_HOURS = 48;
+
+/**
+ * For recently merged healing PRs (< 48h), check if the repo CI is currently passing.
+ * If CI is red after merge → healing_failed (negative signal).
+ * If CI is green → healing_verified (positive signal).
+ */
+const verifyHealingOutcomes = (outcomes: OutcomeEntry[]): { verified: number; failed: number } => {
+  const now = Date.now();
+  const windowMs = HEALING_VERIFICATION_HOURS * 60 * 60 * 1000;
+
+  const recentMerged = outcomes.filter((o) => {
+    if (o.state !== 'merged') return false;
+    if (o.closeReason === 'healing_verified' || o.closeReason === 'healing_failed') return false;
+    if (o.closeReason === 'reverted') return false;
+    if (!o.mergedAt) return false;
+    const mergedTime = new Date(o.mergedAt).getTime();
+    return now - mergedTime < windowMs;
+  });
+
+  if (recentMerged.length === 0) return { verified: 0, failed: 0 };
+
+  // Group by repo — one CI check per repo
+  const byRepo = new Map<string, OutcomeEntry[]>();
+  for (const o of recentMerged) {
+    const list = byRepo.get(o.repo) || [];
+    list.push(o);
+    byRepo.set(o.repo, list);
+  }
+
+  let verified = 0;
+  let failed = 0;
+
+  for (const [repo, entries] of byRepo) {
+    // Get latest CI run status on default branch
+    const raw = sh(
+      `gh run list --repo ${repo} --branch master --limit 1 --json conclusion 2>${devNull}`
+    );
+    if (!raw) {
+      // Try 'main' branch
+      const rawMain = sh(
+        `gh run list --repo ${repo} --branch main --limit 1 --json conclusion 2>${devNull}`
+      );
+      if (!rawMain) continue;
+      try {
+        const runs = JSON.parse(rawMain) as Array<{ conclusion: string }>;
+        if (runs.length === 0) continue;
+        const ciPassing = runs[0].conclusion === 'success';
+        for (const entry of entries) {
+          entry.closeReason = ciPassing ? 'healing_verified' : 'healing_failed';
+          if (ciPassing) verified++;
+          else failed++;
+        }
+      } catch {
+        continue;
+      }
+      continue;
+    }
+
+    try {
+      const runs = JSON.parse(raw) as Array<{ conclusion: string }>;
+      if (runs.length === 0) continue;
+
+      const ciPassing = runs[0].conclusion === 'success';
+
+      for (const entry of entries) {
+        entry.closeReason = ciPassing ? 'healing_verified' : 'healing_failed';
+        if (ciPassing) {
+          verified++;
+          console.log(`  [VERIFIED] ${repo} PR #${entry.prNumber} — CI green after merge`);
+          notify('healing_verified', {
+            repo,
+            prNumber: entry.prNumber,
+            patternId: entry.patternId,
+          });
+          // Feed knowledge graph with verified fix
+          if (entry.patternId) {
+            const project = KNOWN_PROJECTS.find((p) => p.repo === repo);
+            try {
+              const diff = sh(`gh pr diff ${entry.prNumber} --repo ${repo} 2>${devNull}`);
+              const filesRaw = sh(
+                `gh pr view ${entry.prNumber} --repo ${repo} --json files --jq ".files[].path" 2>${devNull}`
+              );
+              indexFix({
+                patternId: entry.patternId,
+                stack: project?.stack ?? 'unknown',
+                filePaths: filesRaw ? filesRaw.split('\n').filter(Boolean) : [],
+                diff: diff.slice(0, 5000), // Cap diff size
+                repo,
+                prNumber: entry.prNumber,
+                confidence: 0.9, // Verified fix = high confidence
+              });
+            } catch {
+              /* KG indexing is best-effort */
+            }
+          }
+        } else {
+          failed++;
+          console.log(`  [HEAL FAILED] ${repo} PR #${entry.prNumber} — CI still red after merge`);
+          notify('healing_failed', { repo, prNumber: entry.prNumber, patternId: entry.patternId });
+        }
+      }
+    } catch {
+      continue;
+    }
+  }
+
+  return { verified, failed };
+};
+
+// --- Auto-promote repos SUPERVISED → GRADUATED ---
+
+interface RepoPromotion {
+  repo: string;
+  mergedCount: number;
+  totalCount: number;
+  successRate: number;
+}
+
+const promoteRepos = (outcomes: OutcomeEntry[]): RepoPromotion[] => {
+  // Group outcomes by repo
+  const repoOutcomes = new Map<string, OutcomeEntry[]>();
+  for (const o of outcomes) {
+    const existing = repoOutcomes.get(o.repo) || [];
+    existing.push(o);
+    repoOutcomes.set(o.repo, existing);
+  }
+
+  const promotions: RepoPromotion[] = [];
+
+  // Check each self-healing repo in SUPERVISED state
+  const supervisedRepos = KNOWN_PROJECTS.filter(
+    (p) => p.hasSelfHealing && p.healingState === 'healing_supervised'
+  );
+
+  for (const project of supervisedRepos) {
+    const entries = repoOutcomes.get(project.repo) || [];
+    const resolved = entries.filter((e) => e.state === 'merged' || e.state === 'closed');
+    const merged = entries.filter((e) => e.state === 'merged');
+
+    if (merged.length < MIN_MERGED_FOR_GRADUATION) continue;
+
+    const successRate = resolved.length > 0 ? merged.length / resolved.length : 0;
+    if (successRate < MIN_SUCCESS_RATE_FOR_GRADUATION) continue;
+
+    promotions.push({
+      repo: project.repo,
+      mergedCount: merged.length,
+      totalCount: resolved.length,
+      successRate,
+    });
+  }
+
+  if (promotions.length === 0) {
+    console.log('  No repos eligible for promotion');
+    return promotions;
+  }
+
+  // Update factory.config.ts
+  let configContent = readFileSync(FACTORY_CONFIG_PATH, 'utf-8');
+
+  for (const promo of promotions) {
+    console.log(
+      `  PROMOTE ${promo.repo}: healing_supervised → healing_graduated (${promo.mergedCount}/${promo.totalCount} merged, ${(promo.successRate * 100).toFixed(0)}%)`
+    );
+    notify('repo_promoted', {
+      repo: promo.repo,
+      message: `Promoted to GRADUATED (${promo.mergedCount}/${promo.totalCount} merged, ${(promo.successRate * 100).toFixed(0)}% success)`,
+    });
+
+    // Replace healingState for this repo in factory.config.ts
+    // Match the pattern: repo line followed eventually by healingState line
+    const repoEscaped = promo.repo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = new RegExp(
+      `(repo:\\s*'${repoEscaped}'[\\s\\S]*?healingState:\\s*)'healing_supervised'`,
+      'g'
+    );
+    configContent = configContent.replace(pattern, "$1'healing_graduated'");
+  }
+
+  writeFileSync(FACTORY_CONFIG_PATH, configContent);
+
+  logActivity(
+    'scan-and-configure',
+    'repo-promotion',
+    `Promoted ${promotions.length} repo(s) to healing_graduated: ${promotions.map((p) => p.repo).join(', ')}`,
+    'info'
+  );
+
+  return promotions;
 };
 
 // --- Main ---
@@ -513,6 +845,30 @@ const main = async (): Promise<void> => {
   const allOutcomes = mergeOutcomes(registry.outcomes, freshOutcomes);
   console.log(`Total outcomes in registry: ${allOutcomes.length}`);
 
+  // 3b. Backfill closeReason for legacy entries missing it
+  for (const o of allOutcomes) {
+    if (!o.closeReason) {
+      if (o.state === 'open') o.closeReason = 'open';
+      else if (o.state === 'merged') o.closeReason = 'merged';
+      else if (o.rejected) o.closeReason = 'rejected';
+      else o.closeReason = 'manual_close';
+    }
+  }
+
+  // 3c. Detect reverts (merged PRs that were subsequently reverted)
+  console.log('\nDetecting reverts...');
+  const revertCount = detectReverts(allOutcomes);
+  if (revertCount > 0) {
+    console.log(`  ${revertCount} revert(s) detected`);
+  } else {
+    console.log('  No reverts detected');
+  }
+
+  // 3d. Healing verification (check CI after merge for recent PRs)
+  console.log('\nVerifying healing outcomes...');
+  const { verified, failed } = verifyHealingOutcomes(allOutcomes);
+  console.log(`  ${verified} verified, ${failed} failed`);
+
   // 4. Calculate pattern stats from full history
   let patternStats = calculatePatternStats(allOutcomes);
 
@@ -535,7 +891,8 @@ const main = async (): Promise<void> => {
 
   // 7. Update confidence scores in patterns.json
   console.log('\nAdjusting confidence scores...');
-  const updatedCount = updatePatternConfidence(patternStats);
+  const { updated: updatedCount, degradedIds } = updatePatternConfidence(patternStats);
+  cleanupDegradedPatterns(degradedIds);
 
   // 8. Print summary
   console.log('\n--- Pattern Stats ---');
@@ -547,7 +904,11 @@ const main = async (): Promise<void> => {
     );
   }
 
-  // 9. Log activity
+  // 9. Auto-promote repos: SUPERVISED → GRADUATED
+  console.log('\nChecking repo state promotions...');
+  const promotions = promoteRepos(allOutcomes);
+
+  // 10. Log activity
   const totalMerged = allOutcomes.filter((o) => o.state === 'merged').length;
   const totalClosed = allOutcomes.filter((o) => o.state === 'closed').length;
   const totalOpen = allOutcomes.filter((o) => o.state === 'open').length;
@@ -555,7 +916,7 @@ const main = async (): Promise<void> => {
   logActivity(
     'scan-and-configure',
     'outcome-registry',
-    `Registry updated: ${allOutcomes.length} outcomes (${totalMerged} merged, ${totalClosed} closed, ${totalOpen} open). ${freshOutcomes.length} new in last ${LOOKBACK_DAYS}d. ${updatedCount} confidence scores adjusted.`,
+    `Registry updated: ${allOutcomes.length} outcomes (${totalMerged} merged, ${totalClosed} closed, ${totalOpen} open). ${freshOutcomes.length} new in last ${LOOKBACK_DAYS}d. ${updatedCount} confidence scores adjusted. ${promotions.length} repo(s) promoted.`,
     'info'
   );
 
