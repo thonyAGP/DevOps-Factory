@@ -1,12 +1,12 @@
 # Template Recommendations Report
 
-Generated: 3/23/2026, 7:14:28 AM
+Generated: 3/23/2026, 12:43:04 PM
 
 ## Executive Summary
 
-- **Total Recommendations**: 251
-- **Critical**: 11 | **High**: 184 | **Medium**: 30 | **Low**: 26
-- **Average Health Score**: 20.4/100
+- **Total Recommendations**: 250
+- **Critical**: 11 | **High**: 190 | **Medium**: 23 | **Low**: 26
+- **Average Health Score**: 19.6/100
 - **Top Template**: gitleaks.yml (19 repos)
 - **Most Improved Repo**: au-marais
 
@@ -330,77 +330,6 @@ Generated: 3/23/2026, 7:14:28 AM
   - Effort: significant
   - Impact: Validates test quality by introducing code mutations
 
-### Email_Assistant
-
-- **Health Score**: 55/100
-- **Stack**: node
-- **CI Failure Rate**: 25%
-
-#### High Priority
-
-- **gitleaks.yml**
-  - Reason: No secret scanning detected
-  - Effort: minimal
-  - Impact: Prevents accidental secret leaks in commits
-- **coverage-tracking.yml**
-  - Reason: Low health score (55) - needs test coverage tracking
-  - Effort: moderate
-  - Impact: Tracks test coverage over time and prevents regressions
-- **renovate.json**
-  - Reason: No dependency update automation detected
-  - Effort: minimal
-  - Impact: Automated dependency updates with intelligent grouping
-- **semgrep.yml**
-  - Reason: No SAST (static analysis) detected
-  - Effort: minimal
-  - Impact: Static analysis for bugs, security issues, and anti-patterns
-
-#### Medium Priority
-
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **semantic-release.yml**
-  - Reason: Automate versioning from commits
-  - Effort: moderate
-  - Impact: Automated versioning and release notes from git commits
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-- **supply-chain-security.yml**
-  - Reason: Secure npm dependency chain
-  - Effort: minimal
-  - Impact: Secures npm dependencies with SBOM and license checks
-- **type-coverage.yml**
-  - Reason: Improve TypeScript coverage
-  - Effort: minimal
-  - Impact: Ensures TypeScript coverage and type safety
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-- **release-drafter.yml**
-  - Reason: Auto-generate release notes
-  - Effort: minimal
-  - Impact: Auto-drafts release notes from PRs and commits
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
-
 ### LB2I-Fiscal-Manager
 
 - **Health Score**: 0/100
@@ -615,7 +544,7 @@ Generated: 3/23/2026, 7:14:28 AM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 40%
+- **CI Failure Rate**: 44%
 
 #### High Priority
 
@@ -683,7 +612,7 @@ Generated: 3/23/2026, 7:14:28 AM
 
 - **Health Score**: 0/100
 - **Stack**: node
-- **CI Failure Rate**: 7%
+- **CI Failure Rate**: 6%
 
 #### High Priority
 
@@ -733,6 +662,70 @@ Generated: 3/23/2026, 7:14:28 AM
   - Impact: Ensures TypeScript coverage and type safety
 
 #### Medium Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+- **release-drafter.yml**
+  - Reason: Auto-generate release notes
+  - Effort: minimal
+  - Impact: Auto-drafts release notes from PRs and commits
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
+
+### Email_Assistant
+
+- **Health Score**: 35/100
+- **Stack**: node
+- **CI Failure Rate**: 25%
+
+#### High Priority
+
+- **gitleaks.yml**
+  - Reason: No secret scanning detected
+  - Effort: minimal
+  - Impact: Prevents accidental secret leaks in commits
+- **auto-label.yml**
+  - Reason: Would improve issue/PR organization
+  - Effort: minimal
+  - Impact: Automatically labels issues and PRs for better organization
+- **coverage-tracking.yml**
+  - Reason: Low health score (35) - needs test coverage tracking
+  - Effort: moderate
+  - Impact: Tracks test coverage over time and prevents regressions
+- **renovate.json**
+  - Reason: No dependency update automation detected
+  - Effort: minimal
+  - Impact: Automated dependency updates with intelligent grouping
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+- **dead-code-detection.yml**
+  - Reason: Detect and remove unused code
+  - Effort: minimal
+  - Impact: Detects and reports unused code with Knip
+- **semgrep.yml**
+  - Reason: No SAST (static analysis) detected
+  - Effort: minimal
+  - Impact: Static analysis for bugs, security issues, and anti-patterns
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
+  - Effort: minimal
+  - Impact: Enforces PR size limits for code review quality
+- **supply-chain-security.yml**
+  - Reason: Secure npm dependency chain
+  - Effort: minimal
+  - Impact: Secures npm dependencies with SBOM and license checks
+- **type-coverage.yml**
+  - Reason: Improve TypeScript coverage
+  - Effort: minimal
+  - Impact: Ensures TypeScript coverage and type safety
+
+#### Low Priority
 
 - **stale-bot.yml**
   - Reason: Auto-close stale issues and PRs

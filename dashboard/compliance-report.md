@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/23/2026, 7:14:27 AM
+**Generated**: 3/23/2026, 12:43:04 PM
 **Period**: 30-day window
 
 ## Summary
@@ -12,9 +12,9 @@
 | Repos with Branch Protection | 0/19 |
 | Repos with CI | 18/19 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 4 |
-| Deployments (30d) | 163 |
-| PRs with Review | 0/4 |
+| PRs Merged (30d) | 5 |
+| Deployments (30d) | 164 |
+| PRs with Review | 0/5 |
 
 ## Repository Compliance
 
@@ -66,11 +66,12 @@
 ### ⚠️ No CI Pipeline (1)
 - LB2I-Fiscal-Manager
 
-### ⚠️ No Code Review (4)
+### ⚠️ No Code Review (5)
 - **au-marais**: 1 PRs merged without review
 - **Livret_accueil_Au-Marais**: 1 PRs merged without review
 - **magic-migration**: 1 PRs merged without review
 - **Site_Greg-Assainissement**: 1 PRs merged without review
+- **zentra**: 1 PRs merged without review
 
 ### 🔴 Low Compliance Score < 60 (19)
 - au-marais: 20/100
@@ -188,7 +189,7 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 46 successful deploys in 30 days
+**Recent Deployments**: 44 successful deploys in 30 days
 
 ---
 
@@ -240,7 +241,7 @@
 **PRs Without Review**:
 - #10 - feat(qa): QA Session Complete - Version Badge + Security Fixes (by thonyAGP)
 
-**Recent Deployments**: 31 successful deploys in 30 days
+**Recent Deployments**: 32 successful deploys in 30 days
 
 ---
 
@@ -371,7 +372,12 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 12 successful deploys in 30 days
+**Review Coverage**: 0/1 PRs (0%)
+
+**PRs Without Review**:
+- #34 - fix(ci): add pnpm version to action-setup (by thonyAGP)
+
+**Recent Deployments**: 14 successful deploys in 30 days
 
 ---
 

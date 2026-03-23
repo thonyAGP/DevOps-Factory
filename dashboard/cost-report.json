@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-03-23T07:13:48.279Z",
+  "timestamp": "2026-03-23T12:42:07.490Z",
   "repos": [
     {
       "repo": "zentra",
       "fullName": "thonyAGP/zentra",
-      "totalMinutes": 248,
-      "totalRuns": 41,
+      "totalMinutes": 256,
+      "totalRuns": 45,
       "workflows": [
         {
           "name": "npm_and_yarn in / for next, reflect-metadata, @commitlint/cli, @commitlint/config-conventional, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, zustand, @anthropic-ai/sdk - Update #1282433095",
@@ -33,11 +33,11 @@
         },
         {
           "name": "CI",
-          "runs": 27,
-          "totalMinutes": 27,
+          "runs": 29,
+          "totalMinutes": 29,
           "avgMinutes": 1,
-          "failedRuns": 27,
-          "wastedMinutes": 27
+          "failedRuns": 29,
+          "wastedMinutes": 29
         },
         {
           "name": "npm_and_yarn in /. - Update #1279521487",
@@ -52,6 +52,22 @@
           "runs": 1,
           "totalMinutes": 24,
           "avgMinutes": 24,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "npm_and_yarn in / for prisma - Update #1288995442",
+          "runs": 1,
+          "totalMinutes": 3,
+          "avgMinutes": 3,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "npm_and_yarn in / for prisma - Update #1288988152",
+          "runs": 1,
+          "totalMinutes": 3,
+          "avgMinutes": 3,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
@@ -132,7 +148,7 @@
         "npm_and_yarn in / for next, reflect-metadata, @commitlint/cli, @commitlint/config-conventional, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, zustand, @anthropic-ai/sdk - Update #1282433095: avg 55min/run. Consider caching, parallelization, or splitting.",
         "npm_and_yarn in / for next, reflect-metadata, @commitlint/cli, @commitlint/config-conventional, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, zustand, @anthropic-ai/sdk - Update #1282109348: avg 55min/run. Consider caching, parallelization, or splitting.",
         "npm_and_yarn in / for next, reflect-metadata, @commitlint/cli, @commitlint/config-conventional, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, zustand, @anthropic-ai/sdk - Update #1287367891: avg 36min/run. Consider caching, parallelization, or splitting.",
-        "CI: 100% failure rate (27min wasted). Fix root cause.",
+        "CI: 100% failure rate (29min wasted). Fix root cause.",
         "npm_and_yarn in /. - Update #1279521487: avg 26min/run. Consider caching, parallelization, or splitting.",
         "npm_and_yarn in / for next, reflect-metadata, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, @anthropic-ai/sdk - Update #1280539937: avg 24min/run. Consider caching, parallelization, or splitting."
       ]
@@ -181,44 +197,44 @@
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 117,
+      "totalMinutes": 121,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "Monitor Production",
-          "runs": 67,
-          "totalMinutes": 71,
+          "runs": 62,
+          "totalMinutes": 66,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "Qodo Merge - PR Review",
-          "runs": 27,
-          "totalMinutes": 28,
+          "runs": 29,
+          "totalMinutes": 30,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "CI",
-          "runs": 3,
-          "totalMinutes": 15,
+          "runs": 4,
+          "totalMinutes": 20,
           "avgMinutes": 5,
-          "failedRuns": 3,
-          "wastedMinutes": 15
+          "failedRuns": 4,
+          "wastedMinutes": 20
         },
         {
           "name": "Post-Deploy Health Check",
-          "runs": 3,
-          "totalMinutes": 3,
+          "runs": 5,
+          "totalMinutes": 5,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         }
       ],
       "recommendations": [
-        "Monitor Production: 67 very short runs. Consider concurrency groups or debouncing."
+        "Monitor Production: 62 very short runs. Consider concurrency groups or debouncing."
       ]
     },
     {
@@ -229,8 +245,8 @@
       "workflows": [
         {
           "name": "Daily Drift Report",
-          "runs": 28,
-          "totalMinutes": 29,
+          "runs": 29,
+          "totalMinutes": 30,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -253,11 +269,11 @@
         },
         {
           "name": "Deploy Migration Dashboard",
-          "runs": 18,
-          "totalMinutes": 18,
+          "runs": 17,
+          "totalMinutes": 17,
           "avgMinutes": 1,
-          "failedRuns": 18,
-          "wastedMinutes": 18
+          "failedRuns": 17,
+          "wastedMinutes": 17
         },
         {
           "name": "Expression Coverage Check",
@@ -286,23 +302,23 @@
       ],
       "recommendations": [
         "E2E Tests: 100% failure rate (28min wasted). Fix root cause.",
-        "Deploy Migration Dashboard: 100% failure rate (18min wasted). Fix root cause.",
+        "Deploy Migration Dashboard: 100% failure rate (17min wasted). Fix root cause.",
         "Expression Coverage Check: 100% failure rate (9min wasted). Fix root cause."
       ]
     },
     {
       "repo": "ClubMedRoomAssignment",
       "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "totalMinutes": 16,
-      "totalRuns": 14,
+      "totalMinutes": 21,
+      "totalRuns": 19,
       "workflows": [
         {
           "name": "CI",
-          "runs": 10,
-          "totalMinutes": 11,
+          "runs": 15,
+          "totalMinutes": 16,
           "avgMinutes": 1,
-          "failedRuns": 10,
-          "wastedMinutes": 11
+          "failedRuns": 15,
+          "wastedMinutes": 16
         },
         {
           "name": "Security Scan (SAST)",
@@ -338,22 +354,22 @@
         }
       ],
       "recommendations": [
-        "CI: 100% failure rate (11min wasted). Fix root cause."
+        "CI: 100% failure rate (16min wasted). Fix root cause."
       ]
     },
     {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
-      "totalMinutes": 11,
-      "totalRuns": 10,
+      "totalMinutes": 12,
+      "totalRuns": 11,
       "workflows": [
         {
           "name": "CI",
-          "runs": 7,
-          "totalMinutes": 7,
+          "runs": 8,
+          "totalMinutes": 8,
           "avgMinutes": 1,
-          "failedRuns": 7,
-          "wastedMinutes": 7
+          "failedRuns": 8,
+          "wastedMinutes": 8
         },
         {
           "name": "Security Scan (SAST)",
@@ -381,7 +397,7 @@
         }
       ],
       "recommendations": [
-        "CI: 100% failure rate (7min wasted). Fix root cause."
+        "CI: 100% failure rate (8min wasted). Fix root cause."
       ]
     },
     {
@@ -420,16 +436,16 @@
     {
       "repo": "Utilitaire_Webapp",
       "fullName": "thonyAGP/Utilitaire_Webapp",
-      "totalMinutes": 9,
-      "totalRuns": 7,
+      "totalMinutes": 10,
+      "totalRuns": 8,
       "workflows": [
         {
           "name": "CI",
-          "runs": 5,
-          "totalMinutes": 6,
+          "runs": 6,
+          "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
+          "failedRuns": 2,
+          "wastedMinutes": 2
         },
         {
           "name": "Security Scan (SAST)",
@@ -448,7 +464,9 @@
           "wastedMinutes": 0
         }
       ],
-      "recommendations": []
+      "recommendations": [
+        "CI: 33% failure rate (2min wasted). Fix root cause."
+      ]
     },
     {
       "repo": "Site_Greg-Assainissement",
@@ -710,12 +728,12 @@
     }
   ],
   "summary": {
-    "totalMinutes": 738,
-    "totalRuns": 339,
-    "wastedMinutes": 156,
+    "totalMinutes": 757,
+    "totalRuns": 350,
+    "wastedMinutes": 169,
     "mostExpensiveRepo": "zentra",
     "mostExpensiveWorkflow": "E2E Tests (au-marais)",
-    "totalRecommendations": 12,
+    "totalRecommendations": 13,
     "estimatedMonthlyCost": 0
   }
 }
