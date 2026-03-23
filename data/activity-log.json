@@ -66812,6 +66812,45 @@
       "action": "recommendations-generated",
       "details": "128 recommendations across 27 repos (11 critical, 82 high)",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-03-23T21:28:49.969Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T21:28:50.952Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "ClubMedRoomAssignment",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T21:28:52.128Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T21:28:53.352Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Zentra",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T21:28:53.373Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "2/10 passing, 4 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
