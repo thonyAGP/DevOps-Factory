@@ -66097,6 +66097,37 @@
       "action": "recommendations-generated",
       "details": "250 recommendations across 27 repos (11 critical, 189 high)",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-03-23T18:42:41.793Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T18:42:44.848Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T18:42:46.824Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Zentra",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T18:42:46.844Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "2/10 passing, 4 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
