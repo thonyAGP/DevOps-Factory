@@ -1,0 +1,74 @@
+# DevOps-Factory: License Compliance Check
+# Ensures no GPL/AGPL dependencies in commercial projects
+# Runs on PRs that modify package.json/lockfiles
+
+name: License Check
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'yarn.lock'
+      - 'package-lock.json'
+
+jobs:
+  check-licenses:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install license checker
+        run: pnpm add -g license-checker-rspack
+
+      - name: Check licenses
+        id: check
+        run: |
+          # Run license check, fail on copyleft licenses
+          license-checker-rspack \
+            --failOn "GPL-2.0-only;GPL-2.0-or-later;GPL-3.0-only;GPL-3.0-or-later;AGPL-1.0-only;AGPL-3.0-only;AGPL-3.0-or-later;SSPL-1.0;EUPL-1.1;EUPL-1.2" \
+            --summary \
+            --out /tmp/licenses.txt 2>&1 || {
+              echo "has_violations=true" >> $GITHUB_OUTPUT
+              exit 0
+            }
+          echo "has_violations=false" >> $GITHUB_OUTPUT
+
+      - name: Comment PR on violations
+        if: steps.check.outputs.has_violations == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('/tmp/licenses.txt', 'utf8');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                '## License Compliance Issue',
+                '',
+                'Copyleft (GPL/AGPL) dependencies detected:',
+                '',
+                '```',
+                report.slice(0, 2000),
+                '```',
+                '',
+                'These licenses are incompatible with commercial use.',
+                'Please find alternative packages or get legal approval.',
+              ].join('\n'),
+            });
