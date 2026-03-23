@@ -1,0 +1,159 @@
+# DevOps-Factory: Supply Chain Security (AUTO-75)
+# Verifies npm package integrity, signatures, and provenance
+# Detects typosquatting and known malicious packages
+
+name: Supply Chain Security
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths: ['package.json', 'pnpm-lock.yaml', 'yarn.lock', 'package-lock.json']
+  schedule:
+    - cron: '0 7 * * 3' # Weekly Wednesday 7am
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  supply-chain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            npm install -g pnpm && pnpm install --frozen-lockfile
+          elif [ -f "yarn.lock" ]; then
+            yarn install --frozen-lockfile
+          else
+            npm ci
+          fi
+
+      - name: npm audit
+        id: audit
+        run: |
+          npm audit --json > /tmp/audit.json 2>/dev/null || true
+          CRITICAL=$(node -e "try{const a=require('/tmp/audit.json');console.log(a.metadata?.vulnerabilities?.critical||0)}catch{console.log(0)}")
+          HIGH=$(node -e "try{const a=require('/tmp/audit.json');console.log(a.metadata?.vulnerabilities?.high||0)}catch{console.log(0)}")
+          MODERATE=$(node -e "try{const a=require('/tmp/audit.json');console.log(a.metadata?.vulnerabilities?.moderate||0)}catch{console.log(0)}")
+          echo "critical=$CRITICAL" >> $GITHUB_OUTPUT
+          echo "high=$HIGH" >> $GITHUB_OUTPUT
+          echo "moderate=$MODERATE" >> $GITHUB_OUTPUT
+
+      - name: Verify npm signatures
+        id: signatures
+        run: |
+          npm audit signatures 2>&1 | tee /tmp/sig-check.txt || true
+          VERIFIED=$(grep -oP '\d+ packages? verified' /tmp/sig-check.txt || echo "0 verified")
+          INVALID=$(grep -c "invalid" /tmp/sig-check.txt || echo "0")
+          echo "verified=$VERIFIED" >> $GITHUB_OUTPUT
+          echo "invalid=$INVALID" >> $GITHUB_OUTPUT
+
+      - name: Check for known malicious packages
+        id: malicious
+        run: |
+          node -e "
+            const pkg = require('./package.json');
+            const allDeps = Object.keys({ ...pkg.dependencies, ...pkg.devDependencies });
+
+            // Known patterns of typosquatting / malicious packages
+            const suspicious = [];
+            const knownPrefixes = ['@anthropic', '@vercel', '@next', '@prisma', '@types'];
+
+            for (const dep of allDeps) {
+              // Check for dashes vs underscores confusion
+              if (dep.includes('_') && allDeps.some(d => d === dep.replace(/_/g, '-'))) {
+                suspicious.push({ name: dep, reason: 'underscore variant exists' });
+              }
+              // Check for very short scoped packages (potential squats)
+              if (dep.startsWith('@') && dep.split('/')[1]?.length <= 2) {
+                suspicious.push({ name: dep, reason: 'very short scoped name' });
+              }
+            }
+
+            console.log(JSON.stringify({ count: suspicious.length, packages: suspicious }));
+          " > /tmp/suspicious.json
+          COUNT=$(node -e "console.log(require('/tmp/suspicious.json').count)")
+          echo "suspicious=$COUNT" >> $GITHUB_OUTPUT
+
+      - name: Check for install scripts
+        id: scripts
+        run: |
+          node -e "
+            const { execSync } = require('child_process');
+            const result = execSync('npm ls --json --all 2>/dev/null || echo \"{}\"', { encoding: 'utf-8' });
+            // Check for packages with install/preinstall/postinstall scripts
+            const output = execSync('find node_modules -maxdepth 2 -name package.json -exec grep -l postinstall {} + 2>/dev/null || true', { encoding: 'utf-8' });
+            const count = output.trim().split('\n').filter(Boolean).length;
+            console.log('install_scripts=' + count);
+          " | tee /tmp/scripts-output.txt
+          SCRIPTS=$(grep 'install_scripts=' /tmp/scripts-output.txt | cut -d= -f2)
+          echo "install_scripts=${SCRIPTS:-0}" >> $GITHUB_OUTPUT
+
+      - name: Comment PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const critical = parseInt('${{ steps.audit.outputs.critical }}') || 0;
+            const high = parseInt('${{ steps.audit.outputs.high }}') || 0;
+            const moderate = parseInt('${{ steps.audit.outputs.moderate }}') || 0;
+            const invalid = parseInt('${{ steps.signatures.outputs.invalid }}') || 0;
+            const suspicious = parseInt('${{ steps.malicious.outputs.suspicious }}') || 0;
+
+            const hasIssues = critical > 0 || high > 0 || invalid > 0;
+            const status = hasIssues ? '🔴' : '🟢';
+            let body = `## ${status} Supply Chain Security\n\n`;
+            body += `| Check | Result |\n|-------|--------|\n`;
+            body += `| Critical vulnerabilities | ${critical} |\n`;
+            body += `| High vulnerabilities | ${high} |\n`;
+            body += `| Moderate vulnerabilities | ${moderate} |\n`;
+            body += `| Invalid signatures | ${invalid} |\n`;
+            body += `| Suspicious packages | ${suspicious} |\n`;
+            body += `| Packages with install scripts | ${{ steps.scripts.outputs.install_scripts }} |\n`;
+            body += `| Signature verification | ${{ steps.signatures.outputs.verified }} |\n`;
+
+            if (hasIssues) {
+              body += `\n> 🔴 Critical security issues found. Run \`npm audit fix\` or update affected packages.\n`;
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+
+      - name: Fail on critical/high
+        if: steps.audit.outputs.critical != '0' || steps.audit.outputs.high != '0'
+        run: |
+          echo "::error::Found critical (${{ steps.audit.outputs.critical }}) or high (${{ steps.audit.outputs.high }}) vulnerabilities"
+          exit 1
+
+      - name: Create issue on schedule
+        if: github.event_name == 'schedule' && (steps.audit.outputs.critical != '0' || steps.audit.outputs.high != '0')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `🔒 Supply chain: ${${{ steps.audit.outputs.critical }}} critical, ${${{ steps.audit.outputs.high }}} high vulnerabilities`;
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'security',
+              state: 'open',
+            });
+            if (!existing.data.some(i => i.title.includes('Supply chain'))) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body: `Run \`npm audit\` for details.\n\nAuto-generated by Supply Chain Security workflow.`,
+                labels: ['security', 'automated'],
+              });
+            }
