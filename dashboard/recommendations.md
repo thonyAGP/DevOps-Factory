@@ -1,11 +1,11 @@
 # Template Recommendations Report
 
-Generated: 3/22/2026, 6:41:01 PM
+Generated: 3/23/2026, 1:12:47 AM
 
 ## Executive Summary
 
-- **Total Recommendations**: 253
-- **Critical**: 11 | **High**: 186 | **Medium**: 30 | **Low**: 26
+- **Total Recommendations**: 251
+- **Critical**: 11 | **High**: 184 | **Medium**: 30 | **Low**: 26
 - **Average Health Score**: 20.4/100
 - **Top Template**: gitleaks.yml (19 repos)
 - **Most Improved Repo**: au-marais
@@ -14,9 +14,9 @@ Generated: 3/22/2026, 6:41:01 PM
 
 - **gitleaks.yml**: 19 repos
 - **renovate.json**: 19 repos
-- **semgrep.yml**: 19 repos
 - **auto-label.yml**: 19 repos
 - **container-scan.yml**: 19 repos
+- **pr-size-limit.yml**: 19 repos
 
 ## Recommendations by Repository
 
@@ -266,7 +266,7 @@ Generated: 3/22/2026, 6:41:01 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 75%
+- **CI Failure Rate**: 80%
 
 #### High Priority
 
@@ -471,148 +471,6 @@ Generated: 3/22/2026, 6:41:01 PM
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
 
-### Livret_accueil_Au-Marais
-
-- **Health Score**: 0/100
-- **Stack**: nextjs
-- **CI Failure Rate**: 50%
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
-
-#### High Priority
-
-- **gitleaks.yml**
-  - Reason: No secret scanning detected
-  - Effort: minimal
-  - Impact: Prevents accidental secret leaks in commits
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **lighthouse.yml**
-  - Reason: Low health score (0) - needs performance tracking
-  - Effort: moderate
-  - Impact: Tracks performance, accessibility, and SEO metrics
-- **accessibility-check.yml**
-  - Reason: No accessibility scanning detected
-  - Effort: minimal
-  - Impact: Ensures WCAG compliance and accessibility standards
-- **coverage-tracking.yml**
-  - Reason: Low health score (0) - needs test coverage tracking
-  - Effort: moderate
-  - Impact: Tracks test coverage over time and prevents regressions
-- **renovate.json**
-  - Reason: No dependency update automation detected
-  - Effort: minimal
-  - Impact: Automated dependency updates with intelligent grouping
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
-- **semgrep.yml**
-  - Reason: No SAST (static analysis) detected
-  - Effort: minimal
-  - Impact: Static analysis for bugs, security issues, and anti-patterns
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-- **supply-chain-security.yml**
-  - Reason: Secure npm dependency chain
-  - Effort: minimal
-  - Impact: Secures npm dependencies with SBOM and license checks
-- **type-coverage.yml**
-  - Reason: Improve TypeScript coverage
-  - Effort: minimal
-  - Impact: Ensures TypeScript coverage and type safety
-
-#### Medium Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-
-### Site_Greg-Assainissement
-
-- **Health Score**: 35/100
-- **Stack**: nextjs
-- **CI Failure Rate**: 50%
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
-
-#### High Priority
-
-- **gitleaks.yml**
-  - Reason: No secret scanning detected
-  - Effort: minimal
-  - Impact: Prevents accidental secret leaks in commits
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **lighthouse.yml**
-  - Reason: Low health score (35) - needs performance tracking
-  - Effort: moderate
-  - Impact: Tracks performance, accessibility, and SEO metrics
-- **accessibility-check.yml**
-  - Reason: No accessibility scanning detected
-  - Effort: minimal
-  - Impact: Ensures WCAG compliance and accessibility standards
-- **coverage-tracking.yml**
-  - Reason: Low health score (35) - needs test coverage tracking
-  - Effort: moderate
-  - Impact: Tracks test coverage over time and prevents regressions
-- **renovate.json**
-  - Reason: No dependency update automation detected
-  - Effort: minimal
-  - Impact: Automated dependency updates with intelligent grouping
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
-- **semgrep.yml**
-  - Reason: No SAST (static analysis) detected
-  - Effort: minimal
-  - Impact: Static analysis for bugs, security issues, and anti-patterns
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-- **supply-chain-security.yml**
-  - Reason: Secure npm dependency chain
-  - Effort: minimal
-  - Impact: Secures npm dependencies with SBOM and license checks
-- **type-coverage.yml**
-  - Reason: Improve TypeScript coverage
-  - Effort: minimal
-  - Impact: Ensures TypeScript coverage and type safety
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-
 ### test_codingmenace
 
 - **Health Score**: 35/100
@@ -757,7 +615,7 @@ Generated: 3/22/2026, 6:41:01 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 42%
+- **CI Failure Rate**: 40%
 
 #### High Priority
 
@@ -889,6 +747,73 @@ Generated: 3/22/2026, 6:41:01 PM
   - Effort: significant
   - Impact: Validates test quality by introducing code mutations
 
+### Livret_accueil_Au-Marais
+
+- **Health Score**: 0/100
+- **Stack**: nextjs
+- **CI Failure Rate**: 33%
+
+#### Critical Priority
+
+- **ci-standard.yml**
+  - Reason: No CI workflow detected
+  - Effort: moderate
+  - Impact: Enables automated testing and deployment
+
+#### High Priority
+
+- **gitleaks.yml**
+  - Reason: No secret scanning detected
+  - Effort: minimal
+  - Impact: Prevents accidental secret leaks in commits
+- **auto-label.yml**
+  - Reason: Would improve issue/PR organization
+  - Effort: minimal
+  - Impact: Automatically labels issues and PRs for better organization
+- **lighthouse.yml**
+  - Reason: Low health score (0) - needs performance tracking
+  - Effort: moderate
+  - Impact: Tracks performance, accessibility, and SEO metrics
+- **accessibility-check.yml**
+  - Reason: No accessibility scanning detected
+  - Effort: minimal
+  - Impact: Ensures WCAG compliance and accessibility standards
+- **coverage-tracking.yml**
+  - Reason: Low health score (0) - needs test coverage tracking
+  - Effort: moderate
+  - Impact: Tracks test coverage over time and prevents regressions
+- **renovate.json**
+  - Reason: No dependency update automation detected
+  - Effort: minimal
+  - Impact: Automated dependency updates with intelligent grouping
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+- **dead-code-detection.yml**
+  - Reason: Detect and remove unused code
+  - Effort: minimal
+  - Impact: Detects and reports unused code with Knip
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
+  - Effort: minimal
+  - Impact: Enforces PR size limits for code review quality
+- **supply-chain-security.yml**
+  - Reason: Secure npm dependency chain
+  - Effort: minimal
+  - Impact: Secures npm dependencies with SBOM and license checks
+- **type-coverage.yml**
+  - Reason: Improve TypeScript coverage
+  - Effort: minimal
+  - Impact: Ensures TypeScript coverage and type safety
+
+#### Medium Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+
 ### magic-migration
 
 - **Health Score**: 0/100
@@ -952,6 +877,73 @@ Generated: 3/22/2026, 6:41:01 PM
   - Reason: Validate test quality
   - Effort: significant
   - Impact: Validates test quality by introducing code mutations
+
+### Site_Greg-Assainissement
+
+- **Health Score**: 35/100
+- **Stack**: nextjs
+- **CI Failure Rate**: 33%
+
+#### Critical Priority
+
+- **ci-standard.yml**
+  - Reason: No CI workflow detected
+  - Effort: moderate
+  - Impact: Enables automated testing and deployment
+
+#### High Priority
+
+- **gitleaks.yml**
+  - Reason: No secret scanning detected
+  - Effort: minimal
+  - Impact: Prevents accidental secret leaks in commits
+- **auto-label.yml**
+  - Reason: Would improve issue/PR organization
+  - Effort: minimal
+  - Impact: Automatically labels issues and PRs for better organization
+- **lighthouse.yml**
+  - Reason: Low health score (35) - needs performance tracking
+  - Effort: moderate
+  - Impact: Tracks performance, accessibility, and SEO metrics
+- **accessibility-check.yml**
+  - Reason: No accessibility scanning detected
+  - Effort: minimal
+  - Impact: Ensures WCAG compliance and accessibility standards
+- **coverage-tracking.yml**
+  - Reason: Low health score (35) - needs test coverage tracking
+  - Effort: moderate
+  - Impact: Tracks test coverage over time and prevents regressions
+- **renovate.json**
+  - Reason: No dependency update automation detected
+  - Effort: minimal
+  - Impact: Automated dependency updates with intelligent grouping
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+- **dead-code-detection.yml**
+  - Reason: Detect and remove unused code
+  - Effort: minimal
+  - Impact: Detects and reports unused code with Knip
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
+  - Effort: minimal
+  - Impact: Enforces PR size limits for code review quality
+- **supply-chain-security.yml**
+  - Reason: Secure npm dependency chain
+  - Effort: minimal
+  - Impact: Secures npm dependencies with SBOM and license checks
+- **type-coverage.yml**
+  - Reason: Improve TypeScript coverage
+  - Effort: minimal
+  - Impact: Ensures TypeScript coverage and type safety
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
 
 ### claude-cli-wrapper
 

@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/22/2026, 6:41:00 PM
+**Generated**: 3/23/2026, 1:12:47 AM
 **Period**: 30-day window
 
 ## Summary
@@ -12,9 +12,9 @@
 | Repos with Branch Protection | 0/19 |
 | Repos with CI | 18/19 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 2 |
-| Deployments (30d) | 156 |
-| PRs with Review | 0/2 |
+| PRs Merged (30d) | 4 |
+| Deployments (30d) | 160 |
+| PRs with Review | 0/4 |
 
 ## Repository Compliance
 
@@ -66,9 +66,11 @@
 ### ⚠️ No CI Pipeline (1)
 - LB2I-Fiscal-Manager
 
-### ⚠️ No Code Review (2)
+### ⚠️ No Code Review (4)
 - **au-marais**: 1 PRs merged without review
+- **Livret_accueil_Au-Marais**: 1 PRs merged without review
 - **magic-migration**: 1 PRs merged without review
+- **Site_Greg-Assainissement**: 1 PRs merged without review
 
 ### 🔴 Low Compliance Score < 60 (19)
 - au-marais: 20/100
@@ -116,7 +118,7 @@
 **PRs Without Review**:
 - #8 - Admin improvements: calendar, reservations & mobile fixes (by thonyAGP)
 
-**Recent Deployments**: 39 successful deploys in 30 days
+**Recent Deployments**: 40 successful deploys in 30 days
 
 ---
 
@@ -200,7 +202,12 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 1 successful deploys in 30 days
+**Review Coverage**: 0/1 PRs (0%)
+
+**PRs Without Review**:
+- #4 - chore: add SAST with Semgrep (by thonyAGP)
+
+**Recent Deployments**: 2 successful deploys in 30 days
 
 ---
 
@@ -275,7 +282,12 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 1 successful deploys in 30 days
+**Review Coverage**: 0/1 PRs (0%)
+
+**PRs Without Review**:
+- #5 - chore: add SAST with Semgrep (by thonyAGP)
+
+**Recent Deployments**: 2 successful deploys in 30 days
 
 ---
 
@@ -345,7 +357,7 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 5 successful deploys in 30 days
+**Recent Deployments**: 6 successful deploys in 30 days
 
 ---
 

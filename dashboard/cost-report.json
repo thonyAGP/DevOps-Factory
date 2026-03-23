@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-03-22T18:40:27.624Z",
+  "timestamp": "2026-03-23T01:12:06.857Z",
   "repos": [
     {
       "repo": "zentra",
       "fullName": "thonyAGP/zentra",
-      "totalMinutes": 244,
-      "totalRuns": 37,
+      "totalMinutes": 248,
+      "totalRuns": 41,
       "workflows": [
         {
           "name": "npm_and_yarn in / for next, reflect-metadata, @commitlint/cli, @commitlint/config-conventional, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, zustand, @anthropic-ai/sdk - Update #1282433095",
@@ -32,6 +32,14 @@
           "wastedMinutes": 0
         },
         {
+          "name": "CI",
+          "runs": 27,
+          "totalMinutes": 27,
+          "avgMinutes": 1,
+          "failedRuns": 27,
+          "wastedMinutes": 27
+        },
+        {
           "name": "npm_and_yarn in /. - Update #1279521487",
           "runs": 1,
           "totalMinutes": 26,
@@ -46,14 +54,6 @@
           "avgMinutes": 24,
           "failedRuns": 0,
           "wastedMinutes": 0
-        },
-        {
-          "name": "CI",
-          "runs": 23,
-          "totalMinutes": 23,
-          "avgMinutes": 1,
-          "failedRuns": 23,
-          "wastedMinutes": 23
         },
         {
           "name": "npm_and_yarn in / for prisma - Update #1282435745",
@@ -132,21 +132,21 @@
         "npm_and_yarn in / for next, reflect-metadata, @commitlint/cli, @commitlint/config-conventional, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, zustand, @anthropic-ai/sdk - Update #1282433095: avg 55min/run. Consider caching, parallelization, or splitting.",
         "npm_and_yarn in / for next, reflect-metadata, @commitlint/cli, @commitlint/config-conventional, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, zustand, @anthropic-ai/sdk - Update #1282109348: avg 55min/run. Consider caching, parallelization, or splitting.",
         "npm_and_yarn in / for next, reflect-metadata, @commitlint/cli, @commitlint/config-conventional, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, zustand, @anthropic-ai/sdk - Update #1287367891: avg 36min/run. Consider caching, parallelization, or splitting.",
+        "CI: 100% failure rate (27min wasted). Fix root cause.",
         "npm_and_yarn in /. - Update #1279521487: avg 26min/run. Consider caching, parallelization, or splitting.",
-        "npm_and_yarn in / for next, reflect-metadata, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, @anthropic-ai/sdk - Update #1280539937: avg 24min/run. Consider caching, parallelization, or splitting.",
-        "CI: 100% failure rate (23min wasted). Fix root cause."
+        "npm_and_yarn in / for next, reflect-metadata, @nx/js, @nx/nest, @nx/next, @nx/node, @nx/web, @nx/webpack, @swc/core, @swc/helpers, @types/node, @vitest/coverage-v8, nx, typescript, vitest, @aws-sdk/client-s3, @aws-sdk/s3-request-presigner, @anthropic-ai/sdk - Update #1280539937: avg 24min/run. Consider caching, parallelization, or splitting."
       ]
     },
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
-      "totalMinutes": 168,
-      "totalRuns": 34,
+      "totalMinutes": 173,
+      "totalRuns": 35,
       "workflows": [
         {
           "name": "E2E Tests",
-          "runs": 31,
-          "totalMinutes": 164,
+          "runs": 32,
+          "totalMinutes": 169,
           "avgMinutes": 5,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -181,44 +181,44 @@
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 112,
+      "totalMinutes": 117,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "Monitor Production",
-          "runs": 71,
-          "totalMinutes": 75,
+          "runs": 67,
+          "totalMinutes": 71,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "Qodo Merge - PR Review",
-          "runs": 25,
-          "totalMinutes": 25,
+          "runs": 27,
+          "totalMinutes": 28,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "CI",
-          "runs": 2,
-          "totalMinutes": 10,
+          "runs": 3,
+          "totalMinutes": 15,
           "avgMinutes": 5,
-          "failedRuns": 2,
-          "wastedMinutes": 10
+          "failedRuns": 3,
+          "wastedMinutes": 15
         },
         {
           "name": "Post-Deploy Health Check",
-          "runs": 2,
-          "totalMinutes": 2,
+          "runs": 3,
+          "totalMinutes": 3,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         }
       ],
       "recommendations": [
-        "Monitor Production: 71 very short runs. Consider concurrency groups or debouncing."
+        "Monitor Production: 67 very short runs. Consider concurrency groups or debouncing."
       ]
     },
     {
@@ -291,6 +291,100 @@
       ]
     },
     {
+      "repo": "ClubMedRoomAssignment",
+      "fullName": "thonyAGP/ClubMedRoomAssignment",
+      "totalMinutes": 16,
+      "totalRuns": 14,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 10,
+          "totalMinutes": 11,
+          "avgMinutes": 1,
+          "failedRuns": 10,
+          "wastedMinutes": 11
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 2,
+          "avgMinutes": 2,
+          "failedRuns": 1,
+          "wastedMinutes": 2
+        },
+        {
+          "name": ".github/workflows/ci.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": [
+        "CI: 100% failure rate (11min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "CasaSync",
+      "fullName": "thonyAGP/CasaSync",
+      "totalMinutes": 11,
+      "totalRuns": 10,
+      "workflows": [
+        {
+          "name": "CI",
+          "runs": 7,
+          "totalMinutes": 7,
+          "avgMinutes": 1,
+          "failedRuns": 7,
+          "wastedMinutes": 7
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 2,
+          "avgMinutes": 2,
+          "failedRuns": 1,
+          "wastedMinutes": 2
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": [
+        "CI: 100% failure rate (7min wasted). Fix root cause."
+      ]
+    },
+    {
       "repo": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
       "totalMinutes": 11,
@@ -324,99 +418,15 @@
       "recommendations": []
     },
     {
-      "repo": "CasaSync",
-      "fullName": "thonyAGP/CasaSync",
-      "totalMinutes": 10,
-      "totalRuns": 9,
-      "workflows": [
-        {
-          "name": "CI",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 2,
-          "avgMinutes": 2,
-          "failedRuns": 1,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": [
-        "CI: 100% failure rate (6min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "ClubMedRoomAssignment",
-      "fullName": "thonyAGP/ClubMedRoomAssignment",
+      "repo": "Utilitaire_Webapp",
+      "fullName": "thonyAGP/Utilitaire_Webapp",
       "totalMinutes": 9,
       "totalRuns": 7,
       "workflows": [
         {
           "name": "CI",
-          "runs": 4,
-          "totalMinutes": 5,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 5
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 2,
-          "avgMinutes": 2,
-          "failedRuns": 1,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": []
-    },
-    {
-      "repo": "Utilitaire_Webapp",
-      "fullName": "thonyAGP/Utilitaire_Webapp",
-      "totalMinutes": 8,
-      "totalRuns": 6,
-      "workflows": [
-        {
-          "name": "CI",
-          "runs": 4,
-          "totalMinutes": 5,
+          "runs": 5,
+          "totalMinutes": 6,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
@@ -428,31 +438,6 @@
           "avgMinutes": 2,
           "failedRuns": 1,
           "wastedMinutes": 2
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": []
-    },
-    {
-      "repo": "Site_1970_Plomberie",
-      "fullName": "thonyAGP/Site_1970_Plomberie",
-      "totalMinutes": 4,
-      "totalRuns": 2,
-      "workflows": [
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 3,
-          "avgMinutes": 3,
-          "failedRuns": 1,
-          "wastedMinutes": 3
         },
         {
           "name": "Secret Scanning",
@@ -468,6 +453,56 @@
     {
       "repo": "Site_Greg-Assainissement",
       "fullName": "thonyAGP/Site_Greg-Assainissement",
+      "totalMinutes": 6,
+      "totalRuns": 4,
+      "workflows": [
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 3,
+          "totalMinutes": 5,
+          "avgMinutes": 2,
+          "failedRuns": 2,
+          "wastedMinutes": 4
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": []
+    },
+    {
+      "repo": "Livret_accueil_Au-Marais",
+      "fullName": "thonyAGP/Livret_accueil_Au-Marais",
+      "totalMinutes": 5,
+      "totalRuns": 4,
+      "workflows": [
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 3,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 2,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": []
+    },
+    {
+      "repo": "Site_1970_Plomberie",
+      "fullName": "thonyAGP/Site_1970_Plomberie",
       "totalMinutes": 4,
       "totalRuns": 2,
       "workflows": [
@@ -518,31 +553,6 @@
     {
       "repo": "claude-cli-wrapper",
       "fullName": "thonyAGP/claude-cli-wrapper",
-      "totalMinutes": 3,
-      "totalRuns": 2,
-      "workflows": [
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 2,
-          "avgMinutes": 2,
-          "failedRuns": 1,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": []
-    },
-    {
-      "repo": "Livret_accueil_Au-Marais",
-      "fullName": "thonyAGP/Livret_accueil_Au-Marais",
       "totalMinutes": 3,
       "totalRuns": 2,
       "workflows": [
@@ -700,12 +710,12 @@
     }
   ],
   "summary": {
-    "totalMinutes": 704,
-    "totalRuns": 318,
-    "wastedMinutes": 137,
+    "totalMinutes": 731,
+    "totalRuns": 336,
+    "wastedMinutes": 156,
     "mostExpensiveRepo": "zentra",
     "mostExpensiveWorkflow": "E2E Tests (au-marais)",
-    "totalRecommendations": 11,
+    "totalRecommendations": 12,
     "estimatedMonthlyCost": 0
   }
 }

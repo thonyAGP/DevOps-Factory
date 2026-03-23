@@ -2,86 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-02-21T01:12:17.531Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "au-marais",
-      "details": "PR #3 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-21T01:12:22.235Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "CasaSync",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-21T01:12:24.846Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "claude-cli-wrapper",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-21T01:12:29.904Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "claude-launcher",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-21T01:12:34.355Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "ClubMedRoomAssignment",
-      "details": "PR #12 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-21T01:12:37.142Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Email_Assistant",
-      "details": "PR #7 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-21T01:12:39.536Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "lecteur-magic",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-21T01:12:41.883Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "livret-au-marais",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-21T01:12:44.132Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-21T01:12:46.651Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "MCP_Quota_Claude",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-02-21T01:12:54.336Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
@@ -88997,6 +88917,55 @@
       "source": "scan-and-configure",
       "action": "scan-complete",
       "details": "Scanned 27 repos (19 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-23T01:09:36.941Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "18 projects, avg health 46",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T01:10:28.756Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 19 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T01:11:25.373Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 0%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-23T01:11:52.621Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 12.6h, MTTR 6.9h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-23T01:12:06.876Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 731min total, 156min wasted, ~$0/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T01:12:47.250Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 19/100, branch protection 0/19, CI 18/19, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T01:12:47.970Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "251 recommendations across 27 repos (11 critical, 184 high)",
       "status": "success"
     }
   ]

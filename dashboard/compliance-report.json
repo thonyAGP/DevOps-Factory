@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-22T18:41:00.676Z",
+  "timestamp": "2026-03-23T01:12:47.213Z",
   "period": "30-day window",
   "repos": [
     {
@@ -16,6 +16,14 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/au-marais",
+          "sha": "2aa8a78a69f9e8794153a3bbbf4c29a90a1a5c27",
+          "status": "success",
+          "timestamp": "2026-03-23T01:06:17Z",
+          "workflow": "E2E Tests"
+        },
         {
           "branch": "develop",
           "repo": "thonyAGP/au-marais",
@@ -445,6 +453,22 @@
       "mergedPRs": [],
       "deployments": [
         {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "bf51ffb88caeb872dc12b014f338384fd37f13d0",
+          "status": "success",
+          "timestamp": "2026-03-23T01:10:16Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "bf51ffb88caeb872dc12b014f338384fd37f13d0",
+          "status": "success",
+          "timestamp": "2026-03-23T01:06:30Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
           "branch": "master",
           "repo": "thonyAGP/Email_Assistant",
           "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
@@ -795,22 +819,6 @@
           "status": "success",
           "timestamp": "2026-03-17T18:55:14Z",
           "workflow": "Monitor Production"
-        },
-        {
-          "branch": "ai-fix/ci-1773756948203",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "d5cdf1bf7b10c012ed0791e3a6ed95689ff427ce",
-          "status": "success",
-          "timestamp": "2026-03-17T14:18:14Z",
-          "workflow": "Post-Deploy Health Check"
-        },
-        {
-          "branch": "ai-fix/ci-1773756948203",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "d5cdf1bf7b10c012ed0791e3a6ed95689ff427ce",
-          "status": "success",
-          "timestamp": "2026-03-17T14:15:58Z",
-          "workflow": "Qodo Merge - PR Review"
         }
       ],
       "securityFindings": [],
@@ -822,8 +830,25 @@
     {
       "repo": "Livret_accueil_Au-Marais",
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-22T19:50:01Z",
+          "number": 4,
+          "reviewers": [],
+          "title": "chore: add SAST with Semgrep"
+        }
+      ],
       "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
+          "repo": "thonyAGP/Livret_accueil_Au-Marais",
+          "sha": "cc4a1024cc349f17d3f1c7531408816491e430cb",
+          "status": "success",
+          "timestamp": "2026-03-22T19:49:52Z",
+          "workflow": "Security Scan (SAST)"
+        },
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
           "repo": "thonyAGP/Livret_accueil_Au-Marais",
@@ -1211,8 +1236,25 @@
     {
       "repo": "Site_Greg-Assainissement",
       "fullName": "thonyAGP/Site_Greg-Assainissement",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-22T19:50:03Z",
+          "number": 5,
+          "reviewers": [],
+          "title": "chore: add SAST with Semgrep"
+        }
+      ],
       "deployments": [
+        {
+          "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
+          "repo": "thonyAGP/Site_Greg-Assainissement",
+          "sha": "b9bddfdb21881999ba314d1788425c255f1fe00b",
+          "status": "success",
+          "timestamp": "2026-03-22T19:49:55Z",
+          "workflow": "Security Scan (SAST)"
+        },
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
           "repo": "thonyAGP/Site_Greg-Assainissement",
@@ -1329,6 +1371,14 @@
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/Utilitaire_Webapp",
+          "sha": "8567ea99565a35cfc6ad8d2bd09c096cf5126cba",
+          "status": "success",
+          "timestamp": "2026-03-23T01:08:33Z",
+          "workflow": "CI"
+        },
         {
           "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
           "repo": "thonyAGP/Utilitaire_Webapp",
@@ -1498,10 +1548,10 @@
   ],
   "summary": {
     "totalRepos": 19,
-    "totalPRsMerged": 2,
+    "totalPRsMerged": 4,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 156,
+    "totalDeployments": 160,
     "avgComplianceScore": 19,
     "reposWithBranchProtection": 0,
     "reposWithCI": 18
