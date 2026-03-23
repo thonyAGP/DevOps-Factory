@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/23/2026, 1:14:00 PM
+**Generated**: 3/23/2026, 6:40:15 PM
 **Period**: 30-day window
 
 ## Summary
@@ -8,13 +8,13 @@
 | Metric | Value |
 |--------|-------|
 | Total Repos | 19 |
-| Avg Compliance Score | 19/100 |
+| Avg Compliance Score | 20/100 |
 | Repos with Branch Protection | 0/19 |
-| Repos with CI | 18/19 |
+| Repos with CI | 19/19 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 5 |
-| Deployments (30d) | 164 |
-| PRs with Review | 0/5 |
+| PRs Merged (30d) | 54 |
+| Deployments (30d) | 187 |
+| PRs with Review | 0/54 |
 
 ## Repository Compliance
 
@@ -26,6 +26,7 @@
 | claude-launcher | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | ClubMedRoomAssignment | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Email_Assistant | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
+| LB2I-Fiscal-Manager | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Livret_accueil_Au-Marais | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | livret-au-marais | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | magic-migration | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
@@ -38,7 +39,6 @@
 | Thumbfast | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | Utilitaire_Webapp | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
 | zentra | 🔴 20/100 | ✗ | ✓ | ✗ | 0 |
-| LB2I-Fiscal-Manager | 🔴 0/100 | ✗ | ✗ | ✗ | 0 |
 
 ## Compliance Gaps
 
@@ -49,6 +49,7 @@
 - claude-launcher
 - ClubMedRoomAssignment
 - Email_Assistant
+- LB2I-Fiscal-Manager
 - Livret_accueil_Au-Marais
 - livret-au-marais
 - magic-migration
@@ -61,17 +62,27 @@
 - Thumbfast
 - Utilitaire_Webapp
 - zentra
-- LB2I-Fiscal-Manager
 
-### ⚠️ No CI Pipeline (1)
-- LB2I-Fiscal-Manager
-
-### ⚠️ No Code Review (5)
-- **au-marais**: 1 PRs merged without review
-- **Livret_accueil_Au-Marais**: 1 PRs merged without review
-- **magic-migration**: 1 PRs merged without review
-- **Site_Greg-Assainissement**: 1 PRs merged without review
-- **zentra**: 1 PRs merged without review
+### ⚠️ No Code Review (19)
+- **au-marais**: 3 PRs merged without review
+- **CasaSync**: 3 PRs merged without review
+- **claude-cli-wrapper**: 4 PRs merged without review
+- **claude-launcher**: 3 PRs merged without review
+- **ClubMedRoomAssignment**: 3 PRs merged without review
+- **Email_Assistant**: 2 PRs merged without review
+- **LB2I-Fiscal-Manager**: 2 PRs merged without review
+- **Livret_accueil_Au-Marais**: 3 PRs merged without review
+- **livret-au-marais**: 3 PRs merged without review
+- **magic-migration**: 4 PRs merged without review
+- **MCP_Quota_Claude**: 4 PRs merged without review
+- **Site_1970_Plomberie**: 3 PRs merged without review
+- **Site_Greg-Assainissement**: 4 PRs merged without review
+- **SqlConnectionTest**: 3 PRs merged without review
+- **statusline**: 2 PRs merged without review
+- **test_codingmenace**: 1 PRs merged without review
+- **Thumbfast**: 2 PRs merged without review
+- **Utilitaire_Webapp**: 2 PRs merged without review
+- **zentra**: 3 PRs merged without review
 
 ### 🔴 Low Compliance Score < 60 (19)
 - au-marais: 20/100
@@ -80,6 +91,7 @@
 - claude-launcher: 20/100
 - ClubMedRoomAssignment: 20/100
 - Email_Assistant: 20/100
+- LB2I-Fiscal-Manager: 20/100
 - Livret_accueil_Au-Marais: 20/100
 - livret-au-marais: 20/100
 - magic-migration: 20/100
@@ -92,7 +104,6 @@
 - Thumbfast: 20/100
 - Utilitaire_Webapp: 20/100
 - zentra: 20/100
-- LB2I-Fiscal-Manager: 0/100
 
 ## Recommendations
 
@@ -114,12 +125,14 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/1 PRs (0%)
+**Review Coverage**: 0/3 PRs (0%)
 
 **PRs Without Review**:
+- #10 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
+- #9 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 - #8 - Admin improvements: calendar, reservations & mobile fixes (by thonyAGP)
 
-**Recent Deployments**: 41 successful deploys in 30 days
+**Recent Deployments**: 48 successful deploys in 30 days
 
 ---
 
@@ -133,7 +146,14 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 4 successful deploys in 30 days
+**Review Coverage**: 0/3 PRs (0%)
+
+**PRs Without Review**:
+- #77 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
+- #76 - test: add skeleton test files (by thonyAGP)
+- #75 - chore: add DevOps-Factory AI workflows (by thonyAGP)
+
+**Recent Deployments**: 8 successful deploys in 30 days
 
 ---
 
@@ -147,7 +167,15 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 1 successful deploys in 30 days
+**Review Coverage**: 0/4 PRs (0%)
+
+**PRs Without Review**:
+- #5 - chore: add SAST with Semgrep (by thonyAGP)
+- #4 - chore: add automated dependency updates with Renovate (by thonyAGP)
+- #3 - chore: add secret scanning with Gitleaks (by thonyAGP)
+- #2 - test: add skeleton test files (by thonyAGP)
+
+**Recent Deployments**: 2 successful deploys in 30 days
 
 ---
 
@@ -161,7 +189,14 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 1 successful deploys in 30 days
+**Review Coverage**: 0/3 PRs (0%)
+
+**PRs Without Review**:
+- #4 - chore: add SAST with Semgrep (by thonyAGP)
+- #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
+- #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
+
+**Recent Deployments**: 2 successful deploys in 30 days
 
 ---
 
@@ -174,6 +209,13 @@
 - Code Review Required: ✗
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
+
+**Review Coverage**: 0/3 PRs (0%)
+
+**PRs Without Review**:
+- #2798 - style: auto-fix Prettier formatting (122 files) (by thonyAGP)
+- #2786 - chore: add DevOps-Factory AI workflows (by thonyAGP)
+- #2780 - fix(ci): add pnpm version to action-setup (by thonyAGP)
 
 **Recent Deployments**: 1 successful deploys in 30 days
 
@@ -189,7 +231,33 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 44 successful deploys in 30 days
+**Review Coverage**: 0/2 PRs (0%)
+
+**PRs Without Review**:
+- #2796 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
+- #2782 - chore: add DevOps-Factory AI workflows (by thonyAGP)
+
+**Recent Deployments**: 39 successful deploys in 30 days
+
+---
+
+### LB2I-Fiscal-Manager | ❌ NEEDS WORK (20/100)
+
+**Full Name**: `thonyAGP/LB2I-Fiscal-Manager`
+
+**Controls**:
+- Branch Protection: ✗
+- Code Review Required: ✗
+- CI/CD Enabled: ✓
+- Security Findings: 0 alerts
+
+**Review Coverage**: 0/2 PRs (0%)
+
+**PRs Without Review**:
+- #2 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
+- #1 - chore: add DevOps-Factory AI workflows (by thonyAGP)
+
+**Recent Deployments**: 3 successful deploys in 30 days
 
 ---
 
@@ -203,10 +271,12 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/1 PRs (0%)
+**Review Coverage**: 0/3 PRs (0%)
 
 **PRs Without Review**:
 - #4 - chore: add SAST with Semgrep (by thonyAGP)
+- #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
+- #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
 
 **Recent Deployments**: 3 successful deploys in 30 days
 
@@ -222,7 +292,14 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 6 successful deploys in 30 days
+**Review Coverage**: 0/3 PRs (0%)
+
+**PRs Without Review**:
+- #5 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
+- #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
+- #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
+
+**Recent Deployments**: 13 successful deploys in 30 days
 
 ---
 
@@ -236,12 +313,15 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/1 PRs (0%)
+**Review Coverage**: 0/4 PRs (0%)
 
 **PRs Without Review**:
+- #24 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
+- #21 - chore: add automated dependency updates with Renovate (by thonyAGP)
+- #20 - chore: add secret scanning with Gitleaks (by thonyAGP)
 - #10 - feat(qa): QA Session Complete - Version Badge + Security Fixes (by thonyAGP)
 
-**Recent Deployments**: 32 successful deploys in 30 days
+**Recent Deployments**: 34 successful deploys in 30 days
 
 ---
 
@@ -254,6 +334,14 @@
 - Code Review Required: ✗
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
+
+**Review Coverage**: 0/4 PRs (0%)
+
+**PRs Without Review**:
+- #5 - chore: add SAST with Semgrep (by thonyAGP)
+- #4 - chore: add automated dependency updates with Renovate (by thonyAGP)
+- #3 - chore: add secret scanning with Gitleaks (by thonyAGP)
+- #2 - test: add skeleton test files (by thonyAGP)
 
 **Recent Deployments**: 1 successful deploys in 30 days
 
@@ -269,6 +357,13 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
+**Review Coverage**: 0/3 PRs (0%)
+
+**PRs Without Review**:
+- #4 - chore: add SAST with Semgrep (by thonyAGP)
+- #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
+- #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
+
 **Recent Deployments**: 1 successful deploys in 30 days
 
 ---
@@ -283,10 +378,13 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/1 PRs (0%)
+**Review Coverage**: 0/4 PRs (0%)
 
 **PRs Without Review**:
 - #5 - chore: add SAST with Semgrep (by thonyAGP)
+- #4 - chore: add automated dependency updates with Renovate (by thonyAGP)
+- #3 - chore: add secret scanning with Gitleaks (by thonyAGP)
+- #2 - test: add skeleton test files (by thonyAGP)
 
 **Recent Deployments**: 3 successful deploys in 30 days
 
@@ -302,6 +400,13 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
+**Review Coverage**: 0/3 PRs (0%)
+
+**PRs Without Review**:
+- #4 - chore: add SAST with Semgrep (by thonyAGP)
+- #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
+- #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
+
 **Recent Deployments**: 1 successful deploys in 30 days
 
 ---
@@ -315,6 +420,12 @@
 - Code Review Required: ✗
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
+
+**Review Coverage**: 0/2 PRs (0%)
+
+**PRs Without Review**:
+- #7 - test: add skeleton test files (by thonyAGP)
+- #6 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
 **Recent Deployments**: 1 successful deploys in 30 days
 
@@ -330,6 +441,11 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
+**Review Coverage**: 0/1 PRs (0%)
+
+**PRs Without Review**:
+- #5 - chore: add DevOps-Factory AI workflows (by thonyAGP)
+
 **Recent Deployments**: 2 successful deploys in 30 days
 
 ---
@@ -343,6 +459,12 @@
 - Code Review Required: ✗
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
+
+**Review Coverage**: 0/2 PRs (0%)
+
+**PRs Without Review**:
+- #7 - test: add skeleton test files (by thonyAGP)
+- #6 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
 **Recent Deployments**: 2 successful deploys in 30 days
 
@@ -358,7 +480,13 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Recent Deployments**: 6 successful deploys in 30 days
+**Review Coverage**: 0/2 PRs (0%)
+
+**PRs Without Review**:
+- #11 - test: add skeleton test files (by thonyAGP)
+- #10 - chore: add DevOps-Factory AI workflows (by thonyAGP)
+
+**Recent Deployments**: 7 successful deploys in 30 days
 
 ---
 
@@ -372,23 +500,13 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/1 PRs (0%)
+**Review Coverage**: 0/3 PRs (0%)
 
 **PRs Without Review**:
+- #40 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
+- #35 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 - #34 - fix(ci): add pnpm version to action-setup (by thonyAGP)
 
-**Recent Deployments**: 14 successful deploys in 30 days
-
----
-
-### LB2I-Fiscal-Manager | ❌ NEEDS WORK (0/100)
-
-**Full Name**: `thonyAGP/LB2I-Fiscal-Manager`
-
-**Controls**:
-- Branch Protection: ✗
-- Code Review Required: ✗
-- CI/CD Enabled: ✗
-- Security Findings: 0 alerts
+**Recent Deployments**: 16 successful deploys in 30 days
 
 ---

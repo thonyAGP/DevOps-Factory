@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-23T13:14:01.308Z",
+  "timestamp": "2026-03-23T18:40:16.635Z",
   "repos": [
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
       "healthScore": 55,
       "stack": "nextjs",
-      "ciFailureRate": 50,
+      "ciFailureRate": 33,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -134,7 +134,7 @@
       "fullName": "thonyAGP/livret-au-marais",
       "healthScore": 55,
       "stack": "nextjs",
-      "ciFailureRate": 33,
+      "ciFailureRate": 17,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -177,13 +177,6 @@
           "reason": "No SAST (static analysis) detected",
           "effort": "minimal",
           "impact": "Static analysis for bugs, security issues, and anti-patterns"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "auto-label.yml",
@@ -235,6 +228,13 @@
           "impact": "Secures npm dependencies with SBOM and license checks"
         },
         {
+          "template": "type-coverage.yml",
+          "priority": "medium",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
+        },
+        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
@@ -262,7 +262,7 @@
       "fullName": "thonyAGP/CasaSync",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 50,
+      "ciFailureRate": 31,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -811,7 +811,7 @@
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 44,
+      "ciFailureRate": 46,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -918,7 +918,7 @@
       "fullName": "thonyAGP/zentra",
       "healthScore": 0,
       "stack": "node",
-      "ciFailureRate": 6,
+      "ciFailureRate": 5,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -1025,7 +1025,7 @@
       "fullName": "thonyAGP/Email_Assistant",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 25,
+      "ciFailureRate": 17,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -1225,7 +1225,7 @@
       "fullName": "thonyAGP/magic-migration",
       "healthScore": 0,
       "stack": "node",
-      "ciFailureRate": 61,
+      "ciFailureRate": 54,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -1990,8 +1990,8 @@
   "summary": {
     "totalRecommendations": 250,
     "criticalCount": 11,
-    "highCount": 190,
-    "mediumCount": 23,
+    "highCount": 189,
+    "mediumCount": 24,
     "lowCount": 26,
     "topTemplates": [
       {

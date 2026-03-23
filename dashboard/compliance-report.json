@@ -1,11 +1,27 @@
 {
-  "timestamp": "2026-03-23T13:14:00.675Z",
+  "timestamp": "2026-03-23T18:40:15.870Z",
   "period": "30-day window",
   "repos": [
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T16:56:24Z",
+          "number": 10,
+          "reviewers": [],
+          "title": "chore: add security workflows (gitleaks, semgrep, license, supply-chain)"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:21:56Z",
+          "number": 9,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -16,6 +32,62 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/au-marais",
+          "sha": "e9eac0fd457bb2fd10e6dd40222ca98084d0e371",
+          "status": "success",
+          "timestamp": "2026-03-23T18:36:56Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/au-marais",
+          "sha": "e9eac0fd457bb2fd10e6dd40222ca98084d0e371",
+          "status": "success",
+          "timestamp": "2026-03-23T18:36:56Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/au-marais",
+          "sha": "93f465966b38b0a4ead898302b6e826133a3a53f",
+          "status": "success",
+          "timestamp": "2026-03-23T18:25:58Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/au-marais",
+          "sha": "4a06e77154c51f05f953d0005d8f22f647d67855",
+          "status": "success",
+          "timestamp": "2026-03-23T17:06:16Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/au-marais",
+          "sha": "09e03fb6756835792f5a70eba39e19c5be586b6e",
+          "status": "success",
+          "timestamp": "2026-03-23T17:01:07Z",
+          "workflow": "E2E Tests"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/au-marais",
+          "sha": "4a06e77154c51f05f953d0005d8f22f647d67855",
+          "status": "success",
+          "timestamp": "2026-03-23T16:55:28Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/au-marais",
+          "sha": "4a06e77154c51f05f953d0005d8f22f647d67855",
+          "status": "success",
+          "timestamp": "2026-03-23T16:55:28Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "devops-factory/add-workflows",
           "repo": "thonyAGP/au-marais",
@@ -354,8 +426,65 @@
     {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T16:56:18Z",
+          "number": 77,
+          "reviewers": [],
+          "title": "chore: add security workflows (gitleaks, semgrep, license, supply-chain)"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:22:12Z",
+          "number": 76,
+          "reviewers": [],
+          "title": "test: add skeleton test files"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:21:37Z",
+          "number": 75,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        }
+      ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/CasaSync",
+          "sha": "6f6112cc475edde5d85c9c03e5f74e4a720f071d",
+          "status": "success",
+          "timestamp": "2026-03-23T18:37:22Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/CasaSync",
+          "sha": "6f6112cc475edde5d85c9c03e5f74e4a720f071d",
+          "status": "success",
+          "timestamp": "2026-03-23T18:37:22Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/CasaSync",
+          "sha": "4f55629f50f384df3d75708f948ca5a4a388ddce",
+          "status": "success",
+          "timestamp": "2026-03-23T16:55:05Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/CasaSync",
+          "sha": "4f55629f50f384df3d75708f948ca5a4a388ddce",
+          "status": "success",
+          "timestamp": "2026-03-23T16:55:05Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "devops-factory/cross-update--github-workflows-coverage-tracking-yml",
           "repo": "thonyAGP/CasaSync",
@@ -398,8 +527,49 @@
     {
       "repo": "claude-cli-wrapper",
       "fullName": "thonyAGP/claude-cli-wrapper",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:05:00Z",
+          "number": 5,
+          "reviewers": [],
+          "title": "chore: add SAST with Semgrep"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:05:44Z",
+          "number": 4,
+          "reviewers": [],
+          "title": "chore: add automated dependency updates with Renovate"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:04:28Z",
+          "number": 3,
+          "reviewers": [],
+          "title": "chore: add secret scanning with Gitleaks"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:34:30Z",
+          "number": 2,
+          "reviewers": [],
+          "title": "test: add skeleton test files"
+        }
+      ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/claude-cli-wrapper",
+          "sha": "c37450ba773a539166f5971776223b602665dea9",
+          "status": "success",
+          "timestamp": "2026-03-23T18:37:47Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
           "repo": "thonyAGP/claude-cli-wrapper",
@@ -418,8 +588,41 @@
     {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:04:56Z",
+          "number": 4,
+          "reviewers": [],
+          "title": "chore: add SAST with Semgrep"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:05:40Z",
+          "number": 3,
+          "reviewers": [],
+          "title": "chore: add automated dependency updates with Renovate"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:04:24Z",
+          "number": 2,
+          "reviewers": [],
+          "title": "chore: add secret scanning with Gitleaks"
+        }
+      ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/claude-launcher",
+          "sha": "8bc8e20e0a0398a7b4e83f2ffd1fe56d7633de56",
+          "status": "success",
+          "timestamp": "2026-03-23T18:38:02Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
           "repo": "thonyAGP/claude-launcher",
@@ -438,7 +641,34 @@
     {
       "repo": "ClubMedRoomAssignment",
       "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [
+            "ai-fix"
+          ],
+          "mergedAt": "2026-03-23T18:22:31Z",
+          "number": 2798,
+          "reviewers": [],
+          "title": "style: auto-fix Prettier formatting (122 files)"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:21:40Z",
+          "number": 2786,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:22:28Z",
+          "number": 2780,
+          "reviewers": [],
+          "title": "fix(ci): add pnpm version to action-setup"
+        }
+      ],
       "deployments": [
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
@@ -458,8 +688,111 @@
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [
+            "enhancement"
+          ],
+          "mergedAt": "2026-03-23T16:56:16Z",
+          "number": 2796,
+          "reviewers": [],
+          "title": "chore: add security workflows (gitleaks, semgrep, license, supply-chain)"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [
+            "enhancement",
+            "Review effort 2/5",
+            "Possible security concern"
+          ],
+          "mergedAt": "2026-03-23T18:21:43Z",
+          "number": 2782,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        }
+      ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "bf51ffb88caeb872dc12b014f338384fd37f13d0",
+          "status": "success",
+          "timestamp": "2026-03-23T18:38:43Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "c3c1d61133b5beba3fefc7ea03447cc78a738949",
+          "status": "success",
+          "timestamp": "2026-03-23T18:24:13Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "ai-fix/ci-1774287914939",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "c9728358530ef810c4961c18a18245e89b8bad98",
+          "status": "success",
+          "timestamp": "2026-03-23T17:47:48Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "3520d55ee513623701be0d2c84d36dc532aca75a",
+          "status": "success",
+          "timestamp": "2026-03-23T17:04:31Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "a1a9e96c160c15415b14696aef478e0c058f1e5a",
+          "status": "success",
+          "timestamp": "2026-03-23T16:59:25Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "71f2e11408d875c2026855716674a4f422632c50",
+          "status": "success",
+          "timestamp": "2026-03-23T16:56:59Z",
+          "workflow": "Post-Deploy Health Check"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "3520d55ee513623701be0d2c84d36dc532aca75a",
+          "status": "success",
+          "timestamp": "2026-03-23T16:54:54Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "3520d55ee513623701be0d2c84d36dc532aca75a",
+          "status": "success",
+          "timestamp": "2026-03-23T16:54:54Z",
+          "workflow": "Qodo Merge - PR Review"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "3520d55ee513623701be0d2c84d36dc532aca75a",
+          "status": "success",
+          "timestamp": "2026-03-23T16:54:54Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "ai-fix/ci-1774284653008",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "1af811b76ea2ccd27afe7609c38b4bc22a33b152",
+          "status": "success",
+          "timestamp": "2026-03-23T16:53:30Z",
+          "workflow": "Post-Deploy Health Check"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/Email_Assistant",
@@ -691,126 +1024,59 @@
           "status": "success",
           "timestamp": "2026-03-22T16:36:16Z",
           "workflow": "Qodo Merge - PR Review"
+        }
+      ],
+      "securityFindings": [],
+      "branchProtection": false,
+      "codeReview": false,
+      "ciEnabled": true,
+      "score": 20
+    },
+    {
+      "repo": "LB2I-Fiscal-Manager",
+      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T16:56:29Z",
+          "number": 2,
+          "reviewers": [],
+          "title": "chore: add security workflows (gitleaks, semgrep, license, supply-chain)"
         },
         {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:21:47Z",
+          "number": 1,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        }
+      ],
+      "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/LB2I-Fiscal-Manager",
+          "sha": "68a9de157536ac7b4e886117788141c22db7c65f",
           "status": "success",
-          "timestamp": "2026-03-22T16:36:14Z",
-          "workflow": "Qodo Merge - PR Review"
+          "timestamp": "2026-03-23T18:39:02Z",
+          "workflow": "Secret Scanning"
         },
         {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/LB2I-Fiscal-Manager",
+          "sha": "315090a756a74d7ea61bbb11260d952df03051cd",
           "status": "success",
-          "timestamp": "2026-03-22T16:36:12Z",
-          "workflow": "Qodo Merge - PR Review"
+          "timestamp": "2026-03-23T16:55:51Z",
+          "workflow": "Secret Scanning"
         },
         {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/LB2I-Fiscal-Manager",
+          "sha": "315090a756a74d7ea61bbb11260d952df03051cd",
           "status": "success",
-          "timestamp": "2026-03-22T12:39:56Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-22T06:43:38Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-22T01:50:48Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-21T18:29:34Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-21T12:37:45Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-21T06:36:45Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-21T01:28:45Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "ai-fix/ci-1774035185274",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "55ff3b0eb1897c0b3c1fc8e27c1bb1633d3e1b84",
-          "status": "success",
-          "timestamp": "2026-03-20T19:35:32Z",
-          "workflow": "Post-Deploy Health Check"
-        },
-        {
-          "branch": "ai-fix/ci-1774035185274",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "55ff3b0eb1897c0b3c1fc8e27c1bb1633d3e1b84",
-          "status": "success",
-          "timestamp": "2026-03-20T19:33:12Z",
-          "workflow": "Qodo Merge - PR Review"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-20T18:40:39Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-20T12:50:08Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-20T06:48:03Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-20T01:45:59Z",
-          "workflow": "Monitor Production"
+          "timestamp": "2026-03-23T16:55:51Z",
+          "workflow": "Security Scan (SAST)"
         }
       ],
       "securityFindings": [],
@@ -830,6 +1096,22 @@
           "number": 4,
           "reviewers": [],
           "title": "chore: add SAST with Semgrep"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:05:35Z",
+          "number": 3,
+          "reviewers": [],
+          "title": "chore: add automated dependency updates with Renovate"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:04:16Z",
+          "number": 2,
+          "reviewers": [],
+          "title": "chore: add secret scanning with Gitleaks"
         }
       ],
       "deployments": [
@@ -867,8 +1149,89 @@
     {
       "repo": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T16:56:21Z",
+          "number": 5,
+          "reviewers": [],
+          "title": "chore: add security workflows (gitleaks, semgrep, license, supply-chain)"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:05:31Z",
+          "number": 3,
+          "reviewers": [],
+          "title": "chore: add automated dependency updates with Renovate"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:04:12Z",
+          "number": 2,
+          "reviewers": [],
+          "title": "chore: add secret scanning with Gitleaks"
+        }
+      ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "9ed0ada463f794ca5f78cc4e9453742624b93bde",
+          "status": "success",
+          "timestamp": "2026-03-23T18:39:23Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "81d15616705d6aad238fa3e65e1427bad59d1897",
+          "status": "success",
+          "timestamp": "2026-03-23T18:05:34Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "862d02eea96eea333478ec407bf617f106752dde",
+          "status": "success",
+          "timestamp": "2026-03-23T18:04:15Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "0d3f2f65d98732d36b348eb857a9edddf07876b2",
+          "status": "success",
+          "timestamp": "2026-03-23T16:56:24Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "da7a32103435366c2c6aabaee2e2133647659894",
+          "status": "success",
+          "timestamp": "2026-03-23T16:55:16Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "da7a32103435366c2c6aabaee2e2133647659894",
+          "status": "success",
+          "timestamp": "2026-03-23T16:55:16Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/livret-au-marais",
+          "sha": "da7a32103435366c2c6aabaee2e2133647659894",
+          "status": "success",
+          "timestamp": "2026-03-23T16:55:16Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
           "repo": "thonyAGP/livret-au-marais",
@@ -931,6 +1294,30 @@
         {
           "author": "thonyAGP",
           "labels": [],
+          "mergedAt": "2026-03-23T16:56:32Z",
+          "number": 24,
+          "reviewers": [],
+          "title": "chore: add security workflows (gitleaks, semgrep, license, supply-chain)"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:05:27Z",
+          "number": 21,
+          "reviewers": [],
+          "title": "chore: add automated dependency updates with Renovate"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:04:07Z",
+          "number": 20,
+          "reviewers": [],
+          "title": "chore: add secret scanning with Gitleaks"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
           "mergedAt": "2026-03-02T09:52:36Z",
           "number": 10,
           "reviewers": [],
@@ -938,6 +1325,22 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "af7d62c288dbfe6735280608ce10442d703f4d5e",
+          "status": "success",
+          "timestamp": "2026-03-23T16:56:00Z",
+          "workflow": "Security Scan (SAST)"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "af7d62c288dbfe6735280608ce10442d703f4d5e",
+          "status": "success",
+          "timestamp": "2026-03-23T16:56:00Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/magic-migration",
@@ -1204,7 +1607,40 @@
     {
       "repo": "MCP_Quota_Claude",
       "fullName": "thonyAGP/MCP_Quota_Claude",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:04:45Z",
+          "number": 5,
+          "reviewers": [],
+          "title": "chore: add SAST with Semgrep"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:05:22Z",
+          "number": 4,
+          "reviewers": [],
+          "title": "chore: add automated dependency updates with Renovate"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:04:02Z",
+          "number": 3,
+          "reviewers": [],
+          "title": "chore: add secret scanning with Gitleaks"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:34:15Z",
+          "number": 2,
+          "reviewers": [],
+          "title": "test: add skeleton test files"
+        }
+      ],
       "deployments": [
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
@@ -1224,7 +1660,32 @@
     {
       "repo": "Site_1970_Plomberie",
       "fullName": "thonyAGP/Site_1970_Plomberie",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:04:41Z",
+          "number": 4,
+          "reviewers": [],
+          "title": "chore: add SAST with Semgrep"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:05:18Z",
+          "number": 3,
+          "reviewers": [],
+          "title": "chore: add automated dependency updates with Renovate"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:03:58Z",
+          "number": 2,
+          "reviewers": [],
+          "title": "chore: add secret scanning with Gitleaks"
+        }
+      ],
       "deployments": [
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
@@ -1252,6 +1713,30 @@
           "number": 5,
           "reviewers": [],
           "title": "chore: add SAST with Semgrep"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:05:14Z",
+          "number": 4,
+          "reviewers": [],
+          "title": "chore: add automated dependency updates with Renovate"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:03:53Z",
+          "number": 3,
+          "reviewers": [],
+          "title": "chore: add secret scanning with Gitleaks"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:34:21Z",
+          "number": 2,
+          "reviewers": [],
+          "title": "test: add skeleton test files"
         }
       ],
       "deployments": [
@@ -1289,7 +1774,32 @@
     {
       "repo": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:04:37Z",
+          "number": 4,
+          "reviewers": [],
+          "title": "chore: add SAST with Semgrep"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:05:09Z",
+          "number": 3,
+          "reviewers": [],
+          "title": "chore: add automated dependency updates with Renovate"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:03:48Z",
+          "number": 2,
+          "reviewers": [],
+          "title": "chore: add secret scanning with Gitleaks"
+        }
+      ],
       "deployments": [
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
@@ -1309,7 +1819,24 @@
     {
       "repo": "statusline",
       "fullName": "thonyAGP/statusline",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:22:21Z",
+          "number": 7,
+          "reviewers": [],
+          "title": "test: add skeleton test files"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:21:59Z",
+          "number": 6,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        }
+      ],
       "deployments": [
         {
           "branch": "devops-factory/cross-update--github-workflows-gitleaks-yml",
@@ -1329,7 +1856,16 @@
     {
       "repo": "test_codingmenace",
       "fullName": "thonyAGP/test_codingmenace",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:22:02Z",
+          "number": 5,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        }
+      ],
       "deployments": [
         {
           "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
@@ -1357,7 +1893,24 @@
     {
       "repo": "Thumbfast",
       "fullName": "thonyAGP/Thumbfast",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:22:15Z",
+          "number": 7,
+          "reviewers": [],
+          "title": "test: add skeleton test files"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:21:50Z",
+          "number": 6,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        }
+      ],
       "deployments": [
         {
           "branch": "devops-factory/cross-update--github-workflows-semgrep-yml",
@@ -1385,8 +1938,33 @@
     {
       "repo": "Utilitaire_Webapp",
       "fullName": "thonyAGP/Utilitaire_Webapp",
-      "mergedPRs": [],
+      "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:22:18Z",
+          "number": 11,
+          "reviewers": [],
+          "title": "test: add skeleton test files"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:21:53Z",
+          "number": 10,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        }
+      ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Utilitaire_Webapp",
+          "sha": "f6f0d468f7241895b30ce2f244be0d3ef823464e",
+          "status": "success",
+          "timestamp": "2026-03-23T18:21:56Z",
+          "workflow": "CI"
+        },
         {
           "branch": "devops-factory/add-workflows",
           "repo": "thonyAGP/Utilitaire_Webapp",
@@ -1449,6 +2027,22 @@
         {
           "author": "thonyAGP",
           "labels": [],
+          "mergedAt": "2026-03-23T16:56:27Z",
+          "number": 40,
+          "reviewers": [],
+          "title": "chore: add security workflows (gitleaks, semgrep, license, supply-chain)"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-23T18:22:04Z",
+          "number": 35,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
+        {
+          "author": "thonyAGP",
+          "labels": [],
           "mergedAt": "2026-03-23T09:30:38Z",
           "number": 34,
           "reviewers": [],
@@ -1456,6 +2050,22 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/zentra",
+          "sha": "8f56af3009593cf685c77b916da980bfd7cd0fc9",
+          "status": "success",
+          "timestamp": "2026-03-23T16:55:39Z",
+          "workflow": "Secret Scanning"
+        },
+        {
+          "branch": "devops-factory/add-security-workflows",
+          "repo": "thonyAGP/zentra",
+          "sha": "8f56af3009593cf685c77b916da980bfd7cd0fc9",
+          "status": "success",
+          "timestamp": "2026-03-23T16:55:39Z",
+          "workflow": "Security Scan (SAST)"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/zentra",
@@ -1574,27 +2184,16 @@
       "codeReview": false,
       "ciEnabled": true,
       "score": 20
-    },
-    {
-      "repo": "LB2I-Fiscal-Manager",
-      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
-      "mergedPRs": [],
-      "deployments": [],
-      "securityFindings": [],
-      "branchProtection": false,
-      "codeReview": false,
-      "ciEnabled": false,
-      "score": 0
     }
   ],
   "summary": {
     "totalRepos": 19,
-    "totalPRsMerged": 5,
+    "totalPRsMerged": 54,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 164,
-    "avgComplianceScore": 19,
+    "totalDeployments": 187,
+    "avgComplianceScore": 20,
     "reposWithBranchProtection": 0,
-    "reposWithCI": 18
+    "reposWithCI": 19
   }
 }

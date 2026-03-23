@@ -2927,13 +2927,23 @@
   },
   {
     "date": "2026-03-23",
-    "avgHealth": 48,
-    "failingCI": 1,
-    "passingCI": 6,
-    "totalOpenPRs": 57,
+    "avgHealth": 46,
+    "failingCI": 3,
+    "passingCI": 4,
+    "totalOpenPRs": 7,
     "perProject": [
       {
         "name": "CasaSync",
+        "health": 29,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Utilitaire_Webapp",
+        "health": 29,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "zentra",
         "health": 29,
         "ciStatus": "fail"
       },
@@ -2993,16 +3003,6 @@
         "ciStatus": "none"
       },
       {
-        "name": "zentra",
-        "health": 49,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "magic-migration",
-        "health": 52,
-        "ciStatus": "pass"
-      },
-      {
         "name": "au-marais",
         "health": 59,
         "ciStatus": "pass"
@@ -3018,8 +3018,8 @@
         "ciStatus": "pass"
       },
       {
-        "name": "Utilitaire_Webapp",
-        "health": 59,
+        "name": "magic-migration",
+        "health": 62,
         "ciStatus": "pass"
       }
     ]

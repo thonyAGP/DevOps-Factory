@@ -1,11 +1,11 @@
 # Template Recommendations Report
 
-Generated: 3/23/2026, 1:14:01 PM
+Generated: 3/23/2026, 6:40:16 PM
 
 ## Executive Summary
 
 - **Total Recommendations**: 250
-- **Critical**: 11 | **High**: 190 | **Medium**: 23 | **Low**: 26
+- **Critical**: 11 | **High**: 189 | **Medium**: 24 | **Low**: 26
 - **Average Health Score**: 19.6/100
 - **Top Template**: gitleaks.yml (19 repos)
 - **Most Improved Repo**: au-marais
@@ -21,89 +21,6 @@ Generated: 3/23/2026, 1:14:01 PM
 ## Recommendations by Repository
 
 ### au-marais
-
-- **Health Score**: 55/100
-- **Stack**: nextjs
-- **CI Failure Rate**: 50%
-
-#### High Priority
-
-- **gitleaks.yml**
-  - Reason: No secret scanning detected
-  - Effort: minimal
-  - Impact: Prevents accidental secret leaks in commits
-- **qodo-merge.yml**
-  - Reason: Free code reviews without API key requirement
-  - Effort: minimal
-  - Impact: Free code review from CodeRabbit/Qodo without API keys
-- **lighthouse.yml**
-  - Reason: Low health score (55) - needs performance tracking
-  - Effort: moderate
-  - Impact: Tracks performance, accessibility, and SEO metrics
-- **coverage-tracking.yml**
-  - Reason: Low health score (55) - needs test coverage tracking
-  - Effort: moderate
-  - Impact: Tracks test coverage over time and prevents regressions
-- **renovate.json**
-  - Reason: No dependency update automation detected
-  - Effort: minimal
-  - Impact: Automated dependency updates with intelligent grouping
-- **semgrep.yml**
-  - Reason: No SAST (static analysis) detected
-  - Effort: minimal
-  - Impact: Static analysis for bugs, security issues, and anti-patterns
-- **type-coverage.yml**
-  - Reason: Improve TypeScript coverage
-  - Effort: minimal
-  - Impact: Ensures TypeScript coverage and type safety
-
-#### Medium Priority
-
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **accessibility-check.yml**
-  - Reason: No accessibility scanning detected
-  - Effort: minimal
-  - Impact: Ensures WCAG compliance and accessibility standards
-- **semantic-release.yml**
-  - Reason: Automate versioning from commits
-  - Effort: moderate
-  - Impact: Automated versioning and release notes from git commits
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-- **supply-chain-security.yml**
-  - Reason: Secure npm dependency chain
-  - Effort: minimal
-  - Impact: Secures npm dependencies with SBOM and license checks
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-- **release-drafter.yml**
-  - Reason: Auto-generate release notes
-  - Effort: minimal
-  - Impact: Auto-drafts release notes from PRs and commits
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
-
-### livret-au-marais
 
 - **Health Score**: 55/100
 - **Stack**: nextjs
@@ -186,11 +103,94 @@ Generated: 3/23/2026, 1:14:01 PM
   - Effort: significant
   - Impact: Validates test quality by introducing code mutations
 
+### livret-au-marais
+
+- **Health Score**: 55/100
+- **Stack**: nextjs
+- **CI Failure Rate**: 17%
+
+#### High Priority
+
+- **gitleaks.yml**
+  - Reason: No secret scanning detected
+  - Effort: minimal
+  - Impact: Prevents accidental secret leaks in commits
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **lighthouse.yml**
+  - Reason: Low health score (55) - needs performance tracking
+  - Effort: moderate
+  - Impact: Tracks performance, accessibility, and SEO metrics
+- **coverage-tracking.yml**
+  - Reason: Low health score (55) - needs test coverage tracking
+  - Effort: moderate
+  - Impact: Tracks test coverage over time and prevents regressions
+- **renovate.json**
+  - Reason: No dependency update automation detected
+  - Effort: minimal
+  - Impact: Automated dependency updates with intelligent grouping
+- **semgrep.yml**
+  - Reason: No SAST (static analysis) detected
+  - Effort: minimal
+  - Impact: Static analysis for bugs, security issues, and anti-patterns
+
+#### Medium Priority
+
+- **auto-label.yml**
+  - Reason: Would improve issue/PR organization
+  - Effort: minimal
+  - Impact: Automatically labels issues and PRs for better organization
+- **accessibility-check.yml**
+  - Reason: No accessibility scanning detected
+  - Effort: minimal
+  - Impact: Ensures WCAG compliance and accessibility standards
+- **semantic-release.yml**
+  - Reason: Automate versioning from commits
+  - Effort: moderate
+  - Impact: Automated versioning and release notes from git commits
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+- **dead-code-detection.yml**
+  - Reason: Detect and remove unused code
+  - Effort: minimal
+  - Impact: Detects and reports unused code with Knip
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
+  - Effort: minimal
+  - Impact: Enforces PR size limits for code review quality
+- **supply-chain-security.yml**
+  - Reason: Secure npm dependency chain
+  - Effort: minimal
+  - Impact: Secures npm dependencies with SBOM and license checks
+- **type-coverage.yml**
+  - Reason: Improve TypeScript coverage
+  - Effort: minimal
+  - Impact: Ensures TypeScript coverage and type safety
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+- **release-drafter.yml**
+  - Reason: Auto-generate release notes
+  - Effort: minimal
+  - Impact: Auto-drafts release notes from PRs and commits
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
+
 ### CasaSync
 
 - **Health Score**: 35/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 50%
+- **CI Failure Rate**: 31%
 
 #### High Priority
 
@@ -544,7 +544,7 @@ Generated: 3/23/2026, 1:14:01 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 44%
+- **CI Failure Rate**: 46%
 
 #### High Priority
 
@@ -612,7 +612,7 @@ Generated: 3/23/2026, 1:14:01 PM
 
 - **Health Score**: 0/100
 - **Stack**: node
-- **CI Failure Rate**: 6%
+- **CI Failure Rate**: 5%
 
 #### High Priority
 
@@ -680,7 +680,7 @@ Generated: 3/23/2026, 1:14:01 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 25%
+- **CI Failure Rate**: 17%
 
 #### High Priority
 
@@ -811,7 +811,7 @@ Generated: 3/23/2026, 1:14:01 PM
 
 - **Health Score**: 0/100
 - **Stack**: node
-- **CI Failure Rate**: 61%
+- **CI Failure Rate**: 54%
 
 #### High Priority
 
