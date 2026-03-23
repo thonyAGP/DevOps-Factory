@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-23T18:59:17.235Z",
+  "timestamp": "2026-03-23T20:50:57.896Z",
   "repos": [
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
       "healthScore": 55,
       "stack": "nextjs",
-      "ciFailureRate": 33,
+      "ciFailureRate": 48,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -106,7 +106,7 @@
       "fullName": "thonyAGP/ClubMedRoomAssignment",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 80,
+      "ciFailureRate": 75,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -206,7 +206,7 @@
       "fullName": "thonyAGP/livret-au-marais",
       "healthScore": 55,
       "stack": "nextjs",
-      "ciFailureRate": 11,
+      "ciFailureRate": 48,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -228,6 +228,13 @@
           "reason": "Low health score (55) - needs test coverage tracking",
           "effort": "moderate",
           "impact": "Tracks test coverage over time and prevents regressions"
+        },
+        {
+          "template": "type-coverage.yml",
+          "priority": "high",
+          "reason": "Improve TypeScript coverage",
+          "effort": "minimal",
+          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "auto-label.yml",
@@ -272,13 +279,6 @@
           "impact": "Enforces PR size limits for code review quality"
         },
         {
-          "template": "type-coverage.yml",
-          "priority": "medium",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
@@ -306,7 +306,7 @@
       "fullName": "thonyAGP/test_codingmenace",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 0,
+      "ciFailureRate": 33,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -406,7 +406,7 @@
       "fullName": "thonyAGP/Thumbfast",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 0,
+      "ciFailureRate": 50,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -506,7 +506,7 @@
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 48,
+      "ciFailureRate": 53,
       "recommendations": [
         {
           "template": "gitleaks.yml",
@@ -606,7 +606,7 @@
       "fullName": "thonyAGP/CasaSync",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 31,
+      "ciFailureRate": 43,
       "recommendations": [
         {
           "template": "auto-label.yml",
@@ -699,7 +699,7 @@
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
       "healthScore": 0,
       "stack": "nextjs",
-      "ciFailureRate": 20,
+      "ciFailureRate": 57,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -785,7 +785,7 @@
       "fullName": "thonyAGP/Site_Greg-Assainissement",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 20,
+      "ciFailureRate": 57,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -871,7 +871,7 @@
       "fullName": "thonyAGP/statusline",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 50,
+      "ciFailureRate": 67,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -957,7 +957,7 @@
       "fullName": "thonyAGP/LB2I-Fiscal-Manager",
       "healthScore": 0,
       "stack": "nextjs",
-      "ciFailureRate": 0,
+      "ciFailureRate": 50,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1036,7 +1036,7 @@
       "fullName": "thonyAGP/zentra",
       "healthScore": 0,
       "stack": "node",
-      "ciFailureRate": 5,
+      "ciFailureRate": 15,
       "recommendations": [
         {
           "template": "auto-label.yml",
@@ -1115,7 +1115,7 @@
       "fullName": "thonyAGP/claude-cli-wrapper",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 50,
+      "ciFailureRate": 83,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1187,7 +1187,7 @@
       "fullName": "thonyAGP/Email_Assistant",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 17,
+      "ciFailureRate": 30,
       "recommendations": [
         {
           "template": "auto-label.yml",
@@ -1259,7 +1259,7 @@
       "fullName": "thonyAGP/magic-migration",
       "healthScore": 0,
       "stack": "node",
-      "ciFailureRate": 51,
+      "ciFailureRate": 65,
       "recommendations": [
         {
           "template": "auto-label.yml",
@@ -1331,7 +1331,7 @@
       "fullName": "thonyAGP/MCP_Quota_Claude",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 50,
+      "ciFailureRate": 67,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1403,7 +1403,7 @@
       "fullName": "thonyAGP/Site_1970_Plomberie",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 50,
+      "ciFailureRate": 67,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1475,7 +1475,7 @@
       "fullName": "thonyAGP/claude-launcher",
       "healthScore": 0,
       "stack": "dotnet",
-      "ciFailureRate": 50,
+      "ciFailureRate": 83,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1519,7 +1519,7 @@
       "fullName": "thonyAGP/SqlConnectionTest",
       "healthScore": 35,
       "stack": "dotnet",
-      "ciFailureRate": 50,
+      "ciFailureRate": 83,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1626,8 +1626,8 @@
   "summary": {
     "totalRecommendations": 198,
     "criticalCount": 11,
-    "highCount": 139,
-    "mediumCount": 22,
+    "highCount": 140,
+    "mediumCount": 21,
     "lowCount": 26,
     "topTemplates": [
       {

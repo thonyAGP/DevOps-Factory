@@ -14,91 +14,91 @@
 
 ### Utilitaire_Webapp :x:
 - **Health**: 39/100
-- **CI**: fail ([view](https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/23453347940))
+- **CI**: fail ([view](https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/23459264379))
 - **Open PRs**: 1
 
-### zentra :x:
-- **Health**: 40/100
-- **CI**: fail ([view](https://github.com/thonyAGP/zentra/actions/runs/23453338858))
-- **Open PRs**: 6
+### magic-migration :x:
+- **Health**: 48/100
+- **CI**: fail ([view](https://github.com/thonyAGP/magic-migration/actions/runs/23459183955))
+- **Open PRs**: 3
 
 ### CasaSync :x:
 - **Health**: 50/100
-- **CI**: fail ([view](https://github.com/thonyAGP/CasaSync/actions/runs/23453343900))
+- **CI**: fail ([view](https://github.com/thonyAGP/CasaSync/actions/runs/23459102583))
 - **Open PRs**: 1
 
 ### claude-cli-wrapper :white_circle:
 - **Health**: 57/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/claude-cli-wrapper/actions/runs/23459112618))
 - **Open PRs**: 1
 
 ### claude-launcher :white_circle:
 - **Health**: 57/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/claude-launcher/actions/runs/23459135048))
 - **Open PRs**: 1
 
 ### Livret_accueil_Au-Marais :white_circle:
 - **Health**: 57/100
-- **CI**: none ([view](https://github.com/thonyAGP/Livret_accueil_Au-Marais/actions/runs/23422811499))
+- **CI**: none ([view](https://github.com/thonyAGP/Livret_accueil_Au-Marais/actions/runs/23459170873))
 - **Open PRs**: 1
 
 ### MCP_Quota_Claude :white_circle:
 - **Health**: 57/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/MCP_Quota_Claude/actions/runs/23459188219))
 - **Open PRs**: 1
 
 ### Site_1970_Plomberie :white_circle:
 - **Health**: 57/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/Site_1970_Plomberie/actions/runs/23459207725))
 - **Open PRs**: 1
 
 ### Site_Greg-Assainissement :white_circle:
 - **Health**: 57/100
-- **CI**: none ([view](https://github.com/thonyAGP/Site_Greg-Assainissement/actions/runs/23423215727))
+- **CI**: none ([view](https://github.com/thonyAGP/Site_Greg-Assainissement/actions/runs/23459212945))
 - **Open PRs**: 1
 
 ### SqlConnectionTest :white_circle:
 - **Health**: 57/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/SqlConnectionTest/actions/runs/23459231031))
 - **Open PRs**: 1
 
 ### statusline :white_circle:
 - **Health**: 59/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/statusline/actions/runs/23459237275))
 - **Open PRs**: 1
 
 ### test_codingmenace :white_circle:
 - **Health**: 59/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/test_codingmenace/actions/runs/23459246032))
 - **Open PRs**: 1
 
 ### Thumbfast :white_circle:
 - **Health**: 59/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/Thumbfast/actions/runs/23459257748))
+- **Open PRs**: 1
+
+### zentra :white_circle:
+- **Health**: 60/100
+- **CI**: none ([view](https://github.com/thonyAGP/zentra/actions/runs/23459269258))
+- **Open PRs**: 6
+
+### au-marais :white_circle:
+- **Health**: 70/100
+- **CI**: none ([view](https://github.com/thonyAGP/au-marais/actions/runs/23459188080))
+- **Open PRs**: 1
+
+### Email_Assistant :white_circle:
+- **Health**: 70/100
+- **CI**: none ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23459283299))
 - **Open PRs**: 1
 
 ### LB2I-Fiscal-Manager :white_circle:
 - **Health**: 70/100
-- **CI**: none ([view](null))
+- **CI**: none ([view](https://github.com/thonyAGP/LB2I-Fiscal-Manager/actions/runs/23459248140))
 - **Open PRs**: 1
 
 ### livret-au-marais :white_check_mark:
 - **Health**: 75/100
-- **CI**: pass ([view](https://github.com/thonyAGP/livret-au-marais/actions/runs/23452619136))
-- **Open PRs**: 1
-
-### magic-migration :white_check_mark:
-- **Health**: 78/100
-- **CI**: pass ([view](https://github.com/thonyAGP/magic-migration/actions/runs/23425898274))
-- **Open PRs**: 3
-
-### au-marais :white_check_mark:
-- **Health**: 80/100
-- **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/23453505819))
-- **Open PRs**: 1
-
-### Email_Assistant :white_check_mark:
-- **Health**: 80/100
-- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23454367294))
+- **CI**: pass ([view](https://github.com/thonyAGP/livret-au-marais/actions/runs/23459178352))
 - **Open PRs**: 1
 

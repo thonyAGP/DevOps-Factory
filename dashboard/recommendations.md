@@ -1,11 +1,11 @@
 # Template Recommendations Report
 
-Generated: 3/23/2026, 6:59:17 PM
+Generated: 3/23/2026, 8:50:57 PM
 
 ## Executive Summary
 
 - **Total Recommendations**: 198
-- **Critical**: 11 | **High**: 139 | **Medium**: 22 | **Low**: 26
+- **Critical**: 11 | **High**: 140 | **Medium**: 21 | **Low**: 26
 - **Average Health Score**: 19.6/100
 - **Top Template**: auto-label.yml (19 repos)
 - **Most Improved Repo**: au-marais
@@ -24,7 +24,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 55/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 33%
+- **CI Failure Rate**: 48%
 
 #### High Priority
 
@@ -91,7 +91,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 80%
+- **CI Failure Rate**: 75%
 
 #### High Priority
 
@@ -155,7 +155,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 55/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 11%
+- **CI Failure Rate**: 48%
 
 #### High Priority
 
@@ -171,6 +171,10 @@ Generated: 3/23/2026, 6:59:17 PM
   - Reason: Low health score (55) - needs test coverage tracking
   - Effort: moderate
   - Impact: Tracks test coverage over time and prevents regressions
+- **type-coverage.yml**
+  - Reason: Improve TypeScript coverage
+  - Effort: minimal
+  - Impact: Ensures TypeScript coverage and type safety
 
 #### Medium Priority
 
@@ -198,10 +202,6 @@ Generated: 3/23/2026, 6:59:17 PM
   - Reason: Enforce maintainable PR sizes
   - Effort: minimal
   - Impact: Enforces PR size limits for code review quality
-- **type-coverage.yml**
-  - Reason: Improve TypeScript coverage
-  - Effort: minimal
-  - Impact: Ensures TypeScript coverage and type safety
 
 #### Low Priority
 
@@ -222,6 +222,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: nextjs
+- **CI Failure Rate**: 33%
 
 #### Critical Priority
 
@@ -288,6 +289,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: nextjs
+- **CI Failure Rate**: 50%
 
 #### Critical Priority
 
@@ -354,7 +356,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 48%
+- **CI Failure Rate**: 53%
 
 #### High Priority
 
@@ -418,7 +420,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 31%
+- **CI Failure Rate**: 43%
 
 #### High Priority
 
@@ -478,7 +480,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 0/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 20%
+- **CI Failure Rate**: 57%
 
 #### Critical Priority
 
@@ -537,7 +539,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 20%
+- **CI Failure Rate**: 57%
 
 #### Critical Priority
 
@@ -596,7 +598,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 50%
+- **CI Failure Rate**: 67%
 
 #### Critical Priority
 
@@ -655,6 +657,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 0/100
 - **Stack**: nextjs
+- **CI Failure Rate**: 50%
 
 #### Critical Priority
 
@@ -709,7 +712,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 0/100
 - **Stack**: node
-- **CI Failure Rate**: 5%
+- **CI Failure Rate**: 15%
 
 #### High Priority
 
@@ -761,7 +764,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 50%
+- **CI Failure Rate**: 83%
 
 #### Critical Priority
 
@@ -812,7 +815,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 17%
+- **CI Failure Rate**: 30%
 
 #### High Priority
 
@@ -860,7 +863,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 0/100
 - **Stack**: node
-- **CI Failure Rate**: 51%
+- **CI Failure Rate**: 65%
 
 #### High Priority
 
@@ -908,7 +911,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 50%
+- **CI Failure Rate**: 67%
 
 #### Critical Priority
 
@@ -959,7 +962,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
-- **CI Failure Rate**: 50%
+- **CI Failure Rate**: 67%
 
 #### Critical Priority
 
@@ -1010,7 +1013,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 0/100
 - **Stack**: dotnet
-- **CI Failure Rate**: 50%
+- **CI Failure Rate**: 83%
 
 #### Critical Priority
 
@@ -1045,7 +1048,7 @@ Generated: 3/23/2026, 6:59:17 PM
 
 - **Health Score**: 35/100
 - **Stack**: dotnet
-- **CI Failure Rate**: 50%
+- **CI Failure Rate**: 83%
 
 #### Critical Priority
 

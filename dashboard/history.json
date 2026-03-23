@@ -2927,9 +2927,9 @@
   },
   {
     "date": "2026-03-23",
-    "avgHealth": 60,
+    "avgHealth": 59,
     "failingCI": 3,
-    "passingCI": 4,
+    "passingCI": 1,
     "totalOpenPRs": 25,
     "perProject": [
       {
@@ -2938,8 +2938,8 @@
         "ciStatus": "fail"
       },
       {
-        "name": "zentra",
-        "health": 40,
+        "name": "magic-migration",
+        "health": 48,
         "ciStatus": "fail"
       },
       {
@@ -2998,6 +2998,21 @@
         "ciStatus": "none"
       },
       {
+        "name": "zentra",
+        "health": 60,
+        "ciStatus": "none"
+      },
+      {
+        "name": "au-marais",
+        "health": 70,
+        "ciStatus": "none"
+      },
+      {
+        "name": "Email_Assistant",
+        "health": 70,
+        "ciStatus": "none"
+      },
+      {
         "name": "LB2I-Fiscal-Manager",
         "health": 70,
         "ciStatus": "none"
@@ -3005,21 +3020,6 @@
       {
         "name": "livret-au-marais",
         "health": 75,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "magic-migration",
-        "health": 78,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "au-marais",
-        "health": 80,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "Email_Assistant",
-        "health": 80,
         "ciStatus": "pass"
       }
     ]

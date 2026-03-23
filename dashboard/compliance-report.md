@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/23/2026, 6:59:16 PM
+**Generated**: 3/23/2026, 8:50:57 PM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 19/19 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 54 |
-| Deployments (30d) | 201 |
+| Deployments (30d) | 259 |
 | PRs with Review | 0/54 |
 
 ## Repository Compliance
@@ -132,7 +132,7 @@
 - #9 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 - #8 - Admin improvements: calendar, reservations & mobile fixes (by thonyAGP)
 
-**Recent Deployments**: 48 successful deploys in 30 days
+**Recent Deployments**: 38 successful deploys in 30 days
 
 ---
 
@@ -153,7 +153,7 @@
 - #76 - test: add skeleton test files (by thonyAGP)
 - #75 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 8 successful deploys in 30 days
+**Recent Deployments**: 18 successful deploys in 30 days
 
 ---
 
@@ -217,7 +217,7 @@
 - #2786 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 - #2780 - fix(ci): add pnpm version to action-setup (by thonyAGP)
 
-**Recent Deployments**: 1 successful deploys in 30 days
+**Recent Deployments**: 7 successful deploys in 30 days
 
 ---
 
@@ -237,7 +237,7 @@
 - #2796 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
 - #2782 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 41 successful deploys in 30 days
+**Recent Deployments**: 30 successful deploys in 30 days
 
 ---
 
@@ -257,7 +257,7 @@
 - #2 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
 - #1 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 4 successful deploys in 30 days
+**Recent Deployments**: 12 successful deploys in 30 days
 
 ---
 
@@ -278,7 +278,7 @@
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
 
-**Recent Deployments**: 5 successful deploys in 30 days
+**Recent Deployments**: 9 successful deploys in 30 days
 
 ---
 
@@ -299,7 +299,7 @@
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
 
-**Recent Deployments**: 15 successful deploys in 30 days
+**Recent Deployments**: 26 successful deploys in 30 days
 
 ---
 
@@ -321,7 +321,7 @@
 - #20 - chore: add secret scanning with Gitleaks (by thonyAGP)
 - #10 - feat(qa): QA Session Complete - Version Badge + Security Fixes (by thonyAGP)
 
-**Recent Deployments**: 35 successful deploys in 30 days
+**Recent Deployments**: 29 successful deploys in 30 days
 
 ---
 
@@ -343,7 +343,7 @@
 - #3 - chore: add secret scanning with Gitleaks (by thonyAGP)
 - #2 - test: add skeleton test files (by thonyAGP)
 
-**Recent Deployments**: 2 successful deploys in 30 days
+**Recent Deployments**: 4 successful deploys in 30 days
 
 ---
 
@@ -364,7 +364,7 @@
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
 
-**Recent Deployments**: 2 successful deploys in 30 days
+**Recent Deployments**: 4 successful deploys in 30 days
 
 ---
 
@@ -386,7 +386,7 @@
 - #3 - chore: add secret scanning with Gitleaks (by thonyAGP)
 - #2 - test: add skeleton test files (by thonyAGP)
 
-**Recent Deployments**: 5 successful deploys in 30 days
+**Recent Deployments**: 9 successful deploys in 30 days
 
 ---
 
@@ -427,7 +427,7 @@
 - #7 - test: add skeleton test files (by thonyAGP)
 - #6 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 1 successful deploys in 30 days
+**Recent Deployments**: 7 successful deploys in 30 days
 
 ---
 
@@ -446,7 +446,7 @@
 **PRs Without Review**:
 - #5 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 2 successful deploys in 30 days
+**Recent Deployments**: 16 successful deploys in 30 days
 
 ---
 
@@ -466,7 +466,7 @@
 - #7 - test: add skeleton test files (by thonyAGP)
 - #6 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 2 successful deploys in 30 days
+**Recent Deployments**: 10 successful deploys in 30 days
 
 ---
 
@@ -486,7 +486,7 @@
 - #11 - test: add skeleton test files (by thonyAGP)
 - #10 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 7 successful deploys in 30 days
+**Recent Deployments**: 17 successful deploys in 30 days
 
 ---
 
