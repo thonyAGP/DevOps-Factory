@@ -1,0 +1,72 @@
+# DevOps-Factory: Semgrep SAST Template
+# Static Application Security Testing - OWASP Top 10
+# Runs on PRs + weekly full scan
+
+name: Security Scan (SAST)
+
+on:
+  pull_request:
+    branches: [main, master]
+  schedule:
+    - cron: '0 4 * * 1' # Weekly Monday 4am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+  security-events: write
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect stack
+        id: stack
+        run: |
+          if [ -f "package.json" ]; then
+            if grep -q '"next"' package.json 2>/dev/null; then
+              echo "configs=--config auto --config p/owasp-top-ten --config p/typescript --config p/react --config p/nextjs" >> $GITHUB_OUTPUT
+            elif grep -q '"react"' package.json 2>/dev/null; then
+              echo "configs=--config auto --config p/owasp-top-ten --config p/typescript --config p/react" >> $GITHUB_OUTPUT
+            else
+              echo "configs=--config auto --config p/owasp-top-ten --config p/typescript" >> $GITHUB_OUTPUT
+            fi
+          elif ls *.csproj 2>/dev/null || ls *.sln 2>/dev/null; then
+            echo "configs=--config auto --config p/owasp-top-ten --config p/csharp" >> $GITHUB_OUTPUT
+          else
+            echo "configs=--config auto --config p/owasp-top-ten" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run Semgrep
+        continue-on-error: true
+        run: |
+          semgrep scan \
+            ${{ steps.stack.outputs.configs }} \
+            --sarif \
+            --output semgrep-results.sarif \
+            --verbose
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+
+      - name: Upload SARIF
+        if: always()
+        continue-on-error: true
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep-results.sarif
+
+      - name: Comment PR on findings
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '## Security Scan Failed\n\nSemgrep found potential security issues. Check the [Security tab](/${{ github.repository }}/security/code-scanning) for details.',
+            });
