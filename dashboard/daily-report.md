@@ -2,12 +2,12 @@
 - **18** projects monitored
 - **0/18** fully configured
 - **0** AI fix PR(s) pending merge
-- **2** CI failure(s)
+- **1** CI failure(s)
 - **2%** avg security score
 - **0/18** repos with AI code review
 - **1%** avg quality score (perf, a11y, coverage, release)
-- **DORA**: MEDIUM (deploy 0/wk, lead 12.6h, MTTR 6.9h, CFR 44%)
-- **CI Cost**: 738min total, 156min wasted, ~$0/mo
+- **DORA**: MEDIUM (deploy 0/wk, lead 14.8h, MTTR 7.2h, CFR 45%)
+- **CI Cost**: 757min total, 169min wasted, ~$0/mo
 - **Compliance**: 19/100 avg, 0% review coverage, 0/19 branch protected
 
 ## Per Project
@@ -15,11 +15,6 @@
 ### CasaSync :x:
 - **Health**: 29/100
 - **CI**: fail ([view](https://github.com/thonyAGP/CasaSync/actions/runs/22598290782))
-- **Open PRs**: 2
-
-### Email_Assistant :x:
-- **Health**: 29/100
-- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23427207875))
 - **Open PRs**: 2
 
 ### claude-cli-wrapper :white_circle:
@@ -90,6 +85,11 @@
 ### au-marais :white_check_mark:
 - **Health**: 59/100
 - **CI**: pass ([view](https://github.com/thonyAGP/au-marais/actions/runs/23332693239))
+- **Open PRs**: 1
+
+### Email_Assistant :white_check_mark:
+- **Health**: 59/100
+- **CI**: pass ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23438377004))
 - **Open PRs**: 1
 
 ### livret-au-marais :white_check_mark:
