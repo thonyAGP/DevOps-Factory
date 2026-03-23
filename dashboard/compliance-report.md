@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/23/2026, 1:12:47 AM
+**Generated**: 3/23/2026, 2:26:54 AM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 18/19 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 4 |
-| Deployments (30d) | 160 |
+| Deployments (30d) | 161 |
 | PRs with Review | 0/4 |
 
 ## Repository Compliance
@@ -118,7 +118,7 @@
 **PRs Without Review**:
 - #8 - Admin improvements: calendar, reservations & mobile fixes (by thonyAGP)
 
-**Recent Deployments**: 40 successful deploys in 30 days
+**Recent Deployments**: 41 successful deploys in 30 days
 
 ---
 

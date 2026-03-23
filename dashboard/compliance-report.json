@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-23T01:12:47.213Z",
+  "timestamp": "2026-03-23T02:26:54.215Z",
   "period": "30-day window",
   "repos": [
     {
@@ -16,6 +16,14 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "devops-factory/add-workflows",
+          "repo": "thonyAGP/au-marais",
+          "sha": "e9eac0fd457bb2fd10e6dd40222ca98084d0e371",
+          "status": "success",
+          "timestamp": "2026-03-23T01:08:04Z",
+          "workflow": "E2E Tests"
+        },
         {
           "branch": "devops-factory/add-workflows",
           "repo": "thonyAGP/au-marais",
@@ -453,6 +461,14 @@
       "mergedPRs": [],
       "deployments": [
         {
+          "branch": "master",
+          "repo": "thonyAGP/Email_Assistant",
+          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
+          "status": "success",
+          "timestamp": "2026-03-23T01:51:50Z",
+          "workflow": "Monitor Production"
+        },
+        {
           "branch": "devops-factory/add-workflows",
           "repo": "thonyAGP/Email_Assistant",
           "sha": "bf51ffb88caeb872dc12b014f338384fd37f13d0",
@@ -810,14 +826,6 @@
           "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
           "status": "success",
           "timestamp": "2026-03-18T01:50:33Z",
-          "workflow": "Monitor Production"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "8b3ac86007c00b3387db7ef14642cc61f77b8549",
-          "status": "success",
-          "timestamp": "2026-03-17T18:55:14Z",
           "workflow": "Monitor Production"
         }
       ],
@@ -1551,7 +1559,7 @@
     "totalPRsMerged": 4,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 160,
+    "totalDeployments": 161,
     "avgComplianceScore": 19,
     "reposWithBranchProtection": 0,
     "reposWithCI": 18
