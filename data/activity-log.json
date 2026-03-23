@@ -2,29 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-02-21T11:15:59.176Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-02-21T11:16:01.780Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-02-21T11:16:01.780Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-02-21T12:28:34.248Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
@@ -66096,6 +66073,37 @@
     },
     {
       "timestamp": "2026-03-23T10:47:43.431Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "2/7 passing, 3 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T11:38:53.219Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 22191711703)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T11:38:56.746Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "ClubMedRoomAssignment",
+      "details": "Self-heal dispatched (run 22192523507)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T11:39:00.903Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "CasaSync",
+      "details": "Self-heal dispatched (run 22598290782)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T11:39:00.926Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "2/7 passing, 3 failing. Issues: 0 created, 0 closed",
