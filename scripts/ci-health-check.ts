@@ -45,6 +45,101 @@ const FACTORY_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24h for DevOps-Factory (avoi
 const FACTORY_REPO = 'thonyAGP/DevOps-Factory';
 const ESCALATION_PATH = 'data/escalation-tracker.json';
 const ESCALATION_THRESHOLD = 3; // consecutive failures before escalation
+const FAILURE_TRACKER_PATH = 'data/ci-failure-tracker.json';
+const ALERT_MIN_CONSECUTIVE_FAILURES = 2; // min consecutive failures before alerting
+const ALERT_MIN_DURATION_MS = 2 * 60 * 60 * 1000; // 2h minimum failure duration before alerting
+
+// --- Alert filter: track consecutive failures to avoid alerting during self-heal window ---
+
+interface FailureTrackerEntry {
+  firstFailure: string;
+  consecutiveFailures: number;
+  lastSelfHealAttempt: string;
+  alertSent: boolean;
+}
+
+type FailureTrackerMap = Record<string, FailureTrackerEntry>;
+
+const loadFailureTracker = (): FailureTrackerMap => {
+  if (!existsSync(FAILURE_TRACKER_PATH)) return {};
+  try {
+    return JSON.parse(readFileSync(FAILURE_TRACKER_PATH, 'utf-8')) as FailureTrackerMap;
+  } catch {
+    return {};
+  }
+};
+
+const saveFailureTracker = (data: FailureTrackerMap): void => {
+  writeFileSync(FAILURE_TRACKER_PATH, JSON.stringify(data, null, 2));
+};
+
+/**
+ * Update failure tracker and return whether an alert should be sent.
+ * - On pass: remove entry, return false
+ * - On fail: increment counter, return true only if consecutiveFailures >= 2 AND firstFailure > 2h ago
+ */
+const shouldAlertForFailure = (result: CICheckResult): boolean => {
+  const tracker = loadFailureTracker();
+  const key = result.project.repo;
+
+  if (result.status === 'pass') {
+    if (tracker[key]) {
+      delete tracker[key];
+      saveFailureTracker(tracker);
+    }
+    return false;
+  }
+
+  if (result.status !== 'fail') return false;
+
+  const now = new Date().toISOString();
+  const entry = tracker[key] ?? {
+    firstFailure: now,
+    consecutiveFailures: 0,
+    lastSelfHealAttempt: '',
+    alertSent: false,
+  };
+
+  entry.consecutiveFailures++;
+  tracker[key] = entry;
+  saveFailureTracker(tracker);
+
+  const failureDurationMs = Date.now() - new Date(entry.firstFailure).getTime();
+  const shouldAlert =
+    entry.consecutiveFailures >= ALERT_MIN_CONSECUTIVE_FAILURES &&
+    failureDurationMs >= ALERT_MIN_DURATION_MS;
+
+  if (!shouldAlert) {
+    console.log(
+      `  [FILTER] ${result.project.name}: failure #${entry.consecutiveFailures}, ` +
+        `age ${(failureDurationMs / 3600000).toFixed(1)}h — suppressing alert (self-heal window)`
+    );
+  }
+
+  return shouldAlert;
+};
+
+/**
+ * Record that a self-heal attempt was made for a repo in the failure tracker.
+ */
+const recordSelfHealAttemptInTracker = (repo: string): void => {
+  const tracker = loadFailureTracker();
+  if (tracker[repo]) {
+    tracker[repo].lastSelfHealAttempt = new Date().toISOString();
+    saveFailureTracker(tracker);
+  }
+};
+
+/**
+ * Mark that an alert has been sent for a repo to avoid duplicate alerts.
+ */
+const markAlertSent = (repo: string): void => {
+  const tracker = loadFailureTracker();
+  if (tracker[repo]) {
+    tracker[repo].alertSent = true;
+    saveFailureTracker(tracker);
+  }
+};
 
 const sh = (cmd: string): string => {
   try {
@@ -497,17 +592,28 @@ const main = () => {
     // Track consecutive failures for escalation
     trackFailure(factoryRepo, result);
 
+    // Determine if alert should be sent (filters out failures during self-heal window)
+    const alertAllowed = shouldAlertForFailure(result);
+
     if (result.status === 'fail') {
-      if (existing) {
-        updateIssue(factoryRepo, existing, result);
-        updated++;
-      } else {
-        createIssue(factoryRepo, result);
-        created++;
-      }
-      // Auto-trigger self-heal for enabled repos
+      // Auto-trigger self-heal for enabled repos (always, regardless of alert filter)
       if (result.project.hasSelfHealing) {
         triggerSelfHeal(factoryRepo, result);
+        recordSelfHealAttemptInTracker(result.project.repo);
+      }
+
+      // Only create/update issues if the failure persists beyond the self-heal window
+      if (alertAllowed) {
+        if (existing) {
+          updateIssue(factoryRepo, existing, result);
+          updated++;
+        } else {
+          createIssue(factoryRepo, result);
+          created++;
+          markAlertSent(result.project.repo);
+        }
+      } else {
+        console.log(`  [DEFERRED] ${result.project.name}: alert suppressed, waiting for self-heal`);
       }
     } else if (result.status === 'pass' && existing) {
       closeIssue(factoryRepo, existing, result.project.name);

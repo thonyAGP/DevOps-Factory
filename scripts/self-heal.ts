@@ -1609,6 +1609,34 @@ ${explanation}
   return prUrl.match(/(https:\/\/[^\s]+)/)?.[1] || prUrl;
 };
 
+const AUTO_MERGE_CONFIDENCE_THRESHOLD = 0.85;
+
+/** Try to auto-merge a PR if the matched pattern has high enough confidence.
+ *  Uses `gh pr merge --auto --squash` so GitHub waits for CI checks to pass. */
+const tryAutoMerge = (
+  repo: string,
+  prUrl: string,
+  patternId: string | undefined,
+  confidence: number
+): void => {
+  const prNumber = prUrl.match(/\/pull\/(\d+)/)?.[1];
+  if (!prNumber) {
+    console.log('  Auto-merge: could not extract PR number from URL');
+    return;
+  }
+
+  if (confidence >= AUTO_MERGE_CONFIDENCE_THRESHOLD) {
+    console.log(
+      `  Auto-merge: confidence ${confidence} >= ${AUTO_MERGE_CONFIDENCE_THRESHOLD} (pattern: ${patternId ?? 'n/a'}) — enabling auto-merge for PR #${prNumber}`
+    );
+    sh(`gh pr merge ${prNumber} --repo ${repo} --auto --squash`);
+  } else {
+    console.log(
+      `  Auto-merge: confidence ${confidence} < ${AUTO_MERGE_CONFIDENCE_THRESHOLD} (pattern: ${patternId ?? 'n/a'}) — PR #${prNumber} left for human review`
+    );
+  }
+};
+
 const getErrorSignature = (jobs: FailedJob[]): string => {
   // Try annotation message first
   const annotation = jobs
@@ -1920,6 +1948,10 @@ const main = async (): Promise<void> => {
     const lockfilePrUrl = fixLockfileIssues(repo, runId, defaultBranch);
     if (lockfilePrUrl) {
       console.log(`Lockfile fix PR: ${lockfilePrUrl}`);
+      const lockfileConfidence =
+        matchedPatternConfidence('lockfile-outdated') ||
+        matchedPatternConfidence('npm-lockfile-outdated');
+      tryAutoMerge(repo, lockfilePrUrl, 'lockfile-outdated', lockfileConfidence);
     }
 
     if (buildJobs.length === 0) {
@@ -1936,6 +1968,12 @@ const main = async (): Promise<void> => {
     const prettierPrUrl = fixPrettierIssues(repo, runId, defaultBranch);
     if (prettierPrUrl) {
       console.log(`Prettier fix PR: ${prettierPrUrl}`);
+      tryAutoMerge(
+        repo,
+        prettierPrUrl,
+        'prettier-format-error',
+        matchedPatternConfidence('prettier-format-error')
+      );
     }
 
     if (buildJobs.length === 0) {
@@ -2014,12 +2052,8 @@ const main = async (): Promise<void> => {
           console.log(`\nWorkflow fix PR: ${prUrl}`);
           recordAttempt(repo, errorSig, true);
 
-          // Auto-merge workflow fixes (high confidence, low risk)
-          const prNumber = prUrl.match(/\/pull\/(\d+)/)?.[1];
-          if (prNumber) {
-            sh(`gh pr merge ${prNumber} --repo ${repo} --auto --squash`);
-            console.log(`  Auto-merge enabled for workflow fix PR #${prNumber}`);
-          }
+          // Auto-merge workflow fixes based on pattern confidence
+          tryAutoMerge(repo, prUrl, undefined, 0.95);
 
           return;
         }
@@ -2307,25 +2341,9 @@ const main = async (): Promise<void> => {
   console.log(`\nPR created: ${prUrl}`);
   recordAttempt(repo, errorSig, true);
 
-  // Auto-merge small fixes from high-confidence patterns
-  const totalLinesChanged = allFixes.reduce(
-    (sum, f) => sum + (f.replacements?.length ?? f.content?.split('\n').length ?? 0),
-    0
-  );
-  const isSmallFix = allFixes.length <= 3 && totalLinesChanged <= 200;
-  const isHighConfidencePattern = usedPatternId && matchedPatternConfidence(usedPatternId) >= 0.9;
-
-  if (isSmallFix && isHighConfidencePattern) {
-    console.log(
-      `  Small fix (${totalLinesChanged} lines) from trusted pattern - enabling auto-merge`
-    );
-    const prNumber = prUrl.match(/\/pull\/(\d+)/)?.[1];
-    if (prNumber) {
-      // Enable auto-merge (will merge when CI passes)
-      sh(`gh pr merge ${prNumber} --repo ${repo} --auto --squash`);
-      console.log(`  Auto-merge enabled for PR #${prNumber}`);
-    }
-  }
+  // Auto-merge if matched pattern has high enough confidence
+  const patternConfidence = usedPatternId ? matchedPatternConfidence(usedPatternId) : 0;
+  tryAutoMerge(repo, prUrl, usedPatternId, patternConfidence);
 
   console.log('\nDone!');
 };

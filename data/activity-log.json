@@ -2,6 +2,52 @@
   "version": 1,
   "entries": [
     {
+      "timestamp": "2026-02-21T10:18:32.772Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 22191711703)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-21T10:18:36.863Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "ClubMedRoomAssignment",
+      "details": "Self-heal dispatched (run 22192523507)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-21T10:18:36.863Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-21T11:15:59.176Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 22191711703)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-21T11:16:01.780Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "ClubMedRoomAssignment",
+      "details": "Self-heal dispatched (run 22192523507)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-02-21T11:16:01.780Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "3/7 passing, 2 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
       "timestamp": "2026-02-21T12:28:34.248Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
@@ -65971,143 +66017,11 @@
       "status": "success"
     },
     {
-      "timestamp": "2026-03-23T08:54:30.568Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T08:54:33.567Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T08:54:36.955Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 22598290782)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T08:54:36.977Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "2/7 passing, 3 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T09:07:20.582Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Email_Assistant",
-      "details": "55 → 35 (-20pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T09:07:20.613Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 39/100, 0 excellent, 16 needs work, 1 drops, 0 improvements",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T09:56:13.366Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T09:56:16.705Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T09:56:20.648Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 22598290782)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T09:56:20.670Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "2/7 passing, 3 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T10:47:37.519Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T10:47:40.372Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T10:47:43.408Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 22598290782)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T10:47:43.431Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "2/7 passing, 3 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T11:38:53.219Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 22191711703)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T11:38:56.746Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 22192523507)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T11:39:00.903Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 22598290782)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-23T11:39:00.926Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "2/7 passing, 3 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
+      "timestamp": "2026-03-23T09:49:09.484Z",
+      "source": "scan-and-configure",
+      "action": "registry-sync",
+      "details": "Auto-added 2 repo(s): Livret_accueil_Au-Marais, magic-migration",
+      "status": "success"
     }
   ]
 }
