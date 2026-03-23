@@ -12,6 +12,7 @@ export interface ProjectConfig {
   hasLighthouse: boolean;
   hasLinkChecker: boolean;
   vercel: boolean;
+  healingState?: 'discovered' | 'monitored' | 'healing_supervised' | 'healing_graduated';
   hidden?: boolean;
   productionUrl?: string;
   testFramework?: 'vitest' | 'xunit' | 'jest' | 'none';
@@ -75,6 +76,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLighthouse: false,
     hasLinkChecker: false,
     vercel: false,
+    healingState: 'healing_supervised',
     testFramework: 'none',
     ciWorkflow: 'factory-ci.yml',
   },
@@ -92,6 +94,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLighthouse: false,
     hasLinkChecker: false,
     vercel: true,
+    healingState: 'healing_supervised',
   },
   {
     name: 'ClubMedRoomAssignment',
@@ -107,6 +110,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLighthouse: false,
     hasLinkChecker: false,
     vercel: false,
+    healingState: 'healing_supervised',
     hidden: true,
   },
   {
@@ -123,6 +127,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLighthouse: false,
     hasLinkChecker: false,
     vercel: false,
+    healingState: 'healing_supervised',
   },
   {
     name: 'Livret_accueil_Au-Marais',
@@ -138,6 +143,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLighthouse: false,
     hasLinkChecker: false,
     vercel: true,
+    healingState: 'healing_supervised',
   },
   {
     name: 'Site_Au-marais',
@@ -409,6 +415,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLighthouse: false,
     hasLinkChecker: false,
     vercel: false,
+    healingState: 'healing_supervised',
     testFramework: 'vitest',
     hasTests: true,
   },
@@ -426,6 +433,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLighthouse: false,
     hasLinkChecker: false,
     vercel: false,
+    healingState: 'healing_supervised',
   },
   {
     name: 'magic-migration',

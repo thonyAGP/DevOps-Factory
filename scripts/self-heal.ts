@@ -13,6 +13,7 @@
 
 import { execSync } from 'node:child_process';
 import { writeFileSync, readFileSync, existsSync, unlinkSync, rmSync, readdirSync } from 'node:fs';
+import { KNOWN_PROJECTS } from '../factory.config.js';
 
 const GEMINI_MODEL = 'gemini-2.5-flash';
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
@@ -1653,9 +1654,21 @@ ${explanation}
 };
 
 const AUTO_MERGE_CONFIDENCE_THRESHOLD = 0.85;
+const AUTO_MERGE_GRADUATED_THRESHOLD = 0.7;
+
+/** Resolve the effective healing state for a repo.
+ *  Falls back to 'healing_supervised' for backwards compatibility. */
+const getHealingState = (
+  repo: string
+): 'discovered' | 'monitored' | 'healing_supervised' | 'healing_graduated' => {
+  const project = KNOWN_PROJECTS.find((p) => p.repo === repo);
+  return project?.healingState ?? 'healing_supervised';
+};
 
 /** Try to auto-merge a PR if the matched pattern has high enough confidence.
- *  Uses `gh pr merge --auto --squash` so GitHub waits for CI checks to pass. */
+ *  Uses `gh pr merge --auto --squash` so GitHub waits for CI checks to pass.
+ *  Respects the repo healingState: graduated repos get a lower threshold,
+ *  monitored/discovered repos never auto-merge. */
 const tryAutoMerge = (
   repo: string,
   prUrl: string,
@@ -1668,14 +1681,28 @@ const tryAutoMerge = (
     return;
   }
 
-  if (confidence >= AUTO_MERGE_CONFIDENCE_THRESHOLD) {
+  const healingState = getHealingState(repo);
+
+  if (healingState === 'discovered' || healingState === 'monitored') {
     console.log(
-      `  Auto-merge: confidence ${confidence} >= ${AUTO_MERGE_CONFIDENCE_THRESHOLD} (pattern: ${patternId ?? 'n/a'}) — enabling auto-merge for PR #${prNumber}`
+      `  Auto-merge: repo healingState="${healingState}" — PR #${prNumber} left for human review (auto-merge disabled)`
+    );
+    return;
+  }
+
+  const threshold =
+    healingState === 'healing_graduated'
+      ? AUTO_MERGE_GRADUATED_THRESHOLD
+      : AUTO_MERGE_CONFIDENCE_THRESHOLD;
+
+  if (confidence >= threshold) {
+    console.log(
+      `  Auto-merge: confidence ${confidence} >= ${threshold} [${healingState}] (pattern: ${patternId ?? 'n/a'}) — enabling auto-merge for PR #${prNumber}`
     );
     sh(`gh pr merge ${prNumber} --repo ${repo} --auto --squash`);
   } else {
     console.log(
-      `  Auto-merge: confidence ${confidence} < ${AUTO_MERGE_CONFIDENCE_THRESHOLD} (pattern: ${patternId ?? 'n/a'}) — PR #${prNumber} left for human review`
+      `  Auto-merge: confidence ${confidence} < ${threshold} [${healingState}] (pattern: ${patternId ?? 'n/a'}) — PR #${prNumber} left for human review`
     );
   }
 };

@@ -157,6 +157,7 @@ const generateEntry = (
     `    hasLighthouse: ${features.hasLighthouse},`,
     `    hasLinkChecker: ${features.hasLinkChecker},`,
     `    vercel: false,`,
+    `    healingState: 'discovered',`,
     `  }`,
   ];
   return lines.join('\n');

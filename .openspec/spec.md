@@ -20,28 +20,25 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 
 ## Fonctionnalites
 
-| Feature                     | Status   | Script                                       |
-| --------------------------- | -------- | -------------------------------------------- |
-| Scan & auto-configure repos | OK       | `scan-and-configure.ts`                      |
-| Auto-sync registry          | OK       | `sync-registry.ts`                           |
-| CI Health Check             | OK       | `ci-health-check.ts`                         |
-| Self-heal (AI fix PRs)      | OK       | `self-heal.ts`                               |
-| Dashboard HTML              | OK       | `build-dashboard.ts`                         |
-| Factory Watchdog            | OK       | `factory-watchdog.ts`                        |
-| Dependency Intelligence     | OK       | `dependency-intelligence.ts`                 |
-| Quality Score               | OK       | `quality-score.ts`                           |
-| Auto-merge conditionnel     | OK       | `self-heal.ts` (tryAutoMerge)                |
-| Audit PRs / pattern scoring | OK       | `audit-pr-outcomes.ts`                       |
-| Filtre email intelligent    | OK       | `ci-health-check.ts` (shouldAlertForFailure) |
-| Outcome registry (webhooks) | PLANIFIE | Niveau 3                                     |
-| State machine repo          | PLANIFIE | Niveau 3                                     |
+| Feature                     | Status | Script                                       |
+| --------------------------- | ------ | -------------------------------------------- |
+| Scan & auto-configure repos | OK     | `scan-and-configure.ts`                      |
+| Auto-sync registry          | OK     | `sync-registry.ts`                           |
+| CI Health Check             | OK     | `ci-health-check.ts`                         |
+| Self-heal (AI fix PRs)      | OK     | `self-heal.ts`                               |
+| Dashboard HTML              | OK     | `build-dashboard.ts`                         |
+| Factory Watchdog            | OK     | `factory-watchdog.ts`                        |
+| Dependency Intelligence     | OK     | `dependency-intelligence.ts`                 |
+| Quality Score               | OK     | `quality-score.ts`                           |
+| Auto-merge conditionnel     | OK     | `self-heal.ts` (tryAutoMerge)                |
+| Audit PRs / pattern scoring | OK     | `audit-pr-outcomes.ts`                       |
+| Filtre email intelligent    | OK     | `ci-health-check.ts` (shouldAlertForFailure) |
+| Outcome registry            | OK     | `outcome-registry.ts`                        |
+| State machine repo          | OK     | `factory.config.ts` (healingState)           |
 
 ## Taches
 
 ### A traiter
-
-- [ ] Niveau 3: Outcome registry via webhooks GitHub
-- [ ] Niveau 3: State machine repo (DISCOVERED→MONITORED→SUPERVISED→GRADUATED)
 
 ### En cours
 
@@ -66,11 +63,11 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 
 **SWARM Verdict 2026-03-23** - Consensus unanime 5/5 agents
 
-| Niveau          | Actions                               | Priorite |
-| --------------- | ------------------------------------- | -------- |
-| 1 (Immediat)    | LB2I + zentra PR #34 + sync-registry  | FAIT     |
-| 2 (Court terme) | Auto-merge + audit PRs + filtre email | EN COURS |
-| 3 (Moyen terme) | Outcome registry + state machine repo | PLANIFIE |
+| Niveau          | Actions                                                   | Priorite |
+| --------------- | --------------------------------------------------------- | -------- |
+| 1 (Immediat)    | LB2I + zentra PR #34 + sync-registry                      | FAIT     |
+| 2 (Court terme) | Auto-merge + audit PRs + filtre email + dedup + pre-check | FAIT     |
+| 3 (Moyen terme) | Outcome registry + state machine repo                     | FAIT     |
 
 ### Historique des plans
 
@@ -113,6 +110,8 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 
 ## Changelog
 
+- 2026-03-23 : CHG-002 implemente (outcome registry + state machine repo) - SWARM 3/3 complet
+- 2026-03-23 : Dedup + pre-fix + audit filtering (9.5% taux reel, 9 PRs config exclues)
 - 2026-03-23 : CHG-001 implemente (auto-merge, audit PRs, filtre email) - typecheck+lint+692 tests OK
 - 2026-03-23 : SWARM analysis + implementation Niveau 1 + sync-registry + remplacement IA payante
 - 2026-02-18 : Initialisation OpenSpec
