@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-23T20:54:38.951Z",
+  "timestamp": "2026-03-23T21:09:54.640Z",
   "repos": [
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
       "healthScore": 55,
       "stack": "nextjs",
-      "ciFailureRate": 48,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -23,104 +23,11 @@
           "impact": "Tracks performance, accessibility, and SEO metrics"
         },
         {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
           "template": "auto-label.yml",
           "priority": "medium",
           "reason": "Would improve issue/PR organization",
           "effort": "minimal",
           "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "semantic-release.yml",
-          "priority": "medium",
-          "reason": "Automate versioning from commits",
-          "effort": "moderate",
-          "impact": "Automated versioning and release notes from git commits"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "medium",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "medium",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
-        }
-      ]
-    },
-    {
-      "repo": "livret-au-marais",
-      "fullName": "thonyAGP/livret-au-marais",
-      "healthScore": 55,
-      "stack": "nextjs",
-      "ciFailureRate": 48,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "lighthouse.yml",
-          "priority": "high",
-          "reason": "Low health score (55) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "auto-label.yml",
-          "priority": "medium",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "semantic-release.yml",
-          "priority": "medium",
-          "reason": "Automate versioning from commits",
-          "effort": "moderate",
-          "impact": "Automated versioning and release notes from git commits"
         },
         {
           "template": "container-scan.yml",
@@ -164,7 +71,7 @@
       "fullName": "thonyAGP/CasaSync",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 43,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "auto-label.yml",
@@ -209,85 +116,6 @@
           "impact": "Enforces PR size limits for code review quality"
         },
         {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
-        }
-      ]
-    },
-    {
-      "repo": "ClubMedRoomAssignment",
-      "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "healthScore": 35,
-      "stack": "node",
-      "ciFailureRate": 75,
-      "recommendations": [
-        {
-          "template": "auto-label.yml",
-          "priority": "high",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "high",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
@@ -308,7 +136,7 @@
       "fullName": "thonyAGP/LB2I-Fiscal-Manager",
       "healthScore": 0,
       "stack": "nextjs",
-      "ciFailureRate": 50,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -360,13 +188,6 @@
           "impact": "Enforces PR size limits for code review quality"
         },
         {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "medium",
           "reason": "Auto-close stale issues and PRs",
@@ -376,11 +197,134 @@
       ]
     },
     {
+      "repo": "livret-au-marais",
+      "fullName": "thonyAGP/livret-au-marais",
+      "healthScore": 55,
+      "stack": "nextjs",
+      "ciFailureRate": 0,
+      "recommendations": [
+        {
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+        },
+        {
+          "template": "lighthouse.yml",
+          "priority": "high",
+          "reason": "Low health score (55) - needs performance tracking",
+          "effort": "moderate",
+          "impact": "Tracks performance, accessibility, and SEO metrics"
+        },
+        {
+          "template": "auto-label.yml",
+          "priority": "medium",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "medium",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "medium",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "medium",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "low",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        },
+        {
+          "template": "mutation-testing.yml",
+          "priority": "low",
+          "reason": "Validate test quality",
+          "effort": "significant",
+          "impact": "Validates test quality by introducing code mutations"
+        }
+      ]
+    },
+    {
+      "repo": "ClubMedRoomAssignment",
+      "fullName": "thonyAGP/ClubMedRoomAssignment",
+      "healthScore": 35,
+      "stack": "node",
+      "ciFailureRate": 0,
+      "recommendations": [
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "low",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        },
+        {
+          "template": "mutation-testing.yml",
+          "priority": "low",
+          "reason": "Validate test quality",
+          "effort": "significant",
+          "impact": "Validates test quality by introducing code mutations"
+        }
+      ]
+    },
+    {
       "repo": "Livret_accueil_Au-Marais",
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
       "healthScore": 0,
       "stack": "nextjs",
-      "ciFailureRate": 57,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -425,20 +369,6 @@
           "impact": "Enforces PR size limits for code review quality"
         },
         {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "medium",
           "reason": "Auto-close stale issues and PRs",
@@ -448,11 +378,69 @@
       ]
     },
     {
+      "repo": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
+      "healthScore": 0,
+      "stack": "node",
+      "ciFailureRate": 0,
+      "recommendations": [
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "medium",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        },
+        {
+          "template": "mutation-testing.yml",
+          "priority": "medium",
+          "reason": "Validate test quality",
+          "effort": "significant",
+          "impact": "Validates test quality by introducing code mutations"
+        }
+      ]
+    },
+    {
       "repo": "Site_Greg-Assainissement",
       "fullName": "thonyAGP/Site_Greg-Assainissement",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 57,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -495,20 +483,6 @@
           "reason": "Enforce maintainable PR sizes",
           "effort": "minimal",
           "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "stale-bot.yml",
@@ -524,7 +498,7 @@
       "fullName": "thonyAGP/test_codingmenace",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 33,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -567,20 +541,6 @@
           "reason": "Enforce maintainable PR sizes",
           "effort": "minimal",
           "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "stale-bot.yml",
@@ -596,7 +556,7 @@
       "fullName": "thonyAGP/Thumbfast",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 50,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -641,20 +601,6 @@
           "impact": "Enforces PR size limits for code review quality"
         },
         {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
@@ -668,7 +614,7 @@
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 53,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "auto-label.yml",
@@ -706,20 +652,6 @@
           "impact": "Enforces PR size limits for code review quality"
         },
         {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
@@ -729,6 +661,64 @@
         {
           "template": "mutation-testing.yml",
           "priority": "low",
+          "reason": "Validate test quality",
+          "effort": "significant",
+          "impact": "Validates test quality by introducing code mutations"
+        }
+      ]
+    },
+    {
+      "repo": "zentra",
+      "fullName": "thonyAGP/zentra",
+      "healthScore": 0,
+      "stack": "node",
+      "ciFailureRate": 0,
+      "recommendations": [
+        {
+          "template": "auto-label.yml",
+          "priority": "high",
+          "reason": "Would improve issue/PR organization",
+          "effort": "minimal",
+          "impact": "Automatically labels issues and PRs for better organization"
+        },
+        {
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "priority": "high",
+          "reason": "Detect and remove unused code",
+          "effort": "minimal",
+          "impact": "Detects and reports unused code with Knip"
+        },
+        {
+          "template": "pr-size-limit.yml",
+          "priority": "high",
+          "reason": "Enforce maintainable PR sizes",
+          "effort": "minimal",
+          "impact": "Enforces PR size limits for code review quality"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "medium",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        },
+        {
+          "template": "mutation-testing.yml",
+          "priority": "medium",
           "reason": "Validate test quality",
           "effort": "significant",
           "impact": "Validates test quality by introducing code mutations"
@@ -740,7 +730,7 @@
       "fullName": "thonyAGP/claude-cli-wrapper",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 83,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -776,20 +766,6 @@
           "reason": "Enforce maintainable PR sizes",
           "effort": "minimal",
           "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "stale-bot.yml",
@@ -801,11 +777,11 @@
       ]
     },
     {
-      "repo": "magic-migration",
-      "fullName": "thonyAGP/magic-migration",
-      "healthScore": 0,
+      "repo": "Email_Assistant",
+      "fullName": "thonyAGP/Email_Assistant",
+      "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 65,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "auto-label.yml",
@@ -813,13 +789,6 @@
           "reason": "Would improve issue/PR organization",
           "effort": "minimal",
           "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
         },
         {
           "template": "container-scan.yml",
@@ -843,22 +812,15 @@
           "impact": "Enforces PR size limits for code review quality"
         },
         {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
           "template": "stale-bot.yml",
-          "priority": "medium",
+          "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
         },
         {
           "template": "mutation-testing.yml",
-          "priority": "medium",
+          "priority": "low",
           "reason": "Validate test quality",
           "effort": "significant",
           "impact": "Validates test quality by introducing code mutations"
@@ -870,7 +832,7 @@
       "fullName": "thonyAGP/MCP_Quota_Claude",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 67,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -906,20 +868,6 @@
           "reason": "Enforce maintainable PR sizes",
           "effort": "minimal",
           "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "stale-bot.yml",
@@ -935,7 +883,7 @@
       "fullName": "thonyAGP/Site_1970_Plomberie",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 67,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -971,20 +919,6 @@
           "reason": "Enforce maintainable PR sizes",
           "effort": "minimal",
           "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
         },
         {
           "template": "stale-bot.yml",
@@ -1000,7 +934,7 @@
       "fullName": "thonyAGP/statusline",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 67,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1038,148 +972,11 @@
           "impact": "Enforces PR size limits for code review quality"
         },
         {
-          "template": "supply-chain-security.yml",
-          "priority": "high",
-          "reason": "Secure npm dependency chain",
-          "effort": "minimal",
-          "impact": "Secures npm dependencies with SBOM and license checks"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "zentra",
-      "fullName": "thonyAGP/zentra",
-      "healthScore": 0,
-      "stack": "node",
-      "ciFailureRate": 15,
-      "recommendations": [
-        {
-          "template": "auto-label.yml",
-          "priority": "high",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "high",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "medium",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "medium",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
-        }
-      ]
-    },
-    {
-      "repo": "Email_Assistant",
-      "fullName": "thonyAGP/Email_Assistant",
-      "healthScore": 35,
-      "stack": "node",
-      "ciFailureRate": 30,
-      "recommendations": [
-        {
-          "template": "auto-label.yml",
-          "priority": "high",
-          "reason": "Would improve issue/PR organization",
-          "effort": "minimal",
-          "impact": "Automatically labels issues and PRs for better organization"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "dead-code-detection.yml",
-          "priority": "high",
-          "reason": "Detect and remove unused code",
-          "effort": "minimal",
-          "impact": "Detects and reports unused code with Knip"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "type-coverage.yml",
-          "priority": "high",
-          "reason": "Improve TypeScript coverage",
-          "effort": "minimal",
-          "impact": "Ensures TypeScript coverage and type safety"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -1188,7 +985,7 @@
       "fullName": "thonyAGP/claude-launcher",
       "healthScore": 0,
       "stack": "dotnet",
-      "ciFailureRate": 83,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1232,7 +1029,7 @@
       "fullName": "thonyAGP/SqlConnectionTest",
       "healthScore": 35,
       "stack": "dotnet",
-      "ciFailureRate": 83,
+      "ciFailureRate": 0,
       "recommendations": [
         {
           "template": "ci-standard.yml",
@@ -1337,10 +1134,10 @@
     }
   ],
   "summary": {
-    "totalRecommendations": 157,
+    "totalRecommendations": 128,
     "criticalCount": 11,
-    "highCount": 109,
-    "mediumCount": 17,
+    "highCount": 82,
+    "mediumCount": 15,
     "lowCount": 20,
     "topTemplates": [
       {
@@ -1360,10 +1157,6 @@
         "count": 19
       },
       {
-        "template": "type-coverage.yml",
-        "count": 17
-      },
-      {
         "template": "dead-code-detection.yml",
         "count": 17
       },
@@ -1372,16 +1165,20 @@
         "count": 11
       },
       {
-        "template": "supply-chain-security.yml",
-        "count": 10
-      },
-      {
         "template": "lighthouse.yml",
         "count": 8
       },
       {
         "template": "mutation-testing.yml",
         "count": 8
+      },
+      {
+        "template": "qodo-merge.yml",
+        "count": 7
+      },
+      {
+        "template": "prisma-migration-check.yml",
+        "count": 1
       }
     ],
     "topRepo": "au-marais",
