@@ -16,6 +16,10 @@ import { writeFileSync, readFileSync, existsSync, unlinkSync, rmSync, readdirSyn
 import { KNOWN_PROJECTS } from '../factory.config.js';
 import { notify } from './notify.js';
 import { lookupFix } from './knowledge-graph.js';
+import { sh as _sh, tmpDir } from './shell-utils.js';
+import type { Pattern, PatternDB } from './types.js';
+
+const sh = (cmd: string, timeout = 60_000) => _sh(cmd, { timeout });
 
 const GEMINI_MODEL = 'gemini-2.5-flash';
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
@@ -66,23 +70,6 @@ interface GeminiFix {
 interface GeminiResponse {
   fixes: GeminiFix[];
   explanation: string;
-}
-
-interface Pattern {
-  id: string;
-  category: string;
-  signature: string;
-  fix: string;
-  fixType: string;
-  repos_seen: string[];
-  occurrences: number;
-  confidence: number;
-}
-
-interface PatternDB {
-  version: number;
-  lastUpdated: string;
-  patterns: Pattern[];
 }
 
 interface CooldownEntry {
@@ -395,15 +382,6 @@ const parseArgs = (): { repo: string; runId: string } => {
   }
 
   return { repo, runId };
-};
-
-const sh = (cmd: string, timeout = 60000): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024, timeout }).trim();
-  } catch (e: unknown) {
-    const err = e as { stdout?: string; stderr?: string };
-    return err.stdout?.trim() || err.stderr?.trim() || '';
-  }
 };
 
 const ghApi = <T>(endpoint: string): T | null => {
@@ -1005,28 +983,24 @@ const configureGitAuth = (tmpDir: string, repo: string) => {
 
 /** Deterministic fix for lockfile issues: clone repo, install, update lockfile, create PR */
 const fixLockfileIssues = (repo: string, runId: string, defaultBranch: string): string | null => {
-  const tmpDir =
-    `${process.env.RUNNER_TEMP || process.env.TEMP || '/tmp'}/self-heal-lockfile-${Date.now()}`.replace(
-      /\\/g,
-      '/'
-    );
+  const workDir = `${tmpDir}/self-heal-lockfile-${Date.now()}`.replace(/\\/g, '/');
 
   const git = (cmd: string) =>
-    execSync(cmd, { cwd: tmpDir, encoding: 'utf-8', timeout: 60_000, stdio: 'pipe' }).trim();
+    execSync(cmd, { cwd: workDir, encoding: 'utf-8', timeout: 60_000, stdio: 'pipe' }).trim();
 
   try {
     // 1. Shallow clone
     console.log(`  Cloning ${repo}...`);
-    execSync(`gh repo clone ${repo} "${tmpDir}" -- --depth 1`, {
+    execSync(`gh repo clone ${repo} "${workDir}" -- --depth 1`, {
       encoding: 'utf-8',
       timeout: 120_000,
       stdio: 'pipe',
     });
 
     // 2. Detect package manager
-    const pm = existsSync(`${tmpDir}/pnpm-lock.yaml`)
+    const pm = existsSync(`${workDir}/pnpm-lock.yaml`)
       ? 'pnpm'
-      : existsSync(`${tmpDir}/yarn.lock`)
+      : existsSync(`${workDir}/yarn.lock`)
         ? 'yarn'
         : 'npm';
 
@@ -1043,7 +1017,7 @@ const fixLockfileIssues = (repo: string, runId: string, defaultBranch: string): 
 
     try {
       execSync(installCmd, {
-        cwd: tmpDir,
+        cwd: workDir,
         encoding: 'utf-8',
         timeout: 120_000,
         stdio: 'pipe',
@@ -1057,7 +1031,7 @@ const fixLockfileIssues = (repo: string, runId: string, defaultBranch: string): 
     let changed: string;
     try {
       changed = execSync('git diff --name-only', {
-        cwd: tmpDir,
+        cwd: workDir,
         encoding: 'utf-8',
         stdio: 'pipe',
       }).trim();
@@ -1135,19 +1109,15 @@ const fixLockfileIssues = (repo: string, runId: string, defaultBranch: string): 
 
 /** Deterministic fix for Prettier: clone repo, run prettier --write, create PR */
 const fixPrettierIssues = (repo: string, runId: string, defaultBranch: string): string | null => {
-  const tmpDir =
-    `${process.env.RUNNER_TEMP || process.env.TEMP || '/tmp'}/self-heal-prettier-${Date.now()}`.replace(
-      /\\/g,
-      '/'
-    );
+  const localTmpDir = `${tmpDir}/self-heal-prettier-${Date.now()}`.replace(/\\/g, '/');
 
   const git = (cmd: string) =>
-    execSync(cmd, { cwd: tmpDir, encoding: 'utf-8', timeout: 60_000, stdio: 'pipe' }).trim();
+    execSync(cmd, { cwd: localTmpDir, encoding: 'utf-8', timeout: 60_000, stdio: 'pipe' }).trim();
 
   try {
     // 1. Shallow clone
     console.log(`  Cloning ${repo}...`);
-    execSync(`gh repo clone ${repo} "${tmpDir}" -- --depth 1`, {
+    execSync(`gh repo clone ${repo} "${localTmpDir}" -- --depth 1`, {
       encoding: 'utf-8',
       timeout: 120_000,
       stdio: 'pipe',
@@ -1175,16 +1145,16 @@ const fixPrettierIssues = (repo: string, runId: string, defaultBranch: string): 
 
     let workDir = '';
 
-    if (hasPrettierIn(tmpDir)) {
-      workDir = tmpDir;
+    if (hasPrettierIn(localTmpDir)) {
+      workDir = localTmpDir;
     } else {
       // Scan one level deep for subdirectory with prettier
-      const entries = readdirSync(tmpDir, { withFileTypes: true })
+      const entries = readdirSync(localTmpDir, { withFileTypes: true })
         .filter((d) => d.isDirectory() && !d.name.startsWith('.') && d.name !== 'node_modules')
         .map((d) => d.name);
 
       for (const entry of entries) {
-        const subDir = `${tmpDir}/${entry}`;
+        const subDir = `${localTmpDir}/${entry}`;
         if (hasPrettierIn(subDir)) {
           workDir = subDir;
           break;
@@ -1688,7 +1658,7 @@ ${explanation}
     'Mark a self-heal fix as wrong to lower pattern confidence'
   );
 
-  const bodyFile = '/tmp/self-heal-pr-body.md';
+  const bodyFile = `${tmpDir}/self-heal-pr-body.md`;
   writeFileSync(bodyFile, body);
   const prUrl = sh(
     `gh pr create --repo ${repo} --head ${branch} --base ${baseBranch} --title "${title}" --body-file ${bodyFile} --label "ai-fix"`
@@ -1887,7 +1857,7 @@ Self-healing has been temporarily disabled (cooldown) to prevent heal loops.
 
   ensureLabel(repo, 'escalation', 'ff6b00', 'Escalation: Manual intervention required');
 
-  const bodyFile = '/tmp/self-heal-escalation-body.md';
+  const bodyFile = `${tmpDir}/self-heal-escalation-body.md`;
   writeFileSync(bodyFile, body);
   sh(
     `gh issue create --repo ${repo} --title "${title}" --body-file ${bodyFile} --label "escalation"`
@@ -1919,7 +1889,7 @@ The AI could not generate a reliable fix for this failure. Manual investigation 
 
   ensureLabel(repo, 'ci-failure', 'e11d48', 'CI failure requiring manual fix');
 
-  const bodyFile = '/tmp/self-heal-issue-body.md';
+  const bodyFile = `${tmpDir}/self-heal-issue-body.md`;
   writeFileSync(bodyFile, body);
   sh(
     `gh issue create --repo ${repo} --title "${title}" --body-file ${bodyFile} --label "ci-failure"`

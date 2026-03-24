@@ -11,6 +11,9 @@
 
 import { execSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
+import { sh as _sh, tmpDir } from './shell-utils.js';
+
+const sh = (cmd: string) => _sh(cmd, { fallbackOnError: 'stdout' as const });
 
 // --- Types ---
 
@@ -43,15 +46,6 @@ const parseArgs = (): ParsedArgs => {
   }
 
   return { repo, pr };
-};
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024 }).trim();
-  } catch (e: unknown) {
-    const err = e as { stdout?: string; stderr?: string };
-    return err.stdout?.trim() || err.stderr?.trim() || '';
-  }
 };
 
 const ghApi = <T>(endpoint: string): T | null => {
@@ -155,7 +149,7 @@ const generateDescription = (diff: string, prInfo: PRInfo): string => {
 // --- Posting description ---
 
 const postDescriptionComment = (repo: string, pr: string, description: string): void => {
-  const tmpFile = '/tmp/pr-description-body.md';
+  const tmpFile = `${tmpDir}/pr-description-body.md`;
   writeFileSync(tmpFile, description);
   sh(`gh pr comment ${pr} --repo ${repo} --body-file ${tmpFile}`);
 };

@@ -12,6 +12,8 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { KNOWN_PROJECTS, GITHUB_OWNER } from '../factory.config.js';
+import { sh } from './shell-utils.js';
+import type { PatternDB } from './types.js';
 
 interface Feedback {
   date: string;
@@ -29,23 +31,6 @@ interface FeedbackLog {
   feedbacks: Feedback[];
 }
 
-interface Pattern {
-  id: string;
-  category: string;
-  signature: string;
-  fix: string;
-  fixType: string;
-  repos_seen: string[];
-  occurrences: number;
-  confidence: number;
-}
-
-interface PatternDB {
-  version: number;
-  lastUpdated: string;
-  patterns: Pattern[];
-}
-
 interface PRInfo {
   number: number;
   title: string;
@@ -60,14 +45,6 @@ interface PRInfo {
 
 const FEEDBACK_PATH = 'data/feedback-log.json';
 const PATTERN_DB_PATH = 'data/patterns.json';
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30_000 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const loadFeedbackLog = (): FeedbackLog => {
   if (!existsSync(FEEDBACK_PATH)) return { version: 1, lastUpdated: null, feedbacks: [] };

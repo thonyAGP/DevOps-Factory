@@ -10,9 +10,8 @@
  * Cron: weekly via GitHub Actions
  */
 
-import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { jq, devNull } from './shell-utils.js';
+import { sh, jq, devNull } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
 
 interface TemplateDrift {
@@ -63,14 +62,6 @@ const TRACKED_TEMPLATES: Array<{ source: string; target: string; condition?: str
   { source: 'coderabbit.yaml', target: '.coderabbit.yaml' },
   { source: 'renovate.json', target: 'renovate.json' },
 ];
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30000 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const getFileContentFromRepo = (repo: string, path: string): string | null => {
   const result = sh(`gh api "repos/${repo}/contents/${path}" --jq ${jq('.content')} 2>${devNull}`);

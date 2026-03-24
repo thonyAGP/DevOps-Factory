@@ -29,6 +29,9 @@ import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
 import { glob } from 'glob';
 import { relative } from 'node:path';
 import { logActivity } from './activity-logger.js';
+import { sh as _sh } from './shell-utils.js';
+
+const sh = (cmd: string, cwd?: string) => _sh(cmd, { cwd });
 
 // === Configuration ===
 
@@ -88,14 +91,6 @@ const anthropic = new Anthropic({
 });
 
 // === Shell Utils ===
-
-const sh = (cmd: string, cwd?: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', cwd, timeout: 120000 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const shOrFail = (cmd: string, cwd?: string): string => {
   return execSync(cmd, { encoding: 'utf-8', cwd, timeout: 120000 }).trim();

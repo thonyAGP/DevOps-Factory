@@ -8,11 +8,13 @@
  * Run: pnpm audit-pr-outcomes
  */
 
-import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
-import { devNull } from './shell-utils.js';
+import { sh as _sh, devNull } from './shell-utils.js';
 import { KNOWN_PROJECTS } from '../factory.config.js';
 import { logActivity } from './activity-logger.js';
+import type { PatternDB } from './types.js';
+
+const sh = (cmd: string) => _sh(cmd, { timeout: 60_000 });
 
 // --- Types ---
 
@@ -50,38 +52,12 @@ interface PatternScoresFile {
   };
 }
 
-interface Pattern {
-  id: string;
-  category: string;
-  signature: string;
-  fix: string;
-  fixType: string;
-  repos_seen: string[];
-  occurrences: number;
-  confidence: number;
-}
-
-interface PatternDB {
-  version: number;
-  lastUpdated: string;
-  patterns: Pattern[];
-}
-
 // --- Config ---
 
 const SCORES_PATH = 'data/pattern-scores.json';
 const PATTERN_DB_PATH = 'data/patterns.json';
 
 // --- Shell helper ---
-
-const sh = (cmd: string, timeout = 60000): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024, timeout }).trim();
-  } catch (e: unknown) {
-    const err = e as { stdout?: string; stderr?: string };
-    return err.stdout?.trim() || err.stderr?.trim() || '';
-  }
-};
 
 // --- Pattern extraction ---
 

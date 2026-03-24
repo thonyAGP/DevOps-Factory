@@ -13,14 +13,16 @@
  * Run: pnpm outcome-registry
  */
 
-import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { KNOWN_PROJECTS } from '../factory.config.js';
-import { devNull } from './shell-utils.js';
+import { sh as _sh, devNull } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
 import { getCached, setCache } from './cache-manager.js';
 import { notify } from './notify.js';
 import { indexFix, cleanupDegradedPatterns } from './knowledge-graph.js';
+import type { PatternDB } from './types.js';
+
+const sh = (cmd: string, timeout = 60_000) => _sh(cmd, { timeout });
 
 // --- Types ---
 
@@ -87,23 +89,6 @@ interface PatternScoresFile {
   };
 }
 
-interface Pattern {
-  id: string;
-  category: string;
-  signature: string;
-  fix: string;
-  fixType: string;
-  repos_seen: string[];
-  occurrences: number;
-  confidence: number;
-}
-
-interface PatternDB {
-  version: number;
-  lastUpdated: string;
-  patterns: Pattern[];
-}
-
 // --- Config ---
 
 const SCORES_PATH = 'data/pattern-scores.json';
@@ -123,15 +108,6 @@ const MIN_MERGED_FOR_GRADUATION = 3; // 3+ merged PRs to graduate
 const MIN_SUCCESS_RATE_FOR_GRADUATION = 0.7; // 70%+ success rate
 
 // --- Shell helper ---
-
-const sh = (cmd: string, timeout = 60000): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024, timeout }).trim();
-  } catch (e: unknown) {
-    const err = e as { stdout?: string; stderr?: string };
-    return err.stdout?.trim() || err.stderr?.trim() || '';
-  }
-};
 
 // --- Pattern extraction (shared with audit-pr-outcomes) ---
 

@@ -12,6 +12,10 @@ import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { CLAUDE_REVIEW_CONFIG } from '../factory.config.js';
+import { sh as _sh, tmpDir } from './shell-utils.js';
+import type { QuotaData } from './types.js';
+
+const sh = (cmd: string) => _sh(cmd, { maxBuffer: 10 * 1024 * 1024, fallbackOnError: 'stdout' });
 
 // --- Types ---
 
@@ -24,12 +28,6 @@ interface PRInfo {
   title: string;
   body: string;
   filesChanged: number;
-}
-
-interface QuotaData {
-  date: string;
-  count: number;
-  maxPerDay: number;
 }
 
 // --- Shell helpers ---
@@ -50,15 +48,6 @@ const parseArgs = (): ParsedArgs => {
   }
 
   return { repo, pr };
-};
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024 }).trim();
-  } catch (e: unknown) {
-    const err = e as { stdout?: string; stderr?: string };
-    return err.stdout?.trim() || err.stderr?.trim() || '';
-  }
 };
 
 const ghApi = <T>(endpoint: string): T | null => {
@@ -225,7 +214,7 @@ const runClaudeReview = (diff: string, prInfo: PRInfo): string => {
 // --- Posting review ---
 
 const postReviewComment = (repo: string, pr: string, review: string): void => {
-  const tmpFile = '/tmp/claude-review-body.md';
+  const tmpFile = `${tmpDir}/claude-review-body.md`;
   writeFileSync(tmpFile, review);
   sh(`gh pr comment ${pr} --repo ${repo} --body-file ${tmpFile}`);
 };

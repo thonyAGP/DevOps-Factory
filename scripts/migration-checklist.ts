@@ -9,9 +9,8 @@
  * Workflow: triggered on PR in lecteur-magic
  */
 
-import { execSync } from 'node:child_process';
 import { writeFileSync, unlinkSync } from 'node:fs';
-import { jq } from './shell-utils.js';
+import { sh, jq, tmpDir } from './shell-utils.js';
 
 const REPO = 'thonyAGP/lecteur-magic';
 
@@ -21,14 +20,6 @@ interface PRFile {
   additions: number;
   deletions: number;
 }
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30_000 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const ghApi = <T>(endpoint: string): T | null => {
   const raw = sh(`gh api "repos/${REPO}/${endpoint}"`);
@@ -285,7 +276,7 @@ const main = () => {
   );
   const existing = existingComments?.find((c) => c.body.includes('## Migration Checklist'));
 
-  const tmpFile = `/tmp/migration-checklist-${prNumber}.md`;
+  const tmpFile = `${tmpDir}/migration-checklist-${prNumber}.md`;
   writeFileSync(tmpFile, comment);
 
   if (existing) {

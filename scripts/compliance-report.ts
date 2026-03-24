@@ -15,11 +15,10 @@
  * Cron: weekly via GitHub Actions
  */
 
-import { execSync } from 'node:child_process';
 import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { logActivity } from './activity-logger.js';
-import { jq, devNull } from './shell-utils.js';
+import { sh, jq, devNull } from './shell-utils.js';
 
 interface MergedPR {
   number: number;
@@ -75,14 +74,6 @@ interface ComplianceReport {
     reposWithCI: number;
   };
 }
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30000 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const ensureDir = (filePath: string): void => {
   const dir = dirname(filePath);

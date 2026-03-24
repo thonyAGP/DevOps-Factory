@@ -10,9 +10,8 @@
  * Cron: daily via dashboard-build.yml
  */
 
-import { execSync } from 'node:child_process';
 import { writeFileSync, existsSync, readFileSync } from 'node:fs';
-import { devNull } from './shell-utils.js';
+import { sh, devNull } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
 
 interface SecurityWorkflowStatus {
@@ -49,14 +48,6 @@ interface SecurityPostureReport {
     gradeDistribution: Record<string, number>;
   };
 }
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30000 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const getWorkflowStatus = (repo: string, workflowNames: string[]): SecurityWorkflowStatus => {
   for (const name of workflowNames) {

@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 jobs:
   ping:
@@ -21,14 +22,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping monitoring endpoint
-        if: env.HEALTHCHECK_PING_URL != ''
+        if: ${{ secrets.HEALTHCHECK_PING_URL != '' }}
         env:
           HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
         run: |
           WORKFLOW="${{ github.event.workflow_run.name }}"
           STATUS="${{ github.event.workflow_run.conclusion }}"
 
-          # Ping success endpoint
           curl -fsS -m 10 \
             --retry 3 \
             --retry-delay 5 \
@@ -38,6 +38,10 @@ jobs:
 
           echo "Pinged monitoring for: ${WORKFLOW} (${STATUS})"
 
+      - name: No-op when unconfigured
+        if: ${{ secrets.HEALTHCHECK_PING_URL == '' }}
+        run: echo "HEALTHCHECK_PING_URL not configured - skipping ping"
+
   report-failure:
     if: >
       github.event.workflow_run.event == 'schedule' &&
@@ -45,20 +49,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping failure endpoint
-        if: env.HEALTHCHECK_PING_URL != ''
+        if: ${{ secrets.HEALTHCHECK_PING_URL != '' }}
         env:
           HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
         run: |
           WORKFLOW="${{ github.event.workflow_run.name }}"
 
-          # Ping /fail endpoint
           curl -fsS -m 10 \
             --retry 3 \
             "${HEALTHCHECK_PING_URL}/fail" \
             --data-raw "FAILED: ${WORKFLOW}" \
             || echo "Warning: failure ping failed"
 
-          echo "::error::Scheduled workflow '${WORKFLOW}' failed!"
+          echo "::warning::Scheduled workflow '${WORKFLOW}' failed"
 
       - name: Create issue for failed cron
         uses: actions/github-script@v7
@@ -68,7 +71,13 @@ jobs:
             const runUrl = '${{ github.event.workflow_run.html_url }}';
             const date = new Date().toISOString().split('T')[0];
 
-            // Check if issue already exists
+            // Skip DevOps-Factory monitoring workflows to avoid cascade
+            const monitoringWorkflows = ['Cron Monitor', 'Stale Bot', 'Label Sync'];
+            if (monitoringWorkflows.includes(workflow)) {
+              console.log(`Skipping issue for monitoring workflow: ${workflow}`);
+              return;
+            }
+
             const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,

@@ -8,16 +8,11 @@
  * Cron: Daily via GitHub Actions
  */
 
-import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { KNOWN_PROJECTS, QUALITY_WEIGHTS, COVERAGE_THRESHOLDS } from '../factory.config.js';
 import { logActivity } from './activity-logger.js';
-import { jq, devNull } from './shell-utils.js';
-
-interface WorkflowRun {
-  id: number;
-  conclusion: string;
-}
+import { sh, jq, devNull } from './shell-utils.js';
+import type { WorkflowRun } from './types.js';
 
 interface CoverageRepoEntry {
   name: string;
@@ -68,14 +63,6 @@ interface QualityHistory {
   lastUpdated: string;
   entries: QualityHistoryEntry[];
 }
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8' }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const checkCI = (repo: string, branch: string): boolean => {
   const result = sh(

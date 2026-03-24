@@ -12,10 +12,9 @@
  * Run: pnpm cross-update
  */
 
-import { execSync } from 'node:child_process';
 import { readFileSync, existsSync, writeFileSync, unlinkSync } from 'node:fs';
 import { join } from 'node:path';
-import { jq, devNull } from './shell-utils.js';
+import { sh, jq, devNull } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
 
 interface Args {
@@ -27,14 +26,6 @@ interface Args {
   dryRun: boolean;
   repos?: string[]; // specific repos to target
 }
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30000 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const parseArgs = (): Args => {
   const argv = process.argv.slice(2);

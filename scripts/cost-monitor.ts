@@ -11,9 +11,9 @@
  * Cron: weekly via GitHub Actions
  */
 
-import { execSync } from 'node:child_process';
 import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import { logActivity } from './activity-logger.js';
+import { sh } from './shell-utils.js';
 
 interface WorkflowUsage {
   name: string;
@@ -46,14 +46,6 @@ interface CostReport {
     estimatedMonthlyCost: number; // USD based on GitHub pricing
   };
 }
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30000 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 // GitHub Actions pricing: $0.008/min for Linux
 const COST_PER_MINUTE = 0.008;

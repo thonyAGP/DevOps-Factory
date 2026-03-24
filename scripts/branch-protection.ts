@@ -14,7 +14,7 @@
  */
 
 import { execSync } from 'node:child_process';
-import { devNull } from './shell-utils.js';
+import { sh, devNull, tmpDir } from './shell-utils.js';
 import { KNOWN_PROJECTS, type ProjectConfig } from '../factory.config.js';
 
 interface RepoInfo {
@@ -31,14 +31,6 @@ interface ProtectionResult {
 }
 
 const LABEL = 'branch-protection';
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30000, stdio: 'pipe' }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const shResult = (cmd: string): { ok: boolean; output: string } => {
   try {
@@ -103,7 +95,7 @@ const applyProtection = (
     "required_conversation_resolution": false
   }`;
 
-  const tmpFile = '/tmp/branch-protection-payload.json';
+  const tmpFile = `${tmpDir}/branch-protection-payload.json`;
   try {
     execSync(`cat > ${tmpFile} << 'BPEOF'\n${payload}\nBPEOF`, { encoding: 'utf-8' });
   } catch {
@@ -270,7 +262,7 @@ const main = () => {
       sh(`gh issue close ${existing} --repo ${factoryRepo}`);
     }
 
-    const tmpFile = '/tmp/branch-protection-audit.md';
+    const tmpFile = `${tmpDir}/branch-protection-audit.md`;
     try {
       execSync(`cat > ${tmpFile} << 'AUDITEOF'\n${issueBody}\nAUDITEOF`, { encoding: 'utf-8' });
       execSync(

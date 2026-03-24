@@ -12,7 +12,7 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { KNOWN_PROJECTS } from '../factory.config.js';
-import { jq, devNull } from './shell-utils.js';
+import { sh, jq, devNull } from './shell-utils.js';
 
 interface Coverage {
   lines: number;
@@ -40,14 +40,6 @@ interface CoverageHistory {
     repos: CoverageEntry[];
   }[];
 }
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8' }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const detectTestFramework = (repo: string, stack: string): string | undefined => {
   // For .NET projects, check xUnit first

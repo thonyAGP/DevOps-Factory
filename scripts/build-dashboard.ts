@@ -17,7 +17,8 @@ import {
   logActivity,
   type ActivityStatus,
 } from './activity-logger.js';
-import { jq } from './shell-utils.js';
+import { sh, jq } from './shell-utils.js';
+import type { WorkflowRun } from './types.js';
 
 interface MigrationModule {
   name: string;
@@ -93,15 +94,6 @@ interface ScanResult {
 interface ScanReport {
   timestamp: string;
   analyses: ScanResult[];
-}
-
-interface WorkflowRun {
-  id: number;
-  conclusion: string;
-  name: string;
-  html_url: string;
-  created_at: string;
-  head_branch: string;
 }
 
 interface PRInfo {
@@ -221,21 +213,23 @@ const updateHistory = (statuses: ProjectStatus[]): void => {
   console.log(`History updated (${history.length} entries)`);
 };
 
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8' }).trim();
-  } catch {
-    return '';
-  }
-};
+// Monitoring/utility workflows that should not count as CI status
+const MONITORING_WORKFLOWS = new Set([
+  'Cron Monitor',
+  'Stale Bot',
+  'Label Sync',
+  'Auto-Fix Prettier',
+  'Auto Merge Dependencies',
+]);
 
 const getLatestWorkflowRun = (repo: string, branch: string): WorkflowRun | null => {
   const result = sh(
-    `gh api "repos/${repo}/actions/runs?branch=${branch}&per_page=1" --jq ${jq('.workflow_runs[0] | {id, conclusion, name, html_url, created_at, head_branch}')}`
+    `gh api "repos/${repo}/actions/runs?branch=${branch}&per_page=5" --jq ${jq('[.workflow_runs[] | {id, conclusion, name, html_url, created_at, head_branch}]')}`
   );
   if (!result || result === 'null') return null;
   try {
-    return JSON.parse(result) as WorkflowRun;
+    const runs = JSON.parse(result) as WorkflowRun[];
+    return runs.find((r) => !MONITORING_WORKFLOWS.has(r.name)) || runs[0] || null;
   } catch {
     return null;
   }

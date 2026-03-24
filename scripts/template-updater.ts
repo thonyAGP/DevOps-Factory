@@ -9,9 +9,9 @@
  * Trigger: After weekly-veille.yml completes
  */
 
-import { execSync } from 'node:child_process';
 import { readFileSync, readdirSync, existsSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { sh, tmpDir } from './shell-utils.js';
 
 interface VeilleUpdate {
   source: string;
@@ -39,14 +39,6 @@ interface VersionMatch {
   breaking: boolean;
   line: number;
 }
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 15000 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 // --- Version extraction from templates ---
 
@@ -290,7 +282,7 @@ const main = (): void => {
       `gh issue list --repo ${factoryRepo} --label "${LABEL}" --state open --json number --jq ".[0].number"`
     );
     if (existing) {
-      const tmpFile = '/tmp/template-update-body.md';
+      const tmpFile = `${tmpDir}/template-update-body.md`;
       writeFileSync(tmpFile, report);
       sh(`gh issue comment ${existing} --repo ${factoryRepo} --body-file "${tmpFile}"`);
       console.log(`  Appended to veille issue #${existing}`);

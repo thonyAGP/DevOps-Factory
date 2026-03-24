@@ -10,22 +10,16 @@
 
 import { execSync } from 'node:child_process';
 import { existsSync, mkdirSync, rmSync } from 'node:fs';
-import { devNull } from './shell-utils.js';
+import { sh as _sh, devNull, tmpDir } from './shell-utils.js';
 import { KNOWN_PROJECTS, GITHUB_OWNER, type ProjectConfig } from '../factory.config.js';
+
+const sh = (cmd: string, cwd?: string) => _sh(cmd, { cwd });
 
 const BRANCH_NAME = 'devops-factory/prettier-fix';
 const LABEL = 'prettier-fix';
-const WORK_DIR = '/tmp/prettier-fixes';
+const WORK_DIR = `${tmpDir}/prettier-fixes`;
 
 const NODE_STACKS = new Set(['nextjs', 'fastify', 'node', 'astro']);
-
-const sh = (cmd: string, cwd?: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', cwd, timeout: 120000, stdio: 'pipe' }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const shOrFail = (cmd: string, cwd?: string): string => {
   return execSync(cmd, { encoding: 'utf-8', cwd, timeout: 120000, stdio: 'pipe' }).trim();

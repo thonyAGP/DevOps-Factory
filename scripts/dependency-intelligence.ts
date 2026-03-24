@@ -9,9 +9,11 @@
  * Trigger: GitHub Actions (weekly)
  */
 
-import { execSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 import { KNOWN_PROJECTS, GITHUB_OWNER, type ProjectConfig } from '../factory.config.js';
+import { sh as _sh, tmpDir } from './shell-utils.js';
+
+const sh = (cmd: string) => _sh(cmd, { maxBuffer: 10 * 1024 * 1024 });
 
 interface PackageJson {
   dependencies?: Record<string, string>;
@@ -38,14 +40,6 @@ interface RepoReport {
   vulnerabilities: AuditVulnerability[];
   outdatedCount: number;
 }
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30000, maxBuffer: 10 * 1024 * 1024 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const ghApi = <T>(endpoint: string): T | null => {
   const raw = sh(`gh api "${endpoint}"`);
@@ -205,7 +199,7 @@ const postReport = (factoryRepo: string, report: string): void => {
   );
 
   // Create issue
-  const tmpFile = '/tmp/dep-intel-body.md';
+  const tmpFile = `${tmpDir}/dep-intel-body.md`;
   writeFileSync(tmpFile, report);
   sh(
     `gh issue create --repo ${factoryRepo} --title "Dependency Intelligence Report - ${new Date().toISOString().split('T')[0]}" --body-file "${tmpFile}" --label "${LABEL}"`

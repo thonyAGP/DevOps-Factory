@@ -11,19 +11,10 @@
 
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
-import { devNull } from './shell-utils.js';
+import { sh, devNull, tmpDir } from './shell-utils.js';
 import { KNOWN_PROJECTS, type ProjectConfig } from '../factory.config.js';
 import { logActivity, type ActivityStatus } from './activity-logger.js';
-
-interface WorkflowRun {
-  id: number;
-  conclusion: string | null;
-  status: string;
-  name: string;
-  html_url: string;
-  created_at: string;
-  head_branch: string;
-}
+import type { WorkflowRun } from './types.js';
 
 interface CICheckResult {
   project: ProjectConfig;
@@ -141,14 +132,6 @@ const markAlertSent = (repo: string): void => {
   }
 };
 
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30000 }).trim();
-  } catch {
-    return '';
-  }
-};
-
 const getDefaultBranch = (repo: string): string => {
   return sh(`gh api "repos/${repo}" --jq ".default_branch"`) || 'main';
 };
@@ -223,7 +206,7 @@ const createIssue = (factoryRepo: string, result: CICheckResult): void => {
   ].join('\n');
 
   try {
-    const tmpFile = '/tmp/ci-health-body.md';
+    const tmpFile = `${tmpDir}/ci-health-body.md`;
     execSync(`cat > ${tmpFile} << 'CIEOF'\n${body}\nCIEOF`, { encoding: 'utf-8' });
     execSync(
       `gh issue create --repo ${factoryRepo} --title "${title}" --body-file ${tmpFile} --label "${LABEL}"`,
@@ -346,7 +329,7 @@ const trackFailure = (factoryRepo: string, result: CICheckResult): void => {
     sh(
       `gh label create "${ESCALATION_LABEL}" --repo ${factoryRepo} --color "b60205" --description "Persistent failure requiring manual intervention" --force`
     );
-    const tmpFile = `${process.env.RUNNER_TEMP || '/tmp'}/escalation-body.md`;
+    const tmpFile = `${tmpDir}/escalation-body.md`;
     writeFileSync(tmpFile, body);
     try {
       execSync(
@@ -503,6 +486,15 @@ const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
     return;
   }
 
+  // Check if self-heal workflow is enabled before attempting dispatch
+  const workflowState = sh(
+    `gh api repos/${factoryRepo}/actions/workflows/self-heal.yml --jq ".state" 2>${devNull}`
+  );
+  if (workflowState === 'disabled_manually') {
+    console.log(`  [SKIP HEAL] ${project.name}: self-heal workflow is disabled`);
+    return;
+  }
+
   // Trigger self-heal workflow + record cooldown
   try {
     execSync(
@@ -523,7 +515,7 @@ const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
     logActivity(
       'ci-health-check',
       'self-heal-failed',
-      `Failed to trigger self-heal`,
+      `Failed to trigger self-heal for ${project.name}`,
       'error',
       project.name
     );

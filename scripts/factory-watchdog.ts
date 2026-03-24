@@ -11,8 +11,11 @@
 
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
-import { devNull } from './shell-utils.js';
+import { sh as _sh, devNull, tmpDir } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
+import type { WorkflowRun } from './types.js';
+
+const sh = (cmd: string) => _sh(cmd, { timeout: 60_000, maxBuffer: 5 * 1024 * 1024 });
 
 // Partial failure patterns split into healable (code bugs) vs informational (env/transient)
 const HEALABLE_PATTERNS = [
@@ -54,30 +57,12 @@ const SELF_HEALABLE_WORKFLOWS = [
 
 const LABEL = 'factory-watchdog';
 
-interface WorkflowRun {
-  id: number;
-  name: string;
-  conclusion: string | null;
-  status: string;
-  html_url: string;
-  created_at: string;
-  head_branch: string;
-}
-
 interface WatchdogResult {
   workflow: string;
   status: 'pass' | 'total_failure' | 'partial_failure' | 'no_runs';
   run: WorkflowRun | null;
   patterns: string[];
 }
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 60000, maxBuffer: 5 * 1024 * 1024 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const getLatestRunSimple = (repo: string): WorkflowRun[] => {
   const result = sh(
@@ -230,7 +215,7 @@ ${
 
   ensureLabel(repo);
 
-  const bodyFile = '/tmp/watchdog-issue-body.md';
+  const bodyFile = `${tmpDir}/watchdog-issue-body.md`;
   writeFileSync(bodyFile, body);
   try {
     execSync(

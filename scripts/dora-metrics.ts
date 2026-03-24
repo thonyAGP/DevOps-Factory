@@ -12,9 +12,9 @@
  * Cron: weekly via GitHub Actions
  */
 
-import { execSync } from 'node:child_process';
 import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import { logActivity } from './activity-logger.js';
+import { sh } from './shell-utils.js';
 
 interface RepoDoraMetrics {
   repo: string;
@@ -44,14 +44,6 @@ interface DoraReport {
     lowCount: number;
   };
 }
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30000 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const median = (arr: number[]): number => {
   if (arr.length === 0) return 0;

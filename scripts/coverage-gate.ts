@@ -17,7 +17,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { execSync } from 'node:child_process';
+import { sh, tmpDir } from './shell-utils.js';
 
 interface CoverageSummary {
   total: {
@@ -40,14 +40,6 @@ const COVERAGE_FILE = process.env.COVERAGE_FILE || 'coverage/coverage-summary.js
 const BASELINE_FILE = process.env.BASELINE_FILE || '.coverage-baseline.json';
 const THRESHOLD_GLOBAL = 60;
 const RATCHET_ENABLED = true;
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 15_000 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const loadCoverage = (): CoverageSummary | null => {
   if (!existsSync(COVERAGE_FILE)) {
@@ -88,7 +80,7 @@ const postPRComment = (comment: string): void => {
   }
 
   try {
-    const tmpFile = '/tmp/coverage-comment.md';
+    const tmpFile = `${tmpDir}/coverage-comment.md`;
     writeFileSync(tmpFile, comment);
     sh(`gh pr comment ${prNumber} --repo ${repo} --body-file ${tmpFile}`);
     console.log('Coverage comment posted on PR');

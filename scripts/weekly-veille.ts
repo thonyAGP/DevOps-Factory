@@ -11,6 +11,9 @@
 
 import { execSync } from 'node:child_process';
 import { writeFileSync, readFileSync, existsSync } from 'node:fs';
+import { sh as _sh, tmpDir } from './shell-utils.js';
+
+const sh = (cmd: string) => _sh(cmd, { maxBuffer: 10 * 1024 * 1024 });
 
 // --- Types ---
 
@@ -48,14 +51,6 @@ interface VeilleReport {
 }
 
 // --- Shell helpers ---
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30000, maxBuffer: 10 * 1024 * 1024 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const ghApi = <T>(endpoint: string): T | null => {
   const raw = sh(`gh api "${endpoint}"`);
@@ -330,7 +325,7 @@ const postVeilleIssue = (factoryRepo: string, markdown: string, date: string): v
     // ignore
   }
 
-  const tmpFile = '/tmp/veille-body.md';
+  const tmpFile = `${tmpDir}/veille-body.md`;
   writeFileSync(tmpFile, markdown);
   sh(
     `gh issue create --repo ${factoryRepo} --title "Veille Technologique - ${date}" --body-file "${tmpFile}" --label "${LABEL}"`

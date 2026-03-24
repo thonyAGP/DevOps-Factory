@@ -14,6 +14,10 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
 import { KNOWN_PROJECTS } from '../factory.config.js';
+import { sh as _sh, tmpDir } from './shell-utils.js';
+import type { TreeNode, QuotaData } from './types.js';
+
+const sh = (cmd: string) => _sh(cmd, { maxBuffer: 10 * 1024 * 1024 });
 
 const MAX_FILES_PER_REPO = 5;
 const MAX_SOURCE_SIZE = 30_000;
@@ -27,33 +31,13 @@ const GROQ_MODEL = 'llama-3.3-70b-versatile';
 const GEMINI_URL =
   'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
-interface TreeNode {
-  path: string;
-  type: 'blob' | 'tree';
-  size?: number;
-}
-
 interface GeneratedTest {
   testPath: string;
   sourcePath: string;
   content: string;
 }
 
-interface QuotaData {
-  date: string;
-  count: number;
-  maxPerDay: number;
-}
-
 // --- Shell helpers ---
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024 }).trim();
-  } catch {
-    return '';
-  }
-};
 
 const ghApi = <T>(endpoint: string): T | null => {
   const raw = sh(`gh api "${endpoint}"`);
@@ -397,8 +381,7 @@ const generateTest = (
 // --- PR creation (batch commit: all files in one commit to avoid race conditions) ---
 
 const tmpPath = (name: string): string => {
-  const dir = process.env.RUNNER_TEMP || '/tmp';
-  return `${dir}/${name}-${Date.now()}.json`;
+  return `${tmpDir}/${name}-${Date.now()}.json`;
 };
 
 const cleanTmp = (path: string): void => {
@@ -561,7 +544,7 @@ Each test file covers exported functions with happy path + error cases.
 > **Human review required before merge**`;
 
   // Use --body-file to avoid shell escaping issues with backticks/quotes
-  const bodyFile = `${process.env.RUNNER_TEMP || '/tmp'}/ai-test-pr-body.md`;
+  const bodyFile = `${tmpDir}/ai-test-pr-body.md`;
   writeFileSync(bodyFile, body);
   const prUrl = sh(
     `gh pr create --repo ${repo} --head ${branchName} --base ${baseBranch} --title "test: add AI-generated tests" --body-file ${bodyFile}`

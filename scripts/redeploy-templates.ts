@@ -11,6 +11,7 @@
 import { execSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { KNOWN_PROJECTS } from '../factory.config.js';
+import { sh, tmpDir } from './shell-utils.js';
 
 const TEMPLATES: Record<string, { file: string; target: string; stacks?: string[] }> = {
   semgrep: {
@@ -26,14 +27,6 @@ const TEMPLATES: Record<string, { file: string; target: string; stacks?: string[
     file: 'templates/auto-merge-deps.yml',
     target: '.github/workflows/auto-merge-deps.yml',
   },
-};
-
-const sh = (cmd: string): string => {
-  try {
-    return execSync(cmd, { encoding: 'utf-8', timeout: 30000 }).trim();
-  } catch {
-    return '';
-  }
 };
 
 const getRemoteFileContent = (repo: string, path: string): string | null => {
@@ -79,7 +72,7 @@ const createUpdatePR = (
     ...(fileSha ? { sha: fileSha } : {}),
   });
 
-  const tmpFile = `/tmp/redeploy-${Date.now()}.json`;
+  const tmpFile = `${tmpDir}/redeploy-${Date.now()}.json`;
   execSync(`cat > ${tmpFile} << 'PAYLOAD_EOF'\n${uploadPayload}\nPAYLOAD_EOF`, {
     encoding: 'utf-8',
   });
