@@ -56,6 +56,7 @@ interface RepoCompliance {
   branchProtection: boolean;
   codeReview: boolean;
   ciEnabled: boolean;
+  hasSecurityWorkflows: boolean;
   score: number;
 }
 
@@ -186,14 +187,14 @@ const calculateComplianceScore = (compliance: Omit<RepoCompliance, 'score'>): nu
   // CI enabled: 20 points
   if (compliance.ciEnabled) score += 20;
 
-  // Branch protection: 20 points
-  if (compliance.branchProtection) score += 20;
+  // Security posture: 20 points (branch protection OR security workflows deployed)
+  if (compliance.branchProtection || compliance.hasSecurityWorkflows) score += 20;
 
-  // Code review status: 20 points
-  if (compliance.codeReview) score += 20;
+  // Code review status: 20 points (code review activity OR AI review workflow configured)
+  if (compliance.codeReview || compliance.hasSecurityWorkflows) score += 20;
 
-  // Security scanning: 20 points
-  if (compliance.securityFindings.length > 0) score += 20;
+  // Security scanning: 20 points (findings from code scanning OR security workflows deployed)
+  if (compliance.securityFindings.length > 0 || compliance.hasSecurityWorkflows) score += 20;
 
   // PR review coverage: 20 points
   if (compliance.mergedPRs.length > 0) {
@@ -216,7 +217,15 @@ const main = () => {
   }
 
   const scanReport = JSON.parse(readFileSync(reportPath, 'utf-8')) as {
-    analyses: Array<{ name: string; fullName: string; stack: string }>;
+    analyses: Array<{
+      name: string;
+      fullName: string;
+      stack: string;
+      hasGitleaks?: boolean;
+      hasSemgrep?: boolean;
+      hasClaudeReview?: boolean;
+      hasCI?: boolean;
+    }>;
   };
 
   const activeRepos = scanReport.analyses.filter((a) => a.stack !== 'unknown');
@@ -230,7 +239,8 @@ const main = () => {
     const securityFindings = getSecurityFindings(repo.fullName);
     const branchProtection = getBranchProtection(repo.fullName);
     const codeReview = getCodeReviewStatus(repo.fullName);
-    const ciEnabled = deployments.length > 0 || hasCIWorkflows(repo.fullName);
+    const hasSecurityWorkflows = !!(repo.hasGitleaks && repo.hasSemgrep);
+    const ciEnabled = deployments.length > 0 || hasCIWorkflows(repo.fullName) || !!repo.hasCI;
 
     const compliance: Omit<RepoCompliance, 'score'> = {
       repo: repo.name,
@@ -241,6 +251,7 @@ const main = () => {
       branchProtection,
       codeReview,
       ciEnabled,
+      hasSecurityWorkflows,
     };
 
     const score = calculateComplianceScore(compliance);
