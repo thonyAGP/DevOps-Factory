@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-24T12:47:07.987Z",
+  "timestamp": "2026-03-24T13:18:40.373Z",
   "repos": [
     {
       "repo": "magic-migration",
@@ -1185,14 +1185,6 @@
           "wastedMinutes": 6
         },
         {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
-        },
-        {
           "name": ".github/workflows/claude-review.yml",
           "runs": 6,
           "totalMinutes": 6,
@@ -1201,12 +1193,20 @@
           "wastedMinutes": 6
         },
         {
-          "name": "Monitor Production",
-          "runs": 2,
-          "totalMinutes": 2,
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 5,
+          "totalMinutes": 5,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 5,
+          "wastedMinutes": 5
+        },
+        {
+          "name": "Monitor Production",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Lighthouse CI",
@@ -1309,7 +1309,6 @@
         "Coverage Tracking: 100% failure rate (7min wasted). Fix root cause.",
         "CI: 100% failure rate (7min wasted). Fix root cause.",
         "Release Drafter: 100% failure rate (6min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause."
       ]
     },
@@ -2702,7 +2701,7 @@
     "wastedMinutes": 786,
     "mostExpensiveRepo": "magic-migration",
     "mostExpensiveWorkflow": "Cron Monitor (Thumbfast)",
-    "totalRecommendations": 81,
+    "totalRecommendations": 80,
     "estimatedMonthlyCost": 0
   }
 }
