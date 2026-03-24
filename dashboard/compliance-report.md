@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/24/2026, 1:19:53 PM
+**Generated**: 3/24/2026, 7:10:34 PM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 19/19 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 92 |
-| Deployments (30d) | 41 |
+| Deployments (30d) | 43 |
 | PRs with Review | 0/92 |
 
 ## Repository Compliance
@@ -304,7 +304,7 @@
 - #20 - chore: add secret scanning with Gitleaks (by thonyAGP)
 - #10 - feat(qa): QA Session Complete - Version Badge + Security Fixes (by thonyAGP)
 
-**Recent Deployments**: 13 successful deploys in 30 days
+**Recent Deployments**: 14 successful deploys in 30 days
 
 ---
 
@@ -453,7 +453,7 @@
 - #7 - test: add skeleton test files (by thonyAGP)
 - #6 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 7 successful deploys in 30 days
+**Recent Deployments**: 8 successful deploys in 30 days
 
 ---
 

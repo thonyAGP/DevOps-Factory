@@ -1,6 +1,6 @@
 # Template Recommendations Report
 
-Generated: 3/24/2026, 1:19:54 PM
+Generated: 3/24/2026, 7:10:34 PM
 
 ## Executive Summary
 
@@ -54,7 +54,7 @@ Generated: 3/24/2026, 1:19:54 PM
 
 - **Health Score**: 50/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 78%
+- **CI Failure Rate**: 79%
 
 #### High Priority
 
@@ -85,7 +85,7 @@ Generated: 3/24/2026, 1:19:54 PM
 
 - **Health Score**: 50/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 82%
+- **CI Failure Rate**: 87%
 
 #### High Priority
 
@@ -175,7 +175,7 @@ Generated: 3/24/2026, 1:19:54 PM
 
 - **Health Score**: 50/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 78%
+- **CI Failure Rate**: 79%
 
 #### High Priority
 
@@ -206,7 +206,7 @@ Generated: 3/24/2026, 1:19:54 PM
 
 - **Health Score**: 50/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 27%
+- **CI Failure Rate**: 25%
 
 #### High Priority
 
@@ -268,7 +268,7 @@ Generated: 3/24/2026, 1:19:54 PM
 
 - **Health Score**: 50/100
 - **Stack**: node
-- **CI Failure Rate**: 78%
+- **CI Failure Rate**: 79%
 
 #### High Priority
 
@@ -373,7 +373,7 @@ Generated: 3/24/2026, 1:19:54 PM
 
 - **Health Score**: 50/100
 - **Stack**: node
-- **CI Failure Rate**: 78%
+- **CI Failure Rate**: 79%
 
 #### High Priority
 
@@ -400,7 +400,7 @@ Generated: 3/24/2026, 1:19:54 PM
 
 - **Health Score**: 50/100
 - **Stack**: node
-- **CI Failure Rate**: 75%
+- **CI Failure Rate**: 78%
 
 #### High Priority
 
@@ -427,7 +427,7 @@ Generated: 3/24/2026, 1:19:54 PM
 
 - **Health Score**: 50/100
 - **Stack**: dotnet
-- **CI Failure Rate**: 78%
+- **CI Failure Rate**: 79%
 
 #### High Priority
 
@@ -454,7 +454,7 @@ Generated: 3/24/2026, 1:19:54 PM
 
 - **Health Score**: 50/100
 - **Stack**: node
-- **CI Failure Rate**: 78%
+- **CI Failure Rate**: 79%
 
 #### High Priority
 
