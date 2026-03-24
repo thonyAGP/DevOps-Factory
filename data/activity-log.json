@@ -13306,6 +13306,77 @@
       "action": "check-complete",
       "details": "0/10 passing, 7 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T21:28:53.815Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "DevOps-Factory",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T21:28:55.346Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal for Email_Assistant",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T21:28:55.351Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Email_Assistant",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T21:28:55.356Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "ClubMedRoomAssignment",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T21:28:57.080Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal for CasaSync",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T21:28:57.084Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "CasaSync",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T21:28:58.872Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Failed to trigger self-heal for Livret_accueil_Au-Marais",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T21:28:58.877Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T21:28:58.881Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "0/10 passing, 5 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
