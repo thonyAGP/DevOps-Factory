@@ -1,59 +1,59 @@
 {
-  "timestamp": "2026-03-24T07:10:39.048Z",
+  "timestamp": "2026-03-24T12:47:07.987Z",
   "repos": [
     {
       "repo": "magic-migration",
       "fullName": "thonyAGP/magic-migration",
-      "totalMinutes": 111,
+      "totalMinutes": 115,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 29,
-          "totalMinutes": 29,
+          "runs": 30,
+          "totalMinutes": 30,
           "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Lighthouse CI",
+          "runs": 3,
+          "totalMinutes": 15,
+          "avgMinutes": 5,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "Semantic Release",
-          "runs": 15,
-          "totalMinutes": 15,
+          "runs": 14,
+          "totalMinutes": 14,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Release Drafter",
-          "runs": 14,
-          "totalMinutes": 14,
+          "runs": 13,
+          "totalMinutes": 13,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 14,
-          "totalMinutes": 14,
-          "avgMinutes": 1,
-          "failedRuns": 14,
-          "wastedMinutes": 14
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
-          "runs": 14,
-          "totalMinutes": 14,
+          "runs": 13,
+          "totalMinutes": 13,
           "avgMinutes": 1,
-          "failedRuns": 14,
-          "wastedMinutes": 14
+          "failedRuns": 13,
+          "wastedMinutes": 13
         },
         {
-          "name": "Lighthouse CI",
-          "runs": 2,
-          "totalMinutes": 10,
-          "avgMinutes": 5,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 13,
+          "totalMinutes": 13,
+          "avgMinutes": 1,
+          "failedRuns": 13,
+          "wastedMinutes": 13
         },
         {
           "name": "Security Scan (SAST)",
@@ -83,6 +83,22 @@
           "name": "Secret Scanning",
           "runs": 2,
           "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Daily Drift Report",
+          "runs": 1,
+          "totalMinutes": 1,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -121,14 +137,164 @@
         }
       ],
       "recommendations": [
-        ".github/workflows/claude-review.yml: 100% failure rate (14min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (14min wasted). Fix root cause."
+        ".github/workflows/auto-changelog.yml: 100% failure rate (13min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (13min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "Thumbfast",
+      "fullName": "thonyAGP/Thumbfast",
+      "totalMinutes": 104,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "Cron Monitor",
+          "runs": 51,
+          "totalMinutes": 51,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 8,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 8,
+          "wastedMinutes": 8
+        },
+        {
+          "name": "CI",
+          "runs": 7,
+          "totalMinutes": 7,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Release Drafter",
+          "runs": 6,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Semantic Release",
+          "runs": 6,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 6,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 6,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
+        },
+        {
+          "name": "Lighthouse CI",
+          "runs": 1,
+          "totalMinutes": 5,
+          "avgMinutes": 5,
+          "failedRuns": 1,
+          "wastedMinutes": 5
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Stale Bot",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "PR Size Check",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "PR Risk Assessment",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "PR Description AI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Test Impact Analysis",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        }
+      ],
+      "recommendations": [
+        "Coverage Tracking: 100% failure rate (8min wasted). Fix root cause.",
+        "CI: 43% failure rate (3min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause."
       ]
     },
     {
       "repo": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
-      "totalMinutes": 106,
+      "totalMinutes": 102,
       "totalRuns": 100,
       "workflows": [
         {
@@ -141,30 +307,38 @@
         },
         {
           "name": "Coverage Tracking",
-          "runs": 12,
-          "totalMinutes": 15,
+          "runs": 11,
+          "totalMinutes": 12,
           "avgMinutes": 1,
-          "failedRuns": 12,
-          "wastedMinutes": 15
+          "failedRuns": 11,
+          "wastedMinutes": 12
         },
         {
           "name": "Release Drafter",
-          "runs": 10,
-          "totalMinutes": 13,
+          "runs": 9,
+          "totalMinutes": 10,
           "avgMinutes": 1,
-          "failedRuns": 10,
-          "wastedMinutes": 13
+          "failedRuns": 9,
+          "wastedMinutes": 10
         },
         {
           "name": "Semantic Release",
           "runs": 10,
           "totalMinutes": 10,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
-          "name": ".github/workflows/claude-review.yml",
+          "name": "CI",
+          "runs": 10,
+          "totalMinutes": 10,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
           "runs": 10,
           "totalMinutes": 10,
           "avgMinutes": 1,
@@ -172,15 +346,7 @@
           "wastedMinutes": 10
         },
         {
-          "name": "CI",
-          "runs": 9,
-          "totalMinutes": 9,
-          "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
+          "name": ".github/workflows/claude-review.yml",
           "runs": 9,
           "totalMinutes": 9,
           "avgMinutes": 1,
@@ -220,6 +386,14 @@
           "wastedMinutes": 2
         },
         {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
           "name": "Stale Bot",
           "runs": 1,
           "totalMinutes": 1,
@@ -245,11 +419,11 @@
         }
       ],
       "recommendations": [
-        "Coverage Tracking: 100% failure rate (15min wasted). Fix root cause.",
-        "Release Drafter: 100% failure rate (13min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (10min wasted). Fix root cause.",
-        "CI: 56% failure rate (5min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (9min wasted). Fix root cause."
+        "Coverage Tracking: 100% failure rate (12min wasted). Fix root cause.",
+        "Release Drafter: 100% failure rate (10min wasted). Fix root cause.",
+        "CI: 60% failure rate (6min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (10min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (9min wasted). Fix root cause."
       ]
     },
     {
@@ -260,8 +434,8 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 45,
-          "totalMinutes": 45,
+          "runs": 44,
+          "totalMinutes": 44,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
@@ -275,20 +449,20 @@
           "wastedMinutes": 9
         },
         {
-          "name": "Release Drafter",
-          "runs": 9,
-          "totalMinutes": 9,
+          "name": "Semantic Release",
+          "runs": 8,
+          "totalMinutes": 8,
           "avgMinutes": 1,
-          "failedRuns": 9,
-          "wastedMinutes": 9
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
-          "name": "Semantic Release",
-          "runs": 9,
-          "totalMinutes": 9,
+          "name": "Release Drafter",
+          "runs": 8,
+          "totalMinutes": 8,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 8,
+          "wastedMinutes": 8
         },
         {
           "name": ".github/workflows/claude-review.yml",
@@ -308,19 +482,27 @@
         },
         {
           "name": "E2E Tests",
-          "runs": 2,
-          "totalMinutes": 2,
+          "runs": 3,
+          "totalMinutes": 3,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Lighthouse CI",
-          "runs": 2,
-          "totalMinutes": 2,
+          "runs": 3,
+          "totalMinutes": 3,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Stale Bot",
@@ -389,7 +571,7 @@
       ],
       "recommendations": [
         "Coverage Tracking: 100% failure rate (9min wasted). Fix root cause.",
-        "Release Drafter: 100% failure rate (9min wasted). Fix root cause.",
+        "Release Drafter: 100% failure rate (8min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (8min wasted). Fix root cause.",
         ".github/workflows/auto-changelog.yml: 100% failure rate (8min wasted). Fix root cause."
       ]
@@ -397,140 +579,6 @@
     {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
-      "totalMinutes": 100,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Cron Monitor",
-          "runs": 51,
-          "totalMinutes": 51,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 8,
-          "totalMinutes": 8,
-          "avgMinutes": 1,
-          "failedRuns": 8,
-          "wastedMinutes": 8
-        },
-        {
-          "name": "CI",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Release Drafter",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 7,
-          "wastedMinutes": 7
-        },
-        {
-          "name": "Semantic Release",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
-        },
-        {
-          "name": "Stale Bot",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "PR Risk Assessment",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Test Impact Analysis",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "PR Description AI",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "PR Size Check",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        }
-      ],
-      "recommendations": [
-        "Coverage Tracking: 100% failure rate (8min wasted). Fix root cause.",
-        "Release Drafter: 100% failure rate (7min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "claude-cli-wrapper",
-      "fullName": "thonyAGP/claude-cli-wrapper",
       "totalMinutes": 100,
       "totalRuns": 100,
       "workflows": [
@@ -555,16 +603,16 @@
           "runs": 8,
           "totalMinutes": 8,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Semantic Release",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Release Drafter",
@@ -584,11 +632,162 @@
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
+          "runs": 6,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Stale Bot",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "PR Risk Assessment",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Test Impact Analysis",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "PR Description AI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "PR Size Check",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        }
+      ],
+      "recommendations": [
+        "Coverage Tracking: 100% failure rate (8min wasted). Fix root cause.",
+        "CI: 38% failure rate (3min wasted). Fix root cause.",
+        "Release Drafter: 100% failure rate (7min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "claude-cli-wrapper",
+      "fullName": "thonyAGP/claude-cli-wrapper",
+      "totalMinutes": 100,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "Cron Monitor",
+          "runs": 47,
+          "totalMinutes": 47,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 9,
+          "totalMinutes": 9,
+          "avgMinutes": 1,
+          "failedRuns": 9,
+          "wastedMinutes": 9
+        },
+        {
+          "name": "Release Drafter",
+          "runs": 8,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 8,
+          "wastedMinutes": 8
+        },
+        {
+          "name": "CI",
+          "runs": 8,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Semantic Release",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 7,
-          "wastedMinutes": 7
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 6,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 6,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Stale Bot",
@@ -656,10 +855,11 @@
         }
       ],
       "recommendations": [
-        "Coverage Tracking: 100% failure rate (8min wasted). Fix root cause.",
-        "Release Drafter: 100% failure rate (7min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (7min wasted). Fix root cause."
+        "Coverage Tracking: 100% failure rate (9min wasted). Fix root cause.",
+        "Release Drafter: 100% failure rate (8min wasted). Fix root cause.",
+        "CI: 38% failure rate (3min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
       ]
     },
     {
@@ -693,14 +893,6 @@
           "wastedMinutes": 0
         },
         {
-          "name": "Semantic Release",
-          "runs": 9,
-          "totalMinutes": 9,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
           "name": "Release Drafter",
           "runs": 9,
           "totalMinutes": 9,
@@ -709,12 +901,20 @@
           "wastedMinutes": 0
         },
         {
-          "name": ".github/workflows/auto-changelog.yml",
+          "name": "Semantic Release",
           "runs": 9,
           "totalMinutes": 9,
           "avgMinutes": 1,
-          "failedRuns": 9,
-          "wastedMinutes": 9
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 8,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 8,
+          "wastedMinutes": 8
         },
         {
           "name": ".github/workflows/claude-review.yml",
@@ -757,6 +957,14 @@
           "wastedMinutes": 2
         },
         {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
           "name": "Stale Bot",
           "runs": 1,
           "totalMinutes": 1,
@@ -783,7 +991,7 @@
       ],
       "recommendations": [
         "Coverage Tracking: 100% failure rate (11min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (9min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (8min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (8min wasted). Fix root cause."
       ]
     },
@@ -795,8 +1003,8 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 50,
-          "totalMinutes": 50,
+          "runs": 49,
+          "totalMinutes": 49,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
@@ -818,20 +1026,20 @@
           "wastedMinutes": 8
         },
         {
-          "name": "Semantic Release",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
           "name": "Release Drafter",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
           "failedRuns": 7,
           "wastedMinutes": 7
+        },
+        {
+          "name": "Semantic Release",
+          "runs": 7,
+          "totalMinutes": 7,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": ".github/workflows/claude-review.yml",
@@ -848,6 +1056,14 @@
           "avgMinutes": 1,
           "failedRuns": 6,
           "wastedMinutes": 6
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Stale Bot",
@@ -930,19 +1146,11 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 50,
-          "totalMinutes": 50,
+          "runs": 48,
+          "totalMinutes": 48,
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 3
-        },
-        {
-          "name": "CI",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 7,
-          "wastedMinutes": 7
         },
         {
           "name": "Coverage Tracking",
@@ -953,23 +1161,23 @@
           "wastedMinutes": 7
         },
         {
-          "name": "Semantic Release",
+          "name": "CI",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 7,
+          "wastedMinutes": 7
         },
         {
-          "name": "Release Drafter",
+          "name": "Semantic Release",
           "runs": 6,
           "totalMinutes": 6,
           "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
-          "name": ".github/workflows/claude-review.yml",
+          "name": "Release Drafter",
           "runs": 6,
           "totalMinutes": 6,
           "avgMinutes": 1,
@@ -985,12 +1193,44 @@
           "wastedMinutes": 6
         },
         {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 6,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
+        },
+        {
           "name": "Monitor Production",
           "runs": 2,
           "totalMinutes": 2,
           "avgMinutes": 1,
           "failedRuns": 2,
           "wastedMinutes": 2
+        },
+        {
+          "name": "Lighthouse CI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Post-Deploy Health Check",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Stale Bot",
@@ -1066,11 +1306,11 @@
         }
       ],
       "recommendations": [
-        "CI: 100% failure rate (7min wasted). Fix root cause.",
         "Coverage Tracking: 100% failure rate (7min wasted). Fix root cause.",
+        "CI: 100% failure rate (7min wasted). Fix root cause.",
         "Release Drafter: 100% failure rate (6min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
+        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause."
       ]
     },
     {
@@ -1081,110 +1321,70 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 53,
-          "totalMinutes": 53,
+          "runs": 28,
+          "totalMinutes": 28,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
         },
         {
-          "name": "Coverage Tracking",
-          "runs": 6,
-          "totalMinutes": 6,
+          "name": "Release Drafter",
+          "runs": 10,
+          "totalMinutes": 10,
           "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
+          "failedRuns": 10,
+          "wastedMinutes": 10
         },
         {
           "name": "CI",
-          "runs": 6,
-          "totalMinutes": 6,
+          "runs": 10,
+          "totalMinutes": 10,
           "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
-        },
-        {
-          "name": "Release Drafter",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 3,
-          "totalMinutes": 3,
-          "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
+          "failedRuns": 10,
+          "wastedMinutes": 10
         },
         {
           "name": "Semantic Release",
-          "runs": 3,
-          "totalMinutes": 3,
+          "runs": 10,
+          "totalMinutes": 10,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 8,
+          "wastedMinutes": 8
         },
         {
-          "name": "PR Description AI",
-          "runs": 2,
-          "totalMinutes": 2,
+          "name": "Coverage Tracking",
+          "runs": 10,
+          "totalMinutes": 10,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 10,
+          "wastedMinutes": 10
         },
         {
-          "name": "PR Size Check",
-          "runs": 2,
-          "totalMinutes": 2,
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 10,
+          "totalMinutes": 10,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 10,
+          "wastedMinutes": 10
         },
         {
-          "name": "Security Scan (SAST)",
-          "runs": 2,
-          "totalMinutes": 2,
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 10,
+          "totalMinutes": 10,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 10,
+          "wastedMinutes": 10
         },
         {
-          "name": "Secret Scanning",
-          "runs": 2,
-          "totalMinutes": 2,
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 7,
+          "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 7,
+          "wastedMinutes": 7
         },
         {
-          "name": "Test Impact Analysis",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "PR Risk Assessment",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Auto Label PRs",
+          "name": "TypeDoc Generation",
           "runs": 2,
           "totalMinutes": 2,
           "avgMinutes": 1,
@@ -1200,47 +1400,15 @@
           "wastedMinutes": 1
         },
         {
+          "name": "PR Description AI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
           "name": "Type Coverage",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Accessibility Check",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Env Sync Check",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "OpenSpec Drift Check",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Performance Budget",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Dead Code Detection",
           "runs": 1,
           "totalMinutes": 1,
           "avgMinutes": 1,
@@ -1249,8 +1417,13 @@
         }
       ],
       "recommendations": [
-        "Coverage Tracking: 100% failure rate (6min wasted). Fix root cause.",
-        "CI: 50% failure rate (3min wasted). Fix root cause."
+        "Release Drafter: 100% failure rate (10min wasted). Fix root cause.",
+        "CI: 100% failure rate (10min wasted). Fix root cause.",
+        "Semantic Release: 80% failure rate (8min wasted). Fix root cause.",
+        "Coverage Tracking: 100% failure rate (10min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (10min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (10min wasted). Fix root cause.",
+        ".github/workflows/cron-monitor.yml: 100% failure rate (7min wasted). Fix root cause."
       ]
     },
     {
@@ -1261,27 +1434,35 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 52,
-          "totalMinutes": 52,
+          "runs": 47,
+          "totalMinutes": 47,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
         },
         {
           "name": "Coverage Tracking",
-          "runs": 7,
-          "totalMinutes": 7,
+          "runs": 8,
+          "totalMinutes": 8,
           "avgMinutes": 1,
-          "failedRuns": 7,
-          "wastedMinutes": 7
+          "failedRuns": 8,
+          "wastedMinutes": 8
         },
         {
           "name": "CI",
+          "runs": 8,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Semantic Release",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Release Drafter",
@@ -1292,28 +1473,28 @@
           "wastedMinutes": 7
         },
         {
-          "name": "Semantic Release",
+          "name": ".github/workflows/auto-changelog.yml",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 7,
+          "wastedMinutes": 7
         },
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 6,
-          "totalMinutes": 6,
+          "runs": 7,
+          "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
+          "failedRuns": 7,
+          "wastedMinutes": 7
         },
         {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 6,
-          "totalMinutes": 6,
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
           "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Stale Bot",
@@ -1381,10 +1562,11 @@
         }
       ],
       "recommendations": [
-        "Coverage Tracking: 100% failure rate (7min wasted). Fix root cause.",
+        "Coverage Tracking: 100% failure rate (8min wasted). Fix root cause.",
+        "CI: 38% failure rate (3min wasted). Fix root cause.",
         "Release Drafter: 100% failure rate (7min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
+        ".github/workflows/auto-changelog.yml: 100% failure rate (7min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause."
       ]
     },
     {
@@ -1395,11 +1577,19 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 51,
-          "totalMinutes": 51,
+          "runs": 47,
+          "totalMinutes": 47,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 8,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 8,
+          "wastedMinutes": 8
         },
         {
           "name": "CI",
@@ -1410,7 +1600,15 @@
           "wastedMinutes": 8
         },
         {
-          "name": "Coverage Tracking",
+          "name": "Semantic Release",
+          "runs": 7,
+          "totalMinutes": 7,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Release Drafter",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
@@ -1418,15 +1616,7 @@
           "wastedMinutes": 7
         },
         {
-          "name": "Semantic Release",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Release Drafter",
+          "name": ".github/workflows/claude-review.yml",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
@@ -1442,12 +1632,20 @@
           "wastedMinutes": 6
         },
         {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 6,
-          "totalMinutes": 6,
+          "name": "Lighthouse CI",
+          "runs": 1,
+          "totalMinutes": 1,
           "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Stale Bot",
@@ -1515,11 +1713,11 @@
         }
       ],
       "recommendations": [
+        "Coverage Tracking: 100% failure rate (8min wasted). Fix root cause.",
         "CI: 100% failure rate (8min wasted). Fix root cause.",
-        "Coverage Tracking: 100% failure rate (7min wasted). Fix root cause.",
         "Release Drafter: 100% failure rate (7min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause."
+        ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
       ]
     },
     {
@@ -1530,8 +1728,8 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 50,
-          "totalMinutes": 50,
+          "runs": 49,
+          "totalMinutes": 49,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
@@ -1541,8 +1739,8 @@
           "runs": 8,
           "totalMinutes": 8,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Coverage Tracking",
@@ -1553,15 +1751,7 @@
           "wastedMinutes": 8
         },
         {
-          "name": "Semantic Release",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
+          "name": "Release Drafter",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
@@ -1569,12 +1759,12 @@
           "wastedMinutes": 7
         },
         {
-          "name": "Release Drafter",
-          "runs": 6,
-          "totalMinutes": 6,
+          "name": "Semantic Release",
+          "runs": 7,
+          "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": ".github/workflows/claude-review.yml",
@@ -1583,6 +1773,22 @@
           "avgMinutes": 1,
           "failedRuns": 6,
           "wastedMinutes": 6
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 6,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 6,
+          "wastedMinutes": 6
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Stale Bot",
@@ -1650,10 +1856,11 @@
         }
       ],
       "recommendations": [
+        "CI: 38% failure rate (3min wasted). Fix root cause.",
         "Coverage Tracking: 100% failure rate (8min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (7min wasted). Fix root cause.",
-        "Release Drafter: 100% failure rate (6min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause."
+        "Release Drafter: 100% failure rate (7min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
       ]
     },
     {
@@ -1798,11 +2005,19 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 49,
-          "totalMinutes": 49,
+          "runs": 48,
+          "totalMinutes": 48,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
+        },
+        {
+          "name": "CI",
+          "runs": 8,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Coverage Tracking",
@@ -1811,14 +2026,6 @@
           "avgMinutes": 1,
           "failedRuns": 8,
           "wastedMinutes": 8
-        },
-        {
-          "name": "CI",
-          "runs": 8,
-          "totalMinutes": 8,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
         },
         {
           "name": "Release Drafter",
@@ -1833,11 +2040,11 @@
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
-          "name": ".github/workflows/auto-changelog.yml",
+          "name": ".github/workflows/claude-review.yml",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
@@ -1845,12 +2052,20 @@
           "wastedMinutes": 7
         },
         {
-          "name": ".github/workflows/claude-review.yml",
+          "name": ".github/workflows/auto-changelog.yml",
           "runs": 6,
           "totalMinutes": 6,
           "avgMinutes": 1,
           "failedRuns": 6,
           "wastedMinutes": 6
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Stale Bot",
@@ -1918,10 +2133,11 @@
         }
       ],
       "recommendations": [
+        "CI: 38% failure rate (3min wasted). Fix root cause.",
         "Coverage Tracking: 100% failure rate (8min wasted). Fix root cause.",
         "Release Drafter: 100% failure rate (7min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (7min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause."
+        ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
       ]
     },
     {
@@ -1932,19 +2148,11 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 50,
-          "totalMinutes": 50,
+          "runs": 47,
+          "totalMinutes": 47,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
-        },
-        {
-          "name": "CI",
-          "runs": 8,
-          "totalMinutes": 8,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
         },
         {
           "name": "Coverage Tracking",
@@ -1953,6 +2161,14 @@
           "avgMinutes": 1,
           "failedRuns": 8,
           "wastedMinutes": 8
+        },
+        {
+          "name": "CI",
+          "runs": 8,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Release Drafter",
@@ -1967,24 +2183,32 @@
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 6,
-          "totalMinutes": 6,
+          "runs": 7,
+          "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
+          "failedRuns": 7,
+          "wastedMinutes": 7
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 7,
+          "totalMinutes": 7,
+          "avgMinutes": 1,
+          "failedRuns": 7,
+          "wastedMinutes": 7
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Stale Bot",
@@ -2053,9 +2277,10 @@
       ],
       "recommendations": [
         "Coverage Tracking: 100% failure rate (8min wasted). Fix root cause.",
+        "CI: 38% failure rate (3min wasted). Fix root cause.",
         "Release Drafter: 100% failure rate (7min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause."
+        ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (7min wasted). Fix root cause."
       ]
     },
     {
@@ -2187,139 +2412,6 @@
       ],
       "recommendations": [
         ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "Thumbfast",
-      "fullName": "thonyAGP/Thumbfast",
-      "totalMinutes": 100,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Cron Monitor",
-          "runs": 52,
-          "totalMinutes": 52,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 7,
-          "wastedMinutes": 7
-        },
-        {
-          "name": "CI",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Release Drafter",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 7,
-          "totalMinutes": 7,
-          "avgMinutes": 1,
-          "failedRuns": 7,
-          "wastedMinutes": 7
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
-        },
-        {
-          "name": "Semantic Release",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Stale Bot",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "PR Size Check",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "PR Risk Assessment",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "PR Description AI",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Test Impact Analysis",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        }
-      ],
-      "recommendations": [
-        "Coverage Tracking: 100% failure rate (7min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause.",
         ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
       ]
     },
@@ -2466,43 +2558,43 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 55,
-          "totalMinutes": 55,
+          "runs": 49,
+          "totalMinutes": 49,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
         },
         {
           "name": "Lighthouse CI",
-          "runs": 15,
-          "totalMinutes": 15,
+          "runs": 16,
+          "totalMinutes": 16,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "Coverage Tracking",
-          "runs": 4,
-          "totalMinutes": 4,
+          "runs": 5,
+          "totalMinutes": 5,
           "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
+          "failedRuns": 5,
+          "wastedMinutes": 5
         },
         {
           "name": "CI",
-          "runs": 4,
-          "totalMinutes": 4,
+          "runs": 5,
+          "totalMinutes": 5,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Semantic Release",
           "runs": 4,
           "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Release Drafter",
@@ -2514,19 +2606,27 @@
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
-          "runs": 3,
-          "totalMinutes": 3,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 3,
-          "totalMinutes": 3,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
+          "failedRuns": 4,
+          "wastedMinutes": 4
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Stale Bot",
@@ -2597,12 +2697,12 @@
     }
   ],
   "summary": {
-    "totalMinutes": 1917,
+    "totalMinutes": 1921,
     "totalRuns": 1900,
-    "wastedMinutes": 706,
+    "wastedMinutes": 786,
     "mostExpensiveRepo": "magic-migration",
-    "mostExpensiveWorkflow": "Cron Monitor (zentra)",
-    "totalRecommendations": 69,
+    "mostExpensiveWorkflow": "Cron Monitor (Thumbfast)",
+    "totalRecommendations": 81,
     "estimatedMonthlyCost": 0
   }
 }

@@ -1,12 +1,12 @@
 # Template Recommendations Report
 
-Generated: 3/24/2026, 7:11:53 AM
+Generated: 3/24/2026, 12:48:16 PM
 
 ## Executive Summary
 
 - **Total Recommendations**: 64
-- **Critical**: 0 | **High**: 43 | **Medium**: 7 | **Low**: 14
-- **Average Health Score**: 19.6/100
+- **Critical**: 0 | **High**: 28 | **Medium**: 19 | **Low**: 17
+- **Average Health Score**: 32.2/100
 - **Top Template**: container-scan.yml (19 repos)
 - **Most Improved Repo**: au-marais
 
@@ -21,9 +21,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### au-marais
 
-- **Health Score**: 55/100
+- **Health Score**: 50/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 81%
+- **CI Failure Rate**: 83%
 
 #### High Priority
 
@@ -32,7 +32,7 @@ Generated: 3/24/2026, 7:11:53 AM
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
 - **lighthouse.yml**
-  - Reason: Low health score (55) - needs performance tracking
+  - Reason: Low health score (50) - needs performance tracking
   - Effort: moderate
   - Impact: Tracks performance, accessibility, and SEO metrics
 
@@ -52,9 +52,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### CasaSync
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 75%
+- **CI Failure Rate**: 78%
 
 #### High Priority
 
@@ -63,9 +63,12 @@ Generated: 3/24/2026, 7:11:53 AM
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
 - **lighthouse.yml**
-  - Reason: Low health score (35) - needs performance tracking
+  - Reason: Low health score (50) - needs performance tracking
   - Effort: moderate
   - Impact: Tracks performance, accessibility, and SEO metrics
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
@@ -80,9 +83,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### LB2I-Fiscal-Manager
 
-- **Health Score**: 0/100
+- **Health Score**: 50/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 83%
+- **CI Failure Rate**: 82%
 
 #### High Priority
 
@@ -91,15 +94,18 @@ Generated: 3/24/2026, 7:11:53 AM
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
 - **lighthouse.yml**
-  - Reason: Low health score (0) - needs performance tracking
+  - Reason: Low health score (50) - needs performance tracking
   - Effort: moderate
   - Impact: Tracks performance, accessibility, and SEO metrics
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
 
-#### Medium Priority
+#### Low Priority
 
 - **stale-bot.yml**
   - Reason: Auto-close stale issues and PRs
@@ -110,7 +116,7 @@ Generated: 3/24/2026, 7:11:53 AM
 
 - **Health Score**: 0/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 75%
+- **CI Failure Rate**: 78%
 
 #### High Priority
 
@@ -136,9 +142,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### livret-au-marais
 
-- **Health Score**: 55/100
+- **Health Score**: 50/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 80%
+- **CI Failure Rate**: 83%
 
 #### High Priority
 
@@ -147,7 +153,7 @@ Generated: 3/24/2026, 7:11:53 AM
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
 - **lighthouse.yml**
-  - Reason: Low health score (55) - needs performance tracking
+  - Reason: Low health score (50) - needs performance tracking
   - Effort: moderate
   - Impact: Tracks performance, accessibility, and SEO metrics
 
@@ -167,9 +173,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### Site_Greg-Assainissement
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 75%
+- **CI Failure Rate**: 78%
 
 #### High Priority
 
@@ -178,9 +184,12 @@ Generated: 3/24/2026, 7:11:53 AM
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
 - **lighthouse.yml**
-  - Reason: Low health score (35) - needs performance tracking
+  - Reason: Low health score (50) - needs performance tracking
   - Effort: moderate
   - Impact: Tracks performance, accessibility, and SEO metrics
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
@@ -195,7 +204,7 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### test_codingmenace
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: nextjs
 - **CI Failure Rate**: 27%
 
@@ -206,9 +215,12 @@ Generated: 3/24/2026, 7:11:53 AM
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
 - **lighthouse.yml**
-  - Reason: Low health score (35) - needs performance tracking
+  - Reason: Low health score (50) - needs performance tracking
   - Effort: moderate
   - Impact: Tracks performance, accessibility, and SEO metrics
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
@@ -223,9 +235,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### Thumbfast
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: nextjs
-- **CI Failure Rate**: 35%
+- **CI Failure Rate**: 45%
 
 #### High Priority
 
@@ -234,9 +246,12 @@ Generated: 3/24/2026, 7:11:53 AM
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
 - **lighthouse.yml**
-  - Reason: Low health score (35) - needs performance tracking
+  - Reason: Low health score (50) - needs performance tracking
   - Effort: moderate
   - Impact: Tracks performance, accessibility, and SEO metrics
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
@@ -251,9 +266,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### claude-cli-wrapper
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: node
-- **CI Failure Rate**: 75%
+- **CI Failure Rate**: 78%
 
 #### High Priority
 
@@ -261,6 +276,9 @@ Generated: 3/24/2026, 7:11:53 AM
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
@@ -277,7 +295,7 @@ Generated: 3/24/2026, 7:11:53 AM
 
 - **Health Score**: 0/100
 - **Stack**: dotnet
-- **CI Failure Rate**: 36%
+- **CI Failure Rate**: 41%
 
 #### High Priority
 
@@ -299,9 +317,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### ClubMedRoomAssignment
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: node
-- **CI Failure Rate**: 80%
+- **CI Failure Rate**: 82%
 
 #### High Priority
 
@@ -309,6 +327,9 @@ Generated: 3/24/2026, 7:11:53 AM
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
@@ -323,9 +344,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### magic-migration
 
-- **Health Score**: 0/100
+- **Health Score**: 70/100
 - **Stack**: node
-- **CI Failure Rate**: 29%
+- **CI Failure Rate**: 32%
 
 #### High Priority
 
@@ -333,12 +354,15 @@ Generated: 3/24/2026, 7:11:53 AM
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
 
-#### Medium Priority
+#### Low Priority
 
 - **stale-bot.yml**
   - Reason: Auto-close stale issues and PRs
@@ -347,9 +371,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### MCP_Quota_Claude
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: node
-- **CI Failure Rate**: 75%
+- **CI Failure Rate**: 78%
 
 #### High Priority
 
@@ -357,6 +381,9 @@ Generated: 3/24/2026, 7:11:53 AM
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
@@ -371,7 +398,7 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### Site_1970_Plomberie
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: node
 - **CI Failure Rate**: 75%
 
@@ -381,6 +408,9 @@ Generated: 3/24/2026, 7:11:53 AM
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
@@ -395,9 +425,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### SqlConnectionTest
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: dotnet
-- **CI Failure Rate**: 76%
+- **CI Failure Rate**: 78%
 
 #### High Priority
 
@@ -405,6 +435,9 @@ Generated: 3/24/2026, 7:11:53 AM
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
@@ -419,9 +452,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### statusline
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: node
-- **CI Failure Rate**: 75%
+- **CI Failure Rate**: 78%
 
 #### High Priority
 
@@ -429,6 +462,9 @@ Generated: 3/24/2026, 7:11:53 AM
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
@@ -443,7 +479,7 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### Utilitaire_Webapp
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: node
 - **CI Failure Rate**: 80%
 
@@ -453,6 +489,9 @@ Generated: 3/24/2026, 7:11:53 AM
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
@@ -467,9 +506,9 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### zentra
 
-- **Health Score**: 0/100
+- **Health Score**: 50/100
 - **Stack**: node
-- **CI Failure Rate**: 72%
+- **CI Failure Rate**: 76%
 
 #### High Priority
 
@@ -477,12 +516,15 @@ Generated: 3/24/2026, 7:11:53 AM
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
   - Impact: Free code review from CodeRabbit/Qodo without API keys
+
+#### Medium Priority
+
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
 
-#### Medium Priority
+#### Low Priority
 
 - **stale-bot.yml**
   - Reason: Auto-close stale issues and PRs
@@ -491,11 +533,11 @@ Generated: 3/24/2026, 7:11:53 AM
 
 ### Email_Assistant
 
-- **Health Score**: 35/100
+- **Health Score**: 50/100
 - **Stack**: node
-- **CI Failure Rate**: 83%
+- **CI Failure Rate**: 86%
 
-#### High Priority
+#### Medium Priority
 
 - **container-scan.yml**
   - Reason: Enhance container security scanning
