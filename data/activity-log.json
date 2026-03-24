@@ -3094,6 +3094,29 @@
       "action": "recommendations-generated",
       "details": "64 recommendations across 27 repos (0 critical, 28 high)",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T13:54:42.878Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-triggered",
+      "target": "CI Health Check",
+      "details": "Self-heal for workflow (run 23491590816)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T13:54:44.646Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "total_failure: .github/workflows/cron-monitor.yml",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T13:54:44.648Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "2/5 passing. 2 failures, 1 partial. 1 self-heals",
+      "status": "error"
     }
   ]
 }
