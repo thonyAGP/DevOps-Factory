@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/24/2026, 1:11:21 AM
+**Generated**: 3/24/2026, 1:20:42 AM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 19/19 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 92 |
-| Deployments (30d) | 147 |
+| Deployments (30d) | 30 |
 | PRs with Review | 0/92 |
 
 ## Repository Compliance
@@ -113,8 +113,6 @@
 - #9 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 - #8 - Admin improvements: calendar, reservations & mobile fixes (by thonyAGP)
 
-**Recent Deployments**: 8 successful deploys in 30 days
-
 ---
 
 ### CasaSync | ✓ EXCELLENT (80/100)
@@ -135,8 +133,6 @@
 - #77 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
 - #76 - test: add skeleton test files (by thonyAGP)
 - #75 - chore: add DevOps-Factory AI workflows (by thonyAGP)
-
-**Recent Deployments**: 13 successful deploys in 30 days
 
 ---
 
@@ -160,8 +156,6 @@
 - #3 - chore: add secret scanning with Gitleaks (by thonyAGP)
 - #2 - test: add skeleton test files (by thonyAGP)
 
-**Recent Deployments**: 6 successful deploys in 30 days
-
 ---
 
 ### claude-launcher | ✓ EXCELLENT (80/100)
@@ -183,7 +177,7 @@
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
 
-**Recent Deployments**: 13 successful deploys in 30 days
+**Recent Deployments**: 7 successful deploys in 30 days
 
 ---
 
@@ -206,8 +200,6 @@
 - #2786 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 - #2780 - fix(ci): add pnpm version to action-setup (by thonyAGP)
 
-**Recent Deployments**: 6 successful deploys in 30 days
-
 ---
 
 ### Email_Assistant | ✓ EXCELLENT (80/100)
@@ -228,8 +220,6 @@
 - #2796 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
 - #2782 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 10 successful deploys in 30 days
-
 ---
 
 ### LB2I-Fiscal-Manager | ✓ EXCELLENT (80/100)
@@ -249,8 +239,6 @@
 - #3 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 - #2 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
 - #1 - chore: add DevOps-Factory AI workflows (by thonyAGP)
-
-**Recent Deployments**: 4 successful deploys in 30 days
 
 ---
 
@@ -273,8 +261,6 @@
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
 
-**Recent Deployments**: 10 successful deploys in 30 days
-
 ---
 
 ### livret-au-marais | ✓ EXCELLENT (80/100)
@@ -295,8 +281,6 @@
 - #5 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
-
-**Recent Deployments**: 9 successful deploys in 30 days
 
 ---
 
@@ -320,7 +304,7 @@
 - #20 - chore: add secret scanning with Gitleaks (by thonyAGP)
 - #10 - feat(qa): QA Session Complete - Version Badge + Security Fixes (by thonyAGP)
 
-**Recent Deployments**: 14 successful deploys in 30 days
+**Recent Deployments**: 9 successful deploys in 30 days
 
 ---
 
@@ -344,8 +328,6 @@
 - #3 - chore: add secret scanning with Gitleaks (by thonyAGP)
 - #2 - test: add skeleton test files (by thonyAGP)
 
-**Recent Deployments**: 10 successful deploys in 30 days
-
 ---
 
 ### Site_1970_Plomberie | ✓ EXCELLENT (80/100)
@@ -366,8 +348,6 @@
 - #4 - chore: add SAST with Semgrep (by thonyAGP)
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
-
-**Recent Deployments**: 4 successful deploys in 30 days
 
 ---
 
@@ -391,8 +371,6 @@
 - #3 - chore: add secret scanning with Gitleaks (by thonyAGP)
 - #2 - test: add skeleton test files (by thonyAGP)
 
-**Recent Deployments**: 2 successful deploys in 30 days
-
 ---
 
 ### SqlConnectionTest | ✓ EXCELLENT (80/100)
@@ -413,8 +391,6 @@
 - #4 - chore: add SAST with Semgrep (by thonyAGP)
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
-
-**Recent Deployments**: 1 successful deploys in 30 days
 
 ---
 
@@ -455,7 +431,7 @@
 - #6 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 - #5 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 25 successful deploys in 30 days
+**Recent Deployments**: 9 successful deploys in 30 days
 
 ---
 
@@ -477,7 +453,7 @@
 - #7 - test: add skeleton test files (by thonyAGP)
 - #6 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 12 successful deploys in 30 days
+**Recent Deployments**: 5 successful deploys in 30 days
 
 ---
 
