@@ -3026,19 +3026,14 @@
   },
   {
     "date": "2026-03-24",
-    "avgHealth": 54,
-    "failingCI": 18,
-    "passingCI": 0,
+    "avgHealth": 61,
+    "failingCI": 14,
+    "passingCI": 4,
     "totalOpenPRs": 26,
     "perProject": [
       {
         "name": "zentra",
         "health": 45,
-        "ciStatus": "fail"
-      },
-      {
-        "name": "claude-launcher",
-        "health": 50,
         "ciStatus": "fail"
       },
       {
@@ -3082,11 +3077,6 @@
         "ciStatus": "fail"
       },
       {
-        "name": "magic-migration",
-        "health": 55,
-        "ciStatus": "fail"
-      },
-      {
         "name": "MCP_Quota_Claude",
         "health": 55,
         "ciStatus": "fail"
@@ -3107,19 +3097,29 @@
         "ciStatus": "fail"
       },
       {
-        "name": "test_codingmenace",
-        "health": 55,
-        "ciStatus": "fail"
-      },
-      {
-        "name": "Thumbfast",
-        "health": 55,
-        "ciStatus": "fail"
-      },
-      {
         "name": "Utilitaire_Webapp",
         "health": 55,
         "ciStatus": "fail"
+      },
+      {
+        "name": "claude-launcher",
+        "health": 80,
+        "ciStatus": "pass"
+      },
+      {
+        "name": "magic-migration",
+        "health": 85,
+        "ciStatus": "pass"
+      },
+      {
+        "name": "test_codingmenace",
+        "health": 85,
+        "ciStatus": "pass"
+      },
+      {
+        "name": "Thumbfast",
+        "health": 85,
+        "ciStatus": "pass"
       }
     ]
   }
