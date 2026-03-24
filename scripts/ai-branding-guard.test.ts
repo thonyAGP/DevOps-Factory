@@ -38,27 +38,22 @@ describe('shouldScanFile', () => {
 
 describe('scanContent', () => {
   it('should detect Co-Authored-By Claude', () => {
-    const content = 'some code\n\nCo-Authored-By: Claude Opus 4 <noreply@anthropic.com>\n';
     const violations = scanContent(content, 'test.ts');
     expect(violations.length).toBeGreaterThanOrEqual(1);
     expect(violations[0].line).toBe(3);
   });
 
-  it('should detect Generated with Claude Code', () => {
     const content =
-      'footer text\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n';
     const violations = scanContent(content, 'test.md');
     expect(violations.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('should detect Powered by Anthropic', () => {
-    const content = 'Powered by Anthropic Claude\n';
     const violations = scanContent(content, 'test.md');
     expect(violations.length).toBe(1);
   });
 
-  it('should detect AI-generated inline', () => {
-    const content = 'This is an AI-generated response with useful content\n';
+  it('should detect  inline', () => {
+    const content = 'This is an  response with useful content\n';
     const violations = scanContent(content, 'test.md');
     expect(violations.length).toBe(1);
     expect(violations[0].patternMode).toBe('inline');
@@ -76,8 +71,6 @@ describe('scanContent', () => {
     expect(violations.length).toBe(0);
   });
 
-  it('should detect noreply@anthropic.com', () => {
-    const content = 'Author: someone <noreply@anthropic.com>\n';
     const violations = scanContent(content, 'test.ts');
     expect(violations.length).toBe(1);
   });
@@ -88,14 +81,10 @@ describe('scanContent', () => {
     expect(violations.length).toBe(0);
   });
 
-  it('should detect Made with Claude', () => {
-    const content = 'Made with Claude Code\n';
     const violations = scanContent(content, 'test.md');
     expect(violations.length).toBe(1);
   });
 
-  it('should detect Created by Claude', () => {
-    const content = 'Created by Claude AI assistant\n';
     const violations = scanContent(content, 'test.md');
     expect(violations.length).toBe(1);
   });
@@ -103,16 +92,15 @@ describe('scanContent', () => {
 
 describe('fixContent', () => {
   it('should remove full lines with Co-Authored-By', () => {
-    const input = 'Fix bug\n\nCo-Authored-By: Claude Opus 4 <noreply@anthropic.com>\n';
     const result = fixContent(input);
     expect(result).not.toContain('Co-Authored-By');
     expect(result).toContain('Fix bug');
   });
 
-  it('should remove inline AI-generated but keep rest of line', () => {
-    const input = 'This is an AI-generated doc with useful info\n';
+  it('should remove inline  but keep rest of line', () => {
+    const input = 'This is an  doc with useful info\n';
     const result = fixContent(input);
-    expect(result).not.toContain('AI-generated');
+    expect(result).not.toContain('');
     expect(result).toContain('This is an');
     expect(result).toContain('doc with useful info');
   });
@@ -129,9 +117,7 @@ describe('fixContent', () => {
   it('should handle multiple violations in same file', () => {
     const input = [
       'some code',
-      'Co-Authored-By: Claude <noreply@anthropic.com>',
       'more code',
-      'Generated with Claude Code',
       'final code',
     ].join('\n');
 
@@ -154,10 +140,7 @@ describe('fixContent', () => {
     expect(result).toBe('');
   });
 
-  it('should remove Built with Claude', () => {
-    const input = 'footer\nBuilt with Claude AI\nend\n';
     const result = fixContent(input);
-    expect(result).not.toContain('Built with Claude');
     expect(result).toContain('footer');
   });
 });

@@ -21,14 +21,9 @@ export interface BrandingPattern {
 }
 
 export const BRANDING_PATTERNS: BrandingPattern[] = [
-  { regex: /^.*Co-Authored-By:.*(?:Claude|Anthropic|noreply@anthropic\.com).*$/gim, mode: 'line' },
   { regex: /^.*Generated (?:with|by).*(?:Claude|AI|Anthropic).*$/gim, mode: 'line' },
-  { regex: /^.*Powered by.*(?:Claude|Anthropic).*$/gim, mode: 'line' },
-  { regex: /^.*Built with.*Claude.*$/gim, mode: 'line' },
-  { regex: /^.*🤖.*Claude Code.*$/gim, mode: 'line' },
   { regex: /^.*noreply@anthropic\.com.*$/gim, mode: 'line' },
   { regex: /^.*anthropic\.com\/claude-code.*$/gim, mode: 'line' },
-  { regex: /^.*Made with.*Claude.*$/gim, mode: 'line' },
   { regex: /^.*Created (?:with|by).*Claude.*$/gim, mode: 'line' },
   { regex: /AI[- ]generated/gi, mode: 'inline' },
 ];
