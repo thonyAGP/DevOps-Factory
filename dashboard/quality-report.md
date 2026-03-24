@@ -1,173 +1,204 @@
-## Quality Score Report - 2026-03-23
+## Quality Score Report - 2026-03-24
 
 ### Summary
-- **Average Score**: 39/100
+- **Average Score**: 52/100
 - **Excellent** (80+): 0
-- **Good** (60-79): 0
-- **Needs Work** (<60): 16
+- **Good** (60-79): 2
+- **Needs Work** (<60): 17
 
 ### Score Drops (≥5 points)
-- **Email_Assistant**: 55 → 35 (-20)
+- **Livret_accueil_Au-Marais**: 55 → 50 (-5)
+- **Site_Au-marais**: 55 → 50 (-5)
 
 ### Per Repository
 
-#### Livret_accueil_Au-Marais
-- **Score**: 55/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-
-#### Site_Au-marais
-- **Score**: 55/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-
 #### Lecteur_Magic
-- **Score**: 55/100
+- **Score**: 70/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
+
+#### magic-migration
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
 
 #### DevOps-Factory
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
 
 #### Email_Assistant
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
 
 #### ClubMedRoomAssignment
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
 
 #### CasaSync
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
+
+#### Livret_accueil_Au-Marais
+- **Score**: 50/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### Site_Au-marais
+- **Score**: 50/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
 
 #### API_Claude
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
 
 #### MCP_Quota_Claude
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
 
 #### Statusline
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
 
 #### Site_Greg-Assainissement
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
 
 #### Site_1970_Plomberie
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
 
 #### Thumbfast_createur_images
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
 
 #### Utilitaire_Webapp
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
 
 #### test_codingmenace
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
 
 #### SqlConnectionTest
-- **Score**: 35/100
+- **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
+- **Gitleaks**: ✓
+
+#### Zentra
+- **Score**: 50/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### LB2I-Fiscal-Manager
+- **Score**: 50/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
 

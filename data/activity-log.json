@@ -2,185 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-02-22T04:31:27.302Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "au-marais",
-      "details": "PR #3 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:32:28.984Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "CasaSync",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:32:58.967Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "claude-cli-wrapper",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:33:29.613Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: medium, deploy 0/wk, lead 132.7h, MTTR 0h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-02-22T04:33:55.907Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "claude-launcher",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:34:18.544Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 606min total, 206min wasted, ~$0/mo",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-02-22T04:35:27.583Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "ClubMedRoomAssignment",
-      "details": "PR #12 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:36:10.558Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Email_Assistant",
-      "details": "PR #7 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:36:27.816Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "lecteur-magic",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:37:01.766Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "livret-au-marais",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:37:32.458Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "16 projects, avg health 49",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-02-22T04:37:36.955Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:37:50.705Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "MCP_Quota_Claude",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:39:28.610Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Site_1970_Plomberie",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:40:05.323Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Site_Greg-Assainissement",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:40:13.949Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "SqlConnectionTest",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:40:14.974Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "DevOps-Factory",
-      "details": "35 → 55 (+20pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-02-22T04:40:14.976Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 41/100, 0 excellent, 16 needs work, 0 drops, 1 improvements",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-02-22T04:40:40.713Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "statusline",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:40:55.253Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "test_codingmenace",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:41:25.274Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Thumbfast",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:41:42.461Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "Utilitaire_Webapp",
-      "details": "PR #1 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-02-22T04:41:42.481Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 26 repos (17 active)",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-02-22T10:53:22.737Z",
       "source": "build-dashboard",
       "action": "compliance-report",
@@ -67391,6 +67212,903 @@
       "action": "recommendations-generated",
       "details": "100 recommendations across 27 repos (0 critical, 60 high)",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:06:47.913Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "18 projects, avg health 57",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:07:31.712Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 19 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:08:15.222Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 2%, 5 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:09:42.807Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 168.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:10:33.895Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 2496min total, 1502min wasted, ~$3.97/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:11:22.008Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 80/100, branch protection 0/19, CI 19/19, review coverage 0%",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:11:22.717Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "100 recommendations across 27 repos (0 critical, 60 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:15:32.298Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "au-marais",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:15:41.022Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "CasaSync",
+      "details": "Added 3 workflow(s): self-healing.yml, qodo-merge.yml, prisma-migration-check.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:15:47.491Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "claude-cli-wrapper",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:15:54.487Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "claude-launcher",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:16:02.921Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "ClubMedRoomAssignment",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:16:09.565Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "Email_Assistant",
+      "details": "Added 2 workflow(s): self-healing.yml, prisma-migration-check.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:16:16.092Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Added 3 workflow(s): self-healing.yml, qodo-merge.yml, prisma-migration-check.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:16:21.741Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "livret-au-marais",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:16:27.624Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:16:33.438Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "magic-migration",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:16:39.396Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "MCP_Quota_Claude",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:16:55.033Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "Site_1970_Plomberie",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:17:01.009Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "Site_Greg-Assainissement",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:17:08.273Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "SqlConnectionTest",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:17:14.494Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "statusline",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:17:20.324Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "test_codingmenace",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:17:25.889Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "Thumbfast",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:17:31.804Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "Utilitaire_Webapp",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:17:38.110Z",
+      "source": "scan-and-configure",
+      "action": "pr-created",
+      "target": "zentra",
+      "details": "Added 2 workflow(s): self-healing.yml, qodo-merge.yml",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:17:38.139Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 27 repos (19 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:17:50.168Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 10 outcomes (3 merged, 7 closed, 0 open). 10 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T01:18:45.890Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "18 projects, avg health 54",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:19:44.910Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 19 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:20:48.334Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 2%, 5 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:22:22.395Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 168.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:23:13.733Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 1918min total, 693min wasted, ~$0/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:24:15.616Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 80/100, branch protection 0/19, CI 19/19, review coverage 0%",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:24:16.324Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "64 recommendations across 27 repos (0 critical, 43 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T02:07:13.146Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "18 projects, avg health 54",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T02:08:28.892Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 19 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T02:09:47.037Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 2%, 5 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T02:11:32.471Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 168.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T02:12:23.613Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 1918min total, 697min wasted, ~$0/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T02:13:34.319Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 80/100, branch protection 0/19, CI 19/19, review coverage 0%",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T02:13:35.078Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "64 recommendations across 27 repos (0 critical, 43 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T03:17:58.674Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Scan Repos",
+      "details": "partial_failure: Scan Repos",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T03:17:58.697Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/5 passing. 1 failures, 1 partial. 0 self-heals",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T04:11:24.160Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T04:11:25.179Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "ClubMedRoomAssignment",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T04:11:26.483Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T04:11:27.682Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T04:11:28.846Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Zentra",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T04:11:29.988Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T04:11:30.010Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/10 passing, 6 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T05:55:18.243Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T05:55:19.746Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "ClubMedRoomAssignment",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T05:55:21.536Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T05:55:23.461Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T05:55:25.310Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Zentra",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T05:55:27.356Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T05:55:27.377Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/10 passing, 6 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T06:55:42.527Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T06:55:44.074Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "ClubMedRoomAssignment",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T06:55:46.176Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T06:55:48.039Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T06:55:49.822Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Zentra",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T06:55:51.761Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T06:55:51.783Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/10 passing, 6 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T07:05:22.741Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "18 projects, avg health 61",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T07:06:35.612Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 19 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T07:07:57.028Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 2%, 5 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T07:09:44.424Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 168.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T07:10:39.061Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 1917min total, 706min wasted, ~$0/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T07:11:53.212Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 80/100, branch protection 0/19, CI 19/19, review coverage 0%",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T07:11:53.940Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "64 recommendations across 27 repos (0 critical, 43 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T07:50:48.633Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T07:50:50.403Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "ClubMedRoomAssignment",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T07:50:52.337Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T07:50:54.394Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T07:50:56.442Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Zentra",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T07:50:58.413Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T07:50:58.432Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/10 passing, 6 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T08:42:13.255Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T08:42:14.733Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "ClubMedRoomAssignment",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T08:42:16.433Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T08:42:18.184Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T08:42:19.889Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Zentra",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T08:42:21.409Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T08:42:21.431Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/10 passing, 6 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.612Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "55 → 50 (-5pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.637Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Site_Au-marais",
+      "details": "55 → 50 (-5pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.664Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Lecteur_Magic",
+      "details": "55 → 70 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.686Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "DevOps-Factory",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.705Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Email_Assistant",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.728Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "ClubMedRoomAssignment",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.747Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "CasaSync",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.765Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "API_Claude",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.785Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "MCP_Quota_Claude",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.804Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Statusline",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.822Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Site_Greg-Assainissement",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.842Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Site_1970_Plomberie",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.860Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Thumbfast_createur_images",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.878Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Utilitaire_Webapp",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.899Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "test_codingmenace",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.917Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "SqlConnectionTest",
+      "details": "35 → 50 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T09:01:17.936Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 52/100, 0 excellent, 17 needs work, 2 drops, 14 improvements",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T09:48:41.267Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T09:48:42.501Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "ClubMedRoomAssignment",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T09:48:44.018Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T09:48:45.464Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T09:48:46.974Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Zentra",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T09:48:48.522Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-24T09:48:48.543Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/10 passing, 6 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T10:43:27.341Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 23468232461)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T10:43:29.744Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "ClubMedRoomAssignment",
+      "details": "Self-heal dispatched (run 23468226994)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T10:43:32.473Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "CasaSync",
+      "details": "Self-heal dispatched (run 23468212532)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T10:43:35.260Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Self-heal dispatched (run 23468251426)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T10:43:38.097Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Zentra",
+      "details": "Self-heal dispatched (run 23468306031)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T10:43:40.724Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Self-heal dispatched (run 23485316751)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T10:43:40.748Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/10 passing, 6 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-24T01:03:59.413Z",
+  "timestamp": "2026-03-24T07:11:53.913Z",
   "repos": [
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
       "healthScore": 55,
       "stack": "nextjs",
-      "ciFailureRate": 47,
+      "ciFailureRate": 81,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -30,25 +30,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "medium",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -57,7 +43,7 @@
       "fullName": "thonyAGP/CasaSync",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 53,
+      "ciFailureRate": 75,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -81,25 +67,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -108,7 +80,7 @@
       "fullName": "thonyAGP/LB2I-Fiscal-Manager",
       "healthScore": 0,
       "stack": "nextjs",
-      "ciFailureRate": 74,
+      "ciFailureRate": 83,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -132,25 +104,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "medium",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "medium",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -159,7 +117,7 @@
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
       "healthScore": 0,
       "stack": "nextjs",
-      "ciFailureRate": 69,
+      "ciFailureRate": 75,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -183,25 +141,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "medium",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "medium",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -210,7 +154,7 @@
       "fullName": "thonyAGP/livret-au-marais",
       "healthScore": 55,
       "stack": "nextjs",
-      "ciFailureRate": 58,
+      "ciFailureRate": 80,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -234,25 +178,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "medium",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -261,7 +191,7 @@
       "fullName": "thonyAGP/Site_Greg-Assainissement",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 73,
+      "ciFailureRate": 75,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -285,25 +215,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -312,7 +228,7 @@
       "fullName": "thonyAGP/test_codingmenace",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 20,
+      "ciFailureRate": 27,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -336,25 +252,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -363,7 +265,7 @@
       "fullName": "thonyAGP/Thumbfast",
       "healthScore": 35,
       "stack": "nextjs",
-      "ciFailureRate": 40,
+      "ciFailureRate": 35,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -387,25 +289,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -414,7 +302,7 @@
       "fullName": "thonyAGP/claude-cli-wrapper",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 77,
+      "ciFailureRate": 75,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -431,25 +319,41 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
+        }
+      ]
+    },
+    {
+      "repo": "claude-launcher",
+      "fullName": "thonyAGP/claude-launcher",
+      "healthScore": 0,
+      "stack": "dotnet",
+      "ciFailureRate": 36,
+      "recommendations": [
+        {
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
         },
         {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "medium",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
         }
       ]
     },
@@ -458,7 +362,7 @@
       "fullName": "thonyAGP/ClubMedRoomAssignment",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 71,
+      "ciFailureRate": 80,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -475,25 +379,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -502,7 +392,7 @@
       "fullName": "thonyAGP/magic-migration",
       "healthScore": 0,
       "stack": "node",
-      "ciFailureRate": 40,
+      "ciFailureRate": 29,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -519,25 +409,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "medium",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "medium",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -546,7 +422,7 @@
       "fullName": "thonyAGP/MCP_Quota_Claude",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 69,
+      "ciFailureRate": 75,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -563,25 +439,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -590,7 +452,7 @@
       "fullName": "thonyAGP/Site_1970_Plomberie",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 72,
+      "ciFailureRate": 75,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -607,11 +469,34 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
+          "template": "stale-bot.yml",
+          "priority": "low",
+          "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
+          "impact": "Automatically closes stale issues and PRs"
+        }
+      ]
+    },
+    {
+      "repo": "SqlConnectionTest",
+      "fullName": "thonyAGP/SqlConnectionTest",
+      "healthScore": 35,
+      "stack": "dotnet",
+      "ciFailureRate": 76,
+      "recommendations": [
+        {
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
           "template": "stale-bot.yml",
@@ -619,13 +504,6 @@
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -651,25 +529,11 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
           "template": "stale-bot.yml",
           "priority": "low",
           "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
           "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
         }
       ]
     },
@@ -678,168 +542,6 @@
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "healthScore": 35,
       "stack": "node",
-      "ciFailureRate": 69,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
-        }
-      ]
-    },
-    {
-      "repo": "zentra",
-      "fullName": "thonyAGP/zentra",
-      "healthScore": 0,
-      "stack": "node",
-      "ciFailureRate": 62,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "medium",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "medium",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
-        }
-      ]
-    },
-    {
-      "repo": "claude-launcher",
-      "fullName": "thonyAGP/claude-launcher",
-      "healthScore": 0,
-      "stack": "dotnet",
-      "ciFailureRate": 47,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "medium",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "Email_Assistant",
-      "fullName": "thonyAGP/Email_Assistant",
-      "healthScore": 35,
-      "stack": "node",
-      "ciFailureRate": 56,
-      "recommendations": [
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
-          "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        },
-        {
-          "template": "mutation-testing.yml",
-          "priority": "low",
-          "reason": "Validate test quality",
-          "effort": "significant",
-          "impact": "Validates test quality by introducing code mutations"
-        }
-      ]
-    },
-    {
-      "repo": "SqlConnectionTest",
-      "fullName": "thonyAGP/SqlConnectionTest",
-      "healthScore": 35,
-      "stack": "dotnet",
       "ciFailureRate": 80,
       "recommendations": [
         {
@@ -857,11 +559,57 @@
           "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
-          "template": "pr-size-limit.yml",
-          "priority": "high",
-          "reason": "Enforce maintainable PR sizes",
+          "template": "stale-bot.yml",
+          "priority": "low",
+          "reason": "Auto-close stale issues and PRs",
           "effort": "minimal",
-          "impact": "Enforces PR size limits for code review quality"
+          "impact": "Automatically closes stale issues and PRs"
+        }
+      ]
+    },
+    {
+      "repo": "zentra",
+      "fullName": "thonyAGP/zentra",
+      "healthScore": 0,
+      "stack": "node",
+      "ciFailureRate": 72,
+      "recommendations": [
+        {
+          "template": "qodo-merge.yml",
+          "priority": "high",
+          "reason": "Free code reviews without API key requirement",
+          "effort": "minimal",
+          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+        },
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
+        },
+        {
+          "template": "stale-bot.yml",
+          "priority": "medium",
+          "reason": "Auto-close stale issues and PRs",
+          "effort": "minimal",
+          "impact": "Automatically closes stale issues and PRs"
+        }
+      ]
+    },
+    {
+      "repo": "Email_Assistant",
+      "fullName": "thonyAGP/Email_Assistant",
+      "healthScore": 35,
+      "stack": "node",
+      "ciFailureRate": 83,
+      "recommendations": [
+        {
+          "template": "container-scan.yml",
+          "priority": "high",
+          "reason": "Enhance container security scanning",
+          "effort": "moderate",
+          "impact": "Scans container images for vulnerabilities with Trivy"
         },
         {
           "template": "stale-bot.yml",
@@ -938,18 +686,14 @@
     }
   ],
   "summary": {
-    "totalRecommendations": 100,
+    "totalRecommendations": 64,
     "criticalCount": 0,
-    "highCount": 60,
-    "mediumCount": 13,
-    "lowCount": 27,
+    "highCount": 43,
+    "mediumCount": 7,
+    "lowCount": 14,
     "topTemplates": [
       {
         "template": "container-scan.yml",
-        "count": 19
-      },
-      {
-        "template": "pr-size-limit.yml",
         "count": 19
       },
       {
@@ -959,10 +703,6 @@
       {
         "template": "qodo-merge.yml",
         "count": 18
-      },
-      {
-        "template": "mutation-testing.yml",
-        "count": 17
       },
       {
         "template": "lighthouse.yml",
