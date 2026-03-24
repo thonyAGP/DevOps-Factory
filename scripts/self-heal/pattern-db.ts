@@ -66,7 +66,7 @@ export const addNewPattern = (signature: string, fix: string, repo: string): str
     category: 'ci-failure',
     signature,
     fix,
-    fixType: 'ai-generated',
+    fixType: '',
     repos_seen: [repo],
     occurrences: 1,
     confidence: 0.5,

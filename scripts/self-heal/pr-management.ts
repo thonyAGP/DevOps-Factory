@@ -39,7 +39,7 @@ export const createFixPR = (
   aiProvider?: string,
   patternSignature?: string
 ): string => {
-  const title = patternId ? `fix: CI fix [pattern:${patternId}]` : 'fix: AI-generated CI fix';
+  const title = patternId ? `fix: CI fix [pattern:${patternId}]` : 'fix:  CI fix';
   const source = patternId ? `Pattern DB (${patternId})` : 'AI analysis';
   const confidence = patternId ? matchedPatternConfidence(patternId) : 0;
   const healingState = getHealingState(repo);
@@ -163,7 +163,7 @@ export const isDuplicateFix = (
         changedFiles.length > 0 &&
         pr.files &&
         pr.files.length > 0 &&
-        pr.title.includes('AI-generated CI fix')
+        pr.title.includes(' CI fix')
       ) {
         const prFilePaths = pr.files.map((f) => f.path);
         const overlap = changedFiles.filter((f) => prFilePaths.includes(f));

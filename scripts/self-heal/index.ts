@@ -563,7 +563,7 @@ const main = async (): Promise<void> => {
   }
 
   const fixChangedFiles = allFixes.map((f) => f.path);
-  const dedupPattern = usedPatternId ? `pattern:${usedPatternId}` : 'AI-generated CI fix';
+  const dedupPattern = usedPatternId ? `pattern:${usedPatternId}` : ' CI fix';
   if (isDuplicateFix(repo, dedupPattern, fixChangedFiles)) {
     console.log('  [DEDUP] Skipping duplicate fix - similar PR already closed recently');
     recordAttempt(repo, errorSig, false);

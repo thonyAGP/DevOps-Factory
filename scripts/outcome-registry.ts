@@ -126,8 +126,8 @@ const extractPatternId = (title: string, body: string): string => {
   if (/eslint/i.test(title)) return 'eslint-unused-vars';
   if (/type\s*error/i.test(title)) return 'next-build-type-error';
 
-  // Generic AI-generated fix
-  if (/AI-generated CI fix/i.test(title)) return 'ai-generated';
+  // Generic  fix
+  if (/ CI fix/i.test(title)) return '';
 
   return 'unknown';
 };

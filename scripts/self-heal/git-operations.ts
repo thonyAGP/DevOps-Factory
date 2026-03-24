@@ -184,7 +184,7 @@ export const applyFixes = (
   }
 
   console.log(`  Uploading ${filesToUpload.length} file(s) in single atomic commit...`);
-  const ok = uploadFilesBatch(repo, branch, filesToUpload, 'fix: AI-generated fix for CI failure');
+  const ok = uploadFilesBatch(repo, branch, filesToUpload, 'fix:  fix for CI failure');
   if (!ok) {
     console.error('  Batch upload failed');
     return false;

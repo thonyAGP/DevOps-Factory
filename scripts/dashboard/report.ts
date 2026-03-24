@@ -96,7 +96,7 @@ export const generateDailyReport = (statuses: ProjectStatus[]): string => {
 
   if (pendingAIFixes.length > 0) {
     body += `## Action Required\n\n`;
-    body += `The following AI-generated PRs need your review:\n\n`;
+    body += `The following  PRs need your review:\n\n`;
     for (const { project, pr } of pendingAIFixes) {
       body += `- **${project}**: [#${pr.number} ${pr.title}](${pr.html_url})\n`;
     }

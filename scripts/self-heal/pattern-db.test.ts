@@ -89,7 +89,7 @@ describe('pattern-db.ts', () => {
             category: 'ci-failure',
             signature: 'connection timeout',
             fix: 'retry with exponential backoff',
-            fixType: 'ai-generated',
+            fixType: '',
             repos_seen: ['repo-a'],
             occurrences: 5,
             confidence: 0.85,
@@ -117,7 +117,7 @@ describe('pattern-db.ts', () => {
             category: 'ci-failure',
             signature: 'connection timeout',
             fix: 'retry',
-            fixType: 'ai-generated',
+            fixType: '',
             repos_seen: ['repo-a'],
             occurrences: 5,
             confidence: 0.85,
@@ -127,7 +127,7 @@ describe('pattern-db.ts', () => {
             category: 'ci-failure',
             signature: 'out of memory',
             fix: 'increase heap',
-            fixType: 'ai-generated',
+            fixType: '',
             repos_seen: ['repo-b'],
             occurrences: 3,
             confidence: 0.75,
@@ -150,7 +150,7 @@ describe('pattern-db.ts', () => {
       category: 'ci-failure',
       signature: 'connection timeout',
       fix: 'retry with exponential backoff',
-      fixType: 'ai-generated',
+      fixType: '',
       repos_seen: ['repo-a'],
       occurrences: 5,
       confidence: 0.85,
@@ -392,7 +392,7 @@ describe('pattern-db.ts', () => {
       category: 'ci-failure',
       signature: 'connection timeout',
       fix: 'retry with exponential backoff',
-      fixType: 'ai-generated',
+      fixType: '',
       repos_seen: ['repo-a'],
       occurrences: 5,
       confidence: 0.85,
@@ -456,7 +456,7 @@ describe('pattern-db.ts', () => {
       category: 'ci-failure',
       signature: 'connection timeout',
       fix: 'retry with exponential backoff',
-      fixType: 'ai-generated',
+      fixType: '',
       repos_seen: ['repo-a'],
       occurrences: 5,
       confidence: 0.85,
@@ -659,7 +659,7 @@ describe('pattern-db.ts', () => {
       expect(writtenData.patterns[0].repos_seen).toEqual(['repo-a']);
       expect(writtenData.patterns[0].occurrences).toBe(1);
       expect(writtenData.patterns[0].confidence).toBe(0.5);
-      expect(writtenData.patterns[0].fixType).toBe('ai-generated');
+      expect(writtenData.patterns[0].fixType).toBe('');
 
       vi.useRealTimers();
     });
@@ -694,7 +694,7 @@ describe('pattern-db.ts', () => {
               category: 'ci-failure',
               signature: 'First pattern signature message',
               fix: 'fix 1',
-              fixType: 'ai-generated',
+              fixType: '',
               repos_seen: ['repo-a'],
               occurrences: 1,
               confidence: 0.5,

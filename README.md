@@ -7,7 +7,7 @@ AI-powered automated DevOps for multi-project management.
 - **Auto-detects** new repos pushed to GitHub
 - **Configures** CI workflows, Claude Code review, self-healing, and Qodo Merge
 - **Monitors** all projects via a centralized dashboard
-- **Self-heals** CI failures with AI-generated fix PRs
+- **Self-heals** CI failures with  fix PRs
 - **Reports** daily status via GitHub Issues
 
 ## Architecture

@@ -241,7 +241,6 @@ git commit -m "feat(optimization): reduce GitHub API usage by 70%
 - Reduce cron frequency (6h→12h)
 - Expected: 417→125 requests/day
 
-Co-Authored-By: Claude Sonnet 4.5 (1M context) <noreply@anthropic.com>"
 
 git push
 ```

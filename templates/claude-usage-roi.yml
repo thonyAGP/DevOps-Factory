@@ -30,7 +30,7 @@ jobs:
 
           echo "month=$PREV_MONTH" >> $GITHUB_OUTPUT
 
-          # Count AI-generated PRs across all repos
+          # Count  PRs across all repos
           AI_PRS=0
           SELF_HEAL_PRS=0
           REPOS_WITH_AI=0
