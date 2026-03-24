@@ -6,8 +6,8 @@
 - **100%** avg security score
 - **18/18** repos with AI code review
 - **100%** avg quality score (perf, a11y, coverage, release)
-- **DORA**: MEDIUM (deploy 0/wk, lead 168.7h, MTTR 0h, CFR 62%)
-- **CI Cost**: 2496min total, 1502min wasted, ~$3.97/mo
+- **DORA**: MEDIUM (deploy 0/wk, lead 168.7h, MTTR 0h, CFR 36%)
+- **CI Cost**: 1918min total, 693min wasted, ~$0/mo
 - **Compliance**: 80/100 avg, 0% review coverage, 0/19 branch protected
 
 ## Per Project
@@ -44,13 +44,13 @@
 
 ### Email_Assistant :x:
 - **Health**: 55/100
-- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23468347153))
+- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23469058153))
 - **Open PRs**: 1
 
 ### LB2I-Fiscal-Manager :x:
 - **Health**: 55/100
-- **CI**: fail ([view](https://github.com/thonyAGP/LB2I-Fiscal-Manager/actions/runs/23468350284))
-- **Open PRs**: 1
+- **CI**: fail ([view](https://github.com/thonyAGP/LB2I-Fiscal-Manager/actions/runs/23468702945))
+- **Open PRs**: 2
 
 ### Livret_accueil_Au-Marais :x:
 - **Health**: 55/100
@@ -64,7 +64,7 @@
 
 ### magic-migration :x:
 - **Health**: 55/100
-- **CI**: fail ([view](https://github.com/thonyAGP/magic-migration/actions/runs/23468381513))
+- **CI**: fail ([view](https://github.com/thonyAGP/magic-migration/actions/runs/23468419239))
 - **Open PRs**: 3
 
 ### MCP_Quota_Claude :x:
