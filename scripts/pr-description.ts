@@ -116,6 +116,7 @@ const generateDescription = (diff: string, prInfo: PRInfo): string => {
       timeout: 300_000,
       maxBuffer: 10 * 1024 * 1024,
     });
+    return result.trim();
   } catch {
     console.log('  Claude CLI unavailable, trying Gemini fallback...');
   }
