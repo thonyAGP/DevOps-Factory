@@ -3,6 +3,7 @@ import { writeFileSync, readFileSync, existsSync, rmSync, readdirSync } from 'no
 import { sh as _sh, tmpDir } from '../shell-utils.js';
 import { configureGitAuth } from './git-operations.js';
 import { ensureLabel, isDuplicateFix } from './pr-management.js';
+import { logActivity } from '../activity-logger.js';
 
 const sh = (cmd: string, timeout = 60_000) => _sh(cmd, { timeout });
 
@@ -70,6 +71,7 @@ export const fixLockfileIssues = (
 
     const fileCount = changed.split('\n').filter(Boolean).length;
     console.log(`  ${fileCount} file(s) updated`);
+    logActivity('self-heal', 'lockfile_changes_detected', `${fileCount} files`, 'success', repo);
 
     const branch = `ai-fix/lockfile-${Date.now()}`;
     git('git config user.name "DevOps Factory Bot"');
@@ -88,6 +90,7 @@ export const fixLockfileIssues = (
       timeout: 120_000,
       stdio: 'pipe',
     });
+    logActivity('self-heal', 'lockfile_branch_pushed', branch, 'success', repo);
 
     if (isDuplicateFix(repo, 'lockfile')) {
       console.log('  [DEDUP] Skipping duplicate fix - lockfile PR already closed recently');
@@ -115,10 +118,13 @@ export const fixLockfileIssues = (
       `gh pr create --repo ${repo} --head ${branch} --base ${defaultBranch} --title "chore: update ${pm} lockfile (${fileCount} files)" --body-file "${bodyFile}" --label "ai-fix"`
     );
 
-    return prUrl.match(/(https:\/\/[^\s]+)/)?.[1] || prUrl;
+    const extractedUrl = prUrl.match(/(https:\/\/[^\s]+)/)?.[1] || prUrl;
+    logActivity('self-heal', 'lockfile_pr_created', extractedUrl, 'success', repo);
+    return extractedUrl;
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error(`  Lockfile fix failed: ${msg.slice(0, 300)}`);
+    logActivity('self-heal', 'lockfile_fix_failed', msg.slice(0, 300), 'error', repo);
     return null;
   } finally {
     try {
@@ -259,6 +265,7 @@ export const fixPrettierIssues = (
 
     const fileCount = changed.split('\n').filter(Boolean).length;
     console.log(`  ${fileCount} file(s) reformatted`);
+    logActivity('self-heal', 'prettier_changes_detected', `${fileCount} files`, 'success', repo);
 
     const branch = `ai-fix/prettier-${Date.now()}`;
     git('git config user.name "DevOps Factory Bot"');
@@ -277,6 +284,7 @@ export const fixPrettierIssues = (
       timeout: 120_000,
       stdio: 'pipe',
     });
+    logActivity('self-heal', 'prettier_branch_pushed', branch, 'success', repo);
 
     if (isDuplicateFix(repo, 'Prettier')) {
       console.log('  [DEDUP] Skipping duplicate fix - Prettier PR already closed recently');
@@ -304,10 +312,13 @@ export const fixPrettierIssues = (
       `gh pr create --repo ${repo} --head ${branch} --base ${defaultBranch} --title "style: auto-fix Prettier formatting (${fileCount} files)" --body-file "${bodyFile}" --label "ai-fix"`
     );
 
-    return prUrl.match(/(https:\/\/[^\s]+)/)?.[1] || prUrl;
+    const extractedUrl = prUrl.match(/(https:\/\/[^\s]+)/)?.[1] || prUrl;
+    logActivity('self-heal', 'prettier_pr_created', extractedUrl, 'success', repo);
+    return extractedUrl;
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error(`  Prettier fix failed: ${msg.slice(0, 300)}`);
+    logActivity('self-heal', 'prettier_fix_failed', msg.slice(0, 300), 'error', repo);
     return null;
   } finally {
     try {

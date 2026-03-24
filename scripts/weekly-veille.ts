@@ -12,6 +12,7 @@
 import { execSync } from 'node:child_process';
 import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import { sh as _sh, tmpDir } from './shell-utils.js';
+import { logActivity } from './activity-logger.js';
 
 const sh = (cmd: string) => _sh(cmd, { maxBuffer: 10 * 1024 * 1024 });
 
@@ -222,7 +223,14 @@ Format ta reponse en Markdown avec des sections claires.`;
     const text = parsed?.candidates?.[0]?.content?.parts?.[0]?.text;
     return text || '';
   } catch (e) {
-    console.error('Gemini synthesis error:', e instanceof Error ? e.message : String(e));
+    const errorMsg = e instanceof Error ? e.message : String(e);
+    console.error('Gemini synthesis error:', errorMsg);
+    logActivity(
+      'weekly-veille',
+      'gemini_synthesis',
+      `Gemini synthesis error: ${errorMsg}`,
+      'error'
+    );
     return '';
   }
 };
@@ -346,6 +354,12 @@ const main = (): void => {
   const updates = fetchUpdates();
 
   console.log(`\nFound ${updates.length} updates this week`);
+  logActivity(
+    'weekly-veille',
+    'scan_complete',
+    `Found ${updates.length} updates from ${GITHUB_SOURCES.length} sources`,
+    'success'
+  );
 
   // 2. Synthesize with Gemini
   console.log('\nPhase 2: AI Synthesis...');
@@ -366,6 +380,12 @@ const main = (): void => {
   writeFileSync('data/veille-report.md', markdown);
   saveReport(report);
   console.log('\nReport saved to data/veille-report.md');
+  logActivity(
+    'weekly-veille',
+    'report_generated',
+    `Report ${today}: ${report.updates.length} updates, ${report.updates.filter((u) => u.breaking).length} breaking`,
+    'success'
+  );
 
   // 6. Post as GitHub issue (in CI)
   if (process.env.GITHUB_ACTIONS) {

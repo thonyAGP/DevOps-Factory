@@ -77,16 +77,13 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 - [x] R2: Corps de PR enrichi (pattern ID, confiance, modele IA, signature, section "Pourquoi ce fix?")
 - [x] R3: Feedback loop negatif (label fix-rejected → penalite -15%/rejection sur confiance pattern)
 
-### En cours
-
-- [ ] M2: GraphQL batch file checks (next)
-- [ ] S4: Template parameterization
-- [ ] M3: Remplacer 554 console.log par logActivity
-
 ### Terminees (Plan APEX 2026-03-24)
 
 - [x] S1: Modulariser self-heal.ts (2617 lignes → 13 modules dans scripts/self-heal/)
 - [x] M4: Tests self-heal modules (103 tests: pattern-db, cooldown, error-analysis)
+- [x] M2: GraphQL batch file checks (github-file-checker.ts, 97% reduction REST calls)
+- [x] S4: Template parameterization (23 templates, {{nodeVersion}}/{{pnpmVersion}}/{{dotnetVersion}}, .devops-config.json per repo)
+- [x] M3: logActivity dans 12 scripts (ActivitySource etendu de 7→22 sources, ~40 logActivity ajoutes)
 - [x] S2: Modulariser build-dashboard.ts (1964 lignes → 17 modules dans scripts/dashboard/)
 - [x] Email digest: batch triggers, rate-limited comments, daily digest issues, daily digest email
 
@@ -168,6 +165,8 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 
 ## Changelog
 
+- 2026-03-24 : M3 logActivity - ActivitySource 7→22, ~40 logActivity dans 12 scripts (self-heal, outcome-registry, migration-tracker, ci-health, factory-watchdog, audit-pr, weekly-veille, etc.)
+- 2026-03-24 : S4 template parameterization - template-config.ts, 23 templates with {{placeholders}}, .devops-config.json per-repo, scan-and-configure + redeploy-templates integrated
 - 2026-03-24 : CHG-006 notification cleanup - healingState paused, self-heal/ci-health issues → logs, cron-monitor cascade fix, dashboard triggers 3→1
 - 2026-03-24 : M2 GraphQL batch file checks - github-file-checker.ts, scan-and-configure + sync-registry refactored
 - 2026-03-24 : Plan APEX - S1 (self-heal 13 modules), M4 (103 tests), S2 (dashboard 17 modules), email digest fix - 795 tests OK

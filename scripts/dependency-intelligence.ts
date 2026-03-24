@@ -12,6 +12,7 @@
 import { writeFileSync } from 'node:fs';
 import { KNOWN_PROJECTS, GITHUB_OWNER, type ProjectConfig } from '../factory.config.js';
 import { sh as _sh, tmpDir } from './shell-utils.js';
+import { logActivity } from './activity-logger.js';
 
 const sh = (cmd: string) => _sh(cmd, { maxBuffer: 10 * 1024 * 1024 });
 
@@ -241,6 +242,14 @@ const main = (): void => {
   }
 
   console.log('\nDependency intelligence complete.');
+
+  const totalVulns = reports.reduce((sum, r) => sum + (r.vulnerabilities?.length ?? 0), 0);
+  logActivity(
+    'dependency-intelligence',
+    'scan-complete',
+    `Scanned ${reports.length} Node.js repos: ${totalVulns} vulnerabilities found`,
+    totalVulns > 0 ? 'warning' : 'success'
+  );
 };
 
 main();

@@ -10,6 +10,7 @@
 
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { logActivity } from './activity-logger.js';
 
 const REPO = 'thonyAGP/lecteur-magic';
 const HISTORY_PATH = 'data/migration-history.json';
@@ -80,7 +81,14 @@ const getRepoTree = (): TreeEntry[] => {
     return data.tree;
   } catch (e: unknown) {
     const err = e as { message?: string };
-    console.error(`Failed to fetch repo tree: ${err.message?.slice(0, 200)}`);
+    const errorMsg = err.message?.slice(0, 200) ?? 'Unknown error';
+    console.error(`Failed to fetch repo tree: ${errorMsg}`);
+    logActivity(
+      'migration-tracker',
+      'fetch-error',
+      `Failed to fetch repo tree: ${errorMsg}`,
+      'error'
+    );
     process.exit(1);
   }
 };
@@ -373,10 +381,22 @@ const main = () => {
 
   writeFileSync(HISTORY_PATH, JSON.stringify(history, null, 2));
   console.log(`\nHistory saved to ${HISTORY_PATH} (${history.snapshots.length} snapshots)`);
+  logActivity(
+    'migration-tracker',
+    'scan-complete',
+    `Progress ${progressPercent}%, ${backend.moduleCount} modules, ${backend.testFiles} tests, ${frontend.reactComponents} components, ${specs.totalSpecs} specs`,
+    'success'
+  );
 
   // Also write latest snapshot for dashboard consumption
   writeFileSync('data/migration-latest.json', JSON.stringify(snapshot, null, 2));
   console.log('Latest snapshot saved to data/migration-latest.json');
+  logActivity(
+    'migration-tracker',
+    'snapshot-saved',
+    `Saved to data/migration-latest.json (${progressPercent}% progress)`,
+    'success'
+  );
 };
 
 main();

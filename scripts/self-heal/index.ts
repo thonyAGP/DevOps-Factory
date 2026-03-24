@@ -7,6 +7,7 @@
 
 import { KNOWN_PROJECTS } from '../../factory.config.js';
 import { notify } from '../notify.js';
+import { logActivity } from '../activity-logger.js';
 import { lookupFix } from '../knowledge-graph.js';
 import { sh as _sh } from '../shell-utils.js';
 import { AI_PROVIDERS, MAX_ATTEMPTS_BEFORE_ESCALATION } from './constants.js';
@@ -83,6 +84,7 @@ const main = async (): Promise<void> => {
   const projectConfig = KNOWN_PROJECTS.find((p) => p.repo === repo);
   if (projectConfig?.healingState === 'paused') {
     console.log(`Skipping: ${repo} healingState is "paused" (structural issues)`);
+    logActivity('self-heal', 'skip-paused', 'Repo healing state is paused', 'info', repo);
     return;
   }
 
@@ -91,6 +93,7 @@ const main = async (): Promise<void> => {
   const headBranch = runData?.head_branch || '';
   if (headBranch.startsWith('ai-fix/')) {
     console.log(`Skipping: run is on branch "${headBranch}" (ai-fix loop prevention)`);
+    logActivity('self-heal', 'skip-branch', `Run is on ai-fix branch: ${headBranch}`, 'info', repo);
     return;
   }
 
@@ -98,6 +101,7 @@ const main = async (): Promise<void> => {
   const jobs = getFailedJobs(repo, runId);
   if (jobs.length === 0) {
     console.log('No failed jobs found');
+    logActivity('self-heal', 'no-failures', 'No failed jobs found in run', 'info', repo);
     return;
   }
 
@@ -124,6 +128,7 @@ const main = async (): Promise<void> => {
   // 0c. Circuit breaker
   if (isCircuitBreakerOpen(repo)) {
     console.log('Circuit breaker OPEN - too many unreviewed PRs. Skipping.');
+    logActivity('self-heal', 'circuit-breaker', 'Too many unreviewed healing PRs', 'warning', repo);
     notify('circuit_breaker', {
       repo,
       message: 'Too many unreviewed healing PRs — self-heal paused',
@@ -135,6 +140,13 @@ const main = async (): Promise<void> => {
   // 0d. Flaky test detection
   if (isLikelyFlaky(jobs)) {
     console.log('Likely flaky test detected - re-running failed jobs...');
+    logActivity(
+      'self-heal',
+      'flaky-detected',
+      'Flaky test detected, re-triggering failed jobs',
+      'info',
+      repo
+    );
     sh(`gh run rerun ${runId} --repo ${repo} --failed`);
     recordAttempt(repo, errorSig, true);
     console.log('Failed jobs re-triggered for flaky test retry');
@@ -147,6 +159,13 @@ const main = async (): Promise<void> => {
     const lockfilePrUrl = fixLockfileIssues(repo, runId, defaultBranch);
     if (lockfilePrUrl) {
       console.log(`Lockfile fix PR: ${lockfilePrUrl}`);
+      logActivity(
+        'self-heal',
+        'pr-created',
+        `Lockfile fix PR created: ${lockfilePrUrl}`,
+        'success',
+        repo
+      );
       const lockfileConfidence =
         matchedPatternConfidence('lockfile-outdated') ||
         matchedPatternConfidence('npm-lockfile-outdated');
@@ -167,6 +186,13 @@ const main = async (): Promise<void> => {
     const prettierPrUrl = fixPrettierIssues(repo, runId, defaultBranch);
     if (prettierPrUrl) {
       console.log(`Prettier fix PR: ${prettierPrUrl}`);
+      logActivity(
+        'self-heal',
+        'pr-created',
+        `Prettier fix PR created: ${prettierPrUrl}`,
+        'success',
+        repo
+      );
       tryAutoMerge(
         repo,
         prettierPrUrl,
@@ -251,6 +277,13 @@ const main = async (): Promise<void> => {
         if (applied) {
           const prUrl = createFixPR(repo, branchName, defaultBranch, runId, wfExplanation);
           console.log(`\nWorkflow fix PR: ${prUrl}`);
+          logActivity(
+            'self-heal',
+            'pr-created',
+            `Workflow fix PR created: ${prUrl}`,
+            'success',
+            repo
+          );
           recordAttempt(repo, errorSig, true);
           tryAutoMerge(repo, prUrl, undefined, 0.95);
           return;
@@ -559,6 +592,7 @@ const main = async (): Promise<void> => {
     return;
   }
   console.log(`\nPR created: ${prUrl}`);
+  logActivity('self-heal', 'pr-created', `CI fix PR created: ${prUrl}`, 'success', repo);
   recordAttempt(repo, errorSig, true);
   notify('pr_created', {
     repo,

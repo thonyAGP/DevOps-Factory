@@ -339,6 +339,13 @@ const hasOpenAiFixPR = (repo: string): boolean => {
     // Close PRs whose CI has failed (fix didn't work)
     if (prCIFailed(repo, pr.number)) {
       console.log(`  [CI FAILED] Closing ai-fix PR #${pr.number} on ${repo} (fix didn't work)`);
+      logActivity(
+        'ci-health-check',
+        'ai-fix-pr-failed',
+        `AI-fix PR #${pr.number} CI failed, closing and retrying`,
+        'warning',
+        repo
+      );
       sh(
         `gh pr close ${pr.number} --repo ${repo} --comment "Auto-closing: CI failed on this fix PR. Self-heal will retry with fresh context."`
       );
@@ -349,6 +356,13 @@ const hasOpenAiFixPR = (repo: string): boolean => {
     if (age > STALE_PR_MS) {
       console.log(
         `  [STALE] Closing abandoned ai-fix PR #${pr.number} on ${repo} (${Math.round(age / 3600000)}h old)`
+      );
+      logActivity(
+        'ci-health-check',
+        'ai-fix-pr-stale',
+        `AI-fix PR #${pr.number} stale (${Math.round(age / 3600000)}h old), closing`,
+        'info',
+        repo
       );
       sh(
         `gh pr close ${pr.number} --repo ${repo} --comment "Auto-closing stale ai-fix PR (>48h). Self-heal will retry."`
@@ -534,6 +548,13 @@ const main = () => {
         }
       } else {
         console.log(`  [DEFERRED] ${result.project.name}: alert suppressed, waiting for self-heal`);
+        logActivity(
+          'ci-health-check',
+          'alert-deferred',
+          'Alert suppressed, within self-heal window',
+          'info',
+          result.project.name
+        );
       }
     } else if (result.status === 'pass' && existing) {
       closeIssue(factoryRepo, existing, result.project.name);

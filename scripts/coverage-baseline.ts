@@ -13,6 +13,7 @@ import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { KNOWN_PROJECTS } from '../factory.config.js';
 import { sh, jq, devNull } from './shell-utils.js';
+import { logActivity } from './activity-logger.js';
 
 interface Coverage {
   lines: number;
@@ -298,6 +299,14 @@ const main = (): void => {
       console.error('Failed to create issue:', e);
     }
   }
+
+  const withCoverage = entries.filter((e) => e.status === 'collected').length;
+  logActivity(
+    'coverage-baseline',
+    'baseline-update',
+    `Coverage collected: ${withCoverage}/${entries.length} repos with data`,
+    withCoverage > 0 ? 'success' : 'warning'
+  );
 };
 
 main();

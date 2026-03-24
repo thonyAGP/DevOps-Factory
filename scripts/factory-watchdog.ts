@@ -272,6 +272,7 @@ const main = () => {
     if (run.conclusion !== 'success') {
       // Total failure
       console.log(`FAIL (${run.conclusion})`);
+      logActivity('factory-watchdog', 'workflow-failure', `Total failure detected`, 'error', name);
       results.push({
         workflow: name,
         status: 'total_failure',
@@ -287,6 +288,13 @@ const main = () => {
 
     if (patterns.length > 0) {
       console.log(`PARTIAL FAIL (${patterns.length} patterns)`);
+      logActivity(
+        'factory-watchdog',
+        'workflow-partial-failure',
+        `Partial failure detected: ${patterns.join(', ')}`,
+        'warning',
+        name
+      );
       results.push({
         workflow: name,
         status: 'partial_failure',
@@ -315,6 +323,13 @@ const main = () => {
     // Skip creating issues for informational-only partial failures (transient, not actionable)
     if (result.status === 'partial_failure' && !hasHealablePatterns(result.patterns)) {
       console.log(`  [INFO ONLY] ${result.workflow}: transient patterns only, skipping issue`);
+      logActivity(
+        'factory-watchdog',
+        'workflow-stale',
+        `Workflow stale (informational patterns only)`,
+        'info',
+        result.workflow
+      );
       continue;
     }
 
@@ -367,9 +382,22 @@ const main = () => {
         });
         const label = recovered ? 'recovered' : 'informational-only';
         console.log(`  [CLOSED] Issue #${issue.number} - ${label}`);
+        logActivity(
+          'factory-watchdog',
+          'issue-closed',
+          `${label}: ${issue.title}`,
+          recovered ? 'success' : 'info',
+          issue.title
+        );
         closed++;
       } catch {
-        /* best effort */
+        logActivity(
+          'factory-watchdog',
+          'issue-close-failed',
+          `Failed to close issue #${issue.number}`,
+          'error',
+          issue.title
+        );
       }
     }
   }

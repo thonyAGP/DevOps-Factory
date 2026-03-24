@@ -147,6 +147,7 @@ const fetchClosedPRs = (repo: string): PRRecord[] => {
       }
     } catch {
       console.warn(`  Failed to parse PR data for ${repo}`);
+      logActivity('audit-pr-outcomes', 'error', `Failed to parse PR data for ${repo}`, 'error');
     }
   }
 
@@ -290,6 +291,7 @@ const updatePatternConfidence = (scores: PatternScoresFile): number => {
     db = JSON.parse(readFileSync(PATTERN_DB_PATH, 'utf-8')) as PatternDB;
   } catch {
     console.warn('  Failed to parse patterns.json');
+    logActivity('audit-pr-outcomes', 'error', 'Failed to parse patterns.json', 'error');
     return 0;
   }
 
@@ -310,6 +312,12 @@ const updatePatternConfidence = (scores: PatternScoresFile): number => {
     if (newConfidence !== pattern.confidence) {
       console.log(
         `  ${pattern.id}: confidence ${pattern.confidence} -> ${newConfidence} (observed: ${observedRate})`
+      );
+      logActivity(
+        'audit-pr-outcomes',
+        'scores-updated',
+        `Pattern ${pattern.id}: confidence ${pattern.confidence} -> ${newConfidence} (observed: ${observedRate})`,
+        'success'
       );
       pattern.confidence = newConfidence;
       updated++;
@@ -392,10 +400,10 @@ const main = async (): Promise<void> => {
 
   // Log activity
   logActivity(
-    'scan-and-configure',
     'audit-pr-outcomes',
+    'audit-complete',
     `Audited ${scores.summary.totalPRs} self-heal PRs: ${scores.summary.merged} merged, ${scores.summary.closed} closed (${(scores.summary.overallSuccessRate * 100).toFixed(1)}% success). ${scores.summary.excluded.configPRs} config PRs excluded. ${updatedCount} confidence scores updated.`,
-    'info'
+    'success'
   );
 
   console.log('\nDone.');

@@ -26,11 +26,11 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: {{pnpmVersion}}
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: {{nodeVersion}}
           cache: pnpm
 
       - name: Install dependencies

@@ -15,6 +15,7 @@ import { logActivity } from './activity-logger.js';
 import { jq, devNull } from './shell-utils.js';
 import { getCached, setCache } from './cache-manager.js';
 import { batchFileExists, fileExistsInRepo } from './github-file-checker.js';
+import { loadRepoConfig, renderTemplate } from './template-config.js';
 
 interface Repo {
   name: string;
@@ -716,11 +717,12 @@ const createConfigPR = (analysis: RepoAnalysis): void => {
     `api repos/${repo.full_name}/git/refs --method POST -f ref="refs/heads/${branchName}" -f sha="${baseSha}" 2>${devNull}`
   );
 
-  // Add each file
+  // Add each file (render template placeholders with repo-specific config)
+  const repoConfig = loadRepoConfig(repo.full_name);
   for (const file of filesToAdd) {
-    const content = execSync(`base64 -w 0 ${file.template}`, {
-      encoding: 'utf-8',
-    }).trim();
+    const raw = execSync(`cat ${file.template}`, { encoding: 'utf-8' });
+    const rendered = renderTemplate(raw, repoConfig);
+    const content = Buffer.from(rendered).toString('base64');
 
     gh(
       `api repos/${repo.full_name}/contents/${file.path} --method PUT -f message="chore: add ${file.path} from DevOps-Factory" -f content="${content}" -f branch="${branchName}"`

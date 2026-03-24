@@ -475,6 +475,12 @@ const updatePatternConfidence = (
       console.log(
         `  PENALTY ${pattern.id}: ${pattern.confidence} -> ${newConfidence} (${reasons.join(', ')}, -${(totalPenalty * 100).toFixed(0)}%)`
       );
+      logActivity(
+        'outcome-registry',
+        'pattern-penalty',
+        `${pattern.id}: ${pattern.confidence} -> ${newConfidence} (${reasons.join(', ')}, -${(totalPenalty * 100).toFixed(0)}%)`,
+        'warning'
+      );
       newConfidence = Math.max(MIN_CONFIDENCE, Math.min(0.99, newConfidence));
       if (newConfidence !== pattern.confidence) {
         pattern.confidence = newConfidence;
@@ -489,11 +495,23 @@ const updatePatternConfidence = (
       console.log(
         `  PROMOTE ${pattern.id}: ${pattern.confidence} -> ${newConfidence} (${stat.merged}/${stat.total}, ${(observedRate * 100).toFixed(1)}%)`
       );
+      logActivity(
+        'outcome-registry',
+        'pattern-promote',
+        `${pattern.id}: ${pattern.confidence} -> ${newConfidence} (${stat.merged}/${stat.total}, ${(observedRate * 100).toFixed(1)}%)`,
+        'success'
+      );
     } else if (stat.total >= MIN_PRS_FOR_ADJUSTMENT && observedRate < DEGRADE_THRESHOLD) {
       // Degrade: set confidence to max(0.1, observedRate)
       newConfidence = Math.max(MIN_CONFIDENCE, observedRate);
       console.log(
         `  DEGRADE ${pattern.id}: ${pattern.confidence} -> ${newConfidence} (${stat.merged}/${stat.total}, ${(observedRate * 100).toFixed(1)}%)`
+      );
+      logActivity(
+        'outcome-registry',
+        'pattern-degrade',
+        `${pattern.id}: ${pattern.confidence} -> ${newConfidence} (${stat.merged}/${stat.total}, ${(observedRate * 100).toFixed(1)}%)`,
+        'warning'
       );
       notify('pattern_degraded', {
         patternId: pattern.id,
@@ -525,6 +543,12 @@ const updatePatternConfidence = (
     db.lastUpdated = new Date().toISOString();
     writeFileSync(PATTERN_DB_PATH, JSON.stringify(db, null, 2) + '\n');
     console.log(`\n  Updated ${updated} pattern confidence scores in patterns.json`);
+    logActivity(
+      'outcome-registry',
+      'confidence-updated',
+      `Updated ${updated} pattern confidence scores in patterns.json`,
+      'info'
+    );
   } else {
     console.log('\n  No confidence scores changed');
   }
@@ -574,6 +598,13 @@ const detectReverts = (outcomes: OutcomeEntry[]): number => {
         entry.closeReason = 'reverted';
         entry.rejected = true; // Treat reverts as strong negative signal
         console.log(`  [REVERT] ${repo} PR #${entry.prNumber} was reverted`);
+        logActivity(
+          'outcome-registry',
+          'revert-detected',
+          `PR #${entry.prNumber} was reverted`,
+          'warning',
+          repo
+        );
         reverted++;
       }
     }
@@ -634,8 +665,25 @@ const verifyHealingOutcomes = (outcomes: OutcomeEntry[]): { verified: number; fa
         const ciPassing = runs[0].conclusion === 'success';
         for (const entry of entries) {
           entry.closeReason = ciPassing ? 'healing_verified' : 'healing_failed';
-          if (ciPassing) verified++;
-          else failed++;
+          if (ciPassing) {
+            verified++;
+            logActivity(
+              'outcome-registry',
+              'healing-verified',
+              `PR #${entry.prNumber} — CI green after merge`,
+              'success',
+              repo
+            );
+          } else {
+            failed++;
+            logActivity(
+              'outcome-registry',
+              'healing-failed',
+              `PR #${entry.prNumber} — CI still red after merge`,
+              'error',
+              repo
+            );
+          }
         }
       } catch {
         continue;
@@ -654,6 +702,13 @@ const verifyHealingOutcomes = (outcomes: OutcomeEntry[]): { verified: number; fa
         if (ciPassing) {
           verified++;
           console.log(`  [VERIFIED] ${repo} PR #${entry.prNumber} — CI green after merge`);
+          logActivity(
+            'outcome-registry',
+            'healing-verified',
+            `PR #${entry.prNumber} — CI green after merge`,
+            'success',
+            repo
+          );
           notify('healing_verified', {
             repo,
             prNumber: entry.prNumber,
@@ -683,6 +738,13 @@ const verifyHealingOutcomes = (outcomes: OutcomeEntry[]): { verified: number; fa
         } else {
           failed++;
           console.log(`  [HEAL FAILED] ${repo} PR #${entry.prNumber} — CI still red after merge`);
+          logActivity(
+            'outcome-registry',
+            'healing-failed',
+            `PR #${entry.prNumber} — CI still red after merge`,
+            'error',
+            repo
+          );
           notify('healing_failed', { repo, prNumber: entry.prNumber, patternId: entry.patternId });
         }
       }

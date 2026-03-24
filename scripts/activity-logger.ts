@@ -19,7 +19,26 @@ export type ActivitySource =
   | 'build-dashboard'
   | 'quality-score'
   | 'self-heal'
-  | 'recommendation-engine';
+  | 'recommendation-engine'
+  | 'outcome-registry'
+  | 'migration-tracker'
+  | 'template-updater'
+  | 'sync-registry'
+  | 'compliance-report'
+  | 'auto-fix-prettier'
+  | 'cost-monitor'
+  | 'dora-metrics'
+  | 'audit-pr-outcomes'
+  | 'coverage-baseline'
+  | 'coverage-gate'
+  | 'cross-repo-update'
+  | 'security-posture'
+  | 'template-drift'
+  | 'redeploy-templates'
+  | 'weekly-veille'
+  | 'dependency-intelligence'
+  | 'auto-generate-tests'
+  | 'knowledge-graph';
 
 export interface ActivityEntry {
   timestamp: string;

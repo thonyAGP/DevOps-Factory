@@ -12,6 +12,7 @@ import { execSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { KNOWN_PROJECTS } from '../factory.config.js';
 import { sh, tmpDir } from './shell-utils.js';
+import { loadRepoConfig, renderTemplate } from './template-config.js';
 
 const TEMPLATES: Record<string, { file: string; target: string; stacks?: string[] }> = {
   semgrep: {
@@ -129,7 +130,7 @@ const main = () => {
 
   for (const [name, config] of templatesToProcess) {
     console.log(`\n=== Template: ${name} ===`);
-    const localContent = readFileSync(config.file, 'utf-8');
+    const rawContent = readFileSync(config.file, 'utf-8');
 
     const eligibleProjects = KNOWN_PROJECTS.filter((p) => {
       if (p.hidden) return false;
@@ -143,6 +144,9 @@ const main = () => {
 
     for (const project of eligibleProjects) {
       process.stdout.write(`  ${project.name}... `);
+
+      const repoConfig = loadRepoConfig(project.repo);
+      const localContent = renderTemplate(rawContent, repoConfig);
 
       const remoteContent = getRemoteFileContent(project.repo, config.target);
 

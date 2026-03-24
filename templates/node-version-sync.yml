@@ -27,7 +27,7 @@ jobs:
         id: detect
         run: |
           ISSUES=""
-          EXPECTED="22"
+          EXPECTED="{{nodeVersion}}"
           VERSIONS_FOUND=""
 
           # Check package.json engines

@@ -53,11 +53,11 @@ jobs:
       - uses: pnpm/action-setup@v4
         if: needs.detect-stack.outputs.package-manager == 'pnpm'
         with:
-          version: 9
+          version: {{pnpmVersion}}
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: {{nodeVersion}}
           cache: ${{ needs.detect-stack.outputs.package-manager }}
 
       - name: Install dependencies
@@ -108,7 +108,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '{{dotnetVersion}}'
 
       - name: Restore
         run: dotnet restore
