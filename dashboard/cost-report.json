@@ -1,51 +1,43 @@
 {
-  "timestamp": "2026-03-24T01:03:12.768Z",
+  "timestamp": "2026-03-24T01:10:33.881Z",
   "repos": [
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
-      "totalMinutes": 208,
+      "totalMinutes": 196,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
-          "runs": 16,
-          "totalMinutes": 81,
+          "runs": 15,
+          "totalMinutes": 70,
           "avgMinutes": 5,
-          "failedRuns": 16,
-          "wastedMinutes": 81
+          "failedRuns": 15,
+          "wastedMinutes": 70
         },
         {
           "name": "Release Drafter",
-          "runs": 15,
-          "totalMinutes": 39,
+          "runs": 14,
+          "totalMinutes": 36,
           "avgMinutes": 3,
-          "failedRuns": 4,
-          "wastedMinutes": 15
+          "failedRuns": 5,
+          "wastedMinutes": 16
         },
         {
           "name": "Coverage Tracking",
-          "runs": 16,
-          "totalMinutes": 26,
+          "runs": 15,
+          "totalMinutes": 25,
           "avgMinutes": 2,
-          "failedRuns": 1,
-          "wastedMinutes": 1
+          "failedRuns": 2,
+          "wastedMinutes": 2
         },
         {
           "name": "Semantic Release",
-          "runs": 14,
-          "totalMinutes": 14,
+          "runs": 15,
+          "totalMinutes": 15,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 14,
-          "totalMinutes": 14,
-          "avgMinutes": 1,
-          "failedRuns": 14,
-          "wastedMinutes": 14
         },
         {
           "name": ".github/workflows/claude-review.yml",
@@ -56,20 +48,28 @@
           "wastedMinutes": 14
         },
         {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 14,
+          "totalMinutes": 14,
+          "avgMinutes": 1,
+          "failedRuns": 14,
+          "wastedMinutes": 14
+        },
+        {
           "name": "Lighthouse CI",
-          "runs": 3,
-          "totalMinutes": 11,
-          "avgMinutes": 4,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "runs": 4,
+          "totalMinutes": 12,
+          "avgMinutes": 3,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Post-Deploy Health Check",
-          "runs": 3,
-          "totalMinutes": 4,
+          "runs": 4,
+          "totalMinutes": 5,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Qodo Merge - PR Review",
@@ -113,61 +113,62 @@
         }
       ],
       "recommendations": [
-        "CI: 100% failure rate (81min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (14min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (14min wasted). Fix root cause."
+        "CI: 100% failure rate (70min wasted). Fix root cause.",
+        "Release Drafter: 36% failure rate (16min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (14min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (14min wasted). Fix root cause."
       ]
     },
     {
       "repo": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
-      "totalMinutes": 185,
+      "totalMinutes": 180,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "CI",
           "runs": 17,
-          "totalMinutes": 74,
+          "totalMinutes": 70,
           "avgMinutes": 4,
-          "failedRuns": 8,
-          "wastedMinutes": 22
+          "failedRuns": 9,
+          "wastedMinutes": 23
         },
         {
           "name": "Coverage Tracking",
           "runs": 18,
           "totalMinutes": 30,
           "avgMinutes": 2,
-          "failedRuns": 4,
-          "wastedMinutes": 10
+          "failedRuns": 5,
+          "wastedMinutes": 11
         },
         {
           "name": "Release Drafter",
-          "runs": 17,
-          "totalMinutes": 29,
+          "runs": 16,
+          "totalMinutes": 27,
           "avgMinutes": 2,
-          "failedRuns": 11,
-          "wastedMinutes": 18
+          "failedRuns": 10,
+          "wastedMinutes": 16
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
-          "runs": 17,
-          "totalMinutes": 17,
+          "runs": 16,
+          "totalMinutes": 16,
           "avgMinutes": 1,
-          "failedRuns": 17,
-          "wastedMinutes": 17
+          "failedRuns": 16,
+          "wastedMinutes": 16
         },
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 14,
-          "totalMinutes": 14,
+          "runs": 15,
+          "totalMinutes": 15,
           "avgMinutes": 1,
-          "failedRuns": 14,
-          "wastedMinutes": 14
+          "failedRuns": 15,
+          "wastedMinutes": 15
         },
         {
           "name": "Semantic Release",
-          "runs": 12,
-          "totalMinutes": 12,
+          "runs": 13,
+          "totalMinutes": 13,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -214,10 +215,10 @@
         }
       ],
       "recommendations": [
-        "CI: 47% failure rate (22min wasted). Fix root cause.",
-        "Release Drafter: 65% failure rate (18min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (17min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (14min wasted). Fix root cause."
+        "CI: 53% failure rate (23min wasted). Fix root cause.",
+        "Release Drafter: 63% failure rate (16min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (16min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (15min wasted). Fix root cause."
       ]
     },
     {
@@ -228,27 +229,27 @@
       "workflows": [
         {
           "name": "CI",
-          "runs": 16,
-          "totalMinutes": 37,
+          "runs": 17,
+          "totalMinutes": 38,
           "avgMinutes": 2,
-          "failedRuns": 16,
-          "wastedMinutes": 37
+          "failedRuns": 17,
+          "wastedMinutes": 38
         },
         {
           "name": "Release Drafter",
           "runs": 16,
           "totalMinutes": 37,
           "avgMinutes": 2,
-          "failedRuns": 7,
-          "wastedMinutes": 14
+          "failedRuns": 8,
+          "wastedMinutes": 15
         },
         {
           "name": "Coverage Tracking",
           "runs": 17,
           "totalMinutes": 34,
           "avgMinutes": 2,
-          "failedRuns": 8,
-          "wastedMinutes": 11
+          "failedRuns": 9,
+          "wastedMinutes": 12
         },
         {
           "name": "Semantic Release",
@@ -259,15 +260,15 @@
           "wastedMinutes": 0
         },
         {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 16,
-          "totalMinutes": 16,
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 15,
+          "totalMinutes": 15,
           "avgMinutes": 1,
-          "failedRuns": 16,
-          "wastedMinutes": 16
+          "failedRuns": 15,
+          "wastedMinutes": 15
         },
         {
-          "name": ".github/workflows/claude-review.yml",
+          "name": ".github/workflows/auto-changelog.yml",
           "runs": 15,
           "totalMinutes": 15,
           "avgMinutes": 1,
@@ -308,66 +309,74 @@
         }
       ],
       "recommendations": [
-        "CI: 100% failure rate (37min wasted). Fix root cause.",
-        "Release Drafter: 44% failure rate (14min wasted). Fix root cause.",
-        "Coverage Tracking: 47% failure rate (11min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (16min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (15min wasted). Fix root cause."
+        "CI: 100% failure rate (38min wasted). Fix root cause.",
+        "Release Drafter: 50% failure rate (15min wasted). Fix root cause.",
+        "Coverage Tracking: 53% failure rate (12min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (15min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (15min wasted). Fix root cause."
       ]
     },
     {
-      "repo": "Site_Greg-Assainissement",
-      "fullName": "thonyAGP/Site_Greg-Assainissement",
-      "totalMinutes": 148,
+      "repo": "SqlConnectionTest",
+      "fullName": "thonyAGP/SqlConnectionTest",
+      "totalMinutes": 147,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "Coverage Tracking",
-          "runs": 21,
-          "totalMinutes": 47,
+          "runs": 20,
+          "totalMinutes": 43,
           "avgMinutes": 2,
-          "failedRuns": 7,
-          "wastedMinutes": 14
+          "failedRuns": 20,
+          "wastedMinutes": 43
         },
         {
           "name": "Release Drafter",
-          "runs": 20,
-          "totalMinutes": 42,
+          "runs": 19,
+          "totalMinutes": 43,
           "avgMinutes": 2,
-          "failedRuns": 19,
-          "wastedMinutes": 41
+          "failedRuns": 18,
+          "wastedMinutes": 42
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
-          "runs": 21,
-          "totalMinutes": 21,
+          "runs": 19,
+          "totalMinutes": 19,
           "avgMinutes": 1,
-          "failedRuns": 21,
-          "wastedMinutes": 21
+          "failedRuns": 19,
+          "wastedMinutes": 19
         },
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 17,
-          "totalMinutes": 17,
+          "runs": 18,
+          "totalMinutes": 18,
           "avgMinutes": 1,
-          "failedRuns": 17,
-          "wastedMinutes": 17
+          "failedRuns": 18,
+          "wastedMinutes": 18
         },
         {
           "name": "Semantic Release",
-          "runs": 15,
-          "totalMinutes": 15,
+          "runs": 17,
+          "totalMinutes": 17,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
+          "runs": 3,
+          "totalMinutes": 3,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Security Scan (SAST)",
@@ -392,44 +401,36 @@
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
         }
       ],
       "recommendations": [
-        "Coverage Tracking: 33% failure rate (14min wasted). Fix root cause.",
-        "Release Drafter: 95% failure rate (41min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (21min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (17min wasted). Fix root cause."
+        "Coverage Tracking: 100% failure rate (43min wasted). Fix root cause.",
+        "Release Drafter: 95% failure rate (42min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (19min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (18min wasted). Fix root cause."
       ]
     },
     {
-      "repo": "SqlConnectionTest",
-      "fullName": "thonyAGP/SqlConnectionTest",
-      "totalMinutes": 147,
+      "repo": "Site_Greg-Assainissement",
+      "fullName": "thonyAGP/Site_Greg-Assainissement",
+      "totalMinutes": 146,
       "totalRuns": 100,
       "workflows": [
         {
-          "name": "Release Drafter",
-          "runs": 20,
-          "totalMinutes": 44,
-          "avgMinutes": 2,
-          "failedRuns": 19,
-          "wastedMinutes": 43
-        },
-        {
           "name": "Coverage Tracking",
           "runs": 20,
-          "totalMinutes": 43,
+          "totalMinutes": 45,
           "avgMinutes": 2,
-          "failedRuns": 20,
-          "wastedMinutes": 43
+          "failedRuns": 8,
+          "wastedMinutes": 15
+        },
+        {
+          "name": "Release Drafter",
+          "runs": 19,
+          "totalMinutes": 40,
+          "avgMinutes": 2,
+          "failedRuns": 18,
+          "wastedMinutes": 39
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
@@ -452,24 +453,16 @@
           "runs": 16,
           "totalMinutes": 16,
           "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
+          "failedRuns": 0,
+          "wastedMinutes": 0
         },
         {
           "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
+          "runs": 3,
+          "totalMinutes": 3,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Security Scan (SAST)",
@@ -494,65 +487,167 @@
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
+        },
+        {
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         }
       ],
       "recommendations": [
-        "Release Drafter: 95% failure rate (43min wasted). Fix root cause.",
-        "Coverage Tracking: 100% failure rate (43min wasted). Fix root cause.",
+        "Coverage Tracking: 40% failure rate (15min wasted). Fix root cause.",
+        "Release Drafter: 95% failure rate (39min wasted). Fix root cause.",
         ".github/workflows/auto-changelog.yml: 100% failure rate (20min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (18min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "statusline",
+      "fullName": "thonyAGP/statusline",
+      "totalMinutes": 141,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "Coverage Tracking",
+          "runs": 20,
+          "totalMinutes": 42,
+          "avgMinutes": 2,
+          "failedRuns": 20,
+          "wastedMinutes": 42
+        },
+        {
+          "name": "Release Drafter",
+          "runs": 19,
+          "totalMinutes": 38,
+          "avgMinutes": 2,
+          "failedRuns": 9,
+          "wastedMinutes": 16
+        },
+        {
+          "name": "Semantic Release",
+          "runs": 18,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 18,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 18,
+          "wastedMinutes": 18
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 18,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 18,
+          "wastedMinutes": 18
+        },
+        {
+          "name": "CI",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "PR Description AI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        }
+      ],
+      "recommendations": [
+        "Coverage Tracking: 100% failure rate (42min wasted). Fix root cause.",
+        "Release Drafter: 47% failure rate (16min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (18min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (18min wasted). Fix root cause."
       ]
     },
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
-      "totalMinutes": 145,
+      "totalMinutes": 130,
       "totalRuns": 100,
       "workflows": [
         {
           "name": "E2E Tests",
-          "runs": 7,
-          "totalMinutes": 42,
+          "runs": 4,
+          "totalMinutes": 25,
           "avgMinutes": 6,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "Coverage Tracking",
-          "runs": 18,
-          "totalMinutes": 20,
+          "runs": 19,
+          "totalMinutes": 21,
           "avgMinutes": 1,
-          "failedRuns": 18,
-          "wastedMinutes": 20
+          "failedRuns": 19,
+          "wastedMinutes": 21
         },
         {
           "name": "Release Drafter",
-          "runs": 19,
-          "totalMinutes": 20,
+          "runs": 20,
+          "totalMinutes": 21,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
-          "runs": 20,
-          "totalMinutes": 20,
+          "runs": 21,
+          "totalMinutes": 21,
           "avgMinutes": 1,
-          "failedRuns": 20,
-          "wastedMinutes": 20
+          "failedRuns": 21,
+          "wastedMinutes": 21
         },
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 14,
-          "totalMinutes": 14,
+          "runs": 15,
+          "totalMinutes": 15,
           "avgMinutes": 1,
-          "failedRuns": 14,
-          "wastedMinutes": 14
+          "failedRuns": 15,
+          "wastedMinutes": 15
         },
         {
           "name": "Semantic Release",
-          "runs": 12,
-          "totalMinutes": 12,
+          "runs": 13,
+          "totalMinutes": 13,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -567,110 +662,17 @@
         },
         {
           "name": "Security Scan (SAST)",
-          "runs": 3,
-          "totalMinutes": 5,
+          "runs": 2,
+          "totalMinutes": 3,
           "avgMinutes": 2,
           "failedRuns": 1,
           "wastedMinutes": 1
         },
         {
           "name": "Secret Scanning",
-          "runs": 3,
-          "totalMinutes": 3,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "PR Description AI",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        }
-      ],
-      "recommendations": [
-        "Coverage Tracking: 100% failure rate (20min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (20min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (14min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "statusline",
-      "fullName": "thonyAGP/statusline",
-      "totalMinutes": 143,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Coverage Tracking",
-          "runs": 20,
-          "totalMinutes": 43,
-          "avgMinutes": 2,
-          "failedRuns": 20,
-          "wastedMinutes": 43
-        },
-        {
-          "name": "Release Drafter",
-          "runs": 19,
-          "totalMinutes": 39,
-          "avgMinutes": 2,
-          "failedRuns": 8,
-          "wastedMinutes": 15
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 19,
-          "totalMinutes": 19,
-          "avgMinutes": 1,
-          "failedRuns": 19,
-          "wastedMinutes": 19
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 19,
-          "totalMinutes": 19,
-          "avgMinutes": 1,
-          "failedRuns": 19,
-          "wastedMinutes": 19
-        },
-        {
-          "name": "Semantic Release",
-          "runs": 17,
-          "totalMinutes": 17,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "CI",
           "runs": 2,
           "totalMinutes": 2,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
         },
@@ -683,7 +685,7 @@
           "wastedMinutes": 0
         },
         {
-          "name": "Security Scan (SAST)",
+          "name": "Auto Label PRs",
           "runs": 1,
           "totalMinutes": 1,
           "avgMinutes": 1,
@@ -692,10 +694,9 @@
         }
       ],
       "recommendations": [
-        "Coverage Tracking: 100% failure rate (43min wasted). Fix root cause.",
-        "Release Drafter: 42% failure rate (15min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (19min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (19min wasted). Fix root cause."
+        "Coverage Tracking: 100% failure rate (21min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (21min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (15min wasted). Fix root cause."
       ]
     },
     {
@@ -709,109 +710,16 @@
           "runs": 21,
           "totalMinutes": 39,
           "avgMinutes": 2,
-          "failedRuns": 4,
-          "wastedMinutes": 8
+          "failedRuns": 5,
+          "wastedMinutes": 9
         },
         {
           "name": "Release Drafter",
-          "runs": 21,
-          "totalMinutes": 33,
+          "runs": 19,
+          "totalMinutes": 31,
           "avgMinutes": 2,
-          "failedRuns": 14,
-          "wastedMinutes": 16
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 20,
-          "totalMinutes": 20,
-          "avgMinutes": 1,
-          "failedRuns": 20,
-          "wastedMinutes": 20
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 17,
-          "totalMinutes": 17,
-          "avgMinutes": 1,
-          "failedRuns": 17,
-          "wastedMinutes": 17
-        },
-        {
-          "name": "Semantic Release",
-          "runs": 15,
-          "totalMinutes": 15,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "PR Description AI",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": [
-        "Release Drafter: 67% failure rate (16min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (20min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (17min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "LB2I-Fiscal-Manager",
-      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
-      "totalMinutes": 129,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Release Drafter",
-          "runs": 20,
-          "totalMinutes": 36,
-          "avgMinutes": 2,
-          "failedRuns": 3,
-          "wastedMinutes": 5
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 21,
-          "totalMinutes": 34,
-          "avgMinutes": 2,
-          "failedRuns": 21,
-          "wastedMinutes": 34
+          "failedRuns": 12,
+          "wastedMinutes": 14
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
@@ -831,8 +739,8 @@
         },
         {
           "name": "Semantic Release",
-          "runs": 14,
-          "totalMinutes": 14,
+          "runs": 16,
+          "totalMinutes": 16,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -844,6 +752,295 @@
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 3
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "PR Description AI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": [
+        "Release Drafter: 63% failure rate (14min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (19min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (18min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "MCP_Quota_Claude",
+      "fullName": "thonyAGP/MCP_Quota_Claude",
+      "totalMinutes": 128,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "Coverage Tracking",
+          "runs": 20,
+          "totalMinutes": 38,
+          "avgMinutes": 2,
+          "failedRuns": 7,
+          "wastedMinutes": 14
+        },
+        {
+          "name": "Release Drafter",
+          "runs": 19,
+          "totalMinutes": 29,
+          "avgMinutes": 2,
+          "failedRuns": 11,
+          "wastedMinutes": 17
+        },
+        {
+          "name": "Semantic Release",
+          "runs": 18,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 18,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 18,
+          "wastedMinutes": 18
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 18,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 18,
+          "wastedMinutes": 18
+        },
+        {
+          "name": "CI",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "PR Description AI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": [
+        "Coverage Tracking: 35% failure rate (14min wasted). Fix root cause.",
+        "Release Drafter: 58% failure rate (17min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (18min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (18min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "Site_1970_Plomberie",
+      "fullName": "thonyAGP/Site_1970_Plomberie",
+      "totalMinutes": 126,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "Coverage Tracking",
+          "runs": 20,
+          "totalMinutes": 38,
+          "avgMinutes": 2,
+          "failedRuns": 9,
+          "wastedMinutes": 19
+        },
+        {
+          "name": "Release Drafter",
+          "runs": 19,
+          "totalMinutes": 27,
+          "avgMinutes": 1,
+          "failedRuns": 15,
+          "wastedMinutes": 23
+        },
+        {
+          "name": "Semantic Release",
+          "runs": 18,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 18,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 18,
+          "wastedMinutes": 18
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 17,
+          "totalMinutes": 17,
+          "avgMinutes": 1,
+          "failedRuns": 17,
+          "wastedMinutes": 17
+        },
+        {
+          "name": "CI",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Lighthouse CI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "PR Description AI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        }
+      ],
+      "recommendations": [
+        "Coverage Tracking: 45% failure rate (19min wasted). Fix root cause.",
+        "Release Drafter: 79% failure rate (23min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (18min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (17min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "LB2I-Fiscal-Manager",
+      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
+      "totalMinutes": 125,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "Coverage Tracking",
+          "runs": 20,
+          "totalMinutes": 32,
+          "avgMinutes": 2,
+          "failedRuns": 20,
+          "wastedMinutes": 32
+        },
+        {
+          "name": "Release Drafter",
+          "runs": 19,
+          "totalMinutes": 32,
+          "avgMinutes": 2,
+          "failedRuns": 4,
+          "wastedMinutes": 6
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 19,
+          "totalMinutes": 19,
+          "avgMinutes": 1,
+          "failedRuns": 19,
+          "wastedMinutes": 19
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 18,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 18,
+          "wastedMinutes": 18
+        },
+        {
+          "name": "Semantic Release",
+          "runs": 15,
+          "totalMinutes": 15,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "CI",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "TypeDoc Generation",
@@ -887,196 +1084,9 @@
         }
       ],
       "recommendations": [
-        "Coverage Tracking: 100% failure rate (34min wasted). Fix root cause.",
+        "Coverage Tracking: 100% failure rate (32min wasted). Fix root cause.",
         ".github/workflows/auto-changelog.yml: 100% failure rate (19min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (18min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "MCP_Quota_Claude",
-      "fullName": "thonyAGP/MCP_Quota_Claude",
-      "totalMinutes": 129,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Coverage Tracking",
-          "runs": 20,
-          "totalMinutes": 38,
-          "avgMinutes": 2,
-          "failedRuns": 6,
-          "wastedMinutes": 13
-        },
-        {
-          "name": "Release Drafter",
-          "runs": 19,
-          "totalMinutes": 30,
-          "avgMinutes": 2,
-          "failedRuns": 11,
-          "wastedMinutes": 18
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 19,
-          "totalMinutes": 19,
-          "avgMinutes": 1,
-          "failedRuns": 19,
-          "wastedMinutes": 19
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 19,
-          "totalMinutes": 19,
-          "avgMinutes": 1,
-          "failedRuns": 19,
-          "wastedMinutes": 19
-        },
-        {
-          "name": "Semantic Release",
-          "runs": 17,
-          "totalMinutes": 17,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "PR Description AI",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": [
-        "Release Drafter: 58% failure rate (18min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (19min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (19min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "Site_1970_Plomberie",
-      "fullName": "thonyAGP/Site_1970_Plomberie",
-      "totalMinutes": 128,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Coverage Tracking",
-          "runs": 20,
-          "totalMinutes": 39,
-          "avgMinutes": 2,
-          "failedRuns": 8,
-          "wastedMinutes": 18
-        },
-        {
-          "name": "Release Drafter",
-          "runs": 19,
-          "totalMinutes": 28,
-          "avgMinutes": 1,
-          "failedRuns": 15,
-          "wastedMinutes": 24
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 19,
-          "totalMinutes": 19,
-          "avgMinutes": 1,
-          "failedRuns": 19,
-          "wastedMinutes": 19
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 19,
-          "totalMinutes": 19,
-          "avgMinutes": 1,
-          "failedRuns": 19,
-          "wastedMinutes": 19
-        },
-        {
-          "name": "Semantic Release",
-          "runs": 17,
-          "totalMinutes": 17,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "PR Description AI",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        }
-      ],
-      "recommendations": [
-        "Coverage Tracking: 40% failure rate (18min wasted). Fix root cause.",
-        "Release Drafter: 79% failure rate (24min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (19min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (19min wasted). Fix root cause."
       ]
     },
     {
@@ -1106,8 +1116,8 @@
           "runs": 16,
           "totalMinutes": 17,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Semantic Release",
@@ -1118,7 +1128,7 @@
           "wastedMinutes": 1
         },
         {
-          "name": ".github/workflows/claude-review.yml",
+          "name": ".github/workflows/auto-changelog.yml",
           "runs": 15,
           "totalMinutes": 15,
           "avgMinutes": 1,
@@ -1126,7 +1136,7 @@
           "wastedMinutes": 15
         },
         {
-          "name": ".github/workflows/auto-changelog.yml",
+          "name": ".github/workflows/claude-review.yml",
           "runs": 15,
           "totalMinutes": 15,
           "avgMinutes": 1,
@@ -1169,158 +1179,55 @@
       "recommendations": [
         "CI: 100% failure rate (35min wasted). Fix root cause.",
         "Coverage Tracking: 100% failure rate (22min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (15min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (15min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "zentra",
-      "fullName": "thonyAGP/zentra",
-      "totalMinutes": 120,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Lighthouse CI",
-          "runs": 28,
-          "totalMinutes": 28,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 12,
-          "totalMinutes": 22,
-          "avgMinutes": 2,
-          "failedRuns": 10,
-          "wastedMinutes": 16
-        },
-        {
-          "name": "Release Drafter",
-          "runs": 11,
-          "totalMinutes": 18,
-          "avgMinutes": 2,
-          "failedRuns": 7,
-          "wastedMinutes": 11
-        },
-        {
-          "name": "CI",
-          "runs": 12,
-          "totalMinutes": 15,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 7
-        },
-        {
-          "name": "Semantic Release",
-          "runs": 11,
-          "totalMinutes": 11,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 11,
-          "totalMinutes": 11,
-          "avgMinutes": 1,
-          "failedRuns": 11,
-          "wastedMinutes": 11
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 11,
-          "totalMinutes": 11,
-          "avgMinutes": 1,
-          "failedRuns": 11,
-          "wastedMinutes": 11
-        },
-        {
-          "name": "PR Description AI",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        }
-      ],
-      "recommendations": [
-        "Coverage Tracking: 83% failure rate (16min wasted). Fix root cause.",
-        "Release Drafter: 64% failure rate (11min wasted). Fix root cause.",
-        "CI: 33% failure rate (7min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (11min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (11min wasted). Fix root cause."
+        ".github/workflows/auto-changelog.yml: 100% failure rate (15min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (15min wasted). Fix root cause."
       ]
     },
     {
       "repo": "magic-migration",
       "fullName": "thonyAGP/magic-migration",
-      "totalMinutes": 118,
+      "totalMinutes": 116,
       "totalRuns": 100,
       "workflows": [
         {
           "name": ".github/workflows/auto-changelog.yml",
-          "runs": 19,
-          "totalMinutes": 19,
+          "runs": 20,
+          "totalMinutes": 20,
           "avgMinutes": 1,
-          "failedRuns": 19,
-          "wastedMinutes": 19
+          "failedRuns": 20,
+          "wastedMinutes": 20
         },
         {
           "name": "Release Drafter",
-          "runs": 18,
-          "totalMinutes": 18,
+          "runs": 19,
+          "totalMinutes": 19,
           "avgMinutes": 1,
           "failedRuns": 10,
           "wastedMinutes": 10
         },
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 16,
-          "totalMinutes": 16,
+          "runs": 17,
+          "totalMinutes": 17,
           "avgMinutes": 1,
-          "failedRuns": 16,
-          "wastedMinutes": 16
-        },
-        {
-          "name": "Daily Drift Report",
-          "runs": 14,
-          "totalMinutes": 15,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 17,
+          "wastedMinutes": 17
         },
         {
           "name": "Semantic Release",
-          "runs": 14,
-          "totalMinutes": 14,
+          "runs": 15,
+          "totalMinutes": 15,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
+        },
+        {
+          "name": "Daily Drift Report",
+          "runs": 13,
+          "totalMinutes": 14,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
         },
         {
           "name": "Lighthouse CI",
@@ -1339,14 +1246,6 @@
           "wastedMinutes": 0
         },
         {
-          "name": "E2E Tests",
-          "runs": 3,
-          "totalMinutes": 6,
-          "avgMinutes": 2,
-          "failedRuns": 3,
-          "wastedMinutes": 6
-        },
-        {
           "name": "Secret Scanning",
           "runs": 3,
           "totalMinutes": 3,
@@ -1355,20 +1254,28 @@
           "wastedMinutes": 0
         },
         {
-          "name": "Expression Coverage Check",
-          "runs": 3,
-          "totalMinutes": 3,
-          "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
-        },
-        {
           "name": "Deploy OpenSpec Viewer",
           "runs": 2,
           "totalMinutes": 2,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
+        },
+        {
+          "name": "Expression Coverage Check",
+          "runs": 2,
+          "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 2,
+          "wastedMinutes": 2
+        },
+        {
+          "name": "E2E Tests",
+          "runs": 1,
+          "totalMinutes": 2,
+          "avgMinutes": 2,
+          "failedRuns": 1,
+          "wastedMinutes": 2
         },
         {
           "name": "PR Description AI",
@@ -1396,101 +1303,8 @@
         }
       ],
       "recommendations": [
-        ".github/workflows/auto-changelog.yml: 100% failure rate (19min wasted). Fix root cause.",
-        "Release Drafter: 56% failure rate (10min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (16min wasted). Fix root cause."
-      ]
-    },
-    {
-      "repo": "Thumbfast",
-      "fullName": "thonyAGP/Thumbfast",
-      "totalMinutes": 117,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Release Drafter",
-          "runs": 20,
-          "totalMinutes": 31,
-          "avgMinutes": 2,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 21,
-          "totalMinutes": 27,
-          "avgMinutes": 1,
-          "failedRuns": 21,
-          "wastedMinutes": 27
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 21,
-          "totalMinutes": 21,
-          "avgMinutes": 1,
-          "failedRuns": 21,
-          "wastedMinutes": 21
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 17,
-          "totalMinutes": 17,
-          "avgMinutes": 1,
-          "failedRuns": 17,
-          "wastedMinutes": 17
-        },
-        {
-          "name": "Semantic Release",
-          "runs": 15,
-          "totalMinutes": 15,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "PR Description AI",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": [
-        "Coverage Tracking: 100% failure rate (27min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (21min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (20min wasted). Fix root cause.",
+        "Release Drafter: 53% failure rate (10min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (17min wasted). Fix root cause."
       ]
     },
@@ -1502,48 +1316,48 @@
       "workflows": [
         {
           "name": "Coverage Tracking",
-          "runs": 22,
-          "totalMinutes": 29,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Release Drafter",
-          "runs": 20,
+          "runs": 21,
           "totalMinutes": 28,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 20,
-          "totalMinutes": 20,
+          "name": "Release Drafter",
+          "runs": 19,
+          "totalMinutes": 27,
           "avgMinutes": 1,
-          "failedRuns": 20,
-          "wastedMinutes": 20
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 19,
+          "totalMinutes": 19,
+          "avgMinutes": 1,
+          "failedRuns": 19,
+          "wastedMinutes": 19
         },
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 17,
-          "totalMinutes": 17,
+          "runs": 18,
+          "totalMinutes": 18,
           "avgMinutes": 1,
-          "failedRuns": 17,
-          "wastedMinutes": 17
+          "failedRuns": 18,
+          "wastedMinutes": 18
         },
         {
           "name": "Semantic Release",
-          "runs": 15,
-          "totalMinutes": 15,
+          "runs": 16,
+          "totalMinutes": 16,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
+          "runs": 3,
+          "totalMinutes": 3,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -1582,8 +1396,204 @@
         }
       ],
       "recommendations": [
+        ".github/workflows/auto-changelog.yml: 100% failure rate (19min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (18min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "Thumbfast",
+      "fullName": "thonyAGP/Thumbfast",
+      "totalMinutes": 115,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "Release Drafter",
+          "runs": 19,
+          "totalMinutes": 28,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 20,
+          "totalMinutes": 26,
+          "avgMinutes": 1,
+          "failedRuns": 20,
+          "wastedMinutes": 26
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 20,
+          "totalMinutes": 20,
+          "avgMinutes": 1,
+          "failedRuns": 20,
+          "wastedMinutes": 20
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 18,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 18,
+          "wastedMinutes": 18
+        },
+        {
+          "name": "Semantic Release",
+          "runs": 16,
+          "totalMinutes": 16,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "CI",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "PR Description AI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        }
+      ],
+      "recommendations": [
+        "Coverage Tracking: 100% failure rate (26min wasted). Fix root cause.",
         ".github/workflows/auto-changelog.yml: 100% failure rate (20min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (17min wasted). Fix root cause."
+        ".github/workflows/claude-review.yml: 100% failure rate (18min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "zentra",
+      "fullName": "thonyAGP/zentra",
+      "totalMinutes": 110,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "Lighthouse CI",
+          "runs": 28,
+          "totalMinutes": 28,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 12,
+          "totalMinutes": 18,
+          "avgMinutes": 2,
+          "failedRuns": 11,
+          "wastedMinutes": 17
+        },
+        {
+          "name": "Release Drafter",
+          "runs": 11,
+          "totalMinutes": 15,
+          "avgMinutes": 1,
+          "failedRuns": 8,
+          "wastedMinutes": 12
+        },
+        {
+          "name": "CI",
+          "runs": 12,
+          "totalMinutes": 12,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
+        },
+        {
+          "name": "Semantic Release",
+          "runs": 11,
+          "totalMinutes": 11,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 11,
+          "totalMinutes": 11,
+          "avgMinutes": 1,
+          "failedRuns": 11,
+          "wastedMinutes": 11
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 11,
+          "totalMinutes": 11,
+          "avgMinutes": 1,
+          "failedRuns": 11,
+          "wastedMinutes": 11
+        },
+        {
+          "name": "PR Description AI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        }
+      ],
+      "recommendations": [
+        "Coverage Tracking: 92% failure rate (17min wasted). Fix root cause.",
+        "Release Drafter: 73% failure rate (12min wasted). Fix root cause.",
+        "CI: 33% failure rate (4min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (11min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (11min wasted). Fix root cause."
       ]
     },
     {
@@ -1617,28 +1627,28 @@
           "wastedMinutes": 19
         },
         {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 19,
-          "totalMinutes": 19,
-          "avgMinutes": 1,
-          "failedRuns": 19,
-          "wastedMinutes": 19
-        },
-        {
           "name": "Semantic Release",
-          "runs": 17,
-          "totalMinutes": 17,
+          "runs": 18,
+          "totalMinutes": 18,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
         },
         {
-          "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 17,
+          "totalMinutes": 17,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 17,
+          "wastedMinutes": 17
+        },
+        {
+          "name": "CI",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Secret Scanning",
@@ -1677,7 +1687,7 @@
         "Release Drafter: 63% failure rate (15min wasted). Fix root cause.",
         "Coverage Tracking: 100% failure rate (20min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (19min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (19min wasted). Fix root cause."
+        ".github/workflows/auto-changelog.yml: 100% failure rate (17min wasted). Fix root cause."
       ]
     },
     {
@@ -1691,45 +1701,45 @@
           "runs": 18,
           "totalMinutes": 19,
           "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
+          "failedRuns": 2,
+          "wastedMinutes": 2
         },
         {
           "name": "CI",
           "runs": 18,
           "totalMinutes": 18,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 6,
+          "wastedMinutes": 6
         },
         {
           "name": "Release Drafter",
-          "runs": 17,
-          "totalMinutes": 18,
+          "runs": 16,
+          "totalMinutes": 17,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
-          "runs": 17,
-          "totalMinutes": 17,
+          "runs": 16,
+          "totalMinutes": 16,
           "avgMinutes": 1,
-          "failedRuns": 17,
-          "wastedMinutes": 17
+          "failedRuns": 16,
+          "wastedMinutes": 16
         },
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 14,
-          "totalMinutes": 14,
+          "runs": 15,
+          "totalMinutes": 15,
           "avgMinutes": 1,
-          "failedRuns": 14,
-          "wastedMinutes": 14
+          "failedRuns": 15,
+          "wastedMinutes": 15
         },
         {
           "name": "Semantic Release",
-          "runs": 12,
-          "totalMinutes": 12,
+          "runs": 13,
+          "totalMinutes": 13,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -1768,8 +1778,9 @@
         }
       ],
       "recommendations": [
-        ".github/workflows/auto-changelog.yml: 100% failure rate (17min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (14min wasted). Fix root cause."
+        "CI: 33% failure rate (6min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (16min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (15min wasted). Fix root cause."
       ]
     },
     {
@@ -1788,19 +1799,19 @@
         },
         {
           "name": "Release Drafter",
-          "runs": 20,
-          "totalMinutes": 20,
+          "runs": 19,
+          "totalMinutes": 19,
           "avgMinutes": 1,
-          "failedRuns": 12,
-          "wastedMinutes": 12
+          "failedRuns": 10,
+          "wastedMinutes": 10
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
-          "runs": 20,
-          "totalMinutes": 20,
+          "runs": 19,
+          "totalMinutes": 19,
           "avgMinutes": 1,
-          "failedRuns": 20,
-          "wastedMinutes": 20
+          "failedRuns": 19,
+          "wastedMinutes": 19
         },
         {
           "name": ".github/workflows/claude-review.yml",
@@ -1812,16 +1823,16 @@
         },
         {
           "name": "Semantic Release",
-          "runs": 16,
-          "totalMinutes": 16,
+          "runs": 17,
+          "totalMinutes": 17,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
         },
         {
           "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
+          "runs": 3,
+          "totalMinutes": 3,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -1861,19 +1872,19 @@
       ],
       "recommendations": [
         "Coverage Tracking: 100% failure rate (20min wasted). Fix root cause.",
-        "Release Drafter: 60% failure rate (12min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (20min wasted). Fix root cause.",
+        "Release Drafter: 53% failure rate (10min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (19min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (18min wasted). Fix root cause."
       ]
     }
   ],
   "summary": {
-    "totalMinutes": 2553,
+    "totalMinutes": 2496,
     "totalRuns": 1900,
-    "wastedMinutes": 1511,
+    "wastedMinutes": 1502,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
-    "totalRecommendations": 67,
-    "estimatedMonthlyCost": 4.42
+    "totalRecommendations": 70,
+    "estimatedMonthlyCost": 3.97
   }
 }

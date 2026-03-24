@@ -1,11 +1,19 @@
 {
-  "timestamp": "2026-03-24T01:03:58.688Z",
+  "timestamp": "2026-03-24T01:11:21.979Z",
   "period": "30-day window",
   "repos": [
     {
       "repo": "au-marais",
       "fullName": "thonyAGP/au-marais",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:27Z",
+          "number": 12,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -103,42 +111,27 @@
           "status": "success",
           "timestamp": "2026-03-23T21:58:24Z",
           "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/au-marais",
-          "sha": "ba9cff2bdfcfcb92e21346385ac0e30e812c6026",
-          "status": "success",
-          "timestamp": "2026-03-23T21:01:03Z",
-          "workflow": "E2E Tests"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/au-marais",
-          "sha": "dff850ed9ce3f570acb03ce4857b2a80f04cefc5",
-          "status": "success",
-          "timestamp": "2026-03-23T20:59:46Z",
-          "workflow": "E2E Tests"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/au-marais",
-          "sha": "ba9cff2bdfcfcb92e21346385ac0e30e812c6026",
-          "status": "success",
-          "timestamp": "2026-03-23T20:58:35Z",
-          "workflow": "Release Drafter"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "CasaSync",
       "fullName": "thonyAGP/CasaSync",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:06:58Z",
+          "number": 80,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -276,34 +269,27 @@
           "status": "success",
           "timestamp": "2026-03-23T21:59:28Z",
           "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/CasaSync",
-          "sha": "df93f518f024a4293d200899c7593de8fd6df437",
-          "status": "success",
-          "timestamp": "2026-03-23T21:59:28Z",
-          "workflow": "Coverage Tracking"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/CasaSync",
-          "sha": "d7843fcf3b9e12ed9aca9a214ce7a6db7e84eed0",
-          "status": "success",
-          "timestamp": "2026-03-23T21:57:55Z",
-          "workflow": "Coverage Tracking"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "claude-cli-wrapper",
       "fullName": "thonyAGP/claude-cli-wrapper",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:30Z",
+          "number": 7,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -393,26 +379,30 @@
           "status": "success",
           "timestamp": "2026-03-23T21:59:37Z",
           "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/claude-cli-wrapper",
-          "sha": "db8438abbeaec28aa7dda489d9bf56aec8a19413",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:27Z",
-          "workflow": "Release Drafter"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [
+            "ci",
+            "size/L"
+          ],
+          "mergedAt": "2026-03-24T01:07:32Z",
+          "number": 6,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -447,6 +437,22 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/claude-launcher",
+          "sha": "36d6ec1f6807f4e333aa6d52c638734cfb8d80bc",
+          "status": "success",
+          "timestamp": "2026-03-24T01:07:36Z",
+          "workflow": "Release Drafter"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/claude-launcher",
+          "sha": "36d6ec1f6807f4e333aa6d52c638734cfb8d80bc",
+          "status": "success",
+          "timestamp": "2026-03-24T01:07:36Z",
+          "workflow": "CI"
+        },
         {
           "branch": "devops-factory/add-workflows",
           "repo": "thonyAGP/claude-launcher",
@@ -534,26 +540,27 @@
           "status": "success",
           "timestamp": "2026-03-23T21:59:53Z",
           "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/claude-launcher",
-          "sha": "46c6b07b2e137764649a0f257a4f9175c2495a57",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:31Z",
-          "workflow": "Release Drafter"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "ClubMedRoomAssignment",
       "fullName": "thonyAGP/ClubMedRoomAssignment",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:01Z",
+          "number": 2806,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -637,34 +644,27 @@
           "status": "success",
           "timestamp": "2026-03-23T22:00:21Z",
           "workflow": "Release Drafter"
-        },
-        {
-          "branch": "main",
-          "repo": "thonyAGP/ClubMedRoomAssignment",
-          "sha": "41c47257a617f3affae5bcb18b7f6b1a8cf92e86",
-          "status": "success",
-          "timestamp": "2026-03-23T22:00:19Z",
-          "workflow": "Release Drafter"
-        },
-        {
-          "branch": "main",
-          "repo": "thonyAGP/ClubMedRoomAssignment",
-          "sha": "8bb01eaa7c3af6df6000572b57e010f760895624",
-          "status": "success",
-          "timestamp": "2026-03-23T21:57:58Z",
-          "workflow": "Release Drafter"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "Email_Assistant",
       "fullName": "thonyAGP/Email_Assistant",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:03Z",
+          "number": 2799,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [
@@ -780,34 +780,27 @@
           "status": "success",
           "timestamp": "2026-03-23T22:00:30Z",
           "workflow": "Coverage Tracking"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "776d0e5eb31432ff3705fb04aece23b29ab8a9d3",
-          "status": "success",
-          "timestamp": "2026-03-23T22:00:29Z",
-          "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Email_Assistant",
-          "sha": "776d0e5eb31432ff3705fb04aece23b29ab8a9d3",
-          "status": "success",
-          "timestamp": "2026-03-23T22:00:29Z",
-          "workflow": "Coverage Tracking"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "LB2I-Fiscal-Manager",
       "fullName": "thonyAGP/LB2I-Fiscal-Manager",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:06Z",
+          "number": 4,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -865,34 +858,27 @@
           "status": "success",
           "timestamp": "2026-03-23T22:00:39Z",
           "workflow": "Release Drafter"
-        },
-        {
-          "branch": "main",
-          "repo": "thonyAGP/LB2I-Fiscal-Manager",
-          "sha": "46b31d20ea477086b47ec29a9b58c049f6a642f8",
-          "status": "success",
-          "timestamp": "2026-03-23T22:00:38Z",
-          "workflow": "Release Drafter"
-        },
-        {
-          "branch": "main",
-          "repo": "thonyAGP/LB2I-Fiscal-Manager",
-          "sha": "3c098cf69d88d434309fd26166a35674806c0c72",
-          "status": "success",
-          "timestamp": "2026-03-23T22:00:37Z",
-          "workflow": "Release Drafter"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "Livret_accueil_Au-Marais",
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:08Z",
+          "number": 6,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -1006,42 +992,27 @@
           "status": "success",
           "timestamp": "2026-03-23T22:00:46Z",
           "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Livret_accueil_Au-Marais",
-          "sha": "8138d59ccaaf9080525a59bf1a93253e18b8872e",
-          "status": "success",
-          "timestamp": "2026-03-23T22:00:46Z",
-          "workflow": "Coverage Tracking"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Livret_accueil_Au-Marais",
-          "sha": "3969068c9b4d0a584b4a487da2ad0873f1a5124e",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:06Z",
-          "workflow": "Coverage Tracking"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Livret_accueil_Au-Marais",
-          "sha": "3969068c9b4d0a584b4a487da2ad0873f1a5124e",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:06Z",
-          "workflow": "Release Drafter"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "livret-au-marais",
       "fullName": "thonyAGP/livret-au-marais",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:34Z",
+          "number": 7,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -1147,26 +1118,30 @@
           "status": "success",
           "timestamp": "2026-03-23T22:00:55Z",
           "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/livret-au-marais",
-          "sha": "714acaa05fe1d17c799d4068f1771e911e45969d",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:34Z",
-          "workflow": "Coverage Tracking"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "magic-migration",
       "fullName": "thonyAGP/magic-migration",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [
+            "ci",
+            "size/L"
+          ],
+          "mergedAt": "2026-03-24T01:07:37Z",
+          "number": 26,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -1209,6 +1184,14 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/magic-migration",
+          "sha": "2df7c0110132b92c2e59c27495d5ed9d42ceeee3",
+          "status": "success",
+          "timestamp": "2026-03-24T01:07:41Z",
+          "workflow": "Release Drafter"
+        },
         {
           "branch": "devops-factory/add-workflows",
           "repo": "thonyAGP/magic-migration",
@@ -1318,12 +1301,21 @@
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "MCP_Quota_Claude",
       "fullName": "thonyAGP/MCP_Quota_Claude",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:10Z",
+          "number": 7,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -1445,34 +1437,27 @@
           "status": "success",
           "timestamp": "2026-03-23T22:01:13Z",
           "workflow": "Coverage Tracking"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/MCP_Quota_Claude",
-          "sha": "e5d1c081da1d917e91be78fd53bd6deba6b345fc",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:09Z",
-          "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/MCP_Quota_Claude",
-          "sha": "e5d1c081da1d917e91be78fd53bd6deba6b345fc",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:09Z",
-          "workflow": "Coverage Tracking"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "Site_1970_Plomberie",
       "fullName": "thonyAGP/Site_1970_Plomberie",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:13Z",
+          "number": 6,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -1538,34 +1523,27 @@
           "status": "success",
           "timestamp": "2026-03-23T22:01:38Z",
           "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Site_1970_Plomberie",
-          "sha": "6d02c8568fd6cacca5b70a82ad46b3f2e1c2b126",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:13Z",
-          "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Site_1970_Plomberie",
-          "sha": "6d02c8568fd6cacca5b70a82ad46b3f2e1c2b126",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:13Z",
-          "workflow": "Coverage Tracking"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "Site_Greg-Assainissement",
       "fullName": "thonyAGP/Site_Greg-Assainissement",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:16Z",
+          "number": 7,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -1623,34 +1601,27 @@
           "status": "success",
           "timestamp": "2026-03-23T22:01:48Z",
           "workflow": "Coverage Tracking"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Site_Greg-Assainissement",
-          "sha": "5109ddb0eb16e90e7499986f761f69e8acfc530d",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:15Z",
-          "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Site_Greg-Assainissement",
-          "sha": "5109ddb0eb16e90e7499986f761f69e8acfc530d",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:15Z",
-          "workflow": "Coverage Tracking"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:18Z",
+          "number": 6,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -1698,12 +1669,21 @@
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "statusline",
       "fullName": "thonyAGP/statusline",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:40Z",
+          "number": 9,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -1729,26 +1709,30 @@
           "title": "chore: add DevOps-Factory AI workflows"
         }
       ],
-      "deployments": [
-        {
-          "branch": "master",
-          "repo": "thonyAGP/statusline",
-          "sha": "477ed12707e0172ab513c448e8be6d42a30a2de4",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:39Z",
-          "workflow": "Release Drafter"
-        }
-      ],
+      "deployments": [],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "test_codingmenace",
       "fullName": "thonyAGP/test_codingmenace",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [
+            "ci",
+            "config",
+            "size/L"
+          ],
+          "mergedAt": "2026-03-24T01:07:43Z",
+          "number": 7,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -1767,6 +1751,30 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "main",
+          "repo": "thonyAGP/test_codingmenace",
+          "sha": "e23487b5514d192d1113684682c930bc9089e782",
+          "status": "success",
+          "timestamp": "2026-03-24T01:07:46Z",
+          "workflow": "Release Drafter"
+        },
+        {
+          "branch": "main",
+          "repo": "thonyAGP/test_codingmenace",
+          "sha": "e23487b5514d192d1113684682c930bc9089e782",
+          "status": "success",
+          "timestamp": "2026-03-24T01:07:46Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "main",
+          "repo": "thonyAGP/test_codingmenace",
+          "sha": "e23487b5514d192d1113684682c930bc9089e782",
+          "status": "success",
+          "timestamp": "2026-03-24T01:07:46Z",
+          "workflow": "Coverage Tracking"
+        },
         {
           "branch": "devops-factory/add-workflows",
           "repo": "thonyAGP/test_codingmenace",
@@ -1942,34 +1950,31 @@
           "status": "success",
           "timestamp": "2026-03-23T22:02:27Z",
           "workflow": "Release Drafter"
-        },
-        {
-          "branch": "main",
-          "repo": "thonyAGP/test_codingmenace",
-          "sha": "e17ba7984891dd37809ad5cfb4d50e69341507ea",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:41Z",
-          "workflow": "Release Drafter"
-        },
-        {
-          "branch": "main",
-          "repo": "thonyAGP/test_codingmenace",
-          "sha": "e17ba7984891dd37809ad5cfb4d50e69341507ea",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:41Z",
-          "workflow": "Coverage Tracking"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "Thumbfast",
       "fullName": "thonyAGP/Thumbfast",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [
+            "ci",
+            "config",
+            "size/L"
+          ],
+          "mergedAt": "2026-03-24T01:07:21Z",
+          "number": 9,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -1996,6 +2001,14 @@
         }
       ],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/Thumbfast",
+          "sha": "c79625ac3d001fe5d6b788871ab1ad33f9381dbd",
+          "status": "success",
+          "timestamp": "2026-03-24T01:07:26Z",
+          "workflow": "Release Drafter"
+        },
         {
           "branch": "devops-factory/add-workflows",
           "repo": "thonyAGP/Thumbfast",
@@ -2083,26 +2096,27 @@
           "status": "success",
           "timestamp": "2026-03-23T22:02:36Z",
           "workflow": "Release Drafter"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Thumbfast",
-          "sha": "2de0e9802c6c684edc85c411d4021d56fac72572",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:20Z",
-          "workflow": "Release Drafter"
         }
       ],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "Utilitaire_Webapp",
       "fullName": "thonyAGP/Utilitaire_Webapp",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:24Z",
+          "number": 13,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -2128,26 +2142,26 @@
           "title": "chore: add DevOps-Factory AI workflows"
         }
       ],
-      "deployments": [
-        {
-          "branch": "master",
-          "repo": "thonyAGP/Utilitaire_Webapp",
-          "sha": "29672e8d5f80466aa2395fb476705062cf8250a8",
-          "status": "success",
-          "timestamp": "2026-03-23T21:58:23Z",
-          "workflow": "Release Drafter"
-        }
-      ],
+      "deployments": [],
       "securityFindings": [],
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     },
     {
       "repo": "zentra",
       "fullName": "thonyAGP/zentra",
       "mergedPRs": [
+        {
+          "author": "thonyAGP",
+          "labels": [],
+          "mergedAt": "2026-03-24T01:07:45Z",
+          "number": 43,
+          "reviewers": [],
+          "title": "chore: add DevOps-Factory AI workflows"
+        },
         {
           "author": "thonyAGP",
           "labels": [],
@@ -2186,16 +2200,17 @@
       "branchProtection": false,
       "codeReview": false,
       "ciEnabled": true,
-      "score": 20
+      "hasSecurityWorkflows": true,
+      "score": 80
     }
   ],
   "summary": {
     "totalRepos": 19,
-    "totalPRsMerged": 73,
+    "totalPRsMerged": 92,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 168,
-    "avgComplianceScore": 20,
+    "totalDeployments": 147,
+    "avgComplianceScore": 80,
     "reposWithBranchProtection": 0,
     "reposWithCI": 19
   }
