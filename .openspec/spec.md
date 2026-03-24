@@ -1,7 +1,7 @@
 # DevOps-Factory - OpenSpec
 
 > Plateforme Node.js/TypeScript de monitoring et self-healing CI pour 25+ repos GitHub.
-> Derniere MAJ: 2026-03-23
+> Derniere MAJ: 2026-03-24
 
 ## Vue d'ensemble
 
@@ -25,8 +25,8 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 | Scan & auto-configure repos | OK     | `scan-and-configure.ts`                            |
 | Auto-sync registry          | OK     | `sync-registry.ts`                                 |
 | CI Health Check             | OK     | `ci-health-check.ts`                               |
-| Self-heal (AI fix PRs)      | OK     | `self-heal.ts`                                     |
-| Dashboard HTML              | OK     | `build-dashboard.ts`                               |
+| Self-heal (AI fix PRs)      | OK     | `scripts/self-heal/index.ts` (13 modules)          |
+| Dashboard HTML              | OK     | `scripts/dashboard/index.ts` (17 modules)          |
 | Factory Watchdog            | OK     | `factory-watchdog.ts`                              |
 | Dependency Intelligence     | OK     | `dependency-intelligence.ts`                       |
 | Quality Score               | OK     | `quality-score.ts`                                 |
@@ -47,8 +47,16 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 
 ### A traiter
 
-- [ ] Fix Zentra CI (monorepo typecheck TS6305 + DATABASE_URL) - probleme structurel dans le repo zentra
-- [ ] Fix ClubMed CI (monorepo types @clubmed/types manquant) - probleme structurel dans le repo ClubMed
+- [ ] Fix Zentra CI (monorepo typecheck TS6305 + DATABASE_URL) - probleme structurel, healingState=paused
+- [ ] Fix ClubMed CI (monorepo types @clubmed/types manquant) - probleme structurel, healingState=paused
+
+### Terminees (CHG-006 - Notification Cleanup)
+
+- [x] R1: Repos non-fixables en healingState='paused' (Zentra, ClubMed) - self-heal les ignore
+- [x] R2: Self-heal ne cree plus d'issues GitHub (createIssue/createEscalationIssue → log console)
+- [x] R3: CI health check ne cree plus d'issues individuelles (log + activity tracker)
+- [x] R4: cron-monitor.yml skip cascade (Factory Watchdog, Uptime Monitor, Build Dashboard)
+- [x] R5: Dashboard self-heal triggers reduit de 3 a 1 par cycle
 
 ### Terminees (CHG-005)
 
@@ -70,6 +78,17 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 - [x] R3: Feedback loop negatif (label fix-rejected → penalite -15%/rejection sur confiance pattern)
 
 ### En cours
+
+- [ ] M2: GraphQL batch file checks (next)
+- [ ] S4: Template parameterization
+- [ ] M3: Remplacer 554 console.log par logActivity
+
+### Terminees (Plan APEX 2026-03-24)
+
+- [x] S1: Modulariser self-heal.ts (2617 lignes → 13 modules dans scripts/self-heal/)
+- [x] M4: Tests self-heal modules (103 tests: pattern-db, cooldown, error-analysis)
+- [x] S2: Modulariser build-dashboard.ts (1964 lignes → 17 modules dans scripts/dashboard/)
+- [x] Email digest: batch triggers, rate-limited comments, daily digest issues, daily digest email
 
 ### Terminees (CHG-001)
 
@@ -108,6 +127,7 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 
 ### Historique des plans
 
+- 2026-03-24: Plan APEX refactoring (S1, S2, M2, M3, M4, S4) - en cours
 - 2026-03-23: SWARM analysis (5 agents, 2 rounds, consensus unanime COMPROMISE)
 
 ## Decisions
@@ -148,6 +168,9 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 
 ## Changelog
 
+- 2026-03-24 : CHG-006 notification cleanup - healingState paused, self-heal/ci-health issues → logs, cron-monitor cascade fix, dashboard triggers 3→1
+- 2026-03-24 : M2 GraphQL batch file checks - github-file-checker.ts, scan-and-configure + sync-registry refactored
+- 2026-03-24 : Plan APEX - S1 (self-heal 13 modules), M4 (103 tests), S2 (dashboard 17 modules), email digest fix - 795 tests OK
 - 2026-03-23 : CHG-005 implemente (notifications push + knowledge graph cross-repo) - SWARM #2 Niveau 3 complet
 - 2026-03-23 : CHG-004 implemente (causalite outcomes + healing verification post-merge) - SWARM #2 Niveau 2 complet
 - 2026-03-23 : CHG-003 implemente (circuit breaker + PR body enrichi + feedback negatif) - SWARM #2 Niveau 1 complet

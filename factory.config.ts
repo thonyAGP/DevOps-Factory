@@ -12,7 +12,7 @@ export interface ProjectConfig {
   hasLighthouse: boolean;
   hasLinkChecker: boolean;
   vercel: boolean;
-  healingState?: 'discovered' | 'monitored' | 'healing_supervised' | 'healing_graduated';
+  healingState?: 'discovered' | 'monitored' | 'healing_supervised' | 'healing_graduated' | 'paused';
   hidden?: boolean;
   productionUrl?: string;
   testFramework?: 'vitest' | 'xunit' | 'jest' | 'none';
@@ -110,7 +110,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLighthouse: false,
     hasLinkChecker: false,
     vercel: false,
-    healingState: 'healing_supervised',
+    healingState: 'paused',
     hidden: true,
   },
   {
@@ -415,7 +415,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLighthouse: false,
     hasLinkChecker: false,
     vercel: false,
-    healingState: 'healing_supervised',
+    healingState: 'paused',
     testFramework: 'vitest',
     hasTests: true,
   },

@@ -65,7 +65,7 @@ jobs:
 
           echo "::warning::Scheduled workflow '${WORKFLOW}' failed"
 
-      - name: Create issue for failed cron
+      - name: Log failed cron to daily digest issue
         uses: actions/github-script@v7
         with:
           script: |
@@ -74,11 +74,14 @@ jobs:
             const date = new Date().toISOString().split('T')[0];
 
             // Skip DevOps-Factory monitoring workflows to avoid cascade
-            const monitoringWorkflows = ['Cron Monitor', 'Stale Bot', 'Label Sync'];
+            const monitoringWorkflows = ['Cron Monitor', 'Stale Bot', 'Label Sync', 'Factory Watchdog', 'Uptime Monitor', 'Build Dashboard'];
             if (monitoringWorkflows.includes(workflow)) {
               console.log(`Skipping issue for monitoring workflow: ${workflow}`);
               return;
             }
+
+            // Use a single daily digest issue instead of one issue per workflow
+            const digestTitle = `Cron failures digest - ${date}`;
 
             const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
@@ -87,20 +90,44 @@ jobs:
               state: 'open',
             });
 
-            const existing = issues.find(i => i.title.includes(workflow));
-            if (existing) {
+            const digestIssue = issues.find(i => i.title === digestTitle);
+            const entry = `- **${workflow}** failed at ${new Date().toISOString().slice(11,19)} UTC ([run](${runUrl}))`;
+
+            if (digestIssue) {
+              // Rate limit: check if we already logged this workflow today
+              const comments = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: digestIssue.number,
+              });
+              const alreadyLogged = comments.data.some(c => c.body.includes(workflow) && c.body.includes(runUrl));
+              if (alreadyLogged) {
+                console.log(`Already logged ${workflow} failure in digest`);
+                return;
+              }
+
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: existing.number,
-                body: `Cron failed again on ${date}.\n\nRun: ${runUrl}`,
+                issue_number: digestIssue.number,
+                body: entry,
               });
             } else {
+              // Close old digest issues from previous days
+              for (const old of issues.filter(i => i.title.startsWith('Cron failures digest -') && i.title !== digestTitle)) {
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: old.number,
+                  state: 'closed',
+                });
+              }
+
               await github.rest.issues.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                title: `Cron failure: ${workflow} - ${date}`,
-                body: `## Scheduled Workflow Failed\n\n- **Workflow**: ${workflow}\n- **Date**: ${date}\n- **Run**: ${runUrl}\n\nInvestigate and fix the underlying issue.`,
+                title: digestTitle,
+                body: `## Cron Failures - ${date}\n\n${entry}\n\n---\n*New failures are added as comments. This issue auto-closes the next day.*`,
                 labels: ['cron-failure', 'automated'],
               });
             }

@@ -14,6 +14,7 @@ import { writeFileSync } from 'node:fs';
 import { logActivity } from './activity-logger.js';
 import { jq, devNull } from './shell-utils.js';
 import { getCached, setCache } from './cache-manager.js';
+import { batchFileExists, fileExistsInRepo } from './github-file-checker.js';
 
 interface Repo {
   name: string;
@@ -144,36 +145,43 @@ const listRepos = (): Repo[] => {
   return active;
 };
 
-const fileExistsInRepo = (repo: string, path: string): boolean => {
-  const cacheKey = `file-exists-${repo}-${path}`;
-  const cached = getCached<boolean>(cacheKey);
-  if (cached !== null) return cached;
-
-  const result = gh(`api repos/${repo}/contents/${path} --jq ${jq('.name')} 2>${devNull}`);
-  const exists = result.length > 0;
-
-  setCache(cacheKey, exists);
-  return exists;
-};
-
 const analyzeRepo = (repo: Repo): RepoAnalysis => {
-  const hasPackageJson = fileExistsInRepo(repo.full_name, 'package.json');
+  // Batch all file checks in 1 GraphQL query (instead of ~19 REST calls)
+  const filePaths = [
+    'package.json',
+    'next.config.js',
+    'next.config.mjs',
+    'next.config.ts',
+    'pnpm-lock.yaml',
+    'yarn.lock',
+    '.github/workflows/claude-review.yml',
+    '.github/workflows/self-healing.yml',
+    '.github/workflows/qodo-merge.yml',
+    'renovate.json',
+    '.github/renovate.json',
+    '.husky/pre-commit',
+    '.openspec/spec.md',
+    'prisma/schema.prisma',
+    '.coderabbit.yaml',
+    '.coderabbit.yml',
+    '.devcontainer/devcontainer.json',
+  ];
+  const batch = batchFileExists(repo.full_name, filePaths);
+  const has = (p: string) => batch.get(p) ?? false;
+
+  // Wildcard: *.csproj falls back to REST inside batchFileExists
   const hasCsproj = repo.language === 'C#' || fileExistsInRepo(repo.full_name, '*.csproj');
 
   let stack: RepoAnalysis['stack'] = 'unknown';
   let packageManager: RepoAnalysis['packageManager'] = 'none';
 
-  if (hasPackageJson) {
-    const hasNextConfig =
-      fileExistsInRepo(repo.full_name, 'next.config.js') ||
-      fileExistsInRepo(repo.full_name, 'next.config.mjs') ||
-      fileExistsInRepo(repo.full_name, 'next.config.ts');
-
+  if (has('package.json')) {
+    const hasNextConfig = has('next.config.js') || has('next.config.mjs') || has('next.config.ts');
     stack = hasNextConfig ? 'nextjs' : 'node';
 
-    if (fileExistsInRepo(repo.full_name, 'pnpm-lock.yaml')) {
+    if (has('pnpm-lock.yaml')) {
       packageManager = 'pnpm';
-    } else if (fileExistsInRepo(repo.full_name, 'yarn.lock')) {
+    } else if (has('yarn.lock')) {
       packageManager = 'yarn';
     } else {
       packageManager = 'npm';
@@ -182,11 +190,11 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
     stack = 'dotnet';
   }
 
-  const hasClaudeReview = fileExistsInRepo(repo.full_name, '.github/workflows/claude-review.yml');
-  const hasSelfHealing = fileExistsInRepo(repo.full_name, '.github/workflows/self-healing.yml');
-  const hasQodoMerge = fileExistsInRepo(repo.full_name, '.github/workflows/qodo-merge.yml');
+  const hasClaudeReview = has('.github/workflows/claude-review.yml');
+  const hasSelfHealing = has('.github/workflows/self-healing.yml');
+  const hasQodoMerge = has('.github/workflows/qodo-merge.yml');
 
-  // Check for any CI workflow
+  // Check for any CI workflow (still 1 REST call for directory listing)
   const workflowsDir = gh(
     `api repos/${repo.full_name}/contents/.github/workflows --jq ${jq('.[].name')} 2>${devNull}`
   );
@@ -196,17 +204,15 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
     workflowsDir.includes('build') ||
     workflowsDir.includes('test');
   const hasGitleaks = workflowsDir.includes('gitleaks') || workflowsDir.includes('secret');
-  const hasRenovate =
-    fileExistsInRepo(repo.full_name, 'renovate.json') ||
-    fileExistsInRepo(repo.full_name, '.github/renovate.json');
-  const hasHusky = fileExistsInRepo(repo.full_name, '.husky/pre-commit');
+  const hasRenovate = has('renovate.json') || has('.github/renovate.json');
+  const hasHusky = has('.husky/pre-commit');
   const hasSemgrep = workflowsDir.includes('semgrep') || workflowsDir.includes('sast');
   const hasLicenseCheck = workflowsDir.includes('license');
   const hasNodeVersionSync = workflowsDir.includes('node-version-sync');
   const hasEnvSyncCheck = workflowsDir.includes('env-sync');
   const hasOpenSpecDrift = workflowsDir.includes('openspec-drift');
-  const hasOpenSpec = fileExistsInRepo(repo.full_name, '.openspec/spec.md');
-  const hasPrisma = fileExistsInRepo(repo.full_name, 'prisma/schema.prisma');
+  const hasOpenSpec = has('.openspec/spec.md');
+  const hasPrisma = has('prisma/schema.prisma');
   const hasBranchCleanup =
     workflowsDir.includes('branch-cleanup') || workflowsDir.includes('cleanup');
   const hasStaleBot = workflowsDir.includes('stale');
@@ -217,15 +223,13 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
   const hasSbomGeneration = workflowsDir.includes('sbom');
   const hasCronMonitor = workflowsDir.includes('cron-monitor');
   const hasAutoLabel = workflowsDir.includes('auto-label') || workflowsDir.includes('labeler');
-  const hasCodeRabbit =
-    fileExistsInRepo(repo.full_name, '.coderabbit.yaml') ||
-    fileExistsInRepo(repo.full_name, '.coderabbit.yml');
+  const hasCodeRabbit = has('.coderabbit.yaml') || has('.coderabbit.yml');
   const hasMutationTesting = workflowsDir.includes('mutation') || workflowsDir.includes('stryker');
   const hasPerformanceBudget =
     workflowsDir.includes('performance-budget') || workflowsDir.includes('bundle-size');
   const hasTestImpactAnalysis =
     workflowsDir.includes('test-impact') || workflowsDir.includes('affected-test');
-  const hasDevContainer = fileExistsInRepo(repo.full_name, '.devcontainer/devcontainer.json');
+  const hasDevContainer = has('.devcontainer/devcontainer.json');
   const hasTypeCoverage = workflowsDir.includes('type-coverage');
   const hasDependencySizeCheck =
     workflowsDir.includes('dependency-size') || workflowsDir.includes('dep-size');

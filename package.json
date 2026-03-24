@@ -6,11 +6,11 @@
   "private": true,
   "scripts": {
     "scan": "tsx scripts/scan-and-configure.ts",
-    "dashboard": "tsx scripts/build-dashboard.ts",
+    "dashboard": "tsx scripts/dashboard/index.ts",
     "ci-health": "tsx scripts/ci-health-check.ts",
     "fix-prettier": "tsx scripts/auto-fix-prettier.ts",
     "protect-branches": "tsx scripts/branch-protection.ts",
-    "self-heal": "tsx scripts/self-heal.ts",
+    "self-heal": "tsx scripts/self-heal/index.ts",
     "coverage": "tsx scripts/coverage-baseline.ts",
     "test-scaffold": "tsx scripts/test-scaffold.ts",
     "quality-score": "tsx scripts/quality-score.ts",

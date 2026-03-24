@@ -14,6 +14,7 @@ import { KNOWN_PROJECTS, SCAN_CONFIG } from '../factory.config.js';
 import { jq, devNull } from './shell-utils.js';
 import { getCached, setCache } from './cache-manager.js';
 import { logActivity } from './activity-logger.js';
+import { batchFileExists } from './github-file-checker.js';
 
 interface GHRepo {
   name: string;
@@ -62,47 +63,42 @@ const isActive = (repo: GHRepo): boolean => {
   return active;
 };
 
-const fileExistsInRepo = (repo: string, path: string): boolean => {
-  const cacheKey = `file-exists-${repo}-${path}`;
-  const cached = getCached<boolean>(cacheKey);
-  if (cached !== null) return cached;
-
-  const result = gh(`api repos/${repo}/contents/${path} --jq ${jq('.name')} 2>${devNull}`);
-  const exists = result.length > 0;
-  setCache(cacheKey, exists);
-  return exists;
-};
-
 type Stack = 'nextjs' | 'node' | 'dotnet' | 'astro' | 'unknown';
 
 const detectStack = (repo: GHRepo): Stack => {
-  const hasPackageJson = fileExistsInRepo(repo.full_name, 'package.json');
+  // Batch all file checks in 1 GraphQL query (instead of ~8 REST calls)
+  const filePaths = [
+    'package.json',
+    'next.config.js',
+    'next.config.mjs',
+    'next.config.ts',
+    'astro.config.mjs',
+    'astro.config.ts',
+  ];
+  const batch = batchFileExists(repo.full_name, filePaths);
+  const has = (p: string) => batch.get(p) ?? false;
 
-  if (hasPackageJson) {
-    const hasNextConfig =
-      fileExistsInRepo(repo.full_name, 'next.config.js') ||
-      fileExistsInRepo(repo.full_name, 'next.config.mjs') ||
-      fileExistsInRepo(repo.full_name, 'next.config.ts');
-
-    if (hasNextConfig) return 'nextjs';
-
-    const hasAstroConfig =
-      fileExistsInRepo(repo.full_name, 'astro.config.mjs') ||
-      fileExistsInRepo(repo.full_name, 'astro.config.ts');
-
-    if (hasAstroConfig) return 'astro';
-
+  if (has('package.json')) {
+    if (has('next.config.js') || has('next.config.mjs') || has('next.config.ts')) return 'nextjs';
+    if (has('astro.config.mjs') || has('astro.config.ts')) return 'astro';
     return 'node';
   }
 
-  if (repo.language === 'C#' || fileExistsInRepo(repo.full_name, '*.csproj')) {
-    return 'dotnet';
-  }
+  if (repo.language === 'C#') return 'dotnet';
+
+  // Wildcard *.csproj: falls back to REST inside batchFileExists
+  const csprojBatch = batchFileExists(repo.full_name, ['*.csproj']);
+  if (csprojBatch.get('*.csproj')) return 'dotnet';
 
   return 'unknown';
 };
 
 const detectFeatures = (repo: GHRepo) => {
+  // Batch file checks in 1 GraphQL query (instead of 3 REST calls)
+  const filePaths = ['.husky/pre-commit', 'renovate.json', '.github/renovate.json'];
+  const batch = batchFileExists(repo.full_name, filePaths);
+  const has = (p: string) => batch.get(p) ?? false;
+
   const workflows = gh(
     `api repos/${repo.full_name}/contents/.github/workflows --jq ${jq('.[].name')} 2>${devNull}`
   );
@@ -114,10 +110,8 @@ const detectFeatures = (repo: GHRepo) => {
     workflows.includes('test');
 
   const hasSelfHealing = workflows.includes('self-healing');
-  const hasHusky = fileExistsInRepo(repo.full_name, '.husky/pre-commit');
-  const hasRenovate =
-    fileExistsInRepo(repo.full_name, 'renovate.json') ||
-    fileExistsInRepo(repo.full_name, '.github/renovate.json');
+  const hasHusky = has('.husky/pre-commit');
+  const hasRenovate = has('renovate.json') || has('.github/renovate.json');
   const hasGitleaks = workflows.includes('gitleaks') || workflows.includes('secret');
   const hasLighthouse = workflows.includes('lighthouse');
   const hasLinkChecker = workflows.includes('link-checker');
