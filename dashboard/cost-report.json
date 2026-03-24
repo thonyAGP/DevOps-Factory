@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-23T22:15:45.046Z",
+  "timestamp": "2026-03-24T01:03:12.768Z",
   "repos": [
     {
       "repo": "Email_Assistant",
@@ -699,99 +699,6 @@
       ]
     },
     {
-      "repo": "LB2I-Fiscal-Manager",
-      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
-      "totalMinutes": 131,
-      "totalRuns": 100,
-      "workflows": [
-        {
-          "name": "Release Drafter",
-          "runs": 22,
-          "totalMinutes": 40,
-          "avgMinutes": 2,
-          "failedRuns": 2,
-          "wastedMinutes": 4
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 21,
-          "totalMinutes": 34,
-          "avgMinutes": 2,
-          "failedRuns": 21,
-          "wastedMinutes": 34
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
-          "runs": 21,
-          "totalMinutes": 21,
-          "avgMinutes": 1,
-          "failedRuns": 21,
-          "wastedMinutes": 21
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 17,
-          "totalMinutes": 17,
-          "avgMinutes": 1,
-          "failedRuns": 17,
-          "wastedMinutes": 17
-        },
-        {
-          "name": "Semantic Release",
-          "runs": 13,
-          "totalMinutes": 13,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "PR Description AI",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Auto Label PRs",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        }
-      ],
-      "recommendations": [
-        "Coverage Tracking: 100% failure rate (34min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (21min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (17min wasted). Fix root cause."
-      ]
-    },
-    {
       "repo": "Livret_accueil_Au-Marais",
       "fullName": "thonyAGP/Livret_accueil_Au-Marais",
       "totalMinutes": 130,
@@ -882,6 +789,107 @@
         "Release Drafter: 67% failure rate (16min wasted). Fix root cause.",
         ".github/workflows/auto-changelog.yml: 100% failure rate (20min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (17min wasted). Fix root cause."
+      ]
+    },
+    {
+      "repo": "LB2I-Fiscal-Manager",
+      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
+      "totalMinutes": 129,
+      "totalRuns": 100,
+      "workflows": [
+        {
+          "name": "Release Drafter",
+          "runs": 20,
+          "totalMinutes": 36,
+          "avgMinutes": 2,
+          "failedRuns": 3,
+          "wastedMinutes": 5
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 21,
+          "totalMinutes": 34,
+          "avgMinutes": 2,
+          "failedRuns": 21,
+          "wastedMinutes": 34
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 19,
+          "totalMinutes": 19,
+          "avgMinutes": 1,
+          "failedRuns": 19,
+          "wastedMinutes": 19
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 18,
+          "totalMinutes": 18,
+          "avgMinutes": 1,
+          "failedRuns": 18,
+          "wastedMinutes": 18
+        },
+        {
+          "name": "Semantic Release",
+          "runs": 14,
+          "totalMinutes": 14,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "CI",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "TypeDoc Generation",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "PR Description AI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        }
+      ],
+      "recommendations": [
+        "Coverage Tracking: 100% failure rate (34min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (19min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (18min wasted). Fix root cause."
       ]
     },
     {
@@ -1860,12 +1868,12 @@
     }
   ],
   "summary": {
-    "totalMinutes": 2555,
+    "totalMinutes": 2553,
     "totalRuns": 1900,
-    "wastedMinutes": 1509,
+    "wastedMinutes": 1511,
     "mostExpensiveRepo": "Email_Assistant",
     "mostExpensiveWorkflow": "CI (Email_Assistant)",
     "totalRecommendations": 67,
-    "estimatedMonthlyCost": 4.44
+    "estimatedMonthlyCost": 4.42
   }
 }

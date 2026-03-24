@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/23/2026, 10:16:54 PM
+**Generated**: 3/24/2026, 1:03:58 AM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 19/19 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 73 |
-| Deployments (30d) | 169 |
+| Deployments (30d) | 168 |
 | PRs with Review | 0/73 |
 
 ## Repository Compliance
@@ -264,7 +264,7 @@
 - #2 - chore: add security workflows (gitleaks, semgrep, license, supply-chain) (by thonyAGP)
 - #1 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
-**Recent Deployments**: 7 successful deploys in 30 days
+**Recent Deployments**: 6 successful deploys in 30 days
 
 ---
 
