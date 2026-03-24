@@ -3029,8 +3029,13 @@
     "avgHealth": 54,
     "failingCI": 18,
     "passingCI": 0,
-    "totalOpenPRs": 7,
+    "totalOpenPRs": 25,
     "perProject": [
+      {
+        "name": "zentra",
+        "health": 45,
+        "ciStatus": "fail"
+      },
       {
         "name": "claude-launcher",
         "health": 50,
@@ -3113,11 +3118,6 @@
       },
       {
         "name": "Utilitaire_Webapp",
-        "health": 55,
-        "ciStatus": "fail"
-      },
-      {
-        "name": "zentra",
         "health": 55,
         "ciStatus": "fail"
       }

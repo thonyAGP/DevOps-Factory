@@ -1,11 +1,11 @@
 # Template Recommendations Report
 
-Generated: 3/24/2026, 1:20:42 AM
+Generated: 3/24/2026, 1:24:16 AM
 
 ## Executive Summary
 
-- **Total Recommendations**: 100
-- **Critical**: 0 | **High**: 60 | **Medium**: 13 | **Low**: 27
+- **Total Recommendations**: 64
+- **Critical**: 0 | **High**: 43 | **Medium**: 7 | **Low**: 14
 - **Average Health Score**: 19.6/100
 - **Top Template**: container-scan.yml (19 repos)
 - **Most Improved Repo**: au-marais
@@ -13,10 +13,9 @@ Generated: 3/24/2026, 1:20:42 AM
 ## Top Recommended Templates
 
 - **container-scan.yml**: 19 repos
-- **pr-size-limit.yml**: 19 repos
 - **stale-bot.yml**: 19 repos
 - **qodo-merge.yml**: 18 repos
-- **mutation-testing.yml**: 17 repos
+- **lighthouse.yml**: 8 repos
 
 ## Recommendations by Repository
 
@@ -43,10 +42,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
 
 #### Low Priority
 
@@ -54,10 +49,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Auto-close stale issues and PRs
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
 
 ### CasaSync
 
@@ -79,10 +70,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
 
 #### Low Priority
 
@@ -90,10 +77,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Auto-close stale issues and PRs
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
 
 ### LB2I-Fiscal-Manager
 
@@ -115,10 +98,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
 
 #### Medium Priority
 
@@ -126,10 +105,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Auto-close stale issues and PRs
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
 
 ### Livret_accueil_Au-Marais
 
@@ -151,10 +126,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
 
 #### Medium Priority
 
@@ -162,10 +133,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Auto-close stale issues and PRs
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
 
 ### livret-au-marais
 
@@ -190,10 +157,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
 
 #### Low Priority
 
@@ -201,10 +164,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Auto-close stale issues and PRs
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
 
 ### Site_Greg-Assainissement
 
@@ -226,10 +185,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
 
 #### Low Priority
 
@@ -237,10 +192,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Auto-close stale issues and PRs
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
 
 ### test_codingmenace
 
@@ -262,10 +213,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
 
 #### Low Priority
 
@@ -273,10 +220,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Auto-close stale issues and PRs
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
 
 ### Thumbfast
 
@@ -298,10 +241,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
 
 #### Low Priority
 
@@ -309,10 +248,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Auto-close stale issues and PRs
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
 
 ### claude-cli-wrapper
 
@@ -330,10 +265,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
 
 #### Low Priority
 
@@ -341,234 +272,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Auto-close stale issues and PRs
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
-
-### ClubMedRoomAssignment
-
-- **Health Score**: 35/100
-- **Stack**: node
-- **CI Failure Rate**: 79%
-
-#### High Priority
-
-- **qodo-merge.yml**
-  - Reason: Free code reviews without API key requirement
-  - Effort: minimal
-  - Impact: Free code review from CodeRabbit/Qodo without API keys
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
-
-### magic-migration
-
-- **Health Score**: 0/100
-- **Stack**: node
-- **CI Failure Rate**: 31%
-
-#### High Priority
-
-- **qodo-merge.yml**
-  - Reason: Free code reviews without API key requirement
-  - Effort: minimal
-  - Impact: Free code review from CodeRabbit/Qodo without API keys
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Medium Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
-
-### MCP_Quota_Claude
-
-- **Health Score**: 35/100
-- **Stack**: node
-- **CI Failure Rate**: 73%
-
-#### High Priority
-
-- **qodo-merge.yml**
-  - Reason: Free code reviews without API key requirement
-  - Effort: minimal
-  - Impact: Free code review from CodeRabbit/Qodo without API keys
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
-
-### Site_1970_Plomberie
-
-- **Health Score**: 35/100
-- **Stack**: node
-- **CI Failure Rate**: 73%
-
-#### High Priority
-
-- **qodo-merge.yml**
-  - Reason: Free code reviews without API key requirement
-  - Effort: minimal
-  - Impact: Free code review from CodeRabbit/Qodo without API keys
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
-
-### statusline
-
-- **Health Score**: 35/100
-- **Stack**: node
-- **CI Failure Rate**: 73%
-
-#### High Priority
-
-- **qodo-merge.yml**
-  - Reason: Free code reviews without API key requirement
-  - Effort: minimal
-  - Impact: Free code review from CodeRabbit/Qodo without API keys
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
-
-### Utilitaire_Webapp
-
-- **Health Score**: 35/100
-- **Stack**: node
-- **CI Failure Rate**: 79%
-
-#### High Priority
-
-- **qodo-merge.yml**
-  - Reason: Free code reviews without API key requirement
-  - Effort: minimal
-  - Impact: Free code review from CodeRabbit/Qodo without API keys
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
-
-### zentra
-
-- **Health Score**: 0/100
-- **Stack**: node
-- **CI Failure Rate**: 69%
-
-#### High Priority
-
-- **qodo-merge.yml**
-  - Reason: Free code reviews without API key requirement
-  - Effort: minimal
-  - Impact: Free code review from CodeRabbit/Qodo without API keys
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Medium Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
 
 ### claude-launcher
 
@@ -586,10 +289,198 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
+
+#### Medium Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
   - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
+  - Impact: Automatically closes stale issues and PRs
+
+### ClubMedRoomAssignment
+
+- **Health Score**: 35/100
+- **Stack**: node
+- **CI Failure Rate**: 79%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+
+### magic-migration
+
+- **Health Score**: 0/100
+- **Stack**: node
+- **CI Failure Rate**: 31%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+
+#### Medium Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+
+### MCP_Quota_Claude
+
+- **Health Score**: 35/100
+- **Stack**: node
+- **CI Failure Rate**: 73%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+
+### Site_1970_Plomberie
+
+- **Health Score**: 35/100
+- **Stack**: node
+- **CI Failure Rate**: 73%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+
+### SqlConnectionTest
+
+- **Health Score**: 35/100
+- **Stack**: dotnet
+- **CI Failure Rate**: 74%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+
+### statusline
+
+- **Health Score**: 35/100
+- **Stack**: node
+- **CI Failure Rate**: 73%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+
+### Utilitaire_Webapp
+
+- **Health Score**: 35/100
+- **Stack**: node
+- **CI Failure Rate**: 79%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+
+### zentra
+
+- **Health Score**: 0/100
+- **Stack**: node
+- **CI Failure Rate**: 69%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
 
 #### Medium Priority
 
@@ -610,42 +501,6 @@ Generated: 3/24/2026, 1:20:42 AM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-- **mutation-testing.yml**
-  - Reason: Validate test quality
-  - Effort: significant
-  - Impact: Validates test quality by introducing code mutations
-
-### SqlConnectionTest
-
-- **Health Score**: 35/100
-- **Stack**: dotnet
-- **CI Failure Rate**: 74%
-
-#### High Priority
-
-- **qodo-merge.yml**
-  - Reason: Free code reviews without API key requirement
-  - Effort: minimal
-  - Impact: Free code review from CodeRabbit/Qodo without API keys
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
 
 #### Low Priority
 
