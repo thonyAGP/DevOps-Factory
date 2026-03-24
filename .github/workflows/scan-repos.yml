@@ -12,9 +12,14 @@ permissions:
   pull-requests: write
   issues: write
 
+concurrency:
+  group: scan-repos
+  cancel-in-progress: false
+
 jobs:
   scan:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:

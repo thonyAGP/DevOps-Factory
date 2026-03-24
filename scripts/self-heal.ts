@@ -104,12 +104,18 @@ const normalizeLogPath = (p: string): string => {
 
 // --- Pattern Database ---
 
+const EMPTY_PATTERN_DB: PatternDB = { version: 1, lastUpdated: '', patterns: [] };
+
 const loadPatterns = (): PatternDB => {
-  if (!existsSync(PATTERN_DB_PATH)) return { version: 1, lastUpdated: '', patterns: [] };
+  if (!existsSync(PATTERN_DB_PATH)) return { ...EMPTY_PATTERN_DB };
   try {
-    return JSON.parse(readFileSync(PATTERN_DB_PATH, 'utf-8')) as PatternDB;
+    const parsed = JSON.parse(readFileSync(PATTERN_DB_PATH, 'utf-8'));
+    if (parsed?.version && Array.isArray(parsed?.patterns)) {
+      return parsed as PatternDB;
+    }
+    return { ...EMPTY_PATTERN_DB };
   } catch {
-    return { version: 1, lastUpdated: '', patterns: [] };
+    return { ...EMPTY_PATTERN_DB };
   }
 };
 

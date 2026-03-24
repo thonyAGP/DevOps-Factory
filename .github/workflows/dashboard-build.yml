@@ -17,9 +17,14 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: dashboard-build
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -212,6 +217,7 @@ jobs:
   deploy-pages:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

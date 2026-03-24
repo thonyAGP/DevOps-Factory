@@ -14,9 +14,14 @@ permissions:
   contents: write
   issues: write
 
+concurrency:
+  group: ci-health-check
+  cancel-in-progress: true
+
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     # Skip if triggered by workflow_run that succeeded (only react to failures)
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'failure' }}
     steps:

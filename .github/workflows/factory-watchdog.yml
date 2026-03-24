@@ -12,9 +12,14 @@ permissions:
   issues: write
   actions: write
 
+concurrency:
+  group: factory-watchdog
+  cancel-in-progress: true
+
 jobs:
   watchdog:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:

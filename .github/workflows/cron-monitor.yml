@@ -20,6 +20,7 @@ jobs:
       github.event.workflow_run.event == 'schedule' &&
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Ping monitoring endpoint
         if: ${{ secrets.HEALTHCHECK_PING_URL != '' }}
@@ -47,6 +48,7 @@ jobs:
       github.event.workflow_run.event == 'schedule' &&
       github.event.workflow_run.conclusion == 'failure'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Ping failure endpoint
         if: ${{ secrets.HEALTHCHECK_PING_URL != '' }}

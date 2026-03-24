@@ -167,9 +167,9 @@ describe('activity-logger', () => {
       expect(updatedLog.entries[0].action).toBe('new-action');
     });
 
-    it('should keep recent entries (less than 30 days)', () => {
+    it('should keep recent entries (less than 7 days)', () => {
       const recentDate = new Date();
-      recentDate.setDate(recentDate.getDate() - 10);
+      recentDate.setDate(recentDate.getDate() - 3);
 
       const log = {
         version: 1,

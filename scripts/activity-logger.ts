@@ -37,7 +37,8 @@ interface ActivityLog {
 
 // Configurable log path (can be overridden for testing)
 let LOG_PATH = 'data/activity-log.json';
-const MAX_AGE_DAYS = 30;
+const MAX_AGE_DAYS = 7;
+const ARCHIVE_DIR = 'data/archive';
 
 // Allow tests to override log path
 export const __setLogPath = (path: string): void => {
@@ -53,12 +54,34 @@ const ensureDir = (filePath: string): void => {
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
 };
 
+const emptyLog = (): ActivityLog => ({ version: 1, entries: [] });
+
 const loadLog = (): ActivityLog => {
-  if (!existsSync(LOG_PATH)) return { version: 1, entries: [] };
+  if (!existsSync(LOG_PATH)) return emptyLog();
   try {
-    return JSON.parse(readFileSync(LOG_PATH, 'utf-8')) as ActivityLog;
+    const parsed = JSON.parse(readFileSync(LOG_PATH, 'utf-8'));
+    if (parsed?.version === 1 && Array.isArray(parsed?.entries)) {
+      return parsed as ActivityLog;
+    }
+    return emptyLog();
   } catch {
-    return { version: 1, entries: [] };
+    return emptyLog();
+  }
+};
+
+const archivePrunedEntries = (pruned: ActivityEntry[]): void => {
+  if (pruned.length === 0) return;
+  try {
+    if (!existsSync(ARCHIVE_DIR)) mkdirSync(ARCHIVE_DIR, { recursive: true });
+    const month = pruned[0].timestamp.substring(0, 7);
+    const archivePath = `${ARCHIVE_DIR}/activity-${month}.json`;
+    const existing: ActivityEntry[] = existsSync(archivePath)
+      ? JSON.parse(readFileSync(archivePath, 'utf-8'))
+      : [];
+    existing.push(...pruned);
+    writeFileSync(archivePath, JSON.stringify(existing));
+  } catch {
+    // Archive is best-effort, don't block logging
   }
 };
 
@@ -66,7 +89,10 @@ const pruneOldEntries = (entries: ActivityEntry[]): ActivityEntry[] => {
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - MAX_AGE_DAYS);
   const cutoffISO = cutoff.toISOString();
-  return entries.filter((e) => e.timestamp >= cutoffISO);
+  const kept = entries.filter((e) => e.timestamp >= cutoffISO);
+  const pruned = entries.filter((e) => e.timestamp < cutoffISO);
+  archivePrunedEntries(pruned);
+  return kept;
 };
 
 const saveLog = (log: ActivityLog): void => {
