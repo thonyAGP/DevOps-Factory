@@ -1,0 +1,104 @@
+# DevOps-Factory: Cron Job Monitor (AUTO-89)
+# Pings a monitoring endpoint after each scheduled workflow succeeds
+# Uses Healthchecks.io (free: 20 checks) or any HTTP ping endpoint
+# Configure HEALTHCHECK_PING_URL secret per repo
+
+name: Cron Monitor
+
+on:
+  workflow_run:
+    workflows: ['*']
+    types: [completed]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  ping:
+    if: >
+      github.event.workflow_run.event == 'schedule' &&
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping monitoring endpoint
+        if: ${{ secrets.HEALTHCHECK_PING_URL != '' }}
+        env:
+          HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
+        run: |
+          WORKFLOW="${{ github.event.workflow_run.name }}"
+          STATUS="${{ github.event.workflow_run.conclusion }}"
+
+          curl -fsS -m 10 \
+            --retry 3 \
+            --retry-delay 5 \
+            "${HEALTHCHECK_PING_URL}" \
+            --data-raw "Workflow: ${WORKFLOW} | Status: ${STATUS}" \
+            || echo "Warning: ping failed but not blocking"
+
+          echo "Pinged monitoring for: ${WORKFLOW} (${STATUS})"
+
+      - name: No-op when unconfigured
+        if: ${{ secrets.HEALTHCHECK_PING_URL == '' }}
+        run: echo "HEALTHCHECK_PING_URL not configured - skipping ping"
+
+  report-failure:
+    if: >
+      github.event.workflow_run.event == 'schedule' &&
+      github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping failure endpoint
+        if: ${{ secrets.HEALTHCHECK_PING_URL != '' }}
+        env:
+          HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
+        run: |
+          WORKFLOW="${{ github.event.workflow_run.name }}"
+
+          curl -fsS -m 10 \
+            --retry 3 \
+            "${HEALTHCHECK_PING_URL}/fail" \
+            --data-raw "FAILED: ${WORKFLOW}" \
+            || echo "Warning: failure ping failed"
+
+          echo "::warning::Scheduled workflow '${WORKFLOW}' failed"
+
+      - name: Create issue for failed cron
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const workflow = '${{ github.event.workflow_run.name }}';
+            const runUrl = '${{ github.event.workflow_run.html_url }}';
+            const date = new Date().toISOString().split('T')[0];
+
+            // Skip DevOps-Factory monitoring workflows to avoid cascade
+            const monitoringWorkflows = ['Cron Monitor', 'Stale Bot', 'Label Sync'];
+            if (monitoringWorkflows.includes(workflow)) {
+              console.log(`Skipping issue for monitoring workflow: ${workflow}`);
+              return;
+            }
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'cron-failure',
+              state: 'open',
+            });
+
+            const existing = issues.find(i => i.title.includes(workflow));
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body: `Cron failed again on ${date}.\n\nRun: ${runUrl}`,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Cron failure: ${workflow} - ${date}`,
+                body: `## Scheduled Workflow Failed\n\n- **Workflow**: ${workflow}\n- **Date**: ${date}\n- **Run**: ${runUrl}\n\nInvestigate and fix the underlying issue.`,
+                labels: ['cron-failure', 'automated'],
+              });
+            }
