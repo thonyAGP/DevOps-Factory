@@ -1,22 +1,22 @@
 # Template Recommendations Report
 
-Generated: 3/23/2026, 9:09:54 PM
+Generated: 3/24/2026, 1:03:59 AM
 
 ## Executive Summary
 
-- **Total Recommendations**: 128
-- **Critical**: 11 | **High**: 82 | **Medium**: 15 | **Low**: 20
+- **Total Recommendations**: 100
+- **Critical**: 0 | **High**: 60 | **Medium**: 13 | **Low**: 27
 - **Average Health Score**: 19.6/100
-- **Top Template**: auto-label.yml (19 repos)
+- **Top Template**: container-scan.yml (19 repos)
 - **Most Improved Repo**: au-marais
 
 ## Top Recommended Templates
 
-- **auto-label.yml**: 19 repos
 - **container-scan.yml**: 19 repos
 - **pr-size-limit.yml**: 19 repos
 - **stale-bot.yml**: 19 repos
-- **dead-code-detection.yml**: 17 repos
+- **qodo-merge.yml**: 18 repos
+- **mutation-testing.yml**: 17 repos
 
 ## Recommendations by Repository
 
@@ -24,6 +24,7 @@ Generated: 3/23/2026, 9:09:54 PM
 
 - **Health Score**: 55/100
 - **Stack**: nextjs
+- **CI Failure Rate**: 47%
 
 #### High Priority
 
@@ -38,18 +39,10 @@ Generated: 3/23/2026, 9:09:54 PM
 
 #### Medium Priority
 
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
 - **pr-size-limit.yml**
   - Reason: Enforce maintainable PR sizes
   - Effort: minimal
@@ -70,13 +63,10 @@ Generated: 3/23/2026, 9:09:54 PM
 
 - **Health Score**: 35/100
 - **Stack**: nextjs
+- **CI Failure Rate**: 53%
 
 #### High Priority
 
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
 - **qodo-merge.yml**
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
@@ -89,10 +79,6 @@ Generated: 3/23/2026, 9:09:54 PM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
 - **pr-size-limit.yml**
   - Reason: Enforce maintainable PR sizes
   - Effort: minimal
@@ -113,36 +99,22 @@ Generated: 3/23/2026, 9:09:54 PM
 
 - **Health Score**: 0/100
 - **Stack**: nextjs
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
+- **CI Failure Rate**: 74%
 
 #### High Priority
 
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
   - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
 - **lighthouse.yml**
   - Reason: Low health score (0) - needs performance tracking
   - Effort: moderate
   - Impact: Tracks performance, accessibility, and SEO metrics
-- **prisma-migration-check.yml**
-  - Reason: Prisma project without migration validation
-  - Effort: moderate
-  - Impact: Validates Prisma migrations and schema changes
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
 - **pr-size-limit.yml**
   - Reason: Enforce maintainable PR sizes
   - Effort: minimal
@@ -154,11 +126,52 @@ Generated: 3/23/2026, 9:09:54 PM
   - Reason: Auto-close stale issues and PRs
   - Effort: minimal
   - Impact: Automatically closes stale issues and PRs
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
+
+### Livret_accueil_Au-Marais
+
+- **Health Score**: 0/100
+- **Stack**: nextjs
+- **CI Failure Rate**: 69%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **lighthouse.yml**
+  - Reason: Low health score (0) - needs performance tracking
+  - Effort: moderate
+  - Impact: Tracks performance, accessibility, and SEO metrics
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
+  - Effort: minimal
+  - Impact: Enforces PR size limits for code review quality
+
+#### Medium Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
 
 ### livret-au-marais
 
 - **Health Score**: 55/100
 - **Stack**: nextjs
+- **CI Failure Rate**: 58%
 
 #### High Priority
 
@@ -173,18 +186,150 @@ Generated: 3/23/2026, 9:09:54 PM
 
 #### Medium Priority
 
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
   - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
+  - Impact: Enforces PR size limits for code review quality
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
+
+### Site_Greg-Assainissement
+
+- **Health Score**: 35/100
+- **Stack**: nextjs
+- **CI Failure Rate**: 73%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **lighthouse.yml**
+  - Reason: Low health score (35) - needs performance tracking
+  - Effort: moderate
+  - Impact: Tracks performance, accessibility, and SEO metrics
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
+  - Effort: minimal
+  - Impact: Enforces PR size limits for code review quality
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
+
+### test_codingmenace
+
+- **Health Score**: 35/100
+- **Stack**: nextjs
+- **CI Failure Rate**: 20%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **lighthouse.yml**
+  - Reason: Low health score (35) - needs performance tracking
+  - Effort: moderate
+  - Impact: Tracks performance, accessibility, and SEO metrics
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
+  - Effort: minimal
+  - Impact: Enforces PR size limits for code review quality
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
+
+### Thumbfast
+
+- **Health Score**: 35/100
+- **Stack**: nextjs
+- **CI Failure Rate**: 40%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **lighthouse.yml**
+  - Reason: Low health score (35) - needs performance tracking
+  - Effort: moderate
+  - Impact: Tracks performance, accessibility, and SEO metrics
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
+  - Effort: minimal
+  - Impact: Enforces PR size limits for code review quality
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
+
+### claude-cli-wrapper
+
+- **Health Score**: 35/100
+- **Stack**: node
+- **CI Failure Rate**: 77%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
 - **pr-size-limit.yml**
   - Reason: Enforce maintainable PR sizes
   - Effort: minimal
@@ -205,13 +350,10 @@ Generated: 3/23/2026, 9:09:54 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
+- **CI Failure Rate**: 71%
 
 #### High Priority
 
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
 - **qodo-merge.yml**
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
@@ -220,10 +362,6 @@ Generated: 3/23/2026, 9:09:54 PM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
 - **pr-size-limit.yml**
   - Reason: Enforce maintainable PR sizes
   - Effort: minimal
@@ -239,60 +377,15 @@ Generated: 3/23/2026, 9:09:54 PM
   - Reason: Validate test quality
   - Effort: significant
   - Impact: Validates test quality by introducing code mutations
-
-### Livret_accueil_Au-Marais
-
-- **Health Score**: 0/100
-- **Stack**: nextjs
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
-
-#### High Priority
-
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **lighthouse.yml**
-  - Reason: Low health score (0) - needs performance tracking
-  - Effort: moderate
-  - Impact: Tracks performance, accessibility, and SEO metrics
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Medium Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
 
 ### magic-migration
 
 - **Health Score**: 0/100
 - **Stack**: node
+- **CI Failure Rate**: 40%
 
 #### High Priority
 
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
 - **qodo-merge.yml**
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
@@ -301,10 +394,6 @@ Generated: 3/23/2026, 9:09:54 PM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
 - **pr-size-limit.yml**
   - Reason: Enforce maintainable PR sizes
   - Effort: minimal
@@ -321,143 +410,14 @@ Generated: 3/23/2026, 9:09:54 PM
   - Effort: significant
   - Impact: Validates test quality by introducing code mutations
 
-### Site_Greg-Assainissement
-
-- **Health Score**: 35/100
-- **Stack**: nextjs
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
-
-#### High Priority
-
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **lighthouse.yml**
-  - Reason: Low health score (35) - needs performance tracking
-  - Effort: moderate
-  - Impact: Tracks performance, accessibility, and SEO metrics
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-
-### test_codingmenace
-
-- **Health Score**: 35/100
-- **Stack**: nextjs
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
-
-#### High Priority
-
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **lighthouse.yml**
-  - Reason: Low health score (35) - needs performance tracking
-  - Effort: moderate
-  - Impact: Tracks performance, accessibility, and SEO metrics
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-
-### Thumbfast
-
-- **Health Score**: 35/100
-- **Stack**: nextjs
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
-
-#### High Priority
-
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **lighthouse.yml**
-  - Reason: Low health score (35) - needs performance tracking
-  - Effort: moderate
-  - Impact: Tracks performance, accessibility, and SEO metrics
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-
-### Utilitaire_Webapp
+### MCP_Quota_Claude
 
 - **Health Score**: 35/100
 - **Stack**: node
+- **CI Failure Rate**: 69%
 
 #### High Priority
 
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
 - **qodo-merge.yml**
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
@@ -466,10 +426,102 @@ Generated: 3/23/2026, 9:09:54 PM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
   - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
+  - Impact: Enforces PR size limits for code review quality
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
+
+### Site_1970_Plomberie
+
+- **Health Score**: 35/100
+- **Stack**: node
+- **CI Failure Rate**: 72%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
+  - Effort: minimal
+  - Impact: Enforces PR size limits for code review quality
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
+
+### statusline
+
+- **Health Score**: 35/100
+- **Stack**: node
+- **CI Failure Rate**: 75%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
+- **pr-size-limit.yml**
+  - Reason: Enforce maintainable PR sizes
+  - Effort: minimal
+  - Impact: Enforces PR size limits for code review quality
+
+#### Low Priority
+
+- **stale-bot.yml**
+  - Reason: Auto-close stale issues and PRs
+  - Effort: minimal
+  - Impact: Automatically closes stale issues and PRs
+- **mutation-testing.yml**
+  - Reason: Validate test quality
+  - Effort: significant
+  - Impact: Validates test quality by introducing code mutations
+
+### Utilitaire_Webapp
+
+- **Health Score**: 35/100
+- **Stack**: node
+- **CI Failure Rate**: 69%
+
+#### High Priority
+
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
+  - Effort: minimal
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
+- **container-scan.yml**
+  - Reason: Enhance container security scanning
+  - Effort: moderate
+  - Impact: Scans container images for vulnerabilities with Trivy
 - **pr-size-limit.yml**
   - Reason: Enforce maintainable PR sizes
   - Effort: minimal
@@ -490,13 +542,10 @@ Generated: 3/23/2026, 9:09:54 PM
 
 - **Health Score**: 0/100
 - **Stack**: node
+- **CI Failure Rate**: 62%
 
 #### High Priority
 
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
 - **qodo-merge.yml**
   - Reason: Free code reviews without API key requirement
   - Effort: minimal
@@ -505,10 +554,6 @@ Generated: 3/23/2026, 9:09:54 PM
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
 - **pr-size-limit.yml**
   - Reason: Enforce maintainable PR sizes
   - Effort: minimal
@@ -525,38 +570,28 @@ Generated: 3/23/2026, 9:09:54 PM
   - Effort: significant
   - Impact: Validates test quality by introducing code mutations
 
-### claude-cli-wrapper
+### claude-launcher
 
-- **Health Score**: 35/100
-- **Stack**: node
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
+- **Health Score**: 0/100
+- **Stack**: dotnet
+- **CI Failure Rate**: 47%
 
 #### High Priority
 
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
   - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
 - **pr-size-limit.yml**
   - Reason: Enforce maintainable PR sizes
   - Effort: minimal
   - Impact: Enforces PR size limits for code review quality
 
-#### Low Priority
+#### Medium Priority
 
 - **stale-bot.yml**
   - Reason: Auto-close stale issues and PRs
@@ -567,21 +602,14 @@ Generated: 3/23/2026, 9:09:54 PM
 
 - **Health Score**: 35/100
 - **Stack**: node
+- **CI Failure Rate**: 56%
 
 #### High Priority
 
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate
   - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
 - **pr-size-limit.yml**
   - Reason: Enforce maintainable PR sizes
   - Effort: minimal
@@ -598,172 +626,18 @@ Generated: 3/23/2026, 9:09:54 PM
   - Effort: significant
   - Impact: Validates test quality by introducing code mutations
 
-### MCP_Quota_Claude
-
-- **Health Score**: 35/100
-- **Stack**: node
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
-
-#### High Priority
-
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-
-### Site_1970_Plomberie
-
-- **Health Score**: 35/100
-- **Stack**: node
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
-
-#### High Priority
-
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-
-### statusline
-
-- **Health Score**: 35/100
-- **Stack**: node
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
-
-#### High Priority
-
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **dead-code-detection.yml**
-  - Reason: Detect and remove unused code
-  - Effort: minimal
-  - Impact: Detects and reports unused code with Knip
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Low Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-
-### claude-launcher
-
-- **Health Score**: 0/100
-- **Stack**: dotnet
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
-
-#### High Priority
-
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
-  - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
-- **container-scan.yml**
-  - Reason: Enhance container security scanning
-  - Effort: moderate
-  - Impact: Scans container images for vulnerabilities with Trivy
-- **pr-size-limit.yml**
-  - Reason: Enforce maintainable PR sizes
-  - Effort: minimal
-  - Impact: Enforces PR size limits for code review quality
-
-#### Medium Priority
-
-- **stale-bot.yml**
-  - Reason: Auto-close stale issues and PRs
-  - Effort: minimal
-  - Impact: Automatically closes stale issues and PRs
-
 ### SqlConnectionTest
 
 - **Health Score**: 35/100
 - **Stack**: dotnet
-
-#### Critical Priority
-
-- **ci-standard.yml**
-  - Reason: No CI workflow detected
-  - Effort: moderate
-  - Impact: Enables automated testing and deployment
+- **CI Failure Rate**: 80%
 
 #### High Priority
 
-- **auto-label.yml**
-  - Reason: Would improve issue/PR organization
+- **qodo-merge.yml**
+  - Reason: Free code reviews without API key requirement
   - Effort: minimal
-  - Impact: Automatically labels issues and PRs for better organization
+  - Impact: Free code review from CodeRabbit/Qodo without API keys
 - **container-scan.yml**
   - Reason: Enhance container security scanning
   - Effort: moderate

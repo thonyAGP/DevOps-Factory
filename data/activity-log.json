@@ -67017,6 +67017,380 @@
       "action": "outcome-registry",
       "details": "Registry updated: 10 outcomes (3 merged, 7 closed, 0 open). 10 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
       "status": "info"
+    },
+    {
+      "timestamp": "2026-03-23T22:10:05.290Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "18 projects, avg health 57",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T22:11:24.589Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 19 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T22:12:48.823Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 2%, 5 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T22:14:46.063Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 183.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-23T22:15:45.062Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 2555min total, 1509min wasted, ~$4.44/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T22:16:54.881Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 20/100, branch protection 0/19, CI 19/19, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T22:16:55.531Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "100 recommendations across 27 repos (0 critical, 60 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-23T22:24:50.721Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T22:24:52.275Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "ClubMedRoomAssignment",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T22:24:54.091Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T22:24:55.875Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T22:24:57.626Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Zentra",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T22:24:59.426Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T22:24:59.448Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/10 passing, 6 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-23T23:25:24.537Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Email_Assistant",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T23:25:26.131Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "ClubMedRoomAssignment",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T23:25:28.099Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "CasaSync",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T23:25:29.995Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T23:25:31.704Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "Zentra",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T23:25:33.602Z",
+      "source": "ci-health-check",
+      "action": "self-heal-failed",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-23T23:25:33.625Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/10 passing, 6 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T00:57:44.005Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "au-marais",
+      "details": "PR #12 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:57:48.418Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "CasaSync",
+      "details": "PR #80 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:57:50.945Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "claude-cli-wrapper",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:57:54.318Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "claude-launcher",
+      "details": "PR #6 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:57:58.604Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "ClubMedRoomAssignment",
+      "details": "PR #2806 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:01.276Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Email_Assistant",
+      "details": "PR #2799 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:03.806Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "PR #4 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:06.058Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "livret-au-marais",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:08.357Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "PR #6 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:10.778Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "magic-migration",
+      "details": "PR #26 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:13.367Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "MCP_Quota_Claude",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:21.125Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Site_1970_Plomberie",
+      "details": "PR #6 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:23.667Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Site_Greg-Assainissement",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:27.120Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "SqlConnectionTest",
+      "details": "PR #6 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:29.657Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "statusline",
+      "details": "PR #9 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:31.940Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "test_codingmenace",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:34.242Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Thumbfast",
+      "details": "PR #9 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:36.803Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "Utilitaire_Webapp",
+      "details": "PR #13 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:39.518Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "zentra",
+      "details": "PR #43 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:39.547Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 27 repos (19 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T00:58:49.783Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 10 outcomes (3 merged, 7 closed, 0 open). 10 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-24T00:59:36.764Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "18 projects, avg health 57",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:00:18.433Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 19 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:00:57.793Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 2%, 5 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:02:25.779Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 183.7h, MTTR 0h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-24T01:03:12.783Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 2553min total, 1511min wasted, ~$4.42/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:03:58.718Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 20/100, branch protection 0/19, CI 19/19, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-24T01:03:59.443Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "100 recommendations across 27 repos (0 critical, 60 high)",
+      "status": "success"
     }
   ]
 }

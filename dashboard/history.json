@@ -2927,9 +2927,9 @@
   },
   {
     "date": "2026-03-23",
-    "avgHealth": 68,
-    "failingCI": 2,
-    "passingCI": 1,
+    "avgHealth": 57,
+    "failingCI": 16,
+    "passingCI": 2,
     "totalOpenPRs": 25,
     "perProject": [
       {
@@ -2938,87 +2938,186 @@
         "ciStatus": "fail"
       },
       {
-        "name": "Utilitaire_Webapp",
+        "name": "claude-launcher",
+        "health": 50,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "SqlConnectionTest",
+        "health": 50,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "au-marais",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "CasaSync",
         "health": 55,
         "ciStatus": "fail"
       },
       {
         "name": "claude-cli-wrapper",
-        "health": 65,
-        "ciStatus": "none"
-      },
-      {
-        "name": "claude-launcher",
-        "health": 65,
-        "ciStatus": "none"
-      },
-      {
-        "name": "Livret_accueil_Au-Marais",
-        "health": 65,
-        "ciStatus": "none"
-      },
-      {
-        "name": "MCP_Quota_Claude",
-        "health": 65,
-        "ciStatus": "none"
-      },
-      {
-        "name": "Site_1970_Plomberie",
-        "health": 65,
-        "ciStatus": "none"
-      },
-      {
-        "name": "Site_Greg-Assainissement",
-        "health": 65,
-        "ciStatus": "none"
-      },
-      {
-        "name": "SqlConnectionTest",
-        "health": 65,
-        "ciStatus": "none"
-      },
-      {
-        "name": "livret-au-marais",
-        "health": 70,
-        "ciStatus": "none"
-      },
-      {
-        "name": "magic-migration",
-        "health": 70,
-        "ciStatus": "none"
-      },
-      {
-        "name": "au-marais",
-        "health": 75,
-        "ciStatus": "none"
-      },
-      {
-        "name": "Email_Assistant",
-        "health": 75,
-        "ciStatus": "none"
+        "health": 55,
+        "ciStatus": "fail"
       },
       {
         "name": "LB2I-Fiscal-Manager",
-        "health": 75,
-        "ciStatus": "none"
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Livret_accueil_Au-Marais",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "livret-au-marais",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "MCP_Quota_Claude",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Site_1970_Plomberie",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Site_Greg-Assainissement",
+        "health": 55,
+        "ciStatus": "fail"
       },
       {
         "name": "statusline",
-        "health": 75,
-        "ciStatus": "none"
+        "health": 55,
+        "ciStatus": "fail"
       },
       {
         "name": "test_codingmenace",
-        "health": 75,
-        "ciStatus": "none"
+        "health": 55,
+        "ciStatus": "fail"
       },
       {
         "name": "Thumbfast",
-        "health": 75,
-        "ciStatus": "none"
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Utilitaire_Webapp",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Email_Assistant",
+        "health": 85,
+        "ciStatus": "pass"
+      },
+      {
+        "name": "magic-migration",
+        "health": 85,
+        "ciStatus": "pass"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-24",
+    "avgHealth": 57,
+    "failingCI": 16,
+    "passingCI": 2,
+    "totalOpenPRs": 25,
+    "perProject": [
+      {
+        "name": "zentra",
+        "health": 45,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "claude-launcher",
+        "health": 50,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "SqlConnectionTest",
+        "health": 50,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "au-marais",
+        "health": 55,
+        "ciStatus": "fail"
       },
       {
         "name": "CasaSync",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "claude-cli-wrapper",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "LB2I-Fiscal-Manager",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Livret_accueil_Au-Marais",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "livret-au-marais",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "MCP_Quota_Claude",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Site_1970_Plomberie",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Site_Greg-Assainissement",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "statusline",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "test_codingmenace",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Thumbfast",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Utilitaire_Webapp",
+        "health": 55,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Email_Assistant",
+        "health": 85,
+        "ciStatus": "pass"
+      },
+      {
+        "name": "magic-migration",
         "health": 85,
         "ciStatus": "pass"
       }
