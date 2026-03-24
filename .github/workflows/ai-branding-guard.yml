@@ -1,0 +1,33 @@
+name: AI Branding Guard
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # Daily at 3h UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  branding-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run AI Branding Guard
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GITHUB_TOKEN: ${{ secrets.FACTORY_PAT }}
+        run: pnpm ai-branding-guard
