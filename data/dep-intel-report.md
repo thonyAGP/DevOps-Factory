@@ -1,6 +1,6 @@
 ## Dependency Intelligence Report
 
-> Generated: 2026-03-18T10:00:29.486Z
+> Generated: 2026-03-25T09:58:22.827Z
 
 ### Security Vulnerabilities
 
@@ -20,13 +20,16 @@ No open Dependabot alerts found.
 | MCP_Quota_Claude | 15 | 0 | node |
 | Statusline | 8 | 0 | node |
 | Site_Greg-Assainissement | 11 | 0 | nextjs |
-| Thumbfast_createur_images | 22 | 0 | nextjs |
+| Thumbfast_createur_images | 26 | 0 | nextjs |
 | Utilitaire_Webapp | 21 | 0 | nextjs |
 | test_codingmenace | 11 | 0 | nextjs |
+| Zentra | 45 | 0 | nextjs |
+| LB2I-Fiscal-Manager | 43 | 0 | nextjs |
+| magic-migration | 10 | 0 | node |
 
 ### Summary
 
-- **Repos scanned**: 13
+- **Repos scanned**: 16
 - **Total vulnerabilities**: 0
 
 ---
