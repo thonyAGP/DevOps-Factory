@@ -1,270 +1,11 @@
 {
-  "timestamp": "2026-03-25T07:09:33.398Z",
+  "timestamp": "2026-03-25T12:39:41.711Z",
   "repos": [
     {
-      "repo": "au-marais",
-      "fullName": "thonyAGP/au-marais",
-      "healthScore": 50,
-      "stack": "nextjs",
-      "ciFailureRate": 83,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "lighthouse.yml",
-          "priority": "high",
-          "reason": "Low health score (50) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "CasaSync",
-      "fullName": "thonyAGP/CasaSync",
-      "healthScore": 50,
-      "stack": "nextjs",
-      "ciFailureRate": 81,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "lighthouse.yml",
-          "priority": "high",
-          "reason": "Low health score (50) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "LB2I-Fiscal-Manager",
-      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
-      "healthScore": 50,
-      "stack": "nextjs",
-      "ciFailureRate": 90,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "lighthouse.yml",
-          "priority": "high",
-          "reason": "Low health score (50) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "Livret_accueil_Au-Marais",
-      "fullName": "thonyAGP/Livret_accueil_Au-Marais",
+      "repo": "claude-launcher",
+      "fullName": "thonyAGP/claude-launcher",
       "healthScore": 0,
-      "stack": "nextjs",
-      "ciFailureRate": 79,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "lighthouse.yml",
-          "priority": "high",
-          "reason": "Low health score (0) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "high",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "medium",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "livret-au-marais",
-      "fullName": "thonyAGP/livret-au-marais",
-      "healthScore": 50,
-      "stack": "nextjs",
-      "ciFailureRate": 84,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "lighthouse.yml",
-          "priority": "high",
-          "reason": "Low health score (50) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "Site_Greg-Assainissement",
-      "fullName": "thonyAGP/Site_Greg-Assainissement",
-      "healthScore": 50,
-      "stack": "nextjs",
-      "ciFailureRate": 79,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "lighthouse.yml",
-          "priority": "high",
-          "reason": "Low health score (50) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "test_codingmenace",
-      "fullName": "thonyAGP/test_codingmenace",
-      "healthScore": 50,
-      "stack": "nextjs",
-      "ciFailureRate": 25,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "lighthouse.yml",
-          "priority": "high",
-          "reason": "Low health score (50) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "Thumbfast",
-      "fullName": "thonyAGP/Thumbfast",
-      "healthScore": 50,
-      "stack": "nextjs",
+      "stack": "dotnet",
       "ciFailureRate": 45,
       "recommendations": [
         {
@@ -275,71 +16,11 @@
           "impact": "Free code review from CodeRabbit/Qodo without API keys"
         },
         {
-          "template": "lighthouse.yml",
+          "template": "renovate.json",
           "priority": "high",
-          "reason": "Low health score (50) - needs performance tracking",
-          "effort": "moderate",
-          "impact": "Tracks performance, accessibility, and SEO metrics"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
+          "reason": "No dependency update automation detected",
           "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "claude-cli-wrapper",
-      "fullName": "thonyAGP/claude-cli-wrapper",
-      "healthScore": 50,
-      "stack": "node",
-      "ciFailureRate": 80,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "claude-launcher",
-      "fullName": "thonyAGP/claude-launcher",
-      "healthScore": 0,
-      "stack": "dotnet",
-      "ciFailureRate": 41,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+          "impact": "Automated dependency updates with intelligent grouping"
         },
         {
           "template": "container-scan.yml",
@@ -347,133 +28,6 @@
           "reason": "Enhance container security scanning",
           "effort": "moderate",
           "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "medium",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "ClubMedRoomAssignment",
-      "fullName": "thonyAGP/ClubMedRoomAssignment",
-      "healthScore": 50,
-      "stack": "node",
-      "ciFailureRate": 82,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "magic-migration",
-      "fullName": "thonyAGP/magic-migration",
-      "healthScore": 70,
-      "stack": "node",
-      "ciFailureRate": 32,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "MCP_Quota_Claude",
-      "fullName": "thonyAGP/MCP_Quota_Claude",
-      "healthScore": 50,
-      "stack": "node",
-      "ciFailureRate": 80,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "Site_1970_Plomberie",
-      "fullName": "thonyAGP/Site_1970_Plomberie",
-      "healthScore": 50,
-      "stack": "node",
-      "ciFailureRate": 78,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
         }
       ]
     },
@@ -482,7 +36,7 @@
       "fullName": "thonyAGP/SqlConnectionTest",
       "healthScore": 50,
       "stack": "dotnet",
-      "ciFailureRate": 77,
+      "ciFailureRate": 79,
       "recommendations": [
         {
           "template": "qodo-merge.yml",
@@ -492,34 +46,11 @@
           "impact": "Free code review from CodeRabbit/Qodo without API keys"
         },
         {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "statusline",
-      "fullName": "thonyAGP/statusline",
-      "healthScore": 50,
-      "stack": "node",
-      "ciFailureRate": 81,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
+          "template": "renovate.json",
           "priority": "high",
-          "reason": "Free code reviews without API key requirement",
+          "reason": "No dependency update automation detected",
           "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
+          "impact": "Automated dependency updates with intelligent grouping"
         },
         {
           "template": "container-scan.yml",
@@ -527,96 +58,6 @@
           "reason": "Enhance container security scanning",
           "effort": "moderate",
           "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "Utilitaire_Webapp",
-      "fullName": "thonyAGP/Utilitaire_Webapp",
-      "healthScore": 50,
-      "stack": "node",
-      "ciFailureRate": 80,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "zentra",
-      "fullName": "thonyAGP/zentra",
-      "healthScore": 50,
-      "stack": "node",
-      "ciFailureRate": 75,
-      "recommendations": [
-        {
-          "template": "qodo-merge.yml",
-          "priority": "high",
-          "reason": "Free code reviews without API key requirement",
-          "effort": "minimal",
-          "impact": "Free code review from CodeRabbit/Qodo without API keys"
-        },
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
-        }
-      ]
-    },
-    {
-      "repo": "Email_Assistant",
-      "fullName": "thonyAGP/Email_Assistant",
-      "healthScore": 50,
-      "stack": "node",
-      "ciFailureRate": 87,
-      "recommendations": [
-        {
-          "template": "container-scan.yml",
-          "priority": "medium",
-          "reason": "Enhance container security scanning",
-          "effort": "moderate",
-          "impact": "Scans container images for vulnerabilities with Trivy"
-        },
-        {
-          "template": "stale-bot.yml",
-          "priority": "low",
-          "reason": "Auto-close stale issues and PRs",
-          "effort": "minimal",
-          "impact": "Automatically closes stale issues and PRs"
         }
       ]
     },
@@ -629,9 +70,33 @@
       "recommendations": []
     },
     {
+      "repo": "au-marais",
+      "fullName": "thonyAGP/au-marais",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
       "repo": "Benchmark_Claude",
       "fullName": "thonyAGP/Benchmark_Claude",
       "healthScore": 0,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "CasaSync",
+      "fullName": "thonyAGP/CasaSync",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "claude-cli-wrapper",
+      "fullName": "thonyAGP/claude-cli-wrapper",
+      "healthScore": 50,
       "stack": "unknown",
       "ciFailureRate": 0,
       "recommendations": []
@@ -653,6 +118,62 @@
       "recommendations": []
     },
     {
+      "repo": "ClubMedRoomAssignment",
+      "fullName": "thonyAGP/ClubMedRoomAssignment",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "Email_Assistant",
+      "fullName": "thonyAGP/Email_Assistant",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "LB2I-Fiscal-Manager",
+      "fullName": "thonyAGP/LB2I-Fiscal-Manager",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "Livret_accueil_Au-Marais",
+      "fullName": "thonyAGP/Livret_accueil_Au-Marais",
+      "healthScore": 0,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "livret-au-marais",
+      "fullName": "thonyAGP/livret-au-marais",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "magic-migration",
+      "fullName": "thonyAGP/magic-migration",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "MCP_Quota_Claude",
+      "fullName": "thonyAGP/MCP_Quota_Claude",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
       "repo": "PMS-Magic-Sources",
       "fullName": "thonyAGP/PMS-Magic-Sources",
       "healthScore": 0,
@@ -664,6 +185,22 @@
       "repo": "RemoteDevDashboard",
       "fullName": "thonyAGP/RemoteDevDashboard",
       "healthScore": 0,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "Site_1970_Plomberie",
+      "fullName": "thonyAGP/Site_1970_Plomberie",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "Site_Greg-Assainissement",
+      "fullName": "thonyAGP/Site_Greg-Assainissement",
+      "healthScore": 50,
       "stack": "unknown",
       "ciFailureRate": 0,
       "recommendations": []
@@ -683,33 +220,69 @@
       "stack": "unknown",
       "ciFailureRate": 0,
       "recommendations": []
+    },
+    {
+      "repo": "statusline",
+      "fullName": "thonyAGP/statusline",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "test_codingmenace",
+      "fullName": "thonyAGP/test_codingmenace",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "Thumbfast",
+      "fullName": "thonyAGP/Thumbfast",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "Utilitaire_Webapp",
+      "fullName": "thonyAGP/Utilitaire_Webapp",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
+    },
+    {
+      "repo": "zentra",
+      "fullName": "thonyAGP/zentra",
+      "healthScore": 50,
+      "stack": "unknown",
+      "ciFailureRate": 0,
+      "recommendations": []
     }
   ],
   "summary": {
-    "totalRecommendations": 64,
+    "totalRecommendations": 6,
     "criticalCount": 0,
-    "highCount": 28,
-    "mediumCount": 19,
-    "lowCount": 17,
+    "highCount": 5,
+    "mediumCount": 1,
+    "lowCount": 0,
     "topTemplates": [
       {
-        "template": "container-scan.yml",
-        "count": 19
-      },
-      {
-        "template": "stale-bot.yml",
-        "count": 19
-      },
-      {
         "template": "qodo-merge.yml",
-        "count": 18
+        "count": 2
       },
       {
-        "template": "lighthouse.yml",
-        "count": 8
+        "template": "renovate.json",
+        "count": 2
+      },
+      {
+        "template": "container-scan.yml",
+        "count": 2
       }
     ],
-    "topRepo": "au-marais",
-    "avgHealthScore": 32.22222222222222
+    "topRepo": "claude-launcher",
+    "avgHealthScore": 31.48148148148148
   }
 }
