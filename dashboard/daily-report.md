@@ -6,8 +6,8 @@
 - **100%** avg security score
 - **18/18** repos with AI code review
 - **100%** avg quality score (perf, a11y, coverage, release)
-- **DORA**: MEDIUM (deploy 0/wk, lead 168.7h, MTTR 0h, CFR 41%)
-- **CI Cost**: 1921min total, 786min wasted, ~$0/mo
+- **DORA**: MEDIUM (deploy 0/wk, lead 153.4h, MTTR 0h, CFR 44%)
+- **CI Cost**: 1923min total, 836min wasted, ~$0/mo
 - **Compliance**: 80/100 avg, 0% review coverage, 0/19 branch protected
 
 ## Per Project
@@ -44,7 +44,7 @@
 
 ### LB2I-Fiscal-Manager :x:
 - **Health**: 55/100
-- **CI**: fail ([view](https://github.com/thonyAGP/LB2I-Fiscal-Manager/actions/runs/23506663287))
+- **CI**: fail ([view](https://github.com/thonyAGP/LB2I-Fiscal-Manager/actions/runs/23519575236))
 - **Open PRs**: 2
 
 ### Livret_accueil_Au-Marais :x:

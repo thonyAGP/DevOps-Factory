@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-24T19:09:12.796Z",
+  "timestamp": "2026-03-25T01:08:11.682Z",
   "repos": [
     {
       "repo": "magic-migration",
@@ -1185,7 +1185,7 @@
       "totalRuns": 100,
       "workflows": [
         {
-          "name": "Coverage Tracking",
+          "name": "Release Drafter",
           "runs": 13,
           "totalMinutes": 13,
           "avgMinutes": 1,
@@ -1201,20 +1201,28 @@
           "wastedMinutes": 13
         },
         {
-          "name": "Semantic Release",
-          "runs": 13,
-          "totalMinutes": 13,
-          "avgMinutes": 1,
-          "failedRuns": 11,
-          "wastedMinutes": 11
-        },
-        {
-          "name": "Release Drafter",
+          "name": "Coverage Tracking",
           "runs": 13,
           "totalMinutes": 13,
           "avgMinutes": 1,
           "failedRuns": 13,
           "wastedMinutes": 13
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 12,
+          "totalMinutes": 12,
+          "avgMinutes": 1,
+          "failedRuns": 12,
+          "wastedMinutes": 12
+        },
+        {
+          "name": "Semantic Release",
+          "runs": 12,
+          "totalMinutes": 12,
+          "avgMinutes": 1,
+          "failedRuns": 10,
+          "wastedMinutes": 10
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
@@ -1233,20 +1241,12 @@
           "wastedMinutes": 12
         },
         {
-          "name": ".github/workflows/cron-monitor.yml",
-          "runs": 11,
-          "totalMinutes": 11,
-          "avgMinutes": 1,
-          "failedRuns": 11,
-          "wastedMinutes": 11
-        },
-        {
-          "name": "Cron Monitor",
+          "name": "Lighthouse CI",
           "runs": 8,
           "totalMinutes": 8,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "TypeDoc Generation",
@@ -1258,13 +1258,14 @@
         }
       ],
       "recommendations": [
-        "Coverage Tracking: 100% failure rate (13min wasted). Fix root cause.",
-        "CI: 100% failure rate (13min wasted). Fix root cause.",
-        "Semantic Release: 85% failure rate (11min wasted). Fix root cause.",
         "Release Drafter: 100% failure rate (13min wasted). Fix root cause.",
+        "CI: 100% failure rate (13min wasted). Fix root cause.",
+        "Coverage Tracking: 100% failure rate (13min wasted). Fix root cause.",
+        ".github/workflows/cron-monitor.yml: 100% failure rate (12min wasted). Fix root cause.",
+        "Semantic Release: 83% failure rate (10min wasted). Fix root cause.",
         ".github/workflows/auto-changelog.yml: 100% failure rate (12min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (12min wasted). Fix root cause.",
-        ".github/workflows/cron-monitor.yml: 100% failure rate (11min wasted). Fix root cause."
+        "Lighthouse CI: 50% failure rate (4min wasted). Fix root cause."
       ]
     },
     {
@@ -2691,10 +2692,10 @@
   "summary": {
     "totalMinutes": 1923,
     "totalRuns": 1900,
-    "wastedMinutes": 836,
+    "wastedMinutes": 840,
     "mostExpensiveRepo": "magic-migration",
     "mostExpensiveWorkflow": "Cron Monitor (test_codingmenace)",
-    "totalRecommendations": 81,
+    "totalRecommendations": 82,
     "estimatedMonthlyCost": 0
   }
 }
