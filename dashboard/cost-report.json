@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-25T02:16:11.582Z",
+  "timestamp": "2026-03-25T07:08:19.591Z",
   "repos": [
     {
       "repo": "Thumbfast",
@@ -1037,14 +1037,6 @@
           "wastedMinutes": 9
         },
         {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 8,
-          "totalMinutes": 8,
-          "avgMinutes": 1,
-          "failedRuns": 8,
-          "wastedMinutes": 8
-        },
-        {
           "name": ".github/workflows/cron-monitor.yml",
           "runs": 7,
           "totalMinutes": 7,
@@ -1053,7 +1045,15 @@
           "wastedMinutes": 7
         },
         {
-          "name": ".github/workflows/auto-changelog.yml",
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 7,
+          "totalMinutes": 7,
+          "avgMinutes": 1,
+          "failedRuns": 7,
+          "wastedMinutes": 7
+        },
+        {
+          "name": "Monitor Production",
           "runs": 6,
           "totalMinutes": 6,
           "avgMinutes": 1,
@@ -1061,12 +1061,12 @@
           "wastedMinutes": 6
         },
         {
-          "name": "Monitor Production",
-          "runs": 5,
-          "totalMinutes": 5,
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 6,
+          "totalMinutes": 6,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 6,
+          "wastedMinutes": 6
         },
         {
           "name": "Lighthouse CI",
@@ -1176,8 +1176,9 @@
       "recommendations": [
         "Coverage Tracking: 100% failure rate (9min wasted). Fix root cause.",
         "CI: 100% failure rate (9min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (8min wasted). Fix root cause.",
         ".github/workflows/cron-monitor.yml: 100% failure rate (7min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause.",
+        "Monitor Production: 100% failure rate (6min wasted). Fix root cause.",
         ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
       ]
     },
@@ -2702,7 +2703,7 @@
     "wastedMinutes": 989,
     "mostExpensiveRepo": "Thumbfast",
     "mostExpensiveWorkflow": "Cron Monitor (Utilitaire_Webapp)",
-    "totalRecommendations": 88,
+    "totalRecommendations": 89,
     "estimatedMonthlyCost": 0
   }
 }

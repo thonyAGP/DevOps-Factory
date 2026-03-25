@@ -6,8 +6,8 @@
 - **100%** avg security score
 - **18/18** repos with AI code review
 - **100%** avg quality score (perf, a11y, coverage, release)
-- **DORA**: MEDIUM (deploy 0/wk, lead 168.7h, MTTR 0h, CFR 44%)
-- **CI Cost**: 1923min total, 840min wasted, ~$0/mo
+- **DORA**: MEDIUM (deploy 0/wk, lead 168.7h, MTTR 0h, CFR 51%)
+- **CI Cost**: 1934min total, 989min wasted, ~$0/mo
 - **Compliance**: 80/100 avg, 0% review coverage, 0/19 branch protected
 
 ## Per Project
@@ -44,7 +44,7 @@
 
 ### Email_Assistant :x:
 - **Health**: 55/100
-- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23521016970))
+- **CI**: fail ([view](https://github.com/thonyAGP/Email_Assistant/actions/runs/23528867694))
 - **Open PRs**: 1
 
 ### LB2I-Fiscal-Manager :x:
