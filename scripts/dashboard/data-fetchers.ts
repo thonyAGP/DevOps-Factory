@@ -102,11 +102,8 @@ export const buildProjectStatuses = (report: ScanReport): ProjectStatus[] => {
         hasPerformanceBudget: analysis.hasPerformanceBudget ?? false,
         hasAccessibilityCheck: analysis.hasAccessibilityCheck ?? false,
         hasLighthouse: analysis.hasLighthouse ?? false,
-        hasAutoChangelog: analysis.hasAutoChangelog ?? false,
         hasTypedoc: analysis.hasTypedoc ?? false,
         hasCoverageTracking: analysis.hasCoverageTracking ?? false,
-        hasSemanticRelease: analysis.hasSemanticRelease ?? false,
-        hasReleaseDrafter: analysis.hasReleaseDrafter ?? false,
         perfScore: 0,
       };
 

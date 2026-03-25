@@ -17,8 +17,7 @@ export const calculatePerfScore = (status: ProjectStatus): number => {
   if (status.hasLighthouse || status.hasPerformanceBudget) score++;
   if (status.hasAccessibilityCheck) score++;
   if (status.hasCoverageTracking) score++;
-  if (status.hasAutoChangelog || status.hasTypedoc) score++;
-  if (status.hasSemanticRelease || status.hasReleaseDrafter) score++;
+  if (status.hasTypedoc) score++;
   return Math.round((score / total) * 100);
 };
 
@@ -36,6 +35,5 @@ export const calculateHealthScore = (status: ProjectStatus): number => {
   if (!status.hasLicenseCheck) score -= 3;
   if (!status.hasSemgrep) score -= 3;
   if (!status.hasCoverageTracking) score -= 3;
-  if (!status.hasSemanticRelease && !status.hasReleaseDrafter) score -= 2;
   return Math.max(0, score);
 };

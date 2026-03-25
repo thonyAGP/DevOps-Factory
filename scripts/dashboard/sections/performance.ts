@@ -7,8 +7,8 @@ export const getPerformanceSection = (statuses: ProjectStatus[]): string => {
   const withLighthouse = statuses.filter((p) => p.hasLighthouse || p.hasPerformanceBudget).length;
   const withA11y = statuses.filter((p) => p.hasAccessibilityCheck).length;
   const withCoverage = statuses.filter((p) => p.hasCoverageTracking).length;
-  const withDocs = statuses.filter((p) => p.hasAutoChangelog || p.hasTypedoc).length;
-  const withRelease = statuses.filter((p) => p.hasSemanticRelease || p.hasReleaseDrafter).length;
+  const withDocs = statuses.filter((p) => p.hasTypedoc).length;
+  const withRelease = 0;
   const total = statuses.length;
 
   return `

@@ -32,7 +32,6 @@ interface RepoAnalysis {
   hasOpenSpec: boolean;
   hasPrisma: boolean;
   hasBranchCleanup: boolean;
-  hasStaleBot: boolean;
   hasPrDescriptionAI: boolean;
   hasAccessibilityCheck: boolean;
   hasDeadCodeDetection: boolean;
@@ -51,13 +50,10 @@ interface RepoAnalysis {
   hasSecurityHeaders: boolean;
   hasPrRiskAssessment: boolean;
   hasPrSizeLimiter: boolean;
-  hasReleaseDrafter: boolean;
   hasReadmeFreshness: boolean;
   hasConfigDrift: boolean;
   hasCoverageTracking: boolean;
-  hasSemanticRelease: boolean;
   hasLighthouse: boolean;
-  hasAutoChangelog: boolean;
   hasTypedoc: boolean;
 }
 
@@ -174,21 +170,6 @@ const TEMPLATE_RULES: Record<
     effort: 'moderate',
     impact: 'Tracks test coverage over time and prevents regressions',
   },
-  'semantic-release.yml': {
-    stacks: ['nextjs', 'node'],
-    conditions: (analysis, score) =>
-      !analysis.hasSemanticRelease && analysis.hasCI && score.score > 50,
-    priority: 'medium',
-    effort: 'moderate',
-    impact: 'Automated versioning and release notes from git commits',
-  },
-  'stale-bot.yml': {
-    stacks: ['nextjs', 'node', 'dotnet'],
-    conditions: () => true,
-    priority: 'low',
-    effort: 'minimal',
-    impact: 'Automatically closes stale issues and PRs',
-  },
   'renovate.json': {
     stacks: ['nextjs', 'node', 'dotnet'],
     conditions: (analysis) => !analysis.hasRenovate,
@@ -223,13 +204,6 @@ const TEMPLATE_RULES: Record<
     priority: 'high',
     effort: 'minimal',
     impact: 'Static analysis for bugs, security issues, and anti-patterns',
-  },
-  'release-drafter.yml': {
-    stacks: ['nextjs', 'node', 'dotnet'],
-    conditions: (analysis) => !analysis.hasReleaseDrafter && analysis.hasCI,
-    priority: 'low',
-    effort: 'minimal',
-    impact: 'Auto-drafts release notes from PRs and commits',
   },
   'pr-size-limit.yml': {
     stacks: ['nextjs', 'node', 'dotnet'],
@@ -317,10 +291,6 @@ const analyzeRepo = (
       reason = 'No accessibility scanning detected';
     } else if (template === 'coverage-tracking.yml') {
       reason = `Low health score (${healthScore}) - needs test coverage tracking`;
-    } else if (template === 'semantic-release.yml') {
-      reason = 'Automate versioning from commits';
-    } else if (template === 'stale-bot.yml') {
-      reason = 'Auto-close stale issues and PRs';
     } else if (template === 'renovate.json') {
       reason = 'No dependency update automation detected';
     } else if (template === 'prisma-migration-check.yml') {
@@ -331,8 +301,6 @@ const analyzeRepo = (
       reason = 'Detect and remove unused code';
     } else if (template === 'semgrep.yml') {
       reason = 'No SAST (static analysis) detected';
-    } else if (template === 'release-drafter.yml') {
-      reason = 'Auto-generate release notes';
     } else if (template === 'pr-size-limit.yml') {
       reason = 'Enforce maintainable PR sizes';
     } else if (template === 'supply-chain-security.yml') {

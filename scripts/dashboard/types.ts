@@ -63,11 +63,8 @@ export interface ScanResult {
   hasPerformanceBudget: boolean;
   hasAccessibilityCheck: boolean;
   hasLighthouse: boolean;
-  hasAutoChangelog: boolean;
   hasTypedoc: boolean;
   hasCoverageTracking: boolean;
-  hasSemanticRelease: boolean;
-  hasReleaseDrafter: boolean;
   defaultBranch: string;
 }
 
@@ -108,11 +105,8 @@ export interface ProjectStatus {
   hasPerformanceBudget: boolean;
   hasAccessibilityCheck: boolean;
   hasLighthouse: boolean;
-  hasAutoChangelog: boolean;
   hasTypedoc: boolean;
   hasCoverageTracking: boolean;
-  hasSemanticRelease: boolean;
-  hasReleaseDrafter: boolean;
   perfScore: number;
 }
 

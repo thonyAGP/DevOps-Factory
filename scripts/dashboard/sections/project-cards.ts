@@ -43,7 +43,7 @@ export const renderOkCards = (okProjects: ProjectStatus[]): string => {
         <div class="metric"><span class="metric-label">Security</span><span style="color:${p.securityScore >= 80 ? '#22c55e' : p.securityScore >= 40 ? '#f59e0b' : '#ef4444'}">${p.securityScore}% <small>(${[p.hasGitleaks ? 'secrets' : '', p.hasSemgrep ? 'SAST' : '', p.hasSupplyChain ? 'supply' : '', p.hasLicenseCheck ? 'license' : ''].filter(Boolean).join(', ') || 'none'})</small></span></div>
         <div class="metric"><span class="metric-label">Review</span><span>${p.hasCodeRabbit ? 'CodeRabbit' : p.configured ? 'Claude' : 'None'}</span></div>
         <div class="metric"><span class="metric-label">Quality</span><span>${[p.hasHusky ? 'Husky' : '', p.hasRenovate ? 'Renovate' : ''].filter(Boolean).join(', ') || 'None'}</span></div>
-        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:${p.perfScore >= 80 ? '#22c55e' : p.perfScore >= 40 ? '#f59e0b' : '#ef4444'}">${p.perfScore}% <small>(${[p.hasLighthouse || p.hasPerformanceBudget ? 'perf' : '', p.hasAccessibilityCheck ? 'a11y' : '', p.hasCoverageTracking ? 'cov' : '', p.hasSemanticRelease || p.hasReleaseDrafter ? 'rel' : ''].filter(Boolean).join(', ') || 'none'})</small></span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:${p.perfScore >= 80 ? '#22c55e' : p.perfScore >= 40 ? '#f59e0b' : '#ef4444'}">${p.perfScore}% <small>(${[p.hasLighthouse || p.hasPerformanceBudget ? 'perf' : '', p.hasAccessibilityCheck ? 'a11y' : '', p.hasCoverageTracking ? 'cov' : ''].filter(Boolean).join(', ') || 'none'})</small></span></div>
       </div>
     </details>`
     )

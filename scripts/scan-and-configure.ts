@@ -46,7 +46,6 @@ interface RepoAnalysis {
   hasOpenSpec: boolean;
   hasPrisma: boolean;
   hasBranchCleanup: boolean;
-  hasStaleBot: boolean;
   hasPrDescriptionAI: boolean;
   hasAccessibilityCheck: boolean;
   hasDeadCodeDetection: boolean;
@@ -65,13 +64,10 @@ interface RepoAnalysis {
   hasSecurityHeaders: boolean;
   hasPrRiskAssessment: boolean;
   hasPrSizeLimiter: boolean;
-  hasReleaseDrafter: boolean;
   hasReadmeFreshness: boolean;
   hasConfigDrift: boolean;
   hasCoverageTracking: boolean;
-  hasSemanticRelease: boolean;
   hasLighthouse: boolean;
-  hasAutoChangelog: boolean;
   hasTypedoc: boolean;
 }
 
@@ -216,7 +212,6 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
   const hasPrisma = has('prisma/schema.prisma');
   const hasBranchCleanup =
     workflowsDir.includes('branch-cleanup') || workflowsDir.includes('cleanup');
-  const hasStaleBot = workflowsDir.includes('stale');
   const hasPrDescriptionAI = workflowsDir.includes('pr-description');
   const hasAccessibilityCheck =
     workflowsDir.includes('accessibility') || workflowsDir.includes('a11y');
@@ -241,17 +236,12 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
   const hasPrRiskAssessment =
     workflowsDir.includes('pr-risk') || workflowsDir.includes('risk-assessment');
   const hasPrSizeLimiter = workflowsDir.includes('pr-size');
-  const hasReleaseDrafter = workflowsDir.includes('release-drafter');
   const hasReadmeFreshness = workflowsDir.includes('readme-freshness');
   const hasConfigDrift = workflowsDir.includes('config-drift');
   const hasCoverageTracking =
     workflowsDir.includes('coverage-tracking') || workflowsDir.includes('coverage');
-  const hasSemanticRelease =
-    workflowsDir.includes('semantic-release') || workflowsDir.includes('release.yml');
   const hasLighthouse =
     workflowsDir.includes('lighthouse') || workflowsDir.includes('lighthouse-ci');
-  const hasAutoChangelog =
-    workflowsDir.includes('auto-changelog') || workflowsDir.includes('changelog');
   const hasTypedoc = workflowsDir.includes('typedoc') || workflowsDir.includes('docs-gen');
 
   return {
@@ -273,7 +263,6 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
     hasOpenSpec,
     hasPrisma,
     hasBranchCleanup,
-    hasStaleBot,
     hasPrDescriptionAI,
     hasAccessibilityCheck,
     hasDeadCodeDetection,
@@ -292,13 +281,10 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
     hasSecurityHeaders,
     hasPrRiskAssessment,
     hasPrSizeLimiter,
-    hasReleaseDrafter,
     hasReadmeFreshness,
     hasConfigDrift,
     hasCoverageTracking,
-    hasSemanticRelease,
     hasLighthouse,
-    hasAutoChangelog,
     hasTypedoc,
   };
 };
@@ -427,14 +413,6 @@ const createConfigPR = (analysis: RepoAnalysis): void => {
     filesToAdd.push({
       path: '.github/workflows/branch-cleanup.yml',
       template: `${TEMPLATES_DIR}/branch-cleanup.yml`,
-    });
-  }
-
-  // Phase 3: Stale issue/PR bot
-  if (!analysis.hasStaleBot && analysis.stack !== 'unknown') {
-    filesToAdd.push({
-      path: '.github/workflows/stale-bot.yml',
-      template: `${TEMPLATES_DIR}/stale-bot.yml`,
     });
   }
 
@@ -600,20 +578,6 @@ const createConfigPR = (analysis: RepoAnalysis): void => {
     });
   }
 
-  // Wave 3: Release drafter (all projects)
-  if (!analysis.hasReleaseDrafter && analysis.stack !== 'unknown') {
-    filesToAdd.push(
-      {
-        path: '.github/workflows/release-drafter.yml',
-        template: `${TEMPLATES_DIR}/release-drafter.yml`,
-      },
-      {
-        path: '.github/release-drafter-config.yml',
-        template: `${TEMPLATES_DIR}/release-drafter-config.yml`,
-      }
-    );
-  }
-
   // Wave 3: README freshness (all projects)
   if (!analysis.hasReadmeFreshness && analysis.stack !== 'unknown') {
     filesToAdd.push({
@@ -652,27 +616,11 @@ const createConfigPR = (analysis: RepoAnalysis): void => {
     );
   }
 
-  // Phase 3: Auto changelog (all active projects)
-  if (!analysis.hasAutoChangelog && analysis.stack !== 'unknown') {
-    filesToAdd.push({
-      path: '.github/workflows/auto-changelog.yml',
-      template: `${TEMPLATES_DIR}/auto-changelog.yml`,
-    });
-  }
-
   // Phase 3: TypeDoc generation (Node.js/TS projects)
   if (!analysis.hasTypedoc && (analysis.stack === 'node' || analysis.stack === 'nextjs')) {
     filesToAdd.push({
       path: '.github/workflows/typedoc-gen.yml',
       template: `${TEMPLATES_DIR}/typedoc-gen.yml`,
-    });
-  }
-
-  // Phase 2: Semantic release (all active projects)
-  if (!analysis.hasSemanticRelease && analysis.stack !== 'unknown') {
-    filesToAdd.push({
-      path: '.github/workflows/semantic-release.yml',
-      template: `${TEMPLATES_DIR}/semantic-release.yml`,
     });
   }
 
@@ -752,7 +700,6 @@ ${fileList}
 - **OpenSpec Drift**: Detects code changes without spec updates
 - **Prisma Migration Safety**: Warns on destructive migration operations
 - **Branch Cleanup**: Weekly cleanup of merged branches and old artifacts
-- **Stale Bot**: Auto-closes inactive issues/PRs after 30 days
 - **PR Description AI**: Auto-generates PR descriptions from diff analysis
 - **Accessibility Check**: WCAG 2.1 AA scanning with axe-core/pa11y
 - **Dead Code Detection**: Knip finds unused files, exports, dependencies
@@ -771,7 +718,6 @@ ${fileList}
 - **Security Headers**: Weekly HSTS/CSP/X-Frame-Options validation
 - **PR Risk Assessment**: Scores PR risk (size, critical files, test ratio)
 - **PR Size Limiter**: Warns on large PRs (>400 lines)
-- **Release Drafter**: Auto-generates release notes from merged PRs
 - **README Freshness**: Monthly check for stale README content
 - **Config Drift**: Detects divergence from standard configs (tsconfig, eslint, prettier)
 
@@ -814,9 +760,9 @@ const generateReport = (analyses: RepoAnalysis[]): string => {
     const supply = a.hasSupplyChainSecurity ? 'Y' : '-';
     const coverage = a.hasCoverageTracking ? 'Y' : '-';
     const drift = a.hasConfigDrift ? 'Y' : '-';
-    const release = a.hasSemanticRelease ? 'SR' : a.hasReleaseDrafter ? 'RD' : '-';
+    const release = '-';
     const perf = a.hasLighthouse ? 'LH' : a.hasPerformanceBudget ? 'PB' : '-';
-    const docs = a.hasAutoChangelog ? 'CL' : a.hasTypedoc ? 'TD' : '-';
+    const docs = a.hasTypedoc ? 'TD' : '-';
     report += `| ${a.repo.name} | ${a.stack} | ${ci} | ${review} | ${sast} | ${supply} | ${coverage} | ${drift} | ${release} | ${perf} | ${docs} |\n`;
   }
 
@@ -882,7 +828,6 @@ const main = () => {
           hasOpenSpec: a.hasOpenSpec,
           hasPrisma: a.hasPrisma,
           hasBranchCleanup: a.hasBranchCleanup,
-          hasStaleBot: a.hasStaleBot,
           hasPrDescriptionAI: a.hasPrDescriptionAI,
           hasAccessibilityCheck: a.hasAccessibilityCheck,
           hasDeadCodeDetection: a.hasDeadCodeDetection,
@@ -901,13 +846,10 @@ const main = () => {
           hasSecurityHeaders: a.hasSecurityHeaders,
           hasPrRiskAssessment: a.hasPrRiskAssessment,
           hasPrSizeLimiter: a.hasPrSizeLimiter,
-          hasReleaseDrafter: a.hasReleaseDrafter,
           hasReadmeFreshness: a.hasReadmeFreshness,
           hasConfigDrift: a.hasConfigDrift,
           hasCoverageTracking: a.hasCoverageTracking,
-          hasSemanticRelease: a.hasSemanticRelease,
           hasLighthouse: a.hasLighthouse,
-          hasAutoChangelog: a.hasAutoChangelog,
           hasTypedoc: a.hasTypedoc,
           defaultBranch: a.repo.default_branch,
         })),
