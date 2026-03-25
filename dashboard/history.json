@@ -3125,14 +3125,19 @@
   },
   {
     "date": "2026-03-25",
-    "avgHealth": 57,
-    "failingCI": 16,
-    "passingCI": 2,
+    "avgHealth": 56,
+    "failingCI": 17,
+    "passingCI": 1,
     "totalOpenPRs": 26,
     "perProject": [
       {
         "name": "zentra",
         "health": 45,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "claude-launcher",
+        "health": 50,
         "ciStatus": "fail"
       },
       {
@@ -3209,11 +3214,6 @@
         "name": "Utilitaire_Webapp",
         "health": 55,
         "ciStatus": "fail"
-      },
-      {
-        "name": "claude-launcher",
-        "health": 80,
-        "ciStatus": "pass"
       },
       {
         "name": "magic-migration",

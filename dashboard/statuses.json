@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-25T01:03:43.597Z",
+  "timestamp": "2026-03-25T02:12:32.521Z",
   "projects": [
     {
       "name": "zentra",
@@ -8,10 +8,10 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "skipped",
-        "created_at": "2026-03-24T10:50:59Z",
+        "created_at": "2026-03-25T01:44:19Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/zentra/actions/runs/23485672732",
-        "id": 23485672732,
+        "html_url": "https://github.com/thonyAGP/zentra/actions/runs/23520891044",
+        "id": 23520891044,
         "name": "Lighthouse CI"
       },
       "openPRs": [
@@ -120,17 +120,68 @@
       "perfScore": 100
     },
     {
+      "name": "claude-launcher",
+      "fullName": "thonyAGP/claude-launcher",
+      "stack": "dotnet",
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-03-25T01:38:53Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/claude-launcher/actions/runs/23520752457",
+        "id": 23520752457,
+        "name": "Coverage Tracking"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-24T01:15:54Z",
+          "html_url": "https://github.com/thonyAGP/claude-launcher/pull/7",
+          "labels": [
+            "ci",
+            "size/L"
+          ],
+          "number": 7,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 50,
+      "configured": false,
+      "hasGitleaks": true,
+      "hasRenovate": true,
+      "hasHusky": false,
+      "hasCodeRabbit": true,
+      "hasLicenseCheck": true,
+      "hasSemgrep": true,
+      "hasSupplyChain": true,
+      "securityScore": 100,
+      "hasPerformanceBudget": true,
+      "hasAccessibilityCheck": true,
+      "hasLighthouse": true,
+      "hasAutoChangelog": true,
+      "hasTypedoc": true,
+      "hasCoverageTracking": true,
+      "hasSemanticRelease": true,
+      "hasReleaseDrafter": true,
+      "perfScore": 100
+    },
+    {
       "name": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
       "stack": "dotnet",
       "ciStatus": "fail",
       "lastRun": {
-        "conclusion": "skipped",
-        "created_at": "2026-03-24T18:47:00Z",
+        "conclusion": "failure",
+        "created_at": "2026-03-25T01:35:13Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/SqlConnectionTest/actions/runs/23506660361",
-        "id": 23506660361,
-        "name": "Semantic Release"
+        "html_url": "https://github.com/thonyAGP/SqlConnectionTest/actions/runs/23520656727",
+        "id": 23520656727,
+        "name": "Coverage Tracking"
       },
       "openPRs": [
         {
@@ -174,11 +225,11 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-03-24T18:49:25Z",
+        "created_at": "2026-03-25T01:40:56Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/au-marais/actions/runs/23506758771",
-        "id": 23506758771,
-        "name": "E2E Tests"
+        "html_url": "https://github.com/thonyAGP/au-marais/actions/runs/23520804285",
+        "id": 23520804285,
+        "name": "Lighthouse CI"
       },
       "openPRs": [
         {
@@ -221,12 +272,12 @@
       "stack": "nextjs",
       "ciStatus": "fail",
       "lastRun": {
-        "conclusion": "skipped",
-        "created_at": "2026-03-24T18:45:16Z",
+        "conclusion": "failure",
+        "created_at": "2026-03-25T01:33:28Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/CasaSync/actions/runs/23506588005",
-        "id": 23506588005,
-        "name": "Semantic Release"
+        "html_url": "https://github.com/thonyAGP/CasaSync/actions/runs/23520611414",
+        "id": 23520611414,
+        "name": "CI"
       },
       "openPRs": [
         {
@@ -269,12 +320,12 @@
       "stack": "node",
       "ciStatus": "fail",
       "lastRun": {
-        "conclusion": "skipped",
-        "created_at": "2026-03-24T18:46:01Z",
+        "conclusion": "failure",
+        "created_at": "2026-03-25T01:35:33Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/actions/runs/23506620071",
-        "id": 23506620071,
-        "name": "Semantic Release"
+        "html_url": "https://github.com/thonyAGP/claude-cli-wrapper/actions/runs/23520665382",
+        "id": 23520665382,
+        "name": "Coverage Tracking"
       },
       "openPRs": [
         {
@@ -318,10 +369,10 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-03-24T18:56:19Z",
+        "created_at": "2026-03-25T01:49:28Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/23507045556",
-        "id": 23507045556,
+        "html_url": "https://github.com/thonyAGP/Email_Assistant/actions/runs/23521016970",
+        "id": 23521016970,
         "name": "Monitor Production"
       },
       "openPRs": [
@@ -366,10 +417,10 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-03-25T00:53:56Z",
+        "created_at": "2026-03-25T01:39:19Z",
         "head_branch": "main",
-        "html_url": "https://github.com/thonyAGP/LB2I-Fiscal-Manager/actions/runs/23519575236",
-        "id": 23519575236,
+        "html_url": "https://github.com/thonyAGP/LB2I-Fiscal-Manager/actions/runs/23520763319",
+        "id": 23520763319,
         "name": "Lighthouse CI"
       },
       "openPRs": [
@@ -425,11 +476,11 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-03-24T10:46:26Z",
+        "created_at": "2026-03-25T01:37:50Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Livret_accueil_Au-Marais/actions/runs/23485496894",
-        "id": 23485496894,
-        "name": "Semantic Release"
+        "html_url": "https://github.com/thonyAGP/Livret_accueil_Au-Marais/actions/runs/23520724819",
+        "id": 23520724819,
+        "name": ".github/workflows/cron-monitor.yml"
       },
       "openPRs": [
         {
@@ -473,10 +524,10 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-03-24T18:48:08Z",
+        "created_at": "2026-03-25T01:41:22Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/livret-au-marais/actions/runs/23506706993",
-        "id": 23506706993,
+        "html_url": "https://github.com/thonyAGP/livret-au-marais/actions/runs/23520815202",
+        "id": 23520815202,
         "name": "Lighthouse CI"
       },
       "openPRs": [
@@ -520,12 +571,12 @@
       "stack": "node",
       "ciStatus": "fail",
       "lastRun": {
-        "conclusion": "skipped",
-        "created_at": "2026-03-24T18:46:05Z",
+        "conclusion": "failure",
+        "created_at": "2026-03-25T01:36:15Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/actions/runs/23506622882",
-        "id": 23506622882,
-        "name": "Semantic Release"
+        "html_url": "https://github.com/thonyAGP/MCP_Quota_Claude/actions/runs/23520684001",
+        "id": 23520684001,
+        "name": "Coverage Tracking"
       },
       "openPRs": [
         {
@@ -569,10 +620,10 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-03-24T18:50:16Z",
+        "created_at": "2026-03-25T01:44:31Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Site_1970_Plomberie/actions/runs/23506792716",
-        "id": 23506792716,
+        "html_url": "https://github.com/thonyAGP/Site_1970_Plomberie/actions/runs/23520896303",
+        "id": 23520896303,
         "name": "Lighthouse CI"
       },
       "openPRs": [
@@ -617,10 +668,10 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-03-24T18:46:14Z",
+        "created_at": "2026-03-25T01:34:39Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/actions/runs/23506627399",
-        "id": 23506627399,
+        "html_url": "https://github.com/thonyAGP/Site_Greg-Assainissement/actions/runs/23520642241",
+        "id": 23520642241,
         "name": "Coverage Tracking"
       },
       "openPRs": [
@@ -665,11 +716,11 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-03-24T18:46:10Z",
+        "created_at": "2026-03-25T01:36:05Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/statusline/actions/runs/23506625327",
-        "id": 23506625327,
-        "name": "Release Drafter"
+        "html_url": "https://github.com/thonyAGP/statusline/actions/runs/23520679091",
+        "id": 23520679091,
+        "name": "Coverage Tracking"
       },
       "openPRs": [
         {
@@ -713,10 +764,10 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "skipped",
-        "created_at": "2026-03-24T18:51:10Z",
+        "created_at": "2026-03-25T01:47:12Z",
         "head_branch": "main",
-        "html_url": "https://github.com/thonyAGP/test_codingmenace/actions/runs/23506829985",
-        "id": 23506829985,
+        "html_url": "https://github.com/thonyAGP/test_codingmenace/actions/runs/23520962073",
+        "id": 23520962073,
         "name": "Lighthouse CI"
       },
       "openPRs": [
@@ -765,10 +816,10 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-03-24T18:50:44Z",
+        "created_at": "2026-03-25T01:39:45Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Thumbfast/actions/runs/23506812440",
-        "id": 23506812440,
+        "html_url": "https://github.com/thonyAGP/Thumbfast/actions/runs/23520774080",
+        "id": 23520774080,
         "name": "Lighthouse CI"
       },
       "openPRs": [
@@ -817,11 +868,11 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "skipped",
-        "created_at": "2026-03-24T18:46:25Z",
+        "created_at": "2026-03-25T01:37:22Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/23506636110",
-        "id": 23506636110,
-        "name": "Semantic Release"
+        "html_url": "https://github.com/thonyAGP/Utilitaire_Webapp/actions/runs/23520712978",
+        "id": 23520712978,
+        "name": "Cron Monitor"
       },
       "openPRs": [
         {
@@ -859,67 +910,16 @@
       "perfScore": 100
     },
     {
-      "name": "claude-launcher",
-      "fullName": "thonyAGP/claude-launcher",
-      "stack": "dotnet",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-03-24T18:46:53Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/claude-launcher/actions/runs/23506655465",
-        "id": 23506655465,
-        "name": "CI"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-03-24T01:15:54Z",
-          "html_url": "https://github.com/thonyAGP/claude-launcher/pull/7",
-          "labels": [
-            "ci",
-            "size/L"
-          ],
-          "number": 7,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 80,
-      "configured": false,
-      "hasGitleaks": true,
-      "hasRenovate": true,
-      "hasHusky": false,
-      "hasCodeRabbit": true,
-      "hasLicenseCheck": true,
-      "hasSemgrep": true,
-      "hasSupplyChain": true,
-      "securityScore": 100,
-      "hasPerformanceBudget": true,
-      "hasAccessibilityCheck": true,
-      "hasLighthouse": true,
-      "hasAutoChangelog": true,
-      "hasTypedoc": true,
-      "hasCoverageTracking": true,
-      "hasSemanticRelease": true,
-      "hasReleaseDrafter": true,
-      "perfScore": 100
-    },
-    {
       "name": "magic-migration",
       "fullName": "thonyAGP/magic-migration",
       "stack": "node",
       "ciStatus": "pass",
       "lastRun": {
         "conclusion": "success",
-        "created_at": "2026-03-24T18:50:04Z",
+        "created_at": "2026-03-25T01:45:03Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/23506784786",
-        "id": 23506784786,
+        "html_url": "https://github.com/thonyAGP/magic-migration/actions/runs/23520909182",
+        "id": 23520909182,
         "name": "Lighthouse CI"
       },
       "openPRs": [
