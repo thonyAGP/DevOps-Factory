@@ -9423,6 +9423,51 @@
       "action": "check-complete",
       "details": "1/10 passing, 6 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-25T12:37:14.321Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "claude-launcher",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-25T12:37:23.392Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "SqlConnectionTest",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-25T12:37:26.405Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 27 repos (2 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-03-25T12:37:39.917Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/CasaSync",
+      "details": "PR #76 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-03-25T12:37:39.923Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-25T12:37:39.928Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 10 outcomes (3 merged, 7 closed, 0 open). 9 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
