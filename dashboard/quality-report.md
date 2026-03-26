@@ -1,16 +1,32 @@
-## Quality Score Report - 2026-03-25
+## Quality Score Report - 2026-03-26
 
 ### Summary
-- **Average Score**: 50/100
+- **Average Score**: 52/100
 - **Excellent** (80+): 0
-- **Good** (60-79): 0
-- **Needs Work** (<60): 19
-
-### Score Drops (≥5 points)
-- **Lecteur_Magic**: 70 → 50 (-20)
-- **magic-migration**: 70 → 50 (-20)
+- **Good** (60-79): 2
+- **Needs Work** (<60): 17
 
 ### Per Repository
+
+#### Lecteur_Magic
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### magic-migration
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
 
 #### DevOps-Factory
 - **Score**: 50/100
@@ -63,16 +79,6 @@
 - **Gitleaks**: ✓
 
 #### Site_Au-marais
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### Lecteur_Magic
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -183,16 +189,6 @@
 - **Gitleaks**: ✓
 
 #### LB2I-Fiscal-Manager
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### magic-migration
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗

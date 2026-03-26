@@ -1,6 +1,34 @@
 {
-  "timestamp": "2026-03-25T09:01:02.957Z",
+  "timestamp": "2026-03-26T09:07:37.078Z",
   "scores": [
+    {
+      "name": "Lecteur_Magic",
+      "repo": "thonyAGP/lecteur-magic",
+      "score": 70,
+      "breakdown": {
+        "ciPasses": 20,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15
+      }
+    },
+    {
+      "name": "magic-migration",
+      "repo": "thonyAGP/magic-migration",
+      "score": 70,
+      "breakdown": {
+        "ciPasses": 20,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15
+      }
+    },
     {
       "name": "DevOps-Factory",
       "repo": "thonyAGP/DevOps-Factory",
@@ -74,20 +102,6 @@
     {
       "name": "Site_Au-marais",
       "repo": "thonyAGP/au-marais",
-      "score": 50,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15
-      }
-    },
-    {
-      "name": "Lecteur_Magic",
-      "repo": "thonyAGP/lecteur-magic",
       "score": 50,
       "breakdown": {
         "ciPasses": 0,
@@ -252,34 +266,7 @@
         "depsUpToDate": 10,
         "noSecrets": 15
       }
-    },
-    {
-      "name": "magic-migration",
-      "repo": "thonyAGP/magic-migration",
-      "score": 50,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15
-      }
     }
   ],
-  "drops": [
-    {
-      "repo": "Lecteur_Magic",
-      "drop": 20,
-      "from": 70,
-      "to": 50
-    },
-    {
-      "repo": "magic-migration",
-      "drop": 20,
-      "from": 70,
-      "to": 50
-    }
-  ]
+  "drops": []
 }
