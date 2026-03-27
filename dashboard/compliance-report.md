@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 3/26/2026, 7:07:52 PM
+**Generated**: 3/27/2026, 1:08:49 AM
 **Period**: 30-day window
 
 ## Summary
