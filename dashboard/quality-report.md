@@ -1,14 +1,24 @@
-## Quality Score Report - 2026-03-27
+## Quality Score Report - 2026-03-28
 
 ### Summary
-- **Average Score**: 52/100
+- **Average Score**: 53/100
 - **Excellent** (80+): 0
-- **Good** (60-79): 2
-- **Needs Work** (<60): 17
+- **Good** (60-79): 3
+- **Needs Work** (<60): 16
 
 ### Per Repository
 
 #### Lecteur_Magic
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### Zentra
 - **Score**: 70/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -169,16 +179,6 @@
 - **Gitleaks**: ✓
 
 #### SqlConnectionTest
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### Zentra
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
