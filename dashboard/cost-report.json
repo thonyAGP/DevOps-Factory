@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-30T07:29:02.119Z",
+  "timestamp": "2026-03-30T12:47:38.610Z",
   "repos": [
     {
       "repo": "claude-launcher",
@@ -9,8 +9,8 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 32,
-          "totalMinutes": 32,
+          "runs": 30,
+          "totalMinutes": 30,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -83,6 +83,22 @@
           "name": "Secret Scanning",
           "runs": 2,
           "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "Dead Code Detection",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Config Drift",
+          "runs": 1,
+          "totalMinutes": 1,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -199,8 +215,8 @@
         },
         {
           "name": "CI",
-          "runs": 11,
-          "totalMinutes": 11,
+          "runs": 10,
+          "totalMinutes": 10,
           "avgMinutes": 1,
           "failedRuns": 5,
           "wastedMinutes": 5
@@ -231,19 +247,19 @@
         },
         {
           "name": "Semantic Release",
-          "runs": 7,
-          "totalMinutes": 7,
+          "runs": 6,
+          "totalMinutes": 6,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
         },
         {
           "name": "Release Drafter",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Security Scan (SAST)",
@@ -260,6 +276,30 @@
           "avgMinutes": 1,
           "failedRuns": 2,
           "wastedMinutes": 2
+        },
+        {
+          "name": "Config Drift",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Dead Code Detection",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Accessibility Check",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "Type Coverage",
@@ -336,7 +376,7 @@
       ],
       "recommendations": [
         "Coverage Tracking: 100% failure rate (11min wasted). Fix root cause.",
-        "CI: 45% failure rate (5min wasted). Fix root cause.",
+        "CI: 50% failure rate (5min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (9min wasted). Fix root cause.",
         ".github/workflows/auto-changelog.yml: 100% failure rate (8min wasted). Fix root cause.",
         ".github/workflows/cron-monitor.yml: 100% failure rate (7min wasted). Fix root cause."
@@ -346,7 +386,7 @@
   "summary": {
     "totalMinutes": 200,
     "totalRuns": 200,
-    "wastedMinutes": 101,
+    "wastedMinutes": 104,
     "mostExpensiveRepo": "claude-launcher",
     "mostExpensiveWorkflow": "Cron Monitor (claude-launcher)",
     "totalRecommendations": 9,
