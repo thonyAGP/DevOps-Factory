@@ -1,48 +1,6 @@
 {
-  "timestamp": "2026-03-29T08:52:10.631Z",
+  "timestamp": "2026-03-30T09:22:29.204Z",
   "scores": [
-    {
-      "name": "Lecteur_Magic",
-      "repo": "thonyAGP/lecteur-magic",
-      "score": 70,
-      "breakdown": {
-        "ciPasses": 20,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15
-      }
-    },
-    {
-      "name": "Zentra",
-      "repo": "thonyAGP/zentra",
-      "score": 70,
-      "breakdown": {
-        "ciPasses": 20,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15
-      }
-    },
-    {
-      "name": "magic-migration",
-      "repo": "thonyAGP/magic-migration",
-      "score": 70,
-      "breakdown": {
-        "ciPasses": 20,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15
-      }
-    },
     {
       "name": "DevOps-Factory",
       "repo": "thonyAGP/DevOps-Factory",
@@ -116,6 +74,20 @@
     {
       "name": "Site_Au-marais",
       "repo": "thonyAGP/au-marais",
+      "score": 50,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15
+      }
+    },
+    {
+      "name": "Lecteur_Magic",
+      "repo": "thonyAGP/lecteur-magic",
       "score": 50,
       "breakdown": {
         "ciPasses": 0,
@@ -254,6 +226,20 @@
       }
     },
     {
+      "name": "Zentra",
+      "repo": "thonyAGP/zentra",
+      "score": 50,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15
+      }
+    },
+    {
       "name": "LB2I-Fiscal-Manager",
       "repo": "thonyAGP/LB2I-Fiscal-Manager",
       "score": 50,
@@ -266,7 +252,40 @@
         "depsUpToDate": 10,
         "noSecrets": 15
       }
+    },
+    {
+      "name": "magic-migration",
+      "repo": "thonyAGP/magic-migration",
+      "score": 50,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15
+      }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "Lecteur_Magic",
+      "drop": 20,
+      "from": 70,
+      "to": 50
+    },
+    {
+      "repo": "Zentra",
+      "drop": 20,
+      "from": 70,
+      "to": 50
+    },
+    {
+      "repo": "magic-migration",
+      "drop": 20,
+      "from": 70,
+      "to": 50
+    }
+  ]
 }
