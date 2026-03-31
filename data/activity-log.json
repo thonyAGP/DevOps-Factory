@@ -2,61 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-03-24T11:40:10.319Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 23485491145)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-24T11:40:12.844Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "ClubMedRoomAssignment",
-      "details": "Self-heal dispatched (run 23485497202)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-24T11:40:15.598Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 23485491848)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-24T11:40:18.438Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "Self-heal dispatched (run 23485492678)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-24T11:40:21.041Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Zentra",
-      "details": "Self-heal dispatched (run 23485497760)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-24T11:40:23.776Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Self-heal dispatched (run 23487445250)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-24T11:40:23.797Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "1/10 passing, 6 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-03-24T12:39:49.049Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
@@ -19468,6 +19413,101 @@
     },
     {
       "timestamp": "2026-03-31T10:52:10.738Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/10 passing, 7 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:39.252Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 23580885113)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:39.260Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Email_Assistant",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:39.268Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "ClubMedRoomAssignment",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:41.790Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "CasaSync",
+      "details": "Self-heal dispatched (run 23750100265)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:41.796Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "CasaSync",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:44.165Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Self-heal dispatched (run 23750292580)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:44.172Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:44.179Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Site_Au-marais",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:44.185Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Zentra",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:46.499Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Self-heal dispatched (run 23591902834)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:46.506Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-03-31T11:42:46.512Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "1/10 passing, 7 failing. Issues: 0 created, 0 closed",
