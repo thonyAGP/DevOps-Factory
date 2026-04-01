@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 4/1/2026, 7:21:59 AM
+**Generated**: 4/1/2026, 12:48:55 PM
 **Period**: 30-day window
 
 ## Summary
@@ -13,7 +13,7 @@
 | Repos with CI | 2/2 |
 | PR Review Coverage | 0% |
 | PRs Merged (30d) | 10 |
-| Deployments (30d) | 9 |
+| Deployments (30d) | 12 |
 | PRs with Review | 0/10 |
 
 ## Repository Compliance
@@ -62,7 +62,7 @@
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
 
-**Recent Deployments**: 9 successful deploys in 30 days
+**Recent Deployments**: 10 successful deploys in 30 days
 
 ---
 
@@ -84,5 +84,7 @@
 - #4 - chore: add SAST with Semgrep (by thonyAGP)
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
+
+**Recent Deployments**: 2 successful deploys in 30 days
 
 ---

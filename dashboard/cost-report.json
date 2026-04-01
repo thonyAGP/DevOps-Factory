@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-01T07:21:52.462Z",
+  "timestamp": "2026-04-01T12:48:45.128Z",
   "repos": [
     {
       "repo": "claude-launcher",
@@ -9,8 +9,8 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 30,
-          "totalMinutes": 30,
+          "runs": 29,
+          "totalMinutes": 29,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -33,14 +33,6 @@
         },
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 9,
-          "totalMinutes": 9,
-          "avgMinutes": 1,
-          "failedRuns": 9,
-          "wastedMinutes": 9
-        },
-        {
-          "name": ".github/workflows/auto-changelog.yml",
           "runs": 8,
           "totalMinutes": 8,
           "avgMinutes": 1,
@@ -49,6 +41,14 @@
         },
         {
           "name": ".github/workflows/cron-monitor.yml",
+          "runs": 7,
+          "totalMinutes": 7,
+          "avgMinutes": 1,
+          "failedRuns": 7,
+          "wastedMinutes": 7
+        },
+        {
+          "name": ".github/workflows/auto-changelog.yml",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
@@ -72,6 +72,14 @@
           "wastedMinutes": 0
         },
         {
+          "name": "Supply Chain Security",
+          "runs": 2,
+          "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 2,
+          "wastedMinutes": 2
+        },
+        {
           "name": "Security Scan (SAST)",
           "runs": 2,
           "totalMinutes": 2,
@@ -83,6 +91,22 @@
           "name": "Secret Scanning",
           "runs": 2,
           "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "README Freshness",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "SBOM Generation",
+          "runs": 1,
+          "totalMinutes": 1,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -134,14 +158,6 @@
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
-        },
-        {
-          "name": "Supply Chain Security",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
         },
         {
           "name": "Stale Bot",
@@ -186,9 +202,9 @@
       ],
       "recommendations": [
         "Coverage Tracking: 100% failure rate (10min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (9min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (8min wasted). Fix root cause.",
-        ".github/workflows/cron-monitor.yml: 100% failure rate (7min wasted). Fix root cause."
+        ".github/workflows/claude-review.yml: 100% failure rate (8min wasted). Fix root cause.",
+        ".github/workflows/cron-monitor.yml: 100% failure rate (7min wasted). Fix root cause.",
+        ".github/workflows/auto-changelog.yml: 100% failure rate (7min wasted). Fix root cause."
       ]
     },
     {
@@ -206,20 +222,20 @@
           "wastedMinutes": 1
         },
         {
-          "name": "Coverage Tracking",
-          "runs": 11,
-          "totalMinutes": 11,
-          "avgMinutes": 1,
-          "failedRuns": 11,
-          "wastedMinutes": 11
-        },
-        {
           "name": "CI",
           "runs": 10,
           "totalMinutes": 10,
           "avgMinutes": 1,
           "failedRuns": 5,
           "wastedMinutes": 5
+        },
+        {
+          "name": "Coverage Tracking",
+          "runs": 9,
+          "totalMinutes": 9,
+          "avgMinutes": 1,
+          "failedRuns": 9,
+          "wastedMinutes": 9
         },
         {
           "name": ".github/workflows/claude-review.yml",
@@ -255,11 +271,19 @@
         },
         {
           "name": "Release Drafter",
-          "runs": 4,
-          "totalMinutes": 4,
+          "runs": 3,
+          "totalMinutes": 3,
           "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Supply Chain Security",
+          "runs": 2,
+          "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 2,
+          "wastedMinutes": 2
         },
         {
           "name": "Security Scan (SAST)",
@@ -276,6 +300,22 @@
           "avgMinutes": 1,
           "failedRuns": 2,
           "wastedMinutes": 2
+        },
+        {
+          "name": "README Freshness",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "SBOM Generation",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
         },
         {
           "name": "Config Drift",
@@ -326,14 +366,6 @@
           "wastedMinutes": 1
         },
         {
-          "name": "Supply Chain Security",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
           "name": "Stale Bot",
           "runs": 1,
           "totalMinutes": 1,
@@ -375,8 +407,8 @@
         }
       ],
       "recommendations": [
-        "Coverage Tracking: 100% failure rate (11min wasted). Fix root cause.",
         "CI: 50% failure rate (5min wasted). Fix root cause.",
+        "Coverage Tracking: 100% failure rate (9min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (9min wasted). Fix root cause.",
         ".github/workflows/auto-changelog.yml: 100% failure rate (8min wasted). Fix root cause.",
         ".github/workflows/cron-monitor.yml: 100% failure rate (7min wasted). Fix root cause."
@@ -386,7 +418,7 @@
   "summary": {
     "totalMinutes": 200,
     "totalRuns": 200,
-    "wastedMinutes": 104,
+    "wastedMinutes": 101,
     "mostExpensiveRepo": "claude-launcher",
     "mostExpensiveWorkflow": "Cron Monitor (claude-launcher)",
     "totalRecommendations": 9,

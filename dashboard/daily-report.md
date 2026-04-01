@@ -2,7 +2,7 @@
 - **2** projects monitored
 - **0/2** fully configured
 - **0** AI fix PR(s) pending merge
-- **2** CI failure(s)
+- **0** CI failure(s)
 - **80%** avg security score
 - **0/2** repos with AI code review
 - **80%** avg quality score (perf, a11y, coverage, release)
@@ -12,13 +12,13 @@
 
 ## Per Project
 
-### claude-launcher :x:
-- **Health**: 40/100
-- **CI**: fail ([view](https://github.com/thonyAGP/claude-launcher/actions/runs/23735125079))
+### claude-launcher :white_check_mark:
+- **Health**: 70/100
+- **CI**: pass ([view](https://github.com/thonyAGP/claude-launcher/actions/runs/23843391074))
 - **Open PRs**: 1
 
-### SqlConnectionTest :x:
-- **Health**: 40/100
-- **CI**: fail ([view](https://github.com/thonyAGP/SqlConnectionTest/actions/runs/23735116131))
+### SqlConnectionTest :white_check_mark:
+- **Health**: 70/100
+- **CI**: pass ([view](https://github.com/thonyAGP/SqlConnectionTest/actions/runs/23843167824))
 - **Open PRs**: 1
 
