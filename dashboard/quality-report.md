@@ -1,14 +1,74 @@
-## Quality Score Report - 2026-03-31
+## Quality Score Report - 2026-04-01
 
 ### Summary
-- **Average Score**: 52/100
+- **Average Score**: 58/100
 - **Excellent** (80+): 0
-- **Good** (60-79): 2
-- **Needs Work** (<60): 17
+- **Good** (60-79): 8
+- **Needs Work** (<60): 11
 
 ### Per Repository
 
+#### Email_Assistant
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### CasaSync
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### Livret_accueil_Au-Marais
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### Site_Au-marais
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
 #### Lecteur_Magic
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### Zentra
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### LB2I-Fiscal-Manager
 - **Score**: 70/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -38,47 +98,7 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
 
-#### Email_Assistant
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
 #### ClubMedRoomAssignment
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### CasaSync
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### Livret_accueil_Au-Marais
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### Site_Au-marais
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -169,26 +189,6 @@
 - **Gitleaks**: ✓
 
 #### SqlConnectionTest
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### Zentra
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### LB2I-Fiscal-Manager
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
