@@ -2,13 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-03-27T09:03:04.490Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 52/100, 0 excellent, 17 needs work, 0 drops, 0 improvements",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-03-27T09:46:32.257Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -14292,6 +14285,37 @@
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "3/10 passing, 5 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-03T09:04:47.346Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "70 → 50 (-20pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-03T09:04:47.354Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Lecteur_Magic",
+      "details": "50 → 70 (+20pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-04-03T09:04:47.360Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "magic-migration",
+      "details": "50 → 70 (+20pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-04-03T09:04:47.366Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 56/100, 0 excellent, 13 needs work, 1 drops, 2 improvements",
       "status": "warning"
     }
   ]

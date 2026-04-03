@@ -1,16 +1,13 @@
-## Quality Score Report - 2026-04-02
+## Quality Score Report - 2026-04-03
 
 ### Summary
-- **Average Score**: 55/100
+- **Average Score**: 56/100
 - **Excellent** (80+): 0
-- **Good** (60-79): 5
-- **Needs Work** (<60): 14
+- **Good** (60-79): 6
+- **Needs Work** (<60): 13
 
 ### Score Drops (≥5 points)
-- **CasaSync**: 70 → 50 (-20)
-- **Site_Au-marais**: 70 → 50 (-20)
-- **Lecteur_Magic**: 70 → 50 (-20)
-- **magic-migration**: 70 → 50 (-20)
+- **Livret_accueil_Au-Marais**: 70 → 50 (-20)
 
 ### Per Repository
 
@@ -34,7 +31,7 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
 
-#### Livret_accueil_Au-Marais
+#### Lecteur_Magic
 - **Score**: 70/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -64,6 +61,16 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
 
+#### magic-migration
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
 #### DevOps-Factory
 - **Score**: 50/100
 - **CI Passes**: ✗
@@ -84,7 +91,7 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
 
-#### Site_Au-marais
+#### Livret_accueil_Au-Marais
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -94,7 +101,7 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
 
-#### Lecteur_Magic
+#### Site_Au-marais
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -185,16 +192,6 @@
 - **Gitleaks**: ✓
 
 #### SqlConnectionTest
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### magic-migration
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗

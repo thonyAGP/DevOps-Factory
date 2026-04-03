@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-02T09:09:38.423Z",
+  "timestamp": "2026-04-03T09:04:47.341Z",
   "scores": [
     {
       "name": "Email_Assistant",
@@ -30,8 +30,8 @@
       }
     },
     {
-      "name": "Livret_accueil_Au-Marais",
-      "repo": "thonyAGP/livret-au-marais",
+      "name": "Lecteur_Magic",
+      "repo": "thonyAGP/lecteur-magic",
       "score": 70,
       "breakdown": {
         "ciPasses": 20,
@@ -72,6 +72,20 @@
       }
     },
     {
+      "name": "magic-migration",
+      "repo": "thonyAGP/magic-migration",
+      "score": 70,
+      "breakdown": {
+        "ciPasses": 20,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15
+      }
+    },
+    {
       "name": "DevOps-Factory",
       "repo": "thonyAGP/DevOps-Factory",
       "score": 50,
@@ -100,8 +114,8 @@
       }
     },
     {
-      "name": "Site_Au-marais",
-      "repo": "thonyAGP/au-marais",
+      "name": "Livret_accueil_Au-Marais",
+      "repo": "thonyAGP/livret-au-marais",
       "score": 50,
       "breakdown": {
         "ciPasses": 0,
@@ -114,8 +128,8 @@
       }
     },
     {
-      "name": "Lecteur_Magic",
-      "repo": "thonyAGP/lecteur-magic",
+      "name": "Site_Au-marais",
+      "repo": "thonyAGP/au-marais",
       "score": 50,
       "breakdown": {
         "ciPasses": 0,
@@ -252,43 +266,11 @@
         "depsUpToDate": 10,
         "noSecrets": 15
       }
-    },
-    {
-      "name": "magic-migration",
-      "repo": "thonyAGP/magic-migration",
-      "score": 50,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15
-      }
     }
   ],
   "drops": [
     {
-      "repo": "CasaSync",
-      "drop": 20,
-      "from": 70,
-      "to": 50
-    },
-    {
-      "repo": "Site_Au-marais",
-      "drop": 20,
-      "from": 70,
-      "to": 50
-    },
-    {
-      "repo": "Lecteur_Magic",
-      "drop": 20,
-      "from": 70,
-      "to": 50
-    },
-    {
-      "repo": "magic-migration",
+      "repo": "Livret_accueil_Au-Marais",
       "drop": 20,
       "from": 70,
       "to": 50
