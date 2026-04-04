@@ -1,13 +1,15 @@
-## Quality Score Report - 2026-04-03
+## Quality Score Report - 2026-04-04
 
 ### Summary
-- **Average Score**: 56/100
+- **Average Score**: 53/100
 - **Excellent** (80+): 0
-- **Good** (60-79): 6
-- **Needs Work** (<60): 13
+- **Good** (60-79): 3
+- **Needs Work** (<60): 16
 
 ### Score Drops (≥5 points)
-- **Livret_accueil_Au-Marais**: 70 → 50 (-20)
+- **ClubMedRoomAssignment**: 70 → 50 (-20)
+- **Zentra**: 70 → 50 (-20)
+- **LB2I-Fiscal-Manager**: 70 → 50 (-20)
 
 ### Per Repository
 
@@ -21,37 +23,7 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
 
-#### ClubMedRoomAssignment
-- **Score**: 70/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
 #### Lecteur_Magic
-- **Score**: 70/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### Zentra
-- **Score**: 70/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### LB2I-Fiscal-Manager
 - **Score**: 70/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -72,6 +44,16 @@
 - **Gitleaks**: ✓
 
 #### DevOps-Factory
+- **Score**: 50/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### ClubMedRoomAssignment
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -192,6 +174,26 @@
 - **Gitleaks**: ✓
 
 #### SqlConnectionTest
+- **Score**: 50/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### Zentra
+- **Score**: 50/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### LB2I-Fiscal-Manager
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗

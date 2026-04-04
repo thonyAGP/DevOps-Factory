@@ -2,21 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-03-28T08:51:10.942Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "Zentra",
-      "details": "50 → 70 (+20pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-03-28T08:51:10.950Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 53/100, 0 excellent, 16 needs work, 0 drops, 1 improvements",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-03-28T09:29:34.742Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -14067,6 +14052,37 @@
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "3/10 passing, 5 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-04T08:52:31.074Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "ClubMedRoomAssignment",
+      "details": "70 → 50 (-20pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-04T08:52:31.081Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Zentra",
+      "details": "70 → 50 (-20pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-04T08:52:31.086Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "70 → 50 (-20pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-04T08:52:31.092Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 53/100, 0 excellent, 16 needs work, 3 drops, 0 improvements",
       "status": "warning"
     }
   ]
