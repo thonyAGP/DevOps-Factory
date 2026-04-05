@@ -1,15 +1,10 @@
-## Quality Score Report - 2026-04-04
+## Quality Score Report - 2026-04-05
 
 ### Summary
 - **Average Score**: 53/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 3
 - **Needs Work** (<60): 16
-
-### Score Drops (≥5 points)
-- **ClubMedRoomAssignment**: 70 → 50 (-20)
-- **Zentra**: 70 → 50 (-20)
-- **LB2I-Fiscal-Manager**: 70 → 50 (-20)
 
 ### Per Repository
 
