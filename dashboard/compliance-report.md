@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 4/6/2026, 2:34:06 AM
+**Generated**: 4/6/2026, 7:44:31 AM
 **Period**: 30-day window
 
 ## Summary
@@ -62,7 +62,7 @@
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
 
-**Recent Deployments**: 11 successful deploys in 30 days
+**Recent Deployments**: 10 successful deploys in 30 days
 
 ---
 
@@ -85,6 +85,6 @@
 - #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
 - #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
 
-**Recent Deployments**: 3 successful deploys in 30 days
+**Recent Deployments**: 4 successful deploys in 30 days
 
 ---
