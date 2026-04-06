@@ -2,55 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-03-30T13:20:50.734Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "2 projects, avg health 40",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-30T13:21:01.387Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 2 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-30T13:21:07.356Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 15%, 4 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-30T13:21:21.529Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: medium, deploy 0/wk, lead 454.9h, MTTR 1.1h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-03-30T13:21:27.339Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 200min total, 104min wasted, ~$0/mo",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-30T13:21:35.977Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 80/100, branch protection 0/2, CI 2/2, review coverage 0%",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-03-30T13:21:36.682Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "6 recommendations across 27 repos (0 critical, 5 high)",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-03-30T14:05:23.014Z",
       "source": "factory-watchdog",
       "action": "workflow-failure",
@@ -13157,6 +13108,53 @@
       "action": "recommendations-generated",
       "details": "6 recommendations across 28 repos (0 critical, 5 high)",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-04-06T13:50:04.724Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-04-06T13:50:04.729Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-04-06T13:50:06.319Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Self-Heal CI",
+      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY, gh: not found",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-06T13:50:12.959Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-triggered",
+      "target": "CI Health Check",
+      "details": "Self-heal for workflow (run 24033173301)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-06T13:50:12.963Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "Self-Heal CI",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-04-06T13:50:12.968Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/6 passing. 2 failures, 1 partial. 1 self-heals",
+      "status": "error"
     }
   ]
 }
