@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-06T07:44:23.881Z",
+  "timestamp": "2026-04-06T12:42:37.786Z",
   "repos": [
     {
       "repo": "claude-launcher",
@@ -16,20 +16,20 @@
           "wastedMinutes": 0
         },
         {
-          "name": "CI",
-          "runs": 10,
-          "totalMinutes": 10,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
           "name": "Coverage Tracking",
           "runs": 9,
           "totalMinutes": 9,
           "avgMinutes": 1,
           "failedRuns": 9,
           "wastedMinutes": 9
+        },
+        {
+          "name": "CI",
+          "runs": 8,
+          "totalMinutes": 8,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
         },
         {
           "name": ".github/workflows/cron-monitor.yml",
@@ -88,6 +88,22 @@
           "wastedMinutes": 0
         },
         {
+          "name": "Dead Code Detection",
+          "runs": 2,
+          "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 2,
+          "wastedMinutes": 2
+        },
+        {
+          "name": "Config Drift",
+          "runs": 2,
+          "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
           "name": "Type Coverage",
           "runs": 2,
           "totalMinutes": 2,
@@ -137,22 +153,6 @@
         },
         {
           "name": "SBOM Generation",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Dead Code Detection",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Config Drift",
           "runs": 1,
           "totalMinutes": 1,
           "avgMinutes": 1,
@@ -215,8 +215,8 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 28,
-          "totalMinutes": 28,
+          "runs": 26,
+          "totalMinutes": 26,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
@@ -238,15 +238,15 @@
           "wastedMinutes": 5
         },
         {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 8,
-          "totalMinutes": 8,
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 7,
+          "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 8,
-          "wastedMinutes": 8
+          "failedRuns": 7,
+          "wastedMinutes": 7
         },
         {
-          "name": ".github/workflows/cron-monitor.yml",
+          "name": ".github/workflows/claude-review.yml",
           "runs": 7,
           "totalMinutes": 7,
           "avgMinutes": 1,
@@ -292,6 +292,30 @@
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 3
+        },
+        {
+          "name": "Config Drift",
+          "runs": 2,
+          "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Dead Code Detection",
+          "runs": 2,
+          "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 2,
+          "wastedMinutes": 2
+        },
+        {
+          "name": "Accessibility Check",
+          "runs": 2,
+          "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 2,
+          "wastedMinutes": 2
         },
         {
           "name": "Type Coverage",
@@ -342,30 +366,6 @@
           "wastedMinutes": 0
         },
         {
-          "name": "Config Drift",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Dead Code Detection",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Accessibility Check",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
           "name": "Stale Bot",
           "runs": 1,
           "totalMinutes": 1,
@@ -409,8 +409,8 @@
       "recommendations": [
         "Coverage Tracking: 100% failure rate (9min wasted). Fix root cause.",
         "CI: 56% failure rate (5min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (8min wasted). Fix root cause.",
         ".github/workflows/cron-monitor.yml: 100% failure rate (7min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause.",
         ".github/workflows/auto-changelog.yml: 100% failure rate (7min wasted). Fix root cause."
       ]
     }
@@ -418,7 +418,7 @@
   "summary": {
     "totalMinutes": 200,
     "totalRuns": 200,
-    "wastedMinutes": 103,
+    "wastedMinutes": 105,
     "mostExpensiveRepo": "claude-launcher",
     "mostExpensiveWorkflow": "Cron Monitor (claude-launcher)",
     "totalRecommendations": 9,

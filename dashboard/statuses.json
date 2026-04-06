@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-06T07:43:51.296Z",
+  "timestamp": "2026-04-06T12:41:59.622Z",
   "projects": [
     {
       "name": "claude-launcher",
@@ -8,11 +8,11 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-04-06T07:16:20Z",
+        "created_at": "2026-04-06T08:25:06Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/claude-launcher/actions/runs/24022828549",
-        "id": 24022828549,
-        "name": "Type Coverage"
+        "html_url": "https://github.com/thonyAGP/claude-launcher/actions/runs/24024740766",
+        "id": 24024740766,
+        "name": "Dead Code Detection"
       },
       "openPRs": [
         {
@@ -53,14 +53,14 @@
       "name": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
       "stack": "dotnet",
-      "ciStatus": "fail",
+      "ciStatus": "pass",
       "lastRun": {
-        "conclusion": "failure",
-        "created_at": "2026-04-06T07:25:54Z",
+        "conclusion": "success",
+        "created_at": "2026-04-06T08:24:25Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/SqlConnectionTest/actions/runs/24023096323",
-        "id": 24023096323,
-        "name": "Type Coverage"
+        "html_url": "https://github.com/thonyAGP/SqlConnectionTest/actions/runs/24024722903",
+        "id": 24024722903,
+        "name": "Config Drift"
       },
       "openPRs": [
         {
@@ -77,7 +77,7 @@
       ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 40,
+      "healthScore": 70,
       "configured": false,
       "hasGitleaks": true,
       "hasRenovate": false,
