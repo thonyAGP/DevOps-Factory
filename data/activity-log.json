@@ -2,101 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-03-30T11:50:38.222Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 23580885113)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-30T11:50:38.231Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-30T11:50:38.238Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-30T11:50:40.532Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 23534375269)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-30T11:50:40.538Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "CasaSync",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-30T11:50:42.910Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "Self-heal dispatched (run 23520637081)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-30T11:50:42.917Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-30T11:50:42.925Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Site_Au-marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-30T11:50:42.931Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-30T11:50:45.137Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Self-heal dispatched (run 23591902834)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-03-30T11:50:45.145Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-30T11:50:45.151Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "1/10 passing, 7 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-03-30T12:45:55.651Z",
       "source": "scan-and-configure",
       "action": "skip-pr-exists",
@@ -13227,6 +13132,43 @@
       "action": "check-complete",
       "details": "3/10 passing, 5 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-06T12:41:07.734Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "claude-launcher",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-04-06T12:41:14.633Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "SqlConnectionTest",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-04-06T12:41:16.714Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 28 repos (2 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-04-06T12:41:26.372Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-06T12:41:26.379Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 12 outcomes (3 merged, 7 closed, 2 open). 2 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
