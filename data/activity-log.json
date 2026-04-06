@@ -2,29 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-03-30T01:11:20.935Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "claude-launcher",
-      "details": "PR #7 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-30T01:11:35.230Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "SqlConnectionTest",
-      "details": "PR #7 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-03-30T01:11:39.849Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 27 repos (2 active)",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-03-30T01:11:54.442Z",
       "source": "outcome-registry",
       "action": "pattern-degrade",
@@ -13276,6 +13253,43 @@
       "action": "check-complete",
       "details": "3/10 passing, 5 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-06T01:11:27.415Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "claude-launcher",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-04-06T01:11:33.781Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "SqlConnectionTest",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-04-06T01:11:35.764Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 28 repos (2 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-04-06T01:11:45.140Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-06T01:11:45.146Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 12 outcomes (3 merged, 7 closed, 2 open). 2 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
