@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-08T07:21:06.531Z",
+  "timestamp": "2026-04-08T12:51:45.403Z",
   "repos": [
     {
       "repo": "claude-launcher",
@@ -64,6 +64,14 @@
           "wastedMinutes": 1
         },
         {
+          "name": "Supply Chain Security",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
           "name": "Security Scan (SAST)",
           "runs": 3,
           "totalMinutes": 3,
@@ -73,14 +81,6 @@
         },
         {
           "name": "Secret Scanning",
-          "runs": 3,
-          "totalMinutes": 3,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "Release Drafter",
           "runs": 3,
           "totalMinutes": 3,
           "avgMinutes": 1,
@@ -136,12 +136,12 @@
           "wastedMinutes": 0
         },
         {
-          "name": "Supply Chain Security",
+          "name": "Release Drafter",
           "runs": 2,
           "totalMinutes": 2,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 0,
+          "wastedMinutes": 0
         },
         {
           "name": "README Freshness",
@@ -255,11 +255,11 @@
         },
         {
           "name": ".github/workflows/auto-changelog.yml",
-          "runs": 7,
-          "totalMinutes": 7,
+          "runs": 6,
+          "totalMinutes": 6,
           "avgMinutes": 1,
-          "failedRuns": 7,
-          "wastedMinutes": 7
+          "failedRuns": 6,
+          "wastedMinutes": 6
         },
         {
           "name": "Semantic Release",
@@ -268,6 +268,14 @@
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
+        },
+        {
+          "name": "Supply Chain Security",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Security Scan (SAST)",
@@ -342,14 +350,6 @@
           "wastedMinutes": 1
         },
         {
-          "name": "Supply Chain Security",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
           "name": "README Freshness",
           "runs": 1,
           "totalMinutes": 1,
@@ -411,14 +411,14 @@
         "CI: 56% failure rate (5min wasted). Fix root cause.",
         ".github/workflows/cron-monitor.yml: 100% failure rate (7min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause.",
-        ".github/workflows/auto-changelog.yml: 100% failure rate (7min wasted). Fix root cause."
+        ".github/workflows/auto-changelog.yml: 100% failure rate (6min wasted). Fix root cause."
       ]
     }
   ],
   "summary": {
     "totalMinutes": 200,
     "totalRuns": 200,
-    "wastedMinutes": 105,
+    "wastedMinutes": 106,
     "mostExpensiveRepo": "claude-launcher",
     "mostExpensiveWorkflow": "Cron Monitor (claude-launcher)",
     "totalRecommendations": 9,
