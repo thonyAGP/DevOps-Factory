@@ -2,92 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-04-02T12:41:50.654Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "claude-launcher",
-      "details": "PR #7 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-02T12:41:58.144Z",
-      "source": "scan-and-configure",
-      "action": "skip-pr-exists",
-      "target": "SqlConnectionTest",
-      "details": "PR #7 already open",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-02T12:42:00.473Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 28 repos (2 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-02T12:42:11.826Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T12:42:11.833Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 12 outcomes (3 merged, 7 closed, 2 open). 2 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-02T12:42:42.388Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "2 projects, avg health 70",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-02T12:42:52.056Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 2 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T12:42:58.966Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 15%, 4 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T12:43:11.500Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: medium, deploy 0/wk, lead 454.9h, MTTR 1.1h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-02T12:43:18.034Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 200min total, 101min wasted, ~$0/mo",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T12:43:25.315Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 80/100, branch protection 0/2, CI 2/2, review coverage 0%",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-02T12:43:25.961Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "6 recommendations across 28 repos (0 critical, 5 high)",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-04-02T12:54:45.311Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -11958,6 +11872,43 @@
       "action": "check-complete",
       "details": "3/10 passing, 5 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-09T12:53:31.891Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "claude-launcher",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-04-09T12:53:39.364Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "SqlConnectionTest",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-04-09T12:53:41.680Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 28 repos (2 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-04-09T12:53:53.080Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-09T12:53:53.086Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 13 outcomes (3 merged, 7 closed, 3 open). 1 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
