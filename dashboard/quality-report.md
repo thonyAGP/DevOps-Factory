@@ -1,16 +1,10 @@
-## Quality Score Report - 2026-04-08
+## Quality Score Report - 2026-04-09
 
 ### Summary
 - **Average Score**: 50/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
-
-### Score Drops (≥5 points)
-- **Email_Assistant**: 70 → 50 (-20)
-- **Livret_accueil_Au-Marais**: 70 → 50 (-20)
-- **Lecteur_Magic**: 70 → 50 (-20)
-- **magic-migration**: 70 → 50 (-20)
 
 ### Per Repository
 

@@ -2,53 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-04-02T09:09:38.428Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "CasaSync",
-      "details": "70 → 50 (-20pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T09:09:38.435Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Site_Au-marais",
-      "details": "70 → 50 (-20pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T09:09:38.442Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Lecteur_Magic",
-      "details": "70 → 50 (-20pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T09:09:38.448Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "magic-migration",
-      "details": "70 → 50 (-20pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T09:09:38.454Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "ClubMedRoomAssignment",
-      "details": "50 → 70 (+20pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-02T09:09:38.459Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 55/100, 0 excellent, 14 needs work, 4 drops, 1 improvements",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-04-02T09:53:34.683Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -12069,6 +12022,13 @@
       "action": "check-complete",
       "details": "3/10 passing, 5 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-09T09:19:34.045Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 50/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
+      "status": "success"
     }
   ]
 }
