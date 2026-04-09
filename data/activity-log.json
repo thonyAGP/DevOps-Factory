@@ -2,126 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-04-02T01:28:19.491Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 23580885113)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T01:28:19.498Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-02T01:28:19.504Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-02T01:28:21.538Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 23854550293)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T01:28:21.544Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "CasaSync",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-02T01:28:21.549Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-02T01:28:23.457Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Self-heal dispatched (run 23591902834)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T01:28:23.462Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-02T01:28:23.468Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "3/10 passing, 5 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T02:24:24.185Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "2 projects, avg health 70",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-02T02:24:32.205Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 2 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T02:24:37.437Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 15%, 4 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T02:24:47.735Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: medium, deploy 0/wk, lead 454.9h, MTTR 1.1h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-02T02:24:53.093Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 200min total, 101min wasted, ~$0/mo",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-02T02:24:59.691Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 80/100, branch protection 0/2, CI 2/2, review coverage 0%",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-02T02:25:00.322Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "6 recommendations across 28 repos (0 critical, 5 high)",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-04-02T03:29:48.030Z",
       "source": "factory-watchdog",
       "action": "workflow-failure",
@@ -12140,6 +12020,55 @@
       "action": "check-complete",
       "details": "3/10 passing, 5 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-09T02:24:38.895Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "2 projects, avg health 40",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-09T02:24:46.537Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 2 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-09T02:24:51.772Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 15%, 4 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-09T02:25:02.497Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 454.9h, MTTR 1.1h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-04-09T02:25:08.596Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 200min total, 106min wasted, ~$0/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-09T02:25:15.273Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 80/100, branch protection 0/2, CI 2/2, review coverage 0%",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-04-09T02:25:15.962Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "6 recommendations across 28 repos (0 critical, 5 high)",
+      "status": "success"
     }
   ]
 }
