@@ -2,20 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-04-03T13:04:37.211Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "2 projects, avg health 70",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-03T13:04:45.888Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 2 critical issues",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-04-03T13:04:51.121Z",
       "source": "build-dashboard",
       "action": "template-drift",
@@ -22056,6 +22042,13 @@
     },
     {
       "timestamp": "2026-04-10T13:03:50.003Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "0/10 passing, 0 failing. Issues: 0 created, 0 closed",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-04-10T13:04:49.418Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "0/10 passing, 0 failing. Issues: 0 created, 0 closed",
