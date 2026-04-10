@@ -1,10 +1,14 @@
-## Quality Score Report - 2026-04-09
+## Quality Score Report - 2026-04-10
 
 ### Summary
-- **Average Score**: 50/100
+- **Average Score**: 48/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
+
+### Score Drops (≥5 points)
+- **Lecteur_Magic**: 50 → 35 (-15)
+- **magic-migration**: 50 → 35 (-15)
 
 ### Per Repository
 
@@ -59,16 +63,6 @@
 - **Gitleaks**: ✓
 
 #### Site_Au-marais
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### Lecteur_Magic
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -188,13 +182,23 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
 
-#### magic-migration
-- **Score**: 50/100
+#### Lecteur_Magic
+- **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
+- **Gitleaks**: ✗
+
+#### magic-migration
+- **Score**: 35/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
 
