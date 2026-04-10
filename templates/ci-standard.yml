@@ -10,6 +10,10 @@ on:
   pull_request:
     branches: [main, master]
 
+permissions:
+  contents: write
+  pull-requests: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -82,9 +86,22 @@ jobs:
           $PM run typecheck || $PM run tsc || echo "::warning::No typecheck script found"
 
       - name: Test with coverage
+        id: test
         run: |
           PM="${{ needs.detect-stack.outputs.package-manager }}"
           $PM test -- --coverage --reporter=json || echo "::warning::No test script found"
+
+          if [ -f "coverage/coverage-summary.json" ]; then
+            echo "has_coverage=true" >> $GITHUB_OUTPUT
+            LINES=$(node -e "try{const c=require('./coverage/coverage-summary.json');console.log(c.total.lines.pct)}catch{console.log(0)}")
+            BRANCHES=$(node -e "try{const c=require('./coverage/coverage-summary.json');console.log(c.total.branches.pct)}catch{console.log(0)}")
+            FUNCTIONS=$(node -e "try{const c=require('./coverage/coverage-summary.json');console.log(c.total.functions.pct)}catch{console.log(0)}")
+            echo "lines=$LINES" >> $GITHUB_OUTPUT
+            echo "branches=$BRANCHES" >> $GITHUB_OUTPUT
+            echo "functions=$FUNCTIONS" >> $GITHUB_OUTPUT
+          else
+            echo "has_coverage=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Upload coverage
         if: always()
@@ -93,6 +110,113 @@ jobs:
           name: coverage
           path: coverage/coverage-summary.json
           if-no-files-found: ignore
+
+      - name: Load baseline
+        if: steps.test.outputs.has_coverage == 'true'
+        id: baseline
+        run: |
+          if [ -f ".coverage-baseline.json" ]; then
+            PREV_LINES=$(node -e "try{console.log(require('./.coverage-baseline.json').lines)}catch{console.log(0)}")
+            PREV_BRANCHES=$(node -e "try{console.log(require('./.coverage-baseline.json').branches)}catch{console.log(0)}")
+            echo "prev_lines=$PREV_LINES" >> $GITHUB_OUTPUT
+            echo "prev_branches=$PREV_BRANCHES" >> $GITHUB_OUTPUT
+            echo "has_baseline=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_baseline=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check coverage ratchet
+        if: steps.test.outputs.has_coverage == 'true' && steps.baseline.outputs.has_baseline == 'true'
+        id: ratchet
+        run: |
+          CURRENT=${{ steps.test.outputs.lines }}
+          PREV=${{ steps.baseline.outputs.prev_lines }}
+          DIFF=$(node -e "console.log(($CURRENT - $PREV).toFixed(1))")
+          echo "delta=$DIFF" >> $GITHUB_OUTPUT
+          if (( $(echo "$DIFF < -2" | bc -l) )); then
+            echo "failed=true" >> $GITHUB_OUTPUT
+          else
+            echo "failed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment coverage on PR
+        if: github.event_name == 'pull_request' && steps.test.outputs.has_coverage == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const lines = parseFloat('${{ steps.test.outputs.lines }}') || 0;
+            const branches = parseFloat('${{ steps.test.outputs.branches }}') || 0;
+            const functions = parseFloat('${{ steps.test.outputs.functions }}') || 0;
+            const hasBaseline = '${{ steps.baseline.outputs.has_baseline }}' === 'true';
+            const prevLines = parseFloat('${{ steps.baseline.outputs.prev_lines }}') || 0;
+            const prevBranches = parseFloat('${{ steps.baseline.outputs.prev_branches }}') || 0;
+            const ratchetFailed = '${{ steps.ratchet.outputs.failed }}' === 'true';
+
+            const delta = (curr, prev) => {
+              const d = (curr - prev).toFixed(1);
+              return d > 0 ? `+${d}%` : `${d}%`;
+            };
+            const icon = (curr, prev) => curr >= prev ? '🟢' : '🔴';
+
+            let body = `## Coverage Report\n\n| Metric | Current |`;
+            if (hasBaseline) body += ` Previous | Delta |`;
+            body += `\n|--------|---------|`;
+            if (hasBaseline) body += `----------|-------|`;
+            body += `\n| Lines | ${lines}% |`;
+            if (hasBaseline) body += ` ${prevLines}% | ${icon(lines, prevLines)} ${delta(lines, prevLines)} |`;
+            body += `\n| Branches | ${branches}% |`;
+            if (hasBaseline) body += ` ${prevBranches}% | ${icon(branches, prevBranches)} ${delta(branches, prevBranches)} |`;
+            body += `\n| Functions | ${functions}% |`;
+            if (hasBaseline) body += ` | |`;
+            body += `\n`;
+            if (ratchetFailed) {
+              body += `\n> 🔴 **Coverage ratchet failed** — dropped more than 2%. Please add tests.\n`;
+            }
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.body?.includes('Coverage Report'));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
+
+      - name: Update baseline on main
+        if: github.event_name == 'push' && steps.test.outputs.has_coverage == 'true'
+        run: |
+          cat > .coverage-baseline.json << BASELINE_EOF
+          {
+            "date": "$(date -I)",
+            "lines": ${{ steps.test.outputs.lines }},
+            "branches": ${{ steps.test.outputs.branches }},
+            "functions": ${{ steps.test.outputs.functions }}
+          }
+          BASELINE_EOF
+          git config user.name "DevOps Factory Bot"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add .coverage-baseline.json
+          git diff --cached --quiet || git commit -m "chore: update coverage baseline"
+          git push
+
+      - name: Fail on ratchet
+        if: steps.ratchet.outputs.failed == 'true'
+        run: |
+          echo "::error::Coverage dropped by ${{ steps.ratchet.outputs.delta }}% (max allowed: -2%)"
+          exit 1
 
       - name: Build
         run: |
