@@ -1,118 +1,17 @@
 {
-  "timestamp": "2026-04-10T07:28:41.530Z",
-  "repos": [
-    {
-      "repo": "claude-launcher",
-      "fullName": "thonyAGP/claude-launcher",
-      "workflows": {
-        "gitleaks": {
-          "name": "Secret Scanning",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        },
-        "supplyChain": {
-          "name": "Supply Chain Security",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        },
-        "containerScan": {
-          "name": "Container Scan",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        },
-        "securityHeaders": {
-          "name": "Security Headers",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        },
-        "licenseCheck": {
-          "name": "License Check",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        },
-        "semgrep": {
-          "name": "Semgrep SAST",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        }
-      },
-      "score": 35,
-      "grade": "F",
-      "issues": [
-        "No secret scanning configured",
-        "No supply chain security scanning",
-        "No license compliance check",
-        "No SAST scanning configured"
-      ]
-    },
-    {
-      "repo": "SqlConnectionTest",
-      "fullName": "thonyAGP/SqlConnectionTest",
-      "workflows": {
-        "gitleaks": {
-          "name": "Secret Scanning",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        },
-        "supplyChain": {
-          "name": "Supply Chain Security",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        },
-        "containerScan": {
-          "name": "Container Scan",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        },
-        "securityHeaders": {
-          "name": "Security Headers",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        },
-        "licenseCheck": {
-          "name": "License Check",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        },
-        "semgrep": {
-          "name": "Semgrep SAST",
-          "lastRun": null,
-          "conclusion": "not_found",
-          "url": null
-        }
-      },
-      "score": 35,
-      "grade": "F",
-      "issues": [
-        "No secret scanning configured",
-        "No supply chain security scanning",
-        "No license compliance check",
-        "No SAST scanning configured"
-      ]
-    }
-  ],
+  "timestamp": "2026-04-10T12:40:37.704Z",
+  "repos": [],
   "summary": {
-    "avgScore": 35,
+    "avgScore": null,
     "reposWithSecurityWorkflows": 0,
-    "totalRepos": 2,
-    "criticalIssues": 2,
+    "totalRepos": 0,
+    "criticalIssues": 0,
     "gradeDistribution": {
       "A": 0,
       "B": 0,
       "C": 0,
       "D": 0,
-      "F": 2
+      "F": 0
     }
   }
 }
