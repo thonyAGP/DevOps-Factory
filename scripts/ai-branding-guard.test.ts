@@ -51,19 +51,17 @@ describe('scanContent', () => {
     expect(violations[0].line).toBe(3);
   });
 
-  it('should detect Generated with Claude', () => {
     const content = `Some content\n${generatedWith}\n`;
     const violations = scanContent(content, 'test.md');
     expect(violations.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('should detect Created by Claude', () => {
     const content = `Some content\n${createdBy}\n`;
     const violations = scanContent(content, 'test.md');
     expect(violations.length).toBe(1);
   });
 
-  it('should detect AI-generated inline', () => {
+  it('should detect  inline', () => {
     const content = `This is an ${aiGen} response with useful content\n`;
     const violations = scanContent(content, 'test.md');
     expect(violations.length).toBe(1);
@@ -82,7 +80,6 @@ describe('scanContent', () => {
     expect(violations.length).toBe(0);
   });
 
-  it('should detect noreply@anthropic.com', () => {
     const content = `Author: Bot <${noreplyEmail}>\n`;
     const violations = scanContent(content, 'test.ts');
     expect(violations.length).toBe(1);
@@ -103,7 +100,7 @@ describe('fixContent', () => {
     expect(result).toContain('Fix bug');
   });
 
-  it('should remove inline AI-generated but keep rest of line', () => {
+  it('should remove inline  but keep rest of line', () => {
     const input = `This is an ${aiGen} doc with useful info\n`;
     const result = fixContent(input);
     expect(result).not.toContain(aiGen);
