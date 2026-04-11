@@ -2,41 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-04-04T02:10:22.031Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "2 projects, avg health 70",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-04T02:10:32.829Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 2 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-04T02:10:40.407Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 15%, 4 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-04T02:10:51.653Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: medium, deploy 0/wk, lead 454.9h, MTTR 1.1h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-04T02:10:57.437Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 200min total, 101min wasted, ~$0/mo",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-04-04T02:11:05.299Z",
       "source": "build-dashboard",
       "action": "compliance-report",
@@ -77785,6 +77750,13 @@
     },
     {
       "timestamp": "2026-04-11T02:09:57.709Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "0/10 passing, 0 failing. Issues: 0 created, 0 closed",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-04-11T02:11:00.250Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "0/10 passing, 0 failing. Issues: 0 created, 0 closed",
