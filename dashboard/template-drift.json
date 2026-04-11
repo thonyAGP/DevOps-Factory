@@ -1,11 +1,200 @@
 {
-  "timestamp": "2026-04-11T07:01:38.606Z",
-  "repos": [],
+  "timestamp": "2026-04-11T12:30:23.174Z",
+  "repos": [
+    {
+      "repo": "claude-launcher",
+      "fullName": "thonyAGP/claude-launcher",
+      "templates": [
+        {
+          "template": "gitleaks.yml",
+          "repoPath": ".github/workflows/gitleaks.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "license-check.yml",
+          "repoPath": ".github/workflows/license-check.yml",
+          "status": "modified",
+          "similarity": 93
+        },
+        {
+          "template": "supply-chain-security.yml",
+          "repoPath": ".github/workflows/supply-chain-security.yml",
+          "status": "synced",
+          "similarity": 98
+        },
+        {
+          "template": "container-scan.yml",
+          "repoPath": ".github/workflows/container-scan.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "security-headers.yml",
+          "repoPath": ".github/workflows/security-headers.yml",
+          "status": "missing",
+          "similarity": 0
+        },
+        {
+          "template": "semgrep.yml",
+          "repoPath": ".github/workflows/semgrep.yml",
+          "status": "outdated",
+          "similarity": 68
+        },
+        {
+          "template": "branch-cleanup.yml",
+          "repoPath": ".github/workflows/branch-cleanup.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "repoPath": ".github/workflows/dead-code-detection.yml",
+          "status": "synced",
+          "similarity": 97
+        },
+        {
+          "template": "sbom-generation.yml",
+          "repoPath": ".github/workflows/sbom-generation.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "auto-label.yml",
+          "repoPath": ".github/workflows/auto-label.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "pr-size-limiter.yml",
+          "repoPath": ".github/workflows/pr-size-limiter.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "config-drift.yml",
+          "repoPath": ".github/workflows/config-drift.yml",
+          "status": "synced",
+          "similarity": 98
+        },
+        {
+          "template": "coderabbit.yaml",
+          "repoPath": ".coderabbit.yaml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "renovate.json",
+          "repoPath": "renovate.json",
+          "status": "synced",
+          "similarity": 100
+        }
+      ],
+      "driftScore": 15,
+      "totalTemplates": 14,
+      "syncedCount": 11,
+      "modifiedCount": 2
+    },
+    {
+      "repo": "SqlConnectionTest",
+      "fullName": "thonyAGP/SqlConnectionTest",
+      "templates": [
+        {
+          "template": "gitleaks.yml",
+          "repoPath": ".github/workflows/gitleaks.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "license-check.yml",
+          "repoPath": ".github/workflows/license-check.yml",
+          "status": "modified",
+          "similarity": 93
+        },
+        {
+          "template": "supply-chain-security.yml",
+          "repoPath": ".github/workflows/supply-chain-security.yml",
+          "status": "synced",
+          "similarity": 98
+        },
+        {
+          "template": "container-scan.yml",
+          "repoPath": ".github/workflows/container-scan.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "security-headers.yml",
+          "repoPath": ".github/workflows/security-headers.yml",
+          "status": "missing",
+          "similarity": 0
+        },
+        {
+          "template": "semgrep.yml",
+          "repoPath": ".github/workflows/semgrep.yml",
+          "status": "outdated",
+          "similarity": 68
+        },
+        {
+          "template": "branch-cleanup.yml",
+          "repoPath": ".github/workflows/branch-cleanup.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "dead-code-detection.yml",
+          "repoPath": ".github/workflows/dead-code-detection.yml",
+          "status": "synced",
+          "similarity": 97
+        },
+        {
+          "template": "sbom-generation.yml",
+          "repoPath": ".github/workflows/sbom-generation.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "auto-label.yml",
+          "repoPath": ".github/workflows/auto-label.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "pr-size-limiter.yml",
+          "repoPath": ".github/workflows/pr-size-limiter.yml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "config-drift.yml",
+          "repoPath": ".github/workflows/config-drift.yml",
+          "status": "synced",
+          "similarity": 98
+        },
+        {
+          "template": "coderabbit.yaml",
+          "repoPath": ".coderabbit.yaml",
+          "status": "synced",
+          "similarity": 100
+        },
+        {
+          "template": "renovate.json",
+          "repoPath": "renovate.json",
+          "status": "synced",
+          "similarity": 100
+        }
+      ],
+      "driftScore": 15,
+      "totalTemplates": 14,
+      "syncedCount": 11,
+      "modifiedCount": 2
+    }
+  ],
   "summary": {
-    "totalRepos": 0,
-    "avgDriftScore": null,
-    "totalDrifted": 0,
-    "totalSynced": 0,
-    "mostDriftedRepo": "none"
+    "totalRepos": 2,
+    "avgDriftScore": 15,
+    "totalDrifted": 4,
+    "totalSynced": 22,
+    "mostDriftedRepo": "claude-launcher"
   }
 }
