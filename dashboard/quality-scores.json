@@ -1,20 +1,6 @@
 {
-  "timestamp": "2026-04-12T08:59:12.081Z",
+  "timestamp": "2026-04-13T10:03:02.710Z",
   "scores": [
-    {
-      "name": "Zentra",
-      "repo": "thonyAGP/zentra",
-      "score": 70,
-      "breakdown": {
-        "ciPasses": 20,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15
-      }
-    },
     {
       "name": "DevOps-Factory",
       "repo": "thonyAGP/DevOps-Factory",
@@ -226,6 +212,20 @@
       }
     },
     {
+      "name": "Zentra",
+      "repo": "thonyAGP/zentra",
+      "score": 50,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15
+      }
+    },
+    {
       "name": "LB2I-Fiscal-Manager",
       "repo": "thonyAGP/LB2I-Fiscal-Manager",
       "score": 50,
@@ -268,5 +268,12 @@
       }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "Zentra",
+      "drop": 20,
+      "from": 70,
+      "to": 50
+    }
+  ]
 }
