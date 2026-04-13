@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-13T08:04:46.817Z",
+  "timestamp": "2026-04-13T13:27:35.693Z",
   "repos": [
     {
       "repo": "claude-launcher",
@@ -9,8 +9,8 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 24,
-          "totalMinutes": 24,
+          "runs": 22,
+          "totalMinutes": 22,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -80,6 +80,22 @@
           "wastedMinutes": 1
         },
         {
+          "name": "Dead Code Detection",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Config Drift",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
           "name": "Type Coverage",
           "runs": 3,
           "totalMinutes": 3,
@@ -118,22 +134,6 @@
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 3
-        },
-        {
-          "name": "Dead Code Detection",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Config Drift",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
         },
         {
           "name": "Release Drafter",
@@ -215,8 +215,8 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 20,
-          "totalMinutes": 20,
+          "runs": 17,
+          "totalMinutes": 17,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
@@ -286,6 +286,30 @@
           "wastedMinutes": 1
         },
         {
+          "name": "Config Drift",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 2,
+          "wastedMinutes": 2
+        },
+        {
+          "name": "Dead Code Detection",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
+          "name": "Accessibility Check",
+          "runs": 3,
+          "totalMinutes": 3,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
           "name": "Container Scan",
           "runs": 3,
           "totalMinutes": 3,
@@ -308,30 +332,6 @@
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 3
-        },
-        {
-          "name": "Config Drift",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
-        },
-        {
-          "name": "Dead Code Detection",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Accessibility Check",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
         },
         {
           "name": "Type Coverage",
@@ -418,7 +418,7 @@
   "summary": {
     "totalMinutes": 200,
     "totalRuns": 200,
-    "wastedMinutes": 116,
+    "wastedMinutes": 120,
     "mostExpensiveRepo": "claude-launcher",
     "mostExpensiveWorkflow": "Cron Monitor (claude-launcher)",
     "totalRecommendations": 9,
