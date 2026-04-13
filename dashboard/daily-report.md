@@ -14,11 +14,11 @@
 
 ### SqlConnectionTest :x:
 - **Health**: 37/100
-- **CI**: fail ([view](https://github.com/thonyAGP/SqlConnectionTest/actions/runs/24276099634))
+- **CI**: fail ([view](https://github.com/thonyAGP/SqlConnectionTest/actions/runs/24328764157))
 - **Open PRs**: 1
 
 ### claude-launcher :x:
 - **Health**: 40/100
-- **CI**: fail ([view](https://github.com/thonyAGP/claude-launcher/actions/runs/24276261614))
+- **CI**: fail ([view](https://github.com/thonyAGP/claude-launcher/actions/runs/24331841773))
 - **Open PRs**: 1
 
