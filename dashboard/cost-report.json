@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-18T02:28:15.296Z",
+  "timestamp": "2026-04-18T07:09:29.058Z",
   "repos": [
     {
       "repo": "claude-launcher",
@@ -9,8 +9,8 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 21,
-          "totalMinutes": 21,
+          "runs": 19,
+          "totalMinutes": 19,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -54,6 +54,22 @@
           "avgMinutes": 1,
           "failedRuns": 6,
           "wastedMinutes": 6
+        },
+        {
+          "name": "Container Scan",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
+        },
+        {
+          "name": "Branch & Artifact Cleanup",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
         },
         {
           "name": "Supply Chain Security",
@@ -118,22 +134,6 @@
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 3
-        },
-        {
-          "name": "Container Scan",
-          "runs": 3,
-          "totalMinutes": 3,
-          "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
-        },
-        {
-          "name": "Branch & Artifact Cleanup",
-          "runs": 3,
-          "totalMinutes": 3,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
         },
         {
           "name": "Release Drafter",
@@ -215,8 +215,8 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 16,
-          "totalMinutes": 16,
+          "runs": 14,
+          "totalMinutes": 14,
           "avgMinutes": 1,
           "failedRuns": 1,
           "wastedMinutes": 1
@@ -260,6 +260,22 @@
           "avgMinutes": 1,
           "failedRuns": 6,
           "wastedMinutes": 6
+        },
+        {
+          "name": "Container Scan",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
+        },
+        {
+          "name": "Branch & Artifact Cleanup",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Supply Chain Security",
@@ -316,22 +332,6 @@
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 3
-        },
-        {
-          "name": "Container Scan",
-          "runs": 3,
-          "totalMinutes": 3,
-          "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
-        },
-        {
-          "name": "Branch & Artifact Cleanup",
-          "runs": 3,
-          "totalMinutes": 3,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
         },
         {
           "name": "Type Coverage",
@@ -418,7 +418,7 @@
   "summary": {
     "totalMinutes": 200,
     "totalRuns": 200,
-    "wastedMinutes": 122,
+    "wastedMinutes": 125,
     "mostExpensiveRepo": "claude-launcher",
     "mostExpensiveWorkflow": "Cron Monitor (claude-launcher)",
     "totalRecommendations": 9,
