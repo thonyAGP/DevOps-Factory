@@ -1,12 +1,22 @@
-## Quality Score Report - 2026-04-15
+## Quality Score Report - 2026-04-18
 
 ### Summary
-- **Average Score**: 48/100
+- **Average Score**: 49/100
 - **Excellent** (80+): 0
-- **Good** (60-79): 0
-- **Needs Work** (<60): 19
+- **Good** (60-79): 1
+- **Needs Work** (<60): 18
 
 ### Per Repository
+
+#### Zentra
+- **Score**: 70/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
 
 #### DevOps-Factory
 - **Score**: 50/100
@@ -149,16 +159,6 @@
 - **Gitleaks**: ✓
 
 #### SqlConnectionTest
-- **Score**: 50/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### Zentra
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
