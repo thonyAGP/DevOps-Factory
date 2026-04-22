@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 4/22/2026, 1:28:58 PM
+**Generated**: 4/22/2026, 7:14:44 PM
 **Period**: 30-day window
 
 ## Summary
@@ -12,9 +12,9 @@
 | Repos with Branch Protection | 0/2 |
 | Repos with CI | 2/2 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 10 |
+| PRs Merged (30d) | 4 |
 | Deployments (30d) | 20 |
-| PRs with Review | 0/10 |
+| PRs with Review | 0/4 |
 
 ## Repository Compliance
 
@@ -30,8 +30,8 @@
 - SqlConnectionTest
 
 ### ⚠️ No Code Review (2)
-- **claude-launcher**: 5 PRs merged without review
-- **SqlConnectionTest**: 5 PRs merged without review
+- **claude-launcher**: 2 PRs merged without review
+- **SqlConnectionTest**: 2 PRs merged without review
 
 ## Recommendations
 
@@ -53,14 +53,11 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/5 PRs (0%)
+**Review Coverage**: 0/2 PRs (0%)
 
 **PRs Without Review**:
 - #6 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 - #5 - chore: add DevOps-Factory AI workflows (by thonyAGP)
-- #4 - chore: add SAST with Semgrep (by thonyAGP)
-- #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
-- #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
 
 **Recent Deployments**: 15 successful deploys in 30 days
 
@@ -76,14 +73,11 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/5 PRs (0%)
+**Review Coverage**: 0/2 PRs (0%)
 
 **PRs Without Review**:
 - #6 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 - #5 - chore: add DevOps-Factory AI workflows (by thonyAGP)
-- #4 - chore: add SAST with Semgrep (by thonyAGP)
-- #3 - chore: add automated dependency updates with Renovate (by thonyAGP)
-- #2 - chore: add secret scanning with Gitleaks (by thonyAGP)
 
 **Recent Deployments**: 5 successful deploys in 30 days
 
