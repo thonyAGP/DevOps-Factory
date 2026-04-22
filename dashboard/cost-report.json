@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-22T07:48:53.249Z",
+  "timestamp": "2026-04-22T13:28:50.130Z",
   "repos": [
     {
       "repo": "claude-launcher",
@@ -9,8 +9,8 @@
       "workflows": [
         {
           "name": "Cron Monitor",
-          "runs": 13,
-          "totalMinutes": 13,
+          "runs": 12,
+          "totalMinutes": 12,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -54,6 +54,14 @@
           "avgMinutes": 1,
           "failedRuns": 6,
           "wastedMinutes": 6
+        },
+        {
+          "name": "Supply Chain Security",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 5,
+          "wastedMinutes": 5
         },
         {
           "name": "Security Scan (SAST)",
@@ -118,14 +126,6 @@
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
-        },
-        {
-          "name": "Supply Chain Security",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
         },
         {
           "name": "Semantic Release",
@@ -262,7 +262,7 @@
           "wastedMinutes": 6
         },
         {
-          "name": "Security Scan (SAST)",
+          "name": "Supply Chain Security",
           "runs": 5,
           "totalMinutes": 5,
           "avgMinutes": 1,
@@ -270,12 +270,12 @@
           "wastedMinutes": 5
         },
         {
-          "name": "Secret Scanning",
+          "name": "Security Scan (SAST)",
           "runs": 5,
           "totalMinutes": 5,
           "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
+          "failedRuns": 5,
+          "wastedMinutes": 5
         },
         {
           "name": "Config Drift",
@@ -302,6 +302,14 @@
           "wastedMinutes": 4
         },
         {
+          "name": "Secret Scanning",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
+        {
           "name": "Container Scan",
           "runs": 4,
           "totalMinutes": 4,
@@ -316,14 +324,6 @@
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 3
-        },
-        {
-          "name": "Supply Chain Security",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
         },
         {
           "name": "Semantic Release",
@@ -418,7 +418,7 @@
   "summary": {
     "totalMinutes": 200,
     "totalRuns": 200,
-    "wastedMinutes": 134,
+    "wastedMinutes": 135,
     "mostExpensiveRepo": "claude-launcher",
     "mostExpensiveWorkflow": "Cron Monitor (claude-launcher)",
     "totalRecommendations": 9,
