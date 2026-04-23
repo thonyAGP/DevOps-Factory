@@ -1,6 +1,6 @@
 # Compliance & Audit Report
 
-**Generated**: 4/22/2026, 7:14:44 PM
+**Generated**: 4/23/2026, 1:20:38 AM
 **Period**: 30-day window
 
 ## Summary
@@ -12,9 +12,9 @@
 | Repos with Branch Protection | 0/2 |
 | Repos with CI | 2/2 |
 | PR Review Coverage | 0% |
-| PRs Merged (30d) | 4 |
+| PRs Merged (30d) | 0 |
 | Deployments (30d) | 20 |
-| PRs with Review | 0/4 |
+| PRs with Review | 0/0 |
 
 ## Repository Compliance
 
@@ -28,10 +28,6 @@
 ### ⚠️ No Branch Protection (2)
 - claude-launcher
 - SqlConnectionTest
-
-### ⚠️ No Code Review (2)
-- **claude-launcher**: 2 PRs merged without review
-- **SqlConnectionTest**: 2 PRs merged without review
 
 ## Recommendations
 
@@ -53,12 +49,6 @@
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
 
-**Review Coverage**: 0/2 PRs (0%)
-
-**PRs Without Review**:
-- #6 - chore: add DevOps-Factory AI workflows (by thonyAGP)
-- #5 - chore: add DevOps-Factory AI workflows (by thonyAGP)
-
 **Recent Deployments**: 15 successful deploys in 30 days
 
 ---
@@ -72,12 +62,6 @@
 - Code Review Required: ✗
 - CI/CD Enabled: ✓
 - Security Findings: 0 alerts
-
-**Review Coverage**: 0/2 PRs (0%)
-
-**PRs Without Review**:
-- #6 - chore: add DevOps-Factory AI workflows (by thonyAGP)
-- #5 - chore: add DevOps-Factory AI workflows (by thonyAGP)
 
 **Recent Deployments**: 5 successful deploys in 30 days
 
