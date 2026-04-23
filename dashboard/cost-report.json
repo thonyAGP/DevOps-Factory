@@ -1,43 +1,35 @@
 {
-  "timestamp": "2026-04-23T13:43:31.906Z",
+  "timestamp": "2026-04-23T19:09:41.092Z",
   "repos": [
     {
       "repo": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
-      "totalMinutes": 76,
-      "totalRuns": 76,
+      "totalMinutes": 69,
+      "totalRuns": 69,
       "workflows": [
         {
           "name": ".github/workflows/cron-monitor.yml",
-          "runs": 8,
-          "totalMinutes": 8,
+          "runs": 7,
+          "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 8,
-          "wastedMinutes": 8
+          "failedRuns": 7,
+          "wastedMinutes": 7
         },
         {
           "name": "CI",
-          "runs": 8,
-          "totalMinutes": 8,
+          "runs": 7,
+          "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 8,
-          "totalMinutes": 8,
+          "runs": 7,
+          "totalMinutes": 7,
           "avgMinutes": 1,
-          "failedRuns": 8,
-          "wastedMinutes": 8
-        },
-        {
-          "name": "Coverage Tracking",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
+          "failedRuns": 7,
+          "wastedMinutes": 7
         },
         {
           "name": "Supply Chain Security",
@@ -48,7 +40,7 @@
           "wastedMinutes": 5
         },
         {
-          "name": ".github/workflows/auto-changelog.yml",
+          "name": "Coverage Tracking",
           "runs": 5,
           "totalMinutes": 5,
           "avgMinutes": 1,
@@ -112,12 +104,12 @@
           "wastedMinutes": 3
         },
         {
-          "name": "Semantic Release",
-          "runs": 3,
-          "totalMinutes": 3,
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Type Coverage",
@@ -128,6 +120,14 @@
           "wastedMinutes": 2
         },
         {
+          "name": "Semantic Release",
+          "runs": 2,
+          "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
           "name": "README Freshness",
           "runs": 1,
           "totalMinutes": 1,
@@ -142,61 +142,20 @@
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
-        },
-        {
-          "name": "Release Drafter",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 1,
-          "wastedMinutes": 1
         }
       ],
       "recommendations": [
-        ".github/workflows/cron-monitor.yml: 100% failure rate (8min wasted). Fix root cause.",
-        "CI: 50% failure rate (4min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (8min wasted). Fix root cause.",
-        "Coverage Tracking: 100% failure rate (6min wasted). Fix root cause."
+        ".github/workflows/cron-monitor.yml: 100% failure rate (7min wasted). Fix root cause.",
+        "CI: 43% failure rate (3min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause."
       ]
     },
     {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
-      "totalMinutes": 72,
-      "totalRuns": 72,
+      "totalMinutes": 65,
+      "totalRuns": 65,
       "workflows": [
-        {
-          "name": "Coverage Tracking",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
-        },
-        {
-          "name": "CI",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": ".github/workflows/cron-monitor.yml",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 6,
-          "totalMinutes": 6,
-          "avgMinutes": 1,
-          "failedRuns": 6,
-          "wastedMinutes": 6
-        },
         {
           "name": "Supply Chain Security",
           "runs": 5,
@@ -206,7 +165,31 @@
           "wastedMinutes": 5
         },
         {
-          "name": ".github/workflows/auto-changelog.yml",
+          "name": "Coverage Tracking",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 5,
+          "wastedMinutes": 5
+        },
+        {
+          "name": "CI",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 5,
+          "wastedMinutes": 5
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
           "runs": 5,
           "totalMinutes": 5,
           "avgMinutes": 1,
@@ -278,9 +261,17 @@
           "wastedMinutes": 0
         },
         {
+          "name": ".github/workflows/auto-changelog.yml",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
+        },
+        {
           "name": "Semantic Release",
-          "runs": 3,
-          "totalMinutes": 3,
+          "runs": 2,
+          "totalMinutes": 2,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -300,30 +291,18 @@
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
-        },
-        {
-          "name": "Release Drafter",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
         }
       ],
-      "recommendations": [
-        "Coverage Tracking: 100% failure rate (6min wasted). Fix root cause.",
-        ".github/workflows/cron-monitor.yml: 100% failure rate (6min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (6min wasted). Fix root cause."
-      ]
+      "recommendations": []
     }
   ],
   "summary": {
-    "totalMinutes": 148,
-    "totalRuns": 148,
-    "wastedMinutes": 112,
+    "totalMinutes": 134,
+    "totalRuns": 134,
+    "wastedMinutes": 102,
     "mostExpensiveRepo": "SqlConnectionTest",
     "mostExpensiveWorkflow": ".github/workflows/cron-monitor.yml (SqlConnectionTest)",
-    "totalRecommendations": 7,
+    "totalRecommendations": 3,
     "estimatedMonthlyCost": 0
   }
 }
