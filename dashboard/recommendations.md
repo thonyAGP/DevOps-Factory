@@ -1,12 +1,12 @@
 # Template Recommendations Report
 
-Generated: 4/25/2026, 7:18:02 AM
+Generated: 4/25/2026, 12:35:33 PM
 
 ## Executive Summary
 
 - **Total Recommendations**: 6
 - **Critical**: 0 | **High**: 5 | **Medium**: 1 | **Low**: 0
-- **Average Health Score**: 28.8/100
+- **Average Health Score**: 29.5/100
 - **Top Template**: qodo-merge.yml (2 repos)
 - **Most Improved Repo**: claude-launcher
 
