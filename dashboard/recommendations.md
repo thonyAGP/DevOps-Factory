@@ -1,6 +1,6 @@
 # Template Recommendations Report
 
-Generated: 4/25/2026, 2:29:46 AM
+Generated: 4/25/2026, 7:18:02 AM
 
 ## Executive Summary
 
@@ -43,7 +43,7 @@ Generated: 4/25/2026, 2:29:46 AM
 
 - **Health Score**: 50/100
 - **Stack**: dotnet
-- **CI Failure Rate**: 80%
+- **CI Failure Rate**: 81%
 
 #### High Priority
 
