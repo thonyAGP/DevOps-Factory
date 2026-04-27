@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-27T02:49:12.097Z",
+  "timestamp": "2026-04-27T13:13:59.491Z",
   "period": "30-day window",
   "repos": [
     {
@@ -7,6 +7,22 @@
       "fullName": "thonyAGP/claude-launcher",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/claude-launcher",
+          "sha": "32b11af762881cfa67d1496383ab38da08dd4631",
+          "status": "success",
+          "timestamp": "2026-04-27T09:14:15Z",
+          "workflow": "Config Drift"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/claude-launcher",
+          "sha": "32b11af762881cfa67d1496383ab38da08dd4631",
+          "status": "success",
+          "timestamp": "2026-04-27T05:56:47Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/claude-launcher",
@@ -202,7 +218,7 @@
     "totalPRsMerged": 0,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 21,
+    "totalDeployments": 23,
     "avgComplianceScore": 80,
     "reposWithBranchProtection": 0,
     "reposWithCI": 2
