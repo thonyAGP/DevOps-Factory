@@ -1,127 +1,6 @@
 {
-  "timestamp": "2026-04-27T13:54:49.317Z",
+  "timestamp": "2026-04-27T19:23:11.056Z",
   "repos": [
-    {
-      "repo": "SqlConnectionTest",
-      "fullName": "thonyAGP/SqlConnectionTest",
-      "totalMinutes": 47,
-      "totalRuns": 47,
-      "workflows": [
-        {
-          "name": "Config Drift",
-          "runs": 5,
-          "totalMinutes": 5,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
-        },
-        {
-          "name": "Dead Code Detection",
-          "runs": 5,
-          "totalMinutes": 5,
-          "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
-        },
-        {
-          "name": "Accessibility Check",
-          "runs": 5,
-          "totalMinutes": 5,
-          "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 5,
-          "totalMinutes": 5,
-          "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 5,
-          "totalMinutes": 5,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
-        },
-        {
-          "name": "Container Scan",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
-        },
-        {
-          "name": "Branch & Artifact Cleanup",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
-        },
-        {
-          "name": "Supply Chain Security",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
-        },
-        {
-          "name": ".github/workflows/cron-monitor.yml",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "Type Coverage",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
-          "name": "README Freshness",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
-          "name": "SBOM Generation",
-          "runs": 1,
-          "totalMinutes": 1,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        }
-      ],
-      "recommendations": []
-    },
     {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
@@ -218,13 +97,21 @@
         }
       ],
       "recommendations": []
+    },
+    {
+      "repo": "SqlConnectionTest",
+      "fullName": "thonyAGP/SqlConnectionTest",
+      "totalMinutes": 0,
+      "totalRuns": 0,
+      "workflows": [],
+      "recommendations": []
     }
   ],
   "summary": {
-    "totalMinutes": 91,
-    "totalRuns": 91,
-    "wastedMinutes": 70,
-    "mostExpensiveRepo": "SqlConnectionTest",
+    "totalMinutes": 44,
+    "totalRuns": 44,
+    "wastedMinutes": 28,
+    "mostExpensiveRepo": "claude-launcher",
     "mostExpensiveWorkflow": "Dead Code Detection (claude-launcher)",
     "totalRecommendations": 0,
     "estimatedMonthlyCost": 0
