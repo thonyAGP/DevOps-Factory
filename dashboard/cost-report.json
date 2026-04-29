@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-29T08:20:21.330Z",
+  "timestamp": "2026-04-29T13:17:17.751Z",
   "repos": [
     {
       "repo": "SqlConnectionTest",
@@ -8,12 +8,20 @@
       "totalRuns": 42,
       "workflows": [
         {
-          "name": "Config Drift",
+          "name": "Supply Chain Security",
           "runs": 5,
           "totalMinutes": 5,
           "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
+          "failedRuns": 5,
+          "wastedMinutes": 5
+        },
+        {
+          "name": "Config Drift",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Dead Code Detection",
@@ -62,14 +70,6 @@
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 3
-        },
-        {
-          "name": "Supply Chain Security",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
         },
         {
           "name": ".github/workflows/cron-monitor.yml",
@@ -129,12 +129,20 @@
       "totalRuns": 39,
       "workflows": [
         {
-          "name": "Dead Code Detection",
+          "name": "Supply Chain Security",
           "runs": 5,
           "totalMinutes": 5,
           "avgMinutes": 1,
           "failedRuns": 5,
           "wastedMinutes": 5
+        },
+        {
+          "name": "Dead Code Detection",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Config Drift",
@@ -193,14 +201,6 @@
           "wastedMinutes": 0
         },
         {
-          "name": "Supply Chain Security",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
-        },
-        {
           "name": "README Freshness",
           "runs": 1,
           "totalMinutes": 1,
@@ -225,7 +225,7 @@
     "totalRuns": 81,
     "wastedMinutes": 62,
     "mostExpensiveRepo": "SqlConnectionTest",
-    "mostExpensiveWorkflow": "Dead Code Detection (claude-launcher)",
+    "mostExpensiveWorkflow": "Supply Chain Security (claude-launcher)",
     "totalRecommendations": 0,
     "estimatedMonthlyCost": 0
   }
