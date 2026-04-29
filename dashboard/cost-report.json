@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-04-29T02:54:34.018Z",
+  "timestamp": "2026-04-29T08:20:21.330Z",
   "repos": [
     {
       "repo": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
-      "totalMinutes": 47,
-      "totalRuns": 47,
+      "totalMinutes": 42,
+      "totalRuns": 42,
       "workflows": [
         {
           "name": "Config Drift",
@@ -17,35 +17,35 @@
         },
         {
           "name": "Dead Code Detection",
-          "runs": 5,
-          "totalMinutes": 5,
-          "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
-        },
-        {
-          "name": "Accessibility Check",
-          "runs": 5,
-          "totalMinutes": 5,
-          "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
-        },
-        {
-          "name": "Security Scan (SAST)",
-          "runs": 5,
-          "totalMinutes": 5,
-          "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
           "failedRuns": 4,
           "wastedMinutes": 4
+        },
+        {
+          "name": "Accessibility Check",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
+        },
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
         },
         {
           "name": "Container Scan",
@@ -97,11 +97,11 @@
         },
         {
           "name": "Type Coverage",
-          "runs": 2,
-          "totalMinutes": 2,
+          "runs": 1,
+          "totalMinutes": 1,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "README Freshness",
@@ -125,8 +125,8 @@
     {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
-      "totalMinutes": 44,
-      "totalRuns": 44,
+      "totalMinutes": 39,
+      "totalRuns": 39,
       "workflows": [
         {
           "name": "Dead Code Detection",
@@ -138,40 +138,40 @@
         },
         {
           "name": "Config Drift",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "Type Coverage",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Accessibility Check",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Security Scan (SAST)",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Secret Scanning",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -221,9 +221,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 91,
-    "totalRuns": 91,
-    "wastedMinutes": 70,
+    "totalMinutes": 81,
+    "totalRuns": 81,
+    "wastedMinutes": 62,
     "mostExpensiveRepo": "SqlConnectionTest",
     "mostExpensiveWorkflow": "Dead Code Detection (claude-launcher)",
     "totalRecommendations": 0,
