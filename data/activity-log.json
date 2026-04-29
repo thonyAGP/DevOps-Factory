@@ -2,30 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-04-22T04:07:47.053Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "DevOps-Factory",
-      "details": "Self-heal dispatched (run 24759627382)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-22T04:07:47.280Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-22T04:07:49.934Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 24240581451)",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-04-22T04:07:50.134Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -626698,6 +626674,53 @@
       "action": "check-complete",
       "details": "0/10 passing, 8 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-29T04:07:47.082Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-04-29T04:07:48.270Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Self-Heal CI",
+      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-29T04:07:49.404Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "CI Health Check",
+      "details": "Partial failure detected: gh: not found",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-29T04:07:49.585Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "Self-Heal CI",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-04-29T04:07:49.781Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "CI Health Check",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-04-29T04:07:49.958Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "0/3 passing. 1 failures, 2 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
