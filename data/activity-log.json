@@ -2,117 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-04-23T19:22:05.835Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "DevOps-Factory",
-      "details": "Self-heal dispatched (run 24854289034)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:06.094Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:09.606Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 24240581451)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:09.861Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:10.074Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:13.509Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 24798730824)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:13.714Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "CasaSync",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:17.343Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "Self-heal dispatched (run 24240573664)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:17.546Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:17.772Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Site_Au-marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:17.979Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:21.404Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Self-heal dispatched (run 24853727677)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:21.609Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-04-23T19:22:21.842Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/10 passing, 8 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-04-23T19:23:36.234Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -611939,6 +611828,55 @@
       "action": "check-complete",
       "details": "0/10 passing, 8 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-30T19:21:50.498Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "2 projects, avg health 39",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-30T19:21:59.439Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 2 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-30T19:22:06.156Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 15%, 4 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-30T19:22:13.932Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 0h, MTTR 24.3h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-04-30T19:22:16.953Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 81min total, 62min wasted, ~$0/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-04-30T19:22:23.407Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 80/100, branch protection 0/2, CI 2/2, review coverage 0%",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-04-30T19:22:24.337Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "6 recommendations across 29 repos (0 critical, 5 high)",
+      "status": "success"
     }
   ]
 }
