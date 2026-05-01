@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-01T03:26:44.734Z",
+  "timestamp": "2026-05-01T12:49:46.713Z",
   "period": "30-day window",
   "repos": [
     {
@@ -7,6 +7,22 @@
       "fullName": "thonyAGP/claude-launcher",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/claude-launcher",
+          "sha": "32b11af762881cfa67d1496383ab38da08dd4631",
+          "status": "success",
+          "timestamp": "2026-05-01T10:24:32Z",
+          "workflow": "README Freshness"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/claude-launcher",
+          "sha": "32b11af762881cfa67d1496383ab38da08dd4631",
+          "status": "success",
+          "timestamp": "2026-05-01T09:29:07Z",
+          "workflow": "SBOM Generation"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/claude-launcher",
@@ -142,14 +158,6 @@
           "status": "success",
           "timestamp": "2026-03-28T05:22:08Z",
           "workflow": "Branch & Artifact Cleanup"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/claude-launcher",
-          "sha": "32b11af762881cfa67d1496383ab38da08dd4631",
-          "status": "success",
-          "timestamp": "2026-03-25T01:38:53Z",
-          "workflow": "CI"
         }
       ],
       "securityFindings": [],
@@ -164,6 +172,22 @@
       "fullName": "thonyAGP/SqlConnectionTest",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "513b641cada39b3a5f82913fa73ba632b0f8db5e",
+          "status": "success",
+          "timestamp": "2026-05-01T10:18:59Z",
+          "workflow": "README Freshness"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "513b641cada39b3a5f82913fa73ba632b0f8db5e",
+          "status": "success",
+          "timestamp": "2026-05-01T09:49:01Z",
+          "workflow": "SBOM Generation"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/SqlConnectionTest",
@@ -218,7 +242,7 @@
     "totalPRsMerged": 0,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 23,
+    "totalDeployments": 26,
     "avgComplianceScore": 80,
     "reposWithBranchProtection": 0,
     "reposWithCI": 2
