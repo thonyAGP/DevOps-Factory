@@ -2,41 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-04-25T13:04:52.135Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "2 projects, avg health 39",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-25T13:04:59.665Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 2 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-25T13:05:04.898Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 15%, 4 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-04-25T13:05:11.766Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: medium, deploy 0/wk, lead 0h, MTTR 24.3h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-04-25T13:05:14.645Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 84min total, 64min wasted, ~$0/mo",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-04-25T13:05:20.489Z",
       "source": "build-dashboard",
       "action": "compliance-report",
@@ -607582,6 +607547,101 @@
     },
     {
       "timestamp": "2026-05-02T13:03:54.157Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "1/10 passing, 7 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:10.779Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "DevOps-Factory",
+      "details": "Self-heal dispatched (run 25252549509)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:10.971Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "DevOps-Factory",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:13.000Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 24240581451)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:13.176Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Email_Assistant",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:13.377Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "ClubMedRoomAssignment",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:15.648Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Self-heal dispatched (run 24240573664)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:15.845Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:16.024Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Site_Au-marais",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:16.225Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Zentra",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:18.500Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Self-heal dispatched (run 25250955844)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:18.697Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-05-02T13:05:18.876Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "1/10 passing, 7 failing. Issues: 0 created, 0 closed",
