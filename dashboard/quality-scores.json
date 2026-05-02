@@ -1,51 +1,9 @@
 {
-  "timestamp": "2026-05-01T09:53:53.905Z",
+  "timestamp": "2026-05-02T09:14:42.570Z",
   "scores": [
     {
       "name": "Email_Assistant",
       "repo": "thonyAGP/Email_Assistant",
-      "score": 70,
-      "breakdown": {
-        "ciPasses": 20,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15
-      }
-    },
-    {
-      "name": "CasaSync",
-      "repo": "thonyAGP/CasaSync",
-      "score": 70,
-      "breakdown": {
-        "ciPasses": 20,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15
-      }
-    },
-    {
-      "name": "Livret_accueil_Au-Marais",
-      "repo": "thonyAGP/livret-au-marais",
-      "score": 70,
-      "breakdown": {
-        "ciPasses": 20,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 10,
-        "eslintZeroWarnings": 15,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15
-      }
-    },
-    {
-      "name": "Site_Au-marais",
-      "repo": "thonyAGP/au-marais",
       "score": 70,
       "breakdown": {
         "ciPasses": 20,
@@ -116,6 +74,48 @@
     {
       "name": "ClubMedRoomAssignment",
       "repo": "thonyAGP/ClubMedRoomAssignment",
+      "score": 50,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15
+      }
+    },
+    {
+      "name": "CasaSync",
+      "repo": "thonyAGP/CasaSync",
+      "score": 50,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15
+      }
+    },
+    {
+      "name": "Livret_accueil_Au-Marais",
+      "repo": "thonyAGP/livret-au-marais",
+      "score": 50,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 10,
+        "eslintZeroWarnings": 15,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15
+      }
+    },
+    {
+      "name": "Site_Au-marais",
+      "repo": "thonyAGP/au-marais",
       "score": 50,
       "breakdown": {
         "ciPasses": 0,
@@ -268,5 +268,24 @@
       }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "CasaSync",
+      "drop": 20,
+      "from": 70,
+      "to": 50
+    },
+    {
+      "repo": "Livret_accueil_Au-Marais",
+      "drop": 20,
+      "from": 70,
+      "to": 50
+    },
+    {
+      "repo": "Site_Au-marais",
+      "drop": 20,
+      "from": 70,
+      "to": 50
+    }
+  ]
 }

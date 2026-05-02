@@ -1,44 +1,19 @@
-## Quality Score Report - 2026-05-01
+## Quality Score Report - 2026-05-02
 
 ### Summary
-- **Average Score**: 56/100
+- **Average Score**: 53/100
 - **Excellent** (80+): 0
-- **Good** (60-79): 5
-- **Needs Work** (<60): 14
+- **Good** (60-79): 2
+- **Needs Work** (<60): 17
+
+### Score Drops (≥5 points)
+- **CasaSync**: 70 → 50 (-20)
+- **Livret_accueil_Au-Marais**: 70 → 50 (-20)
+- **Site_Au-marais**: 70 → 50 (-20)
 
 ### Per Repository
 
 #### Email_Assistant
-- **Score**: 70/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### CasaSync
-- **Score**: 70/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### Livret_accueil_Au-Marais
-- **Score**: 70/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-
-#### Site_Au-marais
 - **Score**: 70/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -89,6 +64,36 @@
 - **Gitleaks**: ✓
 
 #### ClubMedRoomAssignment
+- **Score**: 50/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### CasaSync
+- **Score**: 50/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### Livret_accueil_Au-Marais
+- **Score**: 50/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+
+#### Site_Au-marais
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
