@@ -1,12 +1,28 @@
 {
-  "timestamp": "2026-05-02T07:44:48.385Z",
+  "timestamp": "2026-05-02T19:00:08.939Z",
   "repos": [
     {
       "repo": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
-      "totalMinutes": 43,
-      "totalRuns": 43,
+      "totalMinutes": 55,
+      "totalRuns": 54,
       "workflows": [
+        {
+          "name": "Security Scan (SAST)",
+          "runs": 5,
+          "totalMinutes": 6,
+          "avgMinutes": 1,
+          "failedRuns": 5,
+          "wastedMinutes": 6
+        },
+        {
+          "name": "Secret Scanning",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 3,
+          "wastedMinutes": 3
+        },
         {
           "name": "Container Scan",
           "runs": 5,
@@ -22,6 +38,22 @@
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 3
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 4,
+          "totalMinutes": 4,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Supply Chain Security",
@@ -56,44 +88,44 @@
           "wastedMinutes": 4
         },
         {
-          "name": "Security Scan (SAST)",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
-        },
-        {
-          "name": "Secret Scanning",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
-        },
-        {
-          "name": ".github/workflows/cron-monitor.yml",
-          "runs": 2,
-          "totalMinutes": 2,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
-        },
-        {
           "name": "CI",
-          "runs": 2,
-          "totalMinutes": 2,
+          "runs": 3,
+          "totalMinutes": 3,
           "avgMinutes": 1,
           "failedRuns": 2,
           "wastedMinutes": 2
         },
         {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 2,
-          "totalMinutes": 2,
+          "name": "Auto Label PRs",
+          "runs": 1,
+          "totalMinutes": 1,
           "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "PR Description AI",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "PR Size Check",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
+          "name": "PR Risk Assessment",
+          "runs": 1,
+          "totalMinutes": 1,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
         },
         {
           "name": "README Freshness",
@@ -221,11 +253,11 @@
     }
   ],
   "summary": {
-    "totalMinutes": 83,
-    "totalRuns": 83,
-    "wastedMinutes": 62,
+    "totalMinutes": 95,
+    "totalRuns": 94,
+    "wastedMinutes": 69,
     "mostExpensiveRepo": "SqlConnectionTest",
-    "mostExpensiveWorkflow": "Container Scan (claude-launcher)",
+    "mostExpensiveWorkflow": "Security Scan (SAST) (SqlConnectionTest)",
     "totalRecommendations": 0,
     "estimatedMonthlyCost": 0
   }

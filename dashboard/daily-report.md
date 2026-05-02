@@ -6,16 +6,16 @@
 - **80%** avg security score
 - **0/2** repos with AI code review
 - **70%** avg quality score (perf, a11y, coverage, release)
-- **DORA**: MEDIUM (deploy 0/wk, lead 0h, MTTR 36h, CFR 76%)
-- **CI Cost**: 79min total, 60min wasted, ~$0/mo
+- **DORA**: MEDIUM (deploy 0/wk, lead 0h, MTTR 35.9h, CFR 75%)
+- **CI Cost**: 83min total, 62min wasted, ~$0/mo
 - **Compliance**: 80/100 avg, 0% review coverage, 0/2 branch protected
 
 ## Per Project
 
 ### SqlConnectionTest :x:
 - **Health**: 37/100
-- **CI**: fail ([view](https://github.com/thonyAGP/SqlConnectionTest/actions/runs/25246303768))
-- **Open PRs**: 1
+- **CI**: fail ([view](https://github.com/thonyAGP/SqlConnectionTest/actions/runs/25247164057))
+- **Open PRs**: 2
 
 ### claude-launcher :x:
 - **Health**: 40/100
