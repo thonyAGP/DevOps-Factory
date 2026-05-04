@@ -1,65 +1,6 @@
 {
-  "timestamp": "2026-05-03T18:59:56.746Z",
+  "timestamp": "2026-05-04T19:40:56.569Z",
   "projects": [
-    {
-      "name": "SqlConnectionTest",
-      "fullName": "thonyAGP/SqlConnectionTest",
-      "stack": "dotnet",
-      "ciStatus": "fail",
-      "lastRun": {
-        "conclusion": "failure",
-        "created_at": "2026-05-02T07:45:20Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/SqlConnectionTest/actions/runs/25247164057",
-        "id": 25247164057,
-        "name": ".github/workflows/cron-monitor.yml"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-05-02T07:45:25Z",
-          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/12",
-          "labels": [
-            "ai-fix",
-            "size/S"
-          ],
-          "number": 12,
-          "state": "OPEN",
-          "title": "fix:  CI fix",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-03-24T01:17:07Z",
-          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/7",
-          "labels": [],
-          "number": 7,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 37,
-      "configured": false,
-      "hasGitleaks": true,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": true,
-      "hasSemgrep": true,
-      "hasSupplyChain": true,
-      "securityScore": 80,
-      "hasPerformanceBudget": true,
-      "hasAccessibilityCheck": true,
-      "hasLighthouse": true,
-      "hasTypedoc": true,
-      "hasCoverageTracking": false,
-      "perfScore": 60
-    },
     {
       "name": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
@@ -67,11 +8,11 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-05-02T07:02:48Z",
+        "created_at": "2026-05-04T09:27:33Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/claude-launcher/actions/runs/25246415021",
-        "id": 25246415021,
-        "name": "Container Scan"
+        "html_url": "https://github.com/thonyAGP/claude-launcher/actions/runs/25311444856",
+        "id": 25311444856,
+        "name": "Dead Code Detection"
       },
       "openPRs": [
         {
@@ -107,6 +48,65 @@
       "hasTypedoc": true,
       "hasCoverageTracking": true,
       "perfScore": 80
+    },
+    {
+      "name": "SqlConnectionTest",
+      "fullName": "thonyAGP/SqlConnectionTest",
+      "stack": "dotnet",
+      "ciStatus": "pass",
+      "lastRun": {
+        "conclusion": "success",
+        "created_at": "2026-05-04T09:26:31Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/SqlConnectionTest/actions/runs/25311404551",
+        "id": 25311404551,
+        "name": "Config Drift"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-05-02T07:45:25Z",
+          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/12",
+          "labels": [
+            "ai-fix",
+            "size/S"
+          ],
+          "number": 12,
+          "state": "OPEN",
+          "title": "fix:  CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-24T01:17:07Z",
+          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/7",
+          "labels": [],
+          "number": 7,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 67,
+      "configured": false,
+      "hasGitleaks": true,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": true,
+      "hasSemgrep": true,
+      "hasSupplyChain": true,
+      "securityScore": 80,
+      "hasPerformanceBudget": true,
+      "hasAccessibilityCheck": true,
+      "hasLighthouse": true,
+      "hasTypedoc": true,
+      "hasCoverageTracking": false,
+      "perfScore": 60
     }
   ]
 }
