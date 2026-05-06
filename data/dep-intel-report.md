@@ -1,6 +1,6 @@
 ## Dependency Intelligence Report
 
-> Generated: 2026-04-29T11:00:04.577Z
+> Generated: 2026-05-06T11:09:23.826Z
 
 ### Security Vulnerabilities
 
@@ -12,7 +12,7 @@ No open Dependabot alerts found.
 |------|-----------|-----------------|-------|
 | DevOps-Factory | 18 | 0 | node |
 | Email_Assistant | 31 | 0 | fastify |
-| CasaSync | 63 | 0 | nextjs |
+| CasaSync | 64 | 0 | nextjs |
 | Livret_accueil_Au-Marais | 37 | 0 | nextjs |
 | Site_Au-marais | 52 | 0 | nextjs |
 | Lecteur_Magic | 10 | 0 | node |
