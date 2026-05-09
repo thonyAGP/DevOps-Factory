@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-06T02:52:06.955Z",
+  "timestamp": "2026-05-09T01:38:26.038Z",
   "period": "30-day window",
   "repos": [
     {
@@ -173,6 +173,38 @@
       "mergedPRs": [],
       "deployments": [
         {
+          "branch": "ai-fix/ci-1778205690586",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "b09be365012b586c6db1e9210274e81b3e61bcd0",
+          "status": "success",
+          "timestamp": "2026-05-08T02:01:39Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "ai-fix/ci-1778205690586",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "b09be365012b586c6db1e9210274e81b3e61bcd0",
+          "status": "success",
+          "timestamp": "2026-05-08T02:01:39Z",
+          "workflow": "Auto Label PRs"
+        },
+        {
+          "branch": "ai-fix/ci-1778205690586",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "b09be365012b586c6db1e9210274e81b3e61bcd0",
+          "status": "success",
+          "timestamp": "2026-05-08T02:01:39Z",
+          "workflow": "PR Size Check"
+        },
+        {
+          "branch": "ai-fix/ci-1778205690586",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "b09be365012b586c6db1e9210274e81b3e61bcd0",
+          "status": "success",
+          "timestamp": "2026-05-08T02:01:39Z",
+          "workflow": "Secret Scanning"
+        },
+        {
           "branch": "master",
           "repo": "thonyAGP/SqlConnectionTest",
           "sha": "513b641cada39b3a5f82913fa73ba632b0f8db5e",
@@ -258,7 +290,7 @@
     "totalPRsMerged": 0,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 28,
+    "totalDeployments": 32,
     "avgComplianceScore": 80,
     "reposWithBranchProtection": 0,
     "reposWithCI": 2

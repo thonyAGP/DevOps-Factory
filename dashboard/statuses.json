@@ -1,6 +1,79 @@
 {
-  "timestamp": "2026-05-06T02:51:31.408Z",
+  "timestamp": "2026-05-09T01:37:52.511Z",
   "projects": [
+    {
+      "name": "SqlConnectionTest",
+      "fullName": "thonyAGP/SqlConnectionTest",
+      "stack": "dotnet",
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-05-08T02:01:33Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/SqlConnectionTest/actions/runs/25532426219",
+        "id": 25532426219,
+        "name": ".github/workflows/claude-review.yml"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-05-08T02:01:35Z",
+          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/13",
+          "labels": [
+            "ai-fix",
+            "size/S"
+          ],
+          "number": 13,
+          "state": "OPEN",
+          "title": "fix:  CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-05-02T07:45:25Z",
+          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/12",
+          "labels": [
+            "ai-fix",
+            "size/S"
+          ],
+          "number": 12,
+          "state": "OPEN",
+          "title": "fix:  CI fix",
+          "user": {
+            "login": "thonyAGP"
+          }
+        },
+        {
+          "created_at": "2026-03-24T01:17:07Z",
+          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/7",
+          "labels": [],
+          "number": 7,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 37,
+      "configured": false,
+      "hasGitleaks": true,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": true,
+      "hasSemgrep": true,
+      "hasSupplyChain": true,
+      "securityScore": 80,
+      "hasPerformanceBudget": true,
+      "hasAccessibilityCheck": true,
+      "hasLighthouse": true,
+      "hasTypedoc": true,
+      "hasCoverageTracking": false,
+      "perfScore": 60
+    },
     {
       "name": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
@@ -8,11 +81,11 @@
       "ciStatus": "fail",
       "lastRun": {
         "conclusion": "failure",
-        "created_at": "2026-05-04T09:27:33Z",
+        "created_at": "2026-05-06T09:14:32Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/claude-launcher/actions/runs/25311444856",
-        "id": 25311444856,
-        "name": "Dead Code Detection"
+        "html_url": "https://github.com/thonyAGP/claude-launcher/actions/runs/25426636808",
+        "id": 25426636808,
+        "name": "Supply Chain Security"
       },
       "openPRs": [
         {
@@ -48,65 +121,6 @@
       "hasTypedoc": true,
       "hasCoverageTracking": true,
       "perfScore": 80
-    },
-    {
-      "name": "SqlConnectionTest",
-      "fullName": "thonyAGP/SqlConnectionTest",
-      "stack": "dotnet",
-      "ciStatus": "pass",
-      "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-05-04T09:26:31Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/SqlConnectionTest/actions/runs/25311404551",
-        "id": 25311404551,
-        "name": "Config Drift"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-05-02T07:45:25Z",
-          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/12",
-          "labels": [
-            "ai-fix",
-            "size/S"
-          ],
-          "number": 12,
-          "state": "OPEN",
-          "title": "fix:  CI fix",
-          "user": {
-            "login": "thonyAGP"
-          }
-        },
-        {
-          "created_at": "2026-03-24T01:17:07Z",
-          "html_url": "https://github.com/thonyAGP/SqlConnectionTest/pull/7",
-          "labels": [],
-          "number": 7,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 67,
-      "configured": false,
-      "hasGitleaks": true,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": true,
-      "hasSemgrep": true,
-      "hasSupplyChain": true,
-      "securityScore": 80,
-      "hasPerformanceBudget": true,
-      "hasAccessibilityCheck": true,
-      "hasLighthouse": true,
-      "hasTypedoc": true,
-      "hasCoverageTracking": false,
-      "perfScore": 60
     }
   ]
 }
