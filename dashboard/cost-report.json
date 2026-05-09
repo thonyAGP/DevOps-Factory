@@ -1,12 +1,28 @@
 {
-  "timestamp": "2026-05-09T01:38:19.576Z",
+  "timestamp": "2026-05-09T12:54:26.205Z",
   "repos": [
     {
       "repo": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
-      "totalMinutes": 69,
-      "totalRuns": 66,
+      "totalMinutes": 73,
+      "totalRuns": 70,
       "workflows": [
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 9,
+          "totalMinutes": 9,
+          "avgMinutes": 1,
+          "failedRuns": 9,
+          "wastedMinutes": 9
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 9,
+          "totalMinutes": 9,
+          "avgMinutes": 1,
+          "failedRuns": 9,
+          "wastedMinutes": 9
+        },
         {
           "name": "Security Scan (SAST)",
           "runs": 6,
@@ -16,28 +32,28 @@
           "wastedMinutes": 9
         },
         {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 8,
-          "totalMinutes": 8,
-          "avgMinutes": 1,
-          "failedRuns": 8,
-          "wastedMinutes": 8
-        },
-        {
-          "name": ".github/workflows/cron-monitor.yml",
-          "runs": 8,
-          "totalMinutes": 8,
-          "avgMinutes": 1,
-          "failedRuns": 8,
-          "wastedMinutes": 8
-        },
-        {
           "name": "Secret Scanning",
           "runs": 6,
           "totalMinutes": 6,
           "avgMinutes": 1,
           "failedRuns": 3,
           "wastedMinutes": 3
+        },
+        {
+          "name": "Container Scan",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 5,
+          "wastedMinutes": 5
+        },
+        {
+          "name": "Branch & Artifact Cleanup",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "CI",
@@ -78,22 +94,6 @@
           "avgMinutes": 1,
           "failedRuns": 4,
           "wastedMinutes": 4
-        },
-        {
-          "name": "Container Scan",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
-        },
-        {
-          "name": "Branch & Artifact Cleanup",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
         },
         {
           "name": "PR Description AI",
@@ -145,18 +145,34 @@
         }
       ],
       "recommendations": [
+        ".github/workflows/cron-monitor.yml: 100% failure rate (9min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (9min wasted). Fix root cause.",
         "Security Scan (SAST): 100% failure rate (9min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (8min wasted). Fix root cause.",
-        ".github/workflows/cron-monitor.yml: 100% failure rate (8min wasted). Fix root cause.",
         "Secret Scanning: 50% failure rate (3min wasted). Fix root cause."
       ]
     },
     {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
-      "totalMinutes": 38,
-      "totalRuns": 38,
+      "totalMinutes": 40,
+      "totalRuns": 40,
       "workflows": [
+        {
+          "name": "Container Scan",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 5,
+          "wastedMinutes": 5
+        },
+        {
+          "name": "Branch & Artifact Cleanup",
+          "runs": 5,
+          "totalMinutes": 5,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
         {
           "name": "Supply Chain Security",
           "runs": 4,
@@ -214,22 +230,6 @@
           "wastedMinutes": 0
         },
         {
-          "name": "Container Scan",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 4,
-          "wastedMinutes": 4
-        },
-        {
-          "name": "Branch & Artifact Cleanup",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 0,
-          "wastedMinutes": 0
-        },
-        {
           "name": "README Freshness",
           "runs": 1,
           "totalMinutes": 1,
@@ -250,11 +250,11 @@
     }
   ],
   "summary": {
-    "totalMinutes": 107,
-    "totalRuns": 104,
-    "wastedMinutes": 78,
+    "totalMinutes": 113,
+    "totalRuns": 110,
+    "wastedMinutes": 83,
     "mostExpensiveRepo": "SqlConnectionTest",
-    "mostExpensiveWorkflow": "Security Scan (SAST) (SqlConnectionTest)",
+    "mostExpensiveWorkflow": ".github/workflows/cron-monitor.yml (SqlConnectionTest)",
     "totalRecommendations": 4,
     "estimatedMonthlyCost": 0
   }
