@@ -1,28 +1,12 @@
 {
-  "timestamp": "2026-05-09T12:54:26.205Z",
+  "timestamp": "2026-05-11T01:58:13.694Z",
   "repos": [
     {
       "repo": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
-      "totalMinutes": 73,
-      "totalRuns": 70,
+      "totalMinutes": 67,
+      "totalRuns": 64,
       "workflows": [
-        {
-          "name": ".github/workflows/cron-monitor.yml",
-          "runs": 9,
-          "totalMinutes": 9,
-          "avgMinutes": 1,
-          "failedRuns": 9,
-          "wastedMinutes": 9
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 9,
-          "totalMinutes": 9,
-          "avgMinutes": 1,
-          "failedRuns": 9,
-          "wastedMinutes": 9
-        },
         {
           "name": "Security Scan (SAST)",
           "runs": 6,
@@ -30,6 +14,22 @@
           "avgMinutes": 2,
           "failedRuns": 6,
           "wastedMinutes": 9
+        },
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 7,
+          "totalMinutes": 7,
+          "avgMinutes": 1,
+          "failedRuns": 7,
+          "wastedMinutes": 7
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 7,
+          "totalMinutes": 7,
+          "avgMinutes": 1,
+          "failedRuns": 7,
+          "wastedMinutes": 7
         },
         {
           "name": "Secret Scanning",
@@ -54,14 +54,6 @@
           "avgMinutes": 1,
           "failedRuns": 4,
           "wastedMinutes": 4
-        },
-        {
-          "name": "CI",
-          "runs": 4,
-          "totalMinutes": 4,
-          "avgMinutes": 1,
-          "failedRuns": 2,
-          "wastedMinutes": 2
         },
         {
           "name": "Supply Chain Security",
@@ -112,6 +104,14 @@
           "wastedMinutes": 0
         },
         {
+          "name": "CI",
+          "runs": 2,
+          "totalMinutes": 2,
+          "avgMinutes": 1,
+          "failedRuns": 0,
+          "wastedMinutes": 0
+        },
+        {
           "name": "PR Size Check",
           "runs": 2,
           "totalMinutes": 2,
@@ -145,9 +145,9 @@
         }
       ],
       "recommendations": [
-        ".github/workflows/cron-monitor.yml: 100% failure rate (9min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (9min wasted). Fix root cause.",
         "Security Scan (SAST): 100% failure rate (9min wasted). Fix root cause.",
+        ".github/workflows/cron-monitor.yml: 100% failure rate (7min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (7min wasted). Fix root cause.",
         "Secret Scanning: 50% failure rate (3min wasted). Fix root cause."
       ]
     },
@@ -250,11 +250,11 @@
     }
   ],
   "summary": {
-    "totalMinutes": 113,
-    "totalRuns": 110,
-    "wastedMinutes": 83,
+    "totalMinutes": 107,
+    "totalRuns": 104,
+    "wastedMinutes": 77,
     "mostExpensiveRepo": "SqlConnectionTest",
-    "mostExpensiveWorkflow": ".github/workflows/cron-monitor.yml (SqlConnectionTest)",
+    "mostExpensiveWorkflow": "Security Scan (SAST) (SqlConnectionTest)",
     "totalRecommendations": 4,
     "estimatedMonthlyCost": 0
   }
