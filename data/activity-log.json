@@ -51426,6 +51426,43 @@
       "action": "check-complete",
       "details": "1/10 passing, 7 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-05-12T13:30:47.183Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "claude-launcher",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-05-12T13:30:59.267Z",
+      "source": "scan-and-configure",
+      "action": "skip-pr-exists",
+      "target": "SqlConnectionTest",
+      "details": "PR #7 already open",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-05-12T13:31:03.109Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 30 repos (2 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-05-12T13:31:16.558Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-05-12T13:31:16.572Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 18 outcomes (3 merged, 7 closed, 8 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
