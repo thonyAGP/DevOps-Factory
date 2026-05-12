@@ -51463,6 +51463,55 @@
       "action": "outcome-registry",
       "details": "Registry updated: 18 outcomes (3 merged, 7 closed, 8 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
       "status": "info"
+    },
+    {
+      "timestamp": "2026-05-12T13:39:41.009Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "2 projects, avg health 54",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-05-12T13:39:52.168Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 2 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-05-12T13:39:57.966Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 15%, 4 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-05-12T13:40:07.298Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 0h, MTTR 35.5h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-05-12T13:40:12.136Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 119min total, 86min wasted, ~$0/mo",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-05-12T13:40:19.710Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 80/100, branch protection 0/2, CI 2/2, review coverage 0%",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-05-12T13:40:20.500Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "6 recommendations across 30 repos (0 critical, 5 high)",
+      "status": "success"
     }
   ]
 }
