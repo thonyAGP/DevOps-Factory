@@ -1,12 +1,28 @@
 {
-  "timestamp": "2026-05-13T14:07:56.026Z",
+  "timestamp": "2026-05-13T14:34:53.083Z",
   "repos": [
     {
       "repo": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
-      "totalMinutes": 71,
-      "totalRuns": 67,
+      "totalMinutes": 73,
+      "totalRuns": 69,
       "workflows": [
+        {
+          "name": ".github/workflows/cron-monitor.yml",
+          "runs": 10,
+          "totalMinutes": 10,
+          "avgMinutes": 1,
+          "failedRuns": 10,
+          "wastedMinutes": 10
+        },
+        {
+          "name": ".github/workflows/claude-review.yml",
+          "runs": 10,
+          "totalMinutes": 10,
+          "avgMinutes": 1,
+          "failedRuns": 10,
+          "wastedMinutes": 10
+        },
         {
           "name": "Security Scan (SAST)",
           "runs": 6,
@@ -14,22 +30,6 @@
           "avgMinutes": 2,
           "failedRuns": 6,
           "wastedMinutes": 10
-        },
-        {
-          "name": ".github/workflows/claude-review.yml",
-          "runs": 9,
-          "totalMinutes": 9,
-          "avgMinutes": 1,
-          "failedRuns": 9,
-          "wastedMinutes": 9
-        },
-        {
-          "name": ".github/workflows/cron-monitor.yml",
-          "runs": 9,
-          "totalMinutes": 9,
-          "avgMinutes": 1,
-          "failedRuns": 9,
-          "wastedMinutes": 9
         },
         {
           "name": "Secret Scanning",
@@ -145,9 +145,9 @@
         }
       ],
       "recommendations": [
+        ".github/workflows/cron-monitor.yml: 100% failure rate (10min wasted). Fix root cause.",
+        ".github/workflows/claude-review.yml: 100% failure rate (10min wasted). Fix root cause.",
         "Security Scan (SAST): 100% failure rate (10min wasted). Fix root cause.",
-        ".github/workflows/claude-review.yml: 100% failure rate (9min wasted). Fix root cause.",
-        ".github/workflows/cron-monitor.yml: 100% failure rate (9min wasted). Fix root cause.",
         "Secret Scanning: 33% failure rate (2min wasted). Fix root cause."
       ]
     },
@@ -250,11 +250,11 @@
     }
   ],
   "summary": {
-    "totalMinutes": 110,
-    "totalRuns": 106,
-    "wastedMinutes": 79,
+    "totalMinutes": 112,
+    "totalRuns": 108,
+    "wastedMinutes": 81,
     "mostExpensiveRepo": "SqlConnectionTest",
-    "mostExpensiveWorkflow": "Security Scan (SAST) (SqlConnectionTest)",
+    "mostExpensiveWorkflow": ".github/workflows/cron-monitor.yml (SqlConnectionTest)",
     "totalRecommendations": 4,
     "estimatedMonthlyCost": 0
   }
