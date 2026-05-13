@@ -1,66 +1,18 @@
 {
-  "timestamp": "2026-05-12T13:39:41.002Z",
+  "timestamp": "2026-05-13T14:07:20.554Z",
   "projects": [
-    {
-      "name": "claude-launcher",
-      "fullName": "thonyAGP/claude-launcher",
-      "stack": "dotnet",
-      "ciStatus": "fail",
-      "lastRun": {
-        "conclusion": "failure",
-        "created_at": "2026-05-11T10:40:24Z",
-        "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/claude-launcher/actions/runs/25665214225",
-        "id": 25665214225,
-        "name": "Dead Code Detection"
-      },
-      "openPRs": [
-        {
-          "created_at": "2026-03-24T01:15:54Z",
-          "html_url": "https://github.com/thonyAGP/claude-launcher/pull/7",
-          "labels": [
-            "ci",
-            "size/L"
-          ],
-          "number": 7,
-          "state": "OPEN",
-          "title": "chore: add DevOps-Factory AI workflows",
-          "user": {
-            "login": "thonyAGP"
-          }
-        }
-      ],
-      "aiFixPRs": [],
-      "renovatePRs": [],
-      "healthScore": 40,
-      "configured": false,
-      "hasGitleaks": true,
-      "hasRenovate": false,
-      "hasHusky": false,
-      "hasCodeRabbit": false,
-      "hasLicenseCheck": true,
-      "hasSemgrep": true,
-      "hasSupplyChain": true,
-      "securityScore": 80,
-      "hasPerformanceBudget": true,
-      "hasAccessibilityCheck": true,
-      "hasLighthouse": true,
-      "hasTypedoc": true,
-      "hasCoverageTracking": true,
-      "perfScore": 80
-    },
     {
       "name": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
       "stack": "dotnet",
-      "ciStatus": "pass",
+      "ciStatus": "fail",
       "lastRun": {
-        "conclusion": "success",
-        "created_at": "2026-05-11T10:40:23Z",
+        "conclusion": "failure",
+        "created_at": "2026-05-13T09:32:52Z",
         "head_branch": "master",
-        "html_url": "https://github.com/thonyAGP/SqlConnectionTest/actions/runs/25665213361",
-        "id": 25665213361,
-        "name": "Config Drift"
+        "html_url": "https://github.com/thonyAGP/SqlConnectionTest/actions/runs/25790752588",
+        "id": 25790752588,
+        "name": "Supply Chain Security"
       },
       "openPRs": [
         {
@@ -105,7 +57,7 @@
       ],
       "aiFixPRs": [],
       "renovatePRs": [],
-      "healthScore": 67,
+      "healthScore": 37,
       "configured": false,
       "hasGitleaks": true,
       "hasRenovate": false,
@@ -121,6 +73,54 @@
       "hasTypedoc": true,
       "hasCoverageTracking": false,
       "perfScore": 60
+    },
+    {
+      "name": "claude-launcher",
+      "fullName": "thonyAGP/claude-launcher",
+      "stack": "dotnet",
+      "ciStatus": "fail",
+      "lastRun": {
+        "conclusion": "failure",
+        "created_at": "2026-05-13T09:34:29Z",
+        "head_branch": "master",
+        "html_url": "https://github.com/thonyAGP/claude-launcher/actions/runs/25790831177",
+        "id": 25790831177,
+        "name": "Supply Chain Security"
+      },
+      "openPRs": [
+        {
+          "created_at": "2026-03-24T01:15:54Z",
+          "html_url": "https://github.com/thonyAGP/claude-launcher/pull/7",
+          "labels": [
+            "ci",
+            "size/L"
+          ],
+          "number": 7,
+          "state": "OPEN",
+          "title": "chore: add DevOps-Factory AI workflows",
+          "user": {
+            "login": "thonyAGP"
+          }
+        }
+      ],
+      "aiFixPRs": [],
+      "renovatePRs": [],
+      "healthScore": 40,
+      "configured": false,
+      "hasGitleaks": true,
+      "hasRenovate": false,
+      "hasHusky": false,
+      "hasCodeRabbit": false,
+      "hasLicenseCheck": true,
+      "hasSemgrep": true,
+      "hasSupplyChain": true,
+      "securityScore": 80,
+      "hasPerformanceBudget": true,
+      "hasAccessibilityCheck": true,
+      "hasLighthouse": true,
+      "hasTypedoc": true,
+      "hasCoverageTracking": true,
+      "perfScore": 80
     }
   ]
 }
