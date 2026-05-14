@@ -1,10 +1,13 @@
-## Quality Score Report - 2026-05-10
+## Quality Score Report - 2026-05-14
 
 ### Summary
 - **Average Score**: 53/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 2
 - **Needs Work** (<60): 17
+
+### Score Drops (≥5 points)
+- **Zentra**: 70 → 50 (-20)
 
 ### Per Repository
 
@@ -18,7 +21,7 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
 
-#### Zentra
+#### LB2I-Fiscal-Manager
 - **Score**: 70/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -188,7 +191,7 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
 
-#### LB2I-Fiscal-Manager
+#### Zentra
 - **Score**: 50/100
 - **CI Passes**: ✗
 - **Coverage**: ✗

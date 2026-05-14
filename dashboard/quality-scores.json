@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-10T09:44:48.533Z",
+  "timestamp": "2026-05-14T10:27:22.846Z",
   "scores": [
     {
       "name": "Email_Assistant",
@@ -16,8 +16,8 @@
       }
     },
     {
-      "name": "Zentra",
-      "repo": "thonyAGP/zentra",
+      "name": "LB2I-Fiscal-Manager",
+      "repo": "thonyAGP/LB2I-Fiscal-Manager",
       "score": 70,
       "breakdown": {
         "ciPasses": 20,
@@ -254,8 +254,8 @@
       }
     },
     {
-      "name": "LB2I-Fiscal-Manager",
-      "repo": "thonyAGP/LB2I-Fiscal-Manager",
+      "name": "Zentra",
+      "repo": "thonyAGP/zentra",
       "score": 50,
       "breakdown": {
         "ciPasses": 0,
@@ -268,5 +268,12 @@
       }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "Zentra",
+      "drop": 20,
+      "from": 70,
+      "to": 50
+    }
+  ]
 }
