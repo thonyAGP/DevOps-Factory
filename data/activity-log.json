@@ -87659,99 +87659,51 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-05-15T04:27:00.760Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "DevOps-Factory",
-      "details": "Self-heal dispatched (run 25900179392)",
+      "timestamp": "2026-05-15T04:33:28.206Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-05-15T04:33:29.743Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Self-Heal CI",
+      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY",
       "status": "warning"
     },
     {
-      "timestamp": "2026-05-15T04:27:00.787Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-05-15T04:27:03.481Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 24240581451)",
+      "timestamp": "2026-05-15T04:33:31.373Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "CI Health Check",
+      "details": "Partial failure detected: gh: not found",
       "status": "warning"
     },
     {
-      "timestamp": "2026-05-15T04:27:03.502Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
+      "timestamp": "2026-05-15T04:33:31.393Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "Self-Heal CI",
+      "details": "Workflow stale (informational patterns only)",
       "status": "info"
     },
     {
-      "timestamp": "2026-05-15T04:27:03.681Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
+      "timestamp": "2026-05-15T04:33:31.465Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "CI Health Check",
+      "details": "Workflow stale (informational patterns only)",
       "status": "info"
     },
     {
-      "timestamp": "2026-05-15T04:27:06.419Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 25781970050)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-05-15T04:27:06.440Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "CasaSync",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-05-15T04:27:09.218Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "Self-heal dispatched (run 24240573664)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-05-15T04:27:09.238Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-05-15T04:27:09.272Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Site_Au-marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-05-15T04:27:09.311Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-05-15T04:27:09.361Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "1/10 passing, 7 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
+      "timestamp": "2026-05-15T04:33:31.963Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "0/3 passing. 1 failures, 2 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
