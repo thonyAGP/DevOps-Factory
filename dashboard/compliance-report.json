@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-15T08:49:25.610Z",
+  "timestamp": "2026-05-16T13:01:08.326Z",
   "period": "30-day window",
   "repos": [
     {
@@ -7,6 +7,14 @@
       "fullName": "thonyAGP/claude-launcher",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/claude-launcher",
+          "sha": "32b11af762881cfa67d1496383ab38da08dd4631",
+          "status": "success",
+          "timestamp": "2026-05-16T06:24:37Z",
+          "workflow": "Branch & Artifact Cleanup"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/claude-launcher",
@@ -142,14 +150,6 @@
           "status": "success",
           "timestamp": "2026-04-11T05:25:42Z",
           "workflow": "Branch & Artifact Cleanup"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/claude-launcher",
-          "sha": "32b11af762881cfa67d1496383ab38da08dd4631",
-          "status": "success",
-          "timestamp": "2026-04-06T08:21:16Z",
-          "workflow": "Config Drift"
         }
       ],
       "securityFindings": [],
@@ -164,6 +164,38 @@
       "fullName": "thonyAGP/SqlConnectionTest",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "ai-fix/ci-1778918739921",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "6247f51daf271107817fb4dac128bdad6c6290ac",
+          "status": "success",
+          "timestamp": "2026-05-16T08:05:50Z",
+          "workflow": "PR Size Check"
+        },
+        {
+          "branch": "ai-fix/ci-1778918739921",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "6247f51daf271107817fb4dac128bdad6c6290ac",
+          "status": "success",
+          "timestamp": "2026-05-16T08:05:50Z",
+          "workflow": "CI"
+        },
+        {
+          "branch": "ai-fix/ci-1778918739921",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "6247f51daf271107817fb4dac128bdad6c6290ac",
+          "status": "success",
+          "timestamp": "2026-05-16T08:05:50Z",
+          "workflow": "Auto Label PRs"
+        },
+        {
+          "branch": "ai-fix/ci-1778918739921",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "6247f51daf271107817fb4dac128bdad6c6290ac",
+          "status": "success",
+          "timestamp": "2026-05-16T08:05:50Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/SqlConnectionTest",
@@ -227,46 +259,6 @@
           "status": "success",
           "timestamp": "2026-05-04T06:18:46Z",
           "workflow": "Secret Scanning"
-        },
-        {
-          "branch": "ai-fix/ci-1777707917909",
-          "repo": "thonyAGP/SqlConnectionTest",
-          "sha": "65d35d29f5446d561f582f626467ce93e78b1434",
-          "status": "success",
-          "timestamp": "2026-05-02T07:45:29Z",
-          "workflow": "Auto Label PRs"
-        },
-        {
-          "branch": "ai-fix/ci-1777707917909",
-          "repo": "thonyAGP/SqlConnectionTest",
-          "sha": "65d35d29f5446d561f582f626467ce93e78b1434",
-          "status": "success",
-          "timestamp": "2026-05-02T07:45:28Z",
-          "workflow": "PR Size Check"
-        },
-        {
-          "branch": "ai-fix/ci-1777707917909",
-          "repo": "thonyAGP/SqlConnectionTest",
-          "sha": "65d35d29f5446d561f582f626467ce93e78b1434",
-          "status": "success",
-          "timestamp": "2026-05-02T07:45:28Z",
-          "workflow": "CI"
-        },
-        {
-          "branch": "ai-fix/ci-1777707917909",
-          "repo": "thonyAGP/SqlConnectionTest",
-          "sha": "65d35d29f5446d561f582f626467ce93e78b1434",
-          "status": "success",
-          "timestamp": "2026-05-02T07:45:28Z",
-          "workflow": "Secret Scanning"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/SqlConnectionTest",
-          "sha": "513b641cada39b3a5f82913fa73ba632b0f8db5e",
-          "status": "success",
-          "timestamp": "2026-05-02T06:03:59Z",
-          "workflow": "Branch & Artifact Cleanup"
         }
       ],
       "securityFindings": [],
@@ -282,7 +274,7 @@
     "totalPRsMerged": 0,
     "prsWithReview": 0,
     "reviewCoverage": 0,
-    "totalDeployments": 31,
+    "totalDeployments": 30,
     "avgComplianceScore": 80,
     "reposWithBranchProtection": 0,
     "reposWithCI": 2
