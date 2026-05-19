@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-17T03:28:53.434Z",
+  "timestamp": "2026-05-19T19:52:32.282Z",
   "period": "30-day window",
   "repos": [
     {
@@ -7,6 +7,22 @@
       "fullName": "thonyAGP/claude-launcher",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/claude-launcher",
+          "sha": "32b11af762881cfa67d1496383ab38da08dd4631",
+          "status": "success",
+          "timestamp": "2026-05-18T11:04:02Z",
+          "workflow": "Config Drift"
+        },
+        {
+          "branch": "master",
+          "repo": "thonyAGP/claude-launcher",
+          "sha": "32b11af762881cfa67d1496383ab38da08dd4631",
+          "status": "success",
+          "timestamp": "2026-05-18T06:57:32Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "master",
           "repo": "thonyAGP/claude-launcher",
@@ -134,22 +150,6 @@
           "status": "success",
           "timestamp": "2026-04-13T08:59:17Z",
           "workflow": "Config Drift"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/claude-launcher",
-          "sha": "32b11af762881cfa67d1496383ab38da08dd4631",
-          "status": "success",
-          "timestamp": "2026-04-13T05:43:49Z",
-          "workflow": "Secret Scanning"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/claude-launcher",
-          "sha": "32b11af762881cfa67d1496383ab38da08dd4631",
-          "status": "success",
-          "timestamp": "2026-04-11T05:25:42Z",
-          "workflow": "Branch & Artifact Cleanup"
         }
       ],
       "securityFindings": [],
@@ -164,6 +164,14 @@
       "fullName": "thonyAGP/SqlConnectionTest",
       "mergedPRs": [],
       "deployments": [
+        {
+          "branch": "master",
+          "repo": "thonyAGP/SqlConnectionTest",
+          "sha": "513b641cada39b3a5f82913fa73ba632b0f8db5e",
+          "status": "success",
+          "timestamp": "2026-05-18T07:01:51Z",
+          "workflow": "Secret Scanning"
+        },
         {
           "branch": "ai-fix/ci-1778918739921",
           "repo": "thonyAGP/SqlConnectionTest",
@@ -251,14 +259,6 @@
           "status": "success",
           "timestamp": "2026-05-04T09:26:31Z",
           "workflow": "Config Drift"
-        },
-        {
-          "branch": "master",
-          "repo": "thonyAGP/SqlConnectionTest",
-          "sha": "513b641cada39b3a5f82913fa73ba632b0f8db5e",
-          "status": "success",
-          "timestamp": "2026-05-04T06:18:46Z",
-          "workflow": "Secret Scanning"
         }
       ],
       "securityFindings": [],
