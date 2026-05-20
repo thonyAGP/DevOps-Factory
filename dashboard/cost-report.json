@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-05-19T19:52:26.129Z",
+  "timestamp": "2026-05-20T09:34:55.261Z",
   "repos": [
     {
       "repo": "SqlConnectionTest",
       "fullName": "thonyAGP/SqlConnectionTest",
-      "totalMinutes": 89,
-      "totalRuns": 84,
+      "totalMinutes": 84,
+      "totalRuns": 79,
       "workflows": [
         {
           "name": "Security Scan (SAST)",
-          "runs": 8,
-          "totalMinutes": 13,
+          "runs": 7,
+          "totalMinutes": 12,
           "avgMinutes": 2,
-          "failedRuns": 8,
-          "wastedMinutes": 13
+          "failedRuns": 7,
+          "wastedMinutes": 12
         },
         {
           "name": ".github/workflows/claude-review.yml",
@@ -33,35 +33,35 @@
         },
         {
           "name": "Secret Scanning",
-          "runs": 8,
-          "totalMinutes": 8,
+          "runs": 7,
+          "totalMinutes": 7,
+          "avgMinutes": 1,
+          "failedRuns": 1,
+          "wastedMinutes": 1
+        },
+        {
+          "name": "Config Drift",
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
           "failedRuns": 2,
           "wastedMinutes": 2
         },
         {
-          "name": "Config Drift",
-          "runs": 5,
-          "totalMinutes": 5,
-          "avgMinutes": 1,
-          "failedRuns": 3,
-          "wastedMinutes": 3
-        },
-        {
           "name": "Dead Code Detection",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Accessibility Check",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Container Scan",
@@ -145,7 +145,7 @@
         }
       ],
       "recommendations": [
-        "Security Scan (SAST): 100% failure rate (13min wasted). Fix root cause.",
+        "Security Scan (SAST): 100% failure rate (12min wasted). Fix root cause.",
         ".github/workflows/claude-review.yml: 100% failure rate (12min wasted). Fix root cause.",
         ".github/workflows/cron-monitor.yml: 100% failure rate (12min wasted). Fix root cause."
       ]
@@ -153,53 +153,53 @@
     {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
-      "totalMinutes": 44,
-      "totalRuns": 44,
+      "totalMinutes": 38,
+      "totalRuns": 38,
       "workflows": [
         {
           "name": "Dead Code Detection",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Config Drift",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
         },
         {
           "name": "Type Coverage",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Accessibility Check",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Security Scan (SAST)",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
-          "failedRuns": 5,
-          "wastedMinutes": 5
+          "failedRuns": 4,
+          "wastedMinutes": 4
         },
         {
           "name": "Secret Scanning",
-          "runs": 5,
-          "totalMinutes": 5,
+          "runs": 4,
+          "totalMinutes": 4,
           "avgMinutes": 1,
           "failedRuns": 0,
           "wastedMinutes": 0
@@ -249,9 +249,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 133,
-    "totalRuns": 128,
-    "wastedMinutes": 94,
+    "totalMinutes": 122,
+    "totalRuns": 117,
+    "wastedMinutes": 85,
     "mostExpensiveRepo": "SqlConnectionTest",
     "mostExpensiveWorkflow": "Security Scan (SAST) (SqlConnectionTest)",
     "totalRecommendations": 3,
