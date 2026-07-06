@@ -148,8 +148,42 @@ const fetchCoverageArtifact = (repo: string): Coverage | undefined => {
   }
 };
 
+/**
+ * Most recent measured coverage for a repo (e.g. from the weekly
+ * central-coverage run), looking back at most maxAgeDays.
+ */
+const findLastCollected = (
+  history: CoverageHistory,
+  repo: string,
+  maxAgeDays = 14
+): Coverage | undefined => {
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - maxAgeDays);
+  const cutoffStr = cutoff.toISOString().split('T')[0];
+  for (let i = history.entries.length - 1; i >= 0; i--) {
+    const entry = history.entries[i];
+    if (entry.date < cutoffStr) break;
+    const found = entry.repos.find((r) => r.repo === repo);
+    if (found?.status === 'collected' && found.coverage) return found.coverage;
+  }
+  return undefined;
+};
+
+const loadHistoryForCarryForward = (): CoverageHistory => {
+  const historyPath = 'data/coverage-history.json';
+  if (!existsSync(historyPath)) {
+    return { version: 1, lastUpdated: '', entries: [] };
+  }
+  try {
+    return JSON.parse(readFileSync(historyPath, 'utf-8')) as CoverageHistory;
+  } catch {
+    return { version: 1, lastUpdated: '', entries: [] };
+  }
+};
+
 const collectCoverageData = (): CoverageEntry[] => {
   const entries: CoverageEntry[] = [];
+  const history = loadHistoryForCarryForward();
 
   for (const project of KNOWN_PROJECTS) {
     if (project.stack === 'unknown') continue;
@@ -181,6 +215,17 @@ const collectCoverageData = (): CoverageEntry[] => {
       }
     } else if (!hasTests) {
       console.log(`  No tests detected`);
+    }
+
+    // Carry the last measured value forward (weekly central-coverage run)
+    // instead of erasing it with no-coverage between measurements
+    if (entry.status === 'no-coverage' && hasTests) {
+      const carried = findLastCollected(history, project.repo);
+      if (carried) {
+        entry.coverage = carried;
+        entry.status = 'collected';
+        console.log(`  Carried forward: ${carried.lines}% lines (central-coverage)`);
+      }
     }
 
     entries.push(entry);

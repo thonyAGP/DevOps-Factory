@@ -1,0 +1,62 @@
+# DevOps-Factory: Central Coverage
+# Weekly real coverage measurement for node-stack repos, run from this public
+# repo (free minutes): clone, install, `vitest run --coverage`, then merge the
+# results into data/coverage-history.json (which quality-score and the
+# dashboard already read). coverage-baseline (daily) carries the measured
+# values forward between runs.
+
+name: Central Coverage
+
+on:
+  schedule:
+    - cron: '0 4 * * 0' # Weekly Sunday 4am UTC (before Monday's security scan)
+  workflow_dispatch:
+    inputs: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: central-coverage
+  cancel-in-progress: false
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.FACTORY_PAT }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Measure coverage (slow — clones and tests each repo)
+        run: pnpm central-coverage -- --measure --out /tmp/coverage-measurements.json
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+
+      - name: Merge into coverage history and push
+        run: |
+          git config user.name "DevOps Factory Bot"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          # The measurement takes a long time and hourly crons push to master
+          # meanwhile — apply the results onto the fresh remote head
+          git fetch origin master
+          git reset --hard origin/master
+          pnpm central-coverage -- --apply /tmp/coverage-measurements.json
+          git add data/coverage-history.json data/activity-log.json
+          git diff --cached --quiet || git commit -m "chore: update coverage measurements" --no-verify
+          git push origin master
+        env:
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
