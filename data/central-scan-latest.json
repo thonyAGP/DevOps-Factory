@@ -1,0 +1,1191 @@
+{
+  "version": 1,
+  "date": "2026-07-06",
+  "totalFindings": 171340,
+  "repos": [
+    {
+      "name": "DevOps-Factory",
+      "repo": "thonyAGP/DevOps-Factory",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "error",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 255,
+          "bySeverity": {
+            "WARNING": 246,
+            "ERROR": 3,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 4,
+          "bySeverity": {
+            "HIGH": 4
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 468,
+          "bySeverity": {
+            "DUPLICATION": 468
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 31.96
+          }
+        }
+      ]
+    },
+    {
+      "name": "Email_Assistant",
+      "repo": "thonyAGP/Email_Assistant",
+      "stack": "fastify",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "findings",
+          "findings": 1,
+          "bySeverity": {
+            "SECRET": 1
+          },
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 118,
+          "bySeverity": {
+            "WARNING": 102,
+            "ERROR": 4,
+            "MEDIUM": 12
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 51,
+          "bySeverity": {
+            "HIGH": 48,
+            "CRITICAL": 3
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 2131,
+          "bySeverity": {
+            "DUPLICATION": 2131
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 16.8
+          }
+        }
+      ]
+    },
+    {
+      "name": "ClubMedRoomAssignment",
+      "repo": "thonyAGP/ClubMedRoomAssignment",
+      "stack": "dotnet",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 100,
+          "bySeverity": {
+            "WARNING": 88,
+            "ERROR": 3,
+            "MEDIUM": 9
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 54,
+          "bySeverity": {
+            "CRITICAL": 6,
+            "HIGH": 48
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 199,
+          "bySeverity": {
+            "DUPLICATION": 199
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 3.08
+          }
+        }
+      ]
+    },
+    {
+      "name": "CasaSync",
+      "repo": "thonyAGP/CasaSync",
+      "stack": "nextjs",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "error",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 95,
+          "bySeverity": {
+            "WARNING": 85,
+            "ERROR": 4,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 4,
+          "bySeverity": {
+            "HIGH": 4
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 534,
+          "bySeverity": {
+            "DUPLICATION": 534
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 3.69
+          }
+        }
+      ]
+    },
+    {
+      "name": "Livret_accueil_Au-Marais",
+      "repo": "thonyAGP/livret-au-marais",
+      "stack": "nextjs",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "findings",
+          "findings": 2,
+          "bySeverity": {
+            "SECRET": 2
+          },
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 94,
+          "bySeverity": {
+            "WARNING": 84,
+            "ERROR": 4,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 8,
+          "bySeverity": {
+            "HIGH": 8
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 65,
+          "bySeverity": {
+            "DUPLICATION": 65
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 2.32
+          }
+        }
+      ]
+    },
+    {
+      "name": "Site_Au-marais",
+      "repo": "thonyAGP/au-marais",
+      "stack": "nextjs",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "findings",
+          "findings": 2,
+          "bySeverity": {
+            "SECRET": 2
+          },
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 93,
+          "bySeverity": {
+            "WARNING": 82,
+            "ERROR": 5,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 20,
+          "bySeverity": {
+            "HIGH": 19,
+            "CRITICAL": 1
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 489,
+          "bySeverity": {
+            "DUPLICATION": 489
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 11.05
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lecteur_Magic",
+      "repo": "thonyAGP/lecteur-magic",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "findings",
+          "findings": 4,
+          "bySeverity": {
+            "SECRET": 4
+          },
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 52,
+          "bySeverity": {
+            "WARNING": 36,
+            "ERROR": 7,
+            "MEDIUM": 9
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 48,
+          "bySeverity": {
+            "HIGH": 46,
+            "CRITICAL": 2
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 81914,
+          "bySeverity": {
+            "DUPLICATION": 81914
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 41.71
+          }
+        }
+      ]
+    },
+    {
+      "name": "API_Claude",
+      "repo": "thonyAGP/claude-cli-wrapper",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 90,
+          "bySeverity": {
+            "WARNING": 81,
+            "ERROR": 3,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 8,
+          "bySeverity": {
+            "DUPLICATION": 8
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 1.62
+          }
+        }
+      ]
+    },
+    {
+      "name": "MCP_Quota_Claude",
+      "repo": "thonyAGP/MCP_Quota_Claude",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 90,
+          "bySeverity": {
+            "WARNING": 81,
+            "ERROR": 3,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 13,
+          "bySeverity": {
+            "HIGH": 13
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 9,
+          "bySeverity": {
+            "DUPLICATION": 9
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 0.68
+          }
+        }
+      ]
+    },
+    {
+      "name": "Statusline",
+      "repo": "thonyAGP/statusline",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 90,
+          "bySeverity": {
+            "WARNING": 81,
+            "ERROR": 3,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 2,
+          "bySeverity": {
+            "HIGH": 2
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 12,
+          "bySeverity": {
+            "DUPLICATION": 12
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 1.97
+          }
+        }
+      ]
+    },
+    {
+      "name": "Site_Greg-Assainissement",
+      "repo": "thonyAGP/Site_Greg-Assainissement",
+      "stack": "nextjs",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 94,
+          "bySeverity": {
+            "WARNING": 81,
+            "ERROR": 4,
+            "MEDIUM": 9
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 9,
+          "bySeverity": {
+            "HIGH": 9
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 8,
+          "bySeverity": {
+            "DUPLICATION": 8
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 1.96
+          }
+        }
+      ]
+    },
+    {
+      "name": "Site_1970_Plomberie",
+      "repo": "thonyAGP/Site_1970_Plomberie",
+      "stack": "astro",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 90,
+          "bySeverity": {
+            "WARNING": 81,
+            "ERROR": 3,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 10,
+          "bySeverity": {
+            "HIGH": 10
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 23,
+          "bySeverity": {
+            "DUPLICATION": 23
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 8.32
+          }
+        }
+      ]
+    },
+    {
+      "name": "Thumbfast_createur_images",
+      "repo": "thonyAGP/Thumbfast",
+      "stack": "nextjs",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 93,
+          "bySeverity": {
+            "WARNING": 83,
+            "ERROR": 4,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 8,
+          "bySeverity": {
+            "HIGH": 8
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 9,
+          "bySeverity": {
+            "DUPLICATION": 9
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 1.46
+          }
+        }
+      ]
+    },
+    {
+      "name": "Utilitaire_Webapp",
+      "repo": "thonyAGP/Utilitaire_Webapp",
+      "stack": "nextjs",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 85,
+          "bySeverity": {
+            "WARNING": 76,
+            "ERROR": 3,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 6,
+          "bySeverity": {
+            "HIGH": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 11,
+          "bySeverity": {
+            "DUPLICATION": 11
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 1.71
+          }
+        }
+      ]
+    },
+    {
+      "name": "Site_Soraya",
+      "repo": "thonyAGP/Site-Soraya",
+      "stack": "unknown",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 59,
+          "bySeverity": {
+            "WARNING": 51,
+            "ERROR": 2,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 33,
+          "bySeverity": {
+            "DUPLICATION": 33
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 0.99
+          }
+        }
+      ]
+    },
+    {
+      "name": "Benchmark_Claude",
+      "repo": "thonyAGP/Benchmark_Claude",
+      "stack": "unknown",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 59,
+          "bySeverity": {
+            "WARNING": 51,
+            "ERROR": 2,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 4,
+          "bySeverity": {
+            "DUPLICATION": 4
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 1.64
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_codingmenace",
+      "repo": "thonyAGP/test_codingmenace",
+      "stack": "nextjs",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 94,
+          "bySeverity": {
+            "WARNING": 84,
+            "ERROR": 4,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 11,
+          "bySeverity": {
+            "CRITICAL": 1,
+            "HIGH": 10
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 8,
+          "bySeverity": {
+            "DUPLICATION": 8
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 1.88
+          }
+        }
+      ]
+    },
+    {
+      "name": "RemoteDevDashboard",
+      "repo": "thonyAGP/RemoteDevDashboard",
+      "stack": "unknown",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 59,
+          "bySeverity": {
+            "WARNING": 51,
+            "ERROR": 2,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 4,
+          "bySeverity": {
+            "DUPLICATION": 4
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 1.51
+          }
+        }
+      ]
+    },
+    {
+      "name": "ClaudePilot",
+      "repo": "thonyAGP/ClaudePilot",
+      "stack": "unknown",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 59,
+          "bySeverity": {
+            "WARNING": 51,
+            "ERROR": 2,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 38,
+          "bySeverity": {
+            "HIGH": 37,
+            "CRITICAL": 1
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 67,
+          "bySeverity": {
+            "DUPLICATION": 67
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 10.22
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lanceur_Claude",
+      "repo": "thonyAGP/claude-launcher",
+      "stack": "unknown",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 87,
+          "bySeverity": {
+            "WARNING": 79,
+            "ERROR": 2,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 12,
+          "bySeverity": {
+            "DUPLICATION": 12
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 1.76
+          }
+        }
+      ]
+    },
+    {
+      "name": "analyse-negocio",
+      "repo": "thonyAGP/analyse-negocio",
+      "stack": "unknown",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 60,
+          "bySeverity": {
+            "WARNING": 52,
+            "ERROR": 2,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 8,
+          "bySeverity": {
+            "CRITICAL": 1,
+            "HIGH": 7
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 433,
+          "bySeverity": {
+            "DUPLICATION": 433
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 6.59
+          }
+        }
+      ]
+    },
+    {
+      "name": "SqlConnectionTest",
+      "repo": "thonyAGP/SqlConnectionTest",
+      "stack": "dotnet",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 75,
+          "bySeverity": {
+            "WARNING": 67,
+            "ERROR": 2,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 4,
+          "bySeverity": {
+            "DUPLICATION": 4
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 1.23
+          }
+        }
+      ]
+    },
+    {
+      "name": "Zentra",
+      "repo": "thonyAGP/zentra",
+      "stack": "nextjs",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 101,
+          "bySeverity": {
+            "MEDIUM": 10,
+            "WARNING": 85,
+            "ERROR": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 25,
+          "bySeverity": {
+            "HIGH": 25
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 121,
+          "bySeverity": {
+            "DUPLICATION": 121
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 4.95
+          }
+        }
+      ]
+    },
+    {
+      "name": "LB2I-Fiscal-Manager",
+      "repo": "thonyAGP/LB2I-Fiscal-Manager",
+      "stack": "nextjs",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "findings",
+          "findings": 1,
+          "bySeverity": {
+            "SECRET": 1
+          },
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 156,
+          "bySeverity": {
+            "WARNING": 141,
+            "ERROR": 9,
+            "MEDIUM": 6
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 12,
+          "bySeverity": {
+            "CRITICAL": 1,
+            "HIGH": 11
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 354,
+          "bySeverity": {
+            "DUPLICATION": 354
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 7.98
+          }
+        }
+      ]
+    },
+    {
+      "name": "magic-migration",
+      "repo": "thonyAGP/magic-migration",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "findings",
+          "findings": 4,
+          "bySeverity": {
+            "SECRET": 4
+          },
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 52,
+          "bySeverity": {
+            "WARNING": 36,
+            "ERROR": 7,
+            "MEDIUM": 9
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 48,
+          "bySeverity": {
+            "HIGH": 46,
+            "CRITICAL": 2
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 81914,
+          "bySeverity": {
+            "DUPLICATION": 81914
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 41.71
+          }
+        }
+      ]
+    }
+  ]
+}
