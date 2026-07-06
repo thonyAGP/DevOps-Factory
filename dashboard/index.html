@@ -304,6 +304,27 @@
       white-space: nowrap;
     }
 
+    /* Central Security & Duplication Scan */
+    .central-scan {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .central-scan h2 { color: #ef4444; font-size: 1rem; margin-bottom: 0.8rem; }
+    .central-scan-summary { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.85rem; color: #8b949e; margin-bottom: 0.6rem; }
+    .central-scan-summary strong { color: #e6edf3; }
+    .central-scan-date { margin-left: auto; font-style: italic; }
+    .central-scan details summary { cursor: pointer; color: #58a6ff; font-size: 0.85rem; }
+    .central-scan-table { width: 100%; border-collapse: collapse; margin-top: 0.6rem; font-size: 0.8rem; }
+    .central-scan-table th, .central-scan-table td { padding: 0.3rem 0.6rem; border-bottom: 1px solid #21262d; text-align: left; }
+    .central-scan-table th { color: #8b949e; }
+    .central-scan-table .scan-ok { color: #22c55e; }
+    .central-scan-table .scan-bad { color: #ef4444; font-weight: 600; }
+    .central-scan-table .scan-warn { color: #f59e0b; }
+    .central-scan-table .scan-na { color: #484f58; }
+
     /* Security Posture */
     .security-posture {
       background: #161b22;
@@ -507,7 +528,7 @@
 <body>
   <div class="header">
     <h1>DevOps Factory Dashboard</h1>
-    <div class="timestamp">Last updated: 20-05-2026 11:34 CEST</div>
+    <div class="timestamp">Last updated: 06-07-2026 21:56 CEST</div>
   </div>
 
   <div class="summary">
@@ -516,11 +537,11 @@
       <div class="label">Projects</div>
     </div>
     <div class="summary-item">
-      <div class="number" style="color: #ef4444">39</div>
+      <div class="number" style="color: #ef4444">49</div>
       <div class="label">Avg Health</div>
     </div>
     <div class="summary-item">
-      <div class="number" style="color: #ef4444">2</div>
+      <div class="number" style="color: #ef4444">1</div>
       <div class="label">Failing CI</div>
     </div>
     <div class="summary-item">
@@ -545,16 +566,16 @@
   <div class="factory-status">
     <h2>Factory Status</h2>
     <div class="factory-grid">
-      <div class="factory-health-card" style="border-color:#f59e0b">
-        <div class="factory-health-indicator" style="background:#f59e0b20;color:#f59e0b">
-          <span style="font-size:1.4rem">&#9888;&#65039;</span>
-          <span style="font-weight:bold;font-size:1.1rem">Warnings</span>
+      <div class="factory-health-card" style="border-color:#ef4444">
+        <div class="factory-health-indicator" style="background:#ef444420;color:#ef4444">
+          <span style="font-size:1.4rem">&#10060;</span>
+          <span style="font-weight:bold;font-size:1.1rem">Issues Detected</span>
         </div>
         <div class="factory-health-detail">
-          <div class="metric"><span class="metric-label">Last activity</span><span>17m ago</span></div>
-          <div class="metric"><span class="metric-label">Events (24h)</span><span>1711</span></div>
-          <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#22c55e">0</span></div>
-          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#f59e0b">12</span></div>
+          <div class="metric"><span class="metric-label">Last activity</span><span>1h ago</span></div>
+          <div class="metric"><span class="metric-label">Events (24h)</span><span>10</span></div>
+          <div class="metric"><span class="metric-label">Errors (24h)</span><span style="color:#ef4444">6</span></div>
+          <div class="metric"><span class="metric-label">Warnings (24h)</span><span style="color:#f59e0b">2</span></div>
         </div>
       </div>
 
@@ -562,136 +583,76 @@
         <h3>This Week</h3>
         <div class="metric"><span class="metric-label">Scans completed</span><span class="val">0</span></div>
         <div class="metric"><span class="metric-label">PRs created</span><span class="val">0</span></div>
-        <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">9</span></div>
-        <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#22c55e">0</span></div>
-        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">11686</span></div>
+        <div class="metric"><span class="metric-label">Self-heals triggered</span><span class="val">0</span></div>
+        <div class="metric"><span class="metric-label">Errors detected</span><span class="val" style="color:#ef4444">6</span></div>
+        <div class="metric"><span class="metric-label">Total events (30d)</span><span class="val">10</span></div>
       </div>
     </div>
 
-    <details class="activity-timeline" >
-      <summary>Recent Activity (30 events)</summary>
+    <details class="activity-timeline" open>
+      <summary>Recent Activity (10 events)</summary>
       <table class="timeline-table">
         <tbody>
           
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:45.455Z">17m ago</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-07-06T18:50:45.698Z">1h ago</td>
               <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#22c55e">&#9989;</td>
+              <td>1/10 passing, 0 failing. Issues: 0 created, 0 closed</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-07-06T16:13:16.200Z">3h ago</td>
+              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#22c55e">&#9989;</td>
+              <td>1/10 passing, 0 failing. Issues: 0 created, 0 closed</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-07-06T15:58:23.612Z">3h ago</td>
+              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
+              <td style="color:#ef4444">&#10060;</td>
+              <td>3/7 passing. 3 failures, 1 partial. 0 self-heals</td>
+            </tr>
+            <tr>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-07-06T15:58:23.611Z">3h ago</td>
+              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
               <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td>1/10 passing, 7 failing. Issues: 0 created, 0 closed</td>
+              <td><strong>Redeploy Templates</strong> - partial_failure: Redeploy Templates</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:45.431Z">17m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>Zentra</strong> - Alert suppressed, within self-heal window</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-07-06T15:58:21.532Z">3h ago</td>
+              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
+              <td style="color:#ef4444">&#10060;</td>
+              <td><strong>CI Health Check</strong> - Failed to trigger self-heal</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:45.407Z">17m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>Site_Au-marais</strong> - Alert suppressed, within self-heal window</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-07-06T15:58:20.728Z">3h ago</td>
+              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
+              <td style="color:#ef4444">&#10060;</td>
+              <td><strong>CI Health Check</strong> - total_failure: CI Health Check</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:45.383Z">17m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>Livret_accueil_Au-Marais</strong> - Alert suppressed, within self-heal window</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:45.359Z">17m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-07-06T15:58:18.811Z">3h ago</td>
+              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
               <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>Livret_accueil_Au-Marais</strong> - Self-heal dispatched (run 26153003473)</td>
+              <td><strong>Redeploy Templates</strong> - Partial failure detected: Failed to create PR</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:41.912Z">17m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>CasaSync</strong> - Alert suppressed, within self-heal window</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-07-06T15:58:16.904Z">3h ago</td>
+              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
+              <td style="color:#ef4444">&#10060;</td>
+              <td><strong>Build Dashboard</strong> - Total failure detected</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:41.887Z">17m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>CasaSync</strong> - Self-heal dispatched (run 26085718438)</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-07-06T15:58:12.362Z">3h ago</td>
+              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
+              <td style="color:#ef4444">&#10060;</td>
+              <td><strong>CI Health Check</strong> - Total failure detected</td>
             </tr>
             <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:37.592Z">17m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>ClubMedRoomAssignment</strong> - Alert suppressed, within self-heal window</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:37.563Z">17m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>Email_Assistant</strong> - Alert suppressed, within self-heal window</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:37.536Z">17m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>Email_Assistant</strong> - Self-heal dispatched (run 24240581451)</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:34.305Z">17m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>DevOps-Factory</strong> - Alert suppressed, within self-heal window</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:16:34.267Z">17m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>DevOps-Factory</strong> - Self-heal dispatched (run 26153172185)</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:07:24.682Z">26m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td>1/10 passing, 7 failing. Issues: 0 created, 0 closed</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:07:24.657Z">26m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>Zentra</strong> - Alert suppressed, within self-heal window</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:07:24.632Z">26m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>Site_Au-marais</strong> - Alert suppressed, within self-heal window</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:07:24.607Z">26m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>Livret_accueil_Au-Marais</strong> - Alert suppressed, within self-heal window</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:07:24.582Z">26m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>Livret_accueil_Au-Marais</strong> - Self-heal dispatched (run 26151486723)</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:07:21.325Z">27m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>CasaSync</strong> - Alert suppressed, within self-heal window</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:07:21.301Z">27m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#f59e0b">&#9888;&#65039;</td>
-              <td><strong>CasaSync</strong> - Self-heal dispatched (run 26085718438)</td>
-            </tr>
-            <tr>
-              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-05-20T09:07:18.052Z">27m ago</td>
-              <td><span class="source-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">CI Health</span></td>
-              <td style="color:#8b949e">&#8505;&#65039;</td>
-              <td><strong>ClubMedRoomAssignment</strong> - Alert suppressed, within self-heal window</td>
+              <td style="color:#6e7681;white-space:nowrap;font-size:0.75rem" title="2026-07-06T15:58:12.348Z">3h ago</td>
+              <td><span class="source-badge" style="background:#a855f720;color:#a855f7;border:1px solid #a855f740">Watchdog</span></td>
+              <td style="color:#ef4444">&#10060;</td>
+              <td><strong>.github/workflows/cron-monitor.yml</strong> - Total failure detected</td>
             </tr>
         </tbody>
       </table>
@@ -714,6 +675,50 @@
         <div class="security-metric"><span class="metric-label">AI code review</span><div class="progress-bar" style="flex:1"><div class="fill" style="width:0%;background:#ef4444"></div></div><span style="font-size:0.75rem;color:#8b949e;min-width:40px;text-align:right">0/2</span></div>
       </div>
     </div>
+  </div>
+
+  
+  <div class="central-scan">
+    <h2>Security &amp; Duplication Scan</h2>
+    <div class="central-scan-summary">
+      <span><strong>171340</strong> findings sécurité</span>
+      <span><strong>6</strong> repo(s) avec secrets</span>
+      <span><strong>12</strong> repo(s) &gt; 3% duplication</span>
+      <span class="central-scan-date">Scan du 2026-07-06 — hebdomadaire</span>
+    </div>
+    <details>
+      <summary>Détail par repo</summary>
+      <table class="central-scan-table">
+        <thead><tr><th>Repo</th><th>Secrets</th><th>SAST</th><th>Deps</th><th>Duplication</th></tr></thead>
+        <tbody>
+<tr><td>DevOps-Factory</td><td class="scan-warn">error</td><td class="scan-bad">255</td><td class="scan-bad">4</td><td class="scan-bad">31.96%</td></tr>
+<tr><td>Email_Assistant</td><td class="scan-bad">1</td><td class="scan-bad">118</td><td class="scan-bad">51</td><td class="scan-bad">16.8%</td></tr>
+<tr><td>ClubMedRoomAssignment</td><td class="scan-ok">0</td><td class="scan-bad">100</td><td class="scan-bad">54</td><td class="scan-bad">3.08%</td></tr>
+<tr><td>CasaSync</td><td class="scan-warn">error</td><td class="scan-bad">95</td><td class="scan-bad">4</td><td class="scan-bad">3.69%</td></tr>
+<tr><td>Livret_accueil_Au-Marais</td><td class="scan-bad">2</td><td class="scan-bad">94</td><td class="scan-bad">8</td><td class="scan-ok">2.32%</td></tr>
+<tr><td>Site_Au-marais</td><td class="scan-bad">2</td><td class="scan-bad">93</td><td class="scan-bad">20</td><td class="scan-bad">11.05%</td></tr>
+<tr><td>Lecteur_Magic</td><td class="scan-bad">4</td><td class="scan-bad">52</td><td class="scan-bad">48</td><td class="scan-bad">41.71%</td></tr>
+<tr><td>API_Claude</td><td class="scan-ok">0</td><td class="scan-bad">90</td><td class="scan-ok">0</td><td class="scan-ok">1.62%</td></tr>
+<tr><td>MCP_Quota_Claude</td><td class="scan-ok">0</td><td class="scan-bad">90</td><td class="scan-bad">13</td><td class="scan-ok">0.68%</td></tr>
+<tr><td>Statusline</td><td class="scan-ok">0</td><td class="scan-bad">90</td><td class="scan-bad">2</td><td class="scan-ok">1.97%</td></tr>
+<tr><td>Site_Greg-Assainissement</td><td class="scan-ok">0</td><td class="scan-bad">94</td><td class="scan-bad">9</td><td class="scan-ok">1.96%</td></tr>
+<tr><td>Site_1970_Plomberie</td><td class="scan-ok">0</td><td class="scan-bad">90</td><td class="scan-bad">10</td><td class="scan-bad">8.32%</td></tr>
+<tr><td>Thumbfast_createur_images</td><td class="scan-ok">0</td><td class="scan-bad">93</td><td class="scan-bad">8</td><td class="scan-ok">1.46%</td></tr>
+<tr><td>Utilitaire_Webapp</td><td class="scan-ok">0</td><td class="scan-bad">85</td><td class="scan-bad">6</td><td class="scan-ok">1.71%</td></tr>
+<tr><td>Site_Soraya</td><td class="scan-ok">0</td><td class="scan-bad">59</td><td class="scan-ok">0</td><td class="scan-ok">0.99%</td></tr>
+<tr><td>Benchmark_Claude</td><td class="scan-ok">0</td><td class="scan-bad">59</td><td class="scan-ok">0</td><td class="scan-ok">1.64%</td></tr>
+<tr><td>test_codingmenace</td><td class="scan-ok">0</td><td class="scan-bad">94</td><td class="scan-bad">11</td><td class="scan-ok">1.88%</td></tr>
+<tr><td>RemoteDevDashboard</td><td class="scan-ok">0</td><td class="scan-bad">59</td><td class="scan-ok">0</td><td class="scan-ok">1.51%</td></tr>
+<tr><td>ClaudePilot</td><td class="scan-ok">0</td><td class="scan-bad">59</td><td class="scan-bad">38</td><td class="scan-bad">10.22%</td></tr>
+<tr><td>Lanceur_Claude</td><td class="scan-ok">0</td><td class="scan-bad">87</td><td class="scan-ok">0</td><td class="scan-ok">1.76%</td></tr>
+<tr><td>analyse-negocio</td><td class="scan-ok">0</td><td class="scan-bad">60</td><td class="scan-bad">8</td><td class="scan-bad">6.59%</td></tr>
+<tr><td>SqlConnectionTest</td><td class="scan-ok">0</td><td class="scan-bad">75</td><td class="scan-ok">0</td><td class="scan-ok">1.23%</td></tr>
+<tr><td>Zentra</td><td class="scan-ok">0</td><td class="scan-bad">101</td><td class="scan-bad">25</td><td class="scan-bad">4.95%</td></tr>
+<tr><td>LB2I-Fiscal-Manager</td><td class="scan-bad">1</td><td class="scan-bad">156</td><td class="scan-bad">12</td><td class="scan-bad">7.98%</td></tr>
+<tr><td>magic-migration</td><td class="scan-bad">4</td><td class="scan-bad">52</td><td class="scan-bad">48</td><td class="scan-bad">41.71%</td></tr>
+        </tbody>
+      </table>
+    </details>
   </div>
 
   
@@ -755,7 +760,7 @@
         <div class="dora-label">MTTR</div>
       </div>
       <div class="dora-card">
-        <div class="dora-value" style="color:#ef4444">69%</div>
+        <div class="dora-value" style="color:#ef4444">67%</div>
         <div class="dora-label">Change Fail Rate</div>
       </div>
     </div>
@@ -767,13 +772,13 @@
         <span><span class="dora-rating" style="background:#f59e0b30;color:#f59e0b">medium</span></span>
         <span style="color:#8b949e">0/wk</span>
         <span style="color:#8b949e">0h</span>
-        <span style="color:#8b949e">64%</span>
+        <span style="color:#8b949e">63%</span>
       </div><div class="dora-repo-row">
         <span>SqlConnectionTest</span>
         <span><span class="dora-rating" style="background:#f59e0b30;color:#f59e0b">medium</span></span>
         <span style="color:#8b949e">0/wk</span>
         <span style="color:#8b949e">0h</span>
-        <span style="color:#8b949e">73%</span>
+        <span style="color:#8b949e">71%</span>
       </div></div>
   </div>
 
@@ -782,19 +787,19 @@
     <h2>CI Cost Monitor</h2>
     <div class="cost-grid">
       <div class="cost-card">
-        <div class="cost-value" style="color:#34d399">133</div>
+        <div class="cost-value" style="color:#34d399">122</div>
         <div class="cost-label">Minutes (30d)</div>
       </div>
       <div class="cost-card">
-        <div class="cost-value" style="color:#34d399">128</div>
+        <div class="cost-value" style="color:#34d399">117</div>
         <div class="cost-label">Total Runs</div>
       </div>
       <div class="cost-card">
-        <div class="cost-value" style="color:#ef4444">94</div>
-        <div class="cost-label">Wasted min (71%)</div>
+        <div class="cost-value" style="color:#ef4444">85</div>
+        <div class="cost-label">Wasted min (70%)</div>
       </div>
       <div class="cost-card">
-        <div class="cost-value" style="color:#22c55e">7%</div>
+        <div class="cost-value" style="color:#22c55e">6%</div>
         <div class="cost-label">Free tier used</div>
       </div>
       <div class="cost-card">
@@ -805,7 +810,7 @@
     <div style="font-size:0.75rem;color:#8b949e;margin-bottom:0.4rem">
       Most expensive: SqlConnectionTest | 3 optimization(s) found
     </div>
-    <div class="cost-recs"><strong style="color:#8b949e">Top recommendations:</strong><ul><li>Security Scan (SAST): 100% failure rate (13min wasted). Fix root cause.</li><li>.github/workflows/claude-review.yml: 100% failure rate (12min wasted). Fix root cause.</li><li>.github/workflows/cron-monitor.yml: 100% failure rate (12min wasted). Fix root cause.</li></ul></div>
+    <div class="cost-recs"><strong style="color:#8b949e">Top recommendations:</strong><ul><li>Security Scan (SAST): 100% failure rate (12min wasted). Fix root cause.</li><li>.github/workflows/claude-review.yml: 100% failure rate (12min wasted). Fix root cause.</li><li>.github/workflows/cron-monitor.yml: 100% failure rate (12min wasted). Fix root cause.</li></ul></div>
   </div>
 
   
@@ -874,22 +879,8 @@
 
   
   <div class="alerts">
-    <div class="section-title alert">Needs Attention (2)</div>
+    <div class="section-title alert">Needs Attention (1)</div>
     
-    <div class="alert-card" style="border-left-color: #ef4444">
-      <div class="alert-header">
-        <div>
-          <span class="status-icon">&#10060;</span>
-          <strong>SqlConnectionTest</strong>
-          <span class="badge badge-dotnet">dotnet</span>
-        </div>
-        <div class="health-score" style="color: #ef4444">37</div>
-      </div>
-      <ul class="issue-list">
-        <li>CI failing <a href="https://github.com/thonyAGP/SqlConnectionTest/actions/runs/26029818755" target="_blank">(view run)</a></li>
-      </ul>
-    </div>
-
     <div class="alert-card" style="border-left-color: #ef4444">
       <div class="alert-header">
         <div>
@@ -900,15 +891,32 @@
         <div class="health-score" style="color: #ef4444">40</div>
       </div>
       <ul class="issue-list">
-        <li>CI failing <a href="https://github.com/thonyAGP/claude-launcher/actions/runs/26029819545" target="_blank">(view run)</a></li>
+        <li>CI failing <a href="https://github.com/thonyAGP/claude-launcher/actions/runs/28819218192" target="_blank">(view run)</a></li>
       </ul>
     </div>
   </div>
 
   <div class="ok-section">
-    <div class="section-title">Healthy (0)</div>
+    <div class="section-title">Healthy (1)</div>
     <div class="ok-grid">
       
+    <details class="ok-card">
+      <summary>
+        <span class="status-icon">&#9898;</span>
+        <strong>SqlConnectionTest</strong>
+        <span class="badge badge-dotnet">dotnet</span>
+        <span class="health-score" style="color: #ef4444">57</span>
+        <canvas data-sparkline="SqlConnectionTest" width="60" height="20"></canvas>
+      </summary>
+      <div class="ok-detail">
+        <div class="metric"><span class="metric-label">CI</span><span>none</span></div>
+        <div class="metric"><span class="metric-label">Open PRs</span><span>4</span></div>
+        <div class="metric"><span class="metric-label">Security</span><span style="color:#22c55e">80% <small>(secrets, SAST, supply, license)</small></span></div>
+        <div class="metric"><span class="metric-label">Review</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Quality</span><span>None</span></div>
+        <div class="metric"><span class="metric-label">Perf/A11y</span><span style="color:#f59e0b">60% <small>(perf, a11y)</small></span></div>
+      </div>
+    </details>
     </div>
   </div>
 
