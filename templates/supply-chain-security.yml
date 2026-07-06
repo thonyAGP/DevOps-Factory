@@ -125,12 +125,30 @@ jobs:
               body += `\n> 🔴 Critical security issues found. Run \`npm audit fix\` or update affected packages.\n`;
             }
 
-            await github.rest.issues.createComment({
+            const marker = '<!-- devops-factory:supply-chain -->';
+            body = marker + '\n' + body;
+            const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body,
+              per_page: 100,
             });
+            const existing = comments.find((c) => c.body.startsWith(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
 
       - name: Fail on critical/high
         if: steps.audit.outputs.critical != '0' || steps.audit.outputs.high != '0'
