@@ -17,10 +17,14 @@
  * - trivy fs: vulnerable dependencies (lockfiles) + Dockerfile/IaC misconfigs
  * - jscpd:    duplicated code (SonarQube-style copy/paste detection)
  *
- * Output:
- * - data/central-scan-latest.json  (consumed by the dashboard)
- * - data/central-scan-report.md    (human-readable report)
- * - GitHub issue on the Factory repo (label: central-scan), only if findings
+ * Output — the Factory repo is PUBLIC, so anything written here (committed
+ * files, step summary, logs, issues) must never contain finding locations,
+ * rule IDs or CVEs from private repos. Public artifacts carry counts only;
+ * detailed findings go to an issue created in each affected target repo:
+ * - data/central-scan-latest.json  (counts per repo/scanner, dashboard + quality-score)
+ * - data/central-scan-report.md    (counts-only summary table)
+ * - GitHub issue on the Factory repo (counts only), only if findings
+ * - GitHub issue on each affected target repo (label: central-scan) with details
  *
  * Usage: pnpm central-scan [-- --dry-run] [-- --repo thonyAGP/xxx]
  */
@@ -244,7 +248,20 @@ const scannerCell = (r: RepoScanResult, name: ScannerName): string => {
   return statusIcon(sc.status);
 };
 
-/** Build the consolidated markdown report. */
+/**
+ * Strip finding locations (file paths, rule IDs, CVEs) so that nothing
+ * sensitive from a private repo reaches the public Factory repo.
+ */
+export const sanitizeResults = (results: RepoScanResult[]): RepoScanResult[] =>
+  results.map((r) => ({
+    ...r,
+    scanners: r.scanners.map((s) => ({ ...s, top: [] })),
+  }));
+
+/**
+ * Consolidated COUNTS-ONLY report. Committed to the public Factory repo and
+ * echoed to the (public) step summary — must never contain finding details.
+ */
 export const buildReport = (results: RepoScanResult[], date: string): string => {
   let report = `# Central Security Scan - ${date}\n\n`;
   report += `Scans centralisés exécutés depuis DevOps-Factory (repo public = minutes gratuites). `;
@@ -260,27 +277,32 @@ export const buildReport = (results: RepoScanResult[], date: string): string => 
     report += `| ${r.name} | ${scannerCell(r, 'gitleaks')} | ${scannerCell(r, 'semgrep')} | ${scannerCell(r, 'trivy')} | ${scannerCell(r, 'jscpd')} |\n`;
   }
   report += `\n`;
-
-  for (const r of results) {
-    const withFindings = r.scanners.filter((s) => s.status === 'findings');
-    if (withFindings.length === 0) continue;
-    report += `<details><summary><b>${r.name}</b> — ${withFindings.reduce((s, sc) => s + sc.findings, 0)} finding(s)</summary>\n\n`;
-    for (const sc of withFindings) {
-      const sev = Object.entries(sc.bySeverity)
-        .map(([k, v]) => `${k}: ${v}`)
-        .join(', ');
-      report += `**${sc.scanner}** (${sev})\n`;
-      for (const t of sc.top) report += `- \`${t}\`\n`;
-      if (sc.findings > sc.top.length) {
-        report += `- … et ${sc.findings - sc.top.length} de plus\n`;
-      }
-      report += `\n`;
-    }
-    report += `</details>\n\n`;
-  }
-
+  report += `> Les détails (fichiers, règles, CVE) ne sont jamais publiés ici : `;
+  report += `chaque repo concerné reçoit sa propre issue \`central-scan\` avec les localisations.\n\n`;
   report += `---\n_Généré par central-scan.ts — hebdomadaire, lundi 5h UTC_\n`;
   return report;
+};
+
+/**
+ * Detailed findings for ONE repo — published only as an issue inside that
+ * repo, so private findings stay visible to its collaborators alone.
+ */
+export const buildRepoDetail = (result: RepoScanResult, date: string): string => {
+  let body = `## Central Security Scan - ${date}\n\n`;
+  const withFindings = result.scanners.filter((s) => s.status === 'findings');
+  for (const sc of withFindings) {
+    const sev = Object.entries(sc.bySeverity)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(', ');
+    body += `### ${sc.scanner} (${sev})\n`;
+    for (const t of sc.top) body += `- \`${t}\`\n`;
+    if (sc.findings > sc.top.length) {
+      body += `- … et ${sc.findings - sc.top.length} de plus\n`;
+    }
+    body += `\n`;
+  }
+  body += `---\n_Scan hebdomadaire exécuté par [DevOps-Factory](https://github.com/${GITHUB_OWNER}/DevOps-Factory) (central-scan.ts)_\n`;
+  return body;
 };
 
 const scannerAvailable = (cmd: string): boolean => sh(`${cmd} 2>&1`).length > 0;
@@ -381,34 +403,55 @@ const scanRepo = (
   return result;
 };
 
-const publishIssue = (factoryRepo: string, report: string, findings: number): void => {
-  const LABEL = 'central-scan';
+const LABEL = 'central-scan';
 
-  // Close previous open reports
-  const existing = sh(
-    `gh issue list --repo ${factoryRepo} --label "${LABEL}" --state open --json number`
-  );
+const closePreviousIssues = (repo: string): void => {
+  const existing = sh(`gh issue list --repo ${repo} --label "${LABEL}" --state open --json number`);
   try {
     const issues = JSON.parse(existing || '[]') as { number: number }[];
     for (const issue of issues) {
-      sh(
-        `gh issue close ${issue.number} --repo ${factoryRepo} --comment "Superseded by new report"`
-      );
+      sh(`gh issue close ${issue.number} --repo ${repo} --comment "Superseded by new report"`);
     }
   } catch {
     // ignore
   }
+};
 
-  if (findings === 0) return;
-
+const createIssue = (repo: string, title: string, body: string): void => {
   sh(
-    `gh label create "${LABEL}" --repo ${factoryRepo} --color "D93F0B" --description "Central security scan report" --force`
+    `gh label create "${LABEL}" --repo ${repo} --color "D93F0B" --description "Central security scan report" --force`
   );
   const tmpFile = `${tmpDir}/central-scan-body.md`;
-  writeFileSync(tmpFile, report);
+  writeFileSync(tmpFile, body);
   sh(
-    `gh issue create --repo ${factoryRepo} --title "Central Security Scan - ${new Date().toISOString().split('T')[0]}" --body-file "${tmpFile}" --label "${LABEL}"`
+    `gh issue create --repo ${repo} --title "${title}" --body-file "${tmpFile}" --label "${LABEL}"`
   );
+};
+
+/** Counts-only consolidated issue on the (public) Factory repo. */
+const publishFactoryIssue = (factoryRepo: string, report: string, findings: number): void => {
+  closePreviousIssues(factoryRepo);
+  if (findings === 0) return;
+  createIssue(
+    factoryRepo,
+    `Central Security Scan - ${new Date().toISOString().split('T')[0]}`,
+    report
+  );
+};
+
+/** Detailed issue inside each affected target repo (private details stay private). */
+const publishRepoIssues = (results: RepoScanResult[], factoryRepo: string, date: string): void => {
+  for (const r of results) {
+    if (r.repo === factoryRepo) continue; // factory details are in its own consolidated issue flow
+    if (!r.cloned) continue;
+    const actionable = r.scanners.reduce(
+      (s, sc) => s + (sc.status === 'findings' ? sc.findings : 0),
+      0
+    );
+    closePreviousIssues(r.repo);
+    if (actionable === 0) continue;
+    createIssue(r.repo, `Central Security Scan - ${date}`, buildRepoDetail(r, date));
+  }
 };
 
 const main = (): void => {
@@ -447,13 +490,17 @@ const main = (): void => {
   }
 
   const date = new Date().toISOString().split('T')[0];
-  const report = buildReport(results, date);
   const findings = totalFindings(results);
+
+  // Everything below this line lands in the PUBLIC Factory repo (committed
+  // files, step summary, issue) — publish sanitized counts only
+  const sanitized = sanitizeResults(results);
+  const report = buildReport(sanitized, date);
 
   mkdirSync('data', { recursive: true });
   writeFileSync(
     'data/central-scan-latest.json',
-    JSON.stringify({ version: 1, date, totalFindings: findings, repos: results }, null, 2)
+    JSON.stringify({ version: 1, date, totalFindings: findings, repos: sanitized }, null, 2)
   );
   writeFileSync('data/central-scan-report.md', report);
 
@@ -462,7 +509,8 @@ const main = (): void => {
   }
 
   if (!dryRun) {
-    publishIssue(factoryRepo, report, findings);
+    publishRepoIssues(results, factoryRepo, date);
+    publishFactoryIssue(factoryRepo, report, findings);
     logActivity(
       'central-scan',
       'scan-complete',

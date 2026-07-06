@@ -11,6 +11,8 @@ import {
   parseTrivy,
   parseJscpd,
   buildReport,
+  buildRepoDetail,
+  sanitizeResults,
   totalFindings,
   semgrepConfigsForStack,
   DUPLICATION_THRESHOLD_PCT,
@@ -245,14 +247,38 @@ describe('totalFindings / buildReport', () => {
     expect(report).toContain('🟢 1.2%');
   });
 
-  it('builds a report with summary table and details', () => {
+  it('builds a counts-only report without finding locations', () => {
     const report = buildReport(results, '2026-07-06');
     expect(report).toContain('Central Security Scan - 2026-07-06');
     expect(report).toContain('**Total findings: 2**');
     expect(report).toContain('| CasaSync |');
     expect(report).toContain('🔴 2');
     expect(report).toContain('clone failed');
-    expect(report).toContain('ts.sql-injection in src/db.ts:42');
+    // the public report must never leak private finding details
+    expect(report).not.toContain('ts.sql-injection');
+    expect(report).not.toContain('src/db.ts');
+  });
+
+  it('strips finding locations via sanitizeResults', () => {
+    const sanitized = sanitizeResults(results);
+    for (const r of sanitized) {
+      for (const s of r.scanners) expect(s.top).toEqual([]);
+    }
+    // counts and metrics needed by the quality score are preserved
+    const semgrep = sanitized[0].scanners.find((s) => s.scanner === 'semgrep');
+    expect(semgrep?.findings).toBe(2);
+    expect(semgrep?.bySeverity).toEqual({ ERROR: 2 });
+    const jscpd = sanitized[0].scanners.find((s) => s.scanner === 'jscpd');
+    expect(jscpd?.metrics?.duplicationPct).toBe(1.2);
+    // original untouched
+    expect(results[0].scanners[1].top).toHaveLength(1);
+  });
+
+  it('puts finding details in the per-repo issue body', () => {
+    const detail = buildRepoDetail(results[0], '2026-07-06');
+    expect(detail).toContain('ts.sql-injection in src/db.ts:42');
+    expect(detail).toContain('semgrep (ERROR: 2)');
+    expect(detail).toContain('… et 1 de plus');
   });
 
   it('omits details section for clean repos', () => {

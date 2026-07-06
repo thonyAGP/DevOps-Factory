@@ -48,11 +48,23 @@ jobs:
 
       - name: Run Semgrep
         run: |
+          # With --json output semgrep exits 0 even when it finds issues,
+          # so a non-zero exit means the scanner itself failed — surface it
+          set +e
           semgrep scan \
             ${{ steps.stack.outputs.configs }} \
             --json \
             --output semgrep-results.json \
-            --metrics=off || true
+            --metrics=off
+          EXIT=$?
+          if [ "$EXIT" -ne 0 ]; then
+            {
+              echo "## Security Scan (Semgrep)"
+              echo ""
+              echo "⚠️ Semgrep failed to run (exit $EXIT) — no results produced."
+            } >> $GITHUB_STEP_SUMMARY
+            exit "$EXIT"
+          fi
 
       - name: Summarize results
         id: results

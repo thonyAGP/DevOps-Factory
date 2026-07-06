@@ -25,9 +25,13 @@ désormais ici.
    - **trivy fs** — dépendances vulnérables (lockfiles) + misconfigs Dockerfile/IaC
    - **jscpd** — code dupliqué (seuil SonarQube : 3 % de lignes dupliquées)
 3. Écrit `data/central-scan-latest.json` (dashboard) et
-   `data/central-scan-report.md`.
-4. Crée une issue consolidée sur la Factory (label `central-scan`) s'il y a
-   des findings ; ferme la précédente.
+   `data/central-scan-report.md` — **compteurs uniquement** : la Factory est
+   publique, aucune localisation de finding (fichier, règle, CVE) d'un repo
+   privé n'y est jamais écrite (ni dans les logs/step summary).
+4. Crée une issue **détaillée dans chaque repo concerné** (label
+   `central-scan`, visible de ses seuls collaborateurs) + une issue
+   consolidée compteurs-seulement sur la Factory ; les précédentes sont
+   fermées.
 
 ## Répartition avec les workflows par repo
 
