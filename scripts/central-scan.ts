@@ -342,7 +342,7 @@ const runJscpd = (dir: string): ScannerResult => {
   const outDir = `${tmpDir}/jscpd-out`;
   rmSync(outDir, { recursive: true, force: true });
   sh(
-    `"${JSCPD_BIN}" . --reporters json --output "${outDir}" --silent --gitignore ` +
+    `"${JSCPD_BIN}" . --reporters json --output "${outDir}" --silent ` +
       `--ignore "**/node_modules/**,**/dist/**,**/build/**,**/.next/**,**/coverage/**,**/*.min.js,**/pnpm-lock.yaml,**/package-lock.json,**/yarn.lock"`,
     { cwd: dir, timeout: SCAN_TIMEOUT_MS, maxBuffer: SCAN_MAX_BUFFER, fallbackOnError: 'stdout' }
   );
@@ -372,7 +372,7 @@ const scanRepo = (
 
   // Full clone: gitleaks scans the entire git history
   const cloned = sh(`gh repo clone ${project.repo} "${dir}" 2>&1 && echo OK`, {
-    timeout: 180_000,
+    timeout: 600_000,
     maxBuffer: SCAN_MAX_BUFFER,
     fallbackOnError: 'stdout',
   }).includes('OK');
