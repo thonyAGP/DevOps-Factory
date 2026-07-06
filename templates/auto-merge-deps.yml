@@ -28,11 +28,13 @@ jobs:
 
       - name: Determine if auto-mergeable
         id: check
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+          PR_ACTOR: ${{ github.actor }}
+          UPDATE_TYPE: ${{ steps.metadata.outputs.update-type }}
         run: |
-          TITLE="${{ github.event.pull_request.title }}"
           # Dependabot: check update-type
-          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
-            UPDATE_TYPE="${{ steps.metadata.outputs.update-type }}"
+          if [ "$PR_ACTOR" = "dependabot[bot]" ]; then
             if [ "$UPDATE_TYPE" = "version-update:semver-major" ]; then
               echo "mergeable=false" >> $GITHUB_OUTPUT
               echo "reason=major version bump requires manual review" >> $GITHUB_OUTPUT

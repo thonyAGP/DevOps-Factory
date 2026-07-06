@@ -1,24 +1,29 @@
 # DevOps-Factory: Semgrep SAST Template
 # Static Application Security Testing - OWASP Top 10
-# Runs on PRs + weekly full scan
+# PR-only: weekly full scans run centrally from DevOps-Factory (central-scan.yml).
+# Private-aware: results go to the PR comment + job summary + artifact, because
+# SARIF upload / Code Scanning requires Advanced Security (unavailable on
+# private repos with the Free plan).
 
 name: Security Scan (SAST)
 
 on:
   pull_request:
     branches: [main, master]
-  schedule:
-    - cron: '0 4 * * 1' # Weekly Monday 4am UTC
   workflow_dispatch:
 
 permissions:
   contents: read
   pull-requests: write
-  security-events: write
+
+concurrency:
+  group: semgrep-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   semgrep:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     container:
       image: semgrep/semgrep
     steps:
@@ -29,44 +34,121 @@ jobs:
         run: |
           if [ -f "package.json" ]; then
             if grep -q '"next"' package.json 2>/dev/null; then
-              echo "configs=--config auto --config p/owasp-top-ten --config p/typescript --config p/react --config p/nextjs" >> $GITHUB_OUTPUT
+              echo "configs=--config p/owasp-top-ten --config p/typescript --config p/react --config p/nextjs" >> $GITHUB_OUTPUT
             elif grep -q '"react"' package.json 2>/dev/null; then
-              echo "configs=--config auto --config p/owasp-top-ten --config p/typescript --config p/react" >> $GITHUB_OUTPUT
+              echo "configs=--config p/owasp-top-ten --config p/typescript --config p/react" >> $GITHUB_OUTPUT
             else
-              echo "configs=--config auto --config p/owasp-top-ten --config p/typescript" >> $GITHUB_OUTPUT
+              echo "configs=--config p/owasp-top-ten --config p/typescript" >> $GITHUB_OUTPUT
             fi
           elif ls *.csproj 2>/dev/null || ls *.sln 2>/dev/null; then
-            echo "configs=--config auto --config p/owasp-top-ten --config p/csharp" >> $GITHUB_OUTPUT
+            echo "configs=--config p/owasp-top-ten --config p/csharp" >> $GITHUB_OUTPUT
           else
-            echo "configs=--config auto --config p/owasp-top-ten" >> $GITHUB_OUTPUT
+            echo "configs=--config p/owasp-top-ten" >> $GITHUB_OUTPUT
           fi
 
       - name: Run Semgrep
-        continue-on-error: true
         run: |
+          # With --json output semgrep exits 0 even when it finds issues,
+          # so a non-zero exit means the scanner itself failed — surface it
+          set +e
           semgrep scan \
             ${{ steps.stack.outputs.configs }} \
-            --sarif \
-            --output semgrep-results.sarif \
-            --verbose
-        env:
-          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+            --json \
+            --output semgrep-results.json \
+            --metrics=off
+          EXIT=$?
+          if [ "$EXIT" -ne 0 ]; then
+            {
+              echo "## Security Scan (Semgrep)"
+              echo ""
+              echo "⚠️ Semgrep failed to run (exit $EXIT) — no results produced."
+            } >> $GITHUB_STEP_SUMMARY
+            exit "$EXIT"
+          fi
 
-      - name: Upload SARIF
+      - name: Summarize results
+        id: results
+        run: |
+          python3 - << 'EOF'
+          import json, os
+
+          try:
+              with open('semgrep-results.json') as f:
+                  data = json.load(f)
+          except Exception:
+              data = {}
+          results = data.get('results', [])
+
+          by_severity = {}
+          for r in results:
+              sev = r.get('extra', {}).get('severity', 'UNKNOWN')
+              by_severity[sev] = by_severity.get(sev, 0) + 1
+
+          lines = ['## Security Scan (Semgrep)', '']
+          if not results:
+              lines.append('🟢 No findings.')
+          else:
+              lines.append('| Severity | Count |')
+              lines.append('|----------|-------|')
+              for sev in ('ERROR', 'WARNING', 'INFO'):
+                  if sev in by_severity:
+                      lines.append(f'| {sev} | {by_severity[sev]} |')
+              lines.append('')
+              lines.append('| Rule | Location | Severity |')
+              lines.append('|------|----------|----------|')
+              for r in results[:15]:
+                  rule = r.get('check_id', '?')
+                  loc = f"{r.get('path', '?')}:{r.get('start', {}).get('line', '?')}"
+                  sev = r.get('extra', {}).get('severity', '?')
+                  lines.append(f'| `{rule}` | `{loc}` | {sev} |')
+              if len(results) > 15:
+                  lines.append(f'\n… and {len(results) - 15} more (see artifact).')
+
+          summary = '\n'.join(lines)
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write(summary + '\n')
+          with open('semgrep-summary.md', 'w') as f:
+              f.write(summary)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write(f'total={len(results)}\n')
+              f.write(f'errors={by_severity.get("ERROR", 0)}\n')
+          EOF
+
+      - name: Upload results artifact
         if: always()
-        continue-on-error: true
-        uses: github/codeql-action/upload-sarif@v3
+        uses: actions/upload-artifact@v4
         with:
-          sarif_file: semgrep-results.sarif
+          name: semgrep-results
+          path: semgrep-results.json
+          retention-days: 14
 
       - name: Comment PR on findings
-        if: failure() && github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && steps.results.outputs.total != '0'
         uses: actions/github-script@v7
         with:
           script: |
-            await github.rest.issues.createComment({
+            const fs = require('fs');
+            const marker = '<!-- devops-factory:semgrep -->';
+            const body = marker + '\n' + fs.readFileSync('semgrep-summary.md', 'utf8');
+            const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: '## Security Scan Failed\n\nSemgrep found potential security issues. Check the [Security tab](/${{ github.repository }}/security/code-scanning) for details.',
+              per_page: 100,
             });
+            const existing = comments.find((c) => c.body.startsWith(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }

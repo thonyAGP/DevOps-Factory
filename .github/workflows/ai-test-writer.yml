@@ -33,12 +33,13 @@ jobs:
 
       - name: Generate AI tests
         run: |
-          if [ -n "${{ inputs.repo }}" ]; then
-            pnpm ai-test-writer -- --repo "${{ inputs.repo }}"
+          if [ -n "$TARGET_REPO" ]; then
+            pnpm ai-test-writer -- --repo "$TARGET_REPO"
           else
             pnpm ai-test-writer
           fi
         env:
+          TARGET_REPO: ${{ inputs.repo }}
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

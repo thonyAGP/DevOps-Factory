@@ -28,6 +28,18 @@ const TEMPLATES: Record<string, { file: string; target: string; stacks?: string[
     file: 'templates/auto-merge-deps.yml',
     target: '.github/workflows/auto-merge-deps.yml',
   },
+  gitleaks: {
+    file: 'templates/gitleaks.yml',
+    target: '.github/workflows/gitleaks.yml',
+  },
+  'container-scan': {
+    file: 'templates/container-scan.yml',
+    target: '.github/workflows/container-scan.yml',
+  },
+  'dead-code-detection': {
+    file: 'templates/dead-code-detection.yml',
+    target: '.github/workflows/dead-code-detection.yml',
+  },
 };
 
 const getRemoteFileContent = (repo: string, path: string): string | null => {

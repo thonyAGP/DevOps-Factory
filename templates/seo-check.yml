@@ -31,14 +31,17 @@ jobs:
 
       - name: Determine URL
         id: url
+        env:
+          INPUT_URL: ${{ github.event.inputs.url }}
+          DEPLOY_URL: ${{ github.event.deployment_status.environment_url }}
+          PROD_URL: ${{ vars.PRODUCTION_URL }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "target=${{ github.event.inputs.url }}" >> $GITHUB_OUTPUT
+            echo "target=$INPUT_URL" >> $GITHUB_OUTPUT
           elif [ "${{ github.event_name }}" = "deployment_status" ]; then
-            echo "target=${{ github.event.deployment_status.environment_url }}" >> $GITHUB_OUTPUT
+            echo "target=$DEPLOY_URL" >> $GITHUB_OUTPUT
           else
-            URL="${{ vars.PRODUCTION_URL }}"
-            echo "target=$URL" >> $GITHUB_OUTPUT
+            echo "target=$PROD_URL" >> $GITHUB_OUTPUT
           fi
 
       - name: Check sitemap.xml

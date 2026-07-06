@@ -58,9 +58,9 @@ jobs:
 
       - name: Run Stryker
         id: stryker
+        env:
+          TARGET: ${{ github.event.inputs.target || 'src' }}
         run: |
-          TARGET="${{ github.event.inputs.target || 'src' }}"
-
           npx stryker run \
             --mutate "${TARGET}/**/*.ts,!${TARGET}/**/*.test.*,!${TARGET}/**/*.spec.*" \
             --reporters clear-text,json \

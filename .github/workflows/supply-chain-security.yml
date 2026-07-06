@@ -51,8 +51,10 @@ jobs:
         id: signatures
         run: |
           npm audit signatures 2>&1 | tee /tmp/sig-check.txt || true
-          VERIFIED=$(grep -oP '\d+ packages? verified' /tmp/sig-check.txt || echo "0 verified")
-          INVALID=$(grep -c "invalid" /tmp/sig-check.txt || echo "0")
+          VERIFIED=$(grep -oP '\d+(?= packages? have verified registry signatures)' /tmp/sig-check.txt || true)
+          VERIFIED="${VERIFIED:-0} verified"
+          INVALID=$(grep -c "invalid" /tmp/sig-check.txt || true)
+          INVALID=${INVALID:-0}
           echo "verified=$VERIFIED" >> $GITHUB_OUTPUT
           echo "invalid=$INVALID" >> $GITHUB_OUTPUT
 
@@ -124,12 +126,30 @@ jobs:
               body += `\n> 🔴 Critical security issues found. Run \`npm audit fix\` or update affected packages.\n`;
             }
 
-            await github.rest.issues.createComment({
+            const marker = '<!-- devops-factory:supply-chain -->';
+            body = marker + '\n' + body;
+            const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body,
+              per_page: 100,
             });
+            const existing = comments.find((c) => c.body.startsWith(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
 
       - name: Fail on critical/high
         if: steps.audit.outputs.critical != '0' || steps.audit.outputs.high != '0'

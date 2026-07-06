@@ -51,14 +51,19 @@ export const CLAUDE_REVIEW_CONFIG: ClaudeReviewConfig = {
   model: 'claude-sonnet-4-5-20250929',
 };
 
+// Total = 100. noDuplication + noCriticalFindings come from the weekly
+// central scan (data/central-scan-latest.json); repos score 0 on those
+// dimensions until their first central scan has run.
 export const QUALITY_WEIGHTS = {
-  ciPasses: 20,
-  coverageAboveThreshold: 20,
-  prettierClean: 10,
-  eslintZeroWarnings: 15,
+  ciPasses: 15,
+  coverageAboveThreshold: 15,
+  prettierClean: 5,
+  eslintZeroWarnings: 10,
   branchProtection: 10,
   depsUpToDate: 10,
   noSecrets: 15,
+  noDuplication: 10,
+  noCriticalFindings: 10,
 } as const;
 
 export const KNOWN_PROJECTS: ProjectConfig[] = [

@@ -51,11 +51,13 @@ describe('scanContent', () => {
     expect(violations[0].line).toBe(3);
   });
 
+  it('should detect the generated-with marker', () => {
     const content = `Some content\n${generatedWith}\n`;
     const violations = scanContent(content, 'test.md');
     expect(violations.length).toBeGreaterThanOrEqual(1);
   });
 
+  it('should detect the created-by marker', () => {
     const content = `Some content\n${createdBy}\n`;
     const violations = scanContent(content, 'test.md');
     expect(violations.length).toBe(1);
@@ -80,6 +82,7 @@ describe('scanContent', () => {
     expect(violations.length).toBe(0);
   });
 
+  it('should flag the noreply email', () => {
     const content = `Author: Bot <${noreplyEmail}>\n`;
     const violations = scanContent(content, 'test.ts');
     expect(violations.length).toBe(1);

@@ -30,6 +30,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Run migration checklist
-        run: pnpm migration-checklist -- --pr "${{ inputs.pr_number }}"
+        run: pnpm migration-checklist -- --pr "$PR_NUMBER"
         env:
+          PR_NUMBER: ${{ inputs.pr_number }}
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}

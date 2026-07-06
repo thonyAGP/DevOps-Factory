@@ -309,4 +309,5 @@ const main = () => {
   );
 };
 
-main();
+// Guard: tests import this module's pure functions; only run when invoked directly
+if (!process.env.VITEST) main();
