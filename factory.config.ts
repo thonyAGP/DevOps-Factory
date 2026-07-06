@@ -483,6 +483,12 @@ export const WEBHOOK_CONFIG: WebhookConfig = {
   enabled: true,
 };
 
+/**
+ * Central self-hosted Renovate (.github/workflows/renovate.yml) covers every
+ * repo in KNOWN_PROJECTS — no per-repo renovate.json needed.
+ */
+export const CENTRAL_RENOVATE_ENABLED = true;
+
 export const GITHUB_OWNER = 'thonyAGP';
 
 export const DASHBOARD_URL = 'https://thonyagp.github.io/DevOps-Factory/';
