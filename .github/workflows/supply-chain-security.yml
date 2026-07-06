@@ -51,7 +51,8 @@ jobs:
         id: signatures
         run: |
           npm audit signatures 2>&1 | tee /tmp/sig-check.txt || true
-          VERIFIED=$(grep -oP '\d+ packages? verified' /tmp/sig-check.txt || echo "0 verified")
+          VERIFIED=$(grep -oP '\d+(?= packages? have verified registry signatures)' /tmp/sig-check.txt || true)
+          VERIFIED="${VERIFIED:-0} verified"
           INVALID=$(grep -c "invalid" /tmp/sig-check.txt || true)
           INVALID=${INVALID:-0}
           echo "verified=$VERIFIED" >> $GITHUB_OUTPUT
