@@ -1,6 +1,7 @@
 export { getFactoryStatusSection } from './factory-status.js';
 export { getSecurityPostureSection } from './security-posture.js';
 export { getCentralScanSection } from './central-scan.js';
+export { getSecurityRegistrySection } from './security-registry.js';
 export { getCoverageSection } from './coverage.js';
 export { getPerformanceSection } from './performance.js';
 export { getDoraSection } from './dora-metrics.js';

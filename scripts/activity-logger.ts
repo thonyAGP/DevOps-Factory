@@ -40,7 +40,8 @@ export type ActivitySource =
   | 'auto-generate-tests'
   | 'knowledge-graph'
   | 'central-scan'
-  | 'central-coverage';
+  | 'central-coverage'
+  | 'security-registry';
 
 export interface ActivityEntry {
   timestamp: string;

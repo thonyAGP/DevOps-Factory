@@ -5,6 +5,7 @@ import {
   getFactoryStatusSection,
   getSecurityPostureSection,
   getCentralScanSection,
+  getSecurityRegistrySection,
   getCoverageSection,
   getPerformanceSection,
   getDoraSection,
@@ -101,6 +102,8 @@ export const generateHTML = (statuses: ProjectStatus[]): string => {
   ${getFactoryStatusSection()}
 
   ${getSecurityPostureSection(statuses)}
+
+  ${getSecurityRegistrySection()}
 
   ${getCentralScanSection()}
 
