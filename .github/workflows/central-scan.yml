@@ -47,7 +47,8 @@ jobs:
           curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | tar -xz -C /tmp gitleaks
           sudo mv /tmp/gitleaks /usr/local/bin/gitleaks
           # Download the release binary directly — trivy's contrib/install.sh is fragile
-          TRIVY_VERSION=0.58.1
+          # and old releases (e.g. 0.58.x) no longer carry binary assets
+          TRIVY_VERSION=0.72.0
           curl -sSfL "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz" | tar -xz -C /tmp trivy
           sudo mv /tmp/trivy /usr/local/bin/trivy
           pipx install semgrep
