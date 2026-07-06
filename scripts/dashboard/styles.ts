@@ -320,6 +320,26 @@ export const DASHBOARD_CSS = `
     .coverage-pending-list { margin-top: 0.6rem; font-size: 0.78rem; color: #8b949e; }
     .cov-pending { display: inline-block; background: #21262d; border-radius: 4px; padding: 0.1rem 0.4rem; margin: 0.1rem; }
 
+    /* Security Posture Registry */
+    .security-registry {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .security-registry h2 { color: #ef4444; font-size: 1rem; margin-bottom: 0.8rem; }
+    .registry-summary { display: flex; gap: 1.2rem; flex-wrap: wrap; align-items: center; font-size: 0.85rem; color: #8b949e; margin-bottom: 0.6rem; }
+    .registry-summary strong { color: #e6edf3; }
+    .registry-date { margin-left: auto; font-style: italic; }
+    .reg-grade { display: inline-block; min-width: 1.1rem; text-align: center; padding: 0 0.35rem; border-radius: 4px; color: #0d1117; font-weight: 700; font-size: 0.75rem; }
+    .registry-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .registry-table th, .registry-table td { padding: 0.3rem 0.6rem; border-bottom: 1px solid #21262d; text-align: left; vertical-align: top; }
+    .registry-table th { color: #8b949e; }
+    .registry-table .reg-risk { color: #ef4444; font-weight: 600; }
+    .registry-table .reg-score { color: #e6edf3; white-space: nowrap; }
+    .registry-table .reg-reasons { color: #8b949e; }
+
     /* Central Security & Duplication Scan */
     .central-scan {
       background: #161b22;

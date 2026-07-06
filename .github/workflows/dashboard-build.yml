@@ -61,6 +61,10 @@ jobs:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
         continue-on-error: true
 
+      - name: Security registry (unified findings)
+        run: pnpm security-registry
+        continue-on-error: true
+
       - name: Template drift detection
         run: pnpm template-drift
         env:
