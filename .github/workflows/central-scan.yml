@@ -41,6 +41,25 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Trivy re-downloads a ~700MB vulnerability DB otherwise; caching it
+      # across weekly runs removes that download for all 25 repo scans
+      - name: Cache Trivy vulnerability DB
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/trivy
+          key: trivy-db-${{ github.run_id }}
+          restore-keys: |
+            trivy-db-
+
+      # Semgrep re-fetches its registry rulesets (p/owasp-top-ten, …) per run
+      - name: Cache Semgrep rules
+        uses: actions/cache@v4
+        with:
+          path: ~/.semgrep
+          key: semgrep-rules-${{ github.run_id }}
+          restore-keys: |
+            semgrep-rules-
+
       - name: Install scanners
         run: |
           GITLEAKS_VERSION=8.21.2
@@ -61,6 +80,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          # Reuse the cached DB and skip its update when it is already fresh
+          TRIVY_CACHE_DIR: ~/.cache/trivy
+          TRIVY_SKIP_DB_UPDATE: 'false'
 
       - name: Commit scan data
         run: |
