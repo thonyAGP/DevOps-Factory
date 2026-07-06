@@ -1,6 +1,6 @@
 # DevOps-Factory: Dead Code Detection (AUTO-67)
 # Uses Knip to detect unused files, exports, dependencies, and types
-# Runs on PRs and weekly schedule
+# PR-only: scheduled scans removed to preserve the private-repo Actions quota
 
 name: Dead Code Detection
 
@@ -13,16 +13,20 @@ on:
       - 'lib/**'
       - 'package.json'
       - 'tsconfig.json'
-  schedule:
-    - cron: '0 7 * * 1' # Weekly Monday 7am UTC
+  workflow_dispatch:
 
 permissions:
   contents: read
   pull-requests: write
 
+concurrency:
+  group: dead-code-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   knip:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
@@ -68,22 +72,4 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
               body: `## Dead Code Detection (Knip)\n\n\`\`\`\n${truncated}\n\`\`\`\n\n> Remove unused code to keep the codebase lean. Run \`npx knip --fix\` to auto-remove unused exports and deps.`,
-            });
-
-      - name: Create issue for scheduled runs
-        if: github.event_name == 'schedule' && steps.knip.outputs.has_issues == 'true'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const report = fs.readFileSync('/tmp/knip-report.txt', 'utf8');
-            const truncated = report.substring(0, 4000);
-            const date = new Date().toISOString().split('T')[0];
-
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `Dead code detected - ${date}`,
-              body: `## Weekly Dead Code Report (Knip)\n\n\`\`\`\n${truncated}\n\`\`\`\n\n> Auto-fix: \`npx knip --fix\``,
-              labels: ['tech-debt', 'automated'],
             });

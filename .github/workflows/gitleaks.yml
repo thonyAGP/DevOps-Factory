@@ -1,24 +1,26 @@
 # DevOps-Factory: Gitleaks Secret Scanning Template
 # Scans for exposed secrets (API keys, tokens, passwords)
-# Runs on PRs + weekly full scan
+# PR-only: weekly full-history scans run centrally from DevOps-Factory (central-scan.yml)
 
 name: Secret Scanning
 
 on:
   pull_request:
     branches: [main, master]
-  schedule:
-    - cron: '0 3 * * 1' # Weekly Monday 3am UTC
   workflow_dispatch:
 
 permissions:
   contents: read
   pull-requests: write
 
+concurrency:
+  group: gitleaks-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   gitleaks:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:

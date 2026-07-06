@@ -38,7 +38,8 @@ export type ActivitySource =
   | 'weekly-veille'
   | 'dependency-intelligence'
   | 'auto-generate-tests'
-  | 'knowledge-graph';
+  | 'knowledge-graph'
+  | 'central-scan';
 
 export interface ActivityEntry {
   timestamp: string;
