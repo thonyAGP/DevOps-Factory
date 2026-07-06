@@ -411,7 +411,8 @@ const runTrivy = (dir: string): ScannerResult => {
 
 const scanRepo = (
   project: ProjectConfig,
-  available: Record<ScannerName, boolean>
+  available: Record<ScannerName, boolean>,
+  factoryRepo: string
 ): RepoScanResult => {
   const dir = `${tmpDir}/central-scan/${project.name}`;
   rmSync(dir, { recursive: true, force: true });
@@ -441,7 +442,17 @@ const scanRepo = (
     top: [],
   });
 
-  result.scanners.push(available.gitleaks ? runGitleaks(dir) : skipped('gitleaks'));
+  // The Factory's own history is huge (hourly data/*.json commits) and it
+  // already runs a dedicated gitleaks workflow — a full-history gitleaks scan
+  // here reliably times out, so skip it rather than report a perpetual error
+  const gitleaksRedundant = project.repo === factoryRepo;
+  result.scanners.push(
+    gitleaksRedundant
+      ? skipped('gitleaks')
+      : available.gitleaks
+        ? runGitleaks(dir)
+        : skipped('gitleaks')
+  );
   result.scanners.push(available.semgrep ? runSemgrep(dir, project.stack) : skipped('semgrep'));
   result.scanners.push(available.trivy ? runTrivy(dir) : skipped('trivy'));
   result.scanners.push(available.jscpd ? runJscpd(dir) : skipped('jscpd'));
@@ -608,7 +619,7 @@ const main = (): void => {
   const results: RepoScanResult[] = [];
   for (const project of targets) {
     process.stdout.write(`${project.name} ... `);
-    const result = scanRepo(project, available);
+    const result = scanRepo(project, available, factoryRepo);
     results.push(result);
     if (!result.cloned) {
       console.log('clone failed');
