@@ -112,15 +112,29 @@ export const scanContent = (content: string, filePath: string): Violation[] => {
   return violations;
 };
 
+/**
+ * A line is only safe to delete when it is pure attribution text (comment,
+ * commit trailer, markdown footer). Lines carrying code structure — quotes,
+ * brackets, assignments — must be left for manual review: deleting them has
+ * already broken a test file (orphaned it() bodies) and a YAML template
+ * (unbalanced shell quoting).
+ */
+export const isSafeToDeleteLine = (line: string): boolean => {
+  // Markdown links are attribution formatting, not code
+  const withoutLinks = line.replace(/\[[^\]]*\]\([^)]*\)/g, 'LINK');
+  return !/['"`(){}[\]=;]/.test(withoutLinks);
+};
+
 export const fixContent = (content: string): string => {
   let lines = content.split('\n');
 
-  // Pass 1: Remove full lines matching 'line' patterns
+  // Pass 1: Remove full lines matching 'line' patterns — only when the line
+  // is pure attribution; lines mixed with code are preserved
   lines = lines.filter((line) => {
     for (const pattern of BRANDING_PATTERNS) {
       if (pattern.mode !== 'line') continue;
       pattern.regex.lastIndex = 0;
-      if (pattern.regex.test(line)) return false;
+      if (pattern.regex.test(line) && isSafeToDeleteLine(line)) return false;
     }
     return true;
   });
@@ -210,7 +224,11 @@ const processRepo = (repo: string): { violations: number; fixed: boolean } => {
           fixedFiles.push(file);
 
           for (const v of violations) {
-            console.log(`  - ${v.file}:${v.line} → removed "${v.original.slice(0, 80)}"`);
+            const action =
+              v.patternMode === 'line' && !isSafeToDeleteLine(v.original)
+                ? 'kept for manual review (code line)'
+                : 'removed';
+            console.log(`  - ${v.file}:${v.line} → ${action} "${v.original.slice(0, 80)}"`);
           }
         }
       } catch {
@@ -293,7 +311,7 @@ const main = () => {
         project.name
       );
     } else if (result.violations > 0) {
-      console.log(`⚠ ${result.violations} violations (push failed)`);
+      console.log(`⚠ ${result.violations} violations (manual review needed or push failed)`);
     } else {
       console.log('✓ clean');
       reposClean++;
