@@ -21,9 +21,11 @@ jobs:
 
       - name: Determine URL
         id: url
+        env:
+          INPUT_URL: ${{ github.event.inputs.url }}
         run: |
-          if [ -n "${{ github.event.inputs.url }}" ]; then
-            echo "url=${{ github.event.inputs.url }}" >> $GITHUB_OUTPUT
+          if [ -n "$INPUT_URL" ]; then
+            echo "url=$INPUT_URL" >> $GITHUB_OUTPUT
           else
             # Try to detect from package.json or vercel.json
             URL=""

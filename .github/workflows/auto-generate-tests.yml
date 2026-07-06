@@ -50,11 +50,13 @@ jobs:
       - name: Run auto-generate-tests
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+          TEST_LIMIT: ${{ github.event.inputs.limit || '10' }}
         run: |
-          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
-            pnpm auto-generate-tests -- --limit ${{ github.event.inputs.limit || '10' }} --dry-run --no-commit
+          if [ "$DRY_RUN" = "true" ]; then
+            pnpm auto-generate-tests -- --limit "$TEST_LIMIT" --dry-run --no-commit
           else
-            pnpm auto-generate-tests -- --limit ${{ github.event.inputs.limit || '10' }} --no-commit
+            pnpm auto-generate-tests -- --limit "$TEST_LIMIT" --no-commit
           fi
 
       - name: Check for generated tests

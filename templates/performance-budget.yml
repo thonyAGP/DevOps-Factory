@@ -84,11 +84,13 @@ jobs:
 
       - name: Check for new large dependencies
         id: deps
+        env:
+          BASE_REF: ${{ github.base_ref }}
         run: |
           # Check if any new dep > 100KB was added
           if [ -f "package.json" ]; then
             LARGE_DEPS=""
-            for dep in $(git diff origin/${{ github.base_ref }}...HEAD -- package.json | grep "^+" | grep -oP '"[^"]+": "\^?[0-9]' | cut -d'"' -f2 || true); do
+            for dep in $(git diff "origin/$BASE_REF...HEAD" -- package.json | grep "^+" | grep -oP '"[^"]+": "\^?[0-9]' | cut -d'"' -f2 || true); do
               SIZE=$(npm info "$dep" dist.unpackedSize 2>/dev/null || echo "0")
               SIZE_KB=$((SIZE / 1024))
               if [ "$SIZE_KB" -gt 100 ]; then

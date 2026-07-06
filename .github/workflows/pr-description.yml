@@ -32,7 +32,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Generate PR description
-        run: pnpm pr-description -- --repo ${{ inputs.repo }} --pr ${{ inputs.pr }}
+        run: pnpm pr-description -- --repo "$TARGET_REPO" --pr "$TARGET_PR"
         env:
+          TARGET_REPO: ${{ inputs.repo }}
+          TARGET_PR: ${{ inputs.pr }}
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

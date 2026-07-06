@@ -31,12 +31,16 @@ jobs:
 
       - name: Determine URL
         id: url
+        env:
+          INPUT_TARGET_URL: ${{ github.event.inputs.target_url }}
+          INPUT_SCENARIO: ${{ github.event.inputs.scenario }}
+          STAGING_URL: ${{ vars.STAGING_URL }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "target=${{ github.event.inputs.target_url }}" >> $GITHUB_OUTPUT
-            echo "scenario=${{ github.event.inputs.scenario }}" >> $GITHUB_OUTPUT
+            echo "target=$INPUT_TARGET_URL" >> $GITHUB_OUTPUT
+            echo "scenario=$INPUT_SCENARIO" >> $GITHUB_OUTPUT
           else
-            echo "target=${{ vars.STAGING_URL }}" >> $GITHUB_OUTPUT
+            echo "target=$STAGING_URL" >> $GITHUB_OUTPUT
             echo "scenario=smoke" >> $GITHUB_OUTPUT
           fi
 

@@ -28,11 +28,14 @@ jobs:
 
       - name: Determine URL
         id: url
+        env:
+          INPUT_URL: ${{ github.event.inputs.url }}
+          DEPLOY_URL: ${{ github.event.deployment_status.environment_url }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "target=${{ github.event.inputs.url }}" >> $GITHUB_OUTPUT
+            echo "target=$INPUT_URL" >> $GITHUB_OUTPUT
           else
-            echo "target=${{ github.event.deployment_status.environment_url }}" >> $GITHUB_OUTPUT
+            echo "target=$DEPLOY_URL" >> $GITHUB_OUTPUT
           fi
 
       - name: Wait for deployment

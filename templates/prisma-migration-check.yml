@@ -33,8 +33,10 @@ jobs:
 
       - name: Check for dangerous operations
         id: danger
+        env:
+          BASE_REF: ${{ github.base_ref }}
         run: |
-          MIGRATION_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- 'prisma/migrations/**/*.sql' '**/prisma/migrations/**/*.sql')
+          MIGRATION_FILES=$(git diff --name-only "origin/$BASE_REF...HEAD" -- 'prisma/migrations/**/*.sql' '**/prisma/migrations/**/*.sql')
 
           if [ -z "$MIGRATION_FILES" ]; then
             echo "No new migration files found"
