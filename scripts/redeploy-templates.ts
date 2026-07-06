@@ -9,7 +9,7 @@
  */
 
 import { execSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { KNOWN_PROJECTS } from '../factory.config.js';
 import { sh, tmpDir } from './shell-utils.js';
 import { loadRepoConfig, renderTemplate } from './template-config.js';
@@ -142,6 +142,10 @@ const main = () => {
 
   for (const [name, config] of templatesToProcess) {
     console.log(`\n=== Template: ${name} ===`);
+    if (!existsSync(config.file)) {
+      console.log(`  source file ${config.file} missing (skip)`);
+      continue;
+    }
     const rawContent = readFileSync(config.file, 'utf-8');
 
     const eligibleProjects = KNOWN_PROJECTS.filter((p) => {
