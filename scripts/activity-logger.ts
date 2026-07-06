@@ -39,7 +39,8 @@ export type ActivitySource =
   | 'dependency-intelligence'
   | 'auto-generate-tests'
   | 'knowledge-graph'
-  | 'central-scan';
+  | 'central-scan'
+  | 'central-coverage';
 
 export interface ActivityEntry {
   timestamp: string;
