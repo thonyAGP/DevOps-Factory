@@ -1,0 +1,55 @@
+# DevOps-Factory: Remediation Dispatch
+# Reads the security registry and fires a bounded remediation agent at the
+# worst-graded repos (saut #3). Fail-closed: does nothing until
+# REMEDIATION_CONFIG is enabled with an explicit allowlist. Manual dispatch
+# only — no cron until the loop is trusted.
+
+name: Remediation Dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'List targets without dispatching agents'
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: remediation-dispatch
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.FACTORY_PAT }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Dispatch remediation agents
+        run: |
+          if [ "$DRY_RUN" = "false" ]; then
+            pnpm remediation-dispatch
+          else
+            pnpm remediation-dispatch -- --dry-run
+          fi
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}

@@ -1,0 +1,71 @@
+# DevOps-Factory: AI Remediation Agent
+# A bounded, ephemeral coding agent that fixes this repo's central-scan
+# findings and opens a PR — then exits. Dispatched by the Factory's
+# remediation-dispatch for repos graded F in the security registry.
+#
+# Requires (per repo): secret ANTHROPIC_API_KEY. The agent is deliberately
+# constrained: it fixes tractable SAST/dep findings, never touches secrets
+# (rotation is manual), never does large refactors or major bumps, always
+# runs tests, and opens exactly one PR for human review.
+
+name: AI Remediation
+
+on:
+  workflow_dispatch:
+    inputs: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: read
+
+concurrency:
+  group: ai-remediation
+  cancel-in-progress: false
+
+jobs:
+  remediate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run remediation agent
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          direct_prompt: |
+            Tu corriges les problèmes de sécurité et de qualité détectés par le
+            scan centralisé de DevOps-Factory sur ce repository.
+
+            CONTEXTE
+            - Une issue GitHub avec le label `central-scan` liste les findings
+              localisés (fichier:ligne, règle, CVE) : lis-la en premier.
+            - Scanners : gitleaks (secrets), semgrep (SAST OWASP), trivy
+              (dépendances vulnérables), jscpd (duplication).
+
+            À FAIRE
+            1. Corriger les findings Semgrep de sévérité ERROR au correctif
+               clair et local.
+            2. Monter les dépendances vulnérables trivy CRITICAL/HIGH vers la
+               première version corrigée NON-majeure.
+            3. Après chaque correction, lancer les tests et le lint ; ne rien
+               casser. Absence de tests : le signaler.
+
+            INTERDIT
+            - Ne touche PAS aux secrets exposés (rotation manuelle) — signale-les.
+            - Aucun refactor large, aucune montée majeure, aucune modification de
+              logique métier pour faire taire un linter.
+
+            LIVRABLE
+            - UNE seule PR, titre `fix: corrections sécurité & qualité (central-scan)`.
+            - Description : ✅ corrigé / ⏭️ reporté (raison) / 🔴 action humaine
+              requise (secrets, majeures).
+            - Commits conventionnels et atomiques.
+
+            Commence par l'issue `central-scan`, établis un plan priorisé, puis
+            exécute et ouvre la PR.
+          allowed_tools: 'Bash,Edit,Write,Read,Grep,Glob'
+          max_turns: '30'

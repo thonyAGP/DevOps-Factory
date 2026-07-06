@@ -489,6 +489,34 @@ export const WEBHOOK_CONFIG: WebhookConfig = {
  */
 export const CENTRAL_RENOVATE_ENABLED = true;
 
+export interface RemediationConfig {
+  /** Master switch. While false the dispatcher is a no-op. */
+  enabled: boolean;
+  /** Only these repos may be remediated (empty = none — opt-in safety). */
+  enabledRepos: string[];
+  /** Repos at or below this grade are eligible (F worst → A best). */
+  minGrade: 'F' | 'D' | 'C';
+  /** Max remediation agents dispatched per day, across the fleet. */
+  maxPerDay: number;
+  /** Target-repo workflow the dispatcher triggers. */
+  workflowFile: string;
+}
+
+/**
+ * Autonomous remediation (saut #3): the dispatcher reads the security
+ * registry and triggers a bounded coding agent on the worst-graded repos.
+ * Disabled and allowlist-empty by default — enabling requires an explicit
+ * opt-in plus ANTHROPIC_API_KEY + the ai-remediation.yml workflow in each
+ * target repo. Guardrails: allowlist, grade gate, daily quota.
+ */
+export const REMEDIATION_CONFIG: RemediationConfig = {
+  enabled: false,
+  enabledRepos: [],
+  minGrade: 'F',
+  maxPerDay: 2,
+  workflowFile: 'ai-remediation.yml',
+};
+
 export const GITHUB_OWNER = 'thonyAGP';
 
 export const DASHBOARD_URL = 'https://thonyagp.github.io/DevOps-Factory/';
