@@ -1,0 +1,63 @@
+# DevOps-Factory: Redeploy Templates
+# Propagates updated workflow templates to managed repos (one update PR per
+# repo whose deployed copy differs). Triggers automatically when templates
+# change on master, or manually via workflow_dispatch.
+
+name: Redeploy Templates
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'templates/**'
+      - '.github/workflows/redeploy-templates.yml'
+  workflow_dispatch:
+    inputs:
+      template:
+        description: 'Template to redeploy (name or "all")'
+        required: false
+        default: 'all'
+        type: string
+      dry_run:
+        description: 'Dry run (log only, no PRs)'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: redeploy-templates
+  cancel-in-progress: false
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Redeploy templates
+        run: |
+          ARGS="--template ${TEMPLATE:-all}"
+          if [ "$DRY_RUN" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          pnpm redeploy-templates -- $ARGS
+        env:
+          TEMPLATE: ${{ inputs.template }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
