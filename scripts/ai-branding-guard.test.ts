@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { scanContent, fixContent, shouldScanFile, BRANDING_PATTERNS } from './ai-branding-guard.js';
+import {
+  scanContent,
+  fixContent,
+  shouldScanFile,
+  isSafeToDeleteLine,
+  BRANDING_PATTERNS,
+} from './ai-branding-guard.js';
 
 describe('shouldScanFile', () => {
   it('should scan TypeScript files', () => {
@@ -92,6 +98,48 @@ describe('scanContent', () => {
     const content = 'const x = 1;\nconst y = 2;\nexport { x, y };\n';
     const violations = scanContent(content, 'test.ts');
     expect(violations.length).toBe(0);
+  });
+});
+
+describe('isSafeToDeleteLine', () => {
+  it('treats pure attribution lines as safe', () => {
+    expect(isSafeToDeleteLine(`Co-Authored-By: Bot <${noreplyEmail}>`)).toBe(true);
+    expect(isSafeToDeleteLine(`# ${createdBy}`)).toBe(true);
+    expect(
+      isSafeToDeleteLine(
+        `🤖 ${generatedWith.replace('Claude', '[Claude Code](https://example.com)')}`
+      )
+    ).toBe(true);
+  });
+
+  it('treats lines with code structure as unsafe', () => {
+    expect(isSafeToDeleteLine(`  it('should detect ${generatedWith}', () => {`)).toBe(false);
+    expect(isSafeToDeleteLine(`          ${generatedWith}"`)).toBe(false);
+    expect(isSafeToDeleteLine(`const msg = "${createdBy}";`)).toBe(false);
+  });
+});
+
+describe('fixContent regression: never break code by deleting lines', () => {
+  it('preserves a test header line containing a banned phrase', () => {
+    const input = `describe('x', () => {\n  it('should detect ${generatedWith}', () => {\n    expect(1).toBe(1);\n  });\n});\n`;
+    const result = fixContent(input);
+    expect(result).toContain(`it('should detect`);
+    expect(result).toContain('expect(1).toBe(1);');
+  });
+
+  it('preserves a quoted shell/YAML line containing a banned phrase', () => {
+    const input = `          git commit -m "fix: something\n\n          ${generatedWith}"\n\n          git push origin branch\n`;
+    const result = fixContent(input);
+    expect(result).toContain(`${generatedWith}"`);
+    expect(result).toContain('git push origin branch');
+  });
+
+  it('still removes pure attribution lines', () => {
+    const input = `Fix bug\n\nCo-Authored-By: Bot <${noreplyEmail}>\n# ${createdBy}\n`;
+    const result = fixContent(input);
+    expect(result).not.toContain('Co-Authored-By');
+    expect(result).not.toContain(createdBy);
+    expect(result).toContain('Fix bug');
   });
 });
 

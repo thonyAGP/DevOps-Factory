@@ -157,14 +157,14 @@ jobs:
             if (isBug) {
               const bugComment = `🔍 **Bug Report Detected**
 
-Thank you for reporting this issue! Here's how to help us fix it faster:
+            Thank you for reporting this issue! Here's how to help us fix it faster:
 
-1. **Minimal Reproduction**: If possible, provide a minimal code example or steps to reproduce
-2. **Environment**: Include Node/Python/other version, OS, and relevant dependencies
-3. **Expected vs Actual**: Clearly state what should happen vs what does happen
-4. **Logs**: Include relevant error messages or logs (sanitized for secrets)
+            1. **Minimal Reproduction**: If possible, provide a minimal code example or steps to reproduce
+            2. **Environment**: Include Node/Python/other version, OS, and relevant dependencies
+            3. **Expected vs Actual**: Clearly state what should happen vs what does happen
+            4. **Logs**: Include relevant error messages or logs (sanitized for secrets)
 
-Our team will triage this and start investigating soon.`;
+            Our team will triage this and start investigating soon.`;
 
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
@@ -175,15 +175,15 @@ Our team will triage this and start investigating soon.`;
             } else if (isSecurity) {
               const securityComment = `🔐 **Security Issue Detected**
 
-⚠️ **IMPORTANT**: If this is a security vulnerability, please do NOT discuss sensitive details publicly.
+            ⚠️ **IMPORTANT**: If this is a security vulnerability, please do NOT discuss sensitive details publicly.
 
-Please email security@[your-domain] with:
-- Vulnerability description
-- Steps to reproduce
-- Proposed fix (if any)
-- Timeline for disclosure
+            Please email security@[your-domain] with:
+            - Vulnerability description
+            - Steps to reproduce
+            - Proposed fix (if any)
+            - Timeline for disclosure
 
-We take security seriously and will respond within 24-48 hours.`;
+            We take security seriously and will respond within 24-48 hours.`;
 
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
@@ -194,9 +194,9 @@ We take security seriously and will respond within 24-48 hours.`;
             } else {
               const triageComment = `✅ **Issue Triaged**
 
-Your issue has been automatically categorized and prioritized. Our team will review it shortly.
+            Your issue has been automatically categorized and prioritized. Our team will review it shortly.
 
-**Need help?** Check our [documentation](#) or [discussions](#) for common questions.`;
+            **Need help?** Check our [documentation](#) or [discussions](#) for common questions.`;
 
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
