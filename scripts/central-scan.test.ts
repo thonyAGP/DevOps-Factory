@@ -12,6 +12,7 @@ import {
   parseJscpd,
   buildReport,
   buildRepoDetail,
+  mergeGitleaksIgnore,
   sanitizeResults,
   totalFindings,
   semgrepConfigsForStack,
@@ -76,6 +77,64 @@ describe('parseGitleaks', () => {
     const result = parseGitleaks(JSON.stringify(leaks));
     expect(result.findings).toBe(10);
     expect(result.top).toHaveLength(5);
+  });
+});
+
+describe('gitleaks fingerprints', () => {
+  it('captures fingerprints for the gitleaksignore proposal', () => {
+    const json = JSON.stringify([
+      { RuleID: 'aws-key', File: 'a.ts', StartLine: 1, Fingerprint: 'abc123:a.ts:aws-key:1' },
+      { RuleID: 'gcp-key', File: 'b.ts', StartLine: 9 },
+    ]);
+    const result = parseGitleaks(json);
+    expect(result.fingerprints).toEqual(['abc123:a.ts:aws-key:1']);
+  });
+
+  it('strips fingerprints from sanitized public output', () => {
+    const results: RepoScanResult[] = [
+      {
+        name: 'X',
+        repo: 'thonyAGP/X',
+        stack: 'node',
+        cloned: true,
+        scanners: [
+          {
+            scanner: 'gitleaks',
+            status: 'findings',
+            findings: 1,
+            bySeverity: { SECRET: 1 },
+            top: ['aws-key in a.ts:1'],
+            fingerprints: ['abc123:a.ts:aws-key:1'],
+          },
+        ],
+      },
+    ];
+    const sanitized = sanitizeResults(results);
+    expect(sanitized[0].scanners[0].fingerprints).toBeUndefined();
+    expect(sanitized[0].scanners[0].top).toEqual([]);
+    // original untouched
+    expect(results[0].scanners[0].fingerprints).toHaveLength(1);
+  });
+});
+
+describe('mergeGitleaksIgnore', () => {
+  it('creates a fresh file from fingerprints', () => {
+    const out = mergeGitleaksIgnore('', ['fp1', 'fp2']);
+    expect(out).toContain('fp1\nfp2');
+    expect(out.endsWith('\n')).toBe(true);
+  });
+
+  it('appends only unknown fingerprints to an existing file', () => {
+    const existing = '# manual entries\nfp1\n';
+    const out = mergeGitleaksIgnore(existing, ['fp1', 'fp2']);
+    expect(out).toContain('# manual entries');
+    expect(out.match(/fp1/g)).toHaveLength(1);
+    expect(out).toContain('fp2');
+  });
+
+  it('returns the input unchanged when everything is already ignored', () => {
+    const existing = 'fp1\nfp2\n';
+    expect(mergeGitleaksIgnore(existing, ['fp1', 'fp2'])).toBe(existing);
   });
 });
 

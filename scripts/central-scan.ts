@@ -53,6 +53,12 @@ export interface ScannerResult {
   top: string[];
   /** Scanner-specific metrics (e.g. jscpd duplication percentage) */
   metrics?: Record<string, number>;
+  /**
+   * gitleaks finding fingerprints (commit:file:rule:line) — SENSITIVE, used
+   * to propose a .gitleaksignore for rotated secrets; stripped from all
+   * public outputs by sanitizeResults
+   */
+  fingerprints?: string[];
 }
 
 export interface RepoScanResult {
@@ -100,8 +106,10 @@ export const parseGitleaks = (json: string): ScannerResult => {
       RuleID?: string;
       File?: string;
       StartLine?: number;
+      Fingerprint?: string;
     }[];
     if (!Array.isArray(leaks)) return errorResult('gitleaks');
+    const fingerprints = leaks.map((l) => l.Fingerprint).filter((f): f is string => Boolean(f));
     return {
       scanner: 'gitleaks',
       status: leaks.length > 0 ? 'findings' : 'clean',
@@ -110,6 +118,7 @@ export const parseGitleaks = (json: string): ScannerResult => {
       top: leaks
         .slice(0, TOP_FINDINGS_LIMIT)
         .map((l) => `${l.RuleID ?? 'secret'} in ${l.File ?? '?'}:${l.StartLine ?? '?'}`),
+      ...(fingerprints.length > 0 ? { fingerprints } : {}),
     };
   } catch {
     return errorResult('gitleaks');
@@ -262,7 +271,11 @@ const scannerCell = (r: RepoScanResult, name: ScannerName): string => {
 export const sanitizeResults = (results: RepoScanResult[]): RepoScanResult[] =>
   results.map((r) => ({
     ...r,
-    scanners: r.scanners.map((s) => ({ ...s, top: [] })),
+    scanners: r.scanners.map((s) => {
+      const clean = { ...s, top: [] as string[] };
+      delete clean.fingerprints;
+      return clean;
+    }),
   }));
 
 /**
@@ -289,6 +302,24 @@ export const buildReport = (results: RepoScanResult[], date: string): string => 
   report += `chaque repo concerné reçoit sa propre issue \`central-scan\` avec les localisations.\n\n`;
   report += `---\n_Généré par central-scan.ts — hebdomadaire, lundi 5h UTC_\n`;
   return report;
+};
+
+/**
+ * Merge new gitleaks fingerprints into an existing .gitleaksignore,
+ * preserving prior entries and comments, without duplicates.
+ */
+export const mergeGitleaksIgnore = (existing: string, fingerprints: string[]): string => {
+  const lines = existing ? existing.replace(/\r\n/g, '\n').split('\n') : [];
+  const known = new Set(lines.map((l) => l.trim()).filter((l) => l && !l.startsWith('#')));
+  const fresh = fingerprints.filter((f) => !known.has(f));
+  if (fresh.length === 0) return existing;
+  const base = existing.trim() ? existing.replace(/\n+$/, '') + '\n' : '';
+  return (
+    base +
+    `# Secrets historiques révoqués — détectés par DevOps-Factory central-scan\n` +
+    fresh.join('\n') +
+    '\n'
+  );
 };
 
 /**
@@ -464,6 +495,77 @@ const publishFactoryIssue = (factoryRepo: string, report: string, findings: numb
   );
 };
 
+/**
+ * Propose a .gitleaksignore PR in a repo whose secrets were found in git
+ * history: once the keys are ROTATED, merging the PR acknowledges them and
+ * turns the weekly scan green without rewriting history. New leaks are
+ * still flagged (fingerprints are commit-specific).
+ */
+const publishGitleaksIgnorePR = (repo: string, fingerprints: string[]): void => {
+  // Skip when an open proposal already exists
+  const openPRs = sh(
+    `gh pr list --repo ${repo} --state open --search "gitleaksignore in:title" --json number`
+  );
+  try {
+    if ((JSON.parse(openPRs || '[]') as unknown[]).length > 0) return;
+  } catch {
+    // ignore
+  }
+
+  const existing = getRemoteFile(repo, '.gitleaksignore');
+  const content = mergeGitleaksIgnore(existing ?? '', fingerprints);
+  if (content === (existing ?? '')) return; // all fingerprints already ignored
+
+  const defaultBranch = sh(`gh api "repos/${repo}" --jq ".default_branch"`) || 'main';
+  const baseSha = sh(`gh api "repos/${repo}/git/ref/heads/${defaultBranch}" --jq ".object.sha"`);
+  if (!baseSha) return;
+  const branch = `devops-factory/gitleaksignore-${Date.now()}`;
+  const branchResult = sh(
+    `gh api "repos/${repo}/git/refs" -f ref="refs/heads/${branch}" -f sha="${baseSha}"`
+  );
+  if (!branchResult.includes(branch)) return;
+
+  const fileSha = sh(
+    `gh api "repos/${repo}/contents/.gitleaksignore?ref=${defaultBranch}" --jq ".sha" 2>/dev/null`
+  );
+  const payload = JSON.stringify({
+    message: 'chore: acknowledge rotated historical secrets (.gitleaksignore)',
+    content: Buffer.from(content).toString('base64'),
+    branch,
+    ...(fileSha ? { sha: fileSha } : {}),
+  });
+  const payloadFile = `${tmpDir}/gitleaksignore-payload.json`;
+  writeFileSync(payloadFile, payload);
+  const upload = sh(
+    `gh api "repos/${repo}/contents/.gitleaksignore" -X PUT --input "${payloadFile}"`
+  );
+  if (!upload.includes('content')) return;
+
+  const bodyFile = `${tmpDir}/gitleaksignore-body.md`;
+  writeFileSync(
+    bodyFile,
+    `Le scan central a détecté ${fingerprints.length} secret(s) dans l'historique git de ce repo.\n\n` +
+      `**Ne mergez cette PR que si ces clés sont déjà révoquées/remplacées.** ` +
+      `Une fois mergée, gitleaks ignorera ces findings historiques (empreintes liées au commit) ` +
+      `et le scan hebdomadaire repassera au vert — tout NOUVEAU secret restera détecté.\n\n` +
+      `_Proposé automatiquement par DevOps-Factory central-scan._`
+  );
+  sh(
+    `gh pr create --repo ${repo} --head ${branch} --base ${defaultBranch} ` +
+      `--title "chore: gitleaksignore — secrets historiques révoqués" --body-file "${bodyFile}"`
+  );
+};
+
+const getRemoteFile = (repo: string, path: string): string | null => {
+  const b64 = sh(`gh api "repos/${repo}/contents/${path}" --jq ".content" 2>/dev/null`);
+  if (!b64) return null;
+  try {
+    return Buffer.from(b64.replace(/\n/g, ''), 'base64').toString('utf-8');
+  } catch {
+    return null;
+  }
+};
+
 /** Detailed issue inside each affected target repo (private details stay private). */
 const publishRepoIssues = (results: RepoScanResult[], factoryRepo: string, date: string): void => {
   for (const r of results) {
@@ -476,6 +578,11 @@ const publishRepoIssues = (results: RepoScanResult[], factoryRepo: string, date:
     closePreviousIssues(r.repo);
     if (actionable === 0) continue;
     createIssue(r.repo, `Central Security Scan - ${date}`, buildRepoDetail(r, date));
+
+    const gitleaks = r.scanners.find((s) => s.scanner === 'gitleaks');
+    if (gitleaks?.status === 'findings' && gitleaks.fingerprints?.length) {
+      publishGitleaksIgnorePR(r.repo, gitleaks.fingerprints);
+    }
   }
 };
 
