@@ -41,10 +41,26 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Each of the ~15 measured repos runs its own install; a shared,
+      # persistent package cache turns most of those into cache hits
+      - name: Cache package-manager downloads
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/pnpm
+            ~/.cache/yarn
+          key: central-coverage-pkgcache-${{ github.run_id }}
+          restore-keys: |
+            central-coverage-pkgcache-
+
       - name: Measure coverage (slow — clones and tests each repo)
         run: pnpm central-coverage -- --measure --out /tmp/coverage-measurements.json
         env:
           GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          # Route every target repo's installs through the cached dirs
+          npm_config_cache: ~/.npm
+          PNPM_HOME: ~/.cache/pnpm
 
       - name: Merge into coverage history and push
         run: |
