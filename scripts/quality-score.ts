@@ -11,6 +11,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { KNOWN_PROJECTS, QUALITY_WEIGHTS, COVERAGE_THRESHOLDS } from '../factory.config.js';
 import { logActivity } from './activity-logger.js';
+import type { RepoScanResult } from './central-scan.js';
 import { sh, jq, devNull } from './shell-utils.js';
 import type { WorkflowRun } from './types.js';
 
@@ -44,6 +45,8 @@ interface ScoreBreakdown {
   branchProtection: number;
   depsUpToDate: number;
   noSecrets: number;
+  noDuplication: number;
+  noCriticalFindings: number;
 }
 
 interface RepoQualityScore {
@@ -113,6 +116,58 @@ const checkGitleaksWorkflow = (repo: string): boolean => {
   return result.includes('gitleaks');
 };
 
+interface CentralScanData {
+  version: number;
+  date: string;
+  totalFindings: number;
+  repos: RepoScanResult[];
+}
+
+let centralScanCache: CentralScanData | null | undefined;
+
+/** Latest central scan results (weekly, from central-scan.ts). null if never run. */
+const getCentralScan = (): CentralScanData | null => {
+  if (centralScanCache !== undefined) return centralScanCache;
+  const path = 'data/central-scan-latest.json';
+  if (!existsSync(path)) {
+    centralScanCache = null;
+    return null;
+  }
+  try {
+    centralScanCache = JSON.parse(readFileSync(path, 'utf-8')) as CentralScanData;
+  } catch {
+    centralScanCache = null;
+  }
+  return centralScanCache;
+};
+
+/** jscpd duplication below threshold in the latest central scan. */
+const checkNoDuplication = (repoFullName: string): boolean => {
+  const scan = getCentralScan();
+  const entry = scan?.repos.find((r) => r.repo === repoFullName);
+  const jscpd = entry?.scanners.find((s) => s.scanner === 'jscpd');
+  return jscpd?.status === 'clean';
+};
+
+/** No secrets, no semgrep ERROR, no trivy CRITICAL in the latest central scan. */
+const checkNoCriticalFindings = (repoFullName: string): boolean => {
+  const scan = getCentralScan();
+  const entry = scan?.repos.find((r) => r.repo === repoFullName);
+  if (!entry || !entry.cloned) return false;
+  const gitleaks = entry.scanners.find((s) => s.scanner === 'gitleaks');
+  const semgrep = entry.scanners.find((s) => s.scanner === 'semgrep');
+  const trivy = entry.scanners.find((s) => s.scanner === 'trivy');
+  if (!gitleaks || !semgrep || !trivy) return false;
+  const scannerRan = (s: { status: string }): boolean =>
+    s.status === 'clean' || s.status === 'findings';
+  if (!scannerRan(gitleaks) || !scannerRan(semgrep) || !scannerRan(trivy)) return false;
+  return (
+    gitleaks.findings === 0 &&
+    (semgrep.bySeverity['ERROR'] ?? 0) === 0 &&
+    (trivy.bySeverity['CRITICAL'] ?? 0) === 0
+  );
+};
+
 const calculateScore = (checks: Partial<ScoreBreakdown>): ScoreBreakdown => {
   return {
     ciPasses: checks.ciPasses ?? 0,
@@ -122,6 +177,8 @@ const calculateScore = (checks: Partial<ScoreBreakdown>): ScoreBreakdown => {
     branchProtection: checks.branchProtection ?? 0,
     depsUpToDate: checks.depsUpToDate ?? 0,
     noSecrets: checks.noSecrets ?? 0,
+    noDuplication: checks.noDuplication ?? 0,
+    noCriticalFindings: checks.noCriticalFindings ?? 0,
   };
 };
 
@@ -202,6 +259,14 @@ const evaluateRepo = (repo: (typeof KNOWN_PROJECTS)[0]): RepoQualityScore => {
   } else {
     breakdown.noSecrets = 0;
   }
+
+  // Duplication below threshold (central scan, jscpd)
+  breakdown.noDuplication = checkNoDuplication(repo.repo) ? QUALITY_WEIGHTS.noDuplication : 0;
+
+  // No critical security findings (central scan: gitleaks/semgrep/trivy)
+  breakdown.noCriticalFindings = checkNoCriticalFindings(repo.repo)
+    ? QUALITY_WEIGHTS.noCriticalFindings
+    : 0;
 
   const scoreBD = calculateScore(breakdown);
   const totalScore = getTotalScore(scoreBD);
@@ -347,7 +412,9 @@ const generateReport = (
     report += `- **ESLint**: ${s.breakdown.eslintZeroWarnings > 0 ? '✓' : '✗'}\n`;
     report += `- **Branch Protection**: ${s.breakdown.branchProtection > 0 ? '✓' : '✗'}\n`;
     report += `- **Dependency Mgmt**: ${s.breakdown.depsUpToDate > 0 ? '✓' : '✗'}\n`;
-    report += `- **Gitleaks**: ${s.breakdown.noSecrets > 0 ? '✓' : '✗'}\n\n`;
+    report += `- **Gitleaks**: ${s.breakdown.noSecrets > 0 ? '✓' : '✗'}\n`;
+    report += `- **Duplication <3%**: ${s.breakdown.noDuplication > 0 ? '✓' : '✗'}\n`;
+    report += `- **No Critical Findings**: ${s.breakdown.noCriticalFindings > 0 ? '✓' : '✗'}\n\n`;
   }
 
   return report;

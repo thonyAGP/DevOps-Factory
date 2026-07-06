@@ -15,6 +15,7 @@
  * - gitleaks: exposed secrets (full git history)
  * - semgrep:  SAST, OWASP Top 10 + stack-specific rulesets
  * - trivy fs: vulnerable dependencies (lockfiles) + Dockerfile/IaC misconfigs
+ * - jscpd:    duplicated code (SonarQube-style copy/paste detection)
  *
  * Output:
  * - data/central-scan-latest.json  (consumed by the dashboard)
@@ -36,7 +37,7 @@ import { GITHUB_OWNER, KNOWN_PROJECTS, type ProjectConfig } from '../factory.con
 import { logActivity } from './activity-logger.js';
 import { sh, tmpDir } from './shell-utils.js';
 
-export type ScannerName = 'gitleaks' | 'semgrep' | 'trivy';
+export type ScannerName = 'gitleaks' | 'semgrep' | 'trivy' | 'jscpd';
 export type ScannerStatus = 'clean' | 'findings' | 'error' | 'skipped';
 
 export interface ScannerResult {
@@ -46,6 +47,8 @@ export interface ScannerResult {
   bySeverity: Record<string, number>;
   /** Top finding summaries, capped for report readability */
   top: string[];
+  /** Scanner-specific metrics (e.g. jscpd duplication percentage) */
+  metrics?: Record<string, number>;
 }
 
 export interface RepoScanResult {
@@ -59,6 +62,8 @@ export interface RepoScanResult {
 const TOP_FINDINGS_LIMIT = 5;
 const SCAN_TIMEOUT_MS = 300_000;
 const SCAN_MAX_BUFFER = 64 * 1024 * 1024;
+/** SonarQube's default duplication quality gate: fail above 3% duplicated lines */
+export const DUPLICATION_THRESHOLD_PCT = 3;
 
 /** Semgrep rulesets per stack — mirrors templates/semgrep.yml stack detection. */
 export const semgrepConfigsForStack = (stack: ProjectConfig['stack']): string => {
@@ -181,8 +186,45 @@ export const parseTrivy = (json: string): ScannerResult => {
   }
 };
 
+/** Parse jscpd JSON report (jscpd-report.json). */
+export const parseJscpd = (json: string): ScannerResult => {
+  try {
+    const data = JSON.parse(json || '{}') as {
+      statistics?: { total?: { percentage?: number; clones?: number; duplicatedLines?: number } };
+      duplicates?: {
+        firstFile?: { name?: string; start?: number };
+        secondFile?: { name?: string; start?: number };
+        lines?: number;
+      }[];
+    };
+    const total = data.statistics?.total;
+    if (!total) return errorResult('jscpd');
+    const percentage = total.percentage ?? 0;
+    const clones = data.duplicates?.length ?? total.clones ?? 0;
+    return {
+      scanner: 'jscpd',
+      status: percentage >= DUPLICATION_THRESHOLD_PCT ? 'findings' : 'clean',
+      findings: clones,
+      bySeverity: clones > 0 ? { DUPLICATION: clones } : {},
+      top: (data.duplicates ?? [])
+        .slice(0, TOP_FINDINGS_LIMIT)
+        .map(
+          (d) =>
+            `${d.firstFile?.name ?? '?'}:${d.firstFile?.start ?? '?'} <-> ${d.secondFile?.name ?? '?'}:${d.secondFile?.start ?? '?'} (${d.lines ?? '?'} lines)`
+        ),
+      metrics: { duplicationPct: Math.round(percentage * 100) / 100 },
+    };
+  } catch {
+    return errorResult('jscpd');
+  }
+};
+
 export const totalFindings = (results: RepoScanResult[]): number =>
-  results.reduce((sum, r) => sum + r.scanners.reduce((s, sc) => s + sc.findings, 0), 0);
+  results.reduce(
+    (sum, r) =>
+      sum + r.scanners.reduce((s, sc) => s + (sc.status === 'findings' ? sc.findings : 0), 0),
+    0
+  );
 
 const statusIcon = (s: ScannerStatus): string =>
   s === 'clean' ? '🟢' : s === 'findings' ? '🔴' : s === 'error' ? '⚠️' : '⏭️';
@@ -190,6 +232,13 @@ const statusIcon = (s: ScannerStatus): string =>
 const scannerCell = (r: RepoScanResult, name: ScannerName): string => {
   const sc = r.scanners.find((s) => s.scanner === name);
   if (!sc) return '—';
+  if (
+    sc.metrics?.duplicationPct !== undefined &&
+    sc.status !== 'error' &&
+    sc.status !== 'skipped'
+  ) {
+    return `${statusIcon(sc.status)} ${sc.metrics.duplicationPct}%`;
+  }
   if (sc.status === 'clean') return '🟢 0';
   if (sc.status === 'findings') return `🔴 ${sc.findings}`;
   return statusIcon(sc.status);
@@ -201,14 +250,14 @@ export const buildReport = (results: RepoScanResult[], date: string): string => 
   report += `Scans centralisés exécutés depuis DevOps-Factory (repo public = minutes gratuites). `;
   report += `Les repos privés du plan Free n'ont ni Code Scanning ni quota Actions illimité.\n\n`;
   report += `**Total findings: ${totalFindings(results)}** sur ${results.length} repos\n\n`;
-  report += `| Repo | Secrets (gitleaks) | SAST (semgrep) | Deps/Config (trivy) |\n`;
-  report += `|------|--------------------|----------------|---------------------|\n`;
+  report += `| Repo | Secrets (gitleaks) | SAST (semgrep) | Deps/Config (trivy) | Duplication (jscpd) |\n`;
+  report += `|------|--------------------|----------------|---------------------|---------------------|\n`;
   for (const r of results) {
     if (!r.cloned) {
-      report += `| ${r.name} | ⚠️ clone failed | — | — |\n`;
+      report += `| ${r.name} | ⚠️ clone failed | — | — | — |\n`;
       continue;
     }
-    report += `| ${r.name} | ${scannerCell(r, 'gitleaks')} | ${scannerCell(r, 'semgrep')} | ${scannerCell(r, 'trivy')} |\n`;
+    report += `| ${r.name} | ${scannerCell(r, 'gitleaks')} | ${scannerCell(r, 'semgrep')} | ${scannerCell(r, 'trivy')} | ${scannerCell(r, 'jscpd')} |\n`;
   }
   report += `\n`;
 
@@ -236,6 +285,10 @@ export const buildReport = (results: RepoScanResult[], date: string): string => 
 
 const scannerAvailable = (cmd: string): boolean => sh(`${cmd} 2>&1`).length > 0;
 
+// jscpd is a Factory devDependency — resolve its binary from the Factory checkout,
+// since scans run with cwd inside the cloned target repos
+const JSCPD_BIN = `${process.cwd()}/node_modules/.bin/jscpd`;
+
 const runGitleaks = (dir: string): ScannerResult => {
   const out = `${tmpDir}/gitleaks-report.json`;
   rmSync(out, { force: true });
@@ -261,6 +314,19 @@ const runSemgrep = (dir: string, stack: ProjectConfig['stack']): ScannerResult =
   );
   if (!existsSync(out)) return errorResult('semgrep');
   return parseSemgrep(readFileSync(out, 'utf-8'));
+};
+
+const runJscpd = (dir: string): ScannerResult => {
+  const outDir = `${tmpDir}/jscpd-out`;
+  rmSync(outDir, { recursive: true, force: true });
+  sh(
+    `"${JSCPD_BIN}" . --reporters json --output "${outDir}" --silent --gitignore ` +
+      `--ignore "**/node_modules/**,**/dist/**,**/build/**,**/.next/**,**/coverage/**,**/*.min.js,**/pnpm-lock.yaml,**/package-lock.json,**/yarn.lock"`,
+    { cwd: dir, timeout: SCAN_TIMEOUT_MS, maxBuffer: SCAN_MAX_BUFFER, fallbackOnError: 'stdout' }
+  );
+  const out = `${outDir}/jscpd-report.json`;
+  if (!existsSync(out)) return errorResult('jscpd');
+  return parseJscpd(readFileSync(out, 'utf-8'));
 };
 
 const runTrivy = (dir: string): ScannerResult => {
@@ -309,6 +375,7 @@ const scanRepo = (
   result.scanners.push(available.gitleaks ? runGitleaks(dir) : skipped('gitleaks'));
   result.scanners.push(available.semgrep ? runSemgrep(dir, project.stack) : skipped('semgrep'));
   result.scanners.push(available.trivy ? runTrivy(dir) : skipped('trivy'));
+  result.scanners.push(available.jscpd ? runJscpd(dir) : skipped('jscpd'));
 
   rmSync(dir, { recursive: true, force: true });
   return result;
@@ -354,9 +421,10 @@ const main = (): void => {
     gitleaks: scannerAvailable('gitleaks version'),
     semgrep: scannerAvailable('semgrep --version'),
     trivy: scannerAvailable('trivy --version'),
+    jscpd: existsSync(JSCPD_BIN),
   };
   console.log(
-    `Scanners: gitleaks=${available.gitleaks} semgrep=${available.semgrep} trivy=${available.trivy}`
+    `Scanners: gitleaks=${available.gitleaks} semgrep=${available.semgrep} trivy=${available.trivy} jscpd=${available.jscpd}`
   );
 
   const targets = KNOWN_PROJECTS.filter((p) => !repoFilter || p.repo === repoFilter);

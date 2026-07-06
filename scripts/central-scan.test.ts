@@ -9,9 +9,11 @@ import {
   parseGitleaks,
   parseSemgrep,
   parseTrivy,
+  parseJscpd,
   buildReport,
   totalFindings,
   semgrepConfigsForStack,
+  DUPLICATION_THRESHOLD_PCT,
   type RepoScanResult,
 } from './central-scan.js';
 
@@ -148,6 +150,55 @@ describe('parseTrivy', () => {
   });
 });
 
+describe('parseJscpd', () => {
+  it('reports clean below the duplication threshold', () => {
+    const json = JSON.stringify({
+      statistics: { total: { percentage: 1.5, clones: 2 } },
+      duplicates: [
+        {
+          firstFile: { name: 'a.ts', start: 1 },
+          secondFile: { name: 'b.ts', start: 10 },
+          lines: 8,
+        },
+        { firstFile: { name: 'c.ts', start: 5 }, secondFile: { name: 'd.ts', start: 2 }, lines: 6 },
+      ],
+    });
+    const result = parseJscpd(json);
+    expect(result.status).toBe('clean');
+    expect(result.findings).toBe(2);
+    expect(result.metrics?.duplicationPct).toBe(1.5);
+  });
+
+  it('reports findings at or above the threshold', () => {
+    const json = JSON.stringify({
+      statistics: { total: { percentage: DUPLICATION_THRESHOLD_PCT, clones: 5 } },
+      duplicates: [],
+    });
+    const result = parseJscpd(json);
+    expect(result.status).toBe('findings');
+  });
+
+  it('summarizes clone pair locations', () => {
+    const json = JSON.stringify({
+      statistics: { total: { percentage: 4, clones: 1 } },
+      duplicates: [
+        {
+          firstFile: { name: 'src/a.ts', start: 10 },
+          secondFile: { name: 'src/b.ts', start: 42 },
+          lines: 12,
+        },
+      ],
+    });
+    const result = parseJscpd(json);
+    expect(result.top[0]).toBe('src/a.ts:10 <-> src/b.ts:42 (12 lines)');
+  });
+
+  it('returns error on invalid JSON or missing statistics', () => {
+    expect(parseJscpd('nope').status).toBe('error');
+    expect(parseJscpd('{}').status).toBe('error');
+  });
+});
+
 describe('totalFindings / buildReport', () => {
   const results: RepoScanResult[] = [
     {
@@ -165,6 +216,14 @@ describe('totalFindings / buildReport', () => {
           top: ['ts.sql-injection in src/db.ts:42'],
         },
         { scanner: 'trivy', status: 'clean', findings: 0, bySeverity: {}, top: [] },
+        {
+          scanner: 'jscpd',
+          status: 'clean',
+          findings: 3,
+          bySeverity: { DUPLICATION: 3 },
+          top: [],
+          metrics: { duplicationPct: 1.2 },
+        },
       ],
     },
     {
@@ -176,8 +235,14 @@ describe('totalFindings / buildReport', () => {
     },
   ];
 
-  it('sums findings across repos and scanners', () => {
+  it('sums only actionable findings (status findings)', () => {
+    // jscpd has 3 clones but is below threshold (clean) — not counted
     expect(totalFindings(results)).toBe(2);
+  });
+
+  it('renders jscpd duplication percentage in the summary table', () => {
+    const report = buildReport(results, '2026-07-06');
+    expect(report).toContain('🟢 1.2%');
   });
 
   it('builds a report with summary table and details', () => {

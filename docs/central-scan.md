@@ -23,6 +23,7 @@ désormais ici.
    - **gitleaks** — secrets exposés (historique complet)
    - **semgrep** — SAST, OWASP Top 10 + rulesets par stack
    - **trivy fs** — dépendances vulnérables (lockfiles) + misconfigs Dockerfile/IaC
+   - **jscpd** — code dupliqué (seuil SonarQube : 3 % de lignes dupliquées)
 3. Écrit `data/central-scan-latest.json` (dashboard) et
    `data/central-scan-report.md`.
 4. Crée une issue consolidée sur la Factory (label `central-scan`) s'il y a
@@ -37,6 +38,18 @@ désormais ici.
 
 Les templates par repo sont _private-aware_ : résultats en commentaire de PR,
 job summary et artifact — plus aucune dépendance à l'onglet Security.
+
+## Intégration au quality score
+
+Deux dimensions du score (`quality-score.ts`) lisent
+`data/central-scan-latest.json` :
+
+- **noDuplication** (10 pts) — jscpd sous le seuil de 3 %
+- **noCriticalFindings** (10 pts) — 0 secret gitleaks, 0 `ERROR` semgrep,
+  0 `CRITICAL` trivy
+
+Un repo jamais scanné (ou dont le clone a échoué) marque 0 sur ces deux
+dimensions ; le score se corrige au scan hebdomadaire suivant.
 
 ## Usage local
 
