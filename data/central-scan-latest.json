@@ -1,7 +1,7 @@
 {
   "version": 1,
   "date": "2026-07-06",
-  "totalFindings": 171340,
+  "totalFindings": 704,
   "repos": [
     {
       "name": "DevOps-Factory",
@@ -19,11 +19,11 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 255,
+          "findings": 12,
           "bySeverity": {
-            "WARNING": 246,
             "ERROR": 3,
-            "MEDIUM": 6
+            "MEDIUM": 6,
+            "WARNING": 3
           },
           "top": []
         },
@@ -39,13 +39,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 468,
+          "findings": 212,
           "bySeverity": {
-            "DUPLICATION": 468
+            "DUPLICATION": 212
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 31.96
+            "duplicationPct": 7.91
           }
         }
       ]
@@ -68,10 +68,10 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 118,
+          "findings": 28,
           "bySeverity": {
-            "WARNING": 102,
             "ERROR": 4,
+            "WARNING": 12,
             "MEDIUM": 12
           },
           "top": []
@@ -95,7 +95,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 16.8
+            "duplicationPct": 17.6
           }
         }
       ]
@@ -116,10 +116,10 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 100,
+          "findings": 15,
           "bySeverity": {
-            "WARNING": 88,
             "ERROR": 3,
+            "WARNING": 3,
             "MEDIUM": 9
           },
           "top": []
@@ -137,13 +137,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 199,
+          "findings": 166,
           "bySeverity": {
-            "DUPLICATION": 199
+            "DUPLICATION": 166
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 3.08
+            "duplicationPct": 3.28
           }
         }
       ]
@@ -156,18 +156,20 @@
       "scanners": [
         {
           "scanner": "gitleaks",
-          "status": "error",
-          "findings": 0,
-          "bySeverity": {},
+          "status": "findings",
+          "findings": 13,
+          "bySeverity": {
+            "SECRET": 13
+          },
           "top": []
         },
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 95,
+          "findings": 15,
           "bySeverity": {
-            "WARNING": 85,
             "ERROR": 4,
+            "WARNING": 5,
             "MEDIUM": 6
           },
           "top": []
@@ -184,13 +186,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 534,
+          "findings": 497,
           "bySeverity": {
-            "DUPLICATION": 534
+            "DUPLICATION": 497
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 3.69
+            "duplicationPct": 3.9
           }
         }
       ]
@@ -213,9 +215,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 94,
+          "findings": 10,
           "bySeverity": {
-            "WARNING": 84,
             "ERROR": 4,
             "MEDIUM": 6
           },
@@ -233,13 +234,13 @@
         {
           "scanner": "jscpd",
           "status": "clean",
-          "findings": 65,
+          "findings": 49,
           "bySeverity": {
-            "DUPLICATION": 65
+            "DUPLICATION": 49
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 2.32
+            "duplicationPct": 2.52
           }
         }
       ]
@@ -262,9 +263,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 93,
+          "findings": 11,
           "bySeverity": {
-            "WARNING": 82,
             "ERROR": 5,
             "MEDIUM": 6
           },
@@ -283,13 +283,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 489,
+          "findings": 443,
           "bySeverity": {
-            "DUPLICATION": 489
+            "DUPLICATION": 443
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 11.05
+            "duplicationPct": 12.97
           }
         }
       ]
@@ -312,10 +312,10 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 52,
+          "findings": 19,
           "bySeverity": {
-            "WARNING": 36,
             "ERROR": 7,
+            "WARNING": 3,
             "MEDIUM": 9
           },
           "top": []
@@ -333,13 +333,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 81914,
+          "findings": 1851,
           "bySeverity": {
-            "DUPLICATION": 81914
+            "DUPLICATION": 1851
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 41.71
+            "duplicationPct": 10.67
           }
         }
       ]
@@ -360,9 +360,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 90,
+          "findings": 9,
           "bySeverity": {
-            "WARNING": 81,
             "ERROR": 3,
             "MEDIUM": 6
           },
@@ -384,7 +383,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 1.62
+            "duplicationPct": 1.75
           }
         }
       ]
@@ -405,9 +404,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 90,
+          "findings": 9,
           "bySeverity": {
-            "WARNING": 81,
             "ERROR": 3,
             "MEDIUM": 6
           },
@@ -431,7 +429,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 0.68
+            "duplicationPct": 1.48
           }
         }
       ]
@@ -452,9 +450,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 90,
+          "findings": 9,
           "bySeverity": {
-            "WARNING": 81,
             "ERROR": 3,
             "MEDIUM": 6
           },
@@ -478,7 +475,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 1.97
+            "duplicationPct": 2.12
           }
         }
       ]
@@ -499,9 +496,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 94,
+          "findings": 13,
           "bySeverity": {
-            "WARNING": 81,
             "ERROR": 4,
             "MEDIUM": 9
           },
@@ -525,7 +521,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 1.96
+            "duplicationPct": 2.06
           }
         }
       ]
@@ -546,9 +542,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 90,
+          "findings": 9,
           "bySeverity": {
-            "WARNING": 81,
             "ERROR": 3,
             "MEDIUM": 6
           },
@@ -572,7 +567,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 8.32
+            "duplicationPct": 8.48
           }
         }
       ]
@@ -593,9 +588,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 93,
+          "findings": 10,
           "bySeverity": {
-            "WARNING": 83,
             "ERROR": 4,
             "MEDIUM": 6
           },
@@ -619,7 +613,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 1.46
+            "duplicationPct": 1.51
           }
         }
       ]
@@ -640,9 +634,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 85,
+          "findings": 9,
           "bySeverity": {
-            "WARNING": 76,
             "ERROR": 3,
             "MEDIUM": 6
           },
@@ -666,7 +659,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 1.71
+            "duplicationPct": 1.87
           }
         }
       ]
@@ -687,9 +680,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 59,
+          "findings": 8,
           "bySeverity": {
-            "WARNING": 51,
             "ERROR": 2,
             "MEDIUM": 6
           },
@@ -705,13 +697,13 @@
         {
           "scanner": "jscpd",
           "status": "clean",
-          "findings": 33,
+          "findings": 10,
           "bySeverity": {
-            "DUPLICATION": 33
+            "DUPLICATION": 10
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 0.99
+            "duplicationPct": 1.36
           }
         }
       ]
@@ -732,9 +724,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 59,
+          "findings": 8,
           "bySeverity": {
-            "WARNING": 51,
             "ERROR": 2,
             "MEDIUM": 6
           },
@@ -756,7 +747,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 1.64
+            "duplicationPct": 1.7
           }
         }
       ]
@@ -777,9 +768,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 94,
+          "findings": 10,
           "bySeverity": {
-            "WARNING": 84,
             "ERROR": 4,
             "MEDIUM": 6
           },
@@ -804,7 +794,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 1.88
+            "duplicationPct": 1.97
           }
         }
       ]
@@ -825,9 +815,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 59,
+          "findings": 8,
           "bySeverity": {
-            "WARNING": 51,
             "ERROR": 2,
             "MEDIUM": 6
           },
@@ -849,7 +838,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 1.51
+            "duplicationPct": 1.6
           }
         }
       ]
@@ -870,9 +859,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 59,
+          "findings": 8,
           "bySeverity": {
-            "WARNING": 51,
             "ERROR": 2,
             "MEDIUM": 6
           },
@@ -897,7 +885,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 10.22
+            "duplicationPct": 11.55
           }
         }
       ]
@@ -918,11 +906,11 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 87,
+          "findings": 11,
           "bySeverity": {
-            "WARNING": 79,
             "ERROR": 2,
-            "MEDIUM": 6
+            "MEDIUM": 6,
+            "WARNING": 3
           },
           "top": []
         },
@@ -936,13 +924,13 @@
         {
           "scanner": "jscpd",
           "status": "clean",
-          "findings": 12,
+          "findings": 8,
           "bySeverity": {
-            "DUPLICATION": 12
+            "DUPLICATION": 8
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 1.76
+            "duplicationPct": 1.68
           }
         }
       ]
@@ -963,9 +951,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 60,
+          "findings": 8,
           "bySeverity": {
-            "WARNING": 52,
             "ERROR": 2,
             "MEDIUM": 6
           },
@@ -984,13 +971,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 433,
+          "findings": 285,
           "bySeverity": {
-            "DUPLICATION": 433
+            "DUPLICATION": 285
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 6.59
+            "duplicationPct": 9.92
           }
         }
       ]
@@ -1011,9 +998,8 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 75,
+          "findings": 8,
           "bySeverity": {
-            "WARNING": 67,
             "ERROR": 2,
             "MEDIUM": 6
           },
@@ -1035,7 +1021,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 1.23
+            "duplicationPct": 1.27
           }
         }
       ]
@@ -1056,10 +1042,9 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 101,
+          "findings": 16,
           "bySeverity": {
             "MEDIUM": 10,
-            "WARNING": 85,
             "ERROR": 6
           },
           "top": []
@@ -1082,7 +1067,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 4.95
+            "duplicationPct": 5.14
           }
         }
       ]
@@ -1105,10 +1090,10 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 156,
+          "findings": 16,
           "bySeverity": {
-            "WARNING": 141,
             "ERROR": 9,
+            "WARNING": 1,
             "MEDIUM": 6
           },
           "top": []
@@ -1126,13 +1111,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 354,
+          "findings": 340,
           "bySeverity": {
-            "DUPLICATION": 354
+            "DUPLICATION": 340
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 7.98
+            "duplicationPct": 8.32
           }
         }
       ]
@@ -1155,10 +1140,10 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 52,
+          "findings": 19,
           "bySeverity": {
-            "WARNING": 36,
             "ERROR": 7,
+            "WARNING": 3,
             "MEDIUM": 9
           },
           "top": []
@@ -1176,13 +1161,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 81914,
+          "findings": 1851,
           "bySeverity": {
-            "DUPLICATION": 81914
+            "DUPLICATION": 1851
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 41.71
+            "duplicationPct": 10.67
           }
         }
       ]
