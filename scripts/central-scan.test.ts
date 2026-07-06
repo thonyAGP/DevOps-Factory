@@ -242,6 +242,35 @@ describe('totalFindings / buildReport', () => {
     expect(totalFindings(results)).toBe(2);
   });
 
+  it('never counts jscpd clone pairs in the headline total', () => {
+    const withDuplication: RepoScanResult[] = [
+      {
+        name: 'DupHeavy',
+        repo: 'thonyAGP/DupHeavy',
+        stack: 'node',
+        cloned: true,
+        scanners: [
+          {
+            scanner: 'jscpd',
+            status: 'findings',
+            findings: 12000,
+            bySeverity: { DUPLICATION: 12000 },
+            top: [],
+            metrics: { duplicationPct: 41.71 },
+          },
+          {
+            scanner: 'gitleaks',
+            status: 'findings',
+            findings: 4,
+            bySeverity: { SECRET: 4 },
+            top: [],
+          },
+        ],
+      },
+    ];
+    expect(totalFindings(withDuplication)).toBe(4);
+  });
+
   it('renders jscpd duplication percentage in the summary table', () => {
     const report = buildReport(results, '2026-07-06');
     expect(report).toContain('🟢 1.2%');

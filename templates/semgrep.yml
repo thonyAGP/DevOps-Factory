@@ -55,6 +55,7 @@ jobs:
             ${{ steps.stack.outputs.configs }} \
             --json \
             --output semgrep-results.json \
+            --exclude-rule yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag \
             --metrics=off
           EXIT=$?
           if [ "$EXIT" -ne 0 ]; then

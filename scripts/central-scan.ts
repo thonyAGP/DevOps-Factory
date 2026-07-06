@@ -223,10 +223,17 @@ export const parseJscpd = (json: string): ScannerResult => {
   }
 };
 
+// jscpd is excluded from the headline count: it reports one finding per
+// clone PAIR (tens of thousands on duplicated repos), drowning the security
+// signal — its duplication percentage is the meaningful metric
 export const totalFindings = (results: RepoScanResult[]): number =>
   results.reduce(
     (sum, r) =>
-      sum + r.scanners.reduce((s, sc) => s + (sc.status === 'findings' ? sc.findings : 0), 0),
+      sum +
+      r.scanners.reduce(
+        (s, sc) => s + (sc.status === 'findings' && sc.scanner !== 'jscpd' ? sc.findings : 0),
+        0
+      ),
     0
   );
 
@@ -266,7 +273,8 @@ export const buildReport = (results: RepoScanResult[], date: string): string => 
   let report = `# Central Security Scan - ${date}\n\n`;
   report += `Scans centralisés exécutés depuis DevOps-Factory (repo public = minutes gratuites). `;
   report += `Les repos privés du plan Free n'ont ni Code Scanning ni quota Actions illimité.\n\n`;
-  report += `**Total findings: ${totalFindings(results)}** sur ${results.length} repos\n\n`;
+  report += `**Total findings: ${totalFindings(results)}** sur ${results.length} repos `;
+  report += `_(sécurité uniquement — la duplication est mesurée en %, pas comptée ici)_\n\n`;
   report += `| Repo | Secrets (gitleaks) | SAST (semgrep) | Deps/Config (trivy) | Duplication (jscpd) |\n`;
   report += `|------|--------------------|----------------|---------------------|---------------------|\n`;
   for (const r of results) {
@@ -311,12 +319,19 @@ const scannerAvailable = (cmd: string): boolean => sh(`${cmd} 2>&1`).length > 0;
 // since scans run with cwd inside the cloned target repos
 const JSCPD_BIN = `${process.cwd()}/node_modules/.bin/jscpd`;
 
+const GITLEAKS_TIMEOUT_MS = 600_000; // full-history scans on large repos exceed the default
+
 const runGitleaks = (dir: string): ScannerResult => {
   const out = `${tmpDir}/gitleaks-report.json`;
   rmSync(out, { force: true });
   sh(
     `gitleaks detect --source . --redact --exit-code 0 --report-format json --report-path "${out}"`,
-    { cwd: dir, timeout: SCAN_TIMEOUT_MS, maxBuffer: SCAN_MAX_BUFFER, fallbackOnError: 'stdout' }
+    {
+      cwd: dir,
+      timeout: GITLEAKS_TIMEOUT_MS,
+      maxBuffer: SCAN_MAX_BUFFER,
+      fallbackOnError: 'stdout',
+    }
   );
   if (!existsSync(out)) return errorResult('gitleaks');
   return parseGitleaks(readFileSync(out, 'utf-8'));
@@ -326,7 +341,8 @@ const runSemgrep = (dir: string, stack: ProjectConfig['stack']): ScannerResult =
   const out = `${tmpDir}/semgrep-report.json`;
   rmSync(out, { force: true });
   sh(
-    `semgrep scan ${semgrepConfigsForStack(stack)} --json --output "${out}" --metrics=off --quiet`,
+    `semgrep scan ${semgrepConfigsForStack(stack)} --json --output "${out}" --metrics=off --quiet ` +
+      `--exclude-rule yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag`,
     {
       cwd: dir,
       timeout: SCAN_TIMEOUT_MS,
@@ -343,7 +359,7 @@ const runJscpd = (dir: string): ScannerResult => {
   rmSync(outDir, { recursive: true, force: true });
   sh(
     `"${JSCPD_BIN}" . --reporters json --output "${outDir}" --silent ` +
-      `--ignore "**/node_modules/**,**/dist/**,**/build/**,**/.next/**,**/coverage/**,**/*.min.js,**/pnpm-lock.yaml,**/package-lock.json,**/yarn.lock"`,
+      `--ignore "**/node_modules/**,**/dist/**,**/build/**,**/.next/**,**/coverage/**,**/*.min.js,**/*.json,**/*.md,**/*.svg,**/*.lock,**/pnpm-lock.yaml,**/yarn.lock"`,
     { cwd: dir, timeout: SCAN_TIMEOUT_MS, maxBuffer: SCAN_MAX_BUFFER, fallbackOnError: 'stdout' }
   );
   const out = `${outDir}/jscpd-report.json`;
