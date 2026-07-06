@@ -41,7 +41,8 @@ export type ActivitySource =
   | 'knowledge-graph'
   | 'central-scan'
   | 'central-coverage'
-  | 'security-registry';
+  | 'security-registry'
+  | 'remediation-dispatch';
 
 export interface ActivityEntry {
   timestamp: string;

@@ -40,6 +40,10 @@ const TEMPLATES: Record<string, { file: string; target: string; stacks?: string[
     file: 'templates/dead-code-detection.yml',
     target: '.github/workflows/dead-code-detection.yml',
   },
+  'ai-remediation': {
+    file: 'templates/ai-remediation.yml',
+    target: '.github/workflows/ai-remediation.yml',
+  },
 };
 
 const getRemoteFileContent = (repo: string, path: string): string | null => {
