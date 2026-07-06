@@ -9,7 +9,12 @@
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { KNOWN_PROJECTS, QUALITY_WEIGHTS, COVERAGE_THRESHOLDS } from '../factory.config.js';
+import {
+  KNOWN_PROJECTS,
+  QUALITY_WEIGHTS,
+  COVERAGE_THRESHOLDS,
+  CENTRAL_RENOVATE_ENABLED,
+} from '../factory.config.js';
 import { logActivity } from './activity-logger.js';
 import type { RepoScanResult } from './central-scan.js';
 import { sh, jq, devNull } from './shell-utils.js';
@@ -243,8 +248,10 @@ const evaluateRepo = (repo: (typeof KNOWN_PROJECTS)[0]): RepoQualityScore => {
     breakdown.branchProtection = 0;
   }
 
-  // Dependency management (renovate.json proxy)
+  // Dependency management: covered by the central Renovate run (all managed
+  // repos), or by a repo-level renovate config
   if (
+    CENTRAL_RENOVATE_ENABLED ||
     checkConfigExists(repo.repo, 'renovate.json') ||
     checkConfigExists(repo.repo, '.renovaterc')
   ) {

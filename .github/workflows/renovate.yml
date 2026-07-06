@@ -1,0 +1,55 @@
+# DevOps-Factory: Central Renovate
+# Self-hosted Renovate run against every managed repo, from this public repo
+# (free Actions minutes) with FACTORY_PAT — no Mend app, no per-repo
+# renovate.json needed. Repo defaults come from templates/renovate.json via
+# scripts/central-renovate.ts; security updates (OSV) bypass schedules.
+
+name: Central Renovate
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # Daily 6am UTC (grouped non-major updates land on weekends per config)
+  workflow_dispatch:
+    inputs:
+      log_level:
+        description: 'Renovate log level'
+        required: false
+        default: 'info'
+        type: choice
+        options: [info, debug]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: central-renovate
+  cancel-in-progress: false
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Renovate config
+        run: pnpm renovate-config -- --out /tmp/renovate-config.json
+
+      - name: Run Renovate
+        run: npx --yes renovate
+        env:
+          RENOVATE_CONFIG_FILE: /tmp/renovate-config.json
+          RENOVATE_TOKEN: ${{ secrets.FACTORY_PAT }}
+          LOG_LEVEL: ${{ inputs.log_level || 'info' }}
