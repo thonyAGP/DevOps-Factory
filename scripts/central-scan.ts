@@ -423,9 +423,18 @@ const createIssue = (repo: string, title: string, body: string): void => {
   );
   const tmpFile = `${tmpDir}/central-scan-body.md`;
   writeFileSync(tmpFile, body);
-  sh(
+  const created = sh(
     `gh issue create --repo ${repo} --title "${title}" --body-file "${tmpFile}" --label "${LABEL}"`
   );
+  // gh refuses to create the issue when the label is missing (e.g. label
+  // creation was denied by token permissions) — an unlabeled issue beats
+  // silently losing the report
+  if (!created.includes('github.com')) {
+    const retry = sh(`gh issue create --repo ${repo} --title "${title}" --body-file "${tmpFile}"`);
+    if (!retry.includes('github.com')) {
+      console.log(`  [WARN] could not create central-scan issue on ${repo}`);
+    }
+  }
 };
 
 /** Counts-only consolidated issue on the (public) Factory repo. */
