@@ -19,9 +19,9 @@ const TEMPLATES: Record<string, { file: string; target: string; stacks?: string[
     file: 'templates/semgrep.yml',
     target: '.github/workflows/semgrep.yml',
   },
-  'coverage-tracking': {
-    file: 'templates/coverage-tracking.yml',
-    target: '.github/workflows/coverage-tracking.yml',
+  'coverage-gate': {
+    file: 'templates/coverage-gate.yml',
+    target: '.github/workflows/coverage-gate.yml',
     stacks: ['nextjs', 'fastify', 'node', 'astro'],
   },
   'auto-merge-deps': {

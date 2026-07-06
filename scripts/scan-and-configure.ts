@@ -66,7 +66,7 @@ interface RepoAnalysis {
   hasPrSizeLimiter: boolean;
   hasReadmeFreshness: boolean;
   hasConfigDrift: boolean;
-  hasCoverageTracking: boolean;
+  hasCoverageGate: boolean;
   hasLighthouse: boolean;
   hasTypedoc: boolean;
 }
@@ -238,8 +238,8 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
   const hasPrSizeLimiter = workflowsDir.includes('pr-size');
   const hasReadmeFreshness = workflowsDir.includes('readme-freshness');
   const hasConfigDrift = workflowsDir.includes('config-drift');
-  const hasCoverageTracking =
-    workflowsDir.includes('coverage-tracking') || workflowsDir.includes('coverage');
+  const hasCoverageGate =
+    workflowsDir.includes('coverage-gate') || workflowsDir.includes('coverage-tracking');
   const hasLighthouse =
     workflowsDir.includes('lighthouse') || workflowsDir.includes('lighthouse-ci');
   const hasTypedoc = workflowsDir.includes('typedoc') || workflowsDir.includes('docs-gen');
@@ -283,7 +283,7 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
     hasPrSizeLimiter,
     hasReadmeFreshness,
     hasConfigDrift,
-    hasCoverageTracking,
+    hasCoverageGate,
     hasLighthouse,
     hasTypedoc,
   };
@@ -594,11 +594,12 @@ const createConfigPR = (analysis: RepoAnalysis): void => {
     });
   }
 
-  // Phase 2: Coverage tracking (Node.js projects with test framework)
-  if (!analysis.hasCoverageTracking && (analysis.stack === 'node' || analysis.stack === 'nextjs')) {
+  // Phase 2: Coverage gate (Node.js projects) — the PR ratchet; central
+  // measurement lives in central-coverage.yml on the Factory
+  if (!analysis.hasCoverageGate && (analysis.stack === 'node' || analysis.stack === 'nextjs')) {
     filesToAdd.push({
-      path: '.github/workflows/coverage-tracking.yml',
-      template: `${TEMPLATES_DIR}/coverage-tracking.yml`,
+      path: '.github/workflows/coverage-gate.yml',
+      template: `${TEMPLATES_DIR}/coverage-gate.yml`,
     });
   }
 
@@ -758,7 +759,7 @@ const generateReport = (analyses: RepoAnalysis[]): string => {
     const review = a.hasCodeRabbit ? 'CR' : a.hasClaudeReview ? 'CL' : '-';
     const sast = a.hasSemgrep ? 'Y' : '-';
     const supply = a.hasSupplyChainSecurity ? 'Y' : '-';
-    const coverage = a.hasCoverageTracking ? 'Y' : '-';
+    const coverage = a.hasCoverageGate ? 'Y' : '-';
     const drift = a.hasConfigDrift ? 'Y' : '-';
     const release = '-';
     const perf = a.hasLighthouse ? 'LH' : a.hasPerformanceBudget ? 'PB' : '-';
@@ -848,7 +849,7 @@ const main = () => {
           hasPrSizeLimiter: a.hasPrSizeLimiter,
           hasReadmeFreshness: a.hasReadmeFreshness,
           hasConfigDrift: a.hasConfigDrift,
-          hasCoverageTracking: a.hasCoverageTracking,
+          hasCoverageGate: a.hasCoverageGate,
           hasLighthouse: a.hasLighthouse,
           hasTypedoc: a.hasTypedoc,
           defaultBranch: a.repo.default_branch,

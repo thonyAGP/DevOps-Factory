@@ -298,6 +298,28 @@ export const DASHBOARD_CSS = `
       white-space: nowrap;
     }
 
+    /* Test Coverage */
+    .coverage-section {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .coverage-section h2 { color: #3b82f6; font-size: 1rem; margin-bottom: 0.8rem; }
+    .coverage-summary { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.85rem; color: #8b949e; margin-bottom: 0.6rem; }
+    .coverage-summary strong { color: #e6edf3; }
+    .coverage-date { margin-left: auto; font-style: italic; }
+    .coverage-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .coverage-table th, .coverage-table td { padding: 0.3rem 0.6rem; border-bottom: 1px solid #21262d; text-align: left; }
+    .coverage-table th { color: #8b949e; }
+    .coverage-table .cov-pct { font-weight: 600; color: #e6edf3; white-space: nowrap; }
+    .coverage-table .cov-files { color: #8b949e; text-align: right; }
+    .cov-bar { background: #21262d; border-radius: 3px; height: 8px; width: 100%; min-width: 80px; overflow: hidden; }
+    .cov-bar span { display: block; height: 100%; }
+    .coverage-pending-list { margin-top: 0.6rem; font-size: 0.78rem; color: #8b949e; }
+    .cov-pending { display: inline-block; background: #21262d; border-radius: 4px; padding: 0.1rem 0.4rem; margin: 0.1rem; }
+
     /* Central Security & Duplication Scan */
     .central-scan {
       background: #161b22;
