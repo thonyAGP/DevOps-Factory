@@ -4,6 +4,7 @@ import { DASHBOARD_SCRIPTS } from './client-scripts.js';
 import {
   getFactoryStatusSection,
   getSecurityPostureSection,
+  getCentralScanSection,
   getPerformanceSection,
   getDoraSection,
   getCostSection,
@@ -99,6 +100,8 @@ export const generateHTML = (statuses: ProjectStatus[]): string => {
   ${getFactoryStatusSection()}
 
   ${getSecurityPostureSection(statuses)}
+
+  ${getCentralScanSection()}
 
   ${getPerformanceSection(statuses)}
 

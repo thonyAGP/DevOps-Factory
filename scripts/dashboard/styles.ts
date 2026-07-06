@@ -298,6 +298,27 @@ export const DASHBOARD_CSS = `
       white-space: nowrap;
     }
 
+    /* Central Security & Duplication Scan */
+    .central-scan {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .central-scan h2 { color: #ef4444; font-size: 1rem; margin-bottom: 0.8rem; }
+    .central-scan-summary { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.85rem; color: #8b949e; margin-bottom: 0.6rem; }
+    .central-scan-summary strong { color: #e6edf3; }
+    .central-scan-date { margin-left: auto; font-style: italic; }
+    .central-scan details summary { cursor: pointer; color: #58a6ff; font-size: 0.85rem; }
+    .central-scan-table { width: 100%; border-collapse: collapse; margin-top: 0.6rem; font-size: 0.8rem; }
+    .central-scan-table th, .central-scan-table td { padding: 0.3rem 0.6rem; border-bottom: 1px solid #21262d; text-align: left; }
+    .central-scan-table th { color: #8b949e; }
+    .central-scan-table .scan-ok { color: #22c55e; }
+    .central-scan-table .scan-bad { color: #ef4444; font-weight: 600; }
+    .central-scan-table .scan-warn { color: #f59e0b; }
+    .central-scan-table .scan-na { color: #484f58; }
+
     /* Security Posture */
     .security-posture {
       background: #161b22;
