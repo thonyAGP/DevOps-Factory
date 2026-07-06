@@ -2,13 +2,19 @@ name: Build Dashboard
 
 on:
   schedule:
-    # Every 6 hours (reduced from 4h to save API quota)
-    - cron: '0 */6 * * *'
+    # Every 3 hours — the Factory is public, so Actions minutes are free;
+    # the only cost is GitHub API reads (well within the PAT's 5000/h)
+    - cron: '0 */3 * * *'
   workflow_dispatch:
     inputs: {}
-  # Also run after scan completes
+  # Rebuild immediately after any data-producing central workflow completes,
+  # so fresh scan / coverage / config data shows up within minutes
   workflow_run:
-    workflows: ['Scan Repos']
+    workflows:
+      - 'Scan Repos'
+      - 'Central Security Scan'
+      - 'Central Coverage'
+      - 'Central Renovate'
     types: [completed]
 
 permissions:
