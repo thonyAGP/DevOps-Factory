@@ -19,9 +19,10 @@
  * Usage: pnpm retire-private-workflows [-- --dry-run] [-- --only casasync]
  */
 
+import { writeFileSync, unlinkSync } from 'node:fs';
 import { KNOWN_PROJECTS, PRIVATE_WORKFLOW_ALLOWLIST } from '../factory.config.js';
 import { logActivity } from './activity-logger.js';
-import { sh } from './shell-utils.js';
+import { sh, tmpDir } from './shell-utils.js';
 
 /**
  * Every workflow file the Factory has ever deployed to managed repos and that
@@ -144,11 +145,20 @@ const createRetirePR = (repo: string, targets: RemoteWorkflowFile[]): string | n
     `couverture → Central Coverage (hebdo), dépendances → Central Renovate (quotidien), ` +
     `self-heal & review → workflows Factory. Restent ici : la CI, auto-merge-deps et ` +
     `l'agent de remédiation (dispatch uniquement).\n\n*Généré par DevOps-Factory (minutes policy)*`;
+  // Body goes through a file: inline shell strings would let the markdown
+  // backticks be executed as command substitutions.
+  const bodyFile = `${tmpDir}/retire-body-${targets[0].sha.slice(0, 8)}.md`;
+  writeFileSync(bodyFile, body);
   const pr = sh(
     `gh pr create --repo ${repo} --head ${BRANCH} --base ${defaultBranch} ` +
       `--title "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)" ` +
-      `--body "${body.replace(/"/g, '\\"')}"`
+      `--body-file "${bodyFile}"`
   );
+  try {
+    unlinkSync(bodyFile);
+  } catch {
+    /* best effort */
+  }
   return pr.match(/(https:\/\/[^\s]+)/)?.[1] || null;
 };
 

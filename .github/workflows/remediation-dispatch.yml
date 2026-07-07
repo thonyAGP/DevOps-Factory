@@ -62,3 +62,20 @@ jobs:
         env:
           DRY_RUN: ${{ inputs.dry_run }}
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
+
+      # Persist the daily quota so maxPerDay actually holds across runs —
+      # without this the counter dies with the runner and the cap is a no-op.
+      - name: Commit quota state
+        if: ${{ inputs.dry_run == false }}
+        run: |
+          git config user.name "DevOps Factory Bot"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          if [ -f data/remediation-quota.json ]; then
+            cp data/remediation-quota.json /tmp/remediation-quota.json
+            git fetch origin master
+            git reset --hard origin/master
+            cp /tmp/remediation-quota.json data/remediation-quota.json
+            git add data/remediation-quota.json
+            git diff --cached --quiet || git commit -m "chore: update remediation quota" --no-verify
+            git push origin master
+          fi
