@@ -2445,6 +2445,74 @@
       "action": "recommendations-generated",
       "details": "6 recommendations across 30 repos (0 critical, 5 high)",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-07-07T13:59:26.011Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 0 repos (0 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-07T13:59:45.553Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/DevOps-Factory",
+      "details": "PR #2165 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-07T13:59:45.554Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/DevOps-Factory",
+      "details": "PR #2155 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-07T13:59:45.555Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/DevOps-Factory",
+      "details": "PR #2174 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-07T13:59:45.557Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/DevOps-Factory",
+      "details": "PR #2153 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-07T13:59:45.558Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/DevOps-Factory",
+      "details": "PR #2143 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-07T13:59:45.560Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T13:59:45.562Z",
+      "source": "scan-and-configure",
+      "action": "repo-promotion",
+      "details": "Promoted 1 repo(s) to healing_graduated: thonyAGP/DevOps-Factory",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-07T13:59:45.563Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 29 outcomes (9 merged, 7 closed, 13 open). 11 new in last 7d. 0 confidence scores adjusted. 1 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }

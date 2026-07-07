@@ -81,7 +81,7 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     hasLighthouse: false,
     hasLinkChecker: false,
     vercel: false,
-    healingState: 'healing_supervised',
+    healingState: 'healing_graduated',
     testFramework: 'none',
     ciWorkflow: 'factory-ci.yml',
   },
