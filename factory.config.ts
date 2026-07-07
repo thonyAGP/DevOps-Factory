@@ -510,8 +510,10 @@ export interface RemediationConfig {
  * each target repo. Guardrails: allowlist, grade gate, daily quota.
  */
 export const REMEDIATION_CONFIG: RemediationConfig = {
-  enabled: false,
-  enabledRepos: [],
+  enabled: true,
+  // Supervised rollout: one repo first. The agent opens a PR for human review
+  // (no automerge). Widen this list only once the loop is trusted.
+  enabledRepos: ['thonyAGP/lecteur-magic'],
   minGrade: 'F',
   maxPerDay: 2,
   workflowFile: 'ai-remediation.yml',
