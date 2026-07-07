@@ -3,10 +3,15 @@
 # findings and opens a PR — then exits. Dispatched by the Factory's
 # remediation-dispatch for repos graded F in the security registry.
 #
-# Requires (per repo): secret ANTHROPIC_API_KEY. The agent is deliberately
-# constrained: it fixes tractable SAST/dep findings, never touches secrets
-# (rotation is manual), never does large refactors or major bumps, always
-# runs tests, and opens exactly one PR for human review.
+# Requires (per repo):
+#   - secret CLAUDE_CODE_OAUTH_TOKEN (subscription auth, no API billing —
+#     generate with `claude setup-token`, distribute with
+#     `pnpm distribute-remediation-secret`)
+#   - the Claude GitHub App installed on the repo (github.com/apps/claude),
+#     which grants the repo permissions the token uses
+# The agent is deliberately constrained: it fixes tractable SAST/dep findings,
+# never touches secrets (rotation is manual), never does large refactors or
+# major bumps, always runs tests, and opens exactly one PR for human review.
 
 name: AI Remediation
 
@@ -35,7 +40,9 @@ jobs:
       - name: Run remediation agent
         uses: anthropics/claude-code-action@beta
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Subscription OAuth token (no API key, no usage-based billing).
+          # See docs/remediation.md and docs/github-app-migration.md.
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           direct_prompt: |
             Tu corriges les problèmes de sécurité et de qualité détectés par le
             scan centralisé de DevOps-Factory sur ce repository.

@@ -27,13 +27,41 @@ Rien ne part tant que tout n'est pas explicitement autorisé :
 
 La logique de sélection est une **fonction pure testée** (`selectRemediationTargets`).
 
+## Le moteur LLM : token d'abonnement (sans clé API)
+
+L'agent tourne via `anthropics/claude-code-action` authentifié par un **token
+OAuth d'abonnement** (`claude_code_oauth_token`) — pas de clé API, donc **aucune
+facturation à l'usage** : la conso passe par le quota de l'abonnement Claude
+(Pro/Max). Le pire cas est un rate-limit, jamais une facture. (TOS : ce token
+n'est autorisé que pour Claude Code / `claude-code-action`, pas pour l'Agent
+SDK.)
+
+Générer le token une fois, avec **ton** compte perso :
+
+```bash
+claude /logout        # si le CLI est logué sur un autre compte
+claude setup-token    # flux OAuth navigateur → copie le sk-ant-oat01-…
+```
+
 ## Activation (opt-in explicite)
 
-1. Dans chaque repo cible : secret `ANTHROPIC_API_KEY` + le workflow
-   `ai-remediation.yml` (déployé via `redeploy-templates` ou `scan-and-configure`).
-2. Dans `factory.config.ts` → `REMEDIATION_CONFIG` : `enabled: true` et ajouter
-   les repos dans `enabledRepos` (commencez par **un seul**).
-3. Onglet Actions → **Remediation Dispatch** → Run workflow. Laissez
+1. **App Claude** : installe-la **une fois** sur _All repositories_
+   (github.com/apps/claude) — elle donne les permissions repo. Pas de répétition
+   par repo.
+2. **Secret sur les repos cibles** : `CLAUDE_CODE_OAUTH_TOKEN`. Plutôt que de
+   cliquer 25 fois, distribue-le en masse (localement, `gh` authentifié) :
+   ```bash
+   export CLAUDE_CODE_OAUTH_TOKEN=sk-ant-oat01-...
+   pnpm distribute-remediation-secret            # tous les repos gérés
+   pnpm distribute-remediation-secret -- --only lecteur-magic   # ou un sous-ensemble
+   ```
+   Le secret est **inerte** tant que le repo n'est pas dans l'allowlist + n'a pas
+   le workflow — le distribuer largement est sans risque.
+3. **Workflow agent** : `ai-remediation.yml` déployé via `redeploy-templates`
+   (ou `scan-and-configure`).
+4. **`factory.config.ts` → `REMEDIATION_CONFIG`** : `enabled: true` + ajouter les
+   repos dans `enabledRepos` (commencez par **un seul**).
+5. Onglet Actions → **Remediation Dispatch** → Run workflow. Laissez
    `dry_run: true` d'abord pour voir les cibles sélectionnées, puis `false`.
 
 Aucun cron n'est configuré : le dispatch reste manuel tant que la boucle n'est
