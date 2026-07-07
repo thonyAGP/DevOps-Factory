@@ -16,6 +16,7 @@ import { jq, devNull } from './shell-utils.js';
 import { getCached, setCache } from './cache-manager.js';
 import { batchFileExists, fileExistsInRepo } from './github-file-checker.js';
 import { loadRepoConfig, renderTemplate } from './template-config.js';
+import { PRIVATE_WORKFLOW_ALLOWLIST } from '../factory.config.js';
 
 interface Repo {
   name: string;
@@ -623,6 +624,24 @@ const createConfigPR = (analysis: RepoAnalysis): void => {
       path: '.github/workflows/typedoc-gen.yml',
       template: `${TEMPLATES_DIR}/typedoc-gen.yml`,
     });
+  }
+
+  // Minutes policy: private repos share the 2000 free-min/month pool, so only
+  // allowlisted workflows may be deployed there — everything else runs
+  // centrally from the (public, free) Factory. See PRIVATE_WORKFLOW_ALLOWLIST.
+  if (repo.private) {
+    const before = filesToAdd.length;
+    const kept = filesToAdd.filter(
+      (f) => !f.path.startsWith('.github/workflows/') || PRIVATE_WORKFLOW_ALLOWLIST.includes(f.path)
+    );
+    const suppressed = before - kept.length;
+    if (suppressed > 0) {
+      console.log(
+        `  [POLICY] ${repo.name}: ${suppressed} workflow(s) withheld (private repo — covered centrally)`
+      );
+    }
+    filesToAdd.length = 0;
+    filesToAdd.push(...kept);
   }
 
   if (filesToAdd.length === 0) {

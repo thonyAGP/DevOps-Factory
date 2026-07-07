@@ -519,6 +519,22 @@ export const REMEDIATION_CONFIG: RemediationConfig = {
   workflowFile: 'ai-remediation.yml',
 };
 
+/**
+ * Minutes policy: private repos share one 2000 free-min/month Actions pool,
+ * while DevOps-Factory (public) has unlimited free minutes — so the Factory
+ * must be the fleet's only real consumer. Only these workflow files may live
+ * in a PRIVATE repo; everything else runs centrally (central-scan,
+ * central-coverage, central renovate, self-heal, claude-review) or not at
+ * all. scan-and-configure enforces this at deploy time;
+ * retire-private-workflows purges already-deployed offenders via PRs.
+ */
+export const PRIVATE_WORKFLOW_ALLOWLIST: readonly string[] = [
+  '.github/workflows/ci.yml', // the PR/push test gate (also gates renovate automerge)
+  '.github/workflows/auto-merge-deps.yml', // seconds-long; lets central Renovate automerge
+  '.github/workflows/ai-remediation.yml', // workflow_dispatch only — inert until dispatched
+  '.github/workflows/prisma-migration-check.yml', // path-filtered, rare, real safety net
+];
+
 export const GITHUB_OWNER = 'thonyAGP';
 
 export const DASHBOARD_URL = 'https://thonyagp.github.io/DevOps-Factory/';
