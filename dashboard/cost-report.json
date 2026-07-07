@@ -1,32 +1,32 @@
 {
-  "timestamp": "2026-07-06T19:57:14.932Z",
+  "timestamp": "2026-07-07T08:48:11.110Z",
   "repos": [
     {
       "repo": "claude-launcher",
       "fullName": "thonyAGP/claude-launcher",
-      "totalMinutes": 32,
-      "totalRuns": 32,
+      "totalMinutes": 64,
+      "totalRuns": 64,
       "workflows": [
         {
           "name": ".github/workflows/claude-review.yml",
-          "runs": 16,
-          "totalMinutes": 16,
+          "runs": 32,
+          "totalMinutes": 32,
           "avgMinutes": 1,
-          "failedRuns": 16,
-          "wastedMinutes": 16
+          "failedRuns": 32,
+          "wastedMinutes": 32
         },
         {
           "name": ".github/workflows/cron-monitor.yml",
-          "runs": 16,
-          "totalMinutes": 16,
+          "runs": 32,
+          "totalMinutes": 32,
           "avgMinutes": 1,
-          "failedRuns": 16,
-          "wastedMinutes": 16
+          "failedRuns": 32,
+          "wastedMinutes": 32
         }
       ],
       "recommendations": [
-        ".github/workflows/claude-review.yml: 100% failure rate (16min wasted). Fix root cause.",
-        ".github/workflows/cron-monitor.yml: 100% failure rate (16min wasted). Fix root cause."
+        ".github/workflows/claude-review.yml: 100% failure rate (32min wasted). Fix root cause.",
+        ".github/workflows/cron-monitor.yml: 100% failure rate (32min wasted). Fix root cause."
       ]
     },
     {
@@ -39,9 +39,9 @@
     }
   ],
   "summary": {
-    "totalMinutes": 32,
-    "totalRuns": 32,
-    "wastedMinutes": 32,
+    "totalMinutes": 64,
+    "totalRuns": 64,
+    "wastedMinutes": 64,
     "mostExpensiveRepo": "claude-launcher",
     "mostExpensiveWorkflow": ".github/workflows/claude-review.yml (claude-launcher)",
     "totalRecommendations": 2,
