@@ -25,12 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
-      # GitHub App token (short-lived, 1h) when configured, else the legacy
-      # PAT. Zero-downtime: skipped until repo var FACTORY_APP_ID is set.
-      # See docs/github-app-migration.md.
+      # GitHub App token (short-lived, 1h) — sole auth since the PAT was
+      # retired. See docs/github-app-migration.md.
       - name: Generate GitHub App token
         id: app-token
-        if: ${{ vars.FACTORY_APP_ID != '' }}
         uses: actions/create-github-app-token@v1
         with:
           app-id: ${{ vars.FACTORY_APP_ID }}
@@ -38,7 +36,7 @@ jobs:
           owner: ${{ github.repository_owner }}
       - uses: actions/checkout@v4
         with:
-          token: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
+          token: ${{ steps.app-token.outputs.token }}
 
       - uses: pnpm/action-setup@v4
         with:
@@ -68,7 +66,7 @@ jobs:
       - name: Measure coverage (slow — clones and tests each repo)
         run: pnpm central-coverage -- --measure --out /tmp/coverage-measurements.json
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
           # Route every target repo's installs through the cached dirs
           npm_config_cache: ~/.npm
           PNPM_HOME: ~/.cache/pnpm
@@ -86,4 +84,4 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: update coverage measurements" --no-verify
           git push origin master
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}

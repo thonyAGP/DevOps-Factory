@@ -11,17 +11,13 @@ usine autonome sûre :
 - **Débloque `claude-code-action`** : `/install-github-app` installe l'App ET
   le moteur d'exécution de la remédiation autonome (voir `docs/remediation.md`).
 
-## Ce qui est déjà prêt (zéro-downtime)
+## Le motif (état final)
 
-Les workflows migrés utilisent ce motif : un token d'App est généré **si** la
-variable de dépôt `FACTORY_APP_ID` est définie, sinon on retombe sur le PAT.
-Tant que vous n'avez pas créé l'App, **rien ne change** ; dès que la variable
-et le secret existent, l'usine bascule automatiquement sur l'App.
+Chaque job génère un token d'installation frais en tête, puis l'utilise partout :
 
 ```yaml
 - name: Generate GitHub App token
   id: app-token
-  if: ${{ vars.FACTORY_APP_ID != '' }}
   uses: actions/create-github-app-token@v1
   with:
     app-id: ${{ vars.FACTORY_APP_ID }}
@@ -30,16 +26,16 @@ et le secret existent, l'usine bascule automatiquement sur l'App.
 
 - uses: actions/checkout@v4
   with:
-    token: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
+    token: ${{ steps.app-token.outputs.token }}
 # ... et partout ailleurs :
-#   GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
+#   GH_TOKEN: ${{ steps.app-token.outputs.token }}
 ```
 
-`central-scan.yml` est déjà converti comme **référence**. Les autres workflows
-Factory (`dashboard-build`, `ci-health-check`, `self-heal`, `central-coverage`,
-`renovate`, `remediation-dispatch`, `pr-description`, `claude-review`,
-`migration-checklist`, `ai-test-writer`, `auto-generate-tests`) se convertissent
-en appliquant le même bloc — voir la checklist plus bas.
+> **Historique** : la migration s'est faite en zéro-downtime via un garde
+> `if: ${{ vars.FACTORY_APP_ID != '' }}` sur le step et un fallback
+> `|| secrets.FACTORY_PAT` sur chaque token — tant que l'App n'existait pas,
+> l'usine retombait sur le PAT. Une fois l'App validée en production, le garde
+> et le fallback ont été retirés (étape 6), rendant l'App obligatoire.
 
 ## Étapes (côté GitHub, ~10 min)
 
@@ -89,39 +85,48 @@ Actions → **Central Security Scan** → Run workflow. Dans les logs, l'étape
 _Generate GitHub App token_ doit s'exécuter (plus être skippée). Une fois le
 run vert, l'App fonctionne.
 
-### 6. Retirer le PAT (quand tout est migré)
+### 6. Retirer le PAT — ✅ fait
 
-Une fois **tous** les workflows convertis et validés, supprimez le secret
-`FACTORY_PAT` et révoquez le token côté GitHub. Le fallback `|| secrets.FACTORY_PAT`
-devient inutile ; on pourra le retirer dans une passe de nettoyage.
+Le code est nettoyé : `pat-health-check.yml` supprimé, garde
+`if: FACTORY_APP_ID != ''` retiré du step App (l'App est désormais l'auth
+obligatoire), et le fallback `|| secrets.FACTORY_PAT` retiré de tous les
+workflows — chaque point d'auth est passé à `steps.app-token.outputs.token`
+seul. **Action GitHub restante** : supprimer le secret `FACTORY_PAT` du dépôt
+et révoquer le token côté GitHub (Settings → Developer settings → PAT).
 
 ## Conversion des workflows — terminée
 
-**Tous** les workflows Factory qui s'authentifiaient au PAT sont convertis au
-motif zéro-downtime. Recette appliquée à chaque job utilisant le PAT : un step
-`Generate GitHub App token` en tête, puis `secrets.FACTORY_PAT` remplacé par
-`steps.app-token.outputs.token || secrets.FACTORY_PAT` (checkout `token:` et
-tous les `GH_TOKEN:` / `GITHUB_TOKEN:` / `RENOVATE_TOKEN:`).
+**Tous** les workflows Factory s'authentifient via la GitHub App. Le step
+`Generate GitHub App token` génère un token d'installation frais (1 h) en tête
+de chaque job, et chaque point d'auth (checkout `token:`, `GH_TOKEN:`,
+`GITHUB_TOKEN:`, `RENOVATE_TOKEN:`) utilise `steps.app-token.outputs.token`.
 
-25 workflows convertis, dont `dashboard-build.yml` qui a **deux** jobs
-(`build` + `deploy-pages`) — chaque job a son propre step App, car
+25 workflows, dont `dashboard-build.yml` qui a **deux** jobs (`build` +
+`deploy-pages`) — chaque job a son propre step App, car
 `steps.app-token.outputs.token` n'est résolu que dans le job qui génère le
 token :
 
 `ai-branding-guard`, `ai-test-writer`, `auto-fix-prettier`,
-`branch-protection-audit`, `central-coverage`, `central-scan` (référence),
+`branch-protection-audit`, `central-coverage`, `central-scan`,
 `ci-health-check`, `claude-review`, `coverage-audit`, `daily-report`,
 `dashboard-build` (×2 jobs), `dependency-intelligence`, `factory-watchdog`,
 `feedback-collector`, `migration-checklist`, `migration-tracker`,
 `pr-description`, `quality-score`, `redeploy-templates`, `remediation-dispatch`,
 `renovate`, `scan-repos`, `self-heal`, `test-scaffold`, `weekly-veille`.
 
-### Seule exception : `pat-health-check.yml`
+`pat-health-check.yml` (qui surveillait la validité du PAT) a été **supprimé**
+en même temps que le retrait du PAT.
 
-Ce workflow **reste volontairement sur le PAT** : son rôle est précisément de
-tester la validité du PAT (fallback). Il devient obsolète le jour où le PAT est
-retiré (étape 6) — on le supprimera dans la passe de nettoyage, en même temps
-que le fallback `|| secrets.FACTORY_PAT`.
+## Prérequis : bypass de la branche protégée
+
+Les workflows committent l'état durable (scan, dashboard, coverage, activity
+log) **directement sur `master`**, qui est protégé (status check `check`).
+L'App n'étant pas admin, elle ne bypasse pas la protection par défaut : il faut
+une **ruleset** (Settings → Rules → Rulesets) ciblant `master` avec
+`devops-factory-bot` **et** `Repository admin` dans la _bypass list_, en
+remplacement de la protection de branche classique (qui ne sait pas bypasser
+une App). Sans ça, chaque push d'un workflow échoue avec
+`GH006 / protected branch hook declined`.
 
 ## Note sur `claude-code-action` et la remédiation
 

@@ -12,12 +12,10 @@ jobs:
   branding-guard:
     runs-on: ubuntu-latest
     steps:
-      # GitHub App token (short-lived, 1h) when configured, else the legacy
-      # PAT. Zero-downtime: skipped until repo var FACTORY_APP_ID is set.
-      # See docs/github-app-migration.md.
+      # GitHub App token (short-lived, 1h) — sole auth since the PAT was
+      # retired. See docs/github-app-migration.md.
       - name: Generate GitHub App token
         id: app-token
-        if: ${{ vars.FACTORY_APP_ID != '' }}
         uses: actions/create-github-app-token@v1
         with:
           app-id: ${{ vars.FACTORY_APP_ID }}
@@ -39,6 +37,6 @@ jobs:
 
       - name: Run AI Branding Guard
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         run: pnpm ai-branding-guard
