@@ -14,7 +14,7 @@
 
 ### claude-launcher :x:
 - **Health**: 40/100
-- **CI**: fail ([view](https://github.com/thonyAGP/claude-launcher/actions/runs/28830553404))
+- **CI**: fail ([view](https://github.com/thonyAGP/claude-launcher/actions/runs/28870614100))
 - **Open PRs**: 1
 
 ### SqlConnectionTest :white_circle:
