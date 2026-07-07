@@ -6,8 +6,8 @@
 - **80%** avg security score
 - **0/2** repos with AI code review
 - **70%** avg quality score (perf, a11y, coverage, release)
-- **DORA**: HIGH (deploy 0/wk, lead 0h, MTTR 47.7h, CFR 50%)
-- **CI Cost**: 32min total, 32min wasted, ~$0/mo
+- **DORA**: HIGH (deploy 0/wk, lead 0h, MTTR 0h, CFR 50%)
+- **CI Cost**: 64min total, 64min wasted, ~$0/mo
 - **Compliance**: 80/100 avg, 0% review coverage, 0/2 branch protected
 
 ## Per Project
