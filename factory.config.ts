@@ -506,8 +506,8 @@ export interface RemediationConfig {
  * Autonomous remediation (saut #3): the dispatcher reads the security
  * registry and triggers a bounded coding agent on the worst-graded repos.
  * Disabled and allowlist-empty by default — enabling requires an explicit
- * opt-in plus ANTHROPIC_API_KEY + the ai-remediation.yml workflow in each
- * target repo. Guardrails: allowlist, grade gate, daily quota.
+ * opt-in plus CLAUDE_CODE_OAUTH_TOKEN + the ai-remediation.yml workflow in
+ * each target repo. Guardrails: allowlist, grade gate, daily quota.
  */
 export const REMEDIATION_CONFIG: RemediationConfig = {
   enabled: false,

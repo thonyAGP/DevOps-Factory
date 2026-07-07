@@ -147,7 +147,9 @@ const main = (): void => {
         t.name
       );
     } else {
-      console.log(`    [WARN] dispatch failed for ${t.repo} (workflow present + API key set?)`);
+      console.log(
+        `    [WARN] dispatch failed for ${t.repo} (ai-remediation.yml present + CLAUDE_CODE_OAUTH_TOKEN set?)`
+      );
     }
   }
 
