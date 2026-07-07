@@ -1933,26 +1933,162 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-07-07T11:06:52.058Z",
-      "source": "ci-health-check",
-      "action": "self-heal-failed",
+      "timestamp": "2026-07-07T11:15:46.819Z",
+      "source": "quality-score",
+      "action": "quality-drop",
       "target": "DevOps-Factory",
-      "details": "Failed to trigger self-heal for DevOps-Factory",
-      "status": "error"
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
     },
     {
-      "timestamp": "2026-07-07T11:06:52.059Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
+      "timestamp": "2026-07-07T11:15:46.820Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Email_Assistant",
+      "details": "70 → 40 (-30pts)",
+      "status": "warning"
     },
     {
-      "timestamp": "2026-07-07T11:06:52.061Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/10 passing, 1 failing. Issues: 0 created, 0 closed",
+      "timestamp": "2026-07-07T11:15:46.821Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "ClubMedRoomAssignment",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.822Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "CasaSync",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.822Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.823Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Site_Au-marais",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.824Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "API_Claude",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.825Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "MCP_Quota_Claude",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.826Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Statusline",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.827Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Site_Greg-Assainissement",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.828Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Site_1970_Plomberie",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.829Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Thumbfast_createur_images",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.829Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Utilitaire_Webapp",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.830Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "test_codingmenace",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.831Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "SqlConnectionTest",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.832Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Zentra",
+      "details": "50 → 40 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.833Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "70 → 40 (-30pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.834Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Lecteur_Magic",
+      "details": "55 → 25 (-30pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.834Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "magic-migration",
+      "details": "55 → 25 (-30pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-07T11:15:46.835Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 38/100, 0 excellent, 19 needs work, 19 drops, 0 improvements",
       "status": "warning"
     }
   ]
