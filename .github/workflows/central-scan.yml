@@ -25,14 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      # GitHub App token (short-lived, 1h) when configured, otherwise the
-      # legacy PAT. Zero-downtime: the App step is skipped until the repo
-      # variable FACTORY_APP_ID is set, so this keeps working as-is today and
-      # switches to the App automatically once it exists. See
-      # docs/github-app-migration.md.
+      # GitHub App token (short-lived, 1h) — sole auth since the PAT was
+      # retired. See docs/github-app-migration.md.
       - name: Generate GitHub App token
         id: app-token
-        if: ${{ vars.FACTORY_APP_ID != '' }}
         uses: actions/create-github-app-token@v1
         with:
           app-id: ${{ vars.FACTORY_APP_ID }}
@@ -41,7 +37,7 @@ jobs:
 
       - uses: actions/checkout@v4
         with:
-          token: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
+          token: ${{ steps.app-token.outputs.token }}
 
       - uses: pnpm/action-setup@v4
         with:
@@ -92,7 +88,7 @@ jobs:
       - name: Run central scan
         run: pnpm central-scan
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           # Reuse the cached DB and skip its update when it is already fresh
           TRIVY_CACHE_DIR: ~/.cache/trivy
@@ -116,4 +112,4 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: update central scan report" --no-verify
           git push origin master
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
