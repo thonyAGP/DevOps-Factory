@@ -1,0 +1,73 @@
+# DevOps-Factory: Retire Private Workflows (minutes policy)
+# Private repos share one 2000 free-min/month Actions pool; the Factory
+# (public) is the fleet's only intended consumer. This opens one cleanup PR
+# per private repo removing factory-deployed workflows that are covered
+# centrally. Manual dispatch only, dry-run by default.
+
+name: Retire Private Workflows
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'List deletions without opening PRs'
+        required: false
+        default: true
+        type: boolean
+      only:
+        description: 'Comma-separated repo names to restrict to (empty = all)'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: retire-private-workflows
+  cancel-in-progress: false
+
+jobs:
+  retire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      # GitHub App token (short-lived, 1h) — sole auth since the PAT was
+      # retired. See docs/github-app-migration.md.
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.FACTORY_APP_ID }}
+          private-key: ${{ secrets.FACTORY_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Retire private workflows
+        run: |
+          ARGS=""
+          if [ "$DRY_RUN" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          if [ -n "$ONLY" ]; then
+            ARGS="$ARGS --only $ONLY"
+          fi
+          pnpm retire-private-workflows -- $ARGS
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+          ONLY: ${{ inputs.only }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
