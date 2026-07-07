@@ -25,9 +25,20 @@ jobs:
     # Skip if triggered by workflow_run that succeeded (only react to failures)
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'failure' }}
     steps:
+      # GitHub App token (short-lived, 1h) when configured, else the legacy
+      # PAT. Zero-downtime: skipped until repo var FACTORY_APP_ID is set.
+      # See docs/github-app-migration.md.
+      - name: Generate GitHub App token
+        id: app-token
+        if: ${{ vars.FACTORY_APP_ID != '' }}
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.FACTORY_APP_ID }}
+          private-key: ${{ secrets.FACTORY_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.FACTORY_PAT }}
+          token: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
 
       - uses: pnpm/action-setup@v4
         with:
@@ -44,7 +55,7 @@ jobs:
       - name: Run CI Health Check
         run: pnpm ci-health
         env:
-          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
           GITHUB_REPOSITORY: ${{ github.repository }}
 
       - name: Commit activity log
@@ -67,4 +78,4 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: update activity log" --no-verify
           git push
         env:
-          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}

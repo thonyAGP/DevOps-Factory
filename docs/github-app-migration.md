@@ -95,25 +95,33 @@ Une fois **tous** les workflows convertis et validés, supprimez le secret
 `FACTORY_PAT` et révoquez le token côté GitHub. Le fallback `|| secrets.FACTORY_PAT`
 devient inutile ; on pourra le retirer dans une passe de nettoyage.
 
-## Checklist de conversion des workflows restants
+## Conversion des workflows — terminée
 
-Pour chacun : ajouter le step `Generate GitHub App token` en tête du job, puis
-remplacer `secrets.FACTORY_PAT` par
-`steps.app-token.outputs.token || secrets.FACTORY_PAT` dans le `token:` du
-checkout et dans tous les `GH_TOKEN:`.
+**Tous** les workflows Factory qui s'authentifiaient au PAT sont convertis au
+motif zéro-downtime. Recette appliquée à chaque job utilisant le PAT : un step
+`Generate GitHub App token` en tête, puis `secrets.FACTORY_PAT` remplacé par
+`steps.app-token.outputs.token || secrets.FACTORY_PAT` (checkout `token:` et
+tous les `GH_TOKEN:` / `GITHUB_TOKEN:` / `RENOVATE_TOKEN:`).
 
-- [x] `central-scan.yml` (référence)
-- [ ] `dashboard-build.yml`
-- [ ] `ci-health-check.yml`
-- [ ] `central-coverage.yml`
-- [ ] `renovate.yml`
-- [ ] `remediation-dispatch.yml`
-- [ ] `self-heal.yml`
-- [ ] `pr-description.yml` / `claude-review.yml` / `migration-checklist.yml`
-- [ ] `ai-test-writer.yml` / `auto-generate-tests.yml`
+25 workflows convertis, dont `dashboard-build.yml` qui a **deux** jobs
+(`build` + `deploy-pages`) — chaque job a son propre step App, car
+`steps.app-token.outputs.token` n'est résolu que dans le job qui génère le
+token :
 
-Je peux faire cette conversion mécanique en une PR dès que l'App est créée et
-`FACTORY_APP_ID` défini (pour tester en conditions réelles).
+`ai-branding-guard`, `ai-test-writer`, `auto-fix-prettier`,
+`branch-protection-audit`, `central-coverage`, `central-scan` (référence),
+`ci-health-check`, `claude-review`, `coverage-audit`, `daily-report`,
+`dashboard-build` (×2 jobs), `dependency-intelligence`, `factory-watchdog`,
+`feedback-collector`, `migration-checklist`, `migration-tracker`,
+`pr-description`, `quality-score`, `redeploy-templates`, `remediation-dispatch`,
+`renovate`, `scan-repos`, `self-heal`, `test-scaffold`, `weekly-veille`.
+
+### Seule exception : `pat-health-check.yml`
+
+Ce workflow **reste volontairement sur le PAT** : son rôle est précisément de
+tester la validité du PAT (fallback). Il devient obsolète le jour où le PAT est
+retiré (étape 6) — on le supprimera dans la passe de nettoyage, en même temps
+que le fallback `|| secrets.FACTORY_PAT`.
 
 ## Note sur `claude-code-action` et la remédiation
 
