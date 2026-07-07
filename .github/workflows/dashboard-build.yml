@@ -32,9 +32,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      # GitHub App token (short-lived, 1h) when configured, else the legacy
+      # PAT. Zero-downtime: skipped until repo var FACTORY_APP_ID is set.
+      # See docs/github-app-migration.md.
+      - name: Generate GitHub App token
+        id: app-token
+        if: ${{ vars.FACTORY_APP_ID != '' }}
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.FACTORY_APP_ID }}
+          private-key: ${{ secrets.FACTORY_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.FACTORY_PAT }}
+          token: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
 
       - uses: pnpm/action-setup@v4
         with:
@@ -51,14 +62,14 @@ jobs:
       - name: Build dashboard
         run: pnpm dashboard
         env:
-          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_ACTIONS: 'true'
 
       - name: Security posture report
         run: pnpm security-posture
         env:
-          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
         continue-on-error: true
 
       - name: Security registry (unified findings)
@@ -68,31 +79,31 @@ jobs:
       - name: Template drift detection
         run: pnpm template-drift
         env:
-          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
         continue-on-error: true
 
       - name: DORA metrics
         run: pnpm dora
         env:
-          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
         continue-on-error: true
 
       - name: CI cost monitor
         run: pnpm cost-monitor
         env:
-          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
         continue-on-error: true
 
       - name: Compliance report
         run: pnpm compliance
         env:
-          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
         continue-on-error: true
 
       - name: Smart recommendations
         run: pnpm recommendations
         env:
-          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
         continue-on-error: true
 
       - name: Check for alerts
@@ -115,7 +126,7 @@ jobs:
       - name: Trigger self-healing for CI failures (max 1 per run, deduplicated)
         if: steps.alerts.outputs.has_alerts == 'true'
         env:
-          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
         run: |
           # Limited to 1 per run to prevent workflow spam and excessive API quota usage
           MAX_TRIGGERS=1
@@ -218,7 +229,7 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: update dashboard"
           git push
         env:
-          GH_TOKEN: ${{ secrets.FACTORY_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
 
       - name: Check if daily digest should be sent
         id: digest_gate
@@ -275,10 +286,21 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # GitHub App token (short-lived, 1h) when configured, else the legacy
+      # PAT. Zero-downtime: skipped until repo var FACTORY_APP_ID is set.
+      # See docs/github-app-migration.md.
+      - name: Generate GitHub App token
+        id: app-token
+        if: ${{ vars.FACTORY_APP_ID != '' }}
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.FACTORY_APP_ID }}
+          private-key: ${{ secrets.FACTORY_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
       - uses: actions/checkout@v4
         with:
           ref: master
-          token: ${{ secrets.FACTORY_PAT }}
+          token: ${{ steps.app-token.outputs.token || secrets.FACTORY_PAT }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
