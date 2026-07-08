@@ -88,7 +88,9 @@ const loadQuota = (): Quota => {
   try {
     const q = JSON.parse(readFileSync(QUOTA_PATH, 'utf-8')) as Quota;
     if (q.date !== today) return { date: today, count: 0, maxPerDay: REMEDIATION_CONFIG.maxPerDay };
-    return q;
+    // The file only tracks today's count — maxPerDay always comes from config,
+    // otherwise a config bump would be ignored until the next day.
+    return { ...q, maxPerDay: REMEDIATION_CONFIG.maxPerDay };
   } catch {
     return { date: today, count: 0, maxPerDay: REMEDIATION_CONFIG.maxPerDay };
   }
@@ -102,6 +104,37 @@ const dispatchAgent = (repo: string): boolean => {
     `gh workflow run ${REMEDIATION_CONFIG.workflowFile} --repo ${repo} 2>&1 && echo DISPATCHED`
   );
   return out.includes('DISPATCHED');
+};
+
+const WORKFLOW_PATH = `.github/workflows/ai-remediation.yml`;
+const TEMPLATE_PATH = 'templates/ai-remediation.yml';
+
+/**
+ * Onboarding: an allowlisted repo without the agent workflow gets it deployed
+ * directly (the Factory App has workflows write). Returns true when the
+ * workflow exists (already there or just created) and dispatch can proceed —
+ * newly created workflows are immediately dispatchable on the default branch.
+ */
+const ensureWorkflowDeployed = (repo: string): boolean => {
+  const exists = sh(`gh api "repos/${repo}/contents/${WORKFLOW_PATH}" --jq .sha 2>/dev/null`);
+  if (exists) return true;
+  if (!existsSync(TEMPLATE_PATH)) {
+    console.log(`    [WARN] ${TEMPLATE_PATH} missing locally — cannot deploy to ${repo}`);
+    return false;
+  }
+  const content = Buffer.from(readFileSync(TEMPLATE_PATH, 'utf-8')).toString('base64');
+  const res = sh(
+    `gh api -X PUT "repos/${repo}/contents/${WORKFLOW_PATH}" ` +
+      `-f message="ci: deploy ai remediation agent workflow (devops-factory)" ` +
+      `-f content="${content}"`
+  );
+  if (res.includes('commit')) {
+    console.log(`    [DEPLOY] ${WORKFLOW_PATH} created in ${repo}`);
+    logActivity('remediation-dispatch', 'workflow-deployed', WORKFLOW_PATH, 'info', repo);
+    return true;
+  }
+  console.log(`    [WARN] failed to deploy ${WORKFLOW_PATH} to ${repo}`);
+  return false;
 };
 
 const main = (): void => {
@@ -135,6 +168,7 @@ const main = (): void => {
   for (const t of targets) {
     console.log(`  ${t.grade} ${t.name} (risk ${t.risk}) — ${t.reasons.join(', ')}`);
     if (dryRun) continue;
+    if (!ensureWorkflowDeployed(t.repo)) continue;
     if (dispatchAgent(t.repo)) {
       dispatched++;
       quota.count++;

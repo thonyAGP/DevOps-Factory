@@ -511,11 +511,17 @@ export interface RemediationConfig {
  */
 export const REMEDIATION_CONFIG: RemediationConfig = {
   enabled: true,
-  // Supervised rollout: one repo first. The agent opens a PR for human review
-  // (no automerge). Widen this list only once the loop is trusted.
-  enabledRepos: ['thonyAGP/lecteur-magic'],
+  // Supervised rollout, wave 2: the LecteurMagic pilot delivered a clean PR
+  // (LecteurMagic#46), so the next worst-graded F repos join. LecteurMagic is
+  // out until its PR is merged — keeping it listed would dispatch a duplicate
+  // agent onto work that is already awaiting review.
+  enabledRepos: [
+    'thonyAGP/magic-migration',
+    'thonyAGP/ClubMedRoomAssignment',
+    'thonyAGP/Email_Assistant',
+  ],
   minGrade: 'F',
-  maxPerDay: 2,
+  maxPerDay: 4,
   workflowFile: 'ai-remediation.yml',
 };
 
