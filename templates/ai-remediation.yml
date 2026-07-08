@@ -80,7 +80,15 @@ jobs:
               requise (secrets, majeures).
             - Commits conventionnels et atomiques.
 
-            Commence par l'issue `central-scan`, établis un plan priorisé, puis
-            exécute et ouvre la PR.
+            MÉTHODE (budget de tours limité)
+            - N'explore pas le repo en profondeur : l'issue `central-scan` te
+              donne fichier:ligne — va directement aux fichiers cités.
+            - Priorise 2-3 corrections sûres plutôt que l'exhaustivité.
+            - Dès la première correction faite : crée la branche, commit, push,
+              OUVRE LA PR (`gh pr create`). Ajoute les corrections suivantes en
+              commits sur la même branche. Mieux vaut une PR partielle avec les
+              reports documentés qu'aucune PR.
+
+            Commence par l'issue `central-scan`, puis exécute.
           allowed_tools: 'Bash,Edit,Write,Read,Grep,Glob'
-          max_turns: '30'
+          max_turns: '80'
