@@ -23,6 +23,9 @@ permissions:
   contents: write
   pull-requests: write
   issues: read
+  # claude-code-action exchanges an OIDC token with the Claude GitHub App
+  # to mint its GitHub access — without this the action dies at startup.
+  id-token: write
 
 concurrency:
   group: ai-remediation
