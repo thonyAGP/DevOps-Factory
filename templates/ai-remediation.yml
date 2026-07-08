@@ -46,6 +46,8 @@ jobs:
           # workflow_dispatch is an automation event — the default 'tag' mode
           # only handles @claude mentions and refuses it.
           mode: agent
+          # The action's default model (sonnet-4) is retired and 404s.
+          model: claude-sonnet-5
           # Subscription OAuth token (no API key, no usage-based billing).
           # See docs/remediation.md and docs/github-app-migration.md.
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
