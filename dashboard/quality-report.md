@@ -1,23 +1,10 @@
-## Quality Score Report - 2026-07-08
+## Quality Score Report - 2026-07-09
 
 ### Summary
 - **Average Score**: 31/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
-
-### Score Drops (≥5 points)
-- **Site_Au-marais**: 40 → 25 (-15)
-- **API_Claude**: 40 → 25 (-15)
-- **MCP_Quota_Claude**: 40 → 25 (-15)
-- **Statusline**: 40 → 25 (-15)
-- **Site_Greg-Assainissement**: 40 → 25 (-15)
-- **Site_1970_Plomberie**: 40 → 25 (-15)
-- **Thumbfast_createur_images**: 40 → 25 (-15)
-- **Utilitaire_Webapp**: 40 → 25 (-15)
-- **test_codingmenace**: 40 → 25 (-15)
-- **SqlConnectionTest**: 40 → 25 (-15)
-- **Zentra**: 40 → 25 (-15)
 
 ### Per Repository
 
