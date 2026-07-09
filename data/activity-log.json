@@ -4115,6 +4115,83 @@
       "action": "check-complete",
       "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-09T01:26:12.969Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 0 repos (0 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-09T01:26:25.732Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/DevOps-Factory",
+      "details": "PR #2174 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-09T01:26:25.735Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/DevOps-Factory",
+      "details": "PR #2183 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-09T01:26:25.736Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/DevOps-Factory",
+      "details": "PR #2191 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-09T01:26:26.101Z",
+      "source": "outcome-registry",
+      "action": "healing-verified",
+      "target": "thonyAGP/Email_Assistant",
+      "details": "PR #2828 — CI green after merge",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-09T01:26:27.462Z",
+      "source": "outcome-registry",
+      "action": "healing-verified",
+      "target": "thonyAGP/CasaSync",
+      "details": "PR #241 — CI green after merge",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-09T01:26:28.778Z",
+      "source": "outcome-registry",
+      "action": "healing-verified",
+      "target": "thonyAGP/livret-au-marais",
+      "details": "PR #34 — CI green after merge",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-09T01:26:30.010Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/zentra",
+      "details": "PR #84 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-09T01:26:30.240Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-09T01:26:30.243Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 36 outcomes (16 merged, 7 closed, 13 open). 18 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
