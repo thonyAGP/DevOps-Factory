@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-09T11:12:45.233Z",
+  "timestamp": "2026-07-10T11:13:02.399Z",
   "scores": [
     {
       "name": "DevOps-Factory",
@@ -98,8 +98,8 @@
       }
     },
     {
-      "name": "LB2I-Fiscal-Manager",
-      "repo": "thonyAGP/LB2I-Fiscal-Manager",
+      "name": "magic-migration",
+      "repo": "thonyAGP/magic-migration",
       "score": 40,
       "breakdown": {
         "ciPasses": 15,
@@ -114,13 +114,13 @@
       }
     },
     {
-      "name": "magic-migration",
-      "repo": "thonyAGP/magic-migration",
-      "score": 40,
+      "name": "LB2I-Fiscal-Manager",
+      "repo": "thonyAGP/LB2I-Fiscal-Manager",
+      "score": 35,
       "breakdown": {
         "ciPasses": 15,
         "coverageAboveThreshold": 0,
-        "prettierClean": 5,
+        "prettierClean": 0,
         "eslintZeroWarnings": 10,
         "branchProtection": 0,
         "depsUpToDate": 10,
@@ -306,5 +306,12 @@
       }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "LB2I-Fiscal-Manager",
+      "drop": 5,
+      "from": 40,
+      "to": 35
+    }
+  ]
 }
