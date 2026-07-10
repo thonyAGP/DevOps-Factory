@@ -4851,6 +4851,51 @@
       "action": "check-complete",
       "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-10T01:23:41.002Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 0 repos (0 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-10T01:23:54.911Z",
+      "source": "outcome-registry",
+      "action": "healing-verified",
+      "target": "thonyAGP/Email_Assistant",
+      "details": "PR #2828 — CI green after merge",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-10T01:23:56.350Z",
+      "source": "outcome-registry",
+      "action": "healing-verified",
+      "target": "thonyAGP/CasaSync",
+      "details": "PR #241 — CI green after merge",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-10T01:23:57.741Z",
+      "source": "outcome-registry",
+      "action": "healing-verified",
+      "target": "thonyAGP/livret-au-marais",
+      "details": "PR #34 — CI green after merge",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-10T01:23:58.900Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-10T01:23:58.902Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 36 outcomes (16 merged, 7 closed, 13 open). 18 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
