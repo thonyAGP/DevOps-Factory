@@ -1,13 +1,10 @@
-## Quality Score Report - 2026-07-10
+## Quality Score Report - 2026-07-11
 
 ### Summary
 - **Average Score**: 31/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
-
-### Score Drops (≥5 points)
-- **LB2I-Fiscal-Manager**: 40 → 35 (-5)
 
 ### Per Repository
 
@@ -83,7 +80,7 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### magic-migration
+#### LB2I-Fiscal-Manager
 - **Score**: 40/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -95,11 +92,11 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### LB2I-Fiscal-Manager
-- **Score**: 35/100
+#### magic-migration
+- **Score**: 40/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
-- **Prettier**: ✗
+- **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
