@@ -20,11 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version: 20.20.2
 
       - name: Install dependencies
         run: |
@@ -101,7 +101,7 @@ jobs:
 
       - name: Comment PR
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
             const critical = parseInt('${{ steps.audit.outputs.critical }}') || 0;
@@ -159,7 +159,7 @@ jobs:
 
       - name: Create issue on schedule
         if: github.event_name == 'schedule' && (steps.audit.outputs.critical != '0' || steps.audit.outputs.high != '0')
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
             const title = `🔒 Supply chain: ${${{ steps.audit.outputs.critical }}} critical, ${${{ steps.audit.outputs.high }}} high vulnerabilities`;
