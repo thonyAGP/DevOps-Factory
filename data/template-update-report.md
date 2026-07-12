@@ -1,16 +1,16 @@
 ## Template Update Report
 
-> Based on veille from 2026-05-10
+> Based on veille from 2026-07-12
 
 ### Watchlist (Breaking Changes)
 
-- Vitest  has breaking changes - review before updating templates
+- Vitest v4.1.10 has breaking changes - review before updating templates
 
 ### Template Inventory
 
 | Tool | Version in Templates | Files |
 |------|---------------------|-------|
-| actions/checkout | v4 | 40 file(s) |
+| actions/checkout | v4 | 41 file(s) |
 | actions/setup-node | v4 | 19 file(s) |
 
 ---
