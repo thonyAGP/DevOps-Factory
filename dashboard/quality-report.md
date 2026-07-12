@@ -1,7 +1,7 @@
-## Quality Score Report - 2026-07-11
+## Quality Score Report - 2026-07-12
 
 ### Summary
-- **Average Score**: 31/100
+- **Average Score**: 32/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
@@ -68,6 +68,18 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
+#### Site_Au-marais
+- **Score**: 40/100
+- **CI Passes**: ✗
+- **Coverage**: ✓
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
 #### Lecteur_Magic
 - **Score**: 40/100
 - **CI Passes**: ✓
@@ -95,18 +107,6 @@
 #### magic-migration
 - **Score**: 40/100
 - **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### Site_Au-marais
-- **Score**: 25/100
-- **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
