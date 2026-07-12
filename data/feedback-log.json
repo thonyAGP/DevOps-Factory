@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lastUpdated": "2026-05-17T10:25:16.236Z",
+  "lastUpdated": "2026-07-12T10:37:31.933Z",
   "feedbacks": [
     {
       "date": "2026-02-18T21:16:13.456Z",
@@ -2501,6 +2501,987 @@
       "prNumber": 21,
       "prTitle": "TASK-18: Widen reminder regex for imperative forms",
       "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2211,
+      "prTitle": "feat: remédiation vague 2 — 3 repos F de plus, workflow auto-déployé",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2203,
+      "prTitle": "fix: budget de tours de l'agent + PR ouverte tôt (template)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2202,
+      "prTitle": "fix: épingler le modèle de l'agent de remédiation (défaut retiré)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2201,
+      "prTitle": "fix: mode agent dans le template de remédiation",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2199,
+      "prTitle": "fix: id-token write dans le template de l'agent de remédiation",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2192,
+      "prTitle": "fix: quota journalier persistant + corps de PR sûrs (durcissement avant minutes payantes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2191,
+      "prTitle": "feat: politique minutes — les repos privés ne brûlent plus le quota Actions",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2188,
+      "prTitle": "feat: activer la remédiation supervisée sur lecteur-magic",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2186,
+      "prTitle": "feat: distribution du secret en un coup + token OAuth pour l'agent de remédiation",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2183,
+      "prTitle": "chore: retirer le PAT, la GitHub App devient l'unique auth (étape 6)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2174,
+      "prTitle": "feat: migrer les 24 workflows restants vers l'auth GitHub App (zéro-downtime)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.742Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2172,
+      "prTitle": "feat: préparer la migration GitHub App (zéro-downtime, référence central-scan)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.743Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2166,
+      "prTitle": "feat: dispatcher de remédiation autonome (squelette du saut #3, fail-closed)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.743Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2165,
+      "prTitle": "fix: ne plus scanner l'historique gitleaks de la Factory elle-même (timeout redondant)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.743Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2162,
+      "prTitle": "perf: cache des bases scanners et des installs dans les workflows centraux",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.743Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2161,
+      "prTitle": "feat: registre unifié de posture sécurité (gestion des vulnérabilités)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.743Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2160,
+      "prTitle": "feat: coverage gates (étape 2) + dashboard event-driven et section couverture",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.743Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2159,
+      "prTitle": "feat: mesure centrale hebdomadaire de la couverture de tests (étape 1)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.743Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2157,
+      "prTitle": "feat: quick wins P2 — épinglage SHA des actions, .gitleaksignore proposés, dashboard sécurité",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:15.743Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 2156,
+      "prTitle": "feat: Renovate centralisé self-hosted pour les 25 repos (P1 dépendances)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:16.690Z",
+      "repo": "thonyAGP/Email_Assistant",
+      "prNumber": 2831,
+      "prTitle": "fix:  CI fix",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:16.690Z",
+      "repo": "thonyAGP/Email_Assistant",
+      "prNumber": 2829,
+      "prTitle": "fix:  CI fix",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:16.690Z",
+      "repo": "thonyAGP/Email_Assistant",
+      "prNumber": 2828,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:16.690Z",
+      "repo": "thonyAGP/Email_Assistant",
+      "prNumber": 2825,
+      "prTitle": "fix(deps): update dependency @fastify/static to v9 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:16.690Z",
+      "repo": "thonyAGP/Email_Assistant",
+      "prNumber": 2824,
+      "prTitle": "chore(deps): update dependency fastify to v5.8.5 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:16.690Z",
+      "repo": "thonyAGP/Email_Assistant",
+      "prNumber": 2822,
+      "prTitle": "chore: gitleaksignore — secrets historiques révoqués",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:17.601Z",
+      "repo": "thonyAGP/ClubMedRoomAssignment",
+      "prNumber": 2830,
+      "prTitle": "chore(deps): update pnpm to v11 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:17.601Z",
+      "repo": "thonyAGP/ClubMedRoomAssignment",
+      "prNumber": 2827,
+      "prTitle": "chore(deps): update dependency opentelemetry.exporter.opentelemetryprotocol to 1.15.3 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.589Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 249,
+      "prTitle": "[skip-openspec] La synchro Smoobu n'écrase plus jamais la langue choisie par l'hôte",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.589Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 247,
+      "prTitle": "[skip-openspec] Tiroir fiche : une seule croix de fermeture",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.589Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 246,
+      "prTitle": "[skip-openspec] Brique 2 « Suivante ↓ » + la fiche en tiroir devient LA seule fiche",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.589Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 245,
+      "prTitle": "[skip-openspec] Phase 3 — Une seule file « À traiter » : actions + messages dans l'inbox, onglet IA retiré",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.589Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 244,
+      "prTitle": "[skip-openspec] Phase 1 — La fiche séjour s'ouvre en tiroir depuis tous les écrans",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.589Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 243,
+      "prTitle": "[skip-openspec] Phase 0 — Hygiène navigation : deep-links morts, boutons sans effet, badge dupliqué",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.589Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 242,
+      "prTitle": "[skip-openspec] WhatsApp 63016 : audit Twilio des templates + config active",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.589Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 241,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 238,
+      "prTitle": "chore(deps): update dependency vitest to v3 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 237,
+      "prTitle": "fix(deps): update dependency @anthropic-ai/sdk to ^0.91.0 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 236,
+      "prTitle": "chore(deps): update dependency mermaid to v11.15.0 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 234,
+      "prTitle": "chore: gitleaksignore — secrets historiques révoqués",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 230,
+      "prTitle": "[skip-openspec] Messages : retirer le montant payé par le client",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 229,
+      "prTitle": "[skip-openspec] Boîte « À traiter » : Terminer / Plus tard + vue par défaut + retour intelligent",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 228,
+      "prTitle": "[skip-openspec] fix(inbox): le bandeau ne bouge plus — scroll de page verrouillé sur Messages",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 227,
+      "prTitle": "[skip-openspec] fix(inbox): cacher le canal « Direct » du composer pour une résa directe",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 226,
+      "prTitle": "[skip-openspec] fix(dates): la synthèse d'audit part toujours, en force (avalée par les heures de silence)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 225,
+      "prTitle": "[skip-openspec] fix(dates): stockage canonique des dates de séjour + réparation et audit des dégâts",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 224,
+      "prTitle": "[skip-openspec] fix(whatsapp): corps humain du message au lieu du dump « Template: … »",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:18.590Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 223,
+      "prTitle": "[skip-openspec] fix(reservations): un téléphone saisi via « Modifier » devient réellement joignable",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:19.336Z",
+      "repo": "thonyAGP/livret-au-marais",
+      "prNumber": 34,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:19.336Z",
+      "repo": "thonyAGP/livret-au-marais",
+      "prNumber": 31,
+      "prTitle": "chore(deps): update dependency vitest to v3 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:19.336Z",
+      "repo": "thonyAGP/livret-au-marais",
+      "prNumber": 30,
+      "prTitle": "fix(deps): update dependency next to v16.2.6 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:19.336Z",
+      "repo": "thonyAGP/livret-au-marais",
+      "prNumber": 28,
+      "prTitle": "chore: gitleaksignore — secrets historiques révoqués",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:20.491Z",
+      "repo": "thonyAGP/au-marais",
+      "prNumber": 50,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:20.491Z",
+      "repo": "thonyAGP/au-marais",
+      "prNumber": 47,
+      "prTitle": "chore(deps): update pnpm to v11 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:20.491Z",
+      "repo": "thonyAGP/au-marais",
+      "prNumber": 46,
+      "prTitle": "chore(deps): update dependency next to v16.2.6 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:20.491Z",
+      "repo": "thonyAGP/au-marais",
+      "prNumber": 45,
+      "prTitle": "chore(deps): update dependency uuid to v13.0.1 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:20.491Z",
+      "repo": "thonyAGP/au-marais",
+      "prNumber": 43,
+      "prTitle": "chore: gitleaksignore — secrets historiques révoqués",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:20.491Z",
+      "repo": "thonyAGP/au-marais",
+      "prNumber": 36,
+      "prTitle": "fix: security pen test findings + LT-08 report",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:20.491Z",
+      "repo": "thonyAGP/au-marais",
+      "prNumber": 35,
+      "prTitle": "fix(proxy): exclude /maps from i18n middleware",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:20.491Z",
+      "repo": "thonyAGP/au-marais",
+      "prNumber": 34,
+      "prTitle": "feat: /maps short link + CI workflows",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:20.491Z",
+      "repo": "thonyAGP/au-marais",
+      "prNumber": 33,
+      "prTitle": "Sprint 1 Growth + Security LT-07 + Site Tracking",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:21.835Z",
+      "repo": "thonyAGP/lecteur-magic",
+      "prNumber": 46,
+      "prTitle": "fix: corrections sécurité & qualité (central-scan)",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:21.835Z",
+      "repo": "thonyAGP/lecteur-magic",
+      "prNumber": 45,
+      "prTitle": "ci: budget de tours élargi + PR ouverte tôt (run #5 mort à max_turns)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:21.835Z",
+      "repo": "thonyAGP/lecteur-magic",
+      "prNumber": 44,
+      "prTitle": "ci: épingler le modèle de l'agent sur claude-sonnet-5",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:21.835Z",
+      "repo": "thonyAGP/lecteur-magic",
+      "prNumber": 43,
+      "prTitle": "ci: mode agent pour l'agent de remédiation (workflow_dispatch)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:21.835Z",
+      "repo": "thonyAGP/lecteur-magic",
+      "prNumber": 42,
+      "prTitle": "ci: id-token write pour l'agent de remédiation (auth OIDC)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:21.835Z",
+      "repo": "thonyAGP/lecteur-magic",
+      "prNumber": 41,
+      "prTitle": "ci: agent de remédiation IA (findings central-scan)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:22.677Z",
+      "repo": "thonyAGP/claude-cli-wrapper",
+      "prNumber": 28,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:22.677Z",
+      "repo": "thonyAGP/claude-cli-wrapper",
+      "prNumber": 25,
+      "prTitle": "chore(deps): update pnpm to v11 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:22.677Z",
+      "repo": "thonyAGP/claude-cli-wrapper",
+      "prNumber": 24,
+      "prTitle": "chore(deps): update dependency vitest to v4.1.0 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:23.411Z",
+      "repo": "thonyAGP/MCP_Quota_Claude",
+      "prNumber": 27,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:23.411Z",
+      "repo": "thonyAGP/MCP_Quota_Claude",
+      "prNumber": 24,
+      "prTitle": "chore(deps): update dependency @modelcontextprotocol/sdk to v1.26.0 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:24.281Z",
+      "repo": "thonyAGP/statusline",
+      "prNumber": 23,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:24.282Z",
+      "repo": "thonyAGP/statusline",
+      "prNumber": 19,
+      "prTitle": "fix: corrections sécurité & qualité (central-scan)",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:25.066Z",
+      "repo": "thonyAGP/Site_Greg-Assainissement",
+      "prNumber": 27,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:25.066Z",
+      "repo": "thonyAGP/Site_Greg-Assainissement",
+      "prNumber": 24,
+      "prTitle": "fix(deps): update dependency next to v16.2.6 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:25.764Z",
+      "repo": "thonyAGP/Site_1970_Plomberie",
+      "prNumber": 25,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:25.764Z",
+      "repo": "thonyAGP/Site_1970_Plomberie",
+      "prNumber": 22,
+      "prTitle": "fix(deps): update dependency astro to v6 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:26.828Z",
+      "repo": "thonyAGP/Thumbfast",
+      "prNumber": 30,
+      "prTitle": "fix(deps): update dependency next to v16.2.6 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:26.828Z",
+      "repo": "thonyAGP/Thumbfast",
+      "prNumber": 29,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:27.690Z",
+      "repo": "thonyAGP/Utilitaire_Webapp",
+      "prNumber": 32,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:28.462Z",
+      "repo": "thonyAGP/test_codingmenace",
+      "prNumber": 26,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:28.462Z",
+      "repo": "thonyAGP/test_codingmenace",
+      "prNumber": 23,
+      "prTitle": "fix(deps): update dependency next to v16.2.6 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:29.151Z",
+      "repo": "thonyAGP/SqlConnectionTest",
+      "prNumber": 21,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 84,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 81,
+      "prTitle": "chore(deps): update dependency pytest to v9 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 80,
+      "prTitle": "chore(deps): update dependency pillow to v12 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 79,
+      "prTitle": "fix(deps): update dependency next to ~16.2.0 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 78,
+      "prTitle": "chore(deps): update dependency vitest to v4.1.0 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 77,
+      "prTitle": "chore(deps): update dependency fastify to v5.8.5 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 76,
+      "prTitle": "chore(deps): update dependency @nestjs/core to v11.1.18 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 74,
+      "prTitle": "fix: corrections sécurité & qualité (central-scan)",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 67,
+      "prTitle": "chore(deps-dev): bump @types/supertest from 6.0.3 to 7.2.0",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 66,
+      "prTitle": "chore(deps): bump @bull-board/fastify from 6.20.5 to 7.1.5",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 65,
+      "prTitle": "chore(deps): bump zod from 3.25.76 to 4.4.3",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 64,
+      "prTitle": "chore(deps-dev): bump @commitlint/cli from 20.4.4 to 21.0.1",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 63,
+      "prTitle": "chore(deps): bump @prisma/client from 5.22.0 to 7.8.0",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 62,
+      "prTitle": "chore(deps): bump @bull-board/api from 6.20.5 to 7.1.5",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.099Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 61,
+      "prTitle": "chore(deps): bump the minor-and-patch group with 45 updates",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.922Z",
+      "repo": "thonyAGP/LB2I-Fiscal-Manager",
+      "prNumber": 34,
+      "prTitle": "chore: retirer les workflows couverts par l'usine centrale (économie de minutes)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.922Z",
+      "repo": "thonyAGP/LB2I-Fiscal-Manager",
+      "prNumber": 31,
+      "prTitle": "fix(deps): update dependency nodemailer to v9 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.922Z",
+      "repo": "thonyAGP/LB2I-Fiscal-Manager",
+      "prNumber": 30,
+      "prTitle": "fix(deps): update dependency next to v15 [security]",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:30.922Z",
+      "repo": "thonyAGP/LB2I-Fiscal-Manager",
+      "prNumber": 28,
+      "prTitle": "chore: gitleaksignore — secrets historiques révoqués",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:31.932Z",
+      "repo": "thonyAGP/magic-migration",
+      "prNumber": 46,
+      "prTitle": "fix: corrections sécurité & qualité (central-scan)",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:31.932Z",
+      "repo": "thonyAGP/magic-migration",
+      "prNumber": 45,
+      "prTitle": "ci: budget de tours élargi + PR ouverte tôt (run #5 mort à max_turns)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:31.932Z",
+      "repo": "thonyAGP/magic-migration",
+      "prNumber": 44,
+      "prTitle": "ci: épingler le modèle de l'agent sur claude-sonnet-5",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:31.932Z",
+      "repo": "thonyAGP/magic-migration",
+      "prNumber": 43,
+      "prTitle": "ci: mode agent pour l'agent de remédiation (workflow_dispatch)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:31.932Z",
+      "repo": "thonyAGP/magic-migration",
+      "prNumber": 42,
+      "prTitle": "ci: id-token write pour l'agent de remédiation (auth OIDC)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-07-12T10:37:31.932Z",
+      "repo": "thonyAGP/magic-migration",
+      "prNumber": 41,
+      "prTitle": "ci: agent de remédiation IA (findings central-scan)",
+      "outcome": "merged",
       "patternId": null,
       "source": "self-heal"
     }
