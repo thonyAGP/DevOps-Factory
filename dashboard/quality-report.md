@@ -1,24 +1,15 @@
-## Quality Score Report - 2026-07-12
+## Quality Score Report - 2026-07-13
 
 ### Summary
-- **Average Score**: 32/100
+- **Average Score**: 36/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
 
-### Per Repository
+### Score Drops (≥5 points)
+- **DevOps-Factory**: 40 → 25 (-15)
 
-#### DevOps-Factory
-- **Score**: 40/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
+### Per Repository
 
 #### Email_Assistant
 - **Score**: 40/100
@@ -117,7 +108,7 @@
 - **No Critical Findings**: ✗
 
 #### API_Claude
-- **Score**: 25/100
+- **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
@@ -126,10 +117,10 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
+- **No Critical Findings**: ✓
 
 #### MCP_Quota_Claude
-- **Score**: 25/100
+- **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
@@ -138,10 +129,10 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
+- **No Critical Findings**: ✓
 
 #### Statusline
-- **Score**: 25/100
+- **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
@@ -150,10 +141,10 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
+- **No Critical Findings**: ✓
 
 #### Site_Greg-Assainissement
-- **Score**: 25/100
+- **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
@@ -162,10 +153,10 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
+- **No Critical Findings**: ✓
 
 #### Site_1970_Plomberie
-- **Score**: 25/100
+- **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
@@ -174,10 +165,10 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
+- **No Critical Findings**: ✓
 
 #### Thumbfast_createur_images
-- **Score**: 25/100
+- **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
 - **Prettier**: ✓
@@ -186,9 +177,33 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
+- **No Critical Findings**: ✓
 
 #### Utilitaire_Webapp
+- **Score**: 35/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✓
+
+#### SqlConnectionTest
+- **Score**: 35/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✓
+
+#### DevOps-Factory
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -201,18 +216,6 @@
 - **No Critical Findings**: ✗
 
 #### test_codingmenace
-- **Score**: 25/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### SqlConnectionTest
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗

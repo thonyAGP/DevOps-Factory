@@ -1,22 +1,6 @@
 {
-  "timestamp": "2026-07-12T09:58:35.567Z",
+  "timestamp": "2026-07-13T11:22:33.197Z",
   "scores": [
-    {
-      "name": "DevOps-Factory",
-      "repo": "thonyAGP/DevOps-Factory",
-      "score": 40,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
     {
       "name": "Email_Assistant",
       "repo": "thonyAGP/Email_Assistant",
@@ -148,7 +132,7 @@
     {
       "name": "API_Claude",
       "repo": "thonyAGP/claude-cli-wrapper",
-      "score": 25,
+      "score": 35,
       "breakdown": {
         "ciPasses": 0,
         "coverageAboveThreshold": 0,
@@ -158,13 +142,13 @@
         "depsUpToDate": 10,
         "noSecrets": 0,
         "noDuplication": 0,
-        "noCriticalFindings": 0
+        "noCriticalFindings": 10
       }
     },
     {
       "name": "MCP_Quota_Claude",
       "repo": "thonyAGP/MCP_Quota_Claude",
-      "score": 25,
+      "score": 35,
       "breakdown": {
         "ciPasses": 0,
         "coverageAboveThreshold": 0,
@@ -174,13 +158,13 @@
         "depsUpToDate": 10,
         "noSecrets": 0,
         "noDuplication": 0,
-        "noCriticalFindings": 0
+        "noCriticalFindings": 10
       }
     },
     {
       "name": "Statusline",
       "repo": "thonyAGP/statusline",
-      "score": 25,
+      "score": 35,
       "breakdown": {
         "ciPasses": 0,
         "coverageAboveThreshold": 0,
@@ -190,13 +174,13 @@
         "depsUpToDate": 10,
         "noSecrets": 0,
         "noDuplication": 0,
-        "noCriticalFindings": 0
+        "noCriticalFindings": 10
       }
     },
     {
       "name": "Site_Greg-Assainissement",
       "repo": "thonyAGP/Site_Greg-Assainissement",
-      "score": 25,
+      "score": 35,
       "breakdown": {
         "ciPasses": 0,
         "coverageAboveThreshold": 0,
@@ -206,13 +190,13 @@
         "depsUpToDate": 10,
         "noSecrets": 0,
         "noDuplication": 0,
-        "noCriticalFindings": 0
+        "noCriticalFindings": 10
       }
     },
     {
       "name": "Site_1970_Plomberie",
       "repo": "thonyAGP/Site_1970_Plomberie",
-      "score": 25,
+      "score": 35,
       "breakdown": {
         "ciPasses": 0,
         "coverageAboveThreshold": 0,
@@ -222,13 +206,13 @@
         "depsUpToDate": 10,
         "noSecrets": 0,
         "noDuplication": 0,
-        "noCriticalFindings": 0
+        "noCriticalFindings": 10
       }
     },
     {
       "name": "Thumbfast_createur_images",
       "repo": "thonyAGP/Thumbfast",
-      "score": 25,
+      "score": 35,
       "breakdown": {
         "ciPasses": 0,
         "coverageAboveThreshold": 0,
@@ -238,12 +222,44 @@
         "depsUpToDate": 10,
         "noSecrets": 0,
         "noDuplication": 0,
-        "noCriticalFindings": 0
+        "noCriticalFindings": 10
       }
     },
     {
       "name": "Utilitaire_Webapp",
       "repo": "thonyAGP/Utilitaire_Webapp",
+      "score": 35,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 10
+      }
+    },
+    {
+      "name": "SqlConnectionTest",
+      "repo": "thonyAGP/SqlConnectionTest",
+      "score": 35,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 10
+      }
+    },
+    {
+      "name": "DevOps-Factory",
+      "repo": "thonyAGP/DevOps-Factory",
       "score": 25,
       "breakdown": {
         "ciPasses": 0,
@@ -274,22 +290,6 @@
       }
     },
     {
-      "name": "SqlConnectionTest",
-      "repo": "thonyAGP/SqlConnectionTest",
-      "score": 25,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
       "name": "Zentra",
       "repo": "thonyAGP/zentra",
       "score": 25,
@@ -306,5 +306,12 @@
       }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "DevOps-Factory",
+      "drop": 15,
+      "from": 40,
+      "to": 25
+    }
+  ]
 }
