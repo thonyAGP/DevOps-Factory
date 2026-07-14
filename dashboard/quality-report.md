@@ -1,4 +1,4 @@
-## Quality Score Report - 2026-07-13
+## Quality Score Report - 2026-07-14
 
 ### Summary
 - **Average Score**: 36/100
@@ -6,10 +6,19 @@
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
 
-### Score Drops (≥5 points)
-- **DevOps-Factory**: 40 → 25 (-15)
-
 ### Per Repository
+
+#### DevOps-Factory
+- **Score**: 40/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
 
 #### Email_Assistant
 - **Score**: 40/100
@@ -202,18 +211,6 @@
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✓
-
-#### DevOps-Factory
-- **Score**: 25/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
 
 #### test_codingmenace
 - **Score**: 25/100
