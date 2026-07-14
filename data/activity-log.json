@@ -2,130 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-07T13:39:30.685Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "2 projects, avg health 49",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T13:39:41.678Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 2 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T13:39:42.378Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.2/10, 2720 risk pts, +1/-0",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T13:39:51.450Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 46%, 12 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T13:39:58.610Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: high, deploy 0/wk, lead 0h, MTTR 0h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-07T13:40:01.349Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 76min total, 76min wasted, ~$0/mo",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T13:40:08.803Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 80/100, branch protection 0/2, CI 2/2, review coverage 0%",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-07T13:40:09.528Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "6 recommendations across 30 repos (0 critical, 5 high)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-07T13:59:26.011Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-07T13:59:45.553Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/DevOps-Factory",
-      "details": "PR #2165 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T13:59:45.554Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/DevOps-Factory",
-      "details": "PR #2155 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T13:59:45.555Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/DevOps-Factory",
-      "details": "PR #2174 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T13:59:45.557Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/DevOps-Factory",
-      "details": "PR #2153 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T13:59:45.558Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/DevOps-Factory",
-      "details": "PR #2143 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T13:59:45.560Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T13:59:45.562Z",
-      "source": "scan-and-configure",
-      "action": "repo-promotion",
-      "details": "Promoted 1 repo(s) to healing_graduated: thonyAGP/DevOps-Factory",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-07T13:59:45.563Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 29 outcomes (9 merged, 7 closed, 13 open). 11 new in last 7d. 0 confidence scores adjusted. 1 repo(s) promoted.",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-07-07T14:29:59.968Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -6484,6 +6360,45 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-07-14T14:21:21.711Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-14T14:21:21.717Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-14T14:21:23.879Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Self-Heal CI",
+      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-14T14:21:27.231Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "Self-Heal CI",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-14T14:21:27.234Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "4/7 passing. 2 failures, 1 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
