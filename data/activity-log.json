@@ -2,246 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-07T08:28:24.352Z",
-      "source": "ci-health-check",
-      "action": "self-heal-failed",
-      "target": "DevOps-Factory",
-      "details": "Failed to trigger self-heal for DevOps-Factory",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T08:28:24.353Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-07T08:28:24.354Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/10 passing, 1 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T08:37:53.993Z",
-      "source": "ci-health-check",
-      "action": "self-heal-failed",
-      "target": "DevOps-Factory",
-      "details": "Failed to trigger self-heal for DevOps-Factory",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T08:37:53.994Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-07T08:37:53.995Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/10 passing, 1 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T08:47:39.737Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "2 projects, avg health 49",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T08:47:50.877Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 2 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T08:47:51.578Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.2/10, 2720 risk pts, +1/-0",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T08:48:01.447Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 46%, 12 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T08:48:08.470Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: high, deploy 0/wk, lead 0h, MTTR 0h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-07T08:48:11.111Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 64min total, 64min wasted, ~$0/mo",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T08:48:19.496Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 80/100, branch protection 0/2, CI 2/2, review coverage 0%",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-07T08:48:20.217Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "6 recommendations across 30 repos (0 critical, 5 high)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-07T09:02:41.423Z",
-      "source": "ci-health-check",
-      "action": "self-heal-failed",
-      "target": "DevOps-Factory",
-      "details": "Failed to trigger self-heal for DevOps-Factory",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T09:02:41.424Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-07T09:02:41.495Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/10 passing, 1 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T09:08:02.707Z",
-      "source": "ci-health-check",
-      "action": "self-heal-failed",
-      "target": "DevOps-Factory",
-      "details": "Failed to trigger self-heal for DevOps-Factory",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T09:08:02.709Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-07T09:08:02.710Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/10 passing, 1 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T09:17:36.895Z",
-      "source": "ci-health-check",
-      "action": "self-heal-failed",
-      "target": "DevOps-Factory",
-      "details": "Failed to trigger self-heal for DevOps-Factory",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T09:17:36.896Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-07T09:17:36.897Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/10 passing, 1 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T09:22:55.576Z",
-      "source": "ci-health-check",
-      "action": "self-heal-failed",
-      "target": "DevOps-Factory",
-      "details": "Failed to trigger self-heal for DevOps-Factory",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T09:22:55.577Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-07T09:22:55.578Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/10 passing, 1 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T09:30:03.873Z",
-      "source": "ci-health-check",
-      "action": "self-heal-failed",
-      "target": "DevOps-Factory",
-      "details": "Failed to trigger self-heal for DevOps-Factory",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T09:30:03.874Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-07T09:30:03.876Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/10 passing, 1 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-07T09:39:30.372Z",
-      "source": "ci-health-check",
-      "action": "self-heal-failed",
-      "target": "DevOps-Factory",
-      "details": "Failed to trigger self-heal for DevOps-Factory",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-07T09:39:30.373Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "DevOps-Factory",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-07T09:39:30.374Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "0/10 passing, 1 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-07-07T09:48:49.855Z",
       "source": "ci-health-check",
       "action": "self-heal-failed",
@@ -7155,6 +6915,45 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-07-14T09:48:34.260Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 28931445891)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-14T09:48:34.263Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Email_Assistant",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-14T09:48:34.266Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "ClubMedRoomAssignment",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-14T09:48:34.269Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Zentra",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-14T09:48:34.273Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
