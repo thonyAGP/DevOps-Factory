@@ -2,117 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-08T10:26:23.505Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Site_Au-marais",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.506Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "API_Claude",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.508Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "MCP_Quota_Claude",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.509Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Statusline",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.511Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Site_Greg-Assainissement",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.512Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Site_1970_Plomberie",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.513Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Thumbfast_createur_images",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.515Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Utilitaire_Webapp",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.516Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "test_codingmenace",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.518Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "SqlConnectionTest",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.519Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Zentra",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.520Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "Lecteur_Magic",
-      "details": "25 → 40 (+15pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.522Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "magic-migration",
-      "details": "25 → 40 (+15pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-08T10:26:23.523Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 31/100, 0 excellent, 19 needs work, 11 drops, 2 improvements",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-07-08T10:55:32.726Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -6175,6 +6064,34 @@
       "source": "quality-score",
       "action": "quality-complete",
       "details": "Avg 36/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-15T10:48:14.000Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-15T10:48:19.892Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-15T10:48:20.584Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 6.3/10, 2415 risk pts, +1/-16",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-15T10:48:21.275Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
     }
   ]
