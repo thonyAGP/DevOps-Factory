@@ -2,67 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-09T14:21:57.946Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-09T14:22:12.497Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/DevOps-Factory",
-      "details": "PR #2191 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-09T14:22:12.914Z",
-      "source": "outcome-registry",
-      "action": "healing-verified",
-      "target": "thonyAGP/Email_Assistant",
-      "details": "PR #2828 — CI green after merge",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-09T14:22:14.385Z",
-      "source": "outcome-registry",
-      "action": "healing-verified",
-      "target": "thonyAGP/CasaSync",
-      "details": "PR #241 — CI green after merge",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-09T14:22:16.064Z",
-      "source": "outcome-registry",
-      "action": "healing-verified",
-      "target": "thonyAGP/livret-au-marais",
-      "details": "PR #34 — CI green after merge",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-09T14:22:17.404Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/zentra",
-      "details": "PR #84 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-09T14:22:17.661Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-09T14:22:17.664Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 36 outcomes (16 merged, 7 closed, 13 open). 18 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-07-09T14:32:51.832Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -6180,6 +6119,45 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-07-16T14:30:13.613Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-16T14:30:13.617Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-16T14:30:18.285Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Self-Heal CI",
+      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-16T14:30:20.481Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "Self-Heal CI",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-16T14:30:20.484Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "4/7 passing. 2 failures, 1 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
