@@ -2,34 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-10T09:59:11.751Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-10T09:59:15.505Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-10T09:59:16.215Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.2/10, 2720 risk pts, +1/-0",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-10T09:59:16.907Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-07-10T10:16:15.855Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -6274,6 +6246,13 @@
       "action": "check-complete",
       "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-17T10:06:05.069Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 36/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
+      "status": "success"
     }
   ]
 }
