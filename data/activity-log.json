@@ -2,45 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-10T15:08:49.028Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-10T15:08:49.032Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-10T15:08:56.096Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "Self-Heal CI",
-      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY, gh: not found",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-10T15:08:57.508Z",
-      "source": "factory-watchdog",
-      "action": "workflow-stale",
-      "target": "Self-Heal CI",
-      "details": "Workflow stale (informational patterns only)",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-10T15:08:57.511Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "4/7 passing. 2 failures, 1 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-07-10T16:16:50.693Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -6285,6 +6246,34 @@
       "action": "check-complete",
       "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-17T16:14:24.434Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-17T16:14:27.971Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-17T16:14:28.503Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 6.3/10, 2415 risk pts, +1/-16",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-17T16:14:29.037Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
     }
   ]
 }
