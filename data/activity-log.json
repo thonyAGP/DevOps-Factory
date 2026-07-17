@@ -2,51 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-10T01:23:41.002Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-10T01:23:54.911Z",
-      "source": "outcome-registry",
-      "action": "healing-verified",
-      "target": "thonyAGP/Email_Assistant",
-      "details": "PR #2828 — CI green after merge",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-10T01:23:56.350Z",
-      "source": "outcome-registry",
-      "action": "healing-verified",
-      "target": "thonyAGP/CasaSync",
-      "details": "PR #241 — CI green after merge",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-10T01:23:57.741Z",
-      "source": "outcome-registry",
-      "action": "healing-verified",
-      "target": "thonyAGP/livret-au-marais",
-      "details": "PR #34 — CI green after merge",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-10T01:23:58.900Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-10T01:23:58.902Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 36 outcomes (16 merged, 7 closed, 13 open). 18 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-07-10T01:32:23.307Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -6154,6 +6109,34 @@
       "action": "outcome-registry",
       "details": "Registry updated: 39 outcomes (16 merged, 7 closed, 16 open). 3 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
       "status": "info"
+    },
+    {
+      "timestamp": "2026-07-17T01:28:40.528Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-17T01:28:45.831Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-17T01:28:46.462Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 6.3/10, 2415 risk pts, +1/-16",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-17T01:28:47.089Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
     }
   ]
 }
