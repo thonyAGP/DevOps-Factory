@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-18T09:40:03.689Z",
+  "timestamp": "2026-07-19T09:58:01.938Z",
   "scores": [
     {
       "name": "DevOps-Factory",
@@ -18,22 +18,6 @@
       }
     },
     {
-      "name": "Email_Assistant",
-      "repo": "thonyAGP/Email_Assistant",
-      "score": 40,
-      "breakdown": {
-        "ciPasses": 15,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
       "name": "ClubMedRoomAssignment",
       "repo": "thonyAGP/ClubMedRoomAssignment",
       "score": 40,
@@ -45,22 +29,6 @@
         "branchProtection": 0,
         "depsUpToDate": 10,
         "noSecrets": 15,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
-      "name": "CasaSync",
-      "repo": "thonyAGP/CasaSync",
-      "score": 40,
-      "breakdown": {
-        "ciPasses": 15,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
         "noDuplication": 0,
         "noCriticalFindings": 0
       }
@@ -98,40 +66,8 @@
       }
     },
     {
-      "name": "Lecteur_Magic",
-      "repo": "thonyAGP/lecteur-magic",
-      "score": 40,
-      "breakdown": {
-        "ciPasses": 15,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
       "name": "LB2I-Fiscal-Manager",
       "repo": "thonyAGP/LB2I-Fiscal-Manager",
-      "score": 40,
-      "breakdown": {
-        "ciPasses": 15,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
-      "name": "magic-migration",
-      "repo": "thonyAGP/magic-migration",
       "score": 40,
       "breakdown": {
         "ciPasses": 15,
@@ -274,6 +210,54 @@
       }
     },
     {
+      "name": "Email_Assistant",
+      "repo": "thonyAGP/Email_Assistant",
+      "score": 25,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
+      "name": "CasaSync",
+      "repo": "thonyAGP/CasaSync",
+      "score": 25,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
+      "name": "Lecteur_Magic",
+      "repo": "thonyAGP/lecteur-magic",
+      "score": 25,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
       "name": "test_codingmenace",
       "repo": "thonyAGP/test_codingmenace",
       "score": 25,
@@ -304,7 +288,48 @@
         "noDuplication": 0,
         "noCriticalFindings": 0
       }
+    },
+    {
+      "name": "magic-migration",
+      "repo": "thonyAGP/magic-migration",
+      "score": 25,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "Email_Assistant",
+      "drop": 15,
+      "from": 40,
+      "to": 25
+    },
+    {
+      "repo": "CasaSync",
+      "drop": 15,
+      "from": 40,
+      "to": 25
+    },
+    {
+      "repo": "Lecteur_Magic",
+      "drop": 15,
+      "from": 40,
+      "to": 25
+    },
+    {
+      "repo": "magic-migration",
+      "drop": 15,
+      "from": 40,
+      "to": 25
+    }
+  ]
 }

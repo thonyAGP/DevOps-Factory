@@ -1,10 +1,16 @@
-## Quality Score Report - 2026-07-18
+## Quality Score Report - 2026-07-19
 
 ### Summary
-- **Average Score**: 36/100
+- **Average Score**: 33/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
+
+### Score Drops (≥5 points)
+- **Email_Assistant**: 40 → 25 (-15)
+- **CasaSync**: 40 → 25 (-15)
+- **Lecteur_Magic**: 40 → 25 (-15)
+- **magic-migration**: 40 → 25 (-15)
 
 ### Per Repository
 
@@ -20,18 +26,6 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### Email_Assistant
-- **Score**: 40/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
 #### ClubMedRoomAssignment
 - **Score**: 40/100
 - **CI Passes**: ✗
@@ -41,18 +35,6 @@
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### CasaSync
-- **Score**: 40/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
@@ -80,31 +62,7 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### Lecteur_Magic
-- **Score**: 40/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
 #### LB2I-Fiscal-Manager
-- **Score**: 40/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### magic-migration
 - **Score**: 40/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -212,6 +170,42 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✓
 
+#### Email_Assistant
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### CasaSync
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### Lecteur_Magic
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
 #### test_codingmenace
 - **Score**: 25/100
 - **CI Passes**: ✗
@@ -225,6 +219,18 @@
 - **No Critical Findings**: ✗
 
 #### Zentra
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### magic-migration
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
