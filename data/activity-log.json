@@ -2,27 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-13T13:53:49.814Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-13T13:54:03.676Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-13T13:54:03.682Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 38 outcomes (16 merged, 7 closed, 15 open). 19 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-07-13T14:02:40.231Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -6437,6 +6416,34 @@
     },
     {
       "timestamp": "2026-07-20T13:52:25.252Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-20T14:01:49.999Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-20T14:01:53.308Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-20T14:01:53.993Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 6.3/10, 2415 risk pts, +1/-16",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-20T14:01:54.665Z",
       "source": "build-dashboard",
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
