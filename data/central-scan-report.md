@@ -1,4 +1,4 @@
-# Central Security Scan - 2026-07-13
+# Central Security Scan - 2026-07-20
 
 Scans centralisés exécutés depuis DevOps-Factory (repo public = minutes gratuites). Les repos privés du plan Free n'ont ni Code Scanning ni quota Actions illimité.
 
@@ -6,10 +6,10 @@ Scans centralisés exécutés depuis DevOps-Factory (repo public = minutes gratu
 
 | Repo | Secrets (gitleaks) | SAST (semgrep) | Deps/Config (trivy) | Duplication (jscpd) |
 |------|--------------------|----------------|---------------------|---------------------|
-| DevOps-Factory | ⏭️ | 🔴 12 | 🔴 4 | 🔴 9.81% |
+| DevOps-Factory | ⏭️ | 🔴 12 | 🔴 4 | 🔴 9.74% |
 | Email_Assistant | 🔴 1 | 🔴 25 | 🔴 51 | 🔴 18.05% |
 | ClubMedRoomAssignment | 🟢 0 | 🔴 15 | 🔴 54 | 🔴 3.28% |
-| CasaSync | 🔴 13 | 🔴 11 | 🔴 4 | 🔴 4.47% |
+| CasaSync | 🔴 13 | 🔴 11 | 🔴 4 | 🔴 4.64% |
 | Livret_accueil_Au-Marais | 🔴 2 | 🔴 6 | 🔴 8 | 🔴 5.97% |
 | Site_Au-marais | 🔴 2 | 🔴 7 | 🔴 20 | 🔴 14.36% |
 | Lecteur_Magic | 🔴 4 | 🔴 19 | 🔴 46 | 🔴 10.85% |
