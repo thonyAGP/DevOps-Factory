@@ -2,85 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-13T11:22:33.199Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "DevOps-Factory",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-13T11:22:33.202Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "API_Claude",
-      "details": "25 → 35 (+10pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-13T11:22:33.205Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "MCP_Quota_Claude",
-      "details": "25 → 35 (+10pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-13T11:22:33.209Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "Statusline",
-      "details": "25 → 35 (+10pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-13T11:22:33.212Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "Site_Greg-Assainissement",
-      "details": "25 → 35 (+10pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-13T11:22:33.215Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "Site_1970_Plomberie",
-      "details": "25 → 35 (+10pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-13T11:22:33.218Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "Thumbfast_createur_images",
-      "details": "25 → 35 (+10pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-13T11:22:33.221Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "Utilitaire_Webapp",
-      "details": "25 → 35 (+10pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-13T11:22:33.224Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "SqlConnectionTest",
-      "details": "25 → 35 (+10pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-13T11:22:33.227Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 36/100, 0 excellent, 19 needs work, 1 drops, 8 improvements",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-07-13T11:54:08.836Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -6426,6 +6347,34 @@
       "source": "quality-score",
       "action": "quality-complete",
       "details": "Avg 33/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-20T11:43:37.998Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-20T11:43:41.701Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-20T11:43:42.433Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 6.3/10, 2415 risk pts, +1/-16",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-20T11:43:43.157Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
     }
   ]
