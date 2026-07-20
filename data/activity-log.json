@@ -2,69 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-13T15:18:11.489Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-13T15:18:11.494Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-13T15:18:12.593Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "Self-Heal CI",
-      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY, gh: not found",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-13T15:18:19.346Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Test Scaffold Generator",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-13T15:18:20.841Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-triggered",
-      "target": "CI Health Check",
-      "details": "Self-heal for workflow (run 29256928851)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-13T15:18:20.844Z",
-      "source": "factory-watchdog",
-      "action": "workflow-stale",
-      "target": "Self-Heal CI",
-      "details": "Workflow stale (informational patterns only)",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-13T15:18:22.320Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Test Scaffold Generator",
-      "details": "total_failure: Test Scaffold Generator",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-13T15:18:22.324Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "7/11 passing. 3 failures, 1 partial. 1 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-07-13T17:08:36.641Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -6522,6 +6459,34 @@
       "action": "check-complete",
       "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-20T16:22:43.820Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-20T16:22:47.691Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-20T16:22:48.385Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 6.3/10, 2415 risk pts, +1/-16",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-20T16:22:49.067Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
     }
   ]
 }
