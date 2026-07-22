@@ -2,55 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-15T13:02:05.401Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-15T13:02:20.275Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-15T13:02:20.279Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 39 outcomes (16 merged, 7 closed, 16 open). 3 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-15T13:12:41.696Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-15T13:12:45.314Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-15T13:12:45.853Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.3/10, 2415 risk pts, +1/-16",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-15T13:12:46.398Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-07-15T13:39:52.565Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -6792,6 +6743,27 @@
       "action": "check-complete",
       "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-22T13:13:42.614Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 0 repos (0 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-22T13:13:56.140Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-22T13:13:56.145Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 40 outcomes (16 merged, 7 closed, 17 open). 1 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
