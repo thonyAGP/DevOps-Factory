@@ -2,53 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-17T14:10:22.293Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-17T14:10:22.297Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-17T14:10:24.709Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "Self-Heal CI",
-      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-17T14:10:29.597Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-triggered",
-      "target": "CI Health Check",
-      "details": "Self-heal for workflow (run 29584394294)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-17T14:10:29.600Z",
-      "source": "factory-watchdog",
-      "action": "workflow-stale",
-      "target": "Self-Heal CI",
-      "details": "Workflow stale (informational patterns only)",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-17T14:10:29.603Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "4/7 passing. 2 failures, 1 partial. 1 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-07-17T15:06:52.852Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -6982,6 +6935,45 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-07-24T14:18:19.081Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-24T14:18:19.085Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-24T14:18:23.932Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Self-Heal CI",
+      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-24T14:18:23.935Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "Self-Heal CI",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-24T14:18:23.939Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/6 passing. 2 failures, 1 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
