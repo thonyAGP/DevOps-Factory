@@ -2,45 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-19T09:58:01.940Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Email_Assistant",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-19T09:58:01.943Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "CasaSync",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-19T09:58:01.946Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Lecteur_Magic",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-19T09:58:01.948Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "magic-migration",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-19T09:58:01.951Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 33/100, 0 excellent, 19 needs work, 4 drops, 0 improvements",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-07-19T10:20:03.579Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -7105,6 +7066,13 @@
       "source": "build-dashboard",
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-26T10:07:36.357Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 33/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
       "status": "success"
     }
   ]
