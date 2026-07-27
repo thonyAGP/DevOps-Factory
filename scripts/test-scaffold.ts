@@ -9,6 +9,7 @@
  */
 
 import { writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { KNOWN_PROJECTS, GITHUB_OWNER } from '../factory.config.js';
 import { sh, tmpDir } from './shell-utils.js';
 import type { TreeNode } from './types.js';
@@ -34,8 +35,19 @@ const isSkippedDir = (path: string): boolean => {
   return skipped.some((dir) => path.includes(`/${dir}/`) || path.startsWith(`${dir}/`));
 };
 
-const isSkippedFile = (path: string): boolean => {
-  const skipped = [/\.d\.ts$/, /\.config\.(ts|tsx|js)$/, /index\.ts$/, /index\.tsx$/];
+export const isSkippedFile = (path: string): boolean => {
+  const skipped = [
+    /\.d\.ts$/,
+    /\.config\.(ts|tsx|js)$/,
+    /index\.ts$/,
+    /index\.tsx$/,
+    // Un fichier de test n'est PAS une source a couvrir. Sans cette regle,
+    // `foo.test.ts` devenait un candidat : on cherchait `foo.test.test.ts`,
+    // absent, donc on le generait — puis `foo.test.test.test.ts` au passage
+    // suivant. C'est ce qui a produit les PR en echec sur CasaSync (#287,
+    // #295), le build cassant sur les squelettes empiles.
+    /\.(test|spec)\.(ts|tsx)$/,
+  ];
   return skipped.some((pattern) => pattern.test(path));
 };
 
@@ -44,7 +56,7 @@ const getRepoTree = (repo: string, branch: string): TreeNode[] => {
   return response.tree || [];
 };
 
-const findSourceFiles = (tree: TreeNode[]): string[] => {
+export const findSourceFiles = (tree: TreeNode[]): string[] => {
   return tree
     .filter(
       (node): node is TreeNode & { path: string } =>
@@ -57,7 +69,7 @@ const findSourceFiles = (tree: TreeNode[]): string[] => {
     .map((node) => node.path);
 };
 
-const findUncoveredFiles = (sourceFiles: string[], allFiles: string[]): string[] => {
+export const findUncoveredFiles = (sourceFiles: string[], allFiles: string[]): string[] => {
   return sourceFiles.filter((sourcePath) => {
     const testPath1 = sourcePath.replace(/\.(ts|tsx)$/, '.test.$1');
     const testPath2 = sourcePath.replace(/\.(ts|tsx)$/, '.spec.$1');
@@ -89,11 +101,14 @@ const extractExports = (content: string): string[] => {
   return Array.from(exports).filter((name) => name && name !== 'default');
 };
 
-const generateTestSkeleton = (filePath: string, exports: string[]): string => {
+export const generateTestSkeleton = (filePath: string, exports: string[]): string => {
   const importPath = filePath.replace(/\.(ts|tsx)$/, '');
   const fileName = importPath.split('/').pop() || 'module';
 
-  let content = `import { describe, it, expect } from 'vitest';\n`;
+  // `expect` n'est PAS importe : le squelette n'utilise que `describe` et
+  // `it.todo`. L'importer declenchait `@typescript-eslint/no-unused-vars` sur
+  // chaque fichier genere, et faisait echouer le build du depot cible.
+  let content = `import { describe, it } from 'vitest';\n`;
   content += `// TODO: import from '${importPath}';\n\n`;
 
   content += `describe('${fileName}', () => {\n`;
@@ -290,4 +305,9 @@ const main = (): void => {
   console.log('\nTest scaffold generation complete.');
 };
 
-main();
+// `main()` n'est appele QUE lors d'une execution directe (`pnpm test-scaffold`).
+// Sans ce garde-fou, un simple `import` depuis un test declencherait les appels
+// GitHub et la creation de PR — le fichier etait donc intestable.
+if (process.argv[1] && process.argv[1] === fileURLToPath(import.meta.url)) {
+  main();
+}
