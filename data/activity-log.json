@@ -2,97 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-20T04:11:43.075Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-20T04:11:43.079Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-20T04:11:44.730Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "Self-Heal CI",
-      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-20T04:11:45.415Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Uptime Monitor",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-20T04:11:46.597Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-triggered",
-      "target": "CI Health Check",
-      "details": "Self-heal for workflow (run 29713473627)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-20T04:11:46.600Z",
-      "source": "factory-watchdog",
-      "action": "workflow-stale",
-      "target": "Self-Heal CI",
-      "details": "Workflow stale (informational patterns only)",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-20T04:11:47.696Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Uptime Monitor",
-      "details": "total_failure: Uptime Monitor",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-20T04:11:47.703Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "2/6 passing. 3 failures, 1 partial. 1 self-heals",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-20T06:16:32.673Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-20T06:16:36.202Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-20T06:16:36.919Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.3/10, 2415 risk pts, +1/-16",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-20T06:16:37.628Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-07-20T08:19:04.052Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -7038,6 +6947,61 @@
       "action": "watchdog-complete",
       "details": "3/6 passing. 2 failures, 1 partial. 1 self-heals",
       "status": "error"
+    },
+    {
+      "timestamp": "2026-07-27T06:19:10.266Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "Email_Assistant",
+      "details": "Self-heal dispatched (run 28931445891)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-27T06:19:10.267Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Email_Assistant",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-27T06:19:10.269Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "ClubMedRoomAssignment",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-27T06:19:12.541Z",
+      "source": "ci-health-check",
+      "action": "self-heal-triggered",
+      "target": "CasaSync",
+      "details": "Self-heal dispatched (run 30239093488)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-27T06:19:12.543Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "CasaSync",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-27T06:19:12.564Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Zentra",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-27T06:19:12.566Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
