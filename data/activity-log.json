@@ -2,108 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-20T14:36:33.237Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-20T14:36:33.240Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-20T14:36:37.628Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "Self-Heal CI",
-      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-20T14:36:40.080Z",
-      "source": "factory-watchdog",
-      "action": "workflow-stale",
-      "target": "Self-Heal CI",
-      "details": "Workflow stale (informational patterns only)",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-20T14:36:41.499Z",
-      "source": "factory-watchdog",
-      "action": "issue-closed",
-      "target": "[Watchdog] FAILURE: Uptime Monitor",
-      "details": "recovered: [Watchdog] FAILURE: Uptime Monitor",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-20T14:36:41.502Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "6/9 passing. 2 failures, 1 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-20T15:03:42.314Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 28931445891)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-20T15:03:42.317Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-20T15:03:42.320Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-20T15:03:45.409Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 29732098139)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-20T15:03:45.412Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "CasaSync",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-20T15:03:45.415Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-20T15:03:45.418Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-07-20T16:22:43.820Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -6994,6 +6892,53 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-07-27T15:20:38.362Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-27T15:20:38.366Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-27T15:20:47.432Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Self-Heal CI",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-27T15:20:48.746Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Self-Heal CI",
+      "details": "total_failure: Self-Heal CI",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-27T15:20:50.006Z",
+      "source": "factory-watchdog",
+      "action": "issue-closed",
+      "target": "[Watchdog] FAILURE: Test Scaffold Generator",
+      "details": "recovered: [Watchdog] FAILURE: Test Scaffold Generator",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-07-27T15:20:50.010Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "8/11 passing. 3 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
