@@ -2,13 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-22T10:31:14.112Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 33/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-07-22T10:59:56.826Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -6444,6 +6437,29 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-07-29T10:45:49.237Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Lecteur_Magic",
+      "details": "40 → 25 (-15pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-29T10:45:49.240Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "magic-migration",
+      "details": "40 → 25 (-15pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-07-29T10:45:49.243Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 35/100, 0 excellent, 19 needs work, 2 drops, 0 improvements",
+      "status": "warning"
     }
   ]
 }
