@@ -2,34 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-23T05:52:02.542Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-23T05:52:05.599Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-23T05:52:06.300Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.3/10, 2415 risk pts, +1/-16",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-23T05:52:06.995Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-07-23T08:14:26.426Z",
       "source": "ci-health-check",
       "action": "self-heal-triggered",
@@ -6318,6 +6290,37 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-07-30T07:29:08.504Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Email_Assistant",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-30T07:29:08.508Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "ClubMedRoomAssignment",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-30T07:29:08.512Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Zentra",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-07-30T07:29:08.516Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
