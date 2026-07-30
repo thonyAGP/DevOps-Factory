@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-29T10:45:49.234Z",
+  "timestamp": "2026-07-30T10:31:21.571Z",
   "scores": [
     {
       "name": "DevOps-Factory",
@@ -98,8 +98,40 @@
       }
     },
     {
+      "name": "Lecteur_Magic",
+      "repo": "thonyAGP/lecteur-magic",
+      "score": 40,
+      "breakdown": {
+        "ciPasses": 15,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
       "name": "LB2I-Fiscal-Manager",
       "repo": "thonyAGP/LB2I-Fiscal-Manager",
+      "score": 40,
+      "breakdown": {
+        "ciPasses": 15,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
+      "name": "magic-migration",
+      "repo": "thonyAGP/magic-migration",
       "score": 40,
       "breakdown": {
         "ciPasses": 15,
@@ -242,22 +274,6 @@
       }
     },
     {
-      "name": "Lecteur_Magic",
-      "repo": "thonyAGP/lecteur-magic",
-      "score": 25,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
       "name": "test_codingmenace",
       "repo": "thonyAGP/test_codingmenace",
       "score": 25,
@@ -288,36 +304,7 @@
         "noDuplication": 0,
         "noCriticalFindings": 0
       }
-    },
-    {
-      "name": "magic-migration",
-      "repo": "thonyAGP/magic-migration",
-      "score": 25,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
     }
   ],
-  "drops": [
-    {
-      "repo": "Lecteur_Magic",
-      "drop": 15,
-      "from": 40,
-      "to": 25
-    },
-    {
-      "repo": "magic-migration",
-      "drop": 15,
-      "from": 40,
-      "to": 25
-    }
-  ]
+  "drops": []
 }
