@@ -2,100 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-24T14:18:19.081Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-24T14:18:19.085Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-24T14:18:23.932Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "Self-Heal CI",
-      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-24T14:18:23.935Z",
-      "source": "factory-watchdog",
-      "action": "workflow-stale",
-      "target": "Self-Heal CI",
-      "details": "Workflow stale (informational patterns only)",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-24T14:18:23.939Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "3/6 passing. 2 failures, 1 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-24T14:46:49.651Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 28931445891)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-24T14:46:49.654Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-24T14:46:49.657Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-24T14:46:52.430Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 29953104908)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-24T14:46:52.433Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "CasaSync",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-24T14:46:52.436Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-24T14:46:52.438Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-07-24T16:40:28.057Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -5955,6 +5861,37 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-07-31T14:54:41.060Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-31T14:54:41.064Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-31T14:54:50.647Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-07-31T14:54:50.650Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "5/7 passing. 2 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
