@@ -2,27 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-25T12:53:14.380Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-25T12:53:29.009Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-25T12:53:29.014Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 40 outcomes (16 merged, 7 closed, 17 open). 1 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-07-25T13:02:04.790Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -5771,6 +5750,34 @@
       "action": "outcome-registry",
       "details": "Registry updated: 42 outcomes (16 merged, 9 closed, 17 open). 2 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
       "status": "info"
+    },
+    {
+      "timestamp": "2026-08-01T12:56:06.523Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-08-01T12:56:09.803Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-08-01T12:56:10.527Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 6.2/10, 3395 risk pts, +2/-16",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-08-01T12:56:11.207Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
     }
   ]
 }
