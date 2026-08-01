@@ -2,61 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-25T06:16:07.672Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "Email_Assistant",
-      "details": "Self-heal dispatched (run 28931445891)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-25T06:16:07.787Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-25T06:16:08.022Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-25T06:16:10.140Z",
-      "source": "ci-health-check",
-      "action": "self-heal-triggered",
-      "target": "CasaSync",
-      "details": "Self-heal dispatched (run 29953104908)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-25T06:16:10.142Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "CasaSync",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-25T06:16:10.145Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-25T06:16:10.147Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-07-25T08:03:44.574Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -5794,6 +5739,37 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-08-01T07:23:37.485Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Email_Assistant",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-08-01T07:23:37.489Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "ClubMedRoomAssignment",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-08-01T07:23:37.492Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Zentra",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-08-01T07:23:37.495Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
