@@ -1,12 +1,24 @@
-## Quality Score Report - 2026-08-01
+## Quality Score Report - 2026-08-02
 
 ### Summary
-- **Average Score**: 36/100
+- **Average Score**: 37/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
 
 ### Per Repository
+
+#### ClubMedRoomAssignment
+- **Score**: 55/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
 
 #### DevOps-Factory
 - **Score**: 40/100
@@ -29,18 +41,6 @@
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### ClubMedRoomAssignment
-- **Score**: 40/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
