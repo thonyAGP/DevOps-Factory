@@ -1,10 +1,10 @@
 ## Template Update Report
 
-> Based on veille from 2026-07-26
+> Based on veille from 2026-08-02
 
-### Watchlist (Breaking Changes)
+### All templates are up to date
 
-- Vitest  has breaking changes - review before updating templates
+No version updates needed based on this week's veille.
 
 ### Template Inventory
 

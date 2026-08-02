@@ -1,70 +1,78 @@
-## Veille Technologique - Semaine du 2026-07-26
+## Veille Technologique - Semaine du 2026-08-02
 
-> 38 mises a jour detectees sur 29 sources
-
-### Claude & Anthropic
-
-| Projet | Version | Date | Breaking | Lien |
-|--------|---------|------|----------|------|
-| Claude Code | v2.1.220 | 2026-07-25 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.220) |
-| Claude Code | v2.1.219 | 2026-07-24 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.219) |
-| Claude Code | v2.1.218 | 2026-07-22 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.218) |
-| Claude Code | v2.1.217 | 2026-07-21 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.217) |
-| Claude Code | v2.1.216 | 2026-07-20 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.216) |
+> 44 mises a jour detectees sur 29 sources
 
 ### Agents & Frameworks
 
 | Projet | Version | Date | Breaking | Lien |
 |--------|---------|------|----------|------|
-| Vercel AI SDK | @ai-sdk/google-vertex@5.0.31 | 2026-07-26 | - | [Release](https://github.com/vercel/ai/releases/tag/%40ai-sdk/google-vertex%405.0.31) |
-| Vercel AI SDK | @ai-sdk/google-vertex@4.0.172 | 2026-07-26 | - | [Release](https://github.com/vercel/ai/releases/tag/%40ai-sdk/google-vertex%404.0.172) |
-| Vercel AI SDK | @ai-sdk/anthropic@4.0.21 | 2026-07-26 | - | [Release](https://github.com/vercel/ai/releases/tag/%40ai-sdk/anthropic%404.0.21) |
-| Vercel AI SDK | @ai-sdk/anthropic@3.0.103 | 2026-07-26 | - | [Release](https://github.com/vercel/ai/releases/tag/%40ai-sdk/anthropic%403.0.103) |
-| Vercel AI SDK | @ai-sdk/anthropic-aws@2.0.13 | 2026-07-26 | - | [Release](https://github.com/vercel/ai/releases/tag/%40ai-sdk/anthropic-aws%402.0.13) |
+| Vercel AI SDK | @ai-sdk/fireworks@1.0.51 | 2026-08-02 | - | [Release](https://github.com/vercel/ai/releases/tag/%40ai-sdk/fireworks%401.0.51) |
+| Vercel AI SDK | ai@7.0.48 | 2026-08-01 | - | [Release](https://github.com/vercel/ai/releases/tag/ai%407.0.48) |
+| Vercel AI SDK | ai@6.0.240 | 2026-08-01 | - | [Release](https://github.com/vercel/ai/releases/tag/ai%406.0.240) |
+| Vercel AI SDK | ai@5.0.225 | 2026-08-01 | - | [Release](https://github.com/vercel/ai/releases/tag/ai%405.0.225) |
+| Vercel AI SDK | @ai-sdk/workflow@1.0.48 | 2026-08-01 | - | [Release](https://github.com/vercel/ai/releases/tag/%40ai-sdk/workflow%401.0.48) |
+| LangGraph | checkpointsqlite==3.1.1 | 2026-07-30 | - | [Release](https://github.com/langchain-ai/langgraph/releases/tag/checkpointsqlite%3D%3D3.1.1) |
+| LangGraph | checkpointpostgres==3.1.1 | 2026-07-30 | - | [Release](https://github.com/langchain-ai/langgraph/releases/tag/checkpointpostgres%3D%3D3.1.1) |
+| LangGraph | 1.2.10 | 2026-07-28 | - | [Release](https://github.com/langchain-ai/langgraph/releases/tag/1.2.10) |
+| CrewAI | 1.15.10 | 2026-07-31 | - | [Release](https://github.com/crewAIInc/crewAI/releases/tag/1.15.10) |
+| CrewAI | 1.15.9 | 2026-07-30 | - | [Release](https://github.com/crewAIInc/crewAI/releases/tag/1.15.9) |
+| CrewAI | 1.15.8 | 2026-07-28 | - | [Release](https://github.com/crewAIInc/crewAI/releases/tag/1.15.8) |
 | CrewAI | 1.15.7 | 2026-07-26 | - | [Release](https://github.com/crewAIInc/crewAI/releases/tag/1.15.7) |
 | CrewAI | 1.15.7a1 | 2026-07-26 | - | [Release](https://github.com/crewAIInc/crewAI/releases/tag/1.15.7a1) |
-| CrewAI | 1.15.6 | 2026-07-24 | - | [Release](https://github.com/crewAIInc/crewAI/releases/tag/1.15.6) |
-| CrewAI | 1.15.5 | 2026-07-20 | - | [Release](https://github.com/crewAIInc/crewAI/releases/tag/1.15.5) |
-| Google ADK | v1.36.2 | 2026-07-21 | - | [Release](https://github.com/google/adk-python/releases/tag/v1.36.2) |
+| OpenAI Agents SDK | v0.19.2 | 2026-08-01 | - | [Release](https://github.com/openai/openai-agents-python/releases/tag/v0.19.2) |
+| OpenAI Agents SDK | v0.19.1 | 2026-07-29 | - | [Release](https://github.com/openai/openai-agents-python/releases/tag/v0.19.1) |
+| OpenAI Agents SDK | v0.19.0 | 2026-07-27 | **OUI** | [Release](https://github.com/openai/openai-agents-python/releases/tag/v0.19.0) |
+| Google ADK | v2.6.1 | 2026-07-31 | - | [Release](https://github.com/google/adk-python/releases/tag/v2.6.1) |
+| Google ADK | v2.6.0 | 2026-07-30 | - | [Release](https://github.com/google/adk-python/releases/tag/v2.6.0) |
+| Google ADK | v1.37.0 | 2026-07-30 | - | [Release](https://github.com/google/adk-python/releases/tag/v1.37.0) |
+
+### MCP & Protocols
+
+| Projet | Version | Date | Breaking | Lien |
+|--------|---------|------|----------|------|
+| MCP Spec | 2026-07-28 | 2026-07-28 | - | [Release](https://github.com/modelcontextprotocol/modelcontextprotocol/releases/tag/2026-07-28) |
 
 ### Dev Tools
 
 | Projet | Version | Date | Breaking | Lien |
 |--------|---------|------|----------|------|
-| Next.js | v16.3.0-canary.97 | 2026-07-25 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.3.0-canary.97) |
-| Next.js | v16.2.12 | 2026-07-25 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.2.12) |
-| Next.js | v15.5.22 | 2026-07-25 | - | [Release](https://github.com/vercel/next.js/releases/tag/v15.5.22) |
-| Next.js | v16.3.0-canary.96 | 2026-07-25 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.3.0-canary.96) |
-| Next.js | v16.3.0-preview.9 | 2026-07-23 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.3.0-preview.9) |
-| Prisma | 7.9.0 | 2026-07-21 | - | [Release](https://github.com/prisma/prisma/releases/tag/7.9.0) |
-| Vitest | v5.0.0-beta.7 | 2026-07-24 | **OUI** | [Release](https://github.com/vitest-dev/vitest/releases/tag/v5.0.0-beta.7) |
-| Playwright | v1.62.0 | 2026-07-24 | - | [Release](https://github.com/microsoft/playwright/releases/tag/v1.62.0) |
-| pnpm | v12.0.0-alpha.21 | 2026-07-24 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v12.0.0-alpha.21) |
-| pnpm | v12.0.0-alpha.20 | 2026-07-23 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v12.0.0-alpha.20) |
-| pnpm | v11.17.0 | 2026-07-23 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v11.17.0) |
-| pnpm | untagged-e518c274b13ed6243f61 | 2026-07-23 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/untagged-e518c274b13ed6243f61) |
-| pnpm | pnpr@0.1.0-alpha.5 | 2026-07-23 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/pnpr%400.1.0-alpha.5) |
-| ESLint | v10.8.0 | 2026-07-24 | - | [Release](https://github.com/eslint/eslint/releases/tag/v10.8.0) |
+| Node.js | v26.5.1 | 2026-07-29 | - | [Release](https://github.com/nodejs/node/releases/tag/v26.5.1) |
+| Node.js | v24.18.1 | 2026-07-29 | - | [Release](https://github.com/nodejs/node/releases/tag/v24.18.1) |
+| Node.js | v22.23.2 | 2026-07-29 | - | [Release](https://github.com/nodejs/node/releases/tag/v22.23.2) |
+| Next.js | v16.3.0-canary.106 | 2026-08-01 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.3.0-canary.106) |
+| Next.js | v16.3.0-canary.105 | 2026-07-31 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.3.0-canary.105) |
+| Next.js | v16.3.0-canary.104 | 2026-07-30 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.3.0-canary.104) |
+| Next.js | v16.3.0-canary.103 | 2026-07-30 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.3.0-canary.103) |
+| Next.js | v16.3.0-preview.10 | 2026-07-28 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.3.0-preview.10) |
+| Fastify | v5.11.0 | 2026-07-30 | - | [Release](https://github.com/fastify/fastify/releases/tag/v5.11.0) |
+| Prisma | 7.9.1 | 2026-07-27 | - | [Release](https://github.com/prisma/prisma/releases/tag/7.9.1) |
+| Playwright | v1.62.1 | 2026-07-30 | - | [Release](https://github.com/microsoft/playwright/releases/tag/v1.62.1) |
+| pnpm | v12.0.0-beta.3 | 2026-08-01 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v12.0.0-beta.3) |
+| pnpm | v11.19.0 | 2026-07-31 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v11.19.0) |
+| pnpm | v12.0.0-beta.2 | 2026-07-30 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v12.0.0-beta.2) |
+| pnpm | v12.0.0-beta.1 | 2026-07-30 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v12.0.0-beta.1) |
+| pnpm | v12.0.0-beta.0 | 2026-07-29 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v12.0.0-beta.0) |
 
 ### DevOps Tools
 
 | Projet | Version | Date | Breaking | Lien |
 |--------|---------|------|----------|------|
-| Renovate | 43.281.1 | 2026-07-26 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/43.281.1) |
-| Renovate | 43.281.0 | 2026-07-26 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/43.281.0) |
-| Renovate | 43.280.5 | 2026-07-25 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/43.280.5) |
-| Renovate | 43.280.4 | 2026-07-25 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/43.280.4) |
-| Renovate | 43.280.3 | 2026-07-24 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/43.280.3) |
-| Semgrep | v1.171.0 | 2026-07-22 | - | [Release](https://github.com/semgrep/semgrep/releases/tag/v1.171.0) |
-| Knip | knip@6.29.0 | 2026-07-22 | - | [Release](https://github.com/webpro-nl/knip/releases/tag/knip%406.29.0) |
-| Knip | knip@6.28.0 | 2026-07-22 | - | [Release](https://github.com/webpro-nl/knip/releases/tag/knip%406.28.0) |
-| GitHub Actions | v2.336.0 | 2026-07-20 | - | [Release](https://github.com/actions/runner/releases/tag/v2.336.0) |
+| Renovate | 44.7.1 | 2026-08-02 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.7.1) |
+| Renovate | 44.7.0 | 2026-08-02 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.7.0) |
+| Renovate | 44.6.0 | 2026-08-01 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.6.0) |
+| Renovate | 44.5.3 | 2026-08-01 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.5.3) |
+| Renovate | 44.5.2 | 2026-07-31 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.5.2) |
+| Semgrep | v1.172.0 | 2026-07-28 | - | [Release](https://github.com/semgrep/semgrep/releases/tag/v1.172.0) |
+| Knip | knip@6.31.0 | 2026-07-31 | - | [Release](https://github.com/webpro-nl/knip/releases/tag/knip%406.31.0) |
+| Knip | knip@6.30.0 | 2026-07-31 | - | [Release](https://github.com/webpro-nl/knip/releases/tag/knip%406.30.0) |
 
 ---
 
 ### Synthese IA
 
-En tant qu'expert DevOps et développeur senior TypeScript/Node.js/React, voici mon analyse des mises à jour détectées cette semaine :
+Bonjour l'équipe,
+
+Voici une synthèse des mises à jour détectées cette semaine, avec une analyse de leur impact sur notre stack technique et des recommandations concrètes.
 
 ---
 
@@ -72,47 +80,61 @@ En tant qu'expert DevOps et développeur senior TypeScript/Node.js/React, voici 
 
 ### 1. Résumé
 
-Cette semaine est marquée par une intense activité dans l'écosystème de développement, avec une forte prédominance des mises à jour liées à l'Intelligence Artificielle. On observe une évolution rapide des modèles (Claude) et des SDK d'intégration (Vercel AI SDK, Google ADK), ainsi que des frameworks d'agents (CrewAI). Parallèlement, les outils de développement front-end et back-end (Next.js, Prisma, Vitest, Playwright) continuent leur maturation, avec une attention particulière à la prochaine version majeure de Vitest qui introduit des changements cassants. Enfin, les outils DevOps bénéficient de mises à jour régulières, axées sur l'automatisation et la qualité du code.
+La semaine est marquée par une effervescence significative dans l'écosystème des agents et frameworks d'IA, avec de nombreuses mises à jour non-breaking pour Vercel AI SDK, LangGraph, CrewAI, et Google ADK, bien qu'une version majeure de l'OpenAI Agents SDK introduise un breaking change. Parallèlement, des mises à jour importantes sont disponibles pour les versions actuelles et LTS de Node.js, assurant la stabilité et la performance du runtime. On observe également une activité soutenue sur les outils de développement front-end (Next.js en canary), back-end (Fastify, Prisma), et les gestionnaires de paquets (pnpm en beta), ainsi que des améliorations continues des outils DevOps comme Renovate et Semgrep.
 
 ### 2. Impact pour notre stack (TypeScript, Next.js, Fastify, Prisma, Vitest, Playwright, GitHub Actions)
 
-#### Mises à jour directement pertinentes :
+Voici les mises à jour directement pertinentes et les points d'attention :
 
-*   **Next.js (v16.3.0-canary.x, v16.3.0-preview.x, v16.2.12, v15.5.22):** Très pertinent. Les versions canary et preview de `v16.3` indiquent une évolution active du framework, potentiellement avec de nouvelles fonctionnalités ou optimisations à venir. Les versions stables `v16.2.12` et `v15.5.22` sont des mises à jour de maintenance importantes pour la stabilité et la sécurité.
-*   **Prisma (7.9.0):** Directement pertinent. Une mise à jour mineure qui apporte probablement des corrections de bugs, des améliorations de performance ou de petites fonctionnalités.
-*   **Vitest (v5.0.0-beta.7):** Extrêmement pertinent. Bien qu'en version bêta, c'est la seule mise à jour signalée comme `BREAKING`. Cela signifie que la version 5.0.0 stable de Vitest, lorsqu'elle sortira, nécessitera des ajustements dans nos tests.
-*   **Playwright (v1.62.0):** Directement pertinent. Une mise à jour mineure pour notre framework de tests end-to-end, apportant des corrections ou des améliorations.
-*   **GitHub Actions (v2.336.0):** Directement pertinent. Des mises à jour régulières des runners ou de l'infrastructure de GitHub Actions sont importantes pour la performance et la sécurité de nos pipelines CI/CD.
-*   **Vercel AI SDK (@ai-sdk/google-vertex, @ai-sdk/anthropic, @ai-sdk/anthropic-aws):** Pertinent si nous utilisons ou prévoyons d'utiliser des fonctionnalités d'IA intégrées via Vercel, notamment dans nos applications Next.js.
-*   **ESLint (v10.8.0), pnpm (v11.17.0, v12.0.0-alpha.x), Knip (knip@6.29.0):** Pertinents pour la qualité du code, la gestion des dépendances et l'expérience développeur.
-
-#### Breaking changes à anticiper :
-
-*   **Vitest v5.0.0-beta.7:** C'est le seul `BREAKING CHANGE` explicite. Il est impératif de consulter le changelog de cette bêta pour comprendre les modifications et commencer à anticiper la migration de nos suites de tests lorsque la version stable 5.0.0 sera disponible. Cela pourrait impliquer des ajustements dans la configuration, les APIs de test ou les mocks.
+*   **TypeScript** : Aucune mise à jour directe de TypeScript n'est listée, mais toutes les mises à jour des frameworks et outils (Node.js, Next.js, Fastify, Prisma) sont pertinentes pour nos projets TypeScript.
+*   **Node.js** :
+    *   `Node.js v26.5.1` (Current), `v24.18.1` (LTS), `v22.23.2` (LTS) : **Directement pertinent.** Ces mises à jour de patch sont cruciales pour la stabilité, la sécurité et la performance de notre runtime. Elles sont non-breaking et devraient être appliquées rapidement à la version de Node.js que nous utilisons actuellement (LTS ou Current).
+*   **Next.js** :
+    *   `Next.js v16.3.0-canary.X` et `v16.3.0-preview.10` : **Directement pertinent pour la veille technologique.** Ces versions sont des pré-versions (canary/preview) de la future version 16.3.0. Elles ne sont pas destinées à la production mais sont importantes pour anticiper les nouvelles fonctionnalités et les éventuels breaking changes à venir.
+*   **Fastify** :
+    *   `Fastify v5.11.0` : **Directement pertinent.** Mise à jour non-breaking pour notre framework backend. Il est recommandé de l'appliquer pour bénéficier des dernières améliorations et correctifs.
+*   **Prisma** :
+    *   `Prisma 7.9.1` : **Directement pertinent.** Mise à jour non-breaking de notre ORM. À appliquer pour les améliorations et correctifs.
+*   **Vitest** : Aucune mise à jour directe de Vitest n'est listée cette semaine.
+*   **Playwright** :
+    *   `Playwright v1.62.1` : **Directement pertinent.** Mise à jour non-breaking de notre outil de tests end-to-end. À appliquer pour les améliorations et correctifs.
+*   **GitHub Actions** :
+    *   `Renovate 44.X.X` : **Directement pertinent.** Renovate est un outil clé pour la gestion automatisée de nos dépendances via GitHub Actions. Les mises à jour continues améliorent sa fiabilité et ses fonctionnalités.
+    *   `Semgrep v1.172.0` et `Knip knip@6.3X.0` : **Directement pertinent.** Ces outils d'analyse statique et de détection de code mort sont souvent intégrés dans nos pipelines CI/CD (GitHub Actions). Leurs mises à jour apportent des améliorations aux analyses de code.
+*   **Agents & Frameworks AI (si utilisés)** :
+    *   `OpenAI Agents SDK v0.19.0` : **ATTENTION : BREAKING CHANGE.** C'est la mise à jour la plus critique de la semaine si nous utilisons ce SDK. Une évaluation approfondie des changements est nécessaire avant toute mise à jour. Les versions `v0.19.1` et `v0.19.2` sont des patchs non-breaking par-dessus cette version majeure.
+    *   `Vercel AI SDK` (`ai@7.0.48`, `ai@6.0.240`, `ai@5.0.225`, `@ai-sdk/fireworks@1.0.51`, `@ai-sdk/workflow@1.0.48`), `LangGraph` (`1.2.10`, `checkpoint-sqlite==3.1.1`, `checkpoint-postgres==3.1.1`), `CrewAI` (`1.15.X`), `Google ADK` (`v2.6.X`, `v1.37.0`) : Toutes ces mises à jour sont non-breaking. Si nous utilisons ces frameworks, il est bon de les mettre à jour pour bénéficier des dernières fonctionnalités et correctifs.
+*   **pnpm** :
+    *   `pnpm v11.19.0` : **Directement pertinent.** Mise à jour stable et non-breaking de notre gestionnaire de paquets.
+    *   `pnpm v12.0.0-beta.X` : **Pour la veille.** Ces versions beta de pnpm v12 sont à surveiller pour les futures évolutions du gestionnaire de paquets.
 
 ### 3. Recommandations
 
-1.  **Priorité Élevée - Préparer la migration Vitest v5:**
-    *   **Action:** Examiner immédiatement le changelog de `Vitest v5.0.0-beta.7` pour identifier les `BREAKING CHANGES`. Si nous utilisons Vitest, allouer du temps pour évaluer l'impact sur nos tests existants et planifier la refactorisation nécessaire pour la future version stable 5.0.0.
-    *   **Impact:** Éviter une interruption majeure de nos pipelines CI/CD et de notre processus de développement lors de la mise à jour vers Vitest v5.
+Voici les actions concrètes à prendre, priorisées par impact :
 
-2.  **Mises à jour de maintenance critiques (Next.js, Prisma, Playwright, GitHub Actions):**
-    *   **Action:** Mettre à jour nos dépendances vers les dernières versions stables non-breaking : `Next.js v16.2.12` (ou `v15.5.22` si nous sommes sur cette branche), `Prisma 7.9.0`, `Playwright v1.62.0`, et `GitHub Actions v2.336.0`. Intégrer ces mises à jour dans notre cycle de maintenance régulier.
-    *   **Impact:** Bénéficier des dernières corrections de bugs, améliorations de sécurité et optimisations de performance sans risque de régression.
+1.  **Priorité Haute: Évaluation et Planification pour OpenAI Agents SDK v0.19.0.**
+    *   **Action :** Si nous utilisons `OpenAI Agents SDK`, investiguer immédiatement la nature du breaking change introduit par la version `v0.19.0`. Planifier les modifications nécessaires dans notre code et les tests de régression avant toute mise à jour.
+    *   **Impact :** Éviter des ruptures de service ou des régressions majeures dans nos applications basées sur OpenAI Agents.
 
-3.  **Surveiller Next.js v16.3 (canary/preview):**
-    *   **Action:** Suivre activement les annonces et les changelogs des versions `Next.js v16.3.0-canary.x` et `v16.3.0-preview.x`. Ne pas les déployer en production, mais comprendre les nouvelles fonctionnalités et les changements potentiels pour anticiper les futures mises à jour majeures.
-    *   **Impact:** Se préparer aux évolutions du framework et être prêt à adopter de nouvelles fonctionnalités dès leur stabilisation.
+2.  **Mises à jour de maintenance critiques (non-breaking).**
+    *   **Action :** Mettre à jour nos projets vers les dernières versions patch de **Node.js** (pour la version que nous utilisons, ex: 22.23.2 ou 24.18.1), **Fastify v5.11.0**, **Prisma 7.9.1**, **Playwright v1.62.1**, et **pnpm v11.19.0**.
+    *   **Impact :** Amélioration de la sécurité, de la stabilité et des performances de nos applications et de notre environnement de développement.
 
-4.  **Évaluer les SDK AI (Vercel AI SDK, Claude, CrewAI, Google ADK):**
-    *   **Action:** Si nous avons des fonctionnalités AI ou des projets futurs, examiner les mises à jour des SDK Vercel AI, des modèles Claude, de CrewAI et de Google ADK. Vérifier les nouvelles capacités, les améliorations de performance ou les corrections de bugs qui pourraient bénéficier à nos intégrations AI.
-    *   **Impact:** Maintenir nos intégrations AI à jour, potentiellement améliorer leurs performances ou débloquer de nouvelles fonctionnalités.
+3.  **Mises à jour des outils DevOps.**
+    *   **Action :** S'assurer que nos configurations **Renovate** sont à jour pour bénéficier des dernières versions (44.7.1). Vérifier et mettre à jour les versions de **Semgrep v1.172.0** et **Knip knip@6.31.0** utilisées dans nos pipelines CI/CD (GitHub Actions).
+    *   **Impact :** Amélioration de l'automatisation de la gestion des dépendances, de la qualité du code et de la détection des vulnérabilités.
 
-5.  **Mises à jour des outils de développement et DevOps (ESLint, pnpm, Knip, Semgrep, Renovate):**
-    *   **Action:** Procéder aux mises à jour de ces outils dans nos environnements de développement et nos pipelines CI/CD. Ces mises à jour sont généralement non-breaking et apportent des améliorations continues à la qualité du code, à la gestion des dépendances et à l'automatisation.
-    *   **Impact:** Améliorer l'expérience développeur, la qualité du code, la sécurité et l'efficacité de nos processus DevOps.
+4.  **Surveillance et tests des frameworks AI (non-breaking).**
+    *   **Action :** Si nous utilisons les frameworks AI mentionnés (Vercel AI SDK, LangGraph, CrewAI, Google ADK), planifier des mises à jour régulières vers les dernières versions non-breaking. Tester ces mises à jour dans un environnement de développement/staging.
+    *   **Impact :** Accès aux nouvelles fonctionnalités, améliorations de performance et correctifs de bugs dans nos applications AI.
+
+5.  **Exploration des versions Canary/Beta.**
+    *   **Action :** Surveiller activement les versions `Next.js v16.3.0-canary` et `pnpm v12.0.0-beta`. Créer des projets de test ou des branches dédiées pour explorer ces versions et anticiper les futures évolutions de nos outils clés. **Ne pas utiliser en production.**
+    *   **Impact :** Préparation aux futures évolutions technologiques, identification précoce des opportunités et des défis.
 
 ---
 
+N'hésitez pas si vous avez des questions ou si vous souhaitez approfondir un point particulier.
+
 ---
-*Auto-generated by DevOps-Factory Weekly Veille (2026-07-26T20:45:35.647Z)*
+*Auto-generated by DevOps-Factory Weekly Veille (2026-08-02T20:42:59.019Z)*
