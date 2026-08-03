@@ -2,53 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-27T15:20:38.362Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-27T15:20:38.366Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-27T15:20:47.432Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Self-Heal CI",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-27T15:20:48.746Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Self-Heal CI",
-      "details": "total_failure: Self-Heal CI",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-27T15:20:50.006Z",
-      "source": "factory-watchdog",
-      "action": "issue-closed",
-      "target": "[Watchdog] FAILURE: Test Scaffold Generator",
-      "details": "recovered: [Watchdog] FAILURE: Test Scaffold Generator",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-27T15:20:50.010Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "8/11 passing. 3 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-07-27T16:09:09.797Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -5264,6 +5217,37 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-08-03T15:22:50.987Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-03T15:22:50.990Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-03T15:22:57.793Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-03T15:22:57.795Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "7/9 passing. 2 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
