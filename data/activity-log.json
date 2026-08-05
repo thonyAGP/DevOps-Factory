@@ -2,65 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-29T19:00:31.201Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-29T19:00:31.204Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-29T19:00:31.208Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-07-29T19:00:31.211Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-29T19:13:06.179Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-29T19:13:09.538Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-07-29T19:13:10.237Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.2/10, 3395 risk pts, +2/-16",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-07-29T19:13:10.919Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-07-29T20:43:25.237Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -5172,6 +5113,37 @@
     },
     {
       "timestamp": "2026-08-05T17:21:57.543Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-08-05T19:17:11.659Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Email_Assistant",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-08-05T19:17:11.662Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "ClubMedRoomAssignment",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-08-05T19:17:11.665Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Zentra",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-08-05T19:17:11.667Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
