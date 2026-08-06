@@ -2,37 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-07-30T14:38:37.410Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-30T14:38:37.413Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-30T14:38:47.335Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-07-30T14:38:47.338Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "4/6 passing. 2 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-07-30T15:04:09.646Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -5126,6 +5095,101 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:17.360Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Build Dashboard",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:20.002Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:20.004Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Scan Repos",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:20.006Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Quality Score",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:22.874Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Factory Watchdog",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:24.539Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Build Dashboard",
+      "details": "total_failure: Build Dashboard",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:25.224Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:26.682Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Scan Repos",
+      "details": "total_failure: Scan Repos",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:28.248Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Quality Score",
+      "details": "total_failure: Quality Score",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:28.905Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "Quality Score",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:30.393Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Factory Watchdog",
+      "details": "total_failure: Factory Watchdog",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-06T14:43:30.396Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/8 passing. 5 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
