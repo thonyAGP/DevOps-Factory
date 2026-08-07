@@ -4982,6 +4982,53 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-08-07T03:24:00.537Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-07T03:24:00.540Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-07T03:24:04.355Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-07T03:24:05.432Z",
+      "source": "factory-watchdog",
+      "action": "issue-closed",
+      "target": "[Watchdog] FAILURE: Scan Repos",
+      "details": "recovered: [Watchdog] FAILURE: Scan Repos",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-08-07T03:24:06.614Z",
+      "source": "factory-watchdog",
+      "action": "issue-closed",
+      "target": "[Watchdog] FAILURE: Build Dashboard",
+      "details": "recovered: [Watchdog] FAILURE: Build Dashboard",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-08-07T03:24:06.616Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/5 passing. 2 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
