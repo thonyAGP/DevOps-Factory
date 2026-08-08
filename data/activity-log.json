@@ -2,34 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-08-01T08:43:39.006Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-01T08:43:42.475Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-01T08:43:43.176Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.2/10, 3395 risk pts, +2/-16",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-08-01T08:43:43.872Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-08-01T09:51:02.588Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -5396,6 +5368,21 @@
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-08-08T08:50:55.313Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "40 → 25 (-15pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-08-08T08:50:55.316Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 36/100, 0 excellent, 19 needs work, 1 drops, 0 improvements",
       "status": "warning"
     }
   ]
