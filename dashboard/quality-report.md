@@ -1,13 +1,10 @@
-## Quality Score Report - 2026-08-08
+## Quality Score Report - 2026-08-09
 
 ### Summary
 - **Average Score**: 36/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
-
-### Score Drops (≥5 points)
-- **LB2I-Fiscal-Manager**: 40 → 25 (-15)
 
 ### Per Repository
 
