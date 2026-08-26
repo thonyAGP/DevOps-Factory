@@ -1,6 +1,6 @@
 ## Dependency Intelligence Report
 
-> Generated: 2026-08-05T11:23:28.989Z
+> Generated: 2026-08-26T09:45:56.330Z
 
 ### Security Vulnerabilities
 
