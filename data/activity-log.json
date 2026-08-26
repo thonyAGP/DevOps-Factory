@@ -2,77 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-08-19T01:57:57.129Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-19T01:57:57.131Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-19T01:57:57.133Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Build Dashboard",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-19T01:57:57.135Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "AI Branding Guard",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-19T01:57:58.662Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-19T01:57:59.835Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Build Dashboard",
-      "details": "total_failure: Build Dashboard",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-19T01:58:01.136Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "AI Branding Guard",
-      "details": "total_failure: AI Branding Guard",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-19T01:58:02.648Z",
-      "source": "factory-watchdog",
-      "action": "issue-closed",
-      "target": "[Watchdog] FAILURE: Factory Watchdog",
-      "details": "recovered: [Watchdog] FAILURE: Factory Watchdog",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-19T01:58:02.650Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "2/6 passing. 4 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-08-19T02:13:28.509Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -8331,6 +8260,37 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-08-26T02:06:39.475Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-26T02:06:39.477Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-26T02:06:44.960Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-08-26T02:06:44.962Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/5 passing. 2 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
