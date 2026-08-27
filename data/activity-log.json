@@ -2,169 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-08-20T10:21:10.906Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-08-20T10:21:10.908Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-08-20T10:21:10.910Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-08-20T10:21:12.524Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-08-20T10:21:12.525Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-08-20T11:18:56.080Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-08-20T11:18:56.083Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-08-20T11:18:57.432Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "CasaSync",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-08-20T11:18:57.435Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-08-20T11:18:58.786Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-08-20T11:18:58.788Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "3/10 passing, 5 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-08-20T12:19:24.722Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-20T12:19:41.691Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-08-20T12:19:41.695Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 42 outcomes (16 merged, 9 closed, 17 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-08-20T12:27:57.625Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-20T12:28:01.022Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-20T12:28:01.452Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.2/10, 3640 risk pts, +2/-16",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-08-20T12:28:01.890Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-20T12:43:34.358Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-20T12:43:37.645Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-20T12:43:38.341Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.2/10, 3640 risk pts, +2/-16",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-08-20T12:43:39.026Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-08-20T13:25:04.867Z",
       "source": "factory-watchdog",
       "action": "workflow-failure",
@@ -7701,6 +7538,45 @@
       "action": "watchdog-complete",
       "details": "3/7 passing. 4 failures, 0 partial. 0 self-heals",
       "status": "error"
+    },
+    {
+      "timestamp": "2026-08-27T13:24:33.535Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Email_Assistant",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-08-27T13:24:33.538Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "ClubMedRoomAssignment",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-08-27T13:24:33.541Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Zentra",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-08-27T13:24:34.543Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-08-27T13:24:34.545Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
