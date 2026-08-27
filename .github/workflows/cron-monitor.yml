@@ -21,11 +21,11 @@ jobs:
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    env:
+      HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
     steps:
       - name: Ping monitoring endpoint
-        if: ${{ secrets.HEALTHCHECK_PING_URL != '' }}
-        env:
-          HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
+        if: env.HEALTHCHECK_PING_URL != ''
         run: |
           WORKFLOW="${{ github.event.workflow_run.name }}"
           STATUS="${{ github.event.workflow_run.conclusion }}"
@@ -40,7 +40,7 @@ jobs:
           echo "Pinged monitoring for: ${WORKFLOW} (${STATUS})"
 
       - name: No-op when unconfigured
-        if: ${{ secrets.HEALTHCHECK_PING_URL == '' }}
+        if: env.HEALTHCHECK_PING_URL == ''
         run: echo "HEALTHCHECK_PING_URL not configured - skipping ping"
 
   report-failure:
@@ -49,11 +49,11 @@ jobs:
       github.event.workflow_run.conclusion == 'failure'
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    env:
+      HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
     steps:
       - name: Ping failure endpoint
-        if: ${{ secrets.HEALTHCHECK_PING_URL != '' }}
-        env:
-          HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
+        if: env.HEALTHCHECK_PING_URL != ''
         run: |
           WORKFLOW="${{ github.event.workflow_run.name }}"
 
