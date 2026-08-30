@@ -1,10 +1,10 @@
 ## Template Update Report
 
-> Based on veille from 2026-08-16
+> Based on veille from 2026-08-30
 
 ### Watchlist (Breaking Changes)
 
-- Vitest  has breaking changes - review before updating templates
+- Prisma 7.10.0 has breaking changes - review before updating templates
 
 ### Template Inventory
 
