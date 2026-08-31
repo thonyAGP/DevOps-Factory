@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "date": "2026-08-24",
-  "totalFindings": 885,
+  "date": "2026-08-31",
+  "totalFindings": 809,
   "repos": [
     {
       "name": "DevOps-Factory",
@@ -39,13 +39,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 240,
+          "findings": 241,
           "bySeverity": {
-            "DUPLICATION": 240
+            "DUPLICATION": 241
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 9.82
+            "duplicationPct": 9.83
           }
         }
       ]
@@ -703,44 +703,8 @@
       "name": "Benchmark_Claude",
       "repo": "thonyAGP/Benchmark_Claude",
       "stack": "unknown",
-      "cloned": true,
-      "scanners": [
-        {
-          "scanner": "gitleaks",
-          "status": "clean",
-          "findings": 0,
-          "bySeverity": {},
-          "top": []
-        },
-        {
-          "scanner": "semgrep",
-          "status": "findings",
-          "findings": 6,
-          "bySeverity": {
-            "MEDIUM": 6
-          },
-          "top": []
-        },
-        {
-          "scanner": "trivy",
-          "status": "clean",
-          "findings": 0,
-          "bySeverity": {},
-          "top": []
-        },
-        {
-          "scanner": "jscpd",
-          "status": "findings",
-          "findings": 11,
-          "bySeverity": {
-            "DUPLICATION": 11
-          },
-          "top": [],
-          "metrics": {
-            "duplicationPct": 21.48
-          }
-        }
-      ]
+      "cloned": false,
+      "scanners": []
     },
     {
       "name": "test_codingmenace",
@@ -792,90 +756,15 @@
       "name": "RemoteDevDashboard",
       "repo": "thonyAGP/RemoteDevDashboard",
       "stack": "unknown",
-      "cloned": true,
-      "scanners": [
-        {
-          "scanner": "gitleaks",
-          "status": "clean",
-          "findings": 0,
-          "bySeverity": {},
-          "top": []
-        },
-        {
-          "scanner": "semgrep",
-          "status": "findings",
-          "findings": 6,
-          "bySeverity": {
-            "MEDIUM": 6
-          },
-          "top": []
-        },
-        {
-          "scanner": "trivy",
-          "status": "clean",
-          "findings": 0,
-          "bySeverity": {},
-          "top": []
-        },
-        {
-          "scanner": "jscpd",
-          "status": "findings",
-          "findings": 11,
-          "bySeverity": {
-            "DUPLICATION": 11
-          },
-          "top": [],
-          "metrics": {
-            "duplicationPct": 20.76
-          }
-        }
-      ]
+      "cloned": false,
+      "scanners": []
     },
     {
       "name": "ClaudePilot",
       "repo": "thonyAGP/ClaudePilot",
       "stack": "unknown",
-      "cloned": true,
-      "scanners": [
-        {
-          "scanner": "gitleaks",
-          "status": "clean",
-          "findings": 0,
-          "bySeverity": {},
-          "top": []
-        },
-        {
-          "scanner": "semgrep",
-          "status": "findings",
-          "findings": 6,
-          "bySeverity": {
-            "MEDIUM": 6
-          },
-          "top": []
-        },
-        {
-          "scanner": "trivy",
-          "status": "findings",
-          "findings": 58,
-          "bySeverity": {
-            "HIGH": 56,
-            "CRITICAL": 2
-          },
-          "top": []
-        },
-        {
-          "scanner": "jscpd",
-          "status": "findings",
-          "findings": 74,
-          "bySeverity": {
-            "DUPLICATION": 74
-          },
-          "top": [],
-          "metrics": {
-            "duplicationPct": 15.04
-          }
-        }
-      ]
+      "cloned": false,
+      "scanners": []
     },
     {
       "name": "Lanceur_Claude",
@@ -1096,13 +985,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 363,
+          "findings": 369,
           "bySeverity": {
-            "DUPLICATION": 363
+            "DUPLICATION": 369
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 9.33
+            "duplicationPct": 9.21
           }
         }
       ]
