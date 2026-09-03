@@ -2,61 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-08-27T22:27:15.292Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-27T22:27:15.295Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-27T22:27:15.297Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Build Dashboard",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-27T22:27:15.299Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "AI Branding Guard",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-27T22:27:17.098Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-27T22:27:18.542Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Build Dashboard",
-      "details": "total_failure: Build Dashboard",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-27T22:27:18.544Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "2/6 passing. 4 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-08-27T23:24:27.810Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -3723,6 +3668,34 @@
       "action": "check-complete",
       "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-03T22:58:24.325Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-03T22:58:28.006Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-03T22:58:28.456Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.9/10, 3365 risk pts, +2/-13",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-03T22:58:28.939Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
     }
   ]
 }
