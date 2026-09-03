@@ -3615,6 +3615,53 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-09-03T16:34:44.592Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-03T16:34:44.594Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": ".github/workflows/cron-monitor.yml",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-03T16:34:46.383Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Uptime Monitor",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-03T16:34:47.007Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-03T16:34:48.474Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Uptime Monitor",
+      "details": "total_failure: Uptime Monitor",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-03T16:34:48.475Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "1/4 passing. 3 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
