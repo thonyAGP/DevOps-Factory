@@ -2,61 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-08-28T11:35:02.394Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Cron Monitor",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-28T11:35:02.397Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-28T11:35:05.287Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "AI Branding Guard",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-28T11:35:06.295Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Cron Monitor",
-      "details": "total_failure: Cron Monitor",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-28T11:35:06.711Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-28T11:35:07.844Z",
-      "source": "factory-watchdog",
-      "action": "issue-closed",
-      "target": "[Watchdog] FAILURE: Build Dashboard",
-      "details": "recovered: [Watchdog] FAILURE: Build Dashboard",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-28T11:35:07.845Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "3/6 passing. 3 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-08-28T14:53:41.998Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -3829,6 +3774,13 @@
       "source": "build-dashboard",
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-04T12:39:29.262Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 36/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
       "status": "success"
     }
   ]
