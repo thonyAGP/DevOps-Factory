@@ -3870,6 +3870,37 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-09-04T16:30:18.690Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Cron Monitor",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-04T16:30:18.691Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-04T16:30:25.188Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-04T16:30:25.189Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/5 passing. 2 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
