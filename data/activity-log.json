@@ -2,37 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-08-29T16:48:53.311Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Cron Monitor",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-29T16:48:53.313Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-29T16:48:58.773Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-08-29T16:48:58.775Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "5/7 passing. 2 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-08-29T18:03:41.167Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -4017,6 +3986,34 @@
       "action": "check-complete",
       "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-05T17:08:42.658Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-05T17:08:45.544Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-05T17:08:46.235Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.9/10, 3365 risk pts, +2/-13",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-05T17:08:46.945Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
     }
   ]
 }
