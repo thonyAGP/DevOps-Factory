@@ -3903,6 +3903,27 @@
       "action": "check-complete",
       "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-05T01:34:04.633Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 0 repos (0 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-05T01:34:20.213Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-05T01:34:20.215Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 42 outcomes (16 merged, 9 closed, 17 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
