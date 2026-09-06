@@ -2,34 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-08-30T03:40:38.725Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-30T03:40:42.264Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-08-30T03:40:42.936Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.2/10, 3665 risk pts, +2/-16",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-08-30T03:40:43.624Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-08-30T05:35:29.812Z",
       "source": "factory-watchdog",
       "action": "workflow-failure",
@@ -4070,6 +4042,37 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-09-06T04:54:41.414Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Cron Monitor",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-06T04:54:41.416Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-06T04:54:47.209Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-06T04:54:47.211Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/5 passing. 2 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
