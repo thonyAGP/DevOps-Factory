@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-05T11:47:01.369Z",
+  "timestamp": "2026-09-06T12:04:55.704Z",
   "scores": [
     {
       "name": "DevOps-Factory",
@@ -72,22 +72,6 @@
       "breakdown": {
         "ciPasses": 15,
         "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
-      "name": "Site_Au-marais",
-      "repo": "thonyAGP/au-marais",
-      "score": 40,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 15,
         "prettierClean": 5,
         "eslintZeroWarnings": 10,
         "branchProtection": 0,
@@ -258,6 +242,22 @@
       }
     },
     {
+      "name": "Site_Au-marais",
+      "repo": "thonyAGP/au-marais",
+      "score": 25,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
       "name": "test_codingmenace",
       "repo": "thonyAGP/test_codingmenace",
       "score": 25,
@@ -306,5 +306,12 @@
       }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "Site_Au-marais",
+      "drop": 15,
+      "from": 40,
+      "to": 25
+    }
+  ]
 }
