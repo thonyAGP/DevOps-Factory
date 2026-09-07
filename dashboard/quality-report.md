@@ -1,13 +1,13 @@
-## Quality Score Report - 2026-09-06
+## Quality Score Report - 2026-09-07
 
 ### Summary
-- **Average Score**: 35/100
+- **Average Score**: 34/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
 
 ### Score Drops (≥5 points)
-- **Site_Au-marais**: 40 → 25 (-15)
+- **CasaSync**: 40 → 25 (-15)
 
 ### Per Repository
 
@@ -44,18 +44,6 @@
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### CasaSync
-- **Score**: 40/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
@@ -190,6 +178,18 @@
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✓
+
+#### CasaSync
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
 
 #### Site_Au-marais
 - **Score**: 25/100
