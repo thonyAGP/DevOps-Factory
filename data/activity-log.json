@@ -2,13 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-08-31T16:04:28.548Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 36/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-08-31T18:15:59.270Z",
       "source": "scan-and-configure",
       "action": "scan-complete",
@@ -4239,6 +4232,43 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-09-07T16:42:58.173Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 0 repos (0 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-07T16:43:11.073Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/CasaSync",
+      "details": "PR #338 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-07T16:43:11.075Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/CasaSync",
+      "details": "PR #343 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-07T16:43:11.078Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-07T16:43:11.080Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 44 outcomes (18 merged, 9 closed, 17 open). 2 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
