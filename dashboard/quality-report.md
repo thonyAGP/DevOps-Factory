@@ -1,13 +1,10 @@
-## Quality Score Report - 2026-09-07
+## Quality Score Report - 2026-09-08
 
 ### Summary
 - **Average Score**: 34/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
-
-### Score Drops (≥5 points)
-- **CasaSync**: 40 → 25 (-15)
 
 ### Per Repository
 
