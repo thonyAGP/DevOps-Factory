@@ -2,34 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-01T00:23:03.225Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-01T00:23:08.750Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-01T00:23:09.430Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.9/10, 3365 risk pts, +2/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-01T00:23:10.127Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-09-01T02:12:06.880Z",
       "source": "scan-and-configure",
       "action": "scan-complete",
@@ -4323,6 +4295,43 @@
       "action": "check-complete",
       "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-08T01:36:18.958Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 0 repos (0 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-08T01:36:36.231Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/CasaSync",
+      "details": "PR #338 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-08T01:36:36.234Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/CasaSync",
+      "details": "PR #343 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-08T01:36:36.236Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-08T01:36:36.239Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 44 outcomes (18 merged, 9 closed, 17 open). 2 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
