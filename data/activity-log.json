@@ -2,13 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-02T12:42:30.444Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 36/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-09-02T13:13:58.990Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -4361,6 +4354,21 @@
       "source": "build-dashboard",
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-09T12:53:23.649Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "CasaSync",
+      "details": "25 → 40 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-09T12:53:23.650Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 35/100, 0 excellent, 19 needs work, 0 drops, 1 improvements",
       "status": "success"
     }
   ]

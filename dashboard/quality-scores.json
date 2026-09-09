@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-08T12:48:20.808Z",
+  "timestamp": "2026-09-09T12:53:23.648Z",
   "scores": [
     {
       "name": "DevOps-Factory",
@@ -45,6 +45,22 @@
         "branchProtection": 0,
         "depsUpToDate": 10,
         "noSecrets": 15,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
+      "name": "CasaSync",
+      "repo": "thonyAGP/CasaSync",
+      "score": 40,
+      "breakdown": {
+        "ciPasses": 15,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
         "noDuplication": 0,
         "noCriticalFindings": 0
       }
@@ -223,22 +239,6 @@
         "noSecrets": 0,
         "noDuplication": 0,
         "noCriticalFindings": 10
-      }
-    },
-    {
-      "name": "CasaSync",
-      "repo": "thonyAGP/CasaSync",
-      "score": 25,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
       }
     },
     {

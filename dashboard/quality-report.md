@@ -1,7 +1,7 @@
-## Quality Score Report - 2026-09-08
+## Quality Score Report - 2026-09-09
 
 ### Summary
-- **Average Score**: 34/100
+- **Average Score**: 35/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
@@ -41,6 +41,18 @@
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### CasaSync
+- **Score**: 40/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
@@ -175,18 +187,6 @@
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✓
-
-#### CasaSync
-- **Score**: 25/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
 
 #### Site_Au-marais
 - **Score**: 25/100
