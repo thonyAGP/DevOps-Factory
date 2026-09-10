@@ -2,92 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-03T16:34:44.592Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-03T16:34:44.594Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-03T16:34:46.383Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Uptime Monitor",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-03T16:34:47.007Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-03T16:34:48.474Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Uptime Monitor",
-      "details": "total_failure: Uptime Monitor",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-03T16:34:48.475Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "1/4 passing. 3 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-03T16:47:14.074Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-03T16:47:14.075Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-03T16:47:14.077Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-03T16:47:15.315Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-03T16:47:15.316Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-09-03T18:20:07.860Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -4385,6 +4299,37 @@
       "action": "watchdog-complete",
       "details": "5/7 passing. 2 failures, 0 partial. 0 self-heals",
       "status": "error"
+    },
+    {
+      "timestamp": "2026-09-10T16:47:18.470Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Email_Assistant",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-09-10T16:47:18.473Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "ClubMedRoomAssignment",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-09-10T16:47:18.476Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Zentra",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-09-10T16:47:18.478Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
