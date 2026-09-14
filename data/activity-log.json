@@ -2,71 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-07T16:42:58.173Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-07T16:43:11.073Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/CasaSync",
-      "details": "PR #338 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-07T16:43:11.075Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/CasaSync",
-      "details": "PR #343 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-07T16:43:11.078Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-07T16:43:11.080Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 44 outcomes (18 merged, 9 closed, 17 open). 2 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-07T16:51:41.261Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-07T16:51:44.959Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-07T16:51:45.641Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.9/10, 3690 risk pts, +2/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-07T16:51:46.324Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-09-07T17:47:50.210Z",
       "source": "factory-watchdog",
       "action": "workflow-failure",
@@ -3949,6 +3884,27 @@
       "action": "check-complete",
       "details": "4/10 passing, 4 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-14T17:05:50.416Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 0 repos (0 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-14T17:06:05.363Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-14T17:06:05.366Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 45 outcomes (19 merged, 9 closed, 17 open). 1 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
