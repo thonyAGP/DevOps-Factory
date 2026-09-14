@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "date": "2026-09-07",
-  "totalFindings": 874,
+  "date": "2026-09-14",
+  "totalFindings": 903,
   "repos": [
     {
       "name": "DevOps-Factory",
@@ -39,13 +39,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 237,
+          "findings": 242,
           "bySeverity": {
-            "DUPLICATION": 237
+            "DUPLICATION": 242
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 9.78
+            "duplicationPct": 9.84
           }
         }
       ]
@@ -79,10 +79,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 104,
+          "findings": 113,
           "bySeverity": {
-            "HIGH": 97,
-            "CRITICAL": 7
+            "HIGH": 102,
+            "CRITICAL": 11
           },
           "top": []
         },
@@ -127,10 +127,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 74,
+          "findings": 80,
           "bySeverity": {
-            "CRITICAL": 6,
-            "HIGH": 68
+            "CRITICAL": 10,
+            "HIGH": 70
           },
           "top": []
         },
@@ -156,11 +156,9 @@
       "scanners": [
         {
           "scanner": "gitleaks",
-          "status": "findings",
-          "findings": 13,
-          "bySeverity": {
-            "SECRET": 13
-          },
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
           "top": []
         },
         {
@@ -176,23 +174,23 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 13,
+          "findings": 16,
           "bySeverity": {
-            "CRITICAL": 1,
-            "HIGH": 12
+            "CRITICAL": 3,
+            "HIGH": 13
           },
           "top": []
         },
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 643,
+          "findings": 789,
           "bySeverity": {
-            "DUPLICATION": 643
+            "DUPLICATION": 789
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 4.43
+            "duplicationPct": 3.89
           }
         }
       ]
@@ -206,9 +204,9 @@
         {
           "scanner": "gitleaks",
           "status": "findings",
-          "findings": 2,
+          "findings": 5,
           "bySeverity": {
-            "SECRET": 2
+            "SECRET": 5
           },
           "top": []
         },
@@ -224,22 +222,23 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 20,
+          "findings": 23,
           "bySeverity": {
-            "HIGH": 20
+            "HIGH": 21,
+            "CRITICAL": 2
           },
           "top": []
         },
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 52,
+          "findings": 55,
           "bySeverity": {
-            "DUPLICATION": 52
+            "DUPLICATION": 55
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 5.97
+            "duplicationPct": 5.81
           }
         }
       ]
@@ -272,23 +271,23 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 40,
+          "findings": 43,
           "bySeverity": {
-            "HIGH": 39,
-            "CRITICAL": 1
+            "HIGH": 40,
+            "CRITICAL": 3
           },
           "top": []
         },
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 452,
+          "findings": 451,
           "bySeverity": {
-            "DUPLICATION": 452
+            "DUPLICATION": 451
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 14.15
+            "duplicationPct": 14.05
           }
         }
       ]
@@ -501,9 +500,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 21,
+          "findings": 24,
           "bySeverity": {
-            "HIGH": 21
+            "HIGH": 22,
+            "CRITICAL": 2
           },
           "top": []
         },
@@ -546,9 +546,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 19,
+          "findings": 24,
           "bySeverity": {
-            "HIGH": 19
+            "CRITICAL": 1,
+            "HIGH": 23
           },
           "top": []
         },
@@ -591,9 +592,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 20,
+          "findings": 23,
           "bySeverity": {
-            "HIGH": 20
+            "HIGH": 21,
+            "CRITICAL": 2
           },
           "top": []
         },
@@ -731,10 +733,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 21,
+          "findings": 24,
           "bySeverity": {
-            "HIGH": 20,
-            "CRITICAL": 1
+            "HIGH": 21,
+            "CRITICAL": 3
           },
           "top": []
         },
@@ -836,10 +838,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 20,
+          "findings": 22,
           "bySeverity": {
             "HIGH": 18,
-            "CRITICAL": 2
+            "CRITICAL": 4
           },
           "top": []
         },
@@ -926,9 +928,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 64,
+          "findings": 69,
           "bySeverity": {
-            "HIGH": 64
+            "HIGH": 67,
+            "CRITICAL": 2
           },
           "top": []
         },
@@ -975,9 +978,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 27,
+          "findings": 21,
           "bySeverity": {
-            "HIGH": 25,
+            "HIGH": 19,
             "CRITICAL": 2
           },
           "top": []
@@ -985,13 +988,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 378,
+          "findings": 401,
           "bySeverity": {
-            "DUPLICATION": 378
+            "DUPLICATION": 401
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 9.16
+            "duplicationPct": 8.03
           }
         }
       ]
