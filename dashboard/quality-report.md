@@ -1,10 +1,15 @@
-## Quality Score Report - 2026-09-13
+## Quality Score Report - 2026-09-14
 
 ### Summary
-- **Average Score**: 35/100
+- **Average Score**: 33/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
+
+### Score Drops (≥5 points)
+- **Site_Greg-Assainissement**: 35 → 25 (-10)
+- **Site_1970_Plomberie**: 35 → 25 (-10)
+- **Thumbfast_createur_images**: 35 → 25 (-10)
 
 ### Per Repository
 
@@ -128,42 +133,6 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✓
 
-#### Site_Greg-Assainissement
-- **Score**: 35/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✓
-
-#### Site_1970_Plomberie
-- **Score**: 35/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✓
-
-#### Thumbfast_createur_images
-- **Score**: 35/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✓
-
 #### Utilitaire_Webapp
 - **Score**: 35/100
 - **CI Passes**: ✗
@@ -189,6 +158,42 @@
 - **No Critical Findings**: ✓
 
 #### Site_Au-marais
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### Site_Greg-Assainissement
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### Site_1970_Plomberie
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### Thumbfast_createur_images
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗

@@ -2,49 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-07T14:10:34.580Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "CasaSync",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-07T14:10:34.582Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 34/100, 0 excellent, 19 needs work, 1 drops, 0 improvements",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-07T14:46:57.823Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-07T14:47:01.152Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-07T14:47:01.848Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.9/10, 3690 risk pts, +2/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-07T14:47:02.537Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-09-07T16:42:58.173Z",
       "source": "scan-and-configure",
       "action": "scan-complete",
@@ -3922,6 +3879,37 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-09-14T14:56:41.362Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Site_Greg-Assainissement",
+      "details": "35 → 25 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-14T14:56:41.364Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Site_1970_Plomberie",
+      "details": "35 → 25 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-14T14:56:41.366Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Thumbfast_createur_images",
+      "details": "35 → 25 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-14T14:56:41.367Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 33/100, 0 excellent, 19 needs work, 3 drops, 0 improvements",
+      "status": "warning"
     }
   ]
 }
