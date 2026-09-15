@@ -2,37 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-08T04:55:56.752Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Cron Monitor",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-08T04:55:56.755Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-08T04:56:02.624Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-08T04:56:02.629Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "3/5 passing. 2 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-09-08T07:37:12.755Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -3913,6 +3882,101 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-09-15T05:05:53.723Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-15T05:05:54.662Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Build Dashboard",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-15T05:05:54.663Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "PAT Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-15T05:05:54.664Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Scan Repos",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-15T05:05:54.665Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Factory Watchdog",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-15T05:05:55.907Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-15T05:05:56.953Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Build Dashboard",
+      "details": "total_failure: Build Dashboard",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-15T05:05:58.043Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "PAT Health Check",
+      "details": "total_failure: PAT Health Check",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-15T05:05:59.322Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Scan Repos",
+      "details": "total_failure: Scan Repos",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-15T05:06:00.320Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Factory Watchdog",
+      "details": "total_failure: Factory Watchdog",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-15T05:06:01.427Z",
+      "source": "factory-watchdog",
+      "action": "issue-closed",
+      "target": "[Watchdog] FAILURE: AI Branding Guard",
+      "details": "recovered: [Watchdog] FAILURE: AI Branding Guard",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-15T05:06:01.429Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "2/7 passing. 5 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
