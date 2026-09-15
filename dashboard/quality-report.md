@@ -1,15 +1,10 @@
-## Quality Score Report - 2026-09-14
+## Quality Score Report - 2026-09-15
 
 ### Summary
 - **Average Score**: 33/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
-
-### Score Drops (≥5 points)
-- **Site_Greg-Assainissement**: 35 → 25 (-10)
-- **Site_1970_Plomberie**: 35 → 25 (-10)
-- **Thumbfast_createur_images**: 35 → 25 (-10)
 
 ### Per Repository
 
