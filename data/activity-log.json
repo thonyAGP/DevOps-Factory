@@ -2,34 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-08T03:05:49.621Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-08T03:05:52.888Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-08T03:05:53.341Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.9/10, 3690 risk pts, +2/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-08T03:05:53.783Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-09-08T04:55:56.752Z",
       "source": "factory-watchdog",
       "action": "workflow-failure",
@@ -3913,6 +3885,34 @@
       "action": "check-complete",
       "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-15T03:26:13.172Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-15T03:26:18.410Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-15T03:26:19.104Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.6/10, 3910 risk pts, +6/-13",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-15T03:26:19.783Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
     }
   ]
 }
