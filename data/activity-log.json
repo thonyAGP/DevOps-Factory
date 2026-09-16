@@ -2,37 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-09T04:56:08.882Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Cron Monitor",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-09T04:56:08.885Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-09T04:56:14.599Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-09T04:56:14.601Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "3/5 passing. 2 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-09-09T05:36:49.211Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -3953,6 +3922,61 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-09-16T05:01:06.653Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Cron Monitor",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-16T05:01:06.655Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-16T05:01:14.633Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Cron Monitor",
+      "details": "total_failure: Cron Monitor",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-16T05:01:15.174Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-16T05:01:16.468Z",
+      "source": "factory-watchdog",
+      "action": "issue-closed",
+      "target": "[Watchdog] FAILURE: Factory Watchdog",
+      "details": "recovered: [Watchdog] FAILURE: Factory Watchdog",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-16T05:01:17.751Z",
+      "source": "factory-watchdog",
+      "action": "issue-closed",
+      "target": "[Watchdog] FAILURE: Scan Repos",
+      "details": "recovered: [Watchdog] FAILURE: Scan Repos",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-16T05:01:17.753Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "5/7 passing. 2 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
