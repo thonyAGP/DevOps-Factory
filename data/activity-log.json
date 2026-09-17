@@ -2,44 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-10T12:32:38.964Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-10T12:32:38.967Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-10T12:32:38.970Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-10T12:32:38.972Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-10T12:51:00.353Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 35/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-09-10T15:17:42.100Z",
       "source": "scan-and-configure",
       "action": "scan-complete",
@@ -3861,6 +3823,21 @@
       "source": "build-dashboard",
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-17T13:18:43.385Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "CasaSync",
+      "details": "25 → 40 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-17T13:18:43.387Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 33/100, 0 excellent, 19 needs work, 0 drops, 1 improvements",
       "status": "success"
     }
   ]
