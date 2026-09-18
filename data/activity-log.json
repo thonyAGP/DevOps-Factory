@@ -2,35 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-11T15:19:27.665Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-11T15:19:42.858Z",
-      "source": "outcome-registry",
-      "action": "healing-verified",
-      "target": "thonyAGP/CasaSync",
-      "details": "PR #387 — CI green after merge",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-11T15:19:44.097Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-11T15:19:44.100Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 45 outcomes (19 merged, 9 closed, 17 open). 3 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-09-11T15:27:56.269Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -3893,6 +3864,34 @@
       "action": "outcome-registry",
       "details": "Registry updated: 45 outcomes (19 merged, 9 closed, 17 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
       "status": "info"
+    },
+    {
+      "timestamp": "2026-09-18T15:25:32.502Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-18T15:25:36.213Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-18T15:25:36.907Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.6/10, 3910 risk pts, +6/-13",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-18T15:25:37.610Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
     }
   ]
 }
