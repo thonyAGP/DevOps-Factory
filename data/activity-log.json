@@ -2,13 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-11T12:46:06.057Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 35/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-09-11T14:44:27.309Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -3870,6 +3863,45 @@
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "3/10 passing, 5 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-18T12:53:15.990Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Email_Assistant",
+      "details": "40 → 25 (-15pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-18T12:53:15.992Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "CasaSync",
+      "details": "40 → 25 (-15pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-18T12:53:15.994Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Lecteur_Magic",
+      "details": "40 → 25 (-15pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-18T12:53:15.995Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "magic-migration",
+      "details": "40 → 25 (-15pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-18T12:53:15.997Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 30/100, 0 excellent, 19 needs work, 4 drops, 0 improvements",
       "status": "warning"
     }
   ]
