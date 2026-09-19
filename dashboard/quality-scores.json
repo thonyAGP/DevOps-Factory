@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-18T12:53:15.989Z",
+  "timestamp": "2026-09-19T12:25:59.168Z",
   "scores": [
     {
       "name": "DevOps-Factory",
@@ -29,22 +29,6 @@
         "branchProtection": 0,
         "depsUpToDate": 10,
         "noSecrets": 15,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
-      "name": "Livret_accueil_Au-Marais",
-      "repo": "thonyAGP/livret-au-marais",
-      "score": 40,
-      "breakdown": {
-        "ciPasses": 15,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
         "noDuplication": 0,
         "noCriticalFindings": 0
       }
@@ -148,6 +132,22 @@
     {
       "name": "CasaSync",
       "repo": "thonyAGP/CasaSync",
+      "score": 25,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
+      "name": "Livret_accueil_Au-Marais",
+      "repo": "thonyAGP/livret-au-marais",
       "score": 25,
       "breakdown": {
         "ciPasses": 0,
@@ -308,25 +308,7 @@
   ],
   "drops": [
     {
-      "repo": "Email_Assistant",
-      "drop": 15,
-      "from": 40,
-      "to": 25
-    },
-    {
-      "repo": "CasaSync",
-      "drop": 15,
-      "from": 40,
-      "to": 25
-    },
-    {
-      "repo": "Lecteur_Magic",
-      "drop": 15,
-      "from": 40,
-      "to": 25
-    },
-    {
-      "repo": "magic-migration",
+      "repo": "Livret_accueil_Au-Marais",
       "drop": 15,
       "from": 40,
       "to": 25
