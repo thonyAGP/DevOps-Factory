@@ -2,13 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-13T05:03:43.826Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "0/0 passing. 0 failures, 0 partial. 0 self-heals",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-09-13T07:50:33.838Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -4059,6 +4052,37 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-09-20T05:06:02.697Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Cron Monitor",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-20T05:06:02.700Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-20T05:06:07.078Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-20T05:06:07.081Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/5 passing. 2 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
