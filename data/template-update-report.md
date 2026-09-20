@@ -1,10 +1,10 @@
 ## Template Update Report
 
-> Based on veille from 2026-09-13
+> Based on veille from 2026-09-20
 
-### Watchlist (Breaking Changes)
+### All templates are up to date
 
-- Prisma  has breaking changes - review before updating templates
+No version updates needed based on this week's veille.
 
 ### Template Inventory
 

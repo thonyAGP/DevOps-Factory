@@ -1,128 +1,122 @@
-## Veille Technologique - Semaine du 2026-09-13
+## Veille Technologique - Semaine du 2026-09-20
 
-> 43 mises a jour detectees sur 29 sources
+> 39 mises a jour detectees sur 29 sources
 
 ### Claude & Anthropic
 
 | Projet | Version | Date | Breaking | Lien |
 |--------|---------|------|----------|------|
-| Claude Code | v2.1.270 | 2026-09-12 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.270) |
-| Claude Code | v2.1.269 | 2026-09-11 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.269) |
-| Claude Code | v2.1.268 | 2026-09-10 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.268) |
-| Claude Code | v2.1.267 | 2026-09-09 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.267) |
-| Claude Code | v2.1.266 | 2026-09-08 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.266) |
+| Claude Code | v2.1.278 | 2026-09-19 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.278) |
+| Claude Code | v2.1.277 | 2026-09-18 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.277) |
+| Claude Code | v2.1.276 | 2026-09-18 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.276) |
+| Claude Code | v2.1.275 | 2026-09-17 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.275) |
+| Claude Code | v2.1.274 | 2026-09-17 | - | [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.274) |
 
 ### Agents & Frameworks
 
 | Projet | Version | Date | Breaking | Lien |
 |--------|---------|------|----------|------|
-| Vercel AI SDK | ai@7.0.99 | 2026-09-12 | - | [Release](https://github.com/vercel/ai/releases/tag/ai%407.0.99) |
-| Vercel AI SDK | ai@6.0.282 | 2026-09-12 | - | [Release](https://github.com/vercel/ai/releases/tag/ai%406.0.282) |
-| Vercel AI SDK | ai@5.0.257 | 2026-09-12 | - | [Release](https://github.com/vercel/ai/releases/tag/ai%405.0.257) |
-| Vercel AI SDK | @ai-sdk/workflow@2.0.30 | 2026-09-12 | - | [Release](https://github.com/vercel/ai/releases/tag/%40ai-sdk/workflow%402.0.30) |
-| Vercel AI SDK | @ai-sdk/workflow-harness@1.0.109 | 2026-09-12 | - | [Release](https://github.com/vercel/ai/releases/tag/%40ai-sdk/workflow-harness%401.0.109) |
-| CrewAI | 1.15.21 | 2026-09-09 | - | [Release](https://github.com/crewAIInc/crewAI/releases/tag/1.15.21) |
-| OpenAI Agents SDK | v0.22.2 | 2026-09-09 | - | [Release](https://github.com/openai/openai-agents-python/releases/tag/v0.22.2) |
-| OpenAI Agents SDK | v0.22.1 | 2026-09-08 | - | [Release](https://github.com/openai/openai-agents-python/releases/tag/v0.22.1) |
-| Google ADK | v2.9.0 | 2026-09-10 | - | [Release](https://github.com/google/adk-python/releases/tag/v2.9.0) |
+| Vercel AI SDK | ai@7.0.107 | 2026-09-18 | - | [Release](https://github.com/vercel/ai/releases/tag/ai%407.0.107) |
+| Vercel AI SDK | ai@7.0.106 | 2026-09-18 | - | [Release](https://github.com/vercel/ai/releases/tag/ai%407.0.106) |
+| Vercel AI SDK | ai@6.0.286 | 2026-09-18 | - | [Release](https://github.com/vercel/ai/releases/tag/ai%406.0.286) |
+| Vercel AI SDK | ai@5.0.261 | 2026-09-18 | - | [Release](https://github.com/vercel/ai/releases/tag/ai%405.0.261) |
+| Vercel AI SDK | ai@5.0.260 | 2026-09-18 | - | [Release](https://github.com/vercel/ai/releases/tag/ai%405.0.260) |
+| CrewAI | 1.15.22 | 2026-09-16 | - | [Release](https://github.com/crewAIInc/crewAI/releases/tag/1.15.22) |
+| OpenAI Agents SDK | v0.22.3 | 2026-09-17 | - | [Release](https://github.com/openai/openai-agents-python/releases/tag/v0.22.3) |
+| Google ADK | v2.9.2 | 2026-09-18 | - | [Release](https://github.com/google/adk-python/releases/tag/v2.9.2) |
+| Google ADK | v2.9.1 | 2026-09-15 | - | [Release](https://github.com/google/adk-python/releases/tag/v2.9.1) |
 
 ### Dev Tools
 
 | Projet | Version | Date | Breaking | Lien |
 |--------|---------|------|----------|------|
-| Node.js | v26.8.2 | 2026-09-09 | - | [Release](https://github.com/nodejs/node/releases/tag/v26.8.2) |
-| Node.js | v24.21.0 | 2026-09-08 | - | [Release](https://github.com/nodejs/node/releases/tag/v24.21.0) |
-| Next.js | v16.4.0-canary.28 | 2026-09-12 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.4.0-canary.28) |
-| Next.js | v16.4.0-canary.27 | 2026-09-11 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.4.0-canary.27) |
-| Next.js | v16.3.5 | 2026-09-11 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.3.5) |
-| Next.js | v16.4.0-canary.26 | 2026-09-10 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.4.0-canary.26) |
-| Next.js | v16.4.0-canary.25 | 2026-09-09 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.4.0-canary.25) |
-| Fastify | v5.12.4 | 2026-09-11 | - | [Release](https://github.com/fastify/fastify/releases/tag/v5.12.4) |
+| Node.js | v26.9.0 | 2026-09-16 | - | [Release](https://github.com/nodejs/node/releases/tag/v26.9.0) |
+| Next.js | v16.4.0-canary.37 | 2026-09-19 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.4.0-canary.37) |
+| Next.js | v16.4.0-canary.36 | 2026-09-18 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.4.0-canary.36) |
+| Next.js | v16.4.0-canary.35 | 2026-09-17 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.4.0-canary.35) |
+| Next.js | v16.4.0-canary.34 | 2026-09-16 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.4.0-canary.34) |
+| Next.js | v16.4.0-canary.33 | 2026-09-16 | - | [Release](https://github.com/vercel/next.js/releases/tag/v16.4.0-canary.33) |
+| Fastify | v6.0.0-alpha.4 | 2026-09-17 | - | [Release](https://github.com/fastify/fastify/releases/tag/v6.0.0-alpha.4) |
+| Fastify | v5.12.5 | 2026-09-16 | - | [Release](https://github.com/fastify/fastify/releases/tag/v5.12.5) |
 | Prisma | v8.0.0-rc.11 | 2026-09-13 | - | [Release](https://github.com/prisma/orm/releases/tag/v8.0.0-rc.11) |
-| Prisma | v8.0.0-rc.10 | 2026-09-12 | **OUI** | [Release](https://github.com/prisma/orm/releases/tag/v8.0.0-rc.10) |
-| Prisma | v8.0.0-rc.9 | 2026-09-09 | **OUI** | [Release](https://github.com/prisma/orm/releases/tag/v8.0.0-rc.9) |
-| pnpm | v11.27.0 | 2026-09-12 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v11.27.0) |
-| pnpm | v12.4.1 | 2026-09-10 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v12.4.1) |
-| pnpm | pnpr@0.1.0-alpha.11 | 2026-09-10 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/pnpr%400.1.0-alpha.11) |
-| pnpm | v12.4.0 | 2026-09-08 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v12.4.0) |
-| pnpm | v11.26.0 | 2026-09-06 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v11.26.0) |
+| Vitest | v5.0.1 | 2026-09-15 | - | [Release](https://github.com/vitest-dev/vitest/releases/tag/v5.0.1) |
+| pnpm | v11.27.1 | 2026-09-20 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v11.27.1) |
+| pnpm | v12.5.1 | 2026-09-18 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v12.5.1) |
+| pnpm | v12.5.0 | 2026-09-18 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v12.5.0) |
+| pnpm | pnpr@0.1.0-alpha.12 | 2026-09-18 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/pnpr%400.1.0-alpha.12) |
+| pnpm | v12.4.2 | 2026-09-15 | - | [Release](https://github.com/pnpm/pnpm/releases/tag/v12.4.2) |
+| ESLint | v10.11.0 | 2026-09-18 | - | [Release](https://github.com/eslint/eslint/releases/tag/v10.11.0) |
+| Zod | v4.6.5 | 2026-09-13 | - | [Release](https://github.com/colinhacks/zod/releases/tag/v4.6.5) |
 | Zod | v4.6.4 | 2026-09-13 | - | [Release](https://github.com/colinhacks/zod/releases/tag/v4.6.4) |
-| Zod | v4.6.3 | 2026-09-12 | - | [Release](https://github.com/colinhacks/zod/releases/tag/v4.6.3) |
-| Zod | v4.6.2 | 2026-09-10 | - | [Release](https://github.com/colinhacks/zod/releases/tag/v4.6.2) |
-| Zod | v4.6.1 | 2026-09-09 | - | [Release](https://github.com/colinhacks/zod/releases/tag/v4.6.1) |
-| Zod | v4.6.0 | 2026-09-09 | - | [Release](https://github.com/colinhacks/zod/releases/tag/v4.6.0) |
 
 ### DevOps Tools
 
 | Projet | Version | Date | Breaking | Lien |
 |--------|---------|------|----------|------|
-| Renovate | 44.83.0 | 2026-09-13 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.83.0) |
-| Renovate | 44.82.5 | 2026-09-13 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.82.5) |
-| Renovate | 44.82.4 | 2026-09-12 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.82.4) |
-| Renovate | 44.82.3 | 2026-09-12 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.82.3) |
-| Renovate | 44.82.2 | 2026-09-12 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.82.2) |
-| Semgrep | v1.177.0 | 2026-09-10 | - | [Release](https://github.com/semgrep/semgrep/releases/tag/v1.177.0) |
-| Knip | knip@6.35.1 | 2026-09-09 | - | [Release](https://github.com/webpro-nl/knip/releases/tag/knip%406.35.1) |
-| Knip | knip@6.35.0 | 2026-09-08 | - | [Release](https://github.com/webpro-nl/knip/releases/tag/knip%406.35.0) |
+| Renovate | 44.104.0 | 2026-09-20 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.104.0) |
+| Renovate | 44.103.7 | 2026-09-20 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.103.7) |
+| Renovate | 44.103.6 | 2026-09-20 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.103.6) |
+| Renovate | 44.103.5 | 2026-09-20 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.103.5) |
+| Renovate | 44.103.4 | 2026-09-20 | - | [Release](https://github.com/renovatebot/renovate/releases/tag/44.103.4) |
+| Knip | knip@6.37.0 | 2026-09-18 | - | [Release](https://github.com/webpro-nl/knip/releases/tag/knip%406.37.0) |
+| Knip | knip@6.36.0 | 2026-09-16 | - | [Release](https://github.com/webpro-nl/knip/releases/tag/knip%406.36.0) |
 
 ---
 
 ### Synthese IA
 
-En tant qu'expert DevOps et développeur senior TypeScript/Node.js/React, voici mon analyse des mises à jour de cette semaine.
+Bonjour l'équipe,
+
+Voici la synthèse des mises à jour détectées cette semaine, analysée sous l'angle de notre stack TypeScript/Node.js/React et de nos pratiques DevOps.
 
 ---
 
-## Synthèse des Mises à Jour Hebdomadaires
+### Résumé des Tendances de la Semaine
 
-### 1. Résumé
+Cette semaine est marquée par une intense activité dans l'écosystème des outils de développement et d'IA. On observe une multitude de mises à jour mineures pour les modèles et SDK d'IA (Claude, Vercel AI SDK, CrewAI, OpenAI, Google ADK), soulignant l'innovation continue dans ce domaine. Parallèlement, des versions majeures de composants clés comme Node.js 26, Next.js 16 (canary) et Prisma 8 (RC) sont en préparation ou déjà disponibles en version "Current", annonçant des évolutions significatives pour nos stacks. Le reste des outils (Fastify, Vitest, ESLint, Zod, pnpm, Renovate, Knip) bénéficie de mises à jour régulières, axées sur l'amélioration continue et la stabilité.
 
-La semaine est marquée par une effervescence continue dans l'écosystème de l'IA, avec de nombreuses mises à jour incrémentales pour les modèles (Claude) et les SDK/frameworks d'agents (Vercel AI SDK, OpenAI, Google ADK, CrewAI). Le cœur de notre stack TypeScript/Node.js/React voit des mises à jour régulières pour Node.js (LTS et Current), Next.js (stable et canaries très actifs), Fastify et Zod, signalant une évolution constante. Le point le plus critique est l'approche de Prisma v8, avec des Release Candidates introduisant des changements majeurs et potentiellement cassants. Enfin, nos outils DevOps comme Renovate, Semgrep et Knip continuent de s'affiner, améliorant la qualité et la sécurité de nos pipelines.
+---
 
-### 2. Impact pour notre stack (TypeScript, Next.js, Fastify, Prisma, Vitest, Playwright, GitHub Actions)
+### Impact pour notre Stack (TypeScript, Next.js, Fastify, Prisma, Vitest, Playwright, GitHub Actions)
 
 #### Mises à jour directement pertinentes :
 
-*   **Prisma v8.0.0-rc.11 (et précédentes rc.9, rc.10):** C'est la mise à jour la plus critique. Les versions `rc.9` et `rc.10` sont explicitement marquées comme **BREAKING**. Cela signifie que la migration vers Prisma v8 nécessitera une attention particulière, des révisions de code et des tests approfondis. Il est impératif de suivre les changelogs de près.
-*   **Node.js v24.21.0 (LTS) & v26.8.2 (Current):** Des mises à jour importantes pour notre runtime. La version LTS `v24.21.0` est à prioriser pour nos environnements de production et de développement pour bénéficier des dernières corrections de bugs et améliorations de sécurité.
-*   **Next.js v16.3.5 (stable) & v16.4.0-canary.x:** La version `v16.3.5` est une mise à jour stable à appliquer. Les nombreuses versions `canary` de `v16.4.0` indiquent un développement très actif et l'arrivée prochaine de nouvelles fonctionnalités (et potentiellement des changements) dans la prochaine version mineure/majeure de Next.js.
-*   **Fastify v5.12.4:** Une mise à jour de maintenance pour notre framework backend, à intégrer pour la stabilité et les correctifs.
-*   **Zod v4.6.x:** Plusieurs mises à jour pour notre bibliothèque de validation de schémas. Généralement non-breaking, elles apportent des améliorations et des correctifs utiles pour la robustesse de nos applications TypeScript.
-*   **pnpm v11.x & v12.x:** Des mises à jour pour notre gestionnaire de paquets. Il est bon de les appliquer pour les améliorations de performance et de fiabilité.
-*   **Vercel AI SDK (@ai-sdk/workflow, @ai-sdk/workflow-harness) & OpenAI Agents SDK:** Si nous utilisons ces SDK pour nos fonctionnalités basées sur l'IA, ces mises à jour sont directement pertinentes et peuvent apporter de nouvelles capacités ou des améliorations de performance/stabilité.
-*   **Renovate, Semgrep, Knip:** Ces outils DevOps sont essentiels pour nos pipelines GitHub Actions. Les maintenir à jour assure que nos dépendances sont correctement gérées, notre code analysé pour la sécurité et la qualité, et les dépendances inutilisées identifiées.
+1.  **Node.js v26.9.0**: C'est la version "Current" de Node.js, ce qui signifie qu'elle est la plus récente et sera la base de la prochaine version LTS. C'est une mise à jour majeure pour notre runtime.
+2.  **Next.js v16.4.0-canary.X**: Bien que ce soient des versions canary, elles indiquent l'orientation future de Next.js v16. Il est crucial de surveiller ces mises à jour pour anticiper les changements à venir dans notre framework frontend.
+3.  **Fastify v5.12.5 & v6.0.0-alpha.4**: La version 5.12.5 est une mise à jour stable pour notre version actuelle de Fastify. L'alpha de la v6.0.0 signale l'arrivée d'une nouvelle version majeure de notre framework backend, à surveiller attentivement.
+4.  **Prisma v8.0.0-rc.11**: C'est une Release Candidate pour une version majeure de notre ORM. Cela signifie que la v8.0.0 est imminente et aura un impact direct sur notre couche de données.
+5.  **Vitest v5.0.1**: Mise à jour mineure pour notre framework de tests unitaires, probablement des améliorations de performance ou des corrections de bugs.
+6.  **ESLint v10.11.0**: Mise à jour de notre linter, essentielle pour maintenir la qualité de code.
+7.  **Zod v4.6.4-5**: Mises à jour mineures pour notre bibliothèque de validation de schémas.
+8.  **pnpm v11.27.1, v12.4.2, v12.5.0-1**: Mises à jour pour notre gestionnaire de paquets, importantes pour la fiabilité de nos builds.
+9.  **Vercel AI SDK ai@7.0.107 (et autres)**: Si nous utilisons des fonctionnalités d'IA via Vercel, ces mises à jour sont pertinentes pour la stabilité et les nouvelles capacités.
+10. **Renovate 44.104.0 (et autres)**: Mises à jour de notre outil de gestion des dépendances, améliorant potentiellement son efficacité et sa compatibilité.
+11. **Knip knip@6.37.0 (et autres)**: Mises à jour de notre outil d'analyse des dépendances inutilisées, utile pour maintenir un codebase propre.
 
-#### Breaking Changes à anticiper :
+#### Breaking changes à anticiper :
 
-*   **Prisma v8.0.0-rc.9 et v8.0.0-rc.10:** Ces deux Release Candidates contiennent des changements cassants. Il est crucial de consulter la documentation officielle de Prisma pour comprendre l'étendue de ces changements et planifier la migration en conséquence.
+Bien que toutes les mises à jour listées soient marquées "non-breaking" *pour leur version spécifique*, il est impératif de noter que les passages à des versions majeures (ou "Current" pour Node.js) entraîneront des breaking changes :
 
-### 3. Recommandations
-
-1.  **Priorité Absolue - Préparation à Prisma v8:**
-    *   **Action:** Commencer dès maintenant à surveiller les changelogs des Release Candidates de Prisma v8 (notamment `rc.9` et `rc.10`) pour identifier les breaking changes.
-    *   **Impact:** Élevé. Nécessitera potentiellement des modifications de code significatives et des tests de régression approfondis.
-    *   **Priorité:** Très Élevée.
-
-2.  **Mise à jour de Node.js LTS:**
-    *   **Action:** Mettre à jour nos environnements de développement et de production vers `Node.js v24.21.0` (LTS).
-    *   **Impact:** Moyen. Améliorations de performance, correctifs de sécurité et stabilité.
-    *   **Priorité:** Élevée.
-
-3.  **Mises à jour des frameworks clés (Next.js, Fastify, Zod, pnpm):**
-    *   **Action:** Appliquer les versions stables `Next.js v16.3.5`, `Fastify v5.12.4`, et les dernières versions de `Zod` et `pnpm`.
-    *   **Action:** Surveiller activement les versions `canary` de Next.js (`v16.4.0-canary.x`) pour anticiper les futures fonctionnalités et changements.
-    *   **Impact:** Moyen. Stabilité, correctifs de bugs, petites améliorations.
-    *   **Priorité:** Moyenne.
-
-4.  **Évaluation des SDK AI (si utilisés):**
-    *   **Action:** Si notre stack intègre des fonctionnalités AI via Vercel AI SDK ou OpenAI Agents SDK, revoir leurs changelogs pour potentiellement bénéficier de nouvelles fonctionnalités, améliorations ou correctifs.
-    *   **Impact:** Variable, dépend de notre utilisation de l'IA.
-    *   **Priorité:** Moyenne (si utilisation active de l'IA).
-
-5.  **Mise à jour des outils DevOps:**
-    *   **Action:** Mettre à jour `Renovate` (vers `44.83.0`), `Semgrep` (vers `v1.177.0`) et `Knip` (vers `6.35.1`) dans nos pipelines CI/CD.
-    *   **Impact:** Faible à Moyen. Amélioration de l'efficacité, de la sécurité et de la qualité du code.
-    *   **Priorité:** Moyenne.
+*   **Node.js v26**: Le passage de Node.js 20/22 (nos versions probables) à la v26 *introduira* des breaking changes (dépréciations, changements d'API, etc.). Le "non-breaking" ici s'applique aux mises à jour *au sein* de la branche 26.x.
+*   **Prisma v8.0.0**: En tant que Release Candidate d'une version majeure, la version finale 8.0.0 *contiendra assurément* des breaking changes. Une phase de migration sera nécessaire.
+*   **Fastify v6.0.0**: L'existence d'une version alpha indique qu'une version majeure est en développement et introduira des breaking changes lors de sa sortie stable.
+*   **Next.js v16**: Les versions canary sont les prémices d'une version majeure qui, par définition, introduira des breaking changes.
 
 ---
-*Auto-generated by DevOps-Factory Weekly Veille (2026-09-13T21:56:37.103Z)*
+
+### Recommandations
+
+Voici les actions concrètes à prendre, priorisées par impact :
+
+1.  **Planifier la migration vers Node.js 26 et Prisma 8 (Haute Priorité)**:
+    *   **Node.js 26**: Commencer à évaluer l'impact de Node.js 26 sur nos applications. Préparer un environnement de test pour valider la compatibilité de notre codebase et de nos dépendances.
+    *   **Prisma 8**: Surveiller la sortie de la version stable de Prisma 8.0.0. Dès sa disponibilité, consulter la documentation de migration et planifier un POC pour évaluer l'effort de mise à jour sur nos projets.
+2.  **Mettre à jour les outils de développement stables (Moyenne Priorité)**:
+    *   Appliquer les mises à jour non-breaking pour **Fastify v5.12.5**, **Vitest v5.0.1**, **ESLint v10.11.0**, **Zod v4.6.5** et les versions stables de **pnpm**. Ces mises à jour apportent des corrections et des améliorations sans risque majeur.
+3.  **Surveiller activement Next.js 16 et Fastify 6 (Moyenne Priorité)**:
+    *   Ne pas déployer les versions canary/alpha en production. Cependant, suivre de près les annonces et les notes de version de **Next.js v16** et **Fastify v6** pour anticiper les futures évolutions et les breaking changes qui impacteront nos architectures.
+4.  **Évaluer les mises à jour des SDK d'IA (Faible à Moyenne Priorité, selon usage)**:
+    *   Si nous utilisons activement le **Vercel AI SDK** ou d'autres frameworks d'agents, examiner les notes de version pour les mises à jour `ai@7.0.107`, `CrewAI 1.15.22`, `OpenAI Agents SDK v0.22.3` et `Google ADK v2.9.2`. Identifier les nouvelles
+
+---
+*Auto-generated by DevOps-Factory Weekly Veille (2026-09-20T22:02:55.411Z)*
