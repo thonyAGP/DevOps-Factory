@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-19T12:25:59.168Z",
+  "timestamp": "2026-09-20T13:00:04.056Z",
   "scores": [
     {
       "name": "DevOps-Factory",
@@ -29,6 +29,38 @@
         "branchProtection": 0,
         "depsUpToDate": 10,
         "noSecrets": 15,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
+      "name": "CasaSync",
+      "repo": "thonyAGP/CasaSync",
+      "score": 40,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 15,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
+      "name": "Livret_accueil_Au-Marais",
+      "repo": "thonyAGP/livret-au-marais",
+      "score": 40,
+      "breakdown": {
+        "ciPasses": 15,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
         "noDuplication": 0,
         "noCriticalFindings": 0
       }
@@ -116,38 +148,6 @@
     {
       "name": "Email_Assistant",
       "repo": "thonyAGP/Email_Assistant",
-      "score": 25,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
-      "name": "CasaSync",
-      "repo": "thonyAGP/CasaSync",
-      "score": 25,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
-      "name": "Livret_accueil_Au-Marais",
-      "repo": "thonyAGP/livret-au-marais",
       "score": 25,
       "breakdown": {
         "ciPasses": 0,
@@ -306,12 +306,5 @@
       }
     }
   ],
-  "drops": [
-    {
-      "repo": "Livret_accueil_Au-Marais",
-      "drop": 15,
-      "from": 40,
-      "to": 25
-    }
-  ]
+  "drops": []
 }

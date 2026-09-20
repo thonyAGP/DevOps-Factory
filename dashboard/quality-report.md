@@ -1,13 +1,10 @@
-## Quality Score Report - 2026-09-19
+## Quality Score Report - 2026-09-20
 
 ### Summary
-- **Average Score**: 29/100
+- **Average Score**: 31/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
-
-### Score Drops (≥5 points)
-- **Livret_accueil_Au-Marais**: 40 → 25 (-15)
 
 ### Per Repository
 
@@ -32,6 +29,30 @@
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### CasaSync
+- **Score**: 40/100
+- **CI Passes**: ✗
+- **Coverage**: ✓
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### Livret_accueil_Au-Marais
+- **Score**: 40/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
@@ -96,30 +117,6 @@
 - **No Critical Findings**: ✓
 
 #### Email_Assistant
-- **Score**: 25/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### CasaSync
-- **Score**: 25/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### Livret_accueil_Au-Marais
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
