@@ -2,65 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-14T12:18:36.879Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-14T12:18:40.435Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-14T12:18:40.986Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.6/10, 3910 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-14T12:18:41.529Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-14T14:56:41.362Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Site_Greg-Assainissement",
-      "details": "35 → 25 (-10pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-14T14:56:41.364Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Site_1970_Plomberie",
-      "details": "35 → 25 (-10pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-14T14:56:41.366Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Thumbfast_createur_images",
-      "details": "35 → 25 (-10pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-14T14:56:41.367Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 33/100, 0 excellent, 19 needs work, 3 drops, 0 improvements",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-09-14T15:30:13.915Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -4341,6 +4282,29 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-09-21T15:01:24.488Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "40 → 25 (-15pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-21T15:01:24.490Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "magic-migration",
+      "details": "25 → 40 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-21T15:01:24.492Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 31/100, 0 excellent, 19 needs work, 1 drops, 1 improvements",
+      "status": "warning"
     }
   ]
 }

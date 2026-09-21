@@ -1,10 +1,13 @@
-## Quality Score Report - 2026-09-20
+## Quality Score Report - 2026-09-21
 
 ### Summary
 - **Average Score**: 31/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
+
+### Score Drops (≥5 points)
+- **Livret_accueil_Au-Marais**: 40 → 25 (-15)
 
 ### Per Repository
 
@@ -44,7 +47,7 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### Livret_accueil_Au-Marais
+#### magic-migration
 - **Score**: 40/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -117,6 +120,18 @@
 - **No Critical Findings**: ✓
 
 #### Email_Assistant
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### Livret_accueil_Au-Marais
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -213,18 +228,6 @@
 - **No Critical Findings**: ✗
 
 #### LB2I-Fiscal-Manager
-- **Score**: 25/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### magic-migration
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
