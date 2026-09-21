@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "date": "2026-09-14",
-  "totalFindings": 903,
+  "date": "2026-09-21",
+  "totalFindings": 896,
   "repos": [
     {
       "name": "DevOps-Factory",
@@ -39,13 +39,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 242,
+          "findings": 239,
           "bySeverity": {
-            "DUPLICATION": 242
+            "DUPLICATION": 239
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 9.84
+            "duplicationPct": 9.81
           }
         }
       ]
@@ -156,9 +156,11 @@
       "scanners": [
         {
           "scanner": "gitleaks",
-          "status": "clean",
-          "findings": 0,
-          "bySeverity": {},
+          "status": "findings",
+          "findings": 2,
+          "bySeverity": {
+            "SECRET": 2
+          },
           "top": []
         },
         {
@@ -174,23 +176,22 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 16,
+          "findings": 7,
           "bySeverity": {
-            "CRITICAL": 3,
-            "HIGH": 13
+            "HIGH": 7
           },
           "top": []
         },
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 789,
+          "findings": 942,
           "bySeverity": {
-            "DUPLICATION": 789
+            "DUPLICATION": 942
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 3.89
+            "duplicationPct": 3.68
           }
         }
       ]
@@ -238,7 +239,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 5.81
+            "duplicationPct": 5.65
           }
         }
       ]
@@ -281,13 +282,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 451,
+          "findings": 458,
           "bySeverity": {
-            "DUPLICATION": 451
+            "DUPLICATION": 458
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 14.05
+            "duplicationPct": 13.7
           }
         }
       ]

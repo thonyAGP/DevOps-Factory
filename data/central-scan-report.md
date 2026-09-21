@@ -1,17 +1,17 @@
-# Central Security Scan - 2026-09-14
+# Central Security Scan - 2026-09-21
 
 Scans centralisés exécutés depuis DevOps-Factory (repo public = minutes gratuites). Les repos privés du plan Free n'ont ni Code Scanning ni quota Actions illimité.
 
-**Total findings: 903** sur 25 repos _(sécurité uniquement — la duplication est mesurée en %, pas comptée ici)_
+**Total findings: 896** sur 25 repos _(sécurité uniquement — la duplication est mesurée en %, pas comptée ici)_
 
 | Repo | Secrets (gitleaks) | SAST (semgrep) | Deps/Config (trivy) | Duplication (jscpd) |
 |------|--------------------|----------------|---------------------|---------------------|
-| DevOps-Factory | ⏭️ | 🔴 12 | 🔴 7 | 🔴 9.84% |
+| DevOps-Factory | ⏭️ | 🔴 12 | 🔴 7 | 🔴 9.81% |
 | Email_Assistant | 🔴 1 | 🔴 25 | 🔴 113 | 🔴 18.05% |
 | ClubMedRoomAssignment | 🟢 0 | 🔴 15 | 🔴 80 | 🔴 3.28% |
-| CasaSync | 🟢 0 | 🔴 11 | 🔴 16 | 🔴 3.89% |
-| Livret_accueil_Au-Marais | 🔴 5 | 🔴 6 | 🔴 23 | 🔴 5.81% |
-| Site_Au-marais | 🔴 2 | 🔴 7 | 🔴 43 | 🔴 14.05% |
+| CasaSync | 🔴 2 | 🔴 11 | 🔴 7 | 🔴 3.68% |
+| Livret_accueil_Au-Marais | 🔴 5 | 🔴 6 | 🔴 23 | 🔴 5.65% |
+| Site_Au-marais | 🔴 2 | 🔴 7 | 🔴 43 | 🔴 13.7% |
 | Lecteur_Magic | 🔴 4 | 🔴 19 | 🔴 64 | 🔴 10.29% |
 | API_Claude | 🟢 0 | 🔴 6 | 🟢 0 | 🔴 16.74% |
 | MCP_Quota_Claude | 🟢 0 | 🔴 6 | 🔴 23 | 🔴 13.47% |
