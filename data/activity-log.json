@@ -2,21 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-16T13:22:32.816Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "CasaSync",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-16T13:22:32.817Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 32/100, 0 excellent, 19 needs work, 1 drops, 0 improvements",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-09-16T13:55:46.011Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -4496,6 +4481,29 @@
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "1/10 passing, 7 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-23T13:33:18.878Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "40 → 25 (-15pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-23T13:33:18.879Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "magic-migration",
+      "details": "25 → 40 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-23T13:33:18.881Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 31/100, 0 excellent, 19 needs work, 1 drops, 1 improvements",
       "status": "warning"
     }
   ]
