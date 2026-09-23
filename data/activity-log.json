@@ -2,65 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-16T20:42:13.311Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-16T20:42:13.313Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-16T20:42:13.315Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-16T20:42:13.317Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "5/10 passing, 3 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-16T20:52:43.929Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-16T20:52:46.893Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-16T20:52:47.584Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.6/10, 3910 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-16T20:52:48.272Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-09-16T23:26:46.042Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -4498,6 +4439,34 @@
       "action": "check-complete",
       "details": "1/10 passing, 7 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-23T21:05:34.835Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-23T21:05:40.665Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-23T21:05:41.201Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.5/10, 3870 risk pts, +6/-13",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-23T21:05:41.681Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
     }
   ]
 }
