@@ -2,61 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-16T05:01:06.653Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Cron Monitor",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-16T05:01:06.655Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-16T05:01:14.633Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Cron Monitor",
-      "details": "total_failure: Cron Monitor",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-16T05:01:15.174Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-16T05:01:16.468Z",
-      "source": "factory-watchdog",
-      "action": "issue-closed",
-      "target": "[Watchdog] FAILURE: Factory Watchdog",
-      "details": "recovered: [Watchdog] FAILURE: Factory Watchdog",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-16T05:01:17.751Z",
-      "source": "factory-watchdog",
-      "action": "issue-closed",
-      "target": "[Watchdog] FAILURE: Scan Repos",
-      "details": "recovered: [Watchdog] FAILURE: Scan Repos",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-16T05:01:17.753Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "5/7 passing. 2 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-09-16T08:07:43.669Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -4465,6 +4410,61 @@
       "action": "watchdog-complete",
       "details": "3/5 passing. 2 failures, 0 partial. 0 self-heals",
       "status": "error"
+    },
+    {
+      "timestamp": "2026-09-23T07:03:22.598Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Email_Assistant",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-09-23T07:03:22.600Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "ClubMedRoomAssignment",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-09-23T07:03:23.895Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-09-23T07:03:23.897Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Site_Au-marais",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-09-23T07:03:23.900Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "Zentra",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-09-23T07:03:25.494Z",
+      "source": "ci-health-check",
+      "action": "alert-deferred",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "Alert suppressed, within self-heal window",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-09-23T07:03:25.497Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "2/10 passing, 6 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
