@@ -2,21 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-17T13:18:43.385Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "CasaSync",
-      "details": "25 → 40 (+15pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-17T13:18:43.387Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 33/100, 0 excellent, 19 needs work, 0 drops, 1 improvements",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-09-17T13:59:20.739Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -4634,6 +4619,29 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-09-24T13:28:36.879Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "magic-migration",
+      "details": "40 → 25 (-15pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-24T13:28:36.881Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Lecteur_Magic",
+      "details": "25 → 40 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-24T13:28:36.891Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 31/100, 0 excellent, 19 needs work, 1 drops, 1 improvements",
+      "status": "warning"
     }
   ]
 }

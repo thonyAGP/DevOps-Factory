@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-23T13:33:18.877Z",
+  "timestamp": "2026-09-24T13:28:36.878Z",
   "scores": [
     {
       "name": "DevOps-Factory",
@@ -50,8 +50,8 @@
       }
     },
     {
-      "name": "magic-migration",
-      "repo": "thonyAGP/magic-migration",
+      "name": "Lecteur_Magic",
+      "repo": "thonyAGP/lecteur-magic",
       "score": 40,
       "breakdown": {
         "ciPasses": 15,
@@ -194,22 +194,6 @@
       }
     },
     {
-      "name": "Lecteur_Magic",
-      "repo": "thonyAGP/lecteur-magic",
-      "score": 25,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
       "name": "Site_Greg-Assainissement",
       "repo": "thonyAGP/Site_Greg-Assainissement",
       "score": 25,
@@ -304,11 +288,27 @@
         "noDuplication": 0,
         "noCriticalFindings": 0
       }
+    },
+    {
+      "name": "magic-migration",
+      "repo": "thonyAGP/magic-migration",
+      "score": 25,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
     }
   ],
   "drops": [
     {
-      "repo": "Livret_accueil_Au-Marais",
+      "repo": "magic-migration",
       "drop": 15,
       "from": 40,
       "to": 25
