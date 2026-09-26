@@ -2,21 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-19T12:25:59.168Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-19T12:25:59.170Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 29/100, 0 excellent, 19 needs work, 1 drops, 0 improvements",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-09-19T14:04:28.658Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -4754,6 +4739,13 @@
       "source": "build-dashboard",
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-26T12:56:02.925Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 30/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
       "status": "success"
     }
   ]
