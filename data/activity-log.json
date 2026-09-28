@@ -2,29 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-21T15:01:24.488Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "40 → 25 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-21T15:01:24.490Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "magic-migration",
-      "details": "25 → 40 (+15pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-21T15:01:24.492Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 31/100, 0 excellent, 19 needs work, 1 drops, 1 improvements",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-09-21T17:15:15.594Z",
       "source": "scan-and-configure",
       "action": "scan-complete",
@@ -4781,6 +4758,37 @@
       "action": "check-complete",
       "details": "1/10 passing, 7 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-09-28T16:41:22.725Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Email_Assistant",
+      "details": "25 → 40 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-28T16:41:22.727Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Lecteur_Magic",
+      "details": "25 → 40 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-28T16:41:22.730Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "magic-migration",
+      "details": "25 → 40 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-09-28T16:41:22.731Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 32/100, 0 excellent, 19 needs work, 0 drops, 3 improvements",
+      "status": "success"
     }
   ]
 }
