@@ -1,4 +1,4 @@
-# Central Security Scan - 2026-09-21
+# Central Security Scan - 2026-09-28
 
 Scans centralisés exécutés depuis DevOps-Factory (repo public = minutes gratuites). Les repos privés du plan Free n'ont ni Code Scanning ni quota Actions illimité.
 
@@ -6,7 +6,7 @@ Scans centralisés exécutés depuis DevOps-Factory (repo public = minutes gratu
 
 | Repo | Secrets (gitleaks) | SAST (semgrep) | Deps/Config (trivy) | Duplication (jscpd) |
 |------|--------------------|----------------|---------------------|---------------------|
-| DevOps-Factory | ⏭️ | 🔴 12 | 🔴 7 | 🔴 9.81% |
+| DevOps-Factory | ⏭️ | 🔴 12 | 🔴 7 | 🔴 9.79% |
 | Email_Assistant | 🔴 1 | 🔴 25 | 🔴 113 | 🔴 18.05% |
 | ClubMedRoomAssignment | 🟢 0 | 🔴 15 | 🔴 80 | 🔴 3.28% |
 | CasaSync | 🔴 2 | 🔴 11 | 🔴 7 | 🔴 3.68% |
@@ -29,7 +29,7 @@ Scans centralisés exécutés depuis DevOps-Factory (repo public = minutes gratu
 | analyse-negocio | 🟢 0 | 🔴 6 | 🔴 22 | 🔴 12.13% |
 | SqlConnectionTest | 🟢 0 | 🔴 6 | 🟢 0 | 🔴 20.02% |
 | Zentra | 🟢 0 | 🔴 13 | 🔴 69 | 🔴 8.31% |
-| LB2I-Fiscal-Manager | 🔴 1 | 🔴 16 | 🔴 21 | 🔴 8.03% |
+| LB2I-Fiscal-Manager | 🔴 1 | 🔴 16 | 🔴 21 | 🔴 5.38% |
 | magic-migration | 🔴 4 | 🔴 19 | 🔴 64 | 🔴 10.29% |
 
 > Les détails (fichiers, règles, CVE) ne sont jamais publiés ici : chaque repo concerné reçoit sa propre issue `central-scan` avec les localisations.
