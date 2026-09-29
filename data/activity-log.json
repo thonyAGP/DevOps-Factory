@@ -4565,6 +4565,61 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-09-29T18:09:39.259Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Cron Monitor",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-29T18:09:39.264Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-29T18:09:42.164Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Quality Score",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-29T18:09:43.898Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-29T18:09:45.294Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Quality Score",
+      "details": "total_failure: Quality Score",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-29T18:09:45.894Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "Quality Score",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-09-29T18:09:45.897Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/6 passing. 3 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
