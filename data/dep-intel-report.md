@@ -1,6 +1,6 @@
 ## Dependency Intelligence Report
 
-> Generated: 2026-09-23T14:08:34.821Z
+> Generated: 2026-09-30T15:44:51.076Z
 
 ### Security Vulnerabilities
 
@@ -24,7 +24,7 @@ No open Dependabot alerts found.
 | Utilitaire_Webapp | 21 | 0 | nextjs |
 | test_codingmenace | 11 | 0 | nextjs |
 | Zentra | 45 | 0 | nextjs |
-| LB2I-Fiscal-Manager | 58 | 0 | nextjs |
+| LB2I-Fiscal-Manager | 59 | 0 | nextjs |
 | magic-migration | 10 | 0 | node |
 
 ### Summary
