@@ -2,61 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-25T17:23:43.669Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-25T17:23:43.672Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": ".github/workflows/cron-monitor.yml",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-25T17:23:50.401Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "Self-Heal CI",
-      "details": "Partial failure detected: GEMINI_API_KEY, GROQ_API_KEY, gh: not found",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-25T17:23:55.678Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-25T17:23:55.681Z",
-      "source": "factory-watchdog",
-      "action": "workflow-stale",
-      "target": "Self-Heal CI",
-      "details": "Workflow stale (informational patterns only)",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-25T17:23:57.451Z",
-      "source": "factory-watchdog",
-      "action": "issue-closed",
-      "target": "[Watchdog] FAILURE: Self-Heal CI",
-      "details": "informational-only: [Watchdog] FAILURE: Self-Heal CI",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-25T17:23:57.454Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "6/9 passing. 2 failures, 1 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-09-25T17:39:56.579Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -4298,6 +4243,34 @@
     },
     {
       "timestamp": "2026-10-02T17:01:41.082Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-02T17:28:20.239Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-02T17:28:23.651Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-02T17:28:24.284Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.5/10, 3870 risk pts, +6/-13",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-02T17:28:24.911Z",
       "source": "build-dashboard",
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
