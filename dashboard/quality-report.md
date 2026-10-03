@@ -1,36 +1,16 @@
-## Quality Score Report - 2026-10-02
+## Quality Score Report - 2026-10-03
 
 ### Summary
-- **Average Score**: 35/100
+- **Average Score**: 33/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
 
+### Score Drops (≥5 points)
+- **DevOps-Factory**: 55 → 40 (-15)
+- **ClubMedRoomAssignment**: 55 → 40 (-15)
+
 ### Per Repository
-
-#### DevOps-Factory
-- **Score**: 55/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### ClubMedRoomAssignment
-- **Score**: 55/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
 
 #### CasaSync
 - **Score**: 55/100
@@ -44,6 +24,18 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
+#### DevOps-Factory
+- **Score**: 40/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
 #### Email_Assistant
 - **Score**: 40/100
 - **CI Passes**: ✓
@@ -53,6 +45,18 @@
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### ClubMedRoomAssignment
+- **Score**: 40/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 

@@ -1,38 +1,6 @@
 {
-  "timestamp": "2026-10-02T14:39:30.797Z",
+  "timestamp": "2026-10-03T13:16:03.093Z",
   "scores": [
-    {
-      "name": "DevOps-Factory",
-      "repo": "thonyAGP/DevOps-Factory",
-      "score": 55,
-      "breakdown": {
-        "ciPasses": 15,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
-      "name": "ClubMedRoomAssignment",
-      "repo": "thonyAGP/ClubMedRoomAssignment",
-      "score": 55,
-      "breakdown": {
-        "ciPasses": 15,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
     {
       "name": "CasaSync",
       "repo": "thonyAGP/CasaSync",
@@ -50,6 +18,22 @@
       }
     },
     {
+      "name": "DevOps-Factory",
+      "repo": "thonyAGP/DevOps-Factory",
+      "score": 40,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
       "name": "Email_Assistant",
       "repo": "thonyAGP/Email_Assistant",
       "score": 40,
@@ -61,6 +45,22 @@
         "branchProtection": 0,
         "depsUpToDate": 10,
         "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
+      "name": "ClubMedRoomAssignment",
+      "repo": "thonyAGP/ClubMedRoomAssignment",
+      "score": 40,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15,
         "noDuplication": 0,
         "noCriticalFindings": 0
       }
@@ -306,5 +306,18 @@
       }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "DevOps-Factory",
+      "drop": 15,
+      "from": 55,
+      "to": 40
+    },
+    {
+      "repo": "ClubMedRoomAssignment",
+      "drop": 15,
+      "from": 55,
+      "to": 40
+    }
+  ]
 }
