@@ -2,104 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-27T08:46:32.083Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-27T08:46:32.086Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-27T08:46:33.761Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "CasaSync",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-27T08:46:35.273Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-27T08:46:35.276Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Site_Au-marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-27T08:46:35.278Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Zentra",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-27T08:46:37.028Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-09-27T08:46:37.031Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "1/10 passing, 7 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-27T09:58:27.842Z",
-      "source": "central-coverage",
-      "action": "coverage-measured",
-      "details": "6/17 repos measured",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-27T09:58:48.138Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-27T09:58:51.757Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-09-27T09:58:52.488Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.6/10, 3870 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-09-27T09:58:53.222Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-09-27T11:24:59.213Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -4215,6 +4117,13 @@
       "action": "check-complete",
       "details": "2/10 passing, 6 failing. Issues: 0 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-04T10:34:22.857Z",
+      "source": "central-coverage",
+      "action": "coverage-measured",
+      "details": "6/17 repos measured",
+      "status": "success"
     }
   ]
 }
