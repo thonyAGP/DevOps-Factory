@@ -1,14 +1,10 @@
-## Quality Score Report - 2026-10-03
+## Quality Score Report - 2026-10-04
 
 ### Summary
 - **Average Score**: 33/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
-
-### Score Drops (≥5 points)
-- **DevOps-Factory**: 55 → 40 (-15)
-- **ClubMedRoomAssignment**: 55 → 40 (-15)
 
 ### Per Repository
 
