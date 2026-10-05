@@ -1,22 +1,6 @@
 {
-  "timestamp": "2026-10-04T13:52:45.451Z",
+  "timestamp": "2026-10-05T17:02:55.065Z",
   "scores": [
-    {
-      "name": "CasaSync",
-      "repo": "thonyAGP/CasaSync",
-      "score": 55,
-      "breakdown": {
-        "ciPasses": 15,
-        "coverageAboveThreshold": 15,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
     {
       "name": "DevOps-Factory",
       "repo": "thonyAGP/DevOps-Factory",
@@ -61,6 +45,22 @@
         "branchProtection": 0,
         "depsUpToDate": 10,
         "noSecrets": 15,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
+      "name": "CasaSync",
+      "repo": "thonyAGP/CasaSync",
+      "score": 40,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 15,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
         "noDuplication": 0,
         "noCriticalFindings": 0
       }
@@ -306,5 +306,12 @@
       }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "CasaSync",
+      "drop": 15,
+      "from": 55,
+      "to": 40
+    }
+  ]
 }

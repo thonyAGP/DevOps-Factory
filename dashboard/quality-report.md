@@ -1,24 +1,15 @@
-## Quality Score Report - 2026-10-04
+## Quality Score Report - 2026-10-05
 
 ### Summary
-- **Average Score**: 33/100
+- **Average Score**: 32/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 19
 
-### Per Repository
+### Score Drops (≥5 points)
+- **CasaSync**: 55 → 40 (-15)
 
-#### CasaSync
-- **Score**: 55/100
-- **CI Passes**: ✓
-- **Coverage**: ✓
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
+### Per Repository
 
 #### DevOps-Factory
 - **Score**: 40/100
@@ -53,6 +44,18 @@
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### CasaSync
+- **Score**: 40/100
+- **CI Passes**: ✗
+- **Coverage**: ✓
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
