@@ -2,37 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-09-30T18:02:34.818Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Cron Monitor",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-30T18:02:34.822Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-30T18:02:51.021Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-09-30T18:02:51.024Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "5/7 passing. 2 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-09-30T21:06:57.448Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -3948,6 +3917,34 @@
       "action": "outcome-registry",
       "details": "Registry updated: 45 outcomes (19 merged, 9 closed, 17 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
       "status": "info"
+    },
+    {
+      "timestamp": "2026-10-07T18:06:52.977Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-07T18:06:57.225Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-07T18:06:57.923Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.5/10, 4150 risk pts, +6/-13",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-07T18:06:58.613Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
     }
   ]
 }
