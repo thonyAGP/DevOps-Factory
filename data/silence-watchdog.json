@@ -1,0 +1,42 @@
+{
+  "$comment": "Flux surveilles par scripts/silence-watchdog.ts (chantier .chantier/2026-10-08-watchdog-silence). Etat persistant : data/silence-watchdog-state.json.",
+  "flows": [
+    {
+      "id": "db-backups",
+      "label": "db-backups, copie distante",
+      "type": "github-commits",
+      "repo": "thonyAGP/db-backups",
+      "branch": "main",
+      "messagePattern": "^chore\\(dumps\\): backup",
+      "thresholdHours": 26
+    },
+    {
+      "id": "fincascout-routine",
+      "label": "FincaScout, routine quotidienne",
+      "type": "github-file-date",
+      "repo": "thonyAGP/FincaScout",
+      "branch": "main",
+      "path": "docs/JOURNAL.md",
+      "dateRegex": "## (\\d{4}-\\d{2}-\\d{2})",
+      "thresholdHours": 30
+    },
+    {
+      "id": "devops-factory-workflows",
+      "label": "DevOps-Factory, workflows chroniques",
+      "type": "github-workflow-runs",
+      "repo": "thonyAGP/DevOps-Factory",
+      "branch": "master",
+      "workflows": ["renovate.yml", "ai-branding-guard.yml", "factory-ci.yml"],
+      "consecutiveRunFailures": 3
+    },
+    {
+      "id": "boxmail-server",
+      "label": "Boxmail, serveur",
+      "type": "https",
+      "url": "https://boxmail.lb2i.com/health",
+      "expectStatus": 200,
+      "expectJson": { "status": "ok" },
+      "consecutiveFailures": 2
+    }
+  ]
+}

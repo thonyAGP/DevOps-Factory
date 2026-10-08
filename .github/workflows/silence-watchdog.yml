@@ -1,0 +1,96 @@
+name: Silence Watchdog
+
+# Pannes silencieuses : alerte Telegram quand un flux critique n'a pas produit
+# son resultat attendu. Cadrage : .chantier/2026-10-08-watchdog-silence/change.md
+# Flux declares : data/silence-watchdog.json ; etat : data/silence-watchdog-state.json
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Controle sans envoi Telegram ni ecriture de l etat'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: silence-watchdog
+  cancel-in-progress: false
+
+jobs:
+  silence-watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # GitHub App token (short-lived, 1h), comme factory-watchdog.yml.
+      # `repositories` explicite : si l'App n'est pas installee sur un depot
+      # surveille, la generation du jeton echoue (erreur visible, pas un faux OK).
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.FACTORY_APP_ID }}
+          private-key: ${{ secrets.FACTORY_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: DevOps-Factory,db-backups,FincaScout
+
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Silence Watchdog
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            pnpm silence-watchdog -- --dry-run
+          else
+            pnpm silence-watchdog
+          fi
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      # Etat persistant (anti-doublon) : commite meme si le watchdog a echoue,
+      # pour ne pas renvoyer les alertes deja parties au run suivant.
+      - name: Commit state
+        if: ${{ always() && inputs.dry_run != true }}
+        run: |
+          [ -f data/silence-watchdog-state.json ] || exit 0
+          git config user.name "DevOps Factory Bot"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add data/silence-watchdog-state.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(silence-watchdog): état"
+          if git pull --rebase --autostash; then
+            git push
+            exit 0
+          fi
+          # Repli : on repart de origin/master et on y repose l'état (seul fichier
+          # que ce workflow écrit), sans reset --hard ni --no-verify.
+          git rebase --abort 2>/dev/null || true
+          git stash pop 2>/dev/null || true
+          cp data/silence-watchdog-state.json /tmp/silence-watchdog-state.json
+          git fetch origin master
+          git checkout -B master origin/master
+          cp /tmp/silence-watchdog-state.json data/silence-watchdog-state.json
+          git add data/silence-watchdog-state.json
+          git diff --cached --quiet || git commit -m "chore(silence-watchdog): état"
+          git push
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
