@@ -2,13 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-01T15:20:15.838Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 32/100, 0 excellent, 19 needs work, 0 drops, 0 improvements",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-10-01T17:34:02.017Z",
       "source": "scan-and-configure",
       "action": "scan-complete",
@@ -3939,6 +3932,29 @@
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "2/10 passing, 6 failing. Issues: 0 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-08T15:29:27.545Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "40 → 25 (-15pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-08T15:29:27.547Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "magic-migration",
+      "details": "25 → 40 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-08T15:29:27.549Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 33/100, 0 excellent, 19 needs work, 1 drops, 1 improvements",
       "status": "warning"
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-07T15:27:21.851Z",
+  "timestamp": "2026-10-08T15:29:27.544Z",
   "scores": [
     {
       "name": "CasaSync",
@@ -66,8 +66,8 @@
       }
     },
     {
-      "name": "Livret_accueil_Au-Marais",
-      "repo": "thonyAGP/livret-au-marais",
+      "name": "Lecteur_Magic",
+      "repo": "thonyAGP/lecteur-magic",
       "score": 40,
       "breakdown": {
         "ciPasses": 15,
@@ -82,8 +82,8 @@
       }
     },
     {
-      "name": "Lecteur_Magic",
-      "repo": "thonyAGP/lecteur-magic",
+      "name": "magic-migration",
+      "repo": "thonyAGP/magic-migration",
       "score": 40,
       "breakdown": {
         "ciPasses": 15,
@@ -175,6 +175,22 @@
         "noSecrets": 0,
         "noDuplication": 0,
         "noCriticalFindings": 10
+      }
+    },
+    {
+      "name": "Livret_accueil_Au-Marais",
+      "repo": "thonyAGP/livret-au-marais",
+      "score": 25,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
       }
     },
     {
@@ -288,33 +304,11 @@
         "noDuplication": 0,
         "noCriticalFindings": 0
       }
-    },
-    {
-      "name": "magic-migration",
-      "repo": "thonyAGP/magic-migration",
-      "score": 25,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
     }
   ],
   "drops": [
     {
-      "repo": "DevOps-Factory",
-      "drop": 15,
-      "from": 55,
-      "to": 40
-    },
-    {
-      "repo": "magic-migration",
+      "repo": "Livret_accueil_Au-Marais",
       "drop": 15,
       "from": 40,
       "to": 25

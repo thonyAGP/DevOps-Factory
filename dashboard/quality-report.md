@@ -1,4 +1,4 @@
-## Quality Score Report - 2026-10-07
+## Quality Score Report - 2026-10-08
 
 ### Summary
 - **Average Score**: 33/100
@@ -7,8 +7,7 @@
 - **Needs Work** (<60): 19
 
 ### Score Drops (≥5 points)
-- **DevOps-Factory**: 55 → 40 (-15)
-- **magic-migration**: 40 → 25 (-15)
+- **Livret_accueil_Au-Marais**: 40 → 25 (-15)
 
 ### Per Repository
 
@@ -60,7 +59,7 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### Livret_accueil_Au-Marais
+#### Lecteur_Magic
 - **Score**: 40/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -72,7 +71,7 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### Lecteur_Magic
+#### magic-migration
 - **Score**: 40/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -143,6 +142,18 @@
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✓
+
+#### Livret_accueil_Au-Marais
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
 
 #### Site_Au-marais
 - **Score**: 25/100
@@ -217,18 +228,6 @@
 - **No Critical Findings**: ✗
 
 #### LB2I-Fiscal-Manager
-- **Score**: 25/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### magic-migration
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
