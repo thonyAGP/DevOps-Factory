@@ -93,6 +93,15 @@ Options réelles pour l'hébergement :
 - **Non prouvé ce soir** : le message « retour à la normale » (invariant 2) et le cas « Telegram refuse » (invariant 3) ne sont couverts que par les tests unitaires, pas par un run réel. À observer au premier flux qui se rétablit (db-backups, chantier suivant).
 - **Observation** : chaque run commite l'état (horodatage `lastCheckedAt`) → 4 commits/jour sur master. Acceptable ; si gênant, ne committer que sur changement de verdict.
 
+### Cliquet externe mis en service (08/10, 23:55 → 00:10 Madrid)
+
+- Compte healthchecks.io créé via Playwright sur `jojo56.jojo@hotmail.fr` (lien magique récupéré dans Boxmail, boîte `jojo56_jojo`). Projet `d83bf147-8b66-45a8-a6be-5195f017d375`.
+- Check `silence-watchdog` (id `4168458d-9b25-4f3d-88b9-60d655e904ad`) : période **6 h**, grâce **1 h**. Ping URL posée en secret GitHub `HEALTHCHECK_PING_URL` (jamais affichée).
+- Run réel 37850724585 (success) : `cliquet : ping ok → HTTP 200` ; healthchecks affiche « This check is up. Last ping was 8 minutes ago ».
+- Notification : intégration **Webhook** GET vers l'API Telegram du bot DB-Backups (chat Anthony), texte « 🕯 Silence — CLIQUET : le watchdog ne pingue plus ($NAME est $STATUS)… », plus un message « up » au retour. Test depuis healthchecks : **« Delivered, now »**. L'intégration email vers jojo56 reste active en second canal.
+- **Point de sécurité assumé** : le jeton du bot Telegram est stocké dans l'URL du webhook chez healthchecks.io (tiers). Alternative sans partage de jeton : l'intégration Telegram native, qui exige qu'Anthony ouvre @HealthchecksBot et tape /start (un geste), puis confirme dans un navigateur connecté. À faire si l'on veut retirer le jeton du tiers ; le webhook se supprime alors.
+- Invariant 4 révisé prouvé de bout en bout : 0 message « tout va bien », 1 ping par run, alerte seulement si les pings cessent.
+
 ## 7. Mise en service et observation
 
 - Mise en service : merge sur `master`, premier run par dispatch, puis cadence 6 h. Rollback : désactiver le workflow (`gh workflow disable`), supprimer les secrets.
