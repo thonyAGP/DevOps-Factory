@@ -2,65 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-01T04:12:18.236Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-01T04:12:22.336Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-01T04:12:23.031Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.5/10, 3870 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-01T04:12:23.718Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-01T06:15:08.428Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Cron Monitor",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-01T06:15:08.474Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-01T06:15:12.654Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-01T06:15:12.657Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "3/5 passing. 2 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-10-01T06:45:15.126Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -3952,6 +3893,45 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-10-08T06:23:29.855Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Cron Monitor",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-08T06:23:29.859Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-08T06:23:36.221Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "CI Health Check",
+      "details": "total_failure: CI Health Check",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-08T06:23:36.913Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-08T06:23:36.915Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "3/5 passing. 2 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
