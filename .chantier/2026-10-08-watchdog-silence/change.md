@@ -81,9 +81,17 @@ Options réelles pour l'hébergement :
 - Non-régression DevOps-Factory : `pnpm typecheck`, `pnpm test`, `pnpm lint` inchangés en vert sur le périmètre touché.
 - Secrets : `gh secret list` montre les noms ; aucun jeton dans `git diff` ni dans les logs du run.
 
-## 6. Preuves exécutées
+## 6. Preuves exécutées (08/10/2026, 20:55 → 21:05 Madrid)
 
-(à remplir à la clôture)
+- **Unitaire** : `pnpm vitest run scripts/silence-watchdog.test.ts` → 23 passed (rejoué par le pilote après l'agent). Suite complète : 937 tests verts, 13 ignorés. `pnpm typecheck` exit 0 ; eslint 0 erreur sur les fichiers ajoutés.
+- **Dry-run local** (`GH_TOKEN` utilisateur, jeton Telegram factice) : `[SILENCE] db-backups 44 j · [OK] fincascout-routine 19 h · [ROUGE] renovate.yml et ai-branding-guard.yml 3 échecs consécutifs · [OK] boxmail-server HTTP 200` ; `token: ****` ; aucun fichier d'état créé.
+- **Dry-run GitHub Actions** (run 37828257333, success) : jeton de l'App généré pour `DevOps-Factory,db-backups,FincaScout` (donc l'App est installée sur les trois) ; même verdict qu'en local.
+- **Run réel n°1** (run 37828335860, success) : 3 messages `envoyé` (SILENCE db-backups, ROUGE workflows, récap du 08/10) ; `data/silence-watchdog-state.json` commité et poussé (`af68d5ab2`).
+- **Run réel n°2 immédiat** (run 37829057882, success) : mêmes verdicts, **zéro ligne `envoyé`** (invariant 1 : pas de doublon, état relu) ; état recommité (`290c4f6df`, horodatages).
+- **Secrets** : `gh secret list` → `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` posés 18:49 UTC ; aucun jeton dans le diff ni dans les logs des runs.
+- **Diff ↔ carte** : conforme. 5 fichiers de la carte + ce change.md. Écart assumé : `scripts/silence-watchdog.ts` fait ~470 lignes (limite maison 250), non découpé pour rester dans la carte.
+- **Non prouvé ce soir** : le message « retour à la normale » (invariant 2) et le cas « Telegram refuse » (invariant 3) ne sont couverts que par les tests unitaires, pas par un run réel. À observer au premier flux qui se rétablit (db-backups, chantier suivant).
+- **Observation** : chaque run commite l'état (horodatage `lastCheckedAt`) → 4 commits/jour sur master. Acceptable ; si gênant, ne committer que sur changement de verdict.
 
 ## 7. Mise en service et observation
 
