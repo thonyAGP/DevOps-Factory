@@ -65,6 +65,8 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          # Cliquet externe (healthchecks.io) : alerte si ce workflow cesse de pinguer.
+          HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
 
       # Etat persistant (anti-doublon) : commite meme si le watchdog a echoue,
       # pour ne pas renvoyer les alertes deja parties au run suivant.

@@ -314,37 +314,98 @@ describe('invariant 3 — code de sortie', () => {
   });
 });
 
-describe('invariant 4 — récapitulatif une fois par jour', () => {
-  it('should send the daily summary exactly once over 4 runs of the same day', async () => {
+describe('invariant 4 — pas de « tout va bien » quotidien, cliquet externe à la place', () => {
+  const PING = 'https://hc-ping.com/0000-ratchet';
+  const withPing = {
+    TELEGRAM_BOT_TOKEN: TOKEN,
+    TELEGRAM_CHAT_ID: '42',
+    GH_TOKEN: 'ghs_fake',
+    HEALTHCHECK_PING_URL: PING,
+  };
+
+  it('should never send a daily summary, even over 4 healthy runs of the same day', async () => {
+    const pings: string[] = [];
     const h = makeHarness({
       decl: { flows: [DB_FLOW] },
-      route: () => commitsResponse(2, new Date('2026-10-07T22:00:00Z')),
+      env: withPing,
+      route: (url) => {
+        if (url.startsWith(PING)) {
+          pings.push(url);
+          return new Response('OK', { status: 200 });
+        }
+        return commitsResponse(2, new Date('2026-10-07T22:00:00Z'));
+      },
     });
     for (const hour of ['00', '06', '12', '18']) {
       h.setNow(new Date(`2026-10-08T${hour}:00:00Z`));
       expect(await run([], h.deps)).toBe(0);
     }
-    const summaries = h.telegramTexts.filter((t) => t.includes('récap du 08/10'));
-    expect(summaries).toHaveLength(1);
-    expect(summaries[0]).toMatch(/^🕯 Silence — récap du 08\/10 : db-backups OK \(\d+ h\)$/);
-    expect(parseState(h.files.get(STATE_PATH) ?? null).lastDailySummaryDate).toBe('2026-10-08');
+    expect(h.telegramTexts).toHaveLength(0);
+    expect(pings).toEqual([PING, PING, PING, PING]);
   });
 
-  it('should not send the summary before 07:00 Madrid', () => {
-    const r = decide({ flows: [DB_FLOW] }, emptyState(), { 'db-backups': checked(true) }, NIGHT);
-    expect(r.notifications.filter((n) => n.key === 'summary')).toHaveLength(0);
+  it('should ping /fail when the watchdog itself could not notify (Telegram 401)', async () => {
+    const pings: string[] = [];
+    const h = makeHarness({
+      decl: { flows: [DB_FLOW] },
+      env: withPing,
+      telegramStatus: 401,
+      route: (url) => {
+        if (url.startsWith(PING)) {
+          pings.push(url);
+          return new Response('OK', { status: 200 });
+        }
+        return commitsResponse(27);
+      },
+    });
+    expect(await run([], h.deps)).toBe(1);
+    expect(pings).toEqual([`${PING}/fail`]);
   });
 
-  it('should list each stream with its status, including errors', () => {
-    const r = decide(
-      { flows: [DB_FLOW, HTTPS_FLOW] },
-      emptyState(),
-      { 'db-backups': checked(false), 'boxmail-server': { kind: 'error', error: 'x' } },
-      new Date('2026-10-08T06:00:00Z')
-    );
-    const summary = r.notifications.find((n) => n.key === 'summary');
-    expect(summary?.text).toContain('db-backups SILENCE');
-    expect(summary?.text).toContain('boxmail-server ERREUR');
+  it('should ping ok when a stream is down but the watchdog did its job', async () => {
+    const pings: string[] = [];
+    const h = makeHarness({
+      decl: { flows: [DB_FLOW] },
+      env: withPing,
+      route: (url) => {
+        if (url.startsWith(PING)) {
+          pings.push(url);
+          return new Response('OK', { status: 200 });
+        }
+        return commitsResponse(27);
+      },
+    });
+    expect(await run([], h.deps)).toBe(0);
+    expect(h.telegramTexts).toHaveLength(1);
+    expect(pings).toEqual([PING]);
+  });
+
+  it('should not ping in dry-run, and never print the ping URL', async () => {
+    const pings: string[] = [];
+    const h = makeHarness({
+      decl: { flows: [DB_FLOW] },
+      env: withPing,
+      route: (url) => {
+        if (url.startsWith(PING)) pings.push(url);
+        return commitsResponse(2);
+      },
+    });
+    expect(await run(['--dry-run'], h.deps)).toBe(0);
+    expect(pings).toHaveLength(0);
+    expect(h.logs.join('\n')).not.toContain('0000-ratchet');
+  });
+
+  it('should keep exit code 0 when the ping endpoint is unreachable', async () => {
+    const h = makeHarness({
+      decl: { flows: [DB_FLOW] },
+      env: withPing,
+      route: (url) => {
+        if (url.startsWith(PING)) throw new Error('ECONNRESET');
+        return commitsResponse(2);
+      },
+    });
+    expect(await run([], h.deps)).toBe(0);
+    expect(h.logs.some((l) => l.includes('ping impossible'))).toBe(true);
   });
 });
 

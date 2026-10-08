@@ -52,7 +52,7 @@ Constaté le 08/10 : `app.lb2i.com/api/health` redirige vers la connexion et `ap
 1. Une alerte « silence » part seulement après que le seuil est dépassé ET qu'aucune alerte n'est déjà ouverte pour ce flux (état persistant). Cas positif : un flux muet 27 h déclenche exactement une alerte.
 2. Un message « retour à la normale » part seulement si une alerte était ouverte. Cas positif : flux redevenu frais → un message, puis silence.
 3. Le watchdog rend un code de sortie non nul seulement si lui-même n'a pas pu contrôler (API GitHub injoignable, Telegram refusé) ; un flux en panne ne fait pas échouer le workflow. Cas positif : Telegram 401 → run rouge visible dans Actions.
-4. Le récapitulatif quotidien (1 ligne, à 07:00 Madrid) part seulement une fois par jour, même si le workflow tourne 4 fois. Son absence est le signal que le watchdog lui-même est mort.
+4. ~~Récapitulatif quotidien~~ **Révisé le 08/10 soir (Anthony : « un message tous les jours pour dire que ça marche, c'est du spam »)** : aucun message n'est envoyé quand tout va bien. Le témoin de vie du watchdog est un cliquet externe : après chaque run, GET sur `HEALTHCHECK_PING_URL` (healthchecks.io), `/fail` si le run n'a pas pu contrôler ou notifier ; le service alerte sur Telegram seulement si aucun ping n'arrive dans la période (6 h + grâce). Cas positif : 4 runs sains d'affilée → 4 pings, 0 message Telegram. Un ping impossible ne change pas le code de sortie (l'absence de ping est exactement ce que le cliquet détecte).
 5. Le jeton Telegram n'apparaît jamais dans les logs ni dans un fichier commité. Cas positif : un dry-run affiche `token: ****`.
 
 ## 3. Inconnues et hypothèses

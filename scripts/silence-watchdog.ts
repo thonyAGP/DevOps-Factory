@@ -24,7 +24,6 @@ export const PREFIX = '🕯 Silence —';
 export const DECL_PATH = 'data/silence-watchdog.json';
 export const STATE_PATH = 'data/silence-watchdog-state.json';
 const GITHUB_API = 'https://api.github.com';
-const SUMMARY_HOUR_MADRID = 7;
 const HOUR_MS = 3_600_000;
 const COMMIT_PAGES = 3;
 const RUNS_PER_WORKFLOW = 20;
@@ -334,7 +333,6 @@ export const decide = (
   const state: WatchdogState = { lastDailySummaryDate: prev.lastDailySummaryDate, flows: {} };
   const notifications: Notification[] = [];
   const verdicts: Verdict[] = [];
-  const ages: Record<string, string> = {};
 
   for (const flow of decl.flows) {
     const before = prev.flows[flow.id] ?? emptyFlowState();
@@ -350,15 +348,11 @@ export const decide = (
     if (step.notification) notifications.push(step.notification);
     state.flows[flow.id] = step.next;
     verdicts.push({ id: flow.id, status: step.status, line: r.detail });
-    const proof = r.lastProofAt ?? before.lastOkAt;
-    if (proof) ages[flow.id] = formatAge(ageHours(proof, now));
   }
 
-  const madrid = madridParts(now);
-  if (madrid.hour >= SUMMARY_HOUR_MADRID && prev.lastDailySummaryDate !== madrid.date) {
-    state.lastDailySummaryDate = madrid.date;
-    notifications.push({ key: 'summary', text: composeSummary(madrid.date, verdicts, ages) });
-  }
+  // Pas de recapitulatif quotidien (decision Anthony 08/10 : un « tout va bien »
+  // chaque jour est du bruit). Le temoin de vie du watchdog est le cliquet
+  // externe (HEALTHCHECK_PING_URL) pingue en fin de run, cf. pingHealthcheck.
   return { state, notifications, verdicts };
 };
 
@@ -501,9 +495,56 @@ export const sendTelegram = async (text: string, deps: Deps): Promise<void> => {
   if (res.status !== 200) throw new Error(`Telegram a répondu HTTP ${res.status}`);
 };
 
+/**
+ * Cliquet externe (healthchecks.io ou equivalent) : GET sur l'URL apres un run
+ * qui a pu controler et notifier, GET sur `<url>/fail` sinon. Si aucun ping
+ * n'arrive dans le delai configure cote service, c'est LUI qui alerte : le
+ * watchdog n'a donc pas besoin d'un message « tout va bien » pour prouver
+ * qu'il vit. Un echec du ping ne change pas le code de sortie : l'absence de
+ * ping est precisement ce que le cliquet detecte.
+ */
+export const pingHealthcheck = async (
+  ok: boolean,
+  deps: Deps,
+  log: (m: string) => void
+): Promise<void> => {
+  const base = deps.env.HEALTHCHECK_PING_URL;
+  if (!base) {
+    log('cliquet : HEALTHCHECK_PING_URL absent, pas de ping');
+    return;
+  }
+  const url = ok ? base : `${base.replace(/\/$/, '')}/fail`;
+  try {
+    const res = await deps.fetch(url, { method: 'GET', signal: AbortSignal.timeout(10_000) });
+    log(`cliquet : ping ${ok ? 'ok' : 'fail'} → HTTP ${res.status}`);
+  } catch (e) {
+    log(`cliquet : ping impossible (${errMsg(e)})`);
+  }
+};
+
+/** Envoie chaque notification ; retourne les cles dont l'envoi a echoue. */
+const sendNotifications = async (
+  notifications: Notification[],
+  deps: Deps,
+  log: (m: string) => void,
+  errors: string[]
+): Promise<string[]> => {
+  const failed: string[] = [];
+  for (const n of notifications) {
+    try {
+      await sendTelegram(n.text, deps);
+      log(`envoyé : ${n.text}`);
+    } catch (e) {
+      failed.push(n.key);
+      errors.push(`notification ${n.key} : ${errMsg(e)}`);
+    }
+  }
+  return failed;
+};
+
 /** Point d'entree testable. Retourne le code de sortie. */
 export const run = async (argv: string[], deps: Deps): Promise<number> => {
-  const secrets = [deps.env.TELEGRAM_BOT_TOKEN, deps.env.GH_TOKEN];
+  const secrets = [deps.env.TELEGRAM_BOT_TOKEN, deps.env.GH_TOKEN, deps.env.HEALTHCHECK_PING_URL];
   const log = (m: string): void => deps.log(redact(m, secrets));
   const logError = (m: string): void => deps.logError(redact(m, secrets));
   const dryRun = argv.includes('--dry-run');
@@ -533,21 +574,13 @@ export const run = async (argv: string[], deps: Deps): Promise<number> => {
     for (const n of decision.notifications) log(`[dry-run] non envoyé : ${n.text}`);
     if (decision.notifications.length === 0) log('[dry-run] aucun message à envoyer');
   } else {
-    const failed: string[] = [];
-    for (const n of decision.notifications) {
-      try {
-        await sendTelegram(n.text, deps);
-        log(`envoyé : ${n.text}`);
-      } catch (e) {
-        failed.push(n.key);
-        errors.push(`notification ${n.key} : ${errMsg(e)}`);
-      }
-    }
+    const failed = await sendNotifications(decision.notifications, deps, log, errors);
     const state = rollbackFailed(decision.state, prev, failed);
     deps.writeFile(STATE_PATH, `${JSON.stringify(state, null, 2)}\n`);
   }
 
   for (const e of errors) logError(`ERREUR watchdog : ${e}`);
+  if (!dryRun) await pingHealthcheck(errors.length === 0, deps, log);
   return errors.length > 0 ? 1 : 0;
 };
 
