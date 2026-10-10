@@ -8,6 +8,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import {
   DECL_PATH,
+  PENDING_STATUS,
   PREFIX,
   STATE_PATH,
   ageHours,
@@ -83,7 +84,7 @@ interface Harness {
 
 const makeHarness = (opts: {
   decl: Declaration;
-  route: (url: string) => Response | Promise<Response>;
+  route: (url: string, init?: RequestInit) => Response | Promise<Response>;
   telegramStatus?: number;
   env?: Record<string, string | undefined>;
   now?: Date;
@@ -101,7 +102,7 @@ const makeHarness = (opts: {
       telegramTexts.push(String(body.text));
       return new Response('{}', { status: opts.telegramStatus ?? 200 });
     }
-    return opts.route(url);
+    return opts.route(url, init);
   });
   const deps: Deps = {
     fetch: fetchMock as unknown as typeof fetch,
@@ -435,5 +436,168 @@ describe('invariant 5 — jeton masqué', () => {
 
   it('should redact every occurrence of each secret', () => {
     expect(redact('a SECRET b SECRET', ['SECRET', undefined])).toBe('a **** b ****');
+  });
+});
+
+// ---------------------------------------------------------------- v1b (11/10)
+
+const CASA_SECRET = 'casa-cron-secret-0123456789';
+const LB2I_SECRET = 'lb2i-cron-secret-9876543210';
+const BASE_ENV = { TELEGRAM_BOT_TOKEN: TOKEN, TELEGRAM_CHAT_ID: '42', GH_TOKEN: 'ghs_fake' };
+const CASA_FLOW: HttpsFlow = {
+  id: 'casasync-pulse',
+  label: 'CasaSync, crons',
+  type: 'https',
+  url: 'https://app-casasync.vercel.app/api/health/pulse',
+  expectStatus: 200,
+  expectJson: { status: 'ok' },
+  consecutiveFailures: 2,
+  auth: { header: 'x-cron-secret', env: 'CASASYNC_CRON_SECRET' },
+};
+const LB2I_FLOW: HttpsFlow = {
+  ...CASA_FLOW,
+  id: 'lb2i-pulse',
+  label: 'LB2I, application',
+  url: 'https://app.lb2i.com/api/health/pulse',
+  auth: { header: 'Authorization', env: 'LB2I_CRON_SECRET', prefix: 'Bearer ' },
+};
+const RAPPELS_FLOW: HttpsFlow = {
+  id: 'rappels-api',
+  label: 'Rappels, API publique',
+  type: 'https',
+  url: 'https://rappels.lb2i.com/v1/reminders',
+  expectStatus: 401,
+  consecutiveFailures: 2,
+};
+
+interface Call {
+  url: string;
+  headers: Headers;
+  redirect: RequestRedirect | undefined;
+}
+const recorder = (respond: () => Response) => {
+  const calls: Call[] = [];
+  const route = (url: string, init?: RequestInit): Response => {
+    calls.push({ url, headers: new Headers(init?.headers), redirect: init?.redirect });
+    return respond();
+  };
+  return { calls, route };
+};
+const casaStateOf = (h: Harness) => parseState(h.files.get(STATE_PATH) ?? null).flows[CASA_FLOW.id];
+
+describe('flux authentifié — secret lu dans l’environnement', () => {
+  it('should send each secret in its declared header, trimmed, without following redirects', async () => {
+    const rec = recorder(() => Response.json({ status: 'ok' }));
+    const h = makeHarness({
+      decl: { flows: [CASA_FLOW, LB2I_FLOW] },
+      env: { ...BASE_ENV, CASASYNC_CRON_SECRET: CASA_SECRET, LB2I_CRON_SECRET: `${LB2I_SECRET}\n` },
+      route: rec.route,
+    });
+
+    expect(await run([], h.deps)).toBe(0);
+    expect(rec.calls.map((c) => c.url)).toEqual([CASA_FLOW.url, LB2I_FLOW.url]);
+    expect(rec.calls[0]?.headers.get('x-cron-secret')).toBe(CASA_SECRET);
+    expect(rec.calls[1]?.headers.get('authorization')).toBe(`Bearer ${LB2I_SECRET}`);
+    expect(rec.calls.every((c) => c.redirect === 'manual')).toBe(true);
+    expect(h.logs.some((l) => l.startsWith('[OK] casasync-pulse'))).toBe(true);
+  });
+
+  it('should report ERREUR and exit non-zero when the secret is absent, without calling the stream nor alerting', async () => {
+    // undefined : variable absente ; '' : secret GitHub non posé (Actions injecte une chaîne vide).
+    for (const secret of [undefined, '', '   ']) {
+      const rec = recorder(() => Response.json({ status: 'ok' }));
+      const h = makeHarness({
+        decl: { flows: [CASA_FLOW] },
+        env: { ...BASE_ENV, CASASYNC_CRON_SECRET: secret },
+        route: rec.route,
+      });
+
+      expect(await run([], h.deps)).toBe(1);
+      expect(rec.calls).toHaveLength(0);
+      expect(h.telegramTexts).toHaveLength(0);
+      expect(h.logs).toContain(
+        '[ERREUR] casasync-pulse — contrôle impossible : secret CASASYNC_CRON_SECRET absent'
+      );
+      expect(casaStateOf(h)).toMatchObject({ consecutiveFailures: 0, alertOpenSince: null });
+    }
+  });
+
+  it('should mask a stream secret in logs and in the Telegram alert, even inside an error message', async () => {
+    const h = makeHarness({
+      decl: { flows: [CASA_FLOW] },
+      env: { ...BASE_ENV, CASASYNC_CRON_SECRET: CASA_SECRET },
+      route: () => {
+        throw new Error(`invalid header value "${CASA_SECRET}"`);
+      },
+    });
+
+    expect(await run([], h.deps)).toBe(0); // DOUTE 1/2
+    expect(await run([], h.deps)).toBe(0); // PANNE : une alerte part
+    expect(h.telegramTexts).toHaveLength(1);
+    const all = [...h.logs, ...h.telegramTexts].join('\n');
+    expect(all).not.toContain(CASA_SECRET);
+    expect(h.telegramTexts[0]).toContain('invalid header value "****"');
+  });
+});
+
+describe('flux en attente (pending)', () => {
+  it('should show a pending stream as EN ATTENTE and never check nor alert it, even without its secret', async () => {
+    const rec = recorder(() => new Response('down', { status: 503 }));
+    const pendingCasa: HttpsFlow = { ...CASA_FLOW, pending: true, pendingReason: 'route à créer' };
+    // Sans secret : un contrôle exécuté par erreur atteindrait le réseau.
+    const pendingRappels: HttpsFlow = { ...RAPPELS_FLOW, pending: true };
+    const h = makeHarness({
+      decl: { flows: [pendingCasa, pendingRappels] },
+      env: BASE_ENV,
+      route: rec.route,
+    });
+
+    expect(await run([], h.deps)).toBe(0);
+    expect(await run([], h.deps)).toBe(0);
+    expect(rec.calls).toHaveLength(0);
+    expect(h.telegramTexts).toHaveLength(0);
+    expect(h.logs).toContain(
+      `[${PENDING_STATUS}] casasync-pulse — déclaré, jamais contrôlé ni alerté (route à créer)`
+    );
+    expect(h.logs).toContain(
+      `[${PENDING_STATUS}] rappels-api — déclaré, jamais contrôlé ni alerté`
+    );
+    expect(casaStateOf(h)).toBeUndefined();
+  });
+
+  it('should ignore an outcome given for a pending stream', () => {
+    const d = decide(
+      { flows: [{ ...DB_FLOW, pending: true }] },
+      emptyState(),
+      { [DB_FLOW.id]: checked(false) },
+      NIGHT
+    );
+    expect(d.notifications).toHaveLength(0);
+    expect(d.verdicts).toEqual([
+      { id: DB_FLOW.id, status: PENDING_STATUS, line: 'déclaré, jamais contrôlé ni alerté' },
+    ]);
+  });
+});
+
+describe('statut attendu ≠ 200, sans JSON attendu', () => {
+  it('should accept the expected 401 whatever the body, and flag any other status', () => {
+    expect(evaluateHttps(RAPPELS_FLOW, 401, '{"erreur":"NON_AUTHENTIFIE"}', NIGHT)).toEqual({
+      healthy: true,
+      detail: 'HTTP 401, statut attendu',
+      lastProofAt: NIGHT.toISOString(),
+    });
+    expect(evaluateHttps(RAPPELS_FLOW, 401, 'pas du JSON', NIGHT).healthy).toBe(true);
+    expect(evaluateHttps(RAPPELS_FLOW, 200, '[]', NIGHT).detail).toBe('HTTP 200 (attendu 401)');
+    expect(evaluateHttps(RAPPELS_FLOW, 502, 'Bad gateway', NIGHT).healthy).toBe(false);
+  });
+
+  it('should report OK when the unauthenticated probe gets its 401, sending no header', async () => {
+    const rec = recorder(() => new Response('', { status: 401 }));
+    const h = makeHarness({ decl: { flows: [RAPPELS_FLOW] }, route: rec.route });
+
+    expect(await run([], h.deps)).toBe(0);
+    expect(h.logs).toContain('[OK] rappels-api — HTTP 401, statut attendu');
+    expect([...(rec.calls[0]?.headers.keys() ?? [])]).toEqual([]);
+    expect(rec.calls[0]?.redirect).toBe('follow');
   });
 });

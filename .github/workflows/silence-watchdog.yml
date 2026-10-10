@@ -67,6 +67,11 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           # Cliquet externe (healthchecks.io) : alerte si ce workflow cesse de pinguer.
           HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
+          # Flux https authentifies (champ `auth` de data/silence-watchdog.json) :
+          # secrets de cron des apps, masques dans les journaux. Secret non pose
+          # (chaine vide) sur un flux actif => ERREUR et run rouge, jamais un faux OK.
+          CASASYNC_CRON_SECRET: ${{ secrets.CASASYNC_CRON_SECRET }}
+          LB2I_CRON_SECRET: ${{ secrets.LB2I_CRON_SECRET }}
 
       # Etat persistant (anti-doublon) : commite meme si le watchdog a echoue,
       # pour ne pas renvoyer les alertes deja parties au run suivant.

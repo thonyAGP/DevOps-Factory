@@ -107,3 +107,15 @@ Options réelles pour l'hébergement :
 - Mise en service : merge sur `master`, premier run par dispatch, puis cadence 6 h. Rollback : désactiver le workflow (`gh workflow disable`), supprimer les secrets.
 - Signaux à observer sur 2 semaines : nombre d'alertes/jour (cible < 1 hors panne réelle), faux positifs (flux frais signalé muet), absence du récapitulatif 07:00.
 - Suite prévue (chantier 2 de l'ordre révisé) : agent qui diagnostique et propose une PR pour ce qui est rouge N jours de suite.
+
+## 8. v1b (11/10) — flux authentifiés, flux en attente (lot A4)
+
+Remplace le tableau « Flux en v1b » du §2 : `deadman` et `inbox-health-check` sont écartés comme sondes (ils envoient des alertes et écrivent).
+
+- **Ajouts** (`scripts/silence-watchdog.ts`) : `https.auth { header, env, prefix? }` — secret lu dans l'environnement, envoyé dans l'en-tête, masqué dans les journaux **et** dans le texte Telegram ; absent ou vide (secret GitHub non posé ⇒ chaîne vide) ⇒ `[ERREUR] contrôle impossible : secret X absent`, code de sortie 1, jamais un faux OK ni une alerte. Avec un secret, aucune redirection n'est suivie (`redirect: 'manual'`). `pending: true` (+ `pendingReason`) : flux déclaré, affiché `[EN ATTENTE]`, jamais contrôlé ni alerté, aucun état écrit. `expectJson` devient optionnel : sans lui, le statut seul fait foi (401 attendu).
+- **Choix des sondes** (lecture du code, aucun appel en prod) :
+  - CasaSync : `/api/health/integrations` est derrière le middleware NextAuth (`src/middleware.ts` : `api/health` n'est pas exclu du matcher ⇒ 401 `unauthenticated` sans session) ; aucun en-tête ni secret ne le satisfait. Tous les `/api/cron/*` ont un effet (battement `recordCronRun`/`withHeartbeat`, envois) : appeler `deadman` alerterait ET réécrirait son battement, la sonde fabriquerait la preuve de vie qu'elle doit observer. ⇒ `casasync-pulse` en attente d'une route `GET /api/health/pulse` en lecture seule (fraîcheur du battement `scenarios-tick`).
+  - LB2I : `/api/health` est derrière next-auth et interroge Coupa sFTP, Gemini, Telegram ; chaque `/api/cron/*` envoie, écrit ou est un traitement lourd en POST. ⇒ `lb2i-pulse` en attente d'une route `GET /api/health/pulse` (`requireCronAuth` + `SELECT 1`).
+  - Rappels : `GET /v1/reminders` sans jeton ⇒ 401 rendu par l'application derrière nginx (`/v1/health` n'est jamais public). ⇒ `rappels-api` en attente du DNS `rappels.lb2i.com`.
+- **Secrets GitHub** : `CASASYNC_CRON_SECRET`, `LB2I_CRON_SECRET`, câblés dans le workflow. Lever un `pending` : route déployée, secret posé, clé `pending` retirée, puis dry-run.
+- **Preuves (11/10)** : `vitest` 32 passed (25 + 7 neufs) ; mutation 7/7 tués (chaque garde neuve retirée fait rougir un test) ; `tsc --noEmit` exit 0 ; eslint 0 warning ; prettier conforme ; dry-run réel : 4 anciens flux inchangés, 3 neufs `[EN ATTENTE]`, état non modifié ; CLI avec les deux flux authentifiés activés sans secret (URL `.invalid`) ⇒ 2 `[ERREUR] … secret … absent`, exit 1.

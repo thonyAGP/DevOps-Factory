@@ -1,5 +1,5 @@
 {
-  "$comment": "Flux surveilles par scripts/silence-watchdog.ts (chantier .chantier/2026-10-08-watchdog-silence). Etat persistant : data/silence-watchdog-state.json.",
+  "$comment": "Flux surveilles par scripts/silence-watchdog.ts (chantier .chantier/2026-10-08-watchdog-silence). Etat persistant : data/silence-watchdog-state.json. https.auth : secret lu dans la variable d'environnement `env` (jamais sa valeur ici), absent => ERREUR du watchdog. pending : flux declare, affiche [EN ATTENTE], jamais controle ni alerte ; retirer la cle quand la sonde existe.",
   "flows": [
     {
       "id": "db-backups",
@@ -37,6 +37,40 @@
       "expectStatus": 200,
       "expectJson": { "status": "ok" },
       "consecutiveFailures": 2
+    },
+    {
+      "id": "casasync-pulse",
+      "label": "CasaSync, crons",
+      "type": "https",
+      "url": "https://app-casasync.vercel.app/api/health/pulse",
+      "expectStatus": 200,
+      "expectJson": { "status": "ok" },
+      "auth": { "header": "x-cron-secret", "env": "CASASYNC_CRON_SECRET" },
+      "consecutiveFailures": 2,
+      "pending": true,
+      "pendingReason": "sonde GET /api/health/pulse à créer dans CasaSync après CHG-345 : lecture seule du heartbeat scenarios-tick"
+    },
+    {
+      "id": "lb2i-pulse",
+      "label": "LB2I, application",
+      "type": "https",
+      "url": "https://app.lb2i.com/api/health/pulse",
+      "expectStatus": 200,
+      "expectJson": { "status": "ok" },
+      "auth": { "header": "Authorization", "env": "LB2I_CRON_SECRET", "prefix": "Bearer " },
+      "consecutiveFailures": 2,
+      "pending": true,
+      "pendingReason": "sonde GET /api/health/pulse à créer dans LB2I : SELECT 1 derrière requireCronAuth"
+    },
+    {
+      "id": "rappels-api",
+      "label": "Rappels, API publique",
+      "type": "https",
+      "url": "https://rappels.lb2i.com/v1/reminders",
+      "expectStatus": 401,
+      "consecutiveFailures": 2,
+      "pending": true,
+      "pendingReason": "DNS rappels.lb2i.com absent ; lever après exposer.sh, 401 sans jeton attendu"
     }
   ]
 }

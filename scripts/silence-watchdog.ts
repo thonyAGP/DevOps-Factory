@@ -14,6 +14,11 @@
  *
  * Volontairement autonome : aucun import du reste du depot (le watchdog ne doit
  * pas tomber avec ce qu'il surveille). Logique pure separee des effets (deps).
+ *
+ * Flux HTTPS authentifie (`auth`) : le secret est lu dans l'environnement, envoye
+ * dans l'en-tete declare, masque dans tous les journaux ; absent => ERREUR du
+ * watchdog (code de sortie non nul), jamais un faux OK ni une alerte.
+ * Flux `pending` : declare, affiche [EN ATTENTE], jamais controle ni alerte.
  */
 
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
@@ -29,12 +34,17 @@ const COMMIT_PAGES = 3;
 const RUNS_PER_WORKFLOW = 20;
 const FAILED_CONCLUSIONS = new Set(['failure', 'timed_out', 'startup_failure']);
 const IGNORED_CONCLUSIONS = new Set(['cancelled', 'skipped', 'neutral', 'stale']);
+export const PENDING_STATUS = 'EN ATTENTE';
 
 // ---------------------------------------------------------------- types
 
 interface FlowBase {
   id: string;
   label: string;
+  /** Declare mais pas encore controlable : jamais controle ni alerte. */
+  pending?: boolean;
+  /** Pourquoi le flux attend (affiche avec [EN ATTENTE]). */
+  pendingReason?: string;
 }
 export interface CommitsFlow extends FlowBase {
   type: 'github-commits';
@@ -58,12 +68,22 @@ export interface WorkflowRunsFlow extends FlowBase {
   workflows: string[];
   consecutiveRunFailures: number;
 }
+export interface HttpsAuth {
+  /** En-tete porteur, ex. `x-cron-secret` ou `Authorization`. */
+  header: string;
+  /** Variable d'environnement qui contient le secret (jamais sa valeur). */
+  env: string;
+  /** Prefixe de la valeur, ex. `Bearer `. */
+  prefix?: string;
+}
 export interface HttpsFlow extends FlowBase {
   type: 'https';
   url: string;
   expectStatus: number;
-  expectJson: Record<string, string>;
+  /** Absent : le statut HTTP seul fait foi (ex. 401 attendu sans jeton). */
+  expectJson?: Record<string, string>;
   consecutiveFailures: number;
+  auth?: HttpsAuth;
 }
 export type Flow = CommitsFlow | FileDateFlow | WorkflowRunsFlow | HttpsFlow;
 export interface Declaration {
@@ -228,6 +248,9 @@ export const evaluateHttps = (
       lastProofAt: null,
     };
   }
+  if (!flow.expectJson) {
+    return { healthy: true, detail: `HTTP ${status}, statut attendu`, lastProofAt: nowIso };
+  }
   let json: unknown;
   try {
     json = JSON.parse(body);
@@ -245,6 +268,33 @@ export const evaluateHttps = (
     detail: `HTTP ${status}, ${JSON.stringify(flow.expectJson)}`,
     lastProofAt: nowIso,
   };
+};
+
+/**
+ * En-tetes d'un controle HTTPS. Un secret absent (ou vide : secret GitHub non
+ * pose) leve une erreur : le watchdog n'a pas pu controler, ce n'est ni un OK
+ * ni une panne du flux.
+ */
+export const httpsHeaders = (
+  flow: HttpsFlow,
+  env: Record<string, string | undefined>
+): Record<string, string> => {
+  if (!flow.auth) return {};
+  const secret = env[flow.auth.env]?.trim();
+  if (!secret) throw new Error(`secret ${flow.auth.env} absent`);
+  return { [flow.auth.header]: `${flow.auth.prefix ?? ''}${secret}` };
+};
+
+/** Valeurs des secrets des flux authentifies, a masquer dans tous les journaux. */
+export const authSecrets = (decl: Declaration, env: Record<string, string | undefined>): string[] =>
+  decl.flows.flatMap((f) => {
+    const value = f.type === 'https' && f.auth ? env[f.auth.env]?.trim() : undefined;
+    return value ? [value] : [];
+  });
+
+export const pendingLine = (flow: Flow): string => {
+  const base = 'déclaré, jamais contrôlé ni alerté';
+  return flow.pendingReason ? `${base} (${flow.pendingReason})` : base;
 };
 
 export const failuresBeforeAlert = (flow: Flow): number =>
@@ -336,6 +386,12 @@ export const decide = (
 
   for (const flow of decl.flows) {
     const before = prev.flows[flow.id] ?? emptyFlowState();
+    if (flow.pending) {
+      // Jamais controle ni alerte ; un etat anterieur eventuel est garde tel quel.
+      if (prev.flows[flow.id]) state.flows[flow.id] = { ...before };
+      verdicts.push({ id: flow.id, status: PENDING_STATUS, line: pendingLine(flow) });
+      continue;
+    }
     const outcome = outcomes[flow.id];
     if (!outcome || outcome.kind === 'error') {
       state.flows[flow.id] = { ...before };
@@ -452,8 +508,15 @@ const checkWorkflowRuns = async (flow: WorkflowRunsFlow, deps: Deps): Promise<Ch
 };
 
 const checkHttps = async (flow: HttpsFlow, deps: Deps): Promise<CheckResult> => {
+  // Hors du try : un secret absent est une erreur du watchdog, pas une panne du flux.
+  const headers = httpsHeaders(flow, deps.env);
   try {
-    const res = await deps.fetch(flow.url, { signal: AbortSignal.timeout(15_000) });
+    const res = await deps.fetch(flow.url, {
+      headers,
+      // Avec un secret, ne jamais suivre de redirection : il partirait vers l'hote cible.
+      redirect: flow.auth ? 'manual' : 'follow',
+      signal: AbortSignal.timeout(15_000),
+    });
     return evaluateHttps(flow, res.status, await res.text(), deps.now());
   } catch (e) {
     // Une panne du flux surveille n'est PAS une erreur du watchdog (invariant 3).
@@ -555,13 +618,17 @@ export const run = async (argv: string[], deps: Deps): Promise<number> => {
     return 1;
   }
   const decl = JSON.parse(rawDecl) as Declaration;
+  // Secrets des flux authentifies : masques dans tout ce qui est journalise ensuite.
+  secrets.push(...authSecrets(decl, deps.env));
   const prev = parseState(deps.readFile(STATE_PATH));
 
   log(`silence-watchdog${dryRun ? ' (dry-run)' : ''} — ${decl.flows.length} flux`);
   log(`token: ${deps.env.TELEGRAM_BOT_TOKEN ? '****' : '(absent)'}`);
 
   const outcomes: Record<string, CheckOutcome> = {};
-  for (const flow of decl.flows) outcomes[flow.id] = await checkFlow(flow, deps);
+  for (const flow of decl.flows) {
+    if (!flow.pending) outcomes[flow.id] = await checkFlow(flow, deps);
+  }
 
   const decision = decide(decl, prev, outcomes, deps.now());
   const errors: string[] = [];
@@ -574,7 +641,9 @@ export const run = async (argv: string[], deps: Deps): Promise<number> => {
     for (const n of decision.notifications) log(`[dry-run] non envoyé : ${n.text}`);
     if (decision.notifications.length === 0) log('[dry-run] aucun message à envoyer');
   } else {
-    const failed = await sendNotifications(decision.notifications, deps, log, errors);
+    // Le detail d'une alerte cite parfois une erreur reseau : masquee aussi avant envoi.
+    const outgoing = decision.notifications.map((n) => ({ ...n, text: redact(n.text, secrets) }));
+    const failed = await sendNotifications(outgoing, deps, log, errors);
     const state = rollbackFailed(decision.state, prev, failed);
     deps.writeFile(STATE_PATH, `${JSON.stringify(state, null, 2)}\n`);
   }
