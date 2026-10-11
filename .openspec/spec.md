@@ -165,6 +165,7 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 
 ## Changelog
 
+- 2026-10-11 : CHG-011 `IMPLEMENTED` - Un seul producteur de PR (routine « réparateur » `trig_01J7AmrmmoirLqPVbhDF4occ`, désactivée jusqu'à la première passe), issues sobres (DevOps Report seulement depuis daily-report, code-guard par `github.actor`), Branding Guard sûr et vert (identité git globale, « AI-generated » jamais réécrit, --dry-run), Renovate sans les 3 dépôts supprimés. 820 issues automatiques fermées. Voir `.openspec/changes/CHG-011-sobriete-producteurs-reparateur.md`.
 - 2026-04-17 : CHG-010 `DRAFT` - Ecosystem Agent **V3** plan (8 phases). Axes : Intelligence (trends, auto-fix debt etendu, CI gate, MCP V2), Visibilite (notifications Slack/Discord/email, dashboard WebSocket), Portabilite (multi-machine sync, Linux/WSL). Voir `.openspec/changes/CHG-010-ecosystem-agent-v3.md`.
 - 2026-04-17 : CHG-009 `ARCHIVED` - Ecosystem Agent **V2 DELIVERED**. 4 phases livrees : V2-P1 service Windows auto-boot (`678f7a3`), V2-P2 tray icon + notifications (`b79aacf`), V2-P3 FTS5 knowledge search + health score divergences (`10cb28d`), V2-P4 auto-fix low-risk configsync/deps patches (`a6b3624`).
 - 2026-04-17 : CHG-008 `ARCHIVED` - **V1 DELIVERED**. Phase 6 acceptance `smoke-acceptance-v1.sh` : 29/29 criteres PASS (24 projets, 1661 debts, 57 divergences, 59 patterns, 75 fixes, 7 MCP tools, 8 pages web, scaffold OK, register-mcp OK). DB 13.9MB / 35768 fichiers. Commit `f339031`.
