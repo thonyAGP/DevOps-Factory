@@ -47,8 +47,8 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 
 ### A traiter
 
-- [ ] CHG-012 étape 1 : plan de contrôle d'incidents dans le watchdog (IncidentEnvelope, empreinte logique, cycle de vie + cooldown, `causedBy`, moteur de politiques `AUTO_ALLOWED = []`, budget 7/jour, `data/incidents/`) + tests
-- [ ] CHG-012 étape 1 : `docs/contrats/incident-envelope.md`, `OPERATIONS.md` (DevOps-Factory, Boxmail, LB2I)
+- [x] CHG-012 étape 1 : plan de contrôle d'incidents dans le watchdog (IncidentEnvelope, empreinte logique, cycle de vie + cooldown, `causedBy`, moteur de politiques `AUTO_ALLOWED = []`, budget 7/jour, `data/incidents/`) + tests — livré le 11/10 (1063 tests, dry-run réel)
+- [x] CHG-012 étape 1 : `docs/contrats/incident-envelope.md`, `OPERATIONS.md` (DevOps-Factory, Boxmail, LB2I) — livrés le 11/10
 - [ ] CHG-012 étape 2 : routine « analyste d'incidents » (`docs/routines/analyste.md`, créée désactivée), déclencheur API ou repli planifié, dossiers Rappels `bloque`, `data/incidents/mesure.md`
 - [ ] CHG-012 : après ≥ 20 incidents, tableau de mesure → décision d'Anthony pour l'étape 3 (PR préparées)
 - [ ] Fix Zentra CI (monorepo typecheck TS6305 + DATABASE_URL) - probleme structurel, healingState=paused
