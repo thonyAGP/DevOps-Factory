@@ -2,83 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-04T16:02:47.414Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-04T16:03:04.372Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-04T16:03:04.375Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 45 outcomes (19 merged, 9 closed, 17 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-04T16:11:25.540Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-04T16:11:29.790Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-04T16:11:30.499Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.6/10, 3870 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-04T16:11:31.217Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-04T16:26:26.077Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-04T16:26:30.143Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-04T16:26:30.853Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.6/10, 3870 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-04T16:26:31.553Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-10-04T16:54:55.865Z",
       "source": "factory-watchdog",
       "action": "workflow-failure",
@@ -3699,6 +3622,43 @@
       "action": "quality-complete",
       "details": "Avg 33/100, 0 excellent, 18 needs work, 0 drops, 0 improvements",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-10-11T16:50:39.362Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 0 repos (0 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-11T16:50:55.717Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/DevOps-Factory",
+      "details": "PR #3328 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-11T16:50:55.719Z",
+      "source": "outcome-registry",
+      "action": "healing-failed",
+      "target": "thonyAGP/DevOps-Factory",
+      "details": "PR #3324 — CI still red after merge",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-11T16:50:55.722Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-11T16:50:55.724Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 47 outcomes (21 merged, 9 closed, 17 open). 2 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
