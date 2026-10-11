@@ -47,6 +47,10 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 
 ### A traiter
 
+- [ ] CHG-012 étape 1 : plan de contrôle d'incidents dans le watchdog (IncidentEnvelope, empreinte logique, cycle de vie + cooldown, `causedBy`, moteur de politiques `AUTO_ALLOWED = []`, budget 7/jour, `data/incidents/`) + tests
+- [ ] CHG-012 étape 1 : `docs/contrats/incident-envelope.md`, `OPERATIONS.md` (DevOps-Factory, Boxmail, LB2I)
+- [ ] CHG-012 étape 2 : routine « analyste d'incidents » (`docs/routines/analyste.md`, créée désactivée), déclencheur API ou repli planifié, dossiers Rappels `bloque`, `data/incidents/mesure.md`
+- [ ] CHG-012 : après ≥ 20 incidents, tableau de mesure → décision d'Anthony pour l'étape 3 (PR préparées)
 - [ ] Fix Zentra CI (monorepo typecheck TS6305 + DATABASE_URL) - probleme structurel, healingState=paused
 - [ ] Fix ClubMed CI (monorepo types @clubmed/types manquant) - probleme structurel, healingState=paused
 
@@ -165,6 +169,7 @@ monitore la sante des pipelines, et genere des PRs de fix automatiques via un pi
 
 ## Changelog
 
+- 2026-10-11 : CHG-012 `APPROVED` - Plan de contrôle d'incidents (étage déterministe avant le modèle, analyste en contexte neuf, moteur de politiques après) en shadow mode d'abord ; décision d'Anthony 11/10 12:1x sur l'analyse `Platform/ANALYSE-GESTION-IA-2026-10-11.md`. Voir `.openspec/changes/CHG-012-plan-de-controle-incidents.md`.
 - 2026-10-11 : CHG-011 `IMPLEMENTED` - Un seul producteur de PR (routine « réparateur » `trig_01J7AmrmmoirLqPVbhDF4occ`, désactivée jusqu'à la première passe), issues sobres (DevOps Report seulement depuis daily-report, code-guard par `github.actor`), Branding Guard sûr et vert (identité git globale, « AI-generated » jamais réécrit, --dry-run), Renovate sans les 3 dépôts supprimés. 820 issues automatiques fermées. Voir `.openspec/changes/CHG-011-sobriete-producteurs-reparateur.md`.
 - 2026-04-17 : CHG-010 `DRAFT` - Ecosystem Agent **V3** plan (8 phases). Axes : Intelligence (trends, auto-fix debt etendu, CI gate, MCP V2), Visibilite (notifications Slack/Discord/email, dashboard WebSocket), Portabilite (multi-machine sync, Linux/WSL). Voir `.openspec/changes/CHG-010-ecosystem-agent-v3.md`.
 - 2026-04-17 : CHG-009 `ARCHIVED` - Ecosystem Agent **V2 DELIVERED**. 4 phases livrees : V2-P1 service Windows auto-boot (`678f7a3`), V2-P2 tray icon + notifications (`b79aacf`), V2-P3 FTS5 knowledge search + health score divergences (`10cb28d`), V2-P4 auto-fix low-risk configsync/deps patches (`a6b3624`).
