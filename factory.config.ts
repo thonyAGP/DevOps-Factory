@@ -46,7 +46,7 @@ export const CLAUDE_REVIEW_CONFIG: ClaudeReviewConfig = {
     'thonyAGP/livret-au-marais',
     'thonyAGP/au-marais',
     'thonyAGP/ClubMedRoomAssignment',
-    'thonyAGP/lecteur-magic',
+    'thonyAGP/LecteurMagic',
   ],
   model: 'claude-sonnet-4-5-20250929',
 };
@@ -167,14 +167,17 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     productionUrl: 'https://au-marais.fr',
   },
   {
-    name: 'Lecteur_Magic',
-    repo: 'thonyAGP/lecteur-magic',
+    // 2026-10-11: 'lecteur-magic' and 'magic-migration' were two slugs redirecting to this same
+    // repo, so Renovate silently skipped it. One entry, the real name (decision: Renovate on,
+    // minors and patches automerged like the other repos).
+    name: 'LecteurMagic',
+    repo: 'thonyAGP/LecteurMagic',
     hasCI: true,
     stack: 'node',
     hasQodo: false,
     hasClaude: false,
     hasSelfHealing: false,
-    hasHusky: false,
+    hasHusky: true,
     hasRenovate: false,
     hasGitleaks: false,
     hasLighthouse: false,
@@ -398,21 +401,6 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     vercel: false,
     healingState: 'healing_supervised',
   },
-  {
-    name: 'magic-migration',
-    repo: 'thonyAGP/magic-migration',
-    hasCI: true,
-    stack: 'node',
-    hasQodo: false,
-    hasClaude: false,
-    hasSelfHealing: false,
-    hasHusky: true,
-    hasRenovate: false,
-    hasGitleaks: false,
-    hasLighthouse: false,
-    hasLinkChecker: false,
-    vercel: false,
-  },
 ];
 
 export type NotifyEvent =
@@ -474,7 +462,7 @@ export const REMEDIATION_CONFIG: RemediationConfig = {
   // out until its PR is merged — keeping it listed would dispatch a duplicate
   // agent onto work that is already awaiting review.
   enabledRepos: [
-    'thonyAGP/magic-migration',
+    'thonyAGP/LecteurMagic',
     'thonyAGP/ClubMedRoomAssignment',
     'thonyAGP/Email_Assistant',
   ],
