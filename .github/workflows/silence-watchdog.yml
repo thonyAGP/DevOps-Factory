@@ -84,7 +84,8 @@ jobs:
           git add data/silence-watchdog-state.json
           git diff --cached --quiet && exit 0
           git commit -m "chore(silence-watchdog): état"
-          if git pull --rebase --autostash; then
+          # Fetch de master SEUL : un `git pull` ramenait toutes les branches (ai-fix/*, renovate/*…), 8 min par run
+          if git fetch --no-tags origin master && git rebase --autostash origin/master; then
             git push
             exit 0
           fi
