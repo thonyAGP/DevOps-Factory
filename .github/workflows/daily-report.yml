@@ -52,3 +52,4 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_ACTIONS: 'true'
+          DAILY_REPORT_ISSUE: 'true'

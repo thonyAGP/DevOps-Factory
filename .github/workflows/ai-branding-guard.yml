@@ -35,6 +35,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # The script commits inside fresh clones under $RUNNER_TEMP, not in this
+      # checkout: the identity must be --global or the clones never see it
+      # ("fatal: empty ident name", red since 2026-07-07).
+      - name: Configure git identity
+        run: |
+          git config --global user.name "DevOps Factory Bot"
+          git config --global user.email "devops-factory[bot]@users.noreply.github.com"
+
       - name: Run AI Branding Guard
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}

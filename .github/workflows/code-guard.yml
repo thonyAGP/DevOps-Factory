@@ -25,6 +25,8 @@ jobs:
         id: detect
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTOR: ${{ github.actor }}
+          OWNER: ${{ github.repository_owner }}
         run: |
           SHA="${{ github.sha }}"
           COMMIT_MSG=$(git log -1 --pretty=%s)
@@ -41,10 +43,13 @@ jobs:
             exit 0
           fi
 
-          # Skip if author is the bot (data file updates)
-          if [ "$AUTHOR" = "devops-factory[bot]" ]; then
+          # Skip pushes by the owner or the Factory App: checked on the
+          # authenticated pusher (github.actor), not the forgeable git author
+          # name — bot commits are authored "DevOps Factory Bot", which the old
+          # `$AUTHOR = devops-factory[bot]` test never matched.
+          if [ "$ACTOR" = "$OWNER" ] || [ "$ACTOR" = "devops-factory-bot[bot]" ]; then
             echo "is_bot=true" >> "$GITHUB_OUTPUT"
-            echo "✓ Bot commit - OK"
+            echo "✓ Push by $ACTOR (owner or Factory bot) - OK"
             exit 0
           fi
 

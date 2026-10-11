@@ -1,10 +1,12 @@
 /**
  * ai-branding-guard.ts
  *
- * Scans all repos for AI branding/attribution and removes it automatically.
- * Pushes fixes directly to the default branch.
+ * Scans all repos for AI branding/attribution and removes the unambiguous
+ * markers (pure attribution lines). Ambiguous wording and code lines are
+ * reported for manual review, never rewritten. Pushes fixes directly to the
+ * default branch.
  *
- * Run: pnpm ai-branding-guard
+ * Run: pnpm ai-branding-guard [--dry-run]   (--dry-run: print the diff, no commit/push)
  * Cron: daily at 3h UTC via GitHub Actions
  */
 
@@ -13,7 +15,7 @@ import { readFileSync, writeFileSync, rmSync, readdirSync, statSync } from 'node
 import { join, extname } from 'node:path';
 import { KNOWN_PROJECTS } from '../factory.config.js';
 import { tmpDir } from './shell-utils.js';
-import { logActivity } from './activity-logger.js';
+import { logActivity, type ActivityStatus } from './activity-logger.js';
 
 export interface BrandingPattern {
   regex: RegExp;
@@ -125,12 +127,25 @@ export const isSafeToDeleteLine = (line: string): boolean => {
   return !/['"`(){}[\]=;]/.test(withoutLinks);
 };
 
+/**
+ * 'inline' matches are reported, never rewritten. That wording is product
+ * vocabulary as often as attribution (CasaSync describes its own suggested
+ * replies with it), and deleting it changes the sentence: the 2026-10-11
+ * dry-run would have pushed to CasaSync master a rewritten LLM guardrail
+ * ("never in  replies") and truncated data-model descriptions.
+ */
+export const actionFor = (v: Pick<Violation, 'patternMode' | 'original'>): string => {
+  if (v.patternMode === 'inline') return 'kept for manual review (ambiguous wording)';
+  if (!isSafeToDeleteLine(v.original)) return 'kept for manual review (code line)';
+  return 'removed';
+};
+
 export const fixContent = (content: string): string => {
-  let lines = content.split('\n');
+  const original = content.split('\n');
 
   // Pass 1: Remove full lines matching 'line' patterns — only when the line
   // is pure attribution; lines mixed with code are preserved
-  lines = lines.filter((line) => {
+  const lines = original.filter((line) => {
     for (const pattern of BRANDING_PATTERNS) {
       if (pattern.mode !== 'line') continue;
       pattern.regex.lastIndex = 0;
@@ -139,18 +154,10 @@ export const fixContent = (content: string): string => {
     return true;
   });
 
-  // Pass 2: Inline removals
-  lines = lines.map((line) => {
-    let result = line;
-    for (const pattern of BRANDING_PATTERNS) {
-      if (pattern.mode !== 'inline') continue;
-      pattern.regex.lastIndex = 0;
-      result = result.replace(pattern.regex, '');
-    }
-    return result;
-  });
+  // Nothing removed: leave the file byte-for-byte untouched (no whitespace-only commit)
+  if (lines.length === original.length) return content;
 
-  // Pass 3: Collapse 3+ consecutive empty lines to 2
+  // Pass 2: Collapse 3+ consecutive empty lines to 2
   const cleaned: string[] = [];
   let emptyCount = 0;
   for (const line of lines) {
@@ -192,7 +199,30 @@ const getAllFiles = (dir: string, base = ''): string[] => {
   return results;
 };
 
-const processRepo = (repo: string): { violations: number; fixed: boolean } => {
+/** --dry-run: clone, scan and rewrite locally, print the diff — never commit or push. */
+const DRY_RUN = process.argv.includes('--dry-run');
+
+export interface RepoResult {
+  violations: number;
+  /** Files whose content actually changed — exactly what a real run commits. */
+  changedFiles: string[];
+  pushed: boolean;
+  error?: string;
+}
+
+/** First and last meaningful lines of an execSync error, credentials redacted. */
+export const summarizeError = (err: unknown): string => {
+  const raw = err instanceof Error ? err.message : String(err);
+  const lines = raw
+    .replace(/x-access-token:[^@\s]+@/g, 'x-access-token:***@')
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean);
+  if (lines.length <= 1) return lines[0] ?? 'unknown error';
+  return `${lines[0]} — ${lines[lines.length - 1]}`;
+};
+
+const processRepo = (repo: string): RepoResult => {
   const workDir = `${tmpDir}/branding-guard-${Date.now()}`.replace(/\\/g, '/');
 
   try {
@@ -201,9 +231,8 @@ const processRepo = (repo: string): { violations: number; fixed: boolean } => {
       timeout: 120_000,
       stdio: 'pipe',
     });
-  } catch {
-    console.log(`  [ERROR] Failed to clone ${repo}`);
-    return { violations: 0, fixed: false };
+  } catch (err) {
+    return { violations: 0, changedFiles: [], pushed: false, error: summarizeError(err) };
   }
 
   try {
@@ -224,11 +253,7 @@ const processRepo = (repo: string): { violations: number; fixed: boolean } => {
           fixedFiles.push(file);
 
           for (const v of violations) {
-            const action =
-              v.patternMode === 'line' && !isSafeToDeleteLine(v.original)
-                ? 'kept for manual review (code line)'
-                : 'removed';
-            console.log(`  - ${v.file}:${v.line} → ${action} "${v.original.slice(0, 80)}"`);
+            console.log(`  - ${v.file}:${v.line} → ${actionFor(v)} "${v.original.slice(0, 80)}"`);
           }
         }
       } catch {
@@ -237,7 +262,39 @@ const processRepo = (repo: string): { violations: number; fixed: boolean } => {
     }
 
     if (fixedFiles.length === 0) {
-      return { violations: 0, fixed: false };
+      return { violations: 0, changedFiles: [], pushed: false };
+    }
+
+    execSync('git add -A', { cwd: workDir, encoding: 'utf-8', stdio: 'pipe' });
+
+    // Every match kept for manual review => nothing rewritten => no empty commit
+    const changedFiles = execSync('git diff --cached --name-only', {
+      cwd: workDir,
+      encoding: 'utf-8',
+      stdio: 'pipe',
+    })
+      .split('\n')
+      .map((f) => f.trim())
+      .filter(Boolean);
+
+    if (changedFiles.length === 0) {
+      return { violations: totalViolations, changedFiles, pushed: false };
+    }
+
+    if (DRY_RUN) {
+      const preview = execSync('git diff --cached -U0', {
+        cwd: workDir,
+        encoding: 'utf-8',
+        stdio: 'pipe',
+      }).split('\n');
+      console.log(
+        preview
+          .slice(0, 80)
+          .map((l) => `    | ${l}`)
+          .join('\n')
+      );
+      if (preview.length > 80) console.log(`    | … ${preview.length - 80} more diff lines`);
+      return { violations: totalViolations, changedFiles, pushed: false };
     }
 
     // Configure git auth and push
@@ -247,18 +304,6 @@ const processRepo = (repo: string): { violations: number; fixed: boolean } => {
         `git remote set-url origin https://x-access-token:${ghToken}@github.com/${repo}.git`,
         { cwd: workDir, encoding: 'utf-8', stdio: 'pipe' }
       );
-    }
-
-    execSync('git add -A', { cwd: workDir, encoding: 'utf-8', stdio: 'pipe' });
-
-    const diff = execSync('git diff --cached --name-only', {
-      cwd: workDir,
-      encoding: 'utf-8',
-      stdio: 'pipe',
-    }).trim();
-
-    if (!diff) {
-      return { violations: totalViolations, fixed: false };
     }
 
     execSync('git commit -m "chore: remove AI branding"', {
@@ -275,7 +320,7 @@ const processRepo = (repo: string): { violations: number; fixed: boolean } => {
     });
 
     console.log(`  → Committed & pushed: chore: remove AI branding`);
-    return { violations: totalViolations, fixed: true };
+    return { violations: totalViolations, changedFiles, pushed: true };
   } finally {
     try {
       rmSync(workDir, { recursive: true, force: true });
@@ -286,7 +331,7 @@ const processRepo = (repo: string): { violations: number; fixed: boolean } => {
 };
 
 const main = () => {
-  console.log('=== AI Branding Guard ===');
+  console.log(`=== AI Branding Guard${DRY_RUN ? ' (dry-run: no commit, no push)' : ''} ===`);
 
   const projects = KNOWN_PROJECTS.filter((p) => !p.hidden && p.healingState !== 'paused');
   console.log(`Scanning ${projects.length} repos...\n`);
@@ -294,12 +339,22 @@ const main = () => {
   let totalFixes = 0;
   let reposFixed = 0;
   let reposClean = 0;
+  const failures: string[] = [];
 
   for (const project of projects) {
     process.stdout.write(`${project.name}... `);
-    const result = processRepo(project.repo);
+    let result: RepoResult;
+    try {
+      result = processRepo(project.repo);
+    } catch (err) {
+      // A rejected push (protected branch...) must not stop the scan of the other repos
+      result = { violations: 0, changedFiles: [], pushed: false, error: summarizeError(err) };
+    }
 
-    if (result.fixed) {
+    if (result.error) {
+      console.log(`✗ ERROR: ${result.error}`);
+      failures.push(project.name);
+    } else if (result.pushed) {
       console.log(`✗ ${result.violations} violations → FIXED`);
       totalFixes += result.violations;
       reposFixed++;
@@ -310,21 +365,35 @@ const main = () => {
         'success',
         project.name
       );
+    } else if (result.changedFiles.length > 0) {
+      console.log(
+        `⚠ ${result.violations} violations → would commit ${result.changedFiles.join(', ')}`
+      );
     } else if (result.violations > 0) {
-      console.log(`⚠ ${result.violations} violations (manual review needed or push failed)`);
+      console.log(`⚠ ${result.violations} violations kept for manual review`);
     } else {
       console.log('✓ clean');
       reposClean++;
     }
   }
 
-  console.log(`\nSummary: ${totalFixes} fixes in ${reposFixed} repo(s), ${reposClean} clean`);
-  logActivity(
-    'scan-and-configure',
-    'branding-guard-complete',
-    `${totalFixes} fixes in ${reposFixed} repos, ${reposClean} clean`,
-    totalFixes > 0 ? 'warning' : 'success'
+  console.log(
+    `\nSummary: ${totalFixes} fixes in ${reposFixed} repo(s), ${reposClean} clean, ${failures.length} error(s)`
   );
+  if (!DRY_RUN) {
+    let status: ActivityStatus = totalFixes > 0 ? 'warning' : 'success';
+    if (failures.length > 0) status = 'error';
+    logActivity(
+      'scan-and-configure',
+      'branding-guard-complete',
+      `${totalFixes} fixes in ${reposFixed} repos, ${reposClean} clean, ${failures.length} errors`,
+      status
+    );
+  }
+  if (failures.length > 0) {
+    console.error(`Branding guard failed on: ${failures.join(', ')}`);
+    process.exitCode = 1;
+  }
 };
 
 // Guard: tests import this module's pure functions; only run when invoked directly

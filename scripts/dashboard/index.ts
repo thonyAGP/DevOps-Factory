@@ -68,7 +68,9 @@ const main = () => {
 
   console.log(`\nDashboard URL: ${DASHBOARD_URL}\n`);
 
-  if (process.env.GITHUB_ACTIONS === 'true') {
+  // Only daily-report.yml opts in: dashboard-build.yml (every 3 h + 4 workflow_run
+  // triggers) used to close and recreate this issue ~10 times a day.
+  if (process.env.DAILY_REPORT_ISSUE === 'true') {
     const date = new Date().toISOString().split('T')[0];
     const title = `DevOps Report - ${date}`;
 
