@@ -1,10 +1,10 @@
-## Quality Score Report - 2026-10-10
+## Quality Score Report - 2026-10-11
 
 ### Summary
 - **Average Score**: 33/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
-- **Needs Work** (<60): 19
+- **Needs Work** (<60): 18
 
 ### Per Repository
 
@@ -56,19 +56,7 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### Lecteur_Magic
-- **Score**: 40/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### magic-migration
+#### LecteurMagic
 - **Score**: 40/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
