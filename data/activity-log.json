@@ -2,34 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-04T12:14:18.985Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-04T12:14:21.953Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-04T12:14:22.661Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.6/10, 3870 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-04T12:14:23.375Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-10-04T12:58:32.805Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -3695,6 +3667,34 @@
     },
     {
       "timestamp": "2026-10-11T12:07:05.686Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: NaN%, 0 drifted templates",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-11T12:29:54.762Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "0 projects, avg health NaN",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-11T12:29:55.213Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: NaN/100, 0 critical issues",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-11T12:29:55.673Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.6/10, 4150 risk pts, +6/-13",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-11T12:29:56.136Z",
       "source": "build-dashboard",
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
