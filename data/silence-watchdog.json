@@ -76,8 +76,8 @@
         "prefix": "Bearer "
       },
       "consecutiveFailures": 2,
-      "pending": true,
-      "pendingReason": "sonde GET /api/health/pulse à créer dans LB2I : SELECT 1 derrière requireCronAuth"
+      "pending": false,
+      "note": "sonde CHG-041 en production depuis le 11/10/2026 ; secret dédié PULSE_SECRET = LB2I_CRON_SECRET"
     },
     {
       "id": "rappels-api",
