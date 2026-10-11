@@ -26,7 +26,11 @@
       "type": "github-workflow-runs",
       "repo": "thonyAGP/DevOps-Factory",
       "branch": "master",
-      "workflows": ["renovate.yml", "ai-branding-guard.yml", "factory-ci.yml"],
+      "workflows": [
+        "renovate.yml",
+        "ai-branding-guard.yml",
+        "factory-ci.yml"
+      ],
       "consecutiveRunFailures": 3
     },
     {
@@ -35,7 +39,9 @@
       "type": "https",
       "url": "https://boxmail.lb2i.com/health",
       "expectStatus": 200,
-      "expectJson": { "status": "ok" },
+      "expectJson": {
+        "status": "ok"
+      },
       "consecutiveFailures": 2
     },
     {
@@ -44,8 +50,13 @@
       "type": "https",
       "url": "https://app-casasync.vercel.app/api/health/pulse",
       "expectStatus": 200,
-      "expectJson": { "status": "ok" },
-      "auth": { "header": "x-cron-secret", "env": "CASASYNC_CRON_SECRET" },
+      "expectJson": {
+        "status": "ok"
+      },
+      "auth": {
+        "header": "x-cron-secret",
+        "env": "CASASYNC_CRON_SECRET"
+      },
       "consecutiveFailures": 2,
       "pending": true,
       "pendingReason": "sonde GET /api/health/pulse à créer dans CasaSync après CHG-345 : lecture seule du heartbeat scenarios-tick"
@@ -56,8 +67,14 @@
       "type": "https",
       "url": "https://app.lb2i.com/api/health/pulse",
       "expectStatus": 200,
-      "expectJson": { "status": "ok" },
-      "auth": { "header": "Authorization", "env": "LB2I_CRON_SECRET", "prefix": "Bearer " },
+      "expectJson": {
+        "status": "ok"
+      },
+      "auth": {
+        "header": "Authorization",
+        "env": "LB2I_CRON_SECRET",
+        "prefix": "Bearer "
+      },
       "consecutiveFailures": 2,
       "pending": true,
       "pendingReason": "sonde GET /api/health/pulse à créer dans LB2I : SELECT 1 derrière requireCronAuth"
@@ -68,9 +85,7 @@
       "type": "https",
       "url": "https://rappels.lb2i.com/v1/reminders",
       "expectStatus": 401,
-      "consecutiveFailures": 2,
-      "pending": true,
-      "pendingReason": "DNS rappels.lb2i.com absent ; lever après exposer.sh, 401 sans jeton attendu"
+      "consecutiveFailures": 2
     }
   ]
 }
