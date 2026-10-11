@@ -14,6 +14,9 @@
  *
  * Volontairement autonome : aucun import du reste du depot (le watchdog ne doit
  * pas tomber avec ce qu'il surveille). Logique pure separee des effets (deps).
+ * Seule exception : son plan de controle d'incidents (scripts/incidents/, sans
+ * dependance, CHG-012), appele APRES les alertes et l'etat, qu'il ne peut ni
+ * bloquer ni modifier ; sa panne est une ERREUR du run, jamais un silence.
  *
  * Flux HTTPS authentifie (`auth`) : le secret est lu dans l'environnement, envoye
  * dans l'en-tete declare, masque dans tous les journaux ; absent => ERREUR du
@@ -24,6 +27,9 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import process from 'node:process';
+
+import { runIncidentPlane } from './incidents/integration.js';
+import { writeFileAtomic as atomicWrite } from './incidents/store.js';
 
 export const PREFIX = '🕯 Silence —';
 export const DECL_PATH = 'data/silence-watchdog.json';
@@ -45,6 +51,11 @@ interface FlowBase {
   pending?: boolean;
   /** Pourquoi le flux attend (affiche avec [EN ATTENTE]). */
   pendingReason?: string;
+  /**
+   * Surcharges du plan d'incidents (CHG-012) : `{ cooldownHeures?, priorite?, depot? }`.
+   * Lues et validees par scripts/incidents/config.ts, jamais par le watchdog.
+   */
+  incident?: unknown;
 }
 export interface CommitsFlow extends FlowBase {
   type: 'github-commits';
@@ -436,6 +447,8 @@ export interface Deps {
   fetch: typeof fetch;
   readFile: (path: string) => string | null;
   writeFile: (path: string, content: string) => void;
+  /** Ecriture atomique (dossier cree, temporaire puis rename) ; absente (tests) : writeFile. */
+  writeFileAtomic?: (path: string, content: string) => void;
   env: Record<string, string | undefined>;
   now: () => Date;
   log: (msg: string) => void;
@@ -630,7 +643,8 @@ export const run = async (argv: string[], deps: Deps): Promise<number> => {
     if (!flow.pending) outcomes[flow.id] = await checkFlow(flow, deps);
   }
 
-  const decision = decide(decl, prev, outcomes, deps.now());
+  const now = deps.now();
+  const decision = decide(decl, prev, outcomes, now);
   const errors: string[] = [];
   for (const v of decision.verdicts) {
     log(`[${v.status}] ${v.id} — ${v.line}`);
@@ -648,6 +662,17 @@ export const run = async (argv: string[], deps: Deps): Promise<number> => {
     deps.writeFile(STATE_PATH, `${JSON.stringify(state, null, 2)}\n`);
   }
 
+  // Plan de controle d'incidents (CHG-012, etape 1) : APRES les alertes et l'etat ci-dessus,
+  // qu'il ne peut ni bloquer ni modifier ; rien n'est declenche. N'ecrit rien en dry-run.
+  runIncidentPlane({
+    input: { decl, outcomes, verdicts: decision.verdicts, state: decision.state, now },
+    io: deps,
+    dryRun,
+    redact: (t) => redact(t, secrets),
+    log,
+    errors,
+  });
+
   for (const e of errors) logError(`ERREUR watchdog : ${e}`);
   if (!dryRun) await pingHealthcheck(errors.length === 0, deps, log);
   return errors.length > 0 ? 1 : 0;
@@ -660,6 +685,7 @@ const realDeps = (): Deps => ({
     return existsSync(full) ? readFileSync(full, 'utf-8') : null;
   },
   writeFile: (p, c) => writeFileSync(join(process.cwd(), p), c),
+  writeFileAtomic: (p, c) => atomicWrite(join(process.cwd(), p), c),
   env: process.env,
   now: () => new Date(),
   log: (m) => console.log(m),

@@ -73,15 +73,16 @@ jobs:
           CASASYNC_CRON_SECRET: ${{ secrets.CASASYNC_CRON_SECRET }}
           LB2I_CRON_SECRET: ${{ secrets.LB2I_CRON_SECRET }}
 
-      # Etat persistant (anti-doublon) : commite meme si le watchdog a echoue,
-      # pour ne pas renvoyer les alertes deja parties au run suivant.
+      # Etat persistant (anti-doublon) et incidents (data/incidents/, CHG-012) :
+      # commites meme si le watchdog a echoue, pour ne pas renvoyer les alertes
+      # deja parties ni recreer les incidents au run suivant.
       - name: Commit state
         if: ${{ always() && inputs.dry_run != true }}
         run: |
           [ -f data/silence-watchdog-state.json ] || exit 0
           git config user.name "DevOps Factory Bot"
           git config user.email "devops-factory[bot]@users.noreply.github.com"
-          git add data/silence-watchdog-state.json
+          git add data/silence-watchdog-state.json data/incidents/
           git diff --cached --quiet && exit 0
           git commit -m "chore(silence-watchdog): état"
           # Fetch de master SEUL : un `git pull` ramenait toutes les branches (ai-fix/*, renovate/*…), 8 min par run
@@ -89,15 +90,18 @@ jobs:
             git push
             exit 0
           fi
-          # Repli : on repart de origin/master et on y repose l'état (seul fichier
-          # que ce workflow écrit), sans reset --hard ni --no-verify.
+          # Repli : on repart de origin/master et on y repose l'état et les incidents
+          # (seuls fichiers que ce workflow écrit), sans reset --hard ni --no-verify.
           git rebase --abort 2>/dev/null || true
           git stash pop 2>/dev/null || true
           cp data/silence-watchdog-state.json /tmp/silence-watchdog-state.json
+          cp -R data/incidents /tmp/silence-watchdog-incidents
           git fetch origin master
           git checkout -B master origin/master
           cp /tmp/silence-watchdog-state.json data/silence-watchdog-state.json
-          git add data/silence-watchdog-state.json
+          mkdir -p data/incidents
+          cp -R /tmp/silence-watchdog-incidents/. data/incidents/
+          git add data/silence-watchdog-state.json data/incidents/
           git diff --cached --quiet || git commit -m "chore(silence-watchdog): état"
           git push
         env:
