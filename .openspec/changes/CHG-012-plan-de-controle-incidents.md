@@ -1,6 +1,6 @@
 # CHG-012: Plan de contrôle d'incidents — étage déterministe, analyste en shadow mode
 
-**Status**: `APPROVED`
+**Status**: `IMPLEMENTING` (étape 1 livrée le 11/10, étape 2 à lancer)
 **Date**: 2026-10-11
 **Origine**: Analyse `DevOps/Platform/ANALYSE-GESTION-IA-2026-10-11.md` (§4 plan de contrôle, §5 ordre, §6 décisions), contre-revue ChatGPT `Platform/.consult/2026-10-11-analyste-incidents/synthese.md` (« d'accord avec réserves »). Décision d'Anthony du 11/10 12:1x : « Oui, principe + shadow mode d'abord ». Doctrine `rules/assistance-proactive.md` règles 1 (diagnostiquer avant de notifier), 2 (préparer avant de demander), 5 (événement plutôt que temps), 7 (jamais d'échec silencieux).
 **Chantier**: watchdog `silence-watchdog.yml` et ses scripts ; contrat `docs/contrats/incident-envelope.md` ; routine « analyste d'incidents » (`docs/routines/analyste.md`, source versionnée comme `reparateur.md`) ; Rappels (contrat dossier d'action v1, `Boxmail/rappels/CONTRAT-DOSSIER-ACTION.md`).
@@ -55,10 +55,16 @@ Chaque incident confirmé arrive à Anthony déjà analysé (hypothèse, confian
 
 ## Acceptance
 
-- [ ] Étape 1 : `pnpm typecheck` 0, `pnpm lint` 0 erreur, `pnpm test` vert avec tests du module (empreinte, occurrences, réouverture, cooldown, `causedBy`, budget, politique = abstention) ; un run du watchdog vert écrit `data/incidents/` ; aucune alerte Telegram en plus de celles d'aujourd'hui.
-- [ ] `OPERATIONS.md` présents dans les trois dépôts (PR, docs seulement).
+- [x] Étape 1 (11/10, agent puis pilote) : `pnpm typecheck` 0, `pnpm lint` 0 erreur (105 avertissements préexistants inchangés, fichiers touchés à 0/0), `pnpm test` 47 fichiers / 1063 tests (+10 fichiers, +109 tests : empreinte, occurrences, réouverture, cooldown, `causedBy`, budget, politique = abstention, store atomique, bout en bout), mutation 17/17 tuées, prettier OK ; dry-run réel : 2 incidents calculés (`devops-factory-workflows:echec_workflow` enquête demandée, `lb2i-pulse:secret_absent` sous le seuil), rien écrit, rien déclenché. RESTE : premier run réel après merge (ligne `[incidents] data/incidents/incidents.json écrit` + commit de `data/incidents/`).
+- [x] `OPERATIONS.md` présents dans les trois dépôts (Boxmail c0ca611, LB2I-Fiscal Manager a42a061, DevOps-Factory : cette PR), ≤ 120 lignes, aucun secret, prettier OK.
 - [ ] Étape 2 : routine créée désactivée, premier incident réel enquêté à la main, dossier `bloque` visible dans Rappels (lister_rappels), ligne 1 de `mesure.md`.
 - [ ] Après au moins 20 incidents enquêtés : tableau de mesure présenté à Anthony → décision étape 3.
+
+## Choix du pilote à appliquer à l'étape 2 (questions ouvertes du contrat, §12)
+
+- Fenêtre de réouverture : une empreinte fermée depuis plus de 7 jours repart avec un compteur d'enquêtes à zéro (le plafond de 2 vaut par épisode, pas pour la vie de l'empreinte).
+- Une enquête échouée compte dans le plafond (évite les boucles) ; après 3 échecs consécutifs : `ECHEC_EXECUTION`.
+- Un incident dont le flux a disparu de la déclaration est fermé au chargement avec le motif `flux_retire`.
 
 ## Décisions pour Anthony (restantes, §6 de l'analyse)
 
