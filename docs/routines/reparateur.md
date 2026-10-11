@@ -249,6 +249,13 @@ session et vérifie, dans l'ordre :
 Tout est conforme ⇒ `enabled: true`. Un écart ⇒ corriger ce fichier, `RemoteTrigger update`,
 relancer à la main.
 
+### Résultat de la première passe (11/10/2026, 09:23 → 09:29, session cse_01BJ488vuMbXd4UgPJzKSkdz)
+
+- PR ouverte en **343 s** : https://github.com/thonyAGP/DevOps-Factory/pull/3324 — `auto-generate-tests.yml`, `version: latest` → `version: 9` (1 ligne), cinq sections, preuves réellement exécutées (échec reproduit avec pnpm 12.11.2 : ERR_PNPM_IGNORED_BUILDS ; pnpm 9 : exit 0 ; typecheck 0, lint 0 erreur, 954 tests). Revue Codex automatique : aucune suggestion.
+- Checklist : (1) `gh api` en lecture et `gh run view --log-failed` OK ; (2) la commande d'installation de l'étape 0 a dépassé le délai de 120 s de l'outil Bash et est passée en arrière-plan — la routine a continué avec le pnpm 10.28 préinstallé de l'environnement, puis a prouvé avec `npx pnpm@9` dans un dossier temporaire ; (3) **auteur du push : `thonyAGP`** — le verrou 3 est confirmé : la routine pousse sous l'identité d'Anthony, `master` n'est protégé que par le prompt et `disallowed_tools` tant que `Repository admin` contourne le ruleset ; (4) PR conforme ; (5) 5 min 43 s.
+- Bruit observé : le stop hook de l'environnement (`~/.claude/stop-hook-git-check.sh`) a relancé la session 4 fois (5 s chacune) à cause du fichier non suivi `data/archive/activity-2026-09.json` que `pnpm test` génère (`scripts/activity-logger.ts`, jamais commité). Candidats : `data/archive/` dans `.gitignore`, ou une exception dans le hook.
+- Décision : routine **activée** le 11/10 à 09:31 (`enabled: true`, prochain passage lundi 12/10 06:00 Madrid).
+
 ## Ce que la routine ne fait pas
 
 - Les alertes hors de ce dépôt (db-backups, FincaScout, Boxmail, Rappels, CasaSync, LB2I) restent
