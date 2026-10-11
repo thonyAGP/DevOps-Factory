@@ -145,11 +145,9 @@ describe('scénario CHG-012 — panne qui oscille (rouge, vert, rouge en 24 h)',
     expect(incidents[0]).toMatchObject({ etat: 'rouvert', occurrences: 2, ouvertures: 2 });
     expect(incidents[0]?.enquetes.demandees).toBeLessThanOrEqual(2);
     expect(incidents[0]?.derniereDecision?.motif).toBe('cooldown');
-    expect(h.telegram.map((t) => t.split(' : ')[1]?.split('.')[0])).toEqual([
-      'SILENCE',
-      'retour à la normale (alerte ouverte depuis le 11/10 06:00)',
-      'SILENCE',
-    ]);
+    // Politique d'alerte (12/10) : retour silencieux, réouverture 2 h après la fermeture
+    // (cooldown 6 h) silencieuse aussi ; la panne ne donne qu'un message.
+    expect(h.telegram.map((t) => t.split(' : ')[1]?.split('.')[0])).toEqual(['SILENCE']);
   });
 
   it('should ask a second investigation at the 6 h cadence, then stop at the cap', async () => {

@@ -1,15 +1,14 @@
 /**
  * integration.ts — branchement du plan d'incidents dans le watchdog (CHG-012, etape 1).
  *
- * Apres le calcul des verdicts d'un passage : chaque verdict non-OK devient (ou
- * alimente) un incident, un retour a la normale le ferme, et la decision
- * « enquete necessaire ? » est POSEE sur l'enveloppe. Rien n'est envoye ni
- * declenche. Les alertes Telegram et data/silence-watchdog-state.json sont ceux
- * du watchdog, calcules et ecrits AVANT ce plan, qui ne peut ni les bloquer ni
- * les modifier. Une panne de ce plan est une ERREUR du passage (code de sortie
- * non nul, cliquet /fail) : jamais un echec silencieux.
+ * Chaque verdict non-OK d'un passage devient (ou alimente) un incident, un retour a la
+ * normale le ferme, la decision « enquete necessaire ? » est POSEE sur l'enveloppe ; rien
+ * n'est declenche. `evenements` nourrit la politique d'alerte du watchdog, appelee APRES ce
+ * plan ; une panne du plan est une ERREUR du passage (sortie non nulle, cliquet /fail) et le
+ * watchdog retombe alors sur son propre anti-doublon : jamais un echec silencieux.
  */
 
+import type { SightingEvent } from '../silence-watchdog-alerts.js';
 import type {
   CheckOutcome,
   Declaration,
@@ -88,6 +87,7 @@ export interface PlanResult {
   journal: string[];
   /** Ids passes a `enquete_demandee` par CE passage : point d'accroche de l'etape 2. */
   enquetesDemandees: string[];
+  evenements: SightingEvent[]; // pannes et erreurs vues par CE passage, une par flux
 }
 
 interface Ctx {
@@ -97,6 +97,7 @@ interface Ctx {
   byFingerprint: Map<string, IncidentEnvelope>;
   journal: string[];
   enquetesDemandees: string[];
+  evenements: SightingEvent[];
 }
 
 type Failure = Extract<Observation, { kind: 'panne' | 'erreur' }>;
@@ -113,23 +114,24 @@ const closeFor = (flow: Flow, obs: Observation, ctx: Ctx): void => {
   }
 };
 
+const describeSighting = (kind: SightingEvent['kind'], e: IncidentEnvelope): string => {
+  if (kind === 'occurrence') return `occurrence ${e.occurrences} de ${e.id}`;
+  return kind === 'rouvert' ? `rouvert ${e.id} (ouverture ${e.ouvertures})` : `nouveau ${e.id}`;
+};
+
+type Seen = { next: IncidentEnvelope } & Pick<SightingEvent, 'kind' | 'fermeAvant'>;
+
 /** Empreinte ouverte : occurrence ; fermee : reouverture ; inconnue : nouvel incident. */
-const openOrSight = (
-  flow: Flow,
-  obs: Failure,
-  cfg: FlowIncidentConfig,
-  ctx: Ctx
-): { next: IncidentEnvelope; event: string } => {
+const openOrSight = (flow: Flow, obs: Failure, cfg: FlowIncidentConfig, ctx: Ctx): Seen => {
   const severity = resolveSeverity(obs.classe, cfg);
   const existing = ctx.byFingerprint.get(fingerprintOf(flow.id, obs.classe));
   const sighting = { detail: obs.detail, now: ctx.nowIso, ...severity };
   if (existing && isOpen(existing)) {
-    const next = recordOccurrence(existing, sighting);
-    return { next, event: `occurrence ${next.occurrences} de ${next.id}` };
+    return { next: recordOccurrence(existing, sighting), kind: 'occurrence', fermeAvant: null };
   }
   if (existing) {
     const next = reopenIncident(existing, sighting);
-    return { next, event: `rouvert ${next.id} (ouverture ${next.ouvertures})` };
+    return { next, kind: 'rouvert', fermeAvant: existing.fermeLe };
   }
   const source: IncidentSource = {
     detecteur: 'silence-watchdog',
@@ -149,18 +151,19 @@ const openOrSight = (
     birth,
     ...link,
   });
-  return { next, event: `nouveau ${next.id}` };
+  return { next, kind: 'nouveau', fermeAvant: null };
 };
 
 const sight = (flow: Flow, obs: Failure, ctx: Ctx): void => {
   const cfg = parseFlowIncidentConfig(flow.incident, flow.id);
-  const { next, event } = openOrSight(flow, obs, cfg, ctx);
+  const { next, kind, fermeAvant } = openOrSight(flow, obs, cfg, ctx);
+  ctx.evenements.push({ flux: flow.id, kind, fermeAvant, cooldownHeures: cfg.cooldownHeures });
   const decision = decideInvestigation(next, { cooldownHeures: cfg.cooldownHeures }, ctx.input.now);
   const final = applyInvestigationDecision(next, decision, ctx.input.now);
   ctx.byFingerprint.set(final.empreinte, final);
   if (decision.enquete) ctx.enquetesDemandees.push(final.id);
   const parts = [
-    `[incident] ${final.empreinte} : ${event}`,
+    `[incident] ${final.empreinte} : ${describeSighting(kind, next)}`,
     `état ${final.etat}, priorité ${final.priorite}`,
     describeDecision(decision),
   ];
@@ -180,6 +183,7 @@ export const planIncidents = (
     byFingerprint: new Map(previous.map((e) => [e.empreinte, e])),
     journal: [],
     enquetesDemandees: [],
+    evenements: [],
   };
   const verdicts = new Map(input.verdicts.map((v) => [v.id, v]));
   for (const flow of input.decl.flows) {
@@ -193,6 +197,7 @@ export const planIncidents = (
     incidents: [...ctx.byFingerprint.values()],
     journal: ctx.journal,
     enquetesDemandees: ctx.enquetesDemandees,
+    evenements: ctx.evenements,
   };
 };
 

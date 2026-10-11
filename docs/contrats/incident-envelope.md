@@ -7,12 +7,13 @@
 ## 1. Rôle
 
 L'étage **déterministe** avant tout modèle. À chaque passage du watchdog (`silence-watchdog.yml`,
-toutes les 6 h), après le calcul des verdicts : chaque verdict non-OK devient (ou alimente) un
-incident, un retour à la normale le ferme, et la décision « enquête nécessaire ? » est **posée** sur
-l'enveloppe. En étape 1, rien n'est envoyé ni déclenché : les alertes Telegram et
-`data/silence-watchdog-state.json` restent ceux du watchdog, calculés et écrits avant ce plan, qui
-ne peut ni les bloquer ni les modifier. Une panne du plan est une ERREUR du passage (code de sortie
-non nul, cliquet `/fail`), jamais un silence.
+un créneau toutes les 6 h), après le calcul des verdicts : chaque verdict non-OK devient (ou
+alimente) un incident, un retour à la normale le ferme, et la décision « enquête nécessaire ? » est
+**posée** sur l'enveloppe. Rien n'est déclenché. Depuis le 12/10, le plan tourne **avant** les
+alertes : ses évènements (nouveau, occurrence, rouvert) nourrissent la politique d'alerte Telegram
+du watchdog (§13), qui ne fait que **taire** des messages ; il ne peut ni en créer ni bloquer une
+alerte. Une panne du plan est une ERREUR du passage (code de sortie non nul, cliquet `/fail`), et le
+watchdog retombe alors sur son propre anti-doublon : jamais un silence.
 
 ## 2. Fichiers
 
@@ -117,7 +118,7 @@ enquete_demandee, priorité haute ; enquête demandée (nouvel_incident)`.
 | Constante (`INCIDENT_LIMITS`)  | Valeur | Effet                                                   |
 | ------------------------------ | ------ | ------------------------------------------------------- |
 | `maxInvestigationsPerIncident` | 2      | demandes d'enquête par incident, réouvertures comprises |
-| `defaultCooldownHours`         | 6      | délai minimal entre deux demandes d'enquête             |
+| `defaultCooldownHours`         | 6      | délai minimal entre deux demandes d'enquête ; §13       |
 | `correlationWindowHours`       | 24     | fenêtre de `causedBy`                                   |
 | `dailyRingCap`                 | 7      | dossiers qui sonnent par jour civil Europe/Madrid       |
 | `maxDetailLength`              | 500    | longueur de `nonFiable.detail`                          |
@@ -126,7 +127,8 @@ Surcharge dans `data/silence-watchdog.json`, clé optionnelle d'un flux :
 `"incident": { "cooldownHeures": 12, "priorite": "critique", "depot": "thonyAGP/Boxmail" }`.
 Clé inconnue ou valeur hors bornes ⇒ ERREUR du plan (jamais ignorée). La priorité surchargée vise
 la **panne** du flux : elle ne s'applique pas aux classes `erreur` et `secret_absent`. `depot`
-renseigne le dépôt des flux `https` (les flux GitHub ont le leur).
+renseigne le dépôt des flux `https` (les flux GitHub ont le leur). `cooldownHeures` règle aussi la
+réouverture silencieuse de la politique d'alerte (§13).
 
 ## 8. Corrélation (`causedBy`, `incidentRootId`)
 
@@ -180,3 +182,42 @@ lecture GitHub.
 - **« Rouge, vert, rouge »** : l'incident unique finit `rouvert` si la réouverture tombe dans le
   cooldown, `enquete_demandee` sinon (seconde enquête) ; dans les deux cas 2 occurrences et au plus
   2 enquêtes.
+
+## 13. Politique d'alerte Telegram (12/10)
+
+Origine : quatre messages le 11/10 pour un seul fait connu (Renovate rouge). `decide()` calcule des
+messages **candidats** ; `scripts/silence-watchdog-alerts.ts` dit, flux par flux, lesquels partent
+et journalise `[alerte] <flux> : message|silence|rien (<motif>)`.
+
+Une **ouverture** est l'ouverture d'une alerte de panne (SILENCE, ROUGE, PANNE) ou l'entrée du
+flux dans une erreur de contrôle (secret absent, contrôle impossible) : même règle pour les deux.
+
+| Situation du flux                                                            | Message                                      | Motif                                 |
+| ---------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------- |
+| ouverture, incident **nouveau** (1re ouverture de l'empreinte)               | oui                                          | `nouvel_incident`                     |
+| ouverture, incident rouvert ≥ `cooldownHeures` après sa fermeture            | oui                                          | `rouvert_hors_cooldown`               |
+| ouverture, incident rouvert **moins** de `cooldownHeures` après sa fermeture | non                                          | `rouvert_dans_cooldown`               |
+| ouverture, empreinte déjà ouverte (l'envoi précédent a échoué)               | oui                                          | `rejeu`                               |
+| ouverture, plan d'incidents en panne ou muet sur le flux                     | oui (anti-doublon du watchdog)               | `plan_indisponible`                   |
+| alerte de panne déjà ouverte (occurrence)                                    | non                                          | `alerte_deja_ouverte`                 |
+| erreur de contrôle qui dure (aucun rappel, même au-delà de 24 h)             | non                                          | `erreur_deja_ouverte`                 |
+| retour à la normale                                                          | non, sauf `notifyRecovery: true` sur le flux | `retour_silencieux`, `retour_notifie` |
+| retour d'une alerte dont l'ouverture a été tue (`notifyRecovery: true`)      | non                                          | `retour_sans_alerte_envoyee`          |
+| OK, DOUTE, EN ATTENTE                                                        | rien                                         | `flux_sain`, `doute`, `en_attente`    |
+
+- `cooldownHeures` : défaut 6 h, surcharge `incident.cooldownHeures` du flux (§7 ; 24 h sur
+  `devops-factory-workflows` depuis le 12/10). Pour l'alerte, il se compte depuis la **fermeture**
+  (`fermeLe`) : une rechute après un bref retour au vert reste silencieuse. Ne pas confondre avec le
+  cooldown d'**enquête** (§6), compté depuis la dernière demande.
+- Anti-doublon du watchdog : un candidat n'existe qu'à l'ouverture (`alertOpenSince` pour la panne,
+  `errorOpenSince` pour l'erreur de contrôle, levé au premier contrôle fait). Un envoi échoué remet
+  le marqueur à sa valeur d'avant : le message est rejoué au passage suivant (`rejeu`).
+- Une erreur de contrôle n'est jamais une alerte de panne : message
+  `🕯 Silence — <flux> : ERREUR. contrôle impossible : …` ; le passage sort en 1 et pingue `/fail`
+  à chaque passage, comme avant (le cliquet garde la trace, Telegram ne rappelle pas).
+- `data/silence-watchdog-state.json`, migration additive : `lastAlertAt` (dernière ouverture
+  d'alerte **partie**) et `errorOpenSince` par flux, `lastRunAt` (dernier passage complet hors
+  dry-run). Aucun champ retiré ; un état antérieur se relit tel quel.
+- Deux crons par créneau (`0 */6` et `30 */6`) : un passage planifié moins d'1 h après un passage
+  complet (`--skip-if-recent`) ne contrôle, n'écrit ni ne pingue rien, donc aucun commit d'état. Un
+  passage manuel est toujours complet.

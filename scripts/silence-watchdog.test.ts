@@ -178,18 +178,27 @@ describe('invariant 1 — une seule alerte à l’ouverture', () => {
 });
 
 describe('invariant 2 — retour à la normale', () => {
-  it('should send one recovery message when the stream is fresh again, then stay silent', () => {
-    const decl: Declaration = { flows: [DB_FLOW] };
-    const open = decide(decl, emptyState(), { 'db-backups': checked(false) }, NIGHT);
-    expect(open.notifications).toHaveLength(1);
+  // Politique d'alerte du 12/10 : le retour ferme l'alerte en silence, sauf notifyRecovery: true.
+  it('should close the alert silently on recovery, and send one recovery message only with notifyRecovery', async () => {
+    for (const notifyRecovery of [undefined, true]) {
+      let age = 27;
+      const h = makeHarness({
+        decl: { flows: [{ ...DB_FLOW, notifyRecovery }] },
+        route: () => commitsResponse(age),
+      });
 
-    const back = decide(decl, open.state, { 'db-backups': checked(true, 'frais') }, NIGHT);
-    expect(back.notifications).toHaveLength(1);
-    expect(back.notifications[0]?.text).toContain('retour à la normale');
-    expect(back.state.flows['db-backups']?.alertOpenSince).toBeNull();
+      expect(await run([], h.deps)).toBe(0); // alerte
+      age = 2;
+      expect(await run([], h.deps)).toBe(0); // retour à la normale
+      expect(await run([], h.deps)).toBe(0); // rien
 
-    const after = decide(decl, back.state, { 'db-backups': checked(true) }, NIGHT);
-    expect(after.notifications).toHaveLength(0);
+      const state = parseState(h.files.get(STATE_PATH) ?? null);
+      expect(state.flows['db-backups']?.alertOpenSince).toBeNull();
+      expect(h.telegramTexts).toHaveLength(notifyRecovery ? 2 : 1);
+      expect(h.telegramTexts.filter((t) => t.includes('retour à la normale'))).toHaveLength(
+        notifyRecovery ? 1 : 0
+      );
+    }
   });
 
   it('should never send a recovery message when no alert was open', () => {
@@ -288,7 +297,7 @@ describe('invariant 3 — code de sortie', () => {
     expect(state.flows['db-backups']?.alertOpenSince).toBeNull();
   });
 
-  it('should exit non-zero when GitHub is unreachable or refuses access', async () => {
+  it('should exit non-zero when GitHub is unreachable or refuses access, with a control error message, never a stream alert', async () => {
     const down = makeHarness({
       decl: { flows: [DB_FLOW] },
       route: () => {
@@ -296,7 +305,11 @@ describe('invariant 3 — code de sortie', () => {
       },
     });
     expect(await run([], down.deps)).toBe(1);
-    expect(down.telegramTexts).toHaveLength(0);
+    // Politique d'alerte du 12/10 : une erreur de contrôle NOUVELLE donne un message ERREUR.
+    expect(down.telegramTexts).toHaveLength(1);
+    expect(down.telegramTexts[0]).toMatch(
+      /^🕯 Silence — db-backups, copie distante : ERREUR\. contrôle impossible : GitHub injoignable/
+    );
 
     const notInstalled = makeHarness({
       decl: { flows: [DB_FLOW] },
@@ -502,7 +515,7 @@ describe('flux authentifié — secret lu dans l’environnement', () => {
     expect(h.logs.some((l) => l.startsWith('[OK] casasync-pulse'))).toBe(true);
   });
 
-  it('should report ERREUR and exit non-zero when the secret is absent, without calling the stream nor alerting', async () => {
+  it('should report ERREUR and exit non-zero when the secret is absent, without calling the stream nor raising a stream alert', async () => {
     // undefined : variable absente ; '' : secret GitHub non posé (Actions injecte une chaîne vide).
     for (const secret of [undefined, '', '   ']) {
       const rec = recorder(() => Response.json({ status: 'ok' }));
@@ -514,7 +527,10 @@ describe('flux authentifié — secret lu dans l’environnement', () => {
 
       expect(await run([], h.deps)).toBe(1);
       expect(rec.calls).toHaveLength(0);
-      expect(h.telegramTexts).toHaveLength(0);
+      // Politique d'alerte du 12/10 : un message d'erreur de contrôle, jamais une alerte PANNE.
+      expect(h.telegramTexts).toEqual([
+        `${PREFIX} CasaSync, crons : ERREUR. contrôle impossible : secret CASASYNC_CRON_SECRET absent`,
+      ]);
       expect(h.logs).toContain(
         '[ERREUR] casasync-pulse — contrôle impossible : secret CASASYNC_CRON_SECRET absent'
       );

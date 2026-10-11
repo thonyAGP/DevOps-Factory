@@ -8,7 +8,7 @@
 
 - Usine DevOps sur GitHub Actions pour les 21 dépôts `thonyAGP` du registre `factory.config.ts` : scans de sécurité et Renovate centraux, couverture, qualité, tableau de bord GitHub Pages.
 - Aucun serveur : tout tourne dans `.github/workflows/` (36 workflows, scripts `tsx` de `scripts/`). Le dépôt est **public** : `data/` et `dashboard/` le sont aussi.
-- `silence-watchdog.yml` (toutes les 6 h) contrôle les flux critiques du parc (db-backups, FincaScout, workflows de l'usine, Boxmail, LB2I, Rappels) et alerte sur Telegram (`🕯 Silence —`).
+- `silence-watchdog.yml` (un créneau toutes les 6 h, deux crons) contrôle les flux critiques du parc (db-backups, FincaScout, workflows de l'usine, Boxmail, LB2I, Rappels) et alerte sur Telegram (`🕯 Silence —`).
 - La routine claude.ai « réparateur » (`docs/routines/reparateur.md`, lundi 06:00 Madrid) ouvre au plus UNE PR `reparateur/<slug>` sur la panne la plus ancienne de CE dépôt.
 - Les workflows committent leur état directement sur `master` (`chore(...)`) grâce à la GitHub App `devops-factory-bot`.
 
@@ -39,14 +39,16 @@ Mesuré le 2026-10-11 sur le poste Windows (Node 22, pnpm 10.7, `node_modules` d
 
 ## 4. Où sont les journaux et l'état
 
-| Source          | Lire sans secret                                                                                                                                                                                                                                |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Runs Actions    | `gh run list --repo thonyAGP/DevOps-Factory --workflow <fichier.yml> --branch master --limit 10` ; `gh run view <id> --repo thonyAGP/DevOps-Factory --log-failed` ; repli : `gh api repos/thonyAGP/DevOps-Factory/actions/runs/<id>/jobs`       |
-| Watchdog        | `data/silence-watchdog.json` (flux, seuils, `pending`) ; `data/silence-watchdog-state.json` (`alertOpenSince`, `consecutiveFailures`, `lastCheckedAt`, `lastOkAt`) ; historique : `git log --oneline -n 20 -- data/silence-watchdog-state.json` |
-| Autres états    | `data/activity-log.json`, `outcome-registry.json`, `self-heal-cooldowns.json`, `alert-tracker.json`, `escalation-tracker.json`, `central-scan-latest.json`, `central-scan-report.md`, `security-registry.json`                                  |
-| Tableau de bord | `https://thonyagp.github.io/DevOps-Factory/` (public, reconstruit par `dashboard-build.yml` toutes les 3 h)                                                                                                                                     |
-| Alertes         | Telegram (chat d'Anthony) et cliquet healthchecks.io (check `silence-watchdog`, 6 h + 1 h de grâce) : hors de portée de l'agent                                                                                                                 |
-| Réparateur      | PR ouvertes : `gh api "repos/thonyAGP/DevOps-Factory/pulls?state=open&per_page=100"` (branches `reparateur/*`)                                                                                                                                  |
+| Source          | Lire sans secret                                                                                                                                                                                                                                                                              |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Runs Actions    | `gh run list --repo thonyAGP/DevOps-Factory --workflow <fichier.yml> --branch master --limit 10` ; `gh run view <id> --repo thonyAGP/DevOps-Factory --log-failed` ; repli : `gh api repos/thonyAGP/DevOps-Factory/actions/runs/<id>/jobs`                                                     |
+| Watchdog        | `data/silence-watchdog.json` (flux, seuils, `pending`) ; `data/silence-watchdog-state.json` (`alertOpenSince`, `consecutiveFailures`, `lastCheckedAt`, `lastOkAt`, `lastAlertAt`, `errorOpenSince`, `lastRunAt`) ; historique : `git log --oneline -n 20 -- data/silence-watchdog-state.json` |
+| Autres états    | `data/activity-log.json`, `outcome-registry.json`, `self-heal-cooldowns.json`, `alert-tracker.json`, `escalation-tracker.json`, `central-scan-latest.json`, `central-scan-report.md`, `security-registry.json`                                                                                |
+| Tableau de bord | `https://thonyagp.github.io/DevOps-Factory/` (public, reconstruit par `dashboard-build.yml` toutes les 3 h)                                                                                                                                                                                   |
+| Alertes         | Telegram (chat d'Anthony) et cliquet healthchecks.io (check `silence-watchdog`, 6 h + 1 h de grâce) : hors de portée de l'agent                                                                                                                                                               |
+| Réparateur      | PR ouvertes : `gh api "repos/thonyAGP/DevOps-Factory/pulls?state=open&per_page=100"` (branches `reparateur/*`)                                                                                                                                                                                |
+
+**Politique d'alerte** (12/10, `scripts/silence-watchdog-alerts.ts`, contrat `docs/contrats/incident-envelope.md` §13) : un message Telegram seulement pour un incident (panne ou erreur de contrôle) **nouveau**, ou **rouvert** au moins `cooldownHeures` après sa fermeture (6 h par défaut, `incident.cooldownHeures` du flux, 24 h sur `devops-factory-workflows`) ; occurrence, erreur qui dure ou rechute plus rapide : silence, jamais de rappel, tracé dans le journal (`[alerte] <flux> : silence (<motif>)`), l'état et `data/incidents/` ; retour à la normale silencieux sauf `notifyRecovery: true`. Le cliquet (ping `ok` ou `/fail`) et la ligne `[ERREUR]` ne changent pas. Deux crons par créneau (`:00`, `:30`) : le passage planifié qui suit de moins d'1 h un passage complet ne fait rien (aucun commit).
 
 En session cloud, GraphQL est fermé (`gh pr …` et `gh issue …` répondent 403) : passer par `gh api` (REST).
 

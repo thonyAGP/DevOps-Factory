@@ -1,5 +1,5 @@
 {
-  "$comment": "Flux surveilles par scripts/silence-watchdog.ts (chantier .chantier/2026-10-08-watchdog-silence). Etat persistant : data/silence-watchdog-state.json. https.auth : secret lu dans la variable d'environnement `env` (jamais sa valeur ici), absent => ERREUR du watchdog. pending : flux declare, affiche [EN ATTENTE], jamais controle ni alerte ; retirer la cle quand la sonde existe.",
+  "$comment": "Flux surveilles par scripts/silence-watchdog.ts (chantier .chantier/2026-10-08-watchdog-silence). Etat persistant : data/silence-watchdog-state.json. https.auth : secret lu dans la variable d'environnement `env` (jamais sa valeur ici), absent => ERREUR du watchdog. pending : flux declare, affiche [EN ATTENTE], jamais controle ni alerte ; retirer la cle quand la sonde existe. notifyRecovery : true pour recevoir le retour a la normale (defaut : silencieux, politique d'alerte du 12/10). note : texte libre, jamais lu par le code.",
   "flows": [
     {
       "id": "db-backups",
@@ -31,7 +31,11 @@
         "ai-branding-guard.yml",
         "factory-ci.yml"
       ],
-      "consecutiveRunFailures": 3
+      "consecutiveRunFailures": 3,
+      "incident": {
+        "cooldownHeures": 24
+      },
+      "note": "renovate.yml rouge depuis le 11/10 : permission Commit statuses/Checks de l'App à cocher (A-FAIRE §7) ; cooldownHeures 24 (alerte et enquête) : une rechute dans les 24 h qui suivent un retour au vert reste silencieuse"
     },
     {
       "id": "boxmail-server",
