@@ -6,7 +6,11 @@ name: Silence Watchdog
 
 on:
   schedule:
+    # Deux crons par creneau de 6 h : un cron GitHub en retard ou saute ne fait plus tomber
+    # le cliquet. Le passage planifie qui suit de moins d'1 h un passage complet ne controle,
+    # n'ecrit ni ne pingue rien (--skip-if-recent) : ni double alerte, ni commit inutile.
     - cron: '0 */6 * * *'
+    - cron: '30 */6 * * *'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -58,6 +62,8 @@ jobs:
         run: |
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             pnpm silence-watchdog -- --dry-run
+          elif [ "$GITHUB_EVENT_NAME" = "schedule" ]; then
+            pnpm silence-watchdog -- --skip-if-recent
           else
             pnpm silence-watchdog
           fi

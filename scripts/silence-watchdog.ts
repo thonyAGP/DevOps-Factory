@@ -9,18 +9,23 @@
  * Etat persistant (anti-doublon) : data/silence-watchdog-state.json
  * Cadrage : .chantier/2026-10-08-watchdog-silence/change.md (invariants 1 a 5)
  *
- * Run : pnpm silence-watchdog [-- --dry-run]
- * Cron : toutes les 6 h via .github/workflows/silence-watchdog.yml
+ * Run : pnpm silence-watchdog [-- --dry-run | --skip-if-recent]
+ * Cron : deux par creneau de 6 h (:00 et :30) via .github/workflows/silence-watchdog.yml ;
+ * `--skip-if-recent` (cron seulement) : rien a refaire moins d'1 h apres un passage complet.
  *
  * Volontairement autonome : aucun import du reste du depot (le watchdog ne doit
  * pas tomber avec ce qu'il surveille). Logique pure separee des effets (deps).
- * Seule exception : son plan de controle d'incidents (scripts/incidents/, sans
- * dependance, CHG-012), appele APRES les alertes et l'etat, qu'il ne peut ni
- * bloquer ni modifier ; sa panne est une ERREUR du run, jamais un silence.
+ * Seules exceptions : son plan de controle d'incidents (scripts/incidents/, sans
+ * dependance, CHG-012), appele AVANT les alertes, et sa politique d'alerte
+ * (silence-watchdog-alerts.ts) qui s'appuie dessus : un message par incident (panne
+ * ou erreur de controle) nouveau ou rouvert apres cooldown, jamais de rappel, retour
+ * a la normale silencieux. Plan en panne : ERREUR du run, et l'anti-doublon du
+ * watchdog decide seul (jamais un silence).
  *
  * Flux HTTPS authentifie (`auth`) : le secret est lu dans l'environnement, envoye
  * dans l'en-tete declare, masque dans tous les journaux ; absent => ERREUR du
- * watchdog (code de sortie non nul), jamais un faux OK ni une alerte.
+ * watchdog (code de sortie non nul, message d'erreur de controle), jamais un faux
+ * OK ni une alerte de panne.
  * Flux `pending` : declare, affiche [EN ATTENTE], jamais controle ni alerte.
  */
 
@@ -30,6 +35,13 @@ import process from 'node:process';
 
 import { runIncidentPlane } from './incidents/integration.js';
 import { writeFileAtomic as atomicWrite } from './incidents/store.js';
+import {
+  SKIP_IF_RECENT,
+  applyAlertPolicy,
+  describeAlertDecision,
+  markDelivered,
+  recentRunAge,
+} from './silence-watchdog-alerts.js';
 
 export const PREFIX = '🕯 Silence —';
 export const DECL_PATH = 'data/silence-watchdog.json';
@@ -56,6 +68,10 @@ interface FlowBase {
    * Lues et validees par scripts/incidents/config.ts, jamais par le watchdog.
    */
   incident?: unknown;
+  /** `true` : message au retour a la normale (defaut : silencieux). Valide par la politique. */
+  notifyRecovery?: unknown;
+  /** Note libre pour le lecteur de la declaration, jamais lue par le code. */
+  note?: string;
 }
 export interface CommitsFlow extends FlowBase {
   type: 'github-commits';
@@ -106,9 +122,15 @@ export interface FlowState {
   consecutiveFailures: number;
   lastCheckedAt: string | null;
   lastOkAt: string | null;
+  /** Dernier message d'ouverture d'alerte PARTI (ajout du 12/10, absent des etats anterieurs). */
+  lastAlertAt?: string | null;
+  /** Erreur de controle en cours depuis : anti-doublon de ses messages (ajout du 12/10). */
+  errorOpenSince?: string | null;
 }
 export interface WatchdogState {
   lastDailySummaryDate: string | null;
+  /** Dernier passage complet hors dry-run : `--skip-if-recent` (ajout du 12/10). */
+  lastRunAt?: string | null;
   flows: Record<string, FlowState>;
 }
 
@@ -121,8 +143,10 @@ export type CheckOutcome =
   | { kind: 'checked'; result: CheckResult }
   | { kind: 'error'; error: string };
 
+/** Message CANDIDAT : la politique d'alerte (silence-watchdog-alerts.ts) decide s'il part. */
 export interface Notification {
   key: string; // flow id, or 'summary'
+  kind: 'alerte' | 'retour' | 'erreur';
   text: string;
 }
 export interface Verdict {
@@ -328,7 +352,12 @@ export const parseState = (raw: string | null): WatchdogState => {
   if (!raw) return { lastDailySummaryDate: null, flows: {} };
   try {
     const s = JSON.parse(raw) as Partial<WatchdogState>;
-    return { lastDailySummaryDate: s.lastDailySummaryDate ?? null, flows: s.flows ?? {} };
+    // Lecture additive : un etat anterieur sans les champs du 12/10 reste valide.
+    return {
+      lastDailySummaryDate: s.lastDailySummaryDate ?? null,
+      lastRunAt: s.lastRunAt ?? null,
+      flows: s.flows ?? {},
+    };
   } catch {
     return { lastDailySummaryDate: null, flows: {} };
   }
@@ -339,6 +368,9 @@ export const composeAlert = (flow: Flow, detail: string): string =>
 
 export const composeRecovery = (flow: Flow, since: string, detail: string): string =>
   `${PREFIX} ${flow.label} : retour à la normale (alerte ouverte depuis le ${formatMadrid(since)}). ${detail}`;
+
+export const composeControlError = (flow: Flow, line: string): string =>
+  `${PREFIX} ${flow.label} : ERREUR. ${line}`;
 
 export const composeSummary = (
   date: string,
@@ -369,13 +401,16 @@ export const stepFlow = (
     lastCheckedAt: nowIso,
     lastOkAt: r.healthy ? nowIso : before.lastOkAt,
   };
+  // Controle fait : l'erreur de controle en cours, s'il y en avait une, est terminee.
+  if (before.errorOpenSince) next.errorOpenSince = null;
   let notification: Notification | null = null;
   if (alerting && !before.alertOpenSince) {
     next.alertOpenSince = nowIso;
-    notification = { key: flow.id, text: composeAlert(flow, r.detail) };
+    notification = { key: flow.id, kind: 'alerte', text: composeAlert(flow, r.detail) };
   } else if (r.healthy && before.alertOpenSince) {
     next.alertOpenSince = null;
-    notification = { key: flow.id, text: composeRecovery(flow, before.alertOpenSince, r.detail) };
+    const text = composeRecovery(flow, before.alertOpenSince, r.detail);
+    notification = { key: flow.id, kind: 'retour', text };
   }
   let status = 'OK';
   if (alerting) status = alertWord(flow);
@@ -383,7 +418,7 @@ export const stepFlow = (
   return { next, notification, status };
 };
 
-/** Coeur du watchdog : transitions d'etat + messages a envoyer. Aucun effet. */
+/** Coeur du watchdog : transitions d'etat + messages CANDIDATS (la politique d'alerte trie). */
 export const decide = (
   decl: Declaration,
   prev: WatchdogState,
@@ -405,9 +440,14 @@ export const decide = (
     }
     const outcome = outcomes[flow.id];
     if (!outcome || outcome.kind === 'error') {
-      state.flows[flow.id] = { ...before };
+      // Anti-doublon des erreurs de controle : seule l'entree dans l'erreur donne un candidat.
+      state.flows[flow.id] = { ...before, errorOpenSince: before.errorOpenSince ?? nowIso };
       const err = outcome ? outcome.error : 'non contrôlé';
-      verdicts.push({ id: flow.id, status: 'ERREUR', line: `contrôle impossible : ${err}` });
+      const line = `contrôle impossible : ${err}`;
+      verdicts.push({ id: flow.id, status: 'ERREUR', line });
+      if (!before.errorOpenSince) {
+        notifications.push({ key: flow.id, kind: 'erreur', text: composeControlError(flow, line) });
+      }
       continue;
     }
     const r = outcome.result;
@@ -436,7 +476,14 @@ export const rollbackFailed = (
       continue;
     }
     const flow = out.flows[key];
-    if (flow) out.flows[key] = { ...flow, alertOpenSince: prev.flows[key]?.alertOpenSince ?? null };
+    if (!flow) continue;
+    // Marqueurs d'anti-doublon remis a leur valeur d'avant le passage : le message sera rejoue.
+    const before = prev.flows[key];
+    out.flows[key] = {
+      ...flow,
+      alertOpenSince: before?.alertOpenSince ?? null,
+      errorOpenSince: before?.errorOpenSince ?? null,
+    };
   }
   return out;
 };
@@ -618,6 +665,12 @@ const sendNotifications = async (
   return failed;
 };
 
+/** Dry-run : ce que la politique d'alerte enverrait. */
+const logUnsent = (notifications: Notification[], log: (m: string) => void): void => {
+  for (const n of notifications) log(`[dry-run] non envoyé : ${n.text}`);
+  if (notifications.length === 0) log('[dry-run] aucun message à envoyer');
+};
+
 /** Point d'entree testable. Retourne le code de sortie. */
 export const run = async (argv: string[], deps: Deps): Promise<number> => {
   const secrets = [deps.env.TELEGRAM_BOT_TOKEN, deps.env.GH_TOKEN, deps.env.HEALTHCHECK_PING_URL];
@@ -635,6 +688,14 @@ export const run = async (argv: string[], deps: Deps): Promise<number> => {
   secrets.push(...authSecrets(decl, deps.env));
   const prev = parseState(deps.readFile(STATE_PATH));
 
+  // Second cron du creneau (silence-watchdog.yml) : ni controle, ni ecriture (donc aucun
+  // commit), ni ping ; le passage complet de moins d'1 h a deja pingue le cliquet.
+  const recent = argv.includes(SKIP_IF_RECENT) ? recentRunAge(prev, deps.now()) : null;
+  if (recent !== null) {
+    log(`silence-watchdog — passage complet il y a ${formatAge(recent)} : rien à refaire`);
+    return 0;
+  }
+
   log(`silence-watchdog${dryRun ? ' (dry-run)' : ''} — ${decl.flows.length} flux`);
   log(`token: ${deps.env.TELEGRAM_BOT_TOKEN ? '****' : '(absent)'}`);
 
@@ -651,20 +712,10 @@ export const run = async (argv: string[], deps: Deps): Promise<number> => {
     if (v.status === 'ERREUR') errors.push(`${v.id} : ${v.line}`);
   }
 
-  if (dryRun) {
-    for (const n of decision.notifications) log(`[dry-run] non envoyé : ${n.text}`);
-    if (decision.notifications.length === 0) log('[dry-run] aucun message à envoyer');
-  } else {
-    // Le detail d'une alerte cite parfois une erreur reseau : masquee aussi avant envoi.
-    const outgoing = decision.notifications.map((n) => ({ ...n, text: redact(n.text, secrets) }));
-    const failed = await sendNotifications(outgoing, deps, log, errors);
-    const state = rollbackFailed(decision.state, prev, failed);
-    deps.writeFile(STATE_PATH, `${JSON.stringify(state, null, 2)}\n`);
-  }
-
-  // Plan de controle d'incidents (CHG-012, etape 1) : APRES les alertes et l'etat ci-dessus,
-  // qu'il ne peut ni bloquer ni modifier ; rien n'est declenche. N'ecrit rien en dry-run.
-  runIncidentPlane({
+  // Plan de controle d'incidents (CHG-012) : AVANT les alertes, dont il nourrit la politique.
+  // Ne leve jamais : en panne, c'est une ERREUR du passage et l'anti-doublon du watchdog
+  // decide seul (une ouverture d'alerte part). Rien n'est declenche ; rien d'ecrit en dry-run.
+  const plan = runIncidentPlane({
     input: { decl, outcomes, verdicts: decision.verdicts, state: decision.state, now },
     io: deps,
     dryRun,
@@ -672,6 +723,21 @@ export const run = async (argv: string[], deps: Deps): Promise<number> => {
     log,
     errors,
   });
+  const alerts = applyAlertPolicy({ decl, prev, decision, events: plan?.evenements ?? null, now });
+  for (const d of alerts.decisions) log(describeAlertDecision(d));
+  errors.push(...alerts.errors);
+
+  if (dryRun) {
+    logUnsent(alerts.notifications, log);
+  } else {
+    // Le detail d'une alerte cite parfois une erreur reseau : masquee aussi avant envoi.
+    const outgoing = alerts.notifications.map((n) => ({ ...n, text: redact(n.text, secrets) }));
+    const failed = await sendNotifications(outgoing, deps, log, errors);
+    const delivered = alerts.notifications.filter((n) => !failed.includes(n.key));
+    const nowIso = now.toISOString();
+    const state = markDelivered(rollbackFailed(decision.state, prev, failed), delivered, nowIso);
+    deps.writeFile(STATE_PATH, `${JSON.stringify({ ...state, lastRunAt: nowIso }, null, 2)}\n`);
+  }
 
   for (const e of errors) logError(`ERREUR watchdog : ${e}`);
   if (!dryRun) await pingHealthcheck(errors.length === 0, deps, log);
