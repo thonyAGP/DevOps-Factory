@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "version": 1,
+    "id": "inc-devops-factory-workflows-echec_workflow-202610111807",
+    "empreinte": "devops-factory-workflows:echec_workflow",
+    "flux": "devops-factory-workflows",
+    "classe": "echec_workflow",
+    "source": {
+      "detecteur": "silence-watchdog",
+      "typeFlux": "github-workflow-runs",
+      "depot": "thonyAGP/DevOps-Factory"
+    },
+    "etat": "enquete_demandee",
+    "priorite": "haute",
+    "impact": "ci_rouge",
+    "premiereOccurrence": "2026-10-11T18:07:46.411Z",
+    "derniereOccurrence": "2026-10-11T18:07:46.411Z",
+    "occurrences": 1,
+    "ouvertures": 1,
+    "fermeLe": null,
+    "enquetes": {
+      "demandees": 1,
+      "horodatages": [
+        "2026-10-11T18:07:46.411Z"
+      ]
+    },
+    "derniereDecision": {
+      "enquete": true,
+      "motif": "nouvel_incident",
+      "horodatage": "2026-10-11T18:07:46.411Z"
+    },
+    "causedBy": null,
+    "incidentRootId": null,
+    "nonFiable": {
+      "detail": "renovate.yml : 3 échecs consécutifs (dernier succès il y a 11 h)"
+    }
+  }
+]
