@@ -54,8 +54,19 @@ Settings → Developer settings → **GitHub Apps** → New GitHub App.
   - Administration : **Read** (audit de branch protection ; Write si vous voulez
     que l'usine _configure_ la protection)
   - Metadata : **Read** (obligatoire, coché d'office)
+  - Commit statuses : **Read** (Renovate lit l'état combiné des statuts avant
+    d'automerger ; sans ce droit l'API répond `integration-unauthorized` et le
+    dépôt est abandonné dès la première PR créée — constaté le 11/10/2026 sur
+    LecteurMagic, run 38134119651 ; le run vert du matin n'avait créé aucune PR)
+  - Checks : **Read** (même besoin, côté API Checks)
 - **Where can this app be installed?** : _Only on this account_
 - Créer.
+
+Ajouter une permission après coup : GitHub → Settings → Developer settings →
+GitHub Apps → l'App → _Permissions & events_ → modifier → _Save changes_, puis
+Settings → Applications → _Installed GitHub Apps_ → _Configure_ → accepter la
+demande de nouvelles permissions. Tant que l'installation n'a pas accepté, le
+jeton garde les anciennes permissions.
 
 ### 2. Générer la clé privée
 
