@@ -41,7 +41,6 @@ export const COVERAGE_THRESHOLDS: CoverageThresholds = {
 export const CLAUDE_REVIEW_CONFIG: ClaudeReviewConfig = {
   maxReviewsPerDay: 20,
   enabledRepos: [
-    'thonyAGP/Email_Assistant',
     'thonyAGP/CasaSync',
     'thonyAGP/livret-au-marais',
     'thonyAGP/au-marais',
@@ -84,22 +83,6 @@ export const KNOWN_PROJECTS: ProjectConfig[] = [
     healingState: 'healing_graduated',
     testFramework: 'none',
     ciWorkflow: 'factory-ci.yml',
-  },
-  {
-    name: 'Email_Assistant',
-    repo: 'thonyAGP/Email_Assistant',
-    hasCI: true,
-    stack: 'fastify',
-    hasQodo: true,
-    hasClaude: false,
-    hasSelfHealing: true,
-    hasHusky: true,
-    hasRenovate: false,
-    hasGitleaks: false,
-    hasLighthouse: false,
-    hasLinkChecker: false,
-    vercel: true,
-    healingState: 'healing_supervised',
   },
   {
     name: 'ClubMedRoomAssignment',
@@ -461,11 +444,7 @@ export const REMEDIATION_CONFIG: RemediationConfig = {
   // (LecteurMagic#46), so the next worst-graded F repos join. LecteurMagic is
   // out until its PR is merged — keeping it listed would dispatch a duplicate
   // agent onto work that is already awaiting review.
-  enabledRepos: [
-    'thonyAGP/LecteurMagic',
-    'thonyAGP/ClubMedRoomAssignment',
-    'thonyAGP/Email_Assistant',
-  ],
+  enabledRepos: ['thonyAGP/LecteurMagic', 'thonyAGP/ClubMedRoomAssignment'],
   minGrade: 'F',
   maxPerDay: 4,
   workflowFile: 'ai-remediation.yml',
