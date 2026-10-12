@@ -1,10 +1,13 @@
-## Quality Score Report - 2026-10-11
+## Quality Score Report - 2026-10-12
 
 ### Summary
 - **Average Score**: 33/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
-- **Needs Work** (<60): 18
+- **Needs Work** (<60): 17
+
+### Score Drops (≥5 points)
+- **MCP_Quota_Claude**: 35 → 25 (-10)
 
 ### Per Repository
 
@@ -32,18 +35,6 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### Email_Assistant
-- **Score**: 40/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
 #### ClubMedRoomAssignment
 - **Score**: 40/100
 - **CI Passes**: ✗
@@ -68,9 +59,9 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### API_Claude
-- **Score**: 35/100
-- **CI Passes**: ✗
+#### Zentra
+- **Score**: 40/100
+- **CI Passes**: ✓
 - **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
@@ -78,9 +69,9 @@
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
-- **No Critical Findings**: ✓
+- **No Critical Findings**: ✗
 
-#### MCP_Quota_Claude
+#### API_Claude
 - **Score**: 35/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
@@ -152,6 +143,18 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
+#### MCP_Quota_Claude
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
 #### Site_Greg-Assainissement
 - **Score**: 25/100
 - **CI Passes**: ✗
@@ -189,18 +192,6 @@
 - **No Critical Findings**: ✗
 
 #### test_codingmenace
-- **Score**: 25/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### Zentra
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗

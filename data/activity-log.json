@@ -2,77 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-05T13:37:43.008Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-05T13:37:50.708Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-05T13:37:51.434Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.5/10, 4150 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-05T13:37:52.165Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-05T13:58:43.363Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-05T13:58:48.804Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-05T13:58:49.528Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.5/10, 4150 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-05T13:58:50.264Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-05T17:02:55.067Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "CasaSync",
-      "details": "55 → 40 (-15pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-05T17:02:55.069Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 32/100, 0 excellent, 19 needs work, 1 drops, 0 improvements",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-10-05T20:13:22.298Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -3621,6 +3550,29 @@
       "action": "template-drift",
       "details": "Drift: NaN%, 0 drifted templates",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-10-12T17:41:10.352Z",
+      "source": "quality-score",
+      "action": "quality-drop",
+      "target": "MCP_Quota_Claude",
+      "details": "35 → 25 (-10pts)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-12T17:41:10.354Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "Zentra",
+      "details": "25 → 40 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-12T17:41:10.357Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 33/100, 0 excellent, 17 needs work, 1 drops, 1 improvements",
+      "status": "warning"
     }
   ]
 }
