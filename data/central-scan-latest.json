@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "date": "2026-10-05",
-  "totalFindings": 951,
+  "date": "2026-10-12",
+  "totalFindings": 914,
   "repos": [
     {
       "name": "DevOps-Factory",
@@ -19,9 +19,9 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 12,
+          "findings": 13,
           "bySeverity": {
-            "ERROR": 3,
+            "ERROR": 4,
             "MEDIUM": 6,
             "WARNING": 3
           },
@@ -39,13 +39,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 237,
+          "findings": 240,
           "bySeverity": {
-            "DUPLICATION": 237
+            "DUPLICATION": 240
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 9.78
+            "duplicationPct": 8.97
           }
         }
       ]
@@ -79,10 +79,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 126,
+          "findings": 142,
           "bySeverity": {
-            "HIGH": 115,
-            "CRITICAL": 11
+            "CRITICAL": 15,
+            "HIGH": 127
           },
           "top": []
         },
@@ -127,9 +127,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 82,
+          "findings": 86,
           "bySeverity": {
-            "HIGH": 72,
+            "HIGH": 76,
             "CRITICAL": 10
           },
           "top": []
@@ -176,22 +176,22 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 7,
+          "findings": 9,
           "bySeverity": {
-            "HIGH": 7
+            "HIGH": 9
           },
           "top": []
         },
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 951,
+          "findings": 970,
           "bySeverity": {
-            "DUPLICATION": 951
+            "DUPLICATION": 970
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 3.68
+            "duplicationPct": 3.59
           }
         }
       ]
@@ -223,9 +223,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 23,
+          "findings": 26,
           "bySeverity": {
-            "HIGH": 21,
+            "HIGH": 24,
             "CRITICAL": 2
           },
           "top": []
@@ -272,9 +272,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 46,
+          "findings": 49,
           "bySeverity": {
-            "HIGH": 43,
+            "HIGH": 46,
             "CRITICAL": 3
           },
           "top": []
@@ -294,8 +294,8 @@
       ]
     },
     {
-      "name": "Lecteur_Magic",
-      "repo": "thonyAGP/lecteur-magic",
+      "name": "LecteurMagic",
+      "repo": "thonyAGP/LecteurMagic",
       "stack": "node",
       "cloned": true,
       "scanners": [
@@ -322,9 +322,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 68,
+          "findings": 70,
           "bySeverity": {
-            "HIGH": 66,
+            "HIGH": 68,
             "CRITICAL": 2
           },
           "top": []
@@ -332,13 +332,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 1777,
+          "findings": 1785,
           "bySeverity": {
-            "DUPLICATION": 1777
+            "DUPLICATION": 1785
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 10.29
+            "duplicationPct": 10.25
           }
         }
       ]
@@ -411,9 +411,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 25,
+          "findings": 29,
           "bySeverity": {
-            "HIGH": 25
+            "HIGH": 27,
+            "CRITICAL": 2
           },
           "top": []
         },
@@ -501,9 +502,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 24,
+          "findings": 27,
           "bySeverity": {
-            "HIGH": 22,
+            "HIGH": 25,
             "CRITICAL": 2
           },
           "top": []
@@ -547,10 +548,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 28,
+          "findings": 30,
           "bySeverity": {
             "CRITICAL": 1,
-            "HIGH": 27
+            "HIGH": 29
           },
           "top": []
         },
@@ -593,9 +594,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 23,
+          "findings": 26,
           "bySeverity": {
-            "HIGH": 21,
+            "HIGH": 24,
             "CRITICAL": 2
           },
           "top": []
@@ -703,13 +704,6 @@
       ]
     },
     {
-      "name": "Benchmark_Claude",
-      "repo": "thonyAGP/Benchmark_Claude",
-      "stack": "unknown",
-      "cloned": false,
-      "scanners": []
-    },
-    {
       "name": "test_codingmenace",
       "repo": "thonyAGP/test_codingmenace",
       "stack": "nextjs",
@@ -734,9 +728,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 24,
+          "findings": 27,
           "bySeverity": {
-            "HIGH": 21,
+            "HIGH": 24,
             "CRITICAL": 3
           },
           "top": []
@@ -754,20 +748,6 @@
           }
         }
       ]
-    },
-    {
-      "name": "RemoteDevDashboard",
-      "repo": "thonyAGP/RemoteDevDashboard",
-      "stack": "unknown",
-      "cloned": false,
-      "scanners": []
-    },
-    {
-      "name": "ClaudePilot",
-      "repo": "thonyAGP/ClaudePilot",
-      "stack": "unknown",
-      "cloned": false,
-      "scanners": []
     },
     {
       "name": "Lanceur_Claude",
@@ -839,9 +819,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 22,
+          "findings": 23,
           "bySeverity": {
-            "HIGH": 18,
+            "HIGH": 19,
             "CRITICAL": 4
           },
           "top": []
@@ -919,33 +899,34 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 13,
+          "findings": 14,
           "bySeverity": {
             "MEDIUM": 10,
-            "ERROR": 3
+            "ERROR": 3,
+            "WARNING": 1
           },
           "top": []
         },
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 83,
+          "findings": 87,
           "bySeverity": {
-            "HIGH": 81,
-            "CRITICAL": 2
+            "HIGH": 84,
+            "CRITICAL": 3
           },
           "top": []
         },
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 124,
+          "findings": 388,
           "bySeverity": {
-            "DUPLICATION": 124
+            "DUPLICATION": 388
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 8.31
+            "duplicationPct": 6.85
           }
         }
       ]
@@ -979,9 +960,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 24,
+          "findings": 26,
           "bySeverity": {
-            "HIGH": 22,
+            "HIGH": 24,
             "CRITICAL": 2
           },
           "top": []
@@ -989,63 +970,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 476,
+          "findings": 497,
           "bySeverity": {
-            "DUPLICATION": 476
+            "DUPLICATION": 497
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 4.96
-          }
-        }
-      ]
-    },
-    {
-      "name": "magic-migration",
-      "repo": "thonyAGP/magic-migration",
-      "stack": "node",
-      "cloned": true,
-      "scanners": [
-        {
-          "scanner": "gitleaks",
-          "status": "findings",
-          "findings": 4,
-          "bySeverity": {
-            "SECRET": 4
-          },
-          "top": []
-        },
-        {
-          "scanner": "semgrep",
-          "status": "findings",
-          "findings": 19,
-          "bySeverity": {
-            "ERROR": 7,
-            "WARNING": 3,
-            "MEDIUM": 9
-          },
-          "top": []
-        },
-        {
-          "scanner": "trivy",
-          "status": "findings",
-          "findings": 68,
-          "bySeverity": {
-            "HIGH": 66,
-            "CRITICAL": 2
-          },
-          "top": []
-        },
-        {
-          "scanner": "jscpd",
-          "status": "findings",
-          "findings": 1777,
-          "bySeverity": {
-            "DUPLICATION": 1777
-          },
-          "top": [],
-          "metrics": {
-            "duplicationPct": 10.29
+            "duplicationPct": 4.89
           }
         }
       ]
