@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-12T17:41:10.350Z",
+  "timestamp": "2026-10-13T15:49:51.963Z",
   "scores": [
     {
       "name": "CasaSync",
@@ -45,6 +45,22 @@
         "branchProtection": 0,
         "depsUpToDate": 10,
         "noSecrets": 15,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
+      "name": "Livret_accueil_Au-Marais",
+      "repo": "thonyAGP/livret-au-marais",
+      "score": 40,
+      "breakdown": {
+        "ciPasses": 15,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
         "noDuplication": 0,
         "noCriticalFindings": 0
       }
@@ -143,22 +159,6 @@
         "noSecrets": 0,
         "noDuplication": 0,
         "noCriticalFindings": 10
-      }
-    },
-    {
-      "name": "Livret_accueil_Au-Marais",
-      "repo": "thonyAGP/livret-au-marais",
-      "score": 25,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
       }
     },
     {
@@ -274,12 +274,5 @@
       }
     }
   ],
-  "drops": [
-    {
-      "repo": "MCP_Quota_Claude",
-      "drop": 10,
-      "from": 35,
-      "to": 25
-    }
-  ]
+  "drops": []
 }

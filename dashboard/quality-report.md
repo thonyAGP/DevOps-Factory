@@ -1,13 +1,10 @@
-## Quality Score Report - 2026-10-12
+## Quality Score Report - 2026-10-13
 
 ### Summary
-- **Average Score**: 33/100
+- **Average Score**: 34/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 17
-
-### Score Drops (≥5 points)
-- **MCP_Quota_Claude**: 35 → 25 (-10)
 
 ### Per Repository
 
@@ -44,6 +41,18 @@
 - **Branch Protection**: ✗
 - **Dependency Mgmt**: ✓
 - **Gitleaks**: ✓
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### Livret_accueil_Au-Marais
+- **Score**: 40/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
@@ -118,18 +127,6 @@
 - **Gitleaks**: ✗
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✓
-
-#### Livret_accueil_Au-Marais
-- **Score**: 25/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
 
 #### Site_Au-marais
 - **Score**: 25/100
