@@ -25,7 +25,7 @@ permissions:
 
 concurrency:
   group: dashboard-build
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -43,6 +43,7 @@ jobs:
           owner: ${{ github.repository_owner }}
       - uses: actions/checkout@v4
         with:
+          ref: master
           token: ${{ steps.app-token.outputs.token }}
 
       - uses: pnpm/action-setup@v4
@@ -56,13 +57,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Build dashboard
-        run: pnpm dashboard
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_ACTIONS: 'true'
 
       - name: Security posture report
         run: pnpm security-posture
@@ -103,6 +97,13 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         continue-on-error: true
+
+      - name: Build dashboard
+        run: pnpm dashboard
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_ACTIONS: 'true'
 
       - name: Check for alerts
         id: alerts
@@ -190,45 +191,6 @@ jobs:
       - name: Remove transient alert file
         run: rm -f dashboard/alert-payload.json
 
-      - name: Commit dashboard
-        run: |
-          git config user.name "DevOps Factory Bot"
-          git config user.email "devops-factory[bot]@users.noreply.github.com"
-          git add dashboard/ data/activity-log.json data/alert-tracker.json
-          git diff --cached --quiet || git commit -m "chore: update dashboard"
-
-          # Try simple pull --rebase first
-          if git pull --rebase --autostash; then
-            git push
-            exit 0
-          fi
-
-          # Rebase failed (likely conflict on activity-log.json)
-          # Abort rebase, take a different approach
-          git rebase --abort 2>/dev/null || true
-          git stash pop 2>/dev/null || true
-
-          # Save our generated files
-          cp -r dashboard/ /tmp/dashboard-backup/
-          cp data/activity-log.json /tmp/activity-log-backup.json 2>/dev/null || true
-          cp data/alert-tracker.json /tmp/alert-tracker-backup.json 2>/dev/null || true
-
-          # Hard reset to remote and re-apply our files
-          git fetch origin master
-          git reset --hard origin/master
-
-          # Restore generated files
-          cp -r /tmp/dashboard-backup/* dashboard/
-          cp /tmp/activity-log-backup.json data/activity-log.json 2>/dev/null || true
-          cp /tmp/alert-tracker-backup.json data/alert-tracker.json 2>/dev/null || true
-
-          # Re-commit and push
-          git add dashboard/ data/activity-log.json data/alert-tracker.json
-          git diff --cached --quiet || git commit -m "chore: update dashboard"
-          git push
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-
       - name: Check if daily digest should be sent
         id: digest_gate
         if: steps.alert_filter.outputs.should_email == 'true'
@@ -251,10 +213,9 @@ jobs:
           fi
 
           echo "send=true" >> "$GITHUB_OUTPUT"
-          echo "$TODAY" > "$LAST_SENT_FILE"
-          git add "$LAST_SENT_FILE"
 
       - name: Send daily digest email
+        id: digest_email
         if: steps.digest_gate.outputs.send == 'true' && env.SMTP_USER != ''
         env:
           SMTP_USER: ${{ secrets.SMTP_USERNAME }}
@@ -276,6 +237,37 @@ jobs:
 
             (This digest is sent max once per day at ~8h UTC)
 
+      - name: Record successful daily digest
+        if: steps.digest_email.outcome == 'success'
+        run: date -u +%Y-%m-%d > data/last-email-digest.txt
+
+      # Upload the files built in this job. deploy-pages consumes this exact
+      # artifact; it must not check out a potentially newer master.
+      - name: Upload dashboard artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard/
+
+      # Keep only state needed by subsequent runs. Presentation reports are
+      # published in the Pages artifact, never committed back to master.
+      - name: Persist dashboard state
+        run: |
+          git config user.name "DevOps Factory Bot"
+          git config user.email "devops-factory[bot]@users.noreply.github.com"
+          git add dashboard/history.json data/activity-log.json data/alert-tracker.json
+          git add data/security-registry.json data/security-registry-history.json
+          if [ -f data/last-email-digest.txt ]; then
+            git add data/last-email-digest.txt
+          fi
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore: update dashboard state"
+          # A conflicting state update must fail visibly. Never restore stale
+          # snapshots over newer state after resetting to master.
+          git pull --rebase --autostash origin master
+          git push origin HEAD:master
+
   deploy-pages:
     needs: build
     runs-on: ubuntu-latest
@@ -284,23 +276,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # GitHub App token (short-lived, 1h) — sole auth since the PAT was
-      # retired. See docs/github-app-migration.md.
-      - name: Generate GitHub App token
-        id: app-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ vars.FACTORY_APP_ID }}
-          private-key: ${{ secrets.FACTORY_APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-      - uses: actions/checkout@v4
-        with:
-          ref: master
-          token: ${{ steps.app-token.outputs.token }}
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dashboard/
-
       - id: deployment
         uses: actions/deploy-pages@v4
