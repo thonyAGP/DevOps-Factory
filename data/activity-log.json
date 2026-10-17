@@ -3591,6 +3591,37 @@
       "action": "dashboard-built",
       "details": "0 projects, avg health NaN",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-10-17T15:46:25.046Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "CI Health Check",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-17T15:46:30.410Z",
+      "source": "factory-watchdog",
+      "action": "self-heal-failed",
+      "target": "CI Health Check",
+      "details": "Failed to trigger self-heal",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-17T15:46:32.047Z",
+      "source": "factory-watchdog",
+      "action": "issue-closed",
+      "target": "[Watchdog] FAILURE: Cron Monitor",
+      "details": "recovered: [Watchdog] FAILURE: Cron Monitor",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-17T15:46:32.049Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "4/5 passing. 1 failures, 0 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
