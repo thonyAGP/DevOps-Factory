@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lastUpdated": "2026-10-11T15:29:27.308Z",
+  "lastUpdated": "2026-10-18T13:06:29.560Z",
   "feedbacks": [
     {
       "date": "2026-02-18T21:16:13.456Z",
@@ -5255,6 +5255,231 @@
       "prNumber": 9,
       "prTitle": "security: Remove AWS secret from git history",
       "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:16.715Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 3353,
+      "prTitle": "fix: restaurer l’inventaire et réserver les agents au travail utile",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:16.715Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 3349,
+      "prTitle": "refactor: publish dashboard from the build artifact",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:16.715Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 3340,
+      "prTitle": "chore(config): retirer Email_Assistant (archivé, consolidé dans Boxmail_cleaning)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:16.715Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 3336,
+      "prTitle": "fix(supply-chain): pin pnpm to v9 in dependency install step",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:16.715Z",
+      "repo": "thonyAGP/DevOps-Factory",
+      "prNumber": 3334,
+      "prTitle": "feat(watchdog): alertes sobres (incident nouveau seulement), retours silencieux, cron double",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.155Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 569,
+      "prTitle": "fix(inbox): un merci n'appelle plus de reponse et Terminer solde la suggestion IA (CHG-355)",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.155Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 568,
+      "prTitle": "fix(agent): limites du juge, questions couvertes et rejeu corrige (CHG-354 lot 3b)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 567,
+      "prTitle": "feat(agent): outil de rejeu sans fuite du futur et corpus negatif (CHG-354 lot 3)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 566,
+      "prTitle": "feat(agent): repondant qui choisit une reponse approuvee (CHG-354 lot 2)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 565,
+      "prTitle": "feat(agent): contexte unique et juge, a blanc par defaut (CHG-354 lot 1)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 564,
+      "prTitle": "fix(outbound): aucun profil ne desactive plus un invariant, origine AGENT (CHG-354 lot 0)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 563,
+      "prTitle": "fix(notifications): l'etat du sejour est lu avant toute alerte sur un voyageur (CHG-353)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 562,
+      "prTitle": "fix(homeexchange): ne plus pousser un jeton qui expire dans les 15 minutes",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 561,
+      "prTitle": "feat(answers): une question deja repondue deux fois part seule avec le lien direct (CHG-352)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 560,
+      "prTitle": "fix(notifications): une seule carte, seulement si l'hote a quelque chose a decider (CHG-351)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 559,
+      "prTitle": "fix(reservations): les dates suivent la plateforme et tout se rearme (CHG-341)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 558,
+      "prTitle": "fix(delivery): un message du finit par partir ou l'hote le sait (CHG-340)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 557,
+      "prTitle": "fix(notifications): heures calmes sur les cartes Telegram a boutons (CHG-351a)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 556,
+      "prTitle": "fix(messaging): la reponse de l'hote perime aussi les cartes d'intention A/B (CHG-350)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 555,
+      "prTitle": "fix(inbox): valider un message ouvre la conversation du client, pas la liste (CHG-349)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 554,
+      "prTitle": "fix(inbox): traduction sortante par langue detectee, suggestion editee comprise (CHG-348)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.156Z",
+      "repo": "thonyAGP/CasaSync",
+      "prNumber": 553,
+      "prTitle": "fix(notifications): budget d'attention Telegram, tri reponse a apporter ou pas (CHG-347)",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:18.973Z",
+      "repo": "thonyAGP/livret-au-marais",
+      "prNumber": 55,
+      "prTitle": "fix(practical-info): draps du canape-lit sous le canape",
+      "outcome": "merged",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:20.908Z",
+      "repo": "thonyAGP/LecteurMagic",
+      "prNumber": 79,
+      "prTitle": "chore: gitleaksignore — secrets historiques révoqués",
+      "outcome": "open",
+      "patternId": null,
+      "source": "self-heal"
+    },
+    {
+      "date": "2026-10-18T13:06:28.679Z",
+      "repo": "thonyAGP/zentra",
+      "prNumber": 103,
+      "prTitle": "feat(db): socle commun CHG-012 lot 0 (liens externes typés, verrous, SIREN, observations)",
+      "outcome": "merged",
       "patternId": null,
       "source": "self-heal"
     }
