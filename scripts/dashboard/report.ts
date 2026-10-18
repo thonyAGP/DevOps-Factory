@@ -2,6 +2,10 @@ import { readFileSync, existsSync } from 'node:fs';
 import type { ProjectStatus } from './types.js';
 
 export const generateDailyReport = (statuses: ProjectStatus[]): string => {
+  if (statuses.length === 0) {
+    throw new Error('No monitored projects; refusing to publish an empty daily report');
+  }
+
   const failingProjects = statuses.filter((p) => p.ciStatus === 'fail');
   const pendingAIFixes = statuses.flatMap((p) => p.aiFixPRs.map((pr) => ({ project: p.name, pr })));
   const configuredCount = statuses.filter((p) => p.configured).length;
@@ -104,3 +108,4 @@ export const generateDailyReport = (statuses: ProjectStatus[]): string => {
 
   return body;
 };
+
