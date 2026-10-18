@@ -43,11 +43,22 @@ jobs:
               const body = await response.json().catch(() => null);
               if ((response.status === 200 && body?.status === 'ok') ||
                   (response.status === 503 && body?.status === 'error')) {
+                const denied = await fetch(flow.url, {
+                  redirect: 'manual',
+                  cache: 'no-store',
+                  signal: AbortSignal.timeout(15_000),
+                });
+                if (denied.status !== 401 && denied.status !== 403) {
+                  throw new Error('PULSE_AUTH_NOT_ENFORCED');
+                }
                 console.log('Sonde authentifiée accessible : ' + last +
                   (response.status === 503 ? ' (traitement dégradé, surveillance nécessaire)' : ''));
                 process.exit(0);
               }
             } catch (error) {
+              if (error instanceof Error && error.message === 'PULSE_AUTH_NOT_ENFORCED') {
+                throw new Error('La sonde doit refuser les requêtes sans secret avant activation');
+              }
               if (error instanceof Error && error.message === 'PULSE_AUTH_REFUSED') {
                 throw new Error('La sonde refuse CASASYNC_CRON_SECRET : vérifier la configuration');
               }
