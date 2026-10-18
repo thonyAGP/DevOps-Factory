@@ -26,13 +26,16 @@ export const detectSource = (
 ): FeedbackSource => {
   if (labels.includes('ai-remediation') || branch.startsWith('ai-remediation/') ||
       title.includes('(central-scan)')) return 'remediation';
-  if (labels.includes('ai-fix') || branch.startsWith('ai-fix/') ||
+  if (labels.includes('ai-fix') || labels.includes('self-heal') || branch.startsWith('ai-fix/') ||
       /^fix(?:\([^)]*\))?:\s*CI fix\b/i.test(title)) return 'self-heal';
-  if (branch.startsWith('test-scaffold/') || /test scaffold/i.test(title)) return 'test-scaffold';
-  if (branch.startsWith('ai-tests/') || /\bAI[ -]tests\b/i.test(title)) return 'ai-test-writer';
-  if (branch.startsWith('auto-fix/prettier') || branch.startsWith('fix/prettier-') ||
+  if (labels.includes('test-scaffold') || branch === 'devops-factory/test-scaffold' ||
+      branch.startsWith('test-scaffold/') || /test scaffold/i.test(title)) return 'test-scaffold';
+  if (labels.includes('ai-test-writer') || branch.startsWith('devops-factory/ai-tests-') ||
+      branch.startsWith('ai-tests/') || /\bAI[ -]tests\b/i.test(title)) return 'ai-test-writer';
+  if (labels.includes('prettier-fix') || branch === 'devops-factory/prettier-fix' ||
+      branch.startsWith('auto-fix/prettier') || branch.startsWith('fix/prettier-') ||
       /^style:\s*auto-format with prettier/i.test(title)) return 'prettier-fix';
-  if (/^chore:\s*add DevOps-Factory\b/i.test(title)) return 'configuration';
+  if (branch === 'devops-factory/add-workflows' || /^chore:\s*add DevOps-Factory\b/i.test(title)) return 'configuration';
   return 'unknown';
 };
 

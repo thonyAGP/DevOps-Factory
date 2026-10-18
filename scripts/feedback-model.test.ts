@@ -20,6 +20,10 @@ describe('automation attribution', () => {
       expect(detectSource([], title)).toBe('unknown');
     });
   it.each([
+    [[], 'test: add skeleton test files', 'devops-factory/test-scaffold', 'test-scaffold'],
+    [[], 'test: add  tests', 'devops-factory/ai-tests-12345', 'ai-test-writer'],
+    [['prettier-fix'], 'style: auto-fix Prettier formatting', 'devops-factory/prettier-fix', 'prettier-fix'],
+    [[], 'style: auto-fix Prettier formatting', 'devops-factory/prettier-fix', 'prettier-fix'],
     [['ai-fix'], 'fix: repair', '', 'self-heal'],
     [[], 'fix: repair', 'ai-fix/run-12', 'self-heal'],
     [[], 'fix: CI fix [pattern:compile]', '', 'self-heal'],

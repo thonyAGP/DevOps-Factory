@@ -89,6 +89,16 @@ const updatePatternConfidence = (feedback: Feedback): void => {
   writeFileSync(PATTERN_DB_PATH, JSON.stringify(db, null, 2));
 };
 
+const refreshTrackedFeedback = (existing: Feedback, pr: FeedbackPR): void => {
+  const wasVerified = existing.sourceVerified === true;
+  const wasOpen = existing.outcome === 'open';
+  const changed = refreshFeedback(existing, pr, new Date().toISOString());
+  existing.patternId = detectPatternId(pr.title, pr.labels.map((label) => label.name));
+  if (wasVerified && wasOpen && changed && existing.source === 'self-heal') {
+    updatePatternConfidence(existing);
+  }
+};
+
 const collectFeedbacks = (log: FeedbackLog): Feedback[] => {
   invalidateLegacySources(log.feedbacks);
   const existingKeys = new Set(log.feedbacks.map((f) => `${f.repo}#${f.prNumber}`));
@@ -116,11 +126,7 @@ const collectFeedbacks = (log: FeedbackLog): Feedback[] => {
           (f) => f.repo === project.repo && f.prNumber === pr.number
         );
         if (existing) {
-          const wasVerified = existing.sourceVerified === true;
-          const wasOpen = existing.outcome === 'open';
-          const changed = refreshFeedback(existing, pr, new Date().toISOString());
-          existing.patternId = detectPatternId(pr.title, pr.labels.map((label) => label.name));
-          if (wasVerified && wasOpen && changed && existing.source === 'self-heal') updatePatternConfidence(existing);
+          refreshTrackedFeedback(existing, pr);
         }
         continue;
       }

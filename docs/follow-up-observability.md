@@ -39,6 +39,8 @@ Le workflow CI Health Check conserve ensemble :
 
 Sans ces fichiers, un runner neuf recommence au premier échec et peut différer une alerte indéfiniment.
 Leurs versions produites par le passage sont préservées aussi dans le chemin de repli après conflit de rebase.
+Les cooldowns sont fusionnés par dépôt en conservant la date la plus récente, pour préserver les
+lancements concurrents enregistrés par Factory Watchdog.
 Une tentative d'auto-réparation n'est enregistrée comme lancée que si le dispatch a réussi.
 
 Après déploiement, vérifier deux passages espacés d'au moins deux heures sur un incident persistant :

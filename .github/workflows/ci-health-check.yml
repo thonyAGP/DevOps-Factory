@@ -82,7 +82,23 @@ jobs:
           git reset --hard origin/master
           for file in "${state_files[@]}"; do
             if [ -f "$state_backup/$(basename "$file")" ]; then
-              cp "$state_backup/$(basename "$file")" "$file"
+              if [ "$file" = "data/self-heal-cooldowns.json" ]; then
+                node -e '
+                  const fs = require("node:fs");
+                  const [target, snapshot] = process.argv.slice(1);
+                  const read = (path) => fs.existsSync(path) ? JSON.parse(fs.readFileSync(path, "utf8")) : {};
+                  const merged = read(target);
+                  for (const [repo, timestamp] of Object.entries(read(snapshot))) {
+                    if (!Number.isFinite(timestamp)) throw new Error("Invalid cooldown timestamp");
+                    const remote = merged[repo] ?? 0;
+                    if (!Number.isFinite(remote)) throw new Error("Invalid remote cooldown timestamp");
+                    merged[repo] = Math.max(remote, timestamp);
+                  }
+                  fs.writeFileSync(target, JSON.stringify(merged, null, 2) + "\n");
+                ' "$file" "$state_backup/$(basename "$file")"
+              else
+                cp "$state_backup/$(basename "$file")" "$file"
+              fi
               git add -- "$file"
             fi
           done
