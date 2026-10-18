@@ -5,20 +5,19 @@
       "name": "Email_Assistant",
       "repo": "thonyAGP/Email_Assistant",
       "risk": 800,
-      "scorecard": 0,
+      "scorecard": 1,
       "grade": "F",
       "secrets": 1,
       "sastErrors": 1,
       "criticalDeps": 15,
       "highDeps": 127,
       "duplicationPct": 18.05,
-      "coveragePct": 49.52,
+      "coveragePct": null,
       "reasons": [
         "1 secret(s) exposé(s)",
         "15 dépendance(s) CRITICAL",
         "1 erreur(s) SAST",
-        "duplication 18.05%",
-        "couverture 49.52%"
+        "duplication 18.05%"
       ]
     },
     {
@@ -99,20 +98,19 @@
       "name": "LB2I-Fiscal-Manager",
       "repo": "thonyAGP/LB2I-Fiscal-Manager",
       "risk": 205,
-      "scorecard": 0,
+      "scorecard": 1,
       "grade": "F",
       "secrets": 2,
       "sastErrors": 9,
       "criticalDeps": 2,
       "highDeps": 24,
       "duplicationPct": 4.89,
-      "coveragePct": 47.99,
+      "coveragePct": null,
       "reasons": [
         "2 secret(s) exposé(s)",
         "2 dépendance(s) CRITICAL",
         "9 erreur(s) SAST",
-        "duplication 4.89%",
-        "couverture 47.99%"
+        "duplication 4.89%"
       ]
     },
     {
@@ -264,7 +262,7 @@
       "criticalDeps": 0,
       "highDeps": 9,
       "duplicationPct": 3.59,
-      "coveragePct": 92.93,
+      "coveragePct": 93.2,
       "reasons": [
         "2 secret(s) exposé(s)",
         "duplication 3.59%"
@@ -281,11 +279,11 @@
       "criticalDeps": 0,
       "highDeps": 9,
       "duplicationPct": 8.97,
-      "coveragePct": 11.75,
+      "coveragePct": 17.35,
       "reasons": [
         "4 erreur(s) SAST",
         "duplication 8.97%",
-        "couverture 11.75%"
+        "couverture 17.35%"
       ]
     },
     {
@@ -370,7 +368,7 @@
     }
   ],
   "summary": {
-    "avgScorecard": 5.7,
+    "avgScorecard": 5.8,
     "totalRisk": 4025,
     "reposWithSecrets": 6,
     "reposOverDuplication": 20,
