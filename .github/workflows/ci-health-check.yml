@@ -51,29 +51,42 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run CI Health Check
+        id: health
         run: pnpm ci-health
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
 
-      - name: Commit activity log
+      - name: Commit health state and activity log
+        if: ${{ always() && steps.health.outcome != 'skipped' }}
         run: |
           git config user.name "DevOps Factory Bot"
           git config user.email "devops-factory[bot]@users.noreply.github.com"
-          git add data/activity-log.json
-          git diff --cached --quiet || git commit -m "chore: update activity log" --no-verify
+          state_files=(data/activity-log.json data/ci-failure-tracker.json data/escalation-tracker.json data/self-heal-cooldowns.json)
+          state_backup=$(mktemp -d)
+          trap 'rm -rf "$state_backup"' EXIT
+          for file in "${state_files[@]}"; do
+            if [ -f "$file" ]; then
+              cp "$file" "$state_backup/$(basename "$file")"
+              git add -- "$file"
+            fi
+          done
+          git diff --cached --quiet || git commit -m "chore: update CI health state" --no-verify
           if git pull --rebase --autostash; then
             git push
             exit 0
           fi
           git rebase --abort 2>/dev/null || true
           git stash pop 2>/dev/null || true
-          cp data/activity-log.json /tmp/activity-log-backup.json
           git fetch origin master
           git reset --hard origin/master
-          cp /tmp/activity-log-backup.json data/activity-log.json
-          git add data/activity-log.json
-          git diff --cached --quiet || git commit -m "chore: update activity log" --no-verify
+          for file in "${state_files[@]}"; do
+            if [ -f "$state_backup/$(basename "$file")" ]; then
+              cp "$state_backup/$(basename "$file")" "$file"
+              git add -- "$file"
+            fi
+          done
+          git diff --cached --quiet || git commit -m "chore: update CI health state" --no-verify
           git push
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
