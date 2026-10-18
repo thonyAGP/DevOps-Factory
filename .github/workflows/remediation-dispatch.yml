@@ -53,6 +53,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Dispatch remediation agents
+        id: dispatch
         run: |
           if [ "$DRY_RUN" = "false" ]; then
             pnpm remediation-dispatch
@@ -66,7 +67,9 @@ jobs:
       # Persist the daily quota so maxPerDay actually holds across runs —
       # without this the counter dies with the runner and the cap is a no-op.
       - name: Commit quota state
-        if: ${{ inputs.dry_run == false }}
+        # A later control failure must not erase quota consumed by an agent
+        # already launched earlier in the same pass.
+        if: ${{ always() && steps.dispatch.outcome != 'skipped' && inputs.dry_run == false }}
         run: |
           git config user.name "DevOps Factory Bot"
           git config user.email "devops-factory[bot]@users.noreply.github.com"
@@ -79,3 +82,4 @@ jobs:
             git diff --cached --quiet || git commit -m "chore: update remediation quota" --no-verify
             git push origin master
           fi
+

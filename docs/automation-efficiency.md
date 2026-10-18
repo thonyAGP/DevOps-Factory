@@ -35,6 +35,8 @@ Il ne lance pas d'agent si :
   échec visible, pas un feu vert.
 
 Un dépôt bloqué ne consomme pas le quota et laisse sa place au suivant. Le
+workflow persiste les lancements déjà effectués même si un contrôle ultérieur
+échoue pendant le même passage. Le
 dry-run applique les mêmes contrôles sans lancer d'agent ni écrire d'état. Le
 dispatcher reste manuel et conserve l'allowlist, le seuil de risque et le quota
 de `REMEDIATION_CONFIG`.

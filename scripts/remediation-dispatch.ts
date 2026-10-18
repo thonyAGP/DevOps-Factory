@@ -138,6 +138,21 @@ const ensureWorkflowDeployed = (repo: string): boolean => {
   return false;
 };
 
+const isReadyForRemediation = (target: RepoRisk, dryRun: boolean): boolean => {
+  try {
+    const blocker = getRemediationBlocker(target.repo, REMEDIATION_CONFIG.workflowFile);
+    if (!blocker) return true;
+    console.log(`    [SKIP] ${blocker}`);
+    if (!dryRun) {
+      logActivity('remediation-dispatch', 'skip-pending-work', blocker, 'info', target.name);
+    }
+  } catch {
+    console.error(`    [ERROR] Cannot verify pending work for ${target.repo}; agent not dispatched`);
+    process.exitCode = 1;
+  }
+  return false;
+};
+
 export const runRemediationDispatch = (): void => {
   const dryRun = process.argv.slice(2).includes('--dry-run');
 
@@ -166,22 +181,10 @@ export const runRemediationDispatch = (): void => {
 
   console.log(`${targets.length} target(s) selected (quota ${quota.count}/${quota.maxPerDay}):`);
   let dispatched = 0;
-  let controlErrors = 0;
   for (const t of targets) {
     if (dispatched >= remaining) break;
     console.log(`  ${t.grade} ${t.name} (risk ${t.risk}) — ${t.reasons.join(', ')}`);
-    try {
-      const blocker = getRemediationBlocker(t.repo, REMEDIATION_CONFIG.workflowFile);
-      if (blocker) {
-        console.log(`    [SKIP] ${blocker}`);
-        if (!dryRun) logActivity('remediation-dispatch', 'skip-pending-work', blocker, 'info', t.name);
-        continue;
-      }
-    } catch {
-      console.error(`    [ERROR] Cannot verify pending work for ${t.repo}; agent not dispatched`);
-      controlErrors++;
-      continue;
-    }
+    if (!isReadyForRemediation(t, dryRun)) continue;
     if (dryRun) {
       console.log('    [DRY-RUN] Eligible, no pending work; would dispatch');
       dispatched++;
@@ -205,8 +208,6 @@ export const runRemediationDispatch = (): void => {
       );
     }
   }
-
-  if (controlErrors > 0) process.exitCode = 1;
 
   if (!dryRun) {
     console.log(`\nDispatched ${dispatched} remediation agent(s).`);

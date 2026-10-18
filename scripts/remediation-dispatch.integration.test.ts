@@ -51,6 +51,25 @@ describe('remediation dispatch spends its quota on eligible work', () => {
     );
   });
 
+  it('retains the quota for a launched agent when a later control fails', () => {
+    vi.mocked(readFileSync).mockImplementation((path) => JSON.stringify(
+      String(path).includes('security-registry')
+        ? { date: new Date().toISOString().slice(0, 10), repos }
+        : { date: new Date().toISOString().slice(0, 10), count: REMEDIATION_CONFIG.maxPerDay - 2 }
+    ));
+    vi.mocked(getRemediationBlocker)
+      .mockReturnValueOnce(null)
+      .mockImplementationOnce(() => { throw new Error('HTTP 403'); });
+    runRemediationDispatch();
+    expect(process.exitCode).toBe(1);
+    expect(vi.mocked(sh).mock.calls.filter(([command]) => command.includes('gh workflow run')))
+      .toHaveLength(1);
+    expect(writeFileSync).toHaveBeenCalledWith(
+      'data/remediation-quota.json',
+      expect.stringContaining(`"count": ${REMEDIATION_CONFIG.maxPerDay - 1}`)
+    );
+  });
+
   it('does not consume quota or deploy workflows when all candidates are blocked', () => {
     vi.mocked(getRemediationBlocker).mockReturnValue('PR #42 awaits review');
     runRemediationDispatch();
