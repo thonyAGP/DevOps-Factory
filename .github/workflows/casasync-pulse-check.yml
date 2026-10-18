@@ -1,0 +1,58 @@
+name: CasaSync pulse access
+on:
+  pull_request:
+    paths:
+      - data/silence-watchdog.json
+      - .github/workflows/casasync-pulse-check.yml
+permissions:
+  contents: read
+jobs:
+  probe:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify authenticated read-only pulse
+        env:
+          CASASYNC_CRON_SECRET: ${{ secrets.CASASYNC_CRON_SECRET }}
+        run: |
+          node --input-type=module <<'JS'
+          import { readFileSync } from 'node:fs';
+          const secret = process.env.CASASYNC_CRON_SECRET;
+          if (!secret) throw new Error('CASASYNC_CRON_SECRET absent : configurer le secret DevOps avant activation');
+          const config = JSON.parse(readFileSync('data/silence-watchdog.json', 'utf8'));
+          const flow = config.flows.find((entry) => entry.id === 'casasync-pulse');
+          if (!flow || flow.type !== 'https') throw new Error('Configuration de sonde absente');
+          let last = 'unreachable';
+          for (let attempt = 0; attempt < 6; attempt++) {
+            try {
+              const response = await fetch(flow.url, {
+                headers: { 'x-cron-secret': secret },
+                redirect: 'manual',
+                cache: 'no-store',
+                signal: AbortSignal.timeout(15_000),
+              });
+              last = 'HTTP ' + response.status;
+              if (response.status === 401 || response.status === 403) {
+                throw new Error('PULSE_AUTH_REFUSED');
+              }
+              const body = await response.json().catch(() => null);
+              if ((response.status === 200 && body?.status === 'ok') ||
+                  (response.status === 503 && body?.status === 'error')) {
+                console.log('Sonde authentifiée accessible : ' + last +
+                  (response.status === 503 ? ' (traitement dégradé, surveillance nécessaire)' : ''));
+                process.exit(0);
+              }
+            } catch (error) {
+              if (error instanceof Error && error.message === 'PULSE_AUTH_REFUSED') {
+                throw new Error('La sonde refuse CASASYNC_CRON_SECRET : vérifier la configuration');
+              }
+            }
+            if (attempt < 5) await new Promise((resolve) => setTimeout(resolve, 20_000));
+          }
+          throw new Error('Sonde non vérifiable après déploiement : ' + last);
+          JS

@@ -62,8 +62,8 @@
         "env": "CASASYNC_CRON_SECRET"
       },
       "consecutiveFailures": 2,
-      "pending": true,
-      "pendingReason": "sonde GET /api/health/pulse à créer dans CasaSync après CHG-345 : lecture seule du heartbeat scenarios-tick"
+      "pending": false,
+      "note": "Sonde en lecture seule CHG-355 ; succès et fraîcheur du battement scenarios-tick, sans déclencher de tâche."
     },
     {
       "id": "lb2i-pulse",
