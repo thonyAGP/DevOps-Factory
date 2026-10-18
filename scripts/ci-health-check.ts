@@ -386,33 +386,33 @@ const hasRecentAiFixMerge = (repo: string, windowMs: number): boolean => {
   return Date.now() - mergedAt < windowMs;
 };
 
-const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
+const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): boolean => {
   const { project, run } = result;
-  if (!run) return;
+  if (!run) return false;
 
   // Skip paused repos
   if (project.healingState === 'paused') {
     console.log(`  [SKIP HEAL] ${project.name}: healingState is "paused"`);
-    return;
+    return false;
   }
 
   // Guard: don't self-heal failures on ai-fix branches (belt-and-suspenders, main filter is in getLatestCIRun)
   if (run.head_branch.startsWith('ai-fix/')) {
     console.log(`  [SKIP HEAL] ${project.name}: failure on ai-fix branch, skip`);
-    return;
+    return false;
   }
 
   // Guard: don't trigger if there's already an open ai-fix PR
   if (hasOpenAiFixPR(project.repo)) {
     console.log(`  [SKIP HEAL] ${project.name}: open ai-fix PR exists`);
-    return;
+    return false;
   }
 
   // Guard: don't trigger if an ai-fix PR was merged recently (CI may still be cascading)
   const AI_FIX_MERGE_WINDOW_MS = 2 * 60 * 60 * 1000; // 2h
   if (hasRecentAiFixMerge(project.repo, AI_FIX_MERGE_WINDOW_MS)) {
     console.log(`  [SKIP HEAL] ${project.name}: ai-fix PR merged <2h ago, waiting for CI cascade`);
-    return;
+    return false;
   }
 
   // Guard: per-repo cooldown (24h for factory, 4h for others)
@@ -425,7 +425,7 @@ const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
     console.log(
       `  [SKIP HEAL] ${project.name}: last attempt ${hoursAgo}h ago (cooldown ${cooldownLabel})`
     );
-    return;
+    return false;
   }
 
   // Check if self-heal workflow is enabled before attempting dispatch
@@ -434,7 +434,7 @@ const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
   );
   if (workflowState === 'disabled_manually') {
     console.log(`  [SKIP HEAL] ${project.name}: self-heal workflow is disabled`);
-    return;
+    return false;
   }
 
   // Trigger self-heal workflow + record cooldown
@@ -452,6 +452,7 @@ const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
       'warning',
       project.name
     );
+    return true;
   } catch (e) {
     console.error(`  [ERROR] Failed to trigger self-heal for ${project.name}:`, e);
     logActivity(
@@ -461,6 +462,7 @@ const triggerSelfHeal = (factoryRepo: string, result: CICheckResult): void => {
       'error',
       project.name
     );
+    return false;
   }
 };
 
@@ -531,8 +533,7 @@ const main = () => {
 
     if (result.status === 'fail') {
       // Auto-trigger self-heal for enabled repos (always, regardless of alert filter)
-      if (result.project.hasSelfHealing) {
-        triggerSelfHeal(factoryRepo, result);
+      if (result.project.hasSelfHealing && triggerSelfHeal(factoryRepo, result)) {
         recordSelfHealAttemptInTracker(result.project.repo);
       }
 
@@ -588,3 +589,4 @@ const main = () => {
 };
 
 main();
+
