@@ -1,4 +1,4 @@
-name: CasaSync pulse access
+name: Monitored pulse access
 on:
   pull_request:
     paths:
@@ -9,6 +9,10 @@ permissions:
 jobs:
   probe:
     if: github.event.pull_request.head.repo.full_name == github.repository
+    strategy:
+      fail-fast: false
+      matrix:
+        flow: [casasync-pulse, lb2i-pulse]
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -18,20 +22,24 @@ jobs:
           node-version: 22
       - name: Verify authenticated read-only pulse
         env:
+          PULSE_FLOW: ${{ matrix.flow }}
+          LB2I_CRON_SECRET: ${{ secrets.LB2I_CRON_SECRET }}
           CASASYNC_CRON_SECRET: ${{ secrets.CASASYNC_CRON_SECRET }}
         run: |
           node --input-type=module <<'JS'
           import { readFileSync } from 'node:fs';
-          const secret = process.env.CASASYNC_CRON_SECRET;
-          if (!secret) throw new Error('CASASYNC_CRON_SECRET absent : configurer le secret DevOps avant activation');
           const config = JSON.parse(readFileSync('data/silence-watchdog.json', 'utf8'));
-          const flow = config.flows.find((entry) => entry.id === 'casasync-pulse');
-          if (!flow || flow.type !== 'https') throw new Error('Configuration de sonde absente');
+          const flowId = process.env.PULSE_FLOW || 'casasync-pulse';
+          if (!['casasync-pulse', 'lb2i-pulse'].includes(flowId)) throw new Error('Flux non autorisé');
+          const flow = config.flows.find((entry) => entry.id === flowId);
+          if (!flow || flow.type !== 'https' || !flow.auth) throw new Error('Configuration de sonde absente');
+          const secret = process.env[flow.auth.env];
+          if (!secret) throw new Error(flow.auth.env + ' absent : configurer le secret DevOps avant activation');
           let last = 'unreachable';
           for (let attempt = 0; attempt < 6; attempt++) {
             try {
               const response = await fetch(flow.url, {
-                headers: { 'x-cron-secret': secret },
+                headers: { [flow.auth.header]: (flow.auth.prefix || '') + secret },
                 redirect: 'manual',
                 cache: 'no-store',
                 signal: AbortSignal.timeout(15_000),
@@ -60,7 +68,7 @@ jobs:
                 throw new Error('La sonde doit refuser les requêtes sans secret avant activation');
               }
               if (error instanceof Error && error.message === 'PULSE_AUTH_REFUSED') {
-                throw new Error('La sonde refuse CASASYNC_CRON_SECRET : vérifier la configuration');
+                throw new Error('La sonde refuse le secret configuré : vérifier la configuration');
               }
             }
             if (attempt < 5) await new Promise((resolve) => setTimeout(resolve, 20_000));
