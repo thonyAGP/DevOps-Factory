@@ -12,18 +12,13 @@ import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { KNOWN_PROJECTS, SCAN_CONFIG } from '../factory.config.js';
 import { jq, devNull } from './shell-utils.js';
-import { getCached, setCache } from './cache-manager.js';
+import {
+  listAccessibleRepositories,
+  isRepositoryActive,
+  type Repository as GHRepo,
+} from './repository-discovery.js';
 import { logActivity } from './activity-logger.js';
 import { batchFileExists } from './github-file-checker.js';
-
-interface GHRepo {
-  name: string;
-  full_name: string;
-  default_branch: string;
-  archived: boolean;
-  fork: boolean;
-  language: string | null;
-}
 
 const IGNORED_REPOS = [
   'DevOps-Factory',
@@ -31,7 +26,6 @@ const IGNORED_REPOS = [
   ...SCAN_CONFIG.ignoredRepos,
 ];
 
-const INACTIVE_THRESHOLD_DAYS = 90;
 
 const gh = (cmd: string): string => {
   try {
@@ -39,28 +33,6 @@ const gh = (cmd: string): string => {
   } catch {
     return '';
   }
-};
-
-const ghJson = <T>(cmd: string): T => {
-  const result = gh(cmd);
-  return JSON.parse(result || '[]') as T;
-};
-
-const isActive = (repo: GHRepo): boolean => {
-  const cacheKey = `active-${repo.name}`;
-  const cached = getCached<boolean>(cacheKey);
-  if (cached !== null) return cached;
-
-  const lastPush = gh(`api repos/${repo.full_name} --jq .pushed_at`);
-  if (!lastPush) {
-    setCache(cacheKey, false);
-    return false;
-  }
-
-  const daysSince = (Date.now() - new Date(lastPush).getTime()) / 86400000;
-  const active = daysSince < INACTIVE_THRESHOLD_DAYS;
-  setCache(cacheKey, active);
-  return active;
 };
 
 type Stack = 'nextjs' | 'node' | 'dotnet' | 'astro' | 'unknown';
@@ -163,16 +135,7 @@ const main = () => {
   const knownRepoFullNames = new Set(KNOWN_PROJECTS.map((p) => p.repo.toLowerCase()));
   const knownNames = new Set(KNOWN_PROJECTS.map((p) => p.name.toLowerCase()));
 
-  const cacheKey = 'repos-list';
-  let repos = getCached<GHRepo[]>(cacheKey);
-
-  if (!repos) {
-    console.log('📡 Fetching repos from GitHub API...');
-    repos = ghJson<GHRepo[]>(
-      'api user/repos --paginate --jq "[.[] | {name, full_name, default_branch, archived, fork, language}]"'
-    );
-    setCache(cacheKey, repos);
-  }
+  const repos = listAccessibleRepositories();
 
   const candidates = repos.filter(
     (r) =>
@@ -194,7 +157,7 @@ const main = () => {
   const addedNames: string[] = [];
 
   for (const repo of candidates) {
-    if (!isActive(repo)) {
+    if (!isRepositoryActive(repo)) {
       console.log(`  ⏭️  ${repo.name}: inactive (>90 days), skipping`);
       continue;
     }
@@ -267,3 +230,4 @@ const main = () => {
 };
 
 main();
+

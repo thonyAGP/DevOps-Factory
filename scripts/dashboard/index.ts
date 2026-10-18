@@ -33,11 +33,12 @@ const main = () => {
   console.log('Building dashboard...\n');
   const statuses = buildProjectStatuses(report);
 
+  // Validate before replacing any published file or writing history.
+  const reportBody = generateDailyReport(statuses);
   const html = generateHTML(statuses);
   writeFileSync('dashboard/index.html', html);
   console.log('Dashboard written to dashboard/index.html');
 
-  const reportBody = generateDailyReport(statuses);
   writeFileSync('dashboard/daily-report.md', reportBody);
   console.log('Daily report written to dashboard/daily-report.md');
 
@@ -94,3 +95,4 @@ const main = () => {
 };
 
 main();
+

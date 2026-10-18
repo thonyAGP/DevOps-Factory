@@ -13,20 +13,14 @@ import { execSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 import { logActivity } from './activity-logger.js';
 import { jq, devNull } from './shell-utils.js';
-import { getCached, setCache } from './cache-manager.js';
+import {
+  listAccessibleRepositories,
+  isRepositoryActive,
+  type Repository as Repo,
+} from './repository-discovery.js';
 import { batchFileExists, fileExistsInRepo } from './github-file-checker.js';
 import { loadRepoConfig, renderTemplate } from './template-config.js';
 import { PRIVATE_WORKFLOW_ALLOWLIST } from '../factory.config.js';
-
-interface Repo {
-  name: string;
-  full_name: string;
-  default_branch: string;
-  archived: boolean;
-  fork: boolean;
-  private: boolean;
-  language: string | null;
-}
 
 interface RepoAnalysis {
   repo: Repo;
@@ -73,7 +67,6 @@ interface RepoAnalysis {
 }
 
 const IGNORED_REPOS = ['DevOps-Factory', 'Parametrage_Claude', 'Migration_Pc1_vers_Pc2', '.github'];
-const INACTIVE_THRESHOLD_DAYS = 90;
 
 const TEMPLATES_DIR = 'templates';
 
@@ -85,61 +78,15 @@ const gh = (cmd: string): string => {
   }
 };
 
-const ghJson = <T>(cmd: string): T => {
-  const result = gh(cmd);
-  return JSON.parse(result || '[]') as T;
-};
-
-const isRepoActive = (repo: Repo): boolean => {
-  const cacheKey = `active-${repo.name}`;
-  const cached = getCached<boolean>(cacheKey);
-  if (cached !== null) {
-    console.log(`  ✅ Cache hit: ${repo.name} is ${cached ? 'active' : 'inactive'}`);
-    return cached;
-  }
-
-  const lastPush = gh(`api repos/${repo.full_name} --jq .pushed_at`);
-  if (!lastPush) {
-    setCache(cacheKey, false);
-    return false;
-  }
-
-  const daysSinceLastPush = (Date.now() - new Date(lastPush).getTime()) / 86400000;
-  const active = daysSinceLastPush < INACTIVE_THRESHOLD_DAYS;
-
-  console.log(
-    `  🔍 ${repo.name}: ${Math.floor(daysSinceLastPush)}d since last push → ${active ? 'ACTIVE' : 'INACTIVE'}`
-  );
-  setCache(cacheKey, active);
-  return active;
-};
-
 const listRepos = (): Repo[] => {
-  const cacheKey = 'repos-list';
-  const cached = getCached<Repo[]>(cacheKey);
-
-  if (cached) {
-    console.log(`✅ Using cached repos list (${cached.length} repos)`);
-    return cached;
+  const repos = listAccessibleRepositories();
+  const active = repos.filter(
+    (r) => !r.archived && !r.fork && !IGNORED_REPOS.includes(r.name) && isRepositoryActive(r)
+  );
+  if (active.length === 0) {
+    throw new Error('No active repositories discovered; previous scan report preserved');
   }
-
-  console.log('🔍 Fetching repos from GitHub API...');
-  const repos = ghJson<Repo[]>(
-    'api user/repos --paginate --jq "[.[] | {name, full_name, default_branch, archived, fork, private: .private, language}]"'
-  );
-
-  const nonArchivedNonFork = repos.filter(
-    (r) => !r.archived && !r.fork && !IGNORED_REPOS.includes(r.name)
-  );
-  console.log(`📦 Found ${repos.length} repos, ${nonArchivedNonFork.length} non-archived/non-fork`);
-
-  console.log('🔍 Filtering inactive repos (>90 days)...');
-  const active = nonArchivedNonFork.filter(isRepoActive);
-
-  const inactive = nonArchivedNonFork.length - active.length;
-  console.log(`✅ Filtered to ${active.length} active repos (${inactive} inactive repos excluded)`);
-
-  setCache(cacheKey, active);
+  console.log(`Found ${active.length} active repos from ${repos.length} accessible repos`);
   return active;
 };
 
@@ -791,7 +738,8 @@ const generateReport = (analyses: RepoAnalysis[]): string => {
 
 // Main execution
 const main = () => {
-  console.log('DevOps-Factory: Scanning repos...\n');
+  const configure = process.argv.includes('--configure');
+  console.log(`DevOps-Factory: Scanning repos (${configure ? 'configure' : 'inventory only'})...\n`);
 
   const repos = listRepos();
   console.log(`Found ${repos.length} repos (excluding ignored)\n`);
@@ -804,10 +752,14 @@ const main = () => {
     analyses.push(analysis);
 
     if (analysis.stack !== 'unknown') {
-      createConfigPR(analysis);
+      if (configure) createConfigPR(analysis);
     } else {
       console.log(`  [SKIP] ${repo.name}: no detectable project stack`);
     }
+  }
+
+  if (!analyses.some((a) => a.stack !== 'unknown')) {
+    throw new Error('No project stack detected; refusing to overwrite the scan report');
   }
 
   const report = generateReport(analyses);
@@ -881,3 +833,4 @@ const main = () => {
 };
 
 main();
+

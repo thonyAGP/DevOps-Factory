@@ -97,6 +97,12 @@ const main = async (): Promise<void> => {
     return;
   }
 
+  // Review prepared work before downloading logs, cloning, or invoking a model.
+  if (isCircuitBreakerOpen(repo)) {
+    logActivity('self-heal', 'skip-pending-work', 'Pending PR or unavailable GitHub state', 'info', repo);
+    return;
+  }
+
   // 1. Get structured errors per failed job
   const jobs = getFailedJobs(repo, runId);
   if (jobs.length === 0) {
@@ -121,18 +127,6 @@ const main = async (): Promise<void> => {
   }
   if (cooldownResult === 'escalate') {
     createEscalationIssue(repo, runId, errorSig, MAX_ATTEMPTS_BEFORE_ESCALATION);
-    recordAttempt(repo, errorSig, false);
-    return;
-  }
-
-  // 0c. Circuit breaker
-  if (isCircuitBreakerOpen(repo)) {
-    console.log('Circuit breaker OPEN - too many unreviewed PRs. Skipping.');
-    logActivity('self-heal', 'circuit-breaker', 'Too many unreviewed healing PRs', 'warning', repo);
-    notify('circuit_breaker', {
-      repo,
-      message: 'Too many unreviewed healing PRs — self-heal paused',
-    });
     recordAttempt(repo, errorSig, false);
     return;
   }
@@ -417,7 +411,7 @@ const main = async (): Promise<void> => {
 
   if (
     (hasNonDuplicateErrors || hasLogsWithoutAnnotations) &&
-    (fileContents.size > 0 || hasLogsWithoutAnnotations)
+    fileContents.size > 0
   ) {
     const matchedPattern = matchPattern(targetJobs);
     let patternHint = '';
@@ -531,6 +525,11 @@ const main = async (): Promise<void> => {
     }
   }
 
+  if (fileContents.size === 0 && allFixes.length === 0) {
+    explanation = 'No actionable source files found; model analysis skipped';
+    logActivity('self-heal', 'skip-no-source', explanation, 'warning', repo);
+  }
+
   // 5. Apply or create issue
   if (allFixes.length === 0) {
     console.log('\nNo fixes found - creating issue...');
@@ -611,3 +610,4 @@ main().catch((err) => {
   console.error('Self-heal failed:', err);
   process.exit(1);
 });
+

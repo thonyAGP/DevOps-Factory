@@ -5,7 +5,11 @@ on:
     # Every 12 hours (reduced from 6h to save API quota)
     - cron: '0 */12 * * *'
   workflow_dispatch:
-    inputs: {}
+    inputs:
+      configure:
+        description: 'Create configuration PRs (scheduled scans only refresh inventory)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -47,8 +51,14 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Scan and configure repos
-        run: pnpm scan
+        run: |
+          if [ "$CONFIGURE" = "true" ]; then
+            pnpm scan -- --configure
+          else
+            pnpm scan
+          fi
         env:
+          CONFIGURE: ${{ inputs.configure }}
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Sync registry (auto-add new repos)
@@ -84,3 +94,4 @@ jobs:
           git push
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
+

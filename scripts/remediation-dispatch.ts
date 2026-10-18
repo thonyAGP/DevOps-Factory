@@ -24,6 +24,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { REMEDIATION_CONFIG, type RemediationConfig } from '../factory.config.js';
 import { logActivity } from './activity-logger.js';
 import { sh } from './shell-utils.js';
+import { getRemediationBlocker } from './automation-guard.js';
 
 type Grade = 'A' | 'B' | 'C' | 'D' | 'F';
 
@@ -137,7 +138,22 @@ const ensureWorkflowDeployed = (repo: string): boolean => {
   return false;
 };
 
-const main = (): void => {
+const isReadyForRemediation = (target: RepoRisk, dryRun: boolean): boolean => {
+  try {
+    const blocker = getRemediationBlocker(target.repo, REMEDIATION_CONFIG.workflowFile);
+    if (!blocker) return true;
+    console.log(`    [SKIP] ${blocker}`);
+    if (!dryRun) {
+      logActivity('remediation-dispatch', 'skip-pending-work', blocker, 'info', target.name);
+    }
+  } catch {
+    console.error(`    [ERROR] Cannot verify pending work for ${target.repo}; agent not dispatched`);
+    process.exitCode = 1;
+  }
+  return false;
+};
+
+export const runRemediationDispatch = (): void => {
   const dryRun = process.argv.slice(2).includes('--dry-run');
 
   if (!REMEDIATION_CONFIG.enabled) {
@@ -153,9 +169,9 @@ const main = (): void => {
 
   const quota = loadQuota();
   const remaining = quota.maxPerDay - quota.count;
-  const targets = selectRemediationTargets(registry, REMEDIATION_CONFIG, remaining);
+  const targets = selectRemediationTargets(registry, REMEDIATION_CONFIG, registry.repos.length);
 
-  if (targets.length === 0) {
+  if (remaining <= 0 || targets.length === 0) {
     console.log(
       `No eligible targets (allowlist=${REMEDIATION_CONFIG.enabledRepos.length}, ` +
         `grade≤${REMEDIATION_CONFIG.minGrade}, quota ${quota.count}/${quota.maxPerDay}).`
@@ -166,8 +182,14 @@ const main = (): void => {
   console.log(`${targets.length} target(s) selected (quota ${quota.count}/${quota.maxPerDay}):`);
   let dispatched = 0;
   for (const t of targets) {
+    if (dispatched >= remaining) break;
     console.log(`  ${t.grade} ${t.name} (risk ${t.risk}) — ${t.reasons.join(', ')}`);
-    if (dryRun) continue;
+    if (!isReadyForRemediation(t, dryRun)) continue;
+    if (dryRun) {
+      console.log('    [DRY-RUN] Eligible, no pending work; would dispatch');
+      dispatched++;
+      continue;
+    }
     if (!ensureWorkflowDeployed(t.repo)) continue;
     if (dispatchAgent(t.repo)) {
       dispatched++;
@@ -200,4 +222,5 @@ const main = (): void => {
 
 const isDirectRun =
   !process.env.VITEST && process.argv[1]?.replace(/\\/g, '/').endsWith('remediation-dispatch.ts');
-if (isDirectRun) main();
+if (isDirectRun) runRemediationDispatch();
+

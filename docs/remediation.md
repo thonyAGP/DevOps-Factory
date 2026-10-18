@@ -20,6 +20,9 @@ Rien ne part tant que tout n'est pas explicitement autorisé :
 - `REMEDIATION_CONFIG.enabled` = `false` par défaut → le dispatcher est un no-op
 - `enabledRepos` vide par défaut → **allowlist** : seuls les repos listés sont éligibles
 - `minGrade` (`F` par défaut) → seuls les repos assez mal notés qualifient
+- **travail déjà préparé** → aucune nouvelle remédiation tant qu’une PR attend une revue
+- **agent déjà actif ou en attente** → aucun second lancement sur le même dépôt
+- **contrôle GitHub indisponible** → échec visible, aucun agent lancé
 - **quota journalier** (`maxPerDay`, 2) → borne le nombre d'agents lancés/jour
 - l'agent cible est lui-même borné : `max_turns`, `allowed_tools`, prompt à
   périmètre serré (jamais de secrets, jamais de refactor/majeure, tests
@@ -73,3 +76,6 @@ une fois la confiance établie.
 ```bash
 pnpm remediation-dispatch -- --dry-run   # liste les cibles sans rien lancer
 ```
+
+
+La politique détaillée est décrite dans [automation-efficiency.md](automation-efficiency.md).
