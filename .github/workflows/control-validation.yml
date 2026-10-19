@@ -30,6 +30,9 @@ jobs:
           private-key: ${{ secrets.FACTORY_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
       - uses: actions/checkout@v4
+        with:
+          ref: master
+          token: ${{ steps.app-token.outputs.token }}
       - uses: pnpm/action-setup@v4
         with:
           version: 9
@@ -38,7 +41,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Validate actual inventory and dashboard without publishing or dispatching
+      - name: Validate actual inventory and dashboard without dispatching
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
@@ -59,5 +62,17 @@ jobs:
           const report = JSON.parse(readFileSync('dashboard/scan-report.json', 'utf8'));
           const active = report.analyses.filter((p) => p.stack !== 'unknown');
           if (!active.length || !existsSync('dashboard/index.html')) throw new Error('Empty control result');
-          console.log(`Actual inventory and dashboard validated: ${active.length} projects. No remote writes or agents.`);
+          console.log(`Actual inventory and dashboard validated: ${active.length} projects. No agent dispatch or application writes.`);
           NODE
+      - name: Publish only the validated inventory snapshot
+        run: |
+          cp dashboard/scan-report.json /tmp/validated-scan-report.json
+          git fetch origin master
+          git reset --hard origin/master
+          cp /tmp/validated-scan-report.json dashboard/scan-report.json
+          git config user.name 'DevOps Factory Bot'
+          git config user.email 'devops-factory[bot]@users.noreply.github.com'
+          git add dashboard/scan-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore: publish validated inventory snapshot'
+          git push origin HEAD:master

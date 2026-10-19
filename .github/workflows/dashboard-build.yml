@@ -12,6 +12,7 @@ on:
   workflow_run:
     workflows:
       - 'Scan Repos'
+      - 'Control inventory validation'
       - 'Central Security Scan'
       - 'Central Coverage'
       - 'Central Renovate'
@@ -29,6 +30,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -278,3 +280,4 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
