@@ -1,3 +1,4 @@
+import { renderPrioritySection } from './priority-section.js';
 import { formatDashboardDate, getHealthColor } from './formatters.js';
 import { DASHBOARD_CSS } from './styles.js';
 import { DASHBOARD_SCRIPTS } from './client-scripts.js';
@@ -72,6 +73,8 @@ export const generateHTML = (statuses: ProjectStatus[], inventoryCount = statuse
     <h1>DevOps Factory Dashboard</h1>
     <div class="timestamp">Last updated: ${timestamp}</div>
   </div>
+
+  ${renderPrioritySection(statuses)}
 
   <div class="summary">
     <div class="summary-item">
