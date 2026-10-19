@@ -48,7 +48,7 @@ export const getProjectIssues = (p: ProjectStatus): string[] => {
 
 export const buildProjectStatuses = (report: ScanReport): ProjectStatus[] => {
   return report.analyses
-    .filter((a) => a.stack !== 'unknown' && !hiddenRepos.has(a.fullName))
+    .filter((a) => (a.stack !== 'unknown' || a.hasCI) && !hiddenRepos.has(a.fullName))
     .map((analysis) => {
       const lastRun = analysis.hasCI ? getLatestWorkflowRun(analysis.fullName, analysis.defaultBranch, analysis.ciWorkflow) : null;
       const allPRs = getOpenPRs(analysis.fullName);

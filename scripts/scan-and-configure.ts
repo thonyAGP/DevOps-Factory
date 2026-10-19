@@ -15,7 +15,6 @@ import { logActivity } from './activity-logger.js';
 import { jq, devNull } from './shell-utils.js';
 import {
   listAccessibleRepositories,
-  isRepositoryActive,
   type Repository as Repo,
 } from './repository-discovery.js';
 import { batchFileExists, fileExistsInRepo } from './github-file-checker.js';
@@ -67,8 +66,6 @@ interface RepoAnalysis {
   hasTypedoc: boolean;
 }
 
-const IGNORED_REPOS = ['DevOps-Factory', 'Parametrage_Claude', 'Migration_Pc1_vers_Pc2', '.github'];
-
 const TEMPLATES_DIR = 'templates';
 
 const gh = (cmd: string): string => {
@@ -82,12 +79,12 @@ const gh = (cmd: string): string => {
 const listRepos = (): Repo[] => {
   const repos = listAccessibleRepositories();
   const active = repos.filter(
-    (r) => !r.archived && !r.fork && !IGNORED_REPOS.includes(r.name) && isRepositoryActive(r)
+    (r) => !r.archived && !r.fork
   );
   if (active.length === 0) {
-    throw new Error('No active repositories discovered; previous scan report preserved');
+    throw new Error('No eligible repositories discovered; previous scan report preserved');
   }
-  console.log(`Found ${active.length} active repos from ${repos.length} accessible repos`);
+  console.log(`Found ${active.length} non-archived repos from ${repos.length} accessible repos`);
   return active;
 };
 
@@ -240,6 +237,8 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
 
 const createConfigPR = (analysis: RepoAnalysis): void => {
   const { repo } = analysis;
+  // Inventory includes the controller, but configuration must not modify itself.
+  if (repo.name === 'DevOps-Factory') return;
   const branchName = `devops-factory/add-workflows`;
   const filesToAdd: { path: string; template: string }[] = [];
 
