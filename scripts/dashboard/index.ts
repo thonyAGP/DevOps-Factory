@@ -35,7 +35,7 @@ const main = () => {
 
   // Validate before replacing any published file or writing history.
   const reportBody = generateDailyReport(statuses);
-  const html = generateHTML(statuses);
+  const html = generateHTML(statuses, report.analyses.length);
   writeFileSync('dashboard/index.html', html);
   console.log('Dashboard written to dashboard/index.html');
 
@@ -95,4 +95,5 @@ const main = () => {
 };
 
 main();
+
 

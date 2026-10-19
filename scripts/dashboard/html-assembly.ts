@@ -18,7 +18,10 @@ import {
 } from './sections/index.js';
 import type { ProjectStatus } from './types.js';
 
-export const generateHTML = (statuses: ProjectStatus[]): string => {
+export const generateHTML = (statuses: ProjectStatus[], inventoryCount = statuses.length): string => {
+  if (!statuses.length) throw new Error('No monitored results; refusing an empty dashboard');
+  const passingCount = statuses.filter((p) => p.ciStatus === 'pass').length;
+  const uncoveredCount = statuses.filter((p) => p.ciStatus === 'none').length + Math.max(0, inventoryCount - statuses.length);
   const timestamp = formatDashboardDate(new Date());
   const avgHealth = Math.round(statuses.reduce((s, p) => s + p.healthScore, 0) / statuses.length);
   const failingCount = statuses.filter((p) => p.ciStatus === 'fail').length;
@@ -42,15 +45,17 @@ export const generateHTML = (statuses: ProjectStatus[]): string => {
     .sort((a, b) => a.healthScore - b.healthScore);
 
   const okProjects = statuses
-    .filter((p) => !problemProjects.includes(p))
+    .filter((p) => p.ciStatus === 'pass' && !problemProjects.includes(p))
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  const uncoveredProjects = statuses.filter((p) => p.ciStatus === 'none' && !problemProjects.includes(p));
+  const uncoveredCards = renderOkCards(uncoveredProjects);
   const alertCards = renderAlertCards(problemProjects);
   const okCards = renderOkCards(okProjects);
 
   const allClearBanner =
-    problemProjects.length === 0
-      ? `<div class="all-clear">All ${statuses.length} projects are healthy</div>`
+    problemProjects.length === 0 && passingCount > 0
+      ? `<div class="all-clear">${passingCount} repositories with a successful CI result; ${uncoveredCount} without a displayed CI result. Production health is not established by these checks.</div>`
       : '';
 
   return `<!DOCTYPE html>
@@ -70,12 +75,12 @@ export const generateHTML = (statuses: ProjectStatus[]): string => {
 
   <div class="summary">
     <div class="summary-item">
-      <div class="number">${statuses.length}</div>
-      <div class="label">Projects</div>
+      <div class="number">${inventoryCount}</div>
+      <div class="label">Repositories inventoried</div>
     </div>
     <div class="summary-item">
       <div class="number" style="color: ${getHealthColor(avgHealth)}">${avgHealth}</div>
-      <div class="label">Avg Health</div>
+      <div class="label">Avg Quality Score</div>
     </div>
     <div class="summary-item">
       <div class="number" style="color: ${failingCount > 0 ? '#ef4444' : '#22c55e'}">${failingCount}</div>
@@ -132,10 +137,15 @@ export const generateHTML = (statuses: ProjectStatus[]): string => {
   }
 
   <div class="ok-section">
-    <div class="section-title">Healthy (${okProjects.length})</div>
+    <div class="section-title">CI passing (${okProjects.length})</div>
     <div class="ok-grid">
       ${okCards}
     </div>
+  </div>
+
+  <div class="ok-section">
+    <div class="section-title">Without a displayed CI result (${uncoveredCount})</div>
+    <div class="ok-grid">${uncoveredCards}</div>
   </div>
 
   <div class="trends">
@@ -149,3 +159,4 @@ export const generateHTML = (statuses: ProjectStatus[]): string => {
 </body>
 </html>`;
 };
+
