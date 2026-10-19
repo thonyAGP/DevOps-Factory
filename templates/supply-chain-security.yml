@@ -9,6 +9,7 @@ name: Supply Chain Security
     - pnpm-lock.yaml
     - yarn.lock
     - package-lock.json
+    - .github/workflows/supply-chain-security.yml
   schedule:
   - cron: 0 7 * * 3
 permissions:
