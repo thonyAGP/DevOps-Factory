@@ -1,0 +1,63 @@
+name: Control inventory validation
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - scripts/github-file-checker.ts
+      - scripts/repository-discovery.ts
+      - scripts/scan-and-configure.ts
+      - scripts/dashboard/**
+      - .github/workflows/control-validation.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: control-inventory-validation
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.FACTORY_APP_ID }}
+          private-key: ${{ secrets.FACTORY_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Validate actual inventory and dashboard without publishing or dispatching
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { execFileSync } from 'node:child_process';
+          import { readFileSync, existsSync } from 'node:fs';
+          for (const task of ['scan', 'dashboard']) {
+            try {
+              execFileSync('pnpm', [task], {
+                encoding: 'utf8', timeout: 600000, maxBuffer: 10 * 1024 * 1024,
+                stdio: ['ignore', 'pipe', 'pipe'],
+              });
+            } catch {
+              // Never publish private repository data or captured provider output.
+              throw new Error(`Control validation failed at ${task}; no report published`);
+            }
+          }
+          const report = JSON.parse(readFileSync('dashboard/scan-report.json', 'utf8'));
+          const active = report.analyses.filter((p) => p.stack !== 'unknown');
+          if (!active.length || !existsSync('dashboard/index.html')) throw new Error('Empty control result');
+          console.log(`Actual inventory and dashboard validated: ${active.length} projects. No remote writes or agents.`);
+          NODE
