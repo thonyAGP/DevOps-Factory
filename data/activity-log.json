@@ -2,29 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-12T17:41:10.352Z",
-      "source": "quality-score",
-      "action": "quality-drop",
-      "target": "MCP_Quota_Claude",
-      "details": "35 → 25 (-10pts)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-12T17:41:10.354Z",
-      "source": "quality-score",
-      "action": "quality-improved",
-      "target": "Zentra",
-      "details": "25 → 40 (+15pts)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-12T17:41:10.357Z",
-      "source": "quality-score",
-      "action": "quality-complete",
-      "details": "Avg 33/100, 0 excellent, 17 needs work, 1 drops, 1 improvements",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-10-12T18:24:29.677Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -3469,6 +3446,34 @@
       "action": "quality-complete",
       "details": "Avg 34/100, 0 excellent, 17 needs work, 0 drops, 0 improvements",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-10-19T17:50:28.160Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 37 repos (23 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-19T17:50:35.108Z",
+      "source": "scan-and-configure",
+      "action": "registry-sync",
+      "details": "Auto-added 4 repo(s): patrimo, Boxmail_cleaning, jira-tickets, FincaScout",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-19T17:50:48.379Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-19T17:50:48.382Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 52 outcomes (23 merged, 9 closed, 20 open). 4 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
