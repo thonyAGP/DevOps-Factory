@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "date": "2026-10-12",
-  "totalFindings": 914,
+  "date": "2026-10-19",
+  "totalFindings": 718,
   "repos": [
     {
       "name": "DevOps-Factory",
@@ -39,63 +39,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 240,
+          "findings": 230,
           "bySeverity": {
-            "DUPLICATION": 240
+            "DUPLICATION": 230
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 8.97
-          }
-        }
-      ]
-    },
-    {
-      "name": "Email_Assistant",
-      "repo": "thonyAGP/Email_Assistant",
-      "stack": "fastify",
-      "cloned": true,
-      "scanners": [
-        {
-          "scanner": "gitleaks",
-          "status": "findings",
-          "findings": 1,
-          "bySeverity": {
-            "SECRET": 1
-          },
-          "top": []
-        },
-        {
-          "scanner": "semgrep",
-          "status": "findings",
-          "findings": 25,
-          "bySeverity": {
-            "WARNING": 12,
-            "MEDIUM": 12,
-            "ERROR": 1
-          },
-          "top": []
-        },
-        {
-          "scanner": "trivy",
-          "status": "findings",
-          "findings": 142,
-          "bySeverity": {
-            "CRITICAL": 15,
-            "HIGH": 127
-          },
-          "top": []
-        },
-        {
-          "scanner": "jscpd",
-          "status": "findings",
-          "findings": 2135,
-          "bySeverity": {
-            "DUPLICATION": 2135
-          },
-          "top": [],
-          "metrics": {
-            "duplicationPct": 18.05
+            "duplicationPct": 8.65
           }
         }
       ]
@@ -137,13 +87,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 166,
+          "findings": 165,
           "bySeverity": {
-            "DUPLICATION": 166
+            "DUPLICATION": 165
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 3.28
+            "duplicationPct": 3.27
           }
         }
       ]
@@ -185,13 +135,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 970,
+          "findings": 1018,
           "bySeverity": {
-            "DUPLICATION": 970
+            "DUPLICATION": 1018
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 3.59
+            "duplicationPct": 3.45
           }
         }
       ]
@@ -288,7 +238,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 13.7
+            "duplicationPct": 13.68
           }
         }
       ]
@@ -332,13 +282,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 1785,
+          "findings": 1787,
           "bySeverity": {
-            "DUPLICATION": 1785
+            "DUPLICATION": 1787
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 10.25
+            "duplicationPct": 10.23
           }
         }
       ]
@@ -381,7 +331,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 16.74
+            "duplicationPct": 16.62
           }
         }
       ]
@@ -427,7 +377,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 13.47
+            "duplicationPct": 13.41
           }
         }
       ]
@@ -472,7 +422,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 13.03
+            "duplicationPct": 12.95
           }
         }
       ]
@@ -502,10 +452,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 27,
+          "findings": 19,
           "bySeverity": {
-            "HIGH": 25,
-            "CRITICAL": 2
+            "HIGH": 16,
+            "CRITICAL": 3
           },
           "top": []
         },
@@ -518,7 +468,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 20.33
+            "duplicationPct": 20.15
           }
         }
       ]
@@ -564,7 +514,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 15.9
+            "duplicationPct": 15.84
           }
         }
       ]
@@ -585,9 +535,9 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 6,
+          "findings": 9,
           "bySeverity": {
-            "MEDIUM": 6
+            "MEDIUM": 9
           },
           "top": []
         },
@@ -610,7 +560,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 14.82
+            "duplicationPct": 14.69
           }
         }
       ]
@@ -698,7 +648,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 13.12
+            "duplicationPct": 13.23
           }
         }
       ]
@@ -728,9 +678,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 27,
+          "findings": 17,
           "bySeverity": {
-            "HIGH": 24,
+            "HIGH": 14,
             "CRITICAL": 3
           },
           "top": []
@@ -744,7 +694,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 20.33
+            "duplicationPct": 20.15
           }
         }
       ]
@@ -765,9 +715,9 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 11,
+          "findings": 10,
           "bySeverity": {
-            "ERROR": 2,
+            "ERROR": 1,
             "MEDIUM": 6,
             "WARNING": 3
           },
@@ -783,13 +733,13 @@
         {
           "scanner": "jscpd",
           "status": "clean",
-          "findings": 8,
+          "findings": 1,
           "bySeverity": {
-            "DUPLICATION": 8
+            "DUPLICATION": 1
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 1.68
+            "duplicationPct": 0.3
           }
         }
       ]
@@ -835,7 +785,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 12.13
+            "duplicationPct": 12.11
           }
         }
       ]
@@ -878,7 +828,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 20.02
+            "duplicationPct": 19.88
           }
         }
       ]
@@ -891,9 +841,11 @@
       "scanners": [
         {
           "scanner": "gitleaks",
-          "status": "clean",
-          "findings": 0,
-          "bySeverity": {},
+          "status": "findings",
+          "findings": 1,
+          "bySeverity": {
+            "SECRET": 1
+          },
           "top": []
         },
         {
@@ -920,13 +872,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 388,
+          "findings": 393,
           "bySeverity": {
-            "DUPLICATION": 388
+            "DUPLICATION": 393
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 6.85
+            "duplicationPct": 6.65
           }
         }
       ]
@@ -960,23 +912,22 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 26,
+          "findings": 13,
           "bySeverity": {
-            "HIGH": 24,
-            "CRITICAL": 2
+            "HIGH": 13
           },
           "top": []
         },
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 497,
+          "findings": 526,
           "bySeverity": {
-            "DUPLICATION": 497
+            "DUPLICATION": 526
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 4.89
+            "duplicationPct": 4.54
           }
         }
       ]
