@@ -1,0 +1,36 @@
+name: Template tool contracts
+on:
+  pull_request:
+    paths:
+      - templates/accessibility-check.yml
+      - templates/dead-code-detection.yml
+      - scripts/check-template-contract.py
+      - .github/workflows/template-contract.yml
+permissions:
+  contents: read
+jobs:
+  reporters:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        contract: [knip, clean, violations]
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: 'true'
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install PyYAML==6.0.3
+      - if: matrix.contract != 'knip'
+        run: npm install -g pa11y-ci@4
+      - name: Exercise the shipped script with the real CLI and synthetic data
+        env:
+          CONTRACT: ${{ matrix.contract }}
+        run: python scripts/check-template-contract.py "$CONTRACT"
