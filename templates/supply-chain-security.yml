@@ -67,7 +67,7 @@ jobs:
       id: signatures
       run: |
         set -euo pipefail
-npm audit signatures 2>&1 | tee /tmp/sig-check.txt
+        npm audit signatures 2>&1 | tee /tmp/sig-check.txt
         VERIFIED=$(grep -oP '\d+(?= packages? have verified registry signatures)' /tmp/sig-check.txt || true)
         VERIFIED="${VERIFIED:-0} verified"
         INVALID=$(grep -c "invalid" /tmp/sig-check.txt || true)
