@@ -82,12 +82,14 @@ jobs:
         done
         if [ "$READY" != true ]; then echo '::error::Web application not ready; no accessibility result'; exit 1; fi
         node -e "require('fs').writeFileSync('/tmp/pa11y-ci.json', JSON.stringify({defaults:{standard:'WCAG2AA',threshold:5,chromeLaunchConfig:{args:['--no-sandbox']}},urls:['http://localhost:3999']}))"
-        pa11y-ci --config /tmp/pa11y-ci.json 2>&1 | tee /tmp/a11y-report.txt
+        STATUS=0
+        pa11y-ci --config /tmp/pa11y-ci.json 2>&1 | tee /tmp/a11y-report.txt || STATUS=$?
         VIOLATIONS=$(awk '/Error:/ { n++ } END { print n+0 }' /tmp/a11y-report.txt)
         echo "violations=$VIOLATIONS" >> "$GITHUB_OUTPUT"
+        exit "$STATUS"
       if: steps.scope.outputs.applicable == 'true'
     - name: Comment PR with results
-      if: steps.scope.outputs.applicable == 'true' && (github.event_name == 'pull_request' && steps.a11y.outputs.violations != '0')
+      if: always() && steps.scope.outputs.applicable == 'true' && github.event_name == 'pull_request' && steps.a11y.outputs.violations != '' && steps.a11y.outputs.violations != '0'
       uses: actions/github-script@v7
       with:
         script: |

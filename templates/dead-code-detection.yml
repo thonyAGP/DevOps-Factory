@@ -57,9 +57,9 @@ jobs:
         node <<'NODE'
         const fs = require('fs');
         const report = JSON.parse(fs.readFileSync('/tmp/knip-report.json', 'utf8'));
-        if (!Array.isArray(report.files) || !Array.isArray(report.issues)) throw new Error('Invalid Knip report; no result claimed');
+        if (!Array.isArray(report.issues) || (report.files !== undefined && !Array.isArray(report.files))) throw new Error('Invalid Knip report; no result claimed');
         fs.writeFileSync('/tmp/knip-report.txt', JSON.stringify(report, null, 2));
-        fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_issues=${report.files.length > 0 || report.issues.length > 0}\n`);
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_issues=${(report.files?.length ?? 0) > 0 || report.issues.length > 0}\n`);
         NODE
       if: steps.scope.outputs.applicable == 'true'
     - name: Comment PR with dead code report
