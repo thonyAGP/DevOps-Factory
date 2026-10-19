@@ -18,34 +18,44 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   detect-stack:
     runs-on: ubuntu-latest
     outputs:
       stack: ${{ steps.detect.outputs.stack }}
       package-manager: ${{ steps.detect.outputs.package_manager }}
+      pnpm-version: ${{ steps.detect.outputs.pnpm_version }}
     steps:
       - uses: actions/checkout@v4
 
       - id: detect
         run: |
-          if [ -f "*.csproj" ] || [ -f "*.sln" ]; then
+          if compgen -G "*.csproj" > /dev/null || compgen -G "*.sln" > /dev/null; then
             echo "stack=dotnet" >> $GITHUB_OUTPUT
           elif [ -f "next.config.js" ] || [ -f "next.config.mjs" ] || [ -f "next.config.ts" ]; then
             echo "stack=nextjs" >> $GITHUB_OUTPUT
           elif [ -f "package.json" ]; then
             echo "stack=node" >> $GITHUB_OUTPUT
           else
-            echo "stack=unknown" >> $GITHUB_OUTPUT
+            echo "::error::No supported project at this working directory; configure project-specific checks"
+            exit 1
           fi
 
-          if [ -f "pnpm-lock.yaml" ]; then
+          if [ -f "bun.lock" ] || [ -f "bun.lockb" ]; then
+            echo "package_manager=bun" >> $GITHUB_OUTPUT
+          elif [ -f "pnpm-lock.yaml" ]; then
             echo "package_manager=pnpm" >> $GITHUB_OUTPUT
           elif [ -f "yarn.lock" ]; then
             echo "package_manager=yarn" >> $GITHUB_OUTPUT
           else
             echo "package_manager=npm" >> $GITHUB_OUTPUT
           fi
+          PNPM_VERSION=$(node -e "const fs=require('fs'); const p=fs.existsSync('package.json')?require('./package.json'):{}; const m=/^pnpm@([0-9]+\.[0-9]+\.[0-9]+)/.exec(p.packageManager || ''); console.log(m?m[1]:'{{pnpmVersion}}')")
+          echo "pnpm_version=$PNPM_VERSION" >> $GITHUB_OUTPUT
 
   ci-node:
     needs: detect-stack
@@ -57,17 +67,26 @@ jobs:
       - uses: pnpm/action-setup@v4
         if: needs.detect-stack.outputs.package-manager == 'pnpm'
         with:
-          version: {{pnpmVersion}}
+          version: ${{ needs.detect-stack.outputs.pnpm-version }}
 
       - uses: actions/setup-node@v4
         with:
           node-version: {{nodeVersion}}
-          cache: ${{ needs.detect-stack.outputs.package-manager }}
+          cache: ${{ needs.detect-stack.outputs.package-manager != 'bun' && needs.detect-stack.outputs.package-manager || '' }}
+
+      - uses: oven-sh/setup-bun@v2
+        if: needs.detect-stack.outputs.package-manager == 'bun'
+
+      - name: Require at least one configured validation
+        run: |
+          node -e "const p=require('./package.json'); if (!['lint','typecheck','tsc','test','test:coverage','build'].some(k => typeof p.scripts?.[k] === 'string')) throw new Error('No validation script configured')"
 
       - name: Install dependencies
         run: |
           PM="${{ needs.detect-stack.outputs.package-manager }}"
-          if [ "$PM" = "pnpm" ]; then
+          if [ "$PM" = "bun" ]; then
+            bun install --frozen-lockfile
+          elif [ "$PM" = "pnpm" ]; then
             pnpm install --frozen-lockfile
           elif [ "$PM" = "yarn" ]; then
             yarn install --frozen-lockfile
@@ -78,18 +97,45 @@ jobs:
       - name: Lint
         run: |
           PM="${{ needs.detect-stack.outputs.package-manager }}"
-          $PM run lint || echo "::warning::No lint script found"
+          SCRIPT=$(node -e "const p=require('./package.json'); console.log(['lint'].find(s => typeof p.scripts?.[s] === 'string') || '')")
+          if [ -n "$SCRIPT" ]; then
+            "$PM" run "$SCRIPT"
+          else
+            echo "::notice::lint not configured; no validation claimed"
+          fi
 
       - name: Type check
         run: |
           PM="${{ needs.detect-stack.outputs.package-manager }}"
-          $PM run typecheck || $PM run tsc || echo "::warning::No typecheck script found"
+          SCRIPT=$(node -e "const p=require('./package.json'); console.log(['typecheck','tsc'].find(s => typeof p.scripts?.[s] === 'string') || '')")
+          if [ -n "$SCRIPT" ]; then
+            "$PM" run "$SCRIPT"
+          else
+            echo "::notice::typecheck not configured; no validation claimed"
+          fi
 
-      - name: Test with coverage
+      - name: Tests (coverage when configured)
         id: test
         run: |
           PM="${{ needs.detect-stack.outputs.package-manager }}"
-          $PM test -- --coverage --reporter=json || echo "::warning::No test script found"
+          SCRIPT=$(node -e "const p=require('./package.json'); console.log(['test:coverage','test'].find(s => typeof p.scripts?.[s] === 'string') || '')")
+          if [ -n "$SCRIPT" ]; then
+            COVERAGE_ARGS=$(node -e "const p=require('./package.json'); const t=p.scripts?.test || ''; const d={...p.dependencies,...p.devDependencies}; console.log(/vitest/.test(t) && (d['@vitest/coverage-v8'] || d['@vitest/coverage-istanbul']) ? '--coverage --coverage.reporter=json-summary' : /jest/.test(t) ? '--coverage --coverageReporters=json-summary' : '')")
+            if [ "$SCRIPT" = "test:coverage" ]; then
+              "$PM" run "$SCRIPT"
+            elif [ -n "$COVERAGE_ARGS" ]; then
+              if [ "$PM" = "npm" ]; then
+                "$PM" run "$SCRIPT" -- $COVERAGE_ARGS
+              else
+                "$PM" run "$SCRIPT" $COVERAGE_ARGS
+              fi
+            else
+              echo "::notice::Coverage is not configured for this test runner; running tests only"
+              "$PM" run "$SCRIPT"
+            fi
+          else
+            echo "::notice::tests not configured; no validation claimed"
+          fi
 
           if [ -f "coverage/coverage-summary.json" ]; then
             echo "has_coverage=true" >> $GITHUB_OUTPUT
@@ -221,7 +267,12 @@ jobs:
       - name: Build
         run: |
           PM="${{ needs.detect-stack.outputs.package-manager }}"
-          $PM run build
+          SCRIPT=$(node -e "const p=require('./package.json'); console.log(typeof p.scripts?.build === 'string' ? 'build' : '')")
+          if [ -n "$SCRIPT" ]; then
+            "$PM" run "$SCRIPT"
+          else
+            echo "::notice::Build not configured; no build validation claimed"
+          fi
 
   ci-dotnet:
     needs: detect-stack
@@ -240,7 +291,7 @@ jobs:
       - name: Build
         run: dotnet build --no-restore --configuration Release
 
-      - name: Test with coverage
+      - name: Tests (coverage when configured)
         run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
 
       - name: Upload coverage
@@ -250,3 +301,4 @@ jobs:
           name: coverage
           path: '**/coverage.cobertura.xml'
           if-no-files-found: ignore
+

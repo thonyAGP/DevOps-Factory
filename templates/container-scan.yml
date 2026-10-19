@@ -9,10 +9,10 @@ name: Container Scan
 on:
   pull_request:
     branches: [main, master]
-    paths: ['Dockerfile*', 'docker-compose*.yml', '.dockerignore']
+    paths: ['**/Dockerfile*', 'docker-compose*.yml', '.dockerignore', '.github/workflows/container-scan.yml']
   push:
     branches: [main, master]
-    paths: ['Dockerfile*']
+    paths: ['**/Dockerfile*', '.github/workflows/container-scan.yml']
 
 permissions:
   contents: read
@@ -37,7 +37,7 @@ jobs:
           echo "files<<EOF" >> $GITHUB_OUTPUT
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          COUNT=$(echo "$FILES" | grep -c . || echo "0")
+          COUNT=$(printf '%s\n' "$FILES" | awk 'NF { n++ } END { print n+0 }')
           echo "count=$COUNT" >> $GITHUB_OUTPUT
 
       - name: Build image for scanning
@@ -75,8 +75,8 @@ jobs:
         if: steps.find.outputs.count != '0'
         id: results
         run: |
-          CRITICAL=$(grep -c "CRITICAL" trivy-results.txt 2>/dev/null || echo "0")
-          HIGH=$(grep -c "HIGH" trivy-results.txt 2>/dev/null || echo "0")
+          CRITICAL=$(awk '/CRITICAL/ { n++ } END { print n+0 }' trivy-results.txt)
+          HIGH=$(awk '/HIGH/ { n++ } END { print n+0 }' trivy-results.txt)
           echo "critical=$CRITICAL" >> $GITHUB_OUTPUT
           echo "high=$HIGH" >> $GITHUB_OUTPUT
           {
@@ -127,3 +127,4 @@ jobs:
               issue_number: context.issue.number,
               body,
             });
+
