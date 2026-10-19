@@ -1,0 +1,59 @@
+name: Deployed dependency triage
+on:
+  pull_request:
+    paths:
+      - .github/workflows/deployed-security-triage.yml
+      - scripts/audit-deployed-dependencies.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        include: [{"repo":"ClubMedRoomAssignment","sha":"7d463507617911f08de4eca5dd2e99a17d3a45f1"},{"repo":"zentra","sha":"6f7ac08e7c3de75602af1b78182d93796fd7c862"},{"repo":"LecteurMagic","sha":"9c54a01473c5a28824000f256110a06a0836e351"},{"repo":"au-marais","sha":"9e42627a945475cabac3cbcd33d27aeb76cff7a7"},{"repo":"livret-au-marais","sha":"8baa603c771521011413381632421855cc4c10e5"},{"repo":"MCP_Quota_Claude","sha":"3a2e3738c260ee06957cd2843cf09a188ba904f9"},{"repo":"Site_1970_Plomberie","sha":"1c025cb88db198d666b7503bf010fda4ed7ff00d"},{"repo":"Thumbfast","sha":"6bf2e115eed66df211958fa96ab373bf6543fd94"},{"repo":"analyse-negocio","sha":"19cc39beaae2be230b930fd22cb39ffa7c4f0e8c"},{"repo":"Site_Greg-Assainissement","sha":"cea3c65e766c90a6b35db925b086db54769f06b6"},{"repo":"test_codingmenace","sha":"6e4e398fce7fb933e2b468aa54ad9f6d9fe634dd"}]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/audit-deployed-dependencies.py
+          sparse-checkout-cone-mode: false
+          path: controller
+      - uses: actions/create-github-app-token@v2
+        id: read-token
+        with:
+          app-id: ${{ vars.FACTORY_APP_ID }}
+          private-key: ${{ secrets.FACTORY_APP_PRIVATE_KEY }}
+          owner: thonyAGP
+          repositories: ${{ matrix.repo }}
+          permission-contents: read
+      - uses: actions/checkout@v4
+        with:
+          repository: thonyAGP/${{ matrix.repo }}
+          ref: ${{ matrix.sha }}
+          token: ${{ steps.read-token.outputs.token }}
+          persist-credentials: false
+          path: source
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          package_json_file: controller/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Audit pinned lockfiles without installation or lifecycle scripts
+        env:
+          TRIAGE_REPO: thonyAGP/${{ matrix.repo }}
+          TRIAGE_SHA: ${{ matrix.sha }}
+        run: python controller/scripts/audit-deployed-dependencies.py source "results/${{ matrix.repo }}.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: triage-${{ matrix.repo }}
+          path: results/*.json
+          if-no-files-found: error
+          retention-days: 7
