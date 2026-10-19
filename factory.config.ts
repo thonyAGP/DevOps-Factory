@@ -1,3 +1,5 @@
+import { retainPriorityOptIns } from './portfolio-policy.js';
+
 export interface ProjectConfig {
   name: string;
   repo: string;
@@ -40,13 +42,13 @@ export const COVERAGE_THRESHOLDS: CoverageThresholds = {
 
 export const CLAUDE_REVIEW_CONFIG: ClaudeReviewConfig = {
   maxReviewsPerDay: 20,
-  enabledRepos: [
+  enabledRepos: retainPriorityOptIns([
     'thonyAGP/CasaSync',
     'thonyAGP/livret-au-marais',
     'thonyAGP/au-marais',
     'thonyAGP/ClubMedRoomAssignment',
     'thonyAGP/LecteurMagic',
-  ],
+  ]),
   model: 'claude-sonnet-4-5-20250929',
 };
 
@@ -439,12 +441,10 @@ export interface RemediationConfig {
  * each target repo. Guardrails: allowlist, grade gate, daily quota.
  */
 export const REMEDIATION_CONFIG: RemediationConfig = {
-  enabled: true,
-  // Supervised rollout, wave 2: the LecteurMagic pilot delivered a clean PR
-  // (LecteurMagic#46), so the next worst-graded F repos join. LecteurMagic is
-  // out until its PR is merged — keeping it listed would dispatch a duplicate
-  // agent onto work that is already awaiting review.
-  enabledRepos: ['thonyAGP/LecteurMagic', 'thonyAGP/ClubMedRoomAssignment'],
+  // The previous pilot targeted projects outside the owner's current priorities.
+  // Keep the dispatcher inert until a priority project is explicitly opted in.
+  enabled: false,
+  enabledRepos: [],
   minGrade: 'F',
   maxPerDay: 4,
   workflowFile: 'ai-remediation.yml',

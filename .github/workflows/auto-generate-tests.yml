@@ -14,9 +14,7 @@ on:
         type: boolean
         default: false
 
-  # Weekly schedule - Monday 2am
-  schedule:
-    - cron: '0 2 * * 1'
+  # Generation stays manual: no recurring LLM work without a selected task.
 
   # On PR to main (optional - can be enabled later)
   # pull_request:

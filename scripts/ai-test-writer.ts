@@ -1,3 +1,4 @@
+import { isPriorityRepository } from '../portfolio-policy.js';
 /**
  * ai-test-writer.ts
  *
@@ -660,7 +661,7 @@ const main = (): void => {
   const { targetRepo } = parseCliArgs();
 
   const projects = KNOWN_PROJECTS.filter(
-    (p) => p.stack === 'node' || p.stack === 'nextjs' || p.stack === 'fastify'
+    (p) => isPriorityRepository(p.repo) && ['node', 'nextjs', 'fastify'].includes(p.stack)
   );
 
   if (targetRepo) {
