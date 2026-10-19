@@ -61,6 +61,10 @@ jobs:
         const counts = audit.metadata?.vulnerabilities;
         if (audit.error || !counts || !['critical','high','moderate'].every(k => Number.isInteger(counts[k]) && counts[k] >= 0)) throw new Error('Dependency audit unavailable; no zero-vulnerability result claimed');
         for (const key of ['critical','high','moderate']) fs.appendFileSync(process.env.GITHUB_OUTPUT, `${key}=${counts[key]}\n`);
+        for (const a of Object.values(audit.advisories ?? {})) {
+          if (['critical','high'].includes(a.severity)) console.log(JSON.stringify({package:a.module_name,severity:a.severity,vulnerable:a.vulnerable_versions,patched:a.patched_versions,title:a.title,url:a.url}));
+        }
+        console.log('Dependency vulnerability counts: ' + JSON.stringify(counts));
         NODE
       if: steps.scope.outputs.applicable == 'true'
     - name: Verify npm signatures
@@ -70,7 +74,7 @@ jobs:
         npm audit signatures 2>&1 | tee /tmp/sig-check.txt
         VERIFIED=$(grep -oP '\d+(?= packages? have verified registry signatures)' /tmp/sig-check.txt || true)
         VERIFIED="${VERIFIED:-0} verified"
-        INVALID=$(grep -c "invalid" /tmp/sig-check.txt || true)
+        INVALID=$(awk '/invalid/{n++} END{print n+0}' /tmp/sig-check.txt)
         INVALID=${INVALID:-0}
         echo "verified=$VERIFIED" >> $GITHUB_OUTPUT
         echo "invalid=$INVALID" >> $GITHUB_OUTPUT
@@ -105,91 +109,70 @@ jobs:
     - name: Check for install scripts
       id: scripts
       run: |
-        node -e "
-          const { execSync } = require('child_process');
-          const result = execSync('npm ls --json --all 2>/dev/null || echo \"{}\"', { encoding: 'utf-8' });
-          // Check for packages with install/preinstall/postinstall scripts
-          const output = execSync('find node_modules -maxdepth 2 -name package.json -exec grep -l postinstall {} + 2>/dev/null || true', { encoding: 'utf-8' });
-          const count = output.trim().split('\n').filter(Boolean).length;
-          console.log('install_scripts=' + count);
-        " | tee /tmp/scripts-output.txt
-        SCRIPTS=$(grep 'install_scripts=' /tmp/scripts-output.txt | cut -d= -f2)
-        echo "install_scripts=${SCRIPTS:-0}" >> $GITHUB_OUTPUT
+        node <<'NODE'
+        const fs = require('fs');
+        const path = require('path');
+        const seen = new Set();
+        let count = 0;
+        function container(directory) {
+          for (const entry of fs.readdirSync(directory, {withFileTypes: true})) {
+            if (entry.name === '.bin' || entry.name === '.cache') continue;
+            const target = path.join(directory, entry.name);
+            if (!(entry.isDirectory() || entry.isSymbolicLink())) continue;
+            if (entry.name === '.pnpm') {
+              for (const item of fs.readdirSync(target, {withFileTypes: true})) {
+                const nested = path.join(target, item.name, 'node_modules');
+                if (item.isDirectory() && fs.existsSync(nested)) container(nested);
+              }
+            } else if (entry.name.startsWith('@')) container(target);
+            else {
+              const actual = fs.realpathSync(target);
+              if (seen.has(actual)) continue;
+              seen.add(actual);
+              const manifest = path.join(actual, 'package.json');
+              if (!fs.existsSync(manifest)) continue;
+              const pkg = JSON.parse(fs.readFileSync(manifest, 'utf8'));
+              if (['preinstall','install','postinstall'].some(key => typeof pkg.scripts?.[key] === 'string')) count++;
+              const nested = path.join(actual, 'node_modules');
+              if (fs.existsSync(nested)) container(nested);
+            }
+          }
+        }
+        container('node_modules');
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, `install_scripts=${count}\n`);
+        console.log(`Installed packages with lifecycle scripts: ${count}; scripts were inspected, not executed by this check.`);
+        NODE
       if: steps.scope.outputs.applicable == 'true'
     - name: Comment PR
       if: steps.scope.outputs.applicable == 'true' && (github.event_name == 'pull_request')
       uses: actions/github-script@v7
       with:
-        script: |
-          const critical = parseInt('${{ steps.audit.outputs.critical }}') || 0;
-          const high = parseInt('${{ steps.audit.outputs.high }}') || 0;
-          const moderate = parseInt('${{ steps.audit.outputs.moderate }}') || 0;
-          const invalid = parseInt('${{ steps.signatures.outputs.invalid }}') || 0;
-          const suspicious = parseInt('${{ steps.malicious.outputs.suspicious }}') || 0;
-
-          const hasIssues = critical > 0 || high > 0 || invalid > 0;
-          const status = hasIssues ? '🔴' : '🟢';
-          let body = `## ${status} Supply Chain Security\n\n`;
-          body += `| Check | Result |\n|-------|--------|\n`;
-          body += `| Critical vulnerabilities | ${critical} |\n`;
-          body += `| High vulnerabilities | ${high} |\n`;
-          body += `| Moderate vulnerabilities | ${moderate} |\n`;
-          body += `| Invalid signatures | ${invalid} |\n`;
-          body += `| Suspicious packages | ${suspicious} |\n`;
-          body += `| Packages with install scripts | ${{ steps.scripts.outputs.install_scripts }} |\n`;
-          body += `| Signature verification | ${{ steps.signatures.outputs.verified }} |\n`;
-
-          if (hasIssues) {
-            body += `\n> 🔴 Critical security issues found. Run \`npm audit fix\` or update affected packages.\n`;
-          }
-
-          const marker = '<!-- devops-factory:supply-chain -->';
-          body = marker + '\n' + body;
-          const { data: comments } = await github.rest.issues.listComments({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            issue_number: context.issue.number,
-            per_page: 100,
-          });
-          const existing = comments.find((c) => c.body.startsWith(marker));
-          if (existing) {
-            await github.rest.issues.updateComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              comment_id: existing.id,
-              body,
-            });
-          } else {
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body,
-            });
-          }
+        script: "const critical = parseInt('${{ steps.audit.outputs.critical }}') || 0;\nconst high = parseInt('${{ steps.audit.outputs.high }}')\
+          \ || 0;\nconst moderate = parseInt('${{ steps.audit.outputs.moderate }}') || 0;\nconst invalid = parseInt('${{ steps.signatures.outputs.invalid\
+          \ }}') || 0;\nconst suspicious = parseInt('${{ steps.malicious.outputs.suspicious }}') || 0;\n\nconst hasIssues = critical > 0 || high\
+          \ > 0 || invalid > 0;\nconst status = hasIssues ? '\U0001F534' : '\U0001F7E2';\nlet body = `## ${status} Supply Chain Security\\n\\\
+          n`;\nbody += `| Check | Result |\\n|-------|--------|\\n`;\nbody += `| Critical vulnerabilities | ${critical} |\\n`;\nbody += `| High\
+          \ vulnerabilities | ${high} |\\n`;\nbody += `| Moderate vulnerabilities | ${moderate} |\\n`;\nbody += `| Invalid signatures | ${invalid}\
+          \ |\\n`;\nbody += `| Suspicious packages | ${suspicious} |\\n`;\nbody += `| Packages with install scripts | ${{ steps.scripts.outputs.install_scripts\
+          \ }} |\\n`;\nbody += `| Signature verification | ${{ steps.signatures.outputs.verified }} |\\n`;\n\nif (hasIssues) {\n  body += `\\\
+          n> \U0001F534 Critical security issues found. Run \\`npm audit fix\\` or update affected packages.\\n`;\n}\n\nconst marker = '<!-- devops-factory:supply-chain\
+          \ -->';\nbody = marker + '\\n' + body;\nconst { data: comments } = await github.rest.issues.listComments({\n  owner: context.repo.owner,\n\
+          \  repo: context.repo.repo,\n  issue_number: context.issue.number,\n  per_page: 100,\n});\nconst existing = comments.find((c) => c.body.startsWith(marker));\n\
+          if (existing) {\n  await github.rest.issues.updateComment({\n    owner: context.repo.owner,\n    repo: context.repo.repo,\n    comment_id:\
+          \ existing.id,\n    body,\n  });\n} else {\n  await github.rest.issues.createComment({\n    owner: context.repo.owner,\n    repo: context.repo.repo,\n\
+          \    issue_number: context.issue.number,\n    body,\n  });\n}\n"
     - name: Fail on critical/high
       if: steps.scope.outputs.applicable == 'true' && (steps.audit.outputs.critical != '0' || steps.audit.outputs.high != '0')
       run: |
         echo "::error::Found critical (${{ steps.audit.outputs.critical }}) or high (${{ steps.audit.outputs.high }}) vulnerabilities"
         exit 1
     - name: Create issue on schedule
-      if: steps.scope.outputs.applicable == 'true' && (github.event_name == 'schedule' && (steps.audit.outputs.critical != '0' || steps.audit.outputs.high != '0'))
+      if: steps.scope.outputs.applicable == 'true' && (github.event_name == 'schedule' && (steps.audit.outputs.critical != '0' || steps.audit.outputs.high
+        != '0'))
       uses: actions/github-script@v7
       with:
-        script: |
-          const title = `🔒 Supply chain: ${${{ steps.audit.outputs.critical }}} critical, ${${{ steps.audit.outputs.high }}} high vulnerabilities`;
-          const existing = await github.rest.issues.listForRepo({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            labels: 'security',
-            state: 'open',
-          });
-          if (!existing.data.some(i => i.title.includes('Supply chain'))) {
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title,
-              labels: ['security', 'automated'],
-            });
-          }
+        script: "const title = `\U0001F512 Supply chain: ${${{ steps.audit.outputs.critical }}} critical, ${${{ steps.audit.outputs.high }}} high\
+          \ vulnerabilities`;\nconst existing = await github.rest.issues.listForRepo({\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n\
+          \  labels: 'security',\n  state: 'open',\n});\nif (!existing.data.some(i => i.title.includes('Supply chain'))) {\n  await github.rest.issues.create({\n\
+          \    owner: context.repo.owner,\n    repo: context.repo.repo,\n    title,\n    labels: ['security', 'automated'],\n  });\n}\n"
     timeout-minutes: 15
