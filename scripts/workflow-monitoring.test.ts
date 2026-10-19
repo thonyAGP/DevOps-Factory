@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { execFileSync } from 'node:child_process';
-import { getReferenceWorkflowRuns, isSelfHealEnabled, selectReferenceRun, type ReferenceRun } from './workflow-monitoring.js';
+import { getReferenceWorkflowRun, getReferenceWorkflowRuns, isSelfHealEnabled, selectReferenceRun, type ReferenceRun } from './workflow-monitoring.js';
 
 vi.mock('node:child_process', () => ({ execFileSync: vi.fn() }));
 const run = (overrides: Partial<ReferenceRun> = {}): ReferenceRun => ({
@@ -38,6 +38,13 @@ describe('reference workflow monitoring', () => {
   it('does not dispatch disabled repairs', () => {
     vi.mocked(execFileSync).mockReturnValue(JSON.stringify({ state: 'disabled_manually' }));
     expect(isSelfHealEnabled('owner/repo')).toBe(false);
+  });
+  it('looks past a full page of cancelled or skipped runs', () => {
+    vi.mocked(execFileSync)
+      .mockReturnValueOnce(JSON.stringify({ workflow_runs: Array.from({ length: 100 }, () => run({ conclusion: 'cancelled' })) }))
+      .mockReturnValueOnce(JSON.stringify({ workflow_runs: [run({ conclusion: 'failure' })] }));
+    expect(getReferenceWorkflowRun('owner/repo', 'custom-build.yml', 'master')?.conclusion).toBe('failure');
+    expect(vi.mocked(execFileSync).mock.calls[1][1]?.[1]).toContain('page=2');
   });
   it('propagates denied access rather than reporting a healthy empty inventory', () => {
     vi.mocked(execFileSync).mockImplementation(() => { throw new Error('denied'); });

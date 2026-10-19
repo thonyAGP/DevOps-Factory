@@ -3,22 +3,13 @@ import { KNOWN_PROJECTS } from '../../factory.config.js';
 import { calculateSecurityScore, calculatePerfScore, calculateHealthScore } from './scoring.js';
 import type { ScanReport, ProjectStatus, PRInfo } from './types.js';
 import type { WorkflowRun } from '../types.js';
-import { selectReferenceRun, type ReferenceRun } from '../workflow-monitoring.js';
+import { getReferenceWorkflowRun } from '../workflow-monitoring.js';
 
 const hiddenRepos = new Set(KNOWN_PROJECTS.filter((p) => p.hidden).map((p) => p.repo));
 
-export const getLatestWorkflowRun = (repo: string, branch: string): WorkflowRun | null => {
-  const workflow = KNOWN_PROJECTS.find((p) => p.repo === repo)?.ciWorkflow ?? 'ci.yml';
-  const result = sh(
-    `gh api "repos/${repo}/actions/workflows/${encodeURIComponent(workflow)}/runs?branch=${encodeURIComponent(branch)}&per_page=10" --jq ${jq('.workflow_runs')}`
-  );
-  if (!result || result === 'null') return null;
-  try {
-    const runs = JSON.parse(result) as ReferenceRun[];
-    return selectReferenceRun(runs, branch);
-  } catch {
-    return null;
-  }
+export const getLatestWorkflowRun = (repo: string, branch: string, discoveredWorkflow?: string): WorkflowRun | null => {
+  const workflow = KNOWN_PROJECTS.find((p) => p.repo === repo)?.ciWorkflow ?? discoveredWorkflow ?? 'ci.yml';
+  return getReferenceWorkflowRun(repo, workflow, branch);
 };
 
 export const getOpenPRs = (repo: string): PRInfo[] => {
@@ -59,7 +50,7 @@ export const buildProjectStatuses = (report: ScanReport): ProjectStatus[] => {
   return report.analyses
     .filter((a) => a.stack !== 'unknown' && !hiddenRepos.has(a.fullName))
     .map((analysis) => {
-      const lastRun = getLatestWorkflowRun(analysis.fullName, analysis.defaultBranch);
+      const lastRun = analysis.hasCI ? getLatestWorkflowRun(analysis.fullName, analysis.defaultBranch, analysis.ciWorkflow) : null;
       const allPRs = getOpenPRs(analysis.fullName);
       const aiFixPRs = allPRs.filter((pr) => pr.labels.some((l) => l.name === 'ai-fix'));
       const renovatePRs = allPRs.filter((pr) => pr.labels.some((l) => l.name === 'dependencies'));

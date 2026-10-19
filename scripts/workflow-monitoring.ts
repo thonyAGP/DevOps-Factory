@@ -32,12 +32,20 @@ export const getReferenceWorkflowRuns = (repo: string): WorkflowRun[] => {
   const runs: WorkflowRun[] = [];
   for (const workflow of workflows.flatMap((p) => p.workflows)) {
     if (workflow.state !== 'active' || workflow.name === 'Factory Watchdog') continue;
-    const response = JSON.parse(read(`repos/${repo}/actions/workflows/${workflow.id}/runs?branch=${encodeURIComponent(branch)}&status=completed&per_page=10`));
-    if (!Array.isArray(response.workflow_runs)) throw new Error('Invalid workflow runs');
-    const run = selectReferenceRun(response.workflow_runs, branch);
+    const run = getReferenceWorkflowRun(repo, workflow.id, branch);
     if (run) runs.push(run);
   }
   return runs;
+};
+
+export const getReferenceWorkflowRun = (repo: string, workflow: string | number, branch: string): ReferenceRun | null => {
+  for (let page = 1; ; page++) {
+    const response = JSON.parse(read(`repos/${repo}/actions/workflows/${encodeURIComponent(String(workflow))}/runs?branch=${encodeURIComponent(branch)}&status=completed&per_page=100&page=${page}`));
+    if (!Array.isArray(response.workflow_runs)) throw new Error('Invalid workflow runs');
+    const run = selectReferenceRun(response.workflow_runs, branch);
+    if (run) return run;
+    if (response.workflow_runs.length < 100) return null;
+  }
 };
 
 /** Disabled repair workflows require an operator decision, never repeated dispatch attempts. */
