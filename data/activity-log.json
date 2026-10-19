@@ -2,109 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-11T19:19:53.286Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-11T19:19:53.726Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-11T19:19:54.200Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.6/10, 4150 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-11T19:19:54.661Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-11T22:36:12.239Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-11T22:36:12.241Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-11T22:36:13.977Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-11T22:36:13.979Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Site_Au-marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-11T22:36:15.675Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-11T22:36:15.677Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "3/9 passing, 5 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-12T00:13:39.348Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-12T00:13:40.046Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-12T00:13:40.779Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.6/10, 4150 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-12T00:13:41.523Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-10-12T01:56:33.012Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -3419,6 +3316,21 @@
     },
     {
       "timestamp": "2026-10-18T19:07:22.859Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "6/8 passing, 1 failing. Issues: 1 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-19T00:38:18.618Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-19T00:38:18.620Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "6/8 passing, 1 failing. Issues: 1 created, 0 closed",
