@@ -34,5 +34,41 @@
     "nonFiable": {
       "detail": "renovate.yml : 3 échecs consécutifs (dernier succès il y a 31 h)"
     }
+  },
+  {
+    "version": 1,
+    "id": "inc-fincascout-routine-silence-202610191207",
+    "empreinte": "fincascout-routine:silence",
+    "flux": "fincascout-routine",
+    "classe": "silence",
+    "source": {
+      "detecteur": "silence-watchdog",
+      "typeFlux": "github-file-date",
+      "depot": "thonyAGP/FincaScout"
+    },
+    "etat": "enquete_demandee",
+    "priorite": "haute",
+    "impact": "job_muet",
+    "premiereOccurrence": "2026-10-19T12:07:46.073Z",
+    "derniereOccurrence": "2026-10-19T12:07:46.073Z",
+    "occurrences": 1,
+    "ouvertures": 1,
+    "fermeLe": null,
+    "enquetes": {
+      "demandees": 1,
+      "horodatages": [
+        "2026-10-19T12:07:46.073Z"
+      ]
+    },
+    "derniereDecision": {
+      "enquete": true,
+      "motif": "nouvel_incident",
+      "horodatage": "2026-10-19T12:07:46.073Z"
+    },
+    "causedBy": null,
+    "incidentRootId": null,
+    "nonFiable": {
+      "detail": "dernière preuve le 18/10 02:00, il y a 36 h (seuil 30 h)"
+    }
   }
 ]
