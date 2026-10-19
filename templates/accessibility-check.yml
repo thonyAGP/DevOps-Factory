@@ -83,9 +83,21 @@ jobs:
         if [ "$READY" != true ]; then echo '::error::Web application not ready; no accessibility result'; exit 1; fi
         node -e "require('fs').writeFileSync('/tmp/pa11y-ci.json', JSON.stringify({defaults:{standard:'WCAG2AA',threshold:5,chromeLaunchConfig:{args:['--no-sandbox']}},urls:['http://localhost:3999']}))"
         STATUS=0
-        pa11y-ci --config /tmp/pa11y-ci.json 2>&1 | tee /tmp/a11y-report.txt || STATUS=$?
-        VIOLATIONS=$(awk '/Error:/ { n++ } END { print n+0 }' /tmp/a11y-report.txt)
-        echo "violations=$VIOLATIONS" >> "$GITHUB_OUTPUT"
+        pa11y-ci --config /tmp/pa11y-ci.json --json > /tmp/a11y-report.json || STATUS=$?
+        PA11Y_STATUS="$STATUS" node <<'NODE'
+        const fs = require('fs');
+        if (![0, 2].includes(Number(process.env.PA11Y_STATUS))) throw new Error('Accessibility tool failed; no audit result claimed');
+        const report = JSON.parse(fs.readFileSync('/tmp/a11y-report.json', 'utf8'));
+        if (!Number.isInteger(report.total) || report.total < 1 || !report.results || Object.keys(report.results).length !== report.total) throw new Error('Incomplete accessibility report');
+        let violations = 0;
+        for (const issues of Object.values(report.results)) {
+          if (!Array.isArray(issues) || issues.some(issue => !['error','warning','notice'].includes(issue.type))) throw new Error('A page could not be audited; no zero result claimed');
+          violations += issues.filter(issue => issue.type === 'error').length;
+        }
+        fs.writeFileSync('/tmp/a11y-report.txt', JSON.stringify(report.results, null, 2));
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, `violations=${violations}\n`);
+        console.log(`Accessibility findings recorded: ${violations}`);
+        NODE
         exit "$STATUS"
       if: steps.scope.outputs.applicable == 'true'
     - name: Comment PR with results
@@ -102,6 +114,6 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             issue_number: context.issue.number,
-            body: `## Accessibility Check (WCAG 2.1 AA)\n\n**${violations} violation(s) found**\n\n\`\`\`\n${truncated}\n\`\`\`\n\n> Fix these to improve SEO and legal compliance.`,
+            body: `## Accessibility Check (WCAG2AA)\n\n**${violations} violation(s) found**\n\n\`\`\`\n${truncated}\n\`\`\`\n\n> Fix these to improve SEO and legal compliance.`,
           });
     timeout-minutes: 15
