@@ -124,35 +124,6 @@ jobs:
             echo "has_alerts=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Trigger self-healing for CI failures (max 1 per run, deduplicated)
-        if: steps.alerts.outputs.has_alerts == 'true'
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-        run: |
-          # Limited to 1 per run to prevent workflow spam and excessive API quota usage
-          MAX_TRIGGERS=1
-          TRIGGERED=0
-          SEEN_REPOS=""
-
-          jq -c '.alerts[] | select(.type == "ci_fail" and .runId != "")' dashboard/alert-payload.json | while read -r alert; do
-            [ "$TRIGGERED" -ge "$MAX_TRIGGERS" ] && echo "Rate limit: skipping remaining alerts" && break
-
-            REPO=$(echo "$alert" | jq -r '.repo')
-
-            # Deduplicate: 1 self-heal per repo per run
-            if echo "$SEEN_REPOS" | grep -qxF "$REPO"; then
-              echo "  Skipping duplicate trigger for $REPO"
-              continue
-            fi
-            SEEN_REPOS="$SEEN_REPOS
-          $REPO"
-
-            RUN_ID=$(echo "$alert" | jq -r '.runId')
-            echo "Triggering self-heal for $REPO (run $RUN_ID) [$((TRIGGERED+1))/$MAX_TRIGGERS]"
-            gh workflow run self-heal.yml -f repo="$REPO" -f run_id="$RUN_ID" || echo "  Failed to trigger"
-            TRIGGERED=$((TRIGGERED+1))
-          done
-
       - name: Suppress first-time alerts (grace period for self-heal)
         id: alert_filter
         run: |
