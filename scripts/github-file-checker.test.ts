@@ -82,10 +82,8 @@ describe('github-file-checker', () => {
       }
     });
 
-    it('should handle invalid JSON gracefully', () => {
-      const results = parseGraphQLResponse('not json', ['package.json']);
-
-      expect(results.get('package.json')).toBe(false);
+    it('rejects invalid JSON instead of caching a missing file', () => {
+      expect(() => parseGraphQLResponse('not json', ['package.json'])).toThrow();
     });
 
     it('should handle empty repository response', () => {
@@ -95,17 +93,14 @@ describe('github-file-checker', () => {
         },
       });
 
-      const results = parseGraphQLResponse(response, ['package.json']);
-
-      expect(results.get('package.json')).toBe(false);
+      expect(() => parseGraphQLResponse(response, ['package.json'])).toThrow();
     });
 
     it('should handle missing data field', () => {
       const response = JSON.stringify({ errors: [{ message: 'Not found' }] });
 
-      const results = parseGraphQLResponse(response, ['package.json']);
-
-      expect(results.get('package.json')).toBe(false);
+      expect(() => parseGraphQLResponse(response, ['package.json'])).toThrow();
     });
   });
 });
+

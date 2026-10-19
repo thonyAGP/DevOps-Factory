@@ -48,6 +48,7 @@ export interface ScanResult {
   fullName: string;
   stack: string;
   hasCI: boolean;
+  ciWorkflow?: string;
   hasClaudeReview: boolean;
   hasSelfHealing: boolean;
   hasQodoMerge: boolean;
@@ -132,3 +133,4 @@ export interface AlertEvent {
   runId: string;
   message: string;
 }
+

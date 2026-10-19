@@ -30,6 +30,7 @@ interface RepoAnalysis {
   hasSelfHealing: boolean;
   hasQodoMerge: boolean;
   hasCI: boolean;
+  ciWorkflow?: string;
   hasGitleaks: boolean;
   hasRenovate: boolean;
   hasHusky: boolean;
@@ -143,11 +144,10 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
   const workflowsDir = gh(
     `api repos/${repo.full_name}/contents/.github/workflows --jq ${jq('.[].name')} 2>${devNull}`
   );
-  const hasCI =
-    workflowsDir.includes('ci.yml') ||
-    workflowsDir.includes('CI') ||
-    workflowsDir.includes('build') ||
-    workflowsDir.includes('test');
+  const workflowFiles = workflowsDir.split(/\r?\n/).filter(Boolean);
+  const ciWorkflow = ['ci.yml', 'ci.yaml', 'factory-ci.yml', 'build.yml', 'build.yaml', 'test.yml', 'test.yaml']
+    .find((name) => workflowFiles.includes(name)) ?? workflowFiles.find((name) => /(^|[-_])(ci|build|test)([-_.]|$)/i.test(name));
+  const hasCI = ciWorkflow !== undefined;
   const hasGitleaks = workflowsDir.includes('gitleaks') || workflowsDir.includes('secret');
   const hasRenovate = has('renovate.json') || has('.github/renovate.json');
   const hasHusky = has('.husky/pre-commit');
@@ -200,6 +200,7 @@ const analyzeRepo = (repo: Repo): RepoAnalysis => {
     hasSelfHealing,
     hasQodoMerge,
     hasCI,
+    ciWorkflow,
     hasGitleaks,
     hasRenovate,
     hasHusky,
@@ -786,6 +787,7 @@ const main = () => {
           stack: a.stack,
           packageManager: a.packageManager,
           hasCI: a.hasCI,
+          ciWorkflow: a.ciWorkflow,
           hasClaudeReview: a.hasClaudeReview,
           hasSelfHealing: a.hasSelfHealing,
           hasQodoMerge: a.hasQodoMerge,
@@ -833,4 +835,5 @@ const main = () => {
 };
 
 main();
+
 

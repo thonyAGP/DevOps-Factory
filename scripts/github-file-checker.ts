@@ -14,17 +14,14 @@
  *   // boolean (uses batch internally, cached)
  */
 
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { getCached, setCache } from './cache-manager.js';
-import { devNull } from './shell-utils.js';
-
-const gh = (cmd: string): string => {
-  try {
-    return execSync(`gh ${cmd}`, { encoding: 'utf-8', timeout: 30_000 }).trim();
-  } catch {
-    return '';
-  }
-};
+const gh = (args: string[]): string =>
+  execFileSync('gh', args, {
+    encoding: 'utf-8',
+    timeout: 30_000,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  }).trim();
 
 /**
  * Check if a path contains wildcard characters that can't be resolved via GraphQL.
@@ -35,9 +32,16 @@ const isWildcard = (path: string): boolean => path.includes('*');
  * Check a single file via REST API (fallback for wildcards).
  */
 const restFileExists = (repo: string, path: string): boolean => {
-  const jqExpr = process.platform === 'win32' ? '".name"' : "'.name'";
-  const result = gh(`api repos/${repo}/contents/${path} --jq ${jqExpr} 2>${devNull}`);
-  return result.length > 0;
+  // Contents paths do not support globs. List their parent instead.
+  const slash = path.lastIndexOf('/');
+  const parent = slash < 0 ? '' : path.slice(0, slash);
+  const name = path.slice(slash + 1);
+  const pattern = new RegExp(`^${name.split('*').map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('.*')}$`);
+  const entries: Array<{ name: string; type: string }> = JSON.parse(
+    gh(['api', `repos/${repo}/contents/${parent}`])
+  );
+  if (!Array.isArray(entries)) throw new Error(`Invalid directory response for ${repo}`);
+  return entries.some((entry) => entry.type === 'file' && pattern.test(entry.name));
 };
 
 /**
@@ -46,11 +50,11 @@ const restFileExists = (repo: string, path: string): boolean => {
  */
 export const buildGraphQLQuery = (owner: string, repo: string, paths: string[]): string => {
   const fields = paths
-    .map((p, i) => `f${i}: object(expression: "HEAD:${p}") { ... on Blob { byteSize } }`)
+    .map((p, i) => `f${i}: object(expression: ${JSON.stringify(`HEAD:${p}`)}) { ... on Blob { byteSize } }`)
     .join('\n    ');
 
   return `query {
-  repository(owner: "${owner}", name: "${repo}") {
+  repository(owner: ${JSON.stringify(owner)}, name: ${JSON.stringify(repo)}) {
     ${fields}
   }
 }`;
@@ -62,19 +66,17 @@ export const buildGraphQLQuery = (owner: string, repo: string, paths: string[]):
 export const parseGraphQLResponse = (response: string, paths: string[]): Map<string, boolean> => {
   const results = new Map<string, boolean>();
 
-  try {
-    const data = JSON.parse(response);
-    const repoData = data?.data?.repository ?? {};
-
-    for (let i = 0; i < paths.length; i++) {
-      const field = `f${i}`;
-      results.set(paths[i], repoData[field] !== null && repoData[field] !== undefined);
+  const data = JSON.parse(response);
+  const repoData = data?.data?.repository;
+  if (data.errors?.length || !repoData || typeof repoData !== 'object') {
+    throw new Error('GitHub file query failed; file presence is unknown');
+  }
+  for (let i = 0; i < paths.length; i++) {
+    const field = `f${i}`;
+    if (!Object.prototype.hasOwnProperty.call(repoData, field)) {
+      throw new Error('Incomplete GitHub file query; file presence is unknown');
     }
-  } catch {
-    // If parse fails, mark all as unknown (false)
-    for (const p of paths) {
-      results.set(p, false);
-    }
+    results.set(paths[i], repoData[field] !== null);
   }
 
   return results;
@@ -94,7 +96,7 @@ export const batchFileExists = (repo: string, paths: string[]): Map<string, bool
 
   // 1. Check cache + separate wildcards
   for (const p of paths) {
-    const cacheKey = `file-exists-${repo}-${p}`;
+    const cacheKey = `file-exists-v2-${repo}-${p}`;
     const cached = getCached<boolean>(cacheKey);
     if (cached !== null) {
       results.set(p, cached);
@@ -108,7 +110,7 @@ export const batchFileExists = (repo: string, paths: string[]): Map<string, bool
   // 2. Handle wildcards via REST (no GraphQL glob support)
   for (const p of wildcardPaths) {
     const exists = restFileExists(repo, p);
-    setCache(`file-exists-${repo}-${p}`, exists);
+    setCache(`file-exists-v2-${repo}-${p}`, exists);
     results.set(p, exists);
   }
 
@@ -117,14 +119,13 @@ export const batchFileExists = (repo: string, paths: string[]): Map<string, bool
     const [owner, repoName] = repo.split('/');
     const query = buildGraphQLQuery(owner, repoName, uncached);
 
-    // Escape for shell: write query inline
-    const escaped = query.replace(/"/g, '\\"').replace(/\n/g, '\\n');
-    const response = gh(`api graphql -f query="${escaped}"`);
+    // Pass the original newlines as one argument, without a shell.
+    const response = gh(['api', 'graphql', '-f', `query=${query}`]);
 
     const graphqlResults = parseGraphQLResponse(response, uncached);
 
     for (const [path, exists] of graphqlResults) {
-      setCache(`file-exists-${repo}-${path}`, exists);
+      setCache(`file-exists-v2-${repo}-${path}`, exists);
       results.set(path, exists);
     }
   }
@@ -138,7 +139,7 @@ export const batchFileExists = (repo: string, paths: string[]): Map<string, bool
  * For batch operations, prefer batchFileExists().
  */
 export const fileExistsInRepo = (repo: string, path: string): boolean => {
-  const cacheKey = `file-exists-${repo}-${path}`;
+  const cacheKey = `file-exists-v2-${repo}-${path}`;
   const cached = getCached<boolean>(cacheKey);
   if (cached !== null) return cached;
 
@@ -152,3 +153,4 @@ export const fileExistsInRepo = (repo: string, path: string): boolean => {
   const results = batchFileExists(repo, [path]);
   return results.get(path) ?? false;
 };
+
