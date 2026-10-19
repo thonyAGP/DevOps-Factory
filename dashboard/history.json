@@ -722,10 +722,15 @@
   {
     "date": "2026-10-19",
     "avgHealth": 58,
-    "failingCI": 1,
-    "passingCI": 22,
-    "totalOpenPRs": 98,
+    "failingCI": 2,
+    "passingCI": 21,
+    "totalOpenPRs": 97,
     "perProject": [
+      {
+        "name": "DevOps-Factory",
+        "health": 22,
+        "ciStatus": "fail"
+      },
       {
         "name": "Utilitaire_Webapp",
         "health": 41,
@@ -800,11 +805,6 @@
         "name": "LecteurMagic",
         "health": 51,
         "ciStatus": "none"
-      },
-      {
-        "name": "DevOps-Factory",
-        "health": 52,
-        "ciStatus": "pass"
       },
       {
         "name": "claude-dev-config",
