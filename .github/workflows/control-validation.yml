@@ -69,6 +69,19 @@ jobs:
           cp dashboard/scan-report.json /tmp/validated-scan-report.json
           git fetch origin master
           git reset --hard origin/master
+          PUBLISH=$(node --input-type=module - dashboard/scan-report.json /tmp/validated-scan-report.json <<'NODE'
+          import { readFileSync } from 'node:fs';
+          const [currentPath, candidatePath] = process.argv.slice(2);
+          const candidate = JSON.parse(readFileSync(candidatePath, 'utf8'));
+          const timestamp = Date.parse(candidate.timestamp);
+          if (!Number.isFinite(timestamp) || !candidate.analyses?.length) throw new Error('Invalid validated inventory');
+          let current = null;
+          try { current = JSON.parse(readFileSync(currentPath, 'utf8')); } catch { /* replace an unusable derived report */ }
+          const newer = current?.analyses?.length && Date.parse(current.timestamp) >= timestamp;
+          process.stdout.write(newer ? 'false' : 'true');
+          NODE
+          )
+          if [ "$PUBLISH" != true ]; then echo 'A newer inventory is already published'; exit 0; fi
           cp /tmp/validated-scan-report.json dashboard/scan-report.json
           git config user.name 'DevOps Factory Bot'
           git config user.email 'devops-factory[bot]@users.noreply.github.com'
