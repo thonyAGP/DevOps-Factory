@@ -14,6 +14,7 @@ import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
 import { sh as _sh, devNull, tmpDir } from './shell-utils.js';
 import { logActivity } from './activity-logger.js';
 import type { WorkflowRun } from './types.js';
+import { getReferenceWorkflowRuns, isSelfHealEnabled } from './workflow-monitoring.js';
 
 const sh = (cmd: string) => _sh(cmd, { timeout: 60_000, maxBuffer: 5 * 1024 * 1024 });
 
@@ -63,17 +64,6 @@ interface WatchdogResult {
   run: WorkflowRun | null;
   patterns: string[];
 }
-
-const getLatestRunSimple = (repo: string): WorkflowRun[] => {
-  const result = sh(
-    `gh api "repos/${repo}/actions/runs?per_page=30&status=completed" --jq "[.workflow_runs[:30] | .[] | {id, name, conclusion, status, html_url, created_at, head_branch}]"`
-  );
-  try {
-    return JSON.parse(result || '[]') as WorkflowRun[];
-  } catch {
-    return [];
-  }
-};
 
 const getRunLogs = (repo: string, runId: number): string => {
   return sh(`gh run view ${runId} --repo ${repo} --log 2>&1 | tail -200`);
@@ -133,6 +123,10 @@ const getLastSelfHealForRepo = (repo: string): number => {
 };
 
 const triggerSelfHeal = (repo: string, run: WorkflowRun): boolean => {
+  if (!isSelfHealEnabled(repo)) {
+    console.log(`  [SKIP HEAL] ${repo}: self-heal workflow is disabled`);
+    return false;
+  }
   // Guard: cooldown 24h for factory (persistent via API fallback)
   const lastAttempt = getLastSelfHealForRepo(repo);
   if (Date.now() - lastAttempt < FACTORY_COOLDOWN_MS) {
@@ -247,7 +241,8 @@ const main = () => {
   console.log(`Monitoring workflows for: ${repo}\n`);
 
   // Get all recent runs (deduplicated by workflow name - keep latest per workflow)
-  const allRuns = getLatestRunSimple(repo);
+  const allRuns = getReferenceWorkflowRuns(repo);
+  if (allRuns.length === 0) throw new Error('No eligible reference workflow runs; status unknown');
   const latestByWorkflow = new Map<string, WorkflowRun>();
   for (const run of allRuns) {
     if (!latestByWorkflow.has(run.name)) {
@@ -427,3 +422,4 @@ const main = () => {
 };
 
 main();
+

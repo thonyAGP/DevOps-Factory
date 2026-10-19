@@ -3,25 +3,19 @@ import { KNOWN_PROJECTS } from '../../factory.config.js';
 import { calculateSecurityScore, calculatePerfScore, calculateHealthScore } from './scoring.js';
 import type { ScanReport, ProjectStatus, PRInfo } from './types.js';
 import type { WorkflowRun } from '../types.js';
-
-const MONITORING_WORKFLOWS = new Set([
-  'Cron Monitor',
-  'Stale Bot',
-  'Label Sync',
-  'Auto-Fix Prettier',
-  'Auto Merge Dependencies',
-]);
+import { selectReferenceRun, type ReferenceRun } from '../workflow-monitoring.js';
 
 const hiddenRepos = new Set(KNOWN_PROJECTS.filter((p) => p.hidden).map((p) => p.repo));
 
 export const getLatestWorkflowRun = (repo: string, branch: string): WorkflowRun | null => {
+  const workflow = KNOWN_PROJECTS.find((p) => p.repo === repo)?.ciWorkflow ?? 'ci.yml';
   const result = sh(
-    `gh api "repos/${repo}/actions/runs?branch=${branch}&per_page=5" --jq ${jq('[.workflow_runs[] | {id, conclusion, name, html_url, created_at, head_branch}]')}`
+    `gh api "repos/${repo}/actions/workflows/${encodeURIComponent(workflow)}/runs?branch=${encodeURIComponent(branch)}&per_page=10" --jq ${jq('.workflow_runs')}`
   );
   if (!result || result === 'null') return null;
   try {
-    const runs = JSON.parse(result) as WorkflowRun[];
-    return runs.find((r) => !MONITORING_WORKFLOWS.has(r.name)) || runs[0] || null;
+    const runs = JSON.parse(result) as ReferenceRun[];
+    return selectReferenceRun(runs, branch);
   } catch {
     return null;
   }
@@ -29,7 +23,7 @@ export const getLatestWorkflowRun = (repo: string, branch: string): WorkflowRun 
 
 export const getOpenPRs = (repo: string): PRInfo[] => {
   const result = sh(
-    `gh pr list --repo ${repo} --json number,title,state,url,author,labels,createdAt --jq ${jq('[.[] | {number, title, state, html_url: .url, user: {login: .author.login}, labels: [.labels[].name], created_at: .createdAt}]')}`
+    `gh pr list --repo ${repo} --json number,title,state,url,author,labels,createdAt --jq ${jq('[.[] | {number, title, state, html_url: .url, user: {login: .author.login}, labels: [.labels[] | {name: .name}], created_at: .createdAt}]')}`
   );
   try {
     return JSON.parse(result || '[]') as PRInfo[];
@@ -113,3 +107,4 @@ export const buildProjectStatuses = (report: ScanReport): ProjectStatus[] => {
       return status;
     });
 };
+

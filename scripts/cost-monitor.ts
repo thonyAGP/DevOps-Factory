@@ -159,6 +159,9 @@ const main = () => {
   };
 
   const activeRepos = scanReport.analyses.filter((a) => a.stack !== 'unknown');
+  if (activeRepos.length === 0) {
+    throw new Error('No monitored projects; previous cost report preserved');
+  }
   const repos: RepoUsage[] = [];
 
   for (const repo of activeRepos) {
@@ -233,3 +236,4 @@ const main = () => {
 };
 
 main();
+
