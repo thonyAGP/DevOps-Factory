@@ -1,16 +1,10 @@
 import type { ProjectStatus } from './types.js';
 
-const products = [
-  { name: 'CasaSync', repos: ['thonyAGP/CasaSync'] },
-  { name: 'Zentra', repos: ['thonyAGP/zentra'] },
-  { name: 'LB2I', repos: ['thonyAGP/LB2I-Fiscal-Manager'] },
-  { name: 'Drivyn', repos: ['thonyAGP/CarAssist', 'thonyAGP/drivyn-reports'] },
-  { name: 'Larbin', repos: [] },
-];
+import { PRIORITY_PRODUCTS } from '../../portfolio-policy.js';
 
 /** CI status is deliberately separate from live service availability. */
 export const renderPrioritySection = (statuses: ProjectStatus[]): string => {
-  const cards = products.map(product => {
+  const cards = PRIORITY_PRODUCTS.map(product => {
     const rows = product.repos.map(repo => {
       const result = statuses.find(p => p.fullName === repo);
       const text = result?.ciStatus === 'pass' ? 'CI réussie'

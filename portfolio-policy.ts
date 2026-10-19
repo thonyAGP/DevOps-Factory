@@ -1,11 +1,13 @@
 /** Business priorities confirmed by the owner on 2026-10-19. */
-export const PRIORITY_REPOSITORIES: readonly string[] = [
-  'thonyAGP/CasaSync',
-  'thonyAGP/zentra',
-  'thonyAGP/LB2I-Fiscal-Manager',
-  'thonyAGP/CarAssist',
-  'thonyAGP/drivyn-reports',
+export const PRIORITY_PRODUCTS: ReadonlyArray<{ name: string; repos: readonly string[] }> = [
+  { name: 'CasaSync', repos: ['thonyAGP/CasaSync'] },
+  { name: 'Zentra', repos: ['thonyAGP/zentra'] },
+  { name: 'LB2I', repos: ['thonyAGP/LB2I-Fiscal-Manager'] },
+  { name: 'Drivyn', repos: ['thonyAGP/CarAssist', 'thonyAGP/drivyn-reports'] },
+  { name: 'Larbin', repos: [] },
 ];
+
+export const PRIORITY_REPOSITORIES: readonly string[] = PRIORITY_PRODUCTS.flatMap(p => p.repos);
 
 /** Dependencies to preserve, not additional autonomous development targets. */
 export const SUPPORT_REPOSITORIES: readonly string[] = [
