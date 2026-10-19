@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { CLAUDE_REVIEW_CONFIG, REMEDIATION_CONFIG, KNOWN_PROJECTS } from './factory.config.js';
-import { isPriorityRepository, retainPriorityOptIns, SUPPORT_REPOSITORIES } from './portfolio-policy.js';
+import { CLAUDE_REVIEW_CONFIG, REMEDIATION_CONFIG, KNOWN_PROJECTS } from '../factory.config.js';
+import { isPriorityRepository, retainPriorityOptIns, SUPPORT_REPOSITORIES } from '../portfolio-policy.js';
 
 describe('owner portfolio priorities', () => {
   it('narrows existing opt-ins without enabling new agents on priority projects', () => {
