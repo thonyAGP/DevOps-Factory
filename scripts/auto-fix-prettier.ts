@@ -1,3 +1,4 @@
+import { isPriorityRepository } from '../portfolio-policy.js';
 /**
  * auto-fix-prettier.ts
  *
@@ -228,7 +229,7 @@ const processRepo = (project: ProjectConfig): FixResult => {
 const main = () => {
   console.log(`\nPrettier Auto-Fix - ${new Date().toISOString()}`);
 
-  const nodeProjects = KNOWN_PROJECTS.filter((p) => NODE_STACKS.has(p.stack));
+  const nodeProjects = KNOWN_PROJECTS.filter((p) => isPriorityRepository(p.repo) && NODE_STACKS.has(p.stack));
   console.log(`Found ${nodeProjects.length} Node-based repos to check\n`);
 
   // Ensure label exists

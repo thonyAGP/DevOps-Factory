@@ -5,6 +5,16 @@ import { getRemediationBlocker } from './automation-guard.js';
 import { sh } from './shell-utils.js';
 import { runRemediationDispatch } from './remediation-dispatch.js';
 
+vi.mock('../factory.config.js', () => ({
+  REMEDIATION_CONFIG: {
+    enabled: true,
+    enabledRepos: ['fixture/first', 'fixture/second'],
+    minGrade: 'F',
+    maxPerDay: 4,
+    workflowFile: 'ai-remediation.yml',
+  },
+}));
+
 vi.mock('node:fs', () => ({
   readFileSync: vi.fn(),
   writeFileSync: vi.fn(),
@@ -38,6 +48,17 @@ afterEach(() => {
 });
 
 describe('remediation dispatch spends its quota on eligible work', () => {
+  it('does no work when the dispatcher is disabled', () => {
+    REMEDIATION_CONFIG.enabled = false;
+    try {
+      runRemediationDispatch();
+      expect(getRemediationBlocker).not.toHaveBeenCalled();
+      expect(readFileSync).not.toHaveBeenCalled();
+      expect(sh).not.toHaveBeenCalled();
+    } finally {
+      REMEDIATION_CONFIG.enabled = true;
+    }
+  });
   it('skips the first blocked candidate and dispatches the next within the same quota', () => {
     vi.mocked(getRemediationBlocker).mockReturnValueOnce('PR #42 awaits review');
     runRemediationDispatch();
