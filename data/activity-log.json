@@ -2,81 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-12T08:27:52.919Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Email_Assistant",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-12T08:27:52.923Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "ClubMedRoomAssignment",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-12T08:27:54.610Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Livret_accueil_Au-Marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-12T08:27:54.612Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "Site_Au-marais",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-12T08:27:56.454Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-12T08:27:56.456Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "3/9 passing, 5 failing. Issues: 0 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-12T10:13:50.917Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-12T10:13:51.627Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-12T10:13:52.372Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.6/10, 4150 risk pts, +6/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-12T10:13:53.111Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-10-12T12:57:03.822Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -3322,6 +3247,62 @@
     },
     {
       "timestamp": "2026-10-19T06:44:49.269Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "36 projects, avg health 58",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-19T10:42:58.533Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 23 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-19T10:42:59.236Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.9/10, 3070 risk pts, +1/-1",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-19T10:44:24.936Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 10%, 20 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-19T10:45:35.808Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: medium, deploy 0/wk, lead 356.6h, MTTR 10.5h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-19T10:45:58.372Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 35862min total, 322min wasted, ~$270.9/mo",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-19T10:47:26.338Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 29/100, branch protection 0/23, CI 21/23, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-19T10:47:27.066Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "237 recommendations across 37 repos (4 critical, 188 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-19T10:48:08.767Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
       "details": "36 projects, avg health 58",
