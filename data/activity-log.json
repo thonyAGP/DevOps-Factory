@@ -2,51 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-13T04:04:54.737Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-13T04:05:13.088Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/DevOps-Factory",
-      "details": "PR #3328 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-13T04:05:13.090Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/DevOps-Factory",
-      "details": "PR #3324 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-13T04:05:13.091Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/DevOps-Factory",
-      "details": "PR #3334 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-13T04:05:13.094Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-13T04:05:13.096Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 49 outcomes (22 merged, 9 closed, 18 open). 4 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-10-13T04:13:29.965Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -4924,6 +4879,29 @@
     },
     {
       "timestamp": "2026-10-20T04:00:08.407Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-20T04:08:52.590Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-20T04:08:52.593Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-20T04:08:52.596Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
