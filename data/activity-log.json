@@ -6347,6 +6347,29 @@
       "action": "quality-complete",
       "details": "Avg 34/100, 0 excellent, 17 needs work, 0 drops, 0 improvements",
       "status": "success"
+    },
+    {
+      "timestamp": "2026-10-20T13:43:42.678Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-20T13:43:42.682Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-20T13:43:42.685Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
+      "status": "warning"
     }
   ]
 }
