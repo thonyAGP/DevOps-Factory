@@ -4995,27 +4995,115 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-10-20T05:00:14.660Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "DevOps-Factory",
-      "details": "CI failure: Factory CI on master",
+      "timestamp": "2026-10-20T05:04:52.398Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Auto-Generate Tests",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-20T05:04:56.446Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "CI Health Check",
+      "details": "Partial failure detected: gh: not found",
       "status": "warning"
     },
     {
-      "timestamp": "2026-10-20T05:00:14.864Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
+      "timestamp": "2026-10-20T05:05:02.045Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Build Dashboard",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-20T05:05:02.047Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Dependency Intelligence",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-20T05:05:03.720Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Migration Tracker",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-20T05:05:06.065Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Redeploy Templates",
+      "details": "Partial failure detected: Failed to create PR",
       "status": "warning"
     },
     {
-      "timestamp": "2026-10-20T05:00:14.867Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
+      "timestamp": "2026-10-20T05:05:08.881Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Scan Repos",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-20T05:05:10.837Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Supply Chain Security",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-20T05:05:13.358Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Weekly Veille",
+      "details": "Partial failure detected: GEMINI_API_KEY",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-20T05:05:13.361Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "CI Health Check",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-10-20T05:05:15.609Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Build Dashboard",
+      "details": "total_failure: Build Dashboard",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-20T05:05:17.315Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Scan Repos",
+      "details": "total_failure: Scan Repos",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-20T05:05:17.317Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "Weekly Veille",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-10-20T05:05:17.320Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "21/30 passing. 6 failures, 3 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
