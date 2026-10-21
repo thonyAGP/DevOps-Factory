@@ -1,6 +1,6 @@
 ## Dependency Intelligence Report
 
-> Generated: 2026-10-07T16:11:53.456Z
+> Generated: 2026-10-21T14:23:56.163Z
 
 ### Security Vulnerabilities
 
@@ -11,11 +11,10 @@ No open Dependabot alerts found.
 | Repo | Total Deps | Vulnerabilities | Stack |
 |------|-----------|-----------------|-------|
 | DevOps-Factory | 20 | 0 | node |
-| Email_Assistant | 31 | 0 | fastify |
-| CasaSync | 77 | 0 | nextjs |
+| CasaSync | 78 | 0 | nextjs |
 | Livret_accueil_Au-Marais | 37 | 0 | nextjs |
 | Site_Au-marais | 52 | 0 | nextjs |
-| Lecteur_Magic | 10 | 0 | node |
+| LecteurMagic | 10 | 0 | node |
 | API_Claude | 6 | 0 | node |
 | MCP_Quota_Claude | 15 | 0 | node |
 | Statusline | 8 | 0 | node |
@@ -25,11 +24,10 @@ No open Dependabot alerts found.
 | test_codingmenace | 11 | 0 | nextjs |
 | Zentra | 45 | 0 | nextjs |
 | LB2I-Fiscal-Manager | 59 | 0 | nextjs |
-| magic-migration | 10 | 0 | node |
 
 ### Summary
 
-- **Repos scanned**: 16
+- **Repos scanned**: 14
 - **Total vulnerabilities**: 0
 
 ---
