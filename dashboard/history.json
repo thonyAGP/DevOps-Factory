@@ -1264,15 +1264,20 @@
   },
   {
     "date": "2026-10-22",
-    "avgHealth": 58,
+    "avgHealth": 54,
     "failingCI": 2,
-    "passingCI": 21,
+    "passingCI": 10,
     "totalOpenPRs": 100,
     "perProject": [
       {
         "name": "DevOps-Factory",
         "health": 22,
         "ciStatus": "fail"
+      },
+      {
+        "name": "LB2I-Fiscal-Manager",
+        "health": 41,
+        "ciStatus": "none"
       },
       {
         "name": "Utilitaire_Webapp",
@@ -1296,6 +1301,11 @@
       },
       {
         "name": "drivyn-reports",
+        "health": 46,
+        "ciStatus": "none"
+      },
+      {
+        "name": "FincaScout",
         "health": 46,
         "ciStatus": "none"
       },
@@ -1340,9 +1350,14 @@
         "ciStatus": "none"
       },
       {
-        "name": "LB2I-Fiscal-Manager",
+        "name": "analyse-negocio",
         "health": 51,
-        "ciStatus": "pass"
+        "ciStatus": "none"
+      },
+      {
+        "name": "CasaSync",
+        "health": 51,
+        "ciStatus": "none"
       },
       {
         "name": "LecteurMagic",
@@ -1355,14 +1370,9 @@
         "ciStatus": "pass"
       },
       {
-        "name": "FincaScout",
+        "name": "SqlConnectionTest",
         "health": 56,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "analyse-negocio",
-        "health": 61,
-        "ciStatus": "pass"
+        "ciStatus": "none"
       },
       {
         "name": "au-marais",
@@ -1370,9 +1380,14 @@
         "ciStatus": "pass"
       },
       {
-        "name": "CasaSync",
+        "name": "livret-au-marais",
         "health": 61,
-        "ciStatus": "pass"
+        "ciStatus": "none"
+      },
+      {
+        "name": "MCP_Quota_Claude",
+        "health": 61,
+        "ciStatus": "none"
       },
       {
         "name": "Site-Soraya",
@@ -1380,27 +1395,27 @@
         "ciStatus": "pass"
       },
       {
+        "name": "test_codingmenace",
+        "health": 61,
+        "ciStatus": "none"
+      },
+      {
+        "name": "Thumbfast",
+        "health": 61,
+        "ciStatus": "none"
+      },
+      {
         "name": "zentra",
         "health": 61,
         "ciStatus": "pass"
       },
       {
-        "name": "SqlConnectionTest",
-        "health": 66,
-        "ciStatus": "pass"
+        "name": "PMS-Magic-Sources",
+        "health": 62,
+        "ciStatus": "none"
       },
       {
         "name": "claude-cli-wrapper",
-        "health": 71,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "livret-au-marais",
-        "health": 71,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "MCP_Quota_Claude",
         "health": 71,
         "ciStatus": "pass"
       },
@@ -1420,19 +1435,9 @@
         "ciStatus": "pass"
       },
       {
-        "name": "test_codingmenace",
-        "health": 71,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "Thumbfast",
-        "health": 71,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "PMS-Magic-Sources",
+        "name": "Livret_accueil_Au-Marais",
         "health": 72,
-        "ciStatus": "pass"
+        "ciStatus": "none"
       },
       {
         "name": "sql-multi-server-executor",
@@ -1442,11 +1447,6 @@
       {
         "name": "claude-launcher",
         "health": 77,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "Livret_accueil_Au-Marais",
-        "health": 82,
         "ciStatus": "pass"
       }
     ]
