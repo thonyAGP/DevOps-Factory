@@ -1264,20 +1264,15 @@
   },
   {
     "date": "2026-10-22",
-    "avgHealth": 54,
+    "avgHealth": 56,
     "failingCI": 2,
-    "passingCI": 10,
+    "passingCI": 15,
     "totalOpenPRs": 100,
     "perProject": [
       {
         "name": "DevOps-Factory",
         "health": 22,
         "ciStatus": "fail"
-      },
-      {
-        "name": "LB2I-Fiscal-Manager",
-        "health": 41,
-        "ciStatus": "none"
       },
       {
         "name": "Utilitaire_Webapp",
@@ -1301,11 +1296,6 @@
       },
       {
         "name": "drivyn-reports",
-        "health": 46,
-        "ciStatus": "none"
-      },
-      {
-        "name": "FincaScout",
         "health": 46,
         "ciStatus": "none"
       },
@@ -1350,14 +1340,14 @@
         "ciStatus": "none"
       },
       {
-        "name": "analyse-negocio",
+        "name": "CasaSync",
         "health": 51,
         "ciStatus": "none"
       },
       {
-        "name": "CasaSync",
+        "name": "LB2I-Fiscal-Manager",
         "health": 51,
-        "ciStatus": "none"
+        "ciStatus": "pass"
       },
       {
         "name": "LecteurMagic",
@@ -1370,9 +1360,14 @@
         "ciStatus": "pass"
       },
       {
-        "name": "SqlConnectionTest",
+        "name": "FincaScout",
         "health": 56,
-        "ciStatus": "none"
+        "ciStatus": "pass"
+      },
+      {
+        "name": "analyse-negocio",
+        "health": 61,
+        "ciStatus": "pass"
       },
       {
         "name": "au-marais",
@@ -1385,7 +1380,7 @@
         "ciStatus": "none"
       },
       {
-        "name": "MCP_Quota_Claude",
+        "name": "Site_Greg-Assainissement",
         "health": 61,
         "ciStatus": "none"
       },
@@ -1400,22 +1395,32 @@
         "ciStatus": "none"
       },
       {
-        "name": "Thumbfast",
-        "health": 61,
-        "ciStatus": "none"
-      },
-      {
         "name": "zentra",
         "health": 61,
         "ciStatus": "pass"
       },
       {
-        "name": "PMS-Magic-Sources",
+        "name": "sql-multi-server-executor",
         "health": 62,
         "ciStatus": "none"
       },
       {
+        "name": "SqlConnectionTest",
+        "health": 66,
+        "ciStatus": "pass"
+      },
+      {
+        "name": "claude-launcher",
+        "health": 67,
+        "ciStatus": "none"
+      },
+      {
         "name": "claude-cli-wrapper",
+        "health": 71,
+        "ciStatus": "pass"
+      },
+      {
+        "name": "MCP_Quota_Claude",
         "health": 71,
         "ciStatus": "pass"
       },
@@ -1425,28 +1430,23 @@
         "ciStatus": "pass"
       },
       {
-        "name": "Site_Greg-Assainissement",
-        "health": 71,
-        "ciStatus": "pass"
-      },
-      {
         "name": "statusline",
         "health": 71,
         "ciStatus": "pass"
       },
       {
-        "name": "Livret_accueil_Au-Marais",
-        "health": 72,
-        "ciStatus": "none"
+        "name": "Thumbfast",
+        "health": 71,
+        "ciStatus": "pass"
       },
       {
-        "name": "sql-multi-server-executor",
+        "name": "PMS-Magic-Sources",
         "health": 72,
         "ciStatus": "pass"
       },
       {
-        "name": "claude-launcher",
-        "health": 77,
+        "name": "Livret_accueil_Au-Marais",
+        "health": 82,
         "ciStatus": "pass"
       }
     ]
