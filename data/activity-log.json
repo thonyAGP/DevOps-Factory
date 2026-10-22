@@ -13271,6 +13271,30 @@
       "target": "ClubMedRoomAssignment",
       "details": "CI failure: null on null",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-22T16:56:32.266Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-22T16:56:32.274Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-22T16:56:32.280Z",
+      "source": "ci-health-check",
+      "action": "escalation",
+      "target": "Livret_accueil_Au-Marais",
+      "details": "3 consecutive CI failures",
+      "status": "error"
     }
   ]
 }
