@@ -2,55 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-15T15:49:45.732Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-15T15:49:59.916Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-15T15:49:59.918Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 49 outcomes (22 merged, 9 closed, 18 open). 4 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-15T15:58:13.072Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-15T15:58:13.762Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-15T15:58:14.456Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.7/10, 4025 risk pts, +7/-13",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-15T15:58:15.132Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-10-15T16:19:15.394Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -13176,6 +13127,34 @@
       "target": "ClubMedRoomAssignment",
       "details": "CI failure: CI on main",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-22T16:09:20.644Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 37 repos (23 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-22T16:09:27.945Z",
+      "source": "scan-and-configure",
+      "action": "registry-sync",
+      "details": "Auto-added 4 repo(s): patrimo, Boxmail_cleaning, jira-tickets, FincaScout",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-22T16:09:44.767Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-22T16:09:44.773Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 52 outcomes (23 merged, 9 closed, 20 open). 3 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
