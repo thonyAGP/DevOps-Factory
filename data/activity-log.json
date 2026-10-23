@@ -2,27 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-16T01:49:43.189Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-16T01:49:55.814Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-16T01:49:55.818Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 49 outcomes (22 merged, 9 closed, 18 open). 4 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-10-16T01:58:07.806Z",
       "source": "build-dashboard",
       "action": "dashboard-built",
@@ -14606,6 +14585,29 @@
     },
     {
       "timestamp": "2026-10-23T01:48:54.609Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-23T01:56:04.641Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-23T01:56:04.648Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-23T01:56:04.654Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
