@@ -16799,27 +16799,99 @@
       "status": "warning"
     },
     {
-      "timestamp": "2026-10-23T17:15:26.277Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "DevOps-Factory",
-      "details": "CI failure: Factory CI on master",
+      "timestamp": "2026-10-23T17:20:30.733Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Auto-Generate Tests",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-23T17:20:34.882Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "CI Health Check",
+      "details": "Partial failure detected: gh: not found",
       "status": "warning"
     },
     {
-      "timestamp": "2026-10-23T17:15:26.306Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
+      "timestamp": "2026-10-23T17:20:46.733Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Migration Tracker",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-23T17:20:46.739Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Quality Score",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-23T17:20:47.740Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Redeploy Templates",
+      "details": "Partial failure detected: Failed to create PR",
       "status": "warning"
     },
     {
-      "timestamp": "2026-10-23T17:15:26.326Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
+      "timestamp": "2026-10-23T17:20:50.488Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Scan Repos",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-23T17:20:52.564Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Supply Chain Security",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-10-23T17:20:55.111Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Weekly Veille",
+      "details": "Partial failure detected: GEMINI_API_KEY",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-23T17:20:55.117Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "CI Health Check",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-10-23T17:20:55.324Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "Weekly Veille",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-10-23T17:20:57.128Z",
+      "source": "factory-watchdog",
+      "action": "issue-closed",
+      "target": "[Watchdog] FAILURE: Build Dashboard",
+      "details": "recovered: [Watchdog] FAILURE: Build Dashboard",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-23T17:20:57.135Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "22/30 passing. 5 failures, 3 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
