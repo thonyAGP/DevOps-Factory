@@ -2,34 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-17T10:36:18.903Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-17T10:36:19.554Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.7/10, 4025 risk pts, +0/-0",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-17T10:36:20.213Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-17T10:36:23.572Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-10-17T11:53:20.833Z",
       "source": "ci-health-check",
       "action": "alert-deferred",
@@ -19498,6 +19470,29 @@
     },
     {
       "timestamp": "2026-10-24T10:34:35.268Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-24T10:40:02.093Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-24T10:40:02.102Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-24T10:40:02.109Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
