@@ -2,41 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-18T08:45:52.279Z",
-      "source": "central-coverage",
-      "action": "coverage-measured",
-      "details": "5/15 repos measured",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-18T08:46:14.607Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: NaN/100, 0 critical issues",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-18T08:46:15.615Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.8/10, 4025 risk pts, +0/-0",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-18T08:46:16.367Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: NaN%, 0 drifted templates",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-18T08:46:19.878Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "0 projects, avg health NaN",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-10-18T10:24:28.916Z",
       "source": "build-dashboard",
       "action": "security-posture",
@@ -22732,6 +22697,29 @@
     },
     {
       "timestamp": "2026-10-25T08:40:13.013Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-25T08:47:26.256Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-25T08:47:26.264Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-25T08:47:26.323Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
