@@ -167,19 +167,18 @@
       "name": "LB2I-Fiscal-Manager",
       "repo": "thonyAGP/LB2I-Fiscal-Manager",
       "risk": 130,
-      "scorecard": 2,
+      "scorecard": 3,
       "grade": "F",
       "secrets": 2,
       "sastErrors": 9,
       "criticalDeps": 0,
       "highDeps": 13,
       "duplicationPct": 4.54,
-      "coveragePct": 47.99,
+      "coveragePct": 61.27,
       "reasons": [
         "2 secret(s) exposé(s)",
         "9 erreur(s) SAST",
-        "duplication 4.54%",
-        "couverture 47.99%"
+        "duplication 4.54%"
       ]
     },
     {
@@ -254,18 +253,17 @@
       "name": "DevOps-Factory",
       "repo": "thonyAGP/DevOps-Factory",
       "risk": 65,
-      "scorecard": 6,
+      "scorecard": 7,
       "grade": "D",
       "secrets": 0,
       "sastErrors": 4,
       "criticalDeps": 0,
       "highDeps": 9,
       "duplicationPct": 8.65,
-      "coveragePct": 17.35,
+      "coveragePct": null,
       "reasons": [
         "4 erreur(s) SAST",
-        "duplication 8.65%",
-        "couverture 17.35%"
+        "duplication 8.65%"
       ]
     },
     {
@@ -350,7 +348,7 @@
     }
   ],
   "summary": {
-    "avgScorecard": 5.9,
+    "avgScorecard": 6,
     "totalRisk": 3070,
     "reposWithSecrets": 6,
     "reposOverDuplication": 19,
