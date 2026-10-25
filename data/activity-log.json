@@ -2,35 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-18T01:41:47.427Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 0 repos (0 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-18T01:42:04.556Z",
-      "source": "outcome-registry",
-      "action": "healing-failed",
-      "target": "thonyAGP/DevOps-Factory",
-      "details": "PR #3349 — CI still red after merge",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-18T01:42:04.559Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-18T01:42:04.562Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 50 outcomes (23 merged, 9 closed, 18 open). 5 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-10-18T01:50:31.070Z",
       "source": "build-dashboard",
       "action": "security-posture",
@@ -21650,6 +21621,29 @@
     },
     {
       "timestamp": "2026-10-25T01:39:01.091Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-25T01:46:03.849Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-25T01:46:03.855Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-25T01:46:03.859Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
