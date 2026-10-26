@@ -2,61 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-19T04:59:46.203Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Build Dashboard",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-19T04:59:46.204Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "CI Health Check",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-19T04:59:47.256Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Scan Repos",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-19T04:59:49.610Z",
-      "source": "factory-watchdog",
-      "action": "self-heal-failed",
-      "target": "CI Health Check",
-      "details": "Failed to trigger self-heal",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-19T04:59:51.690Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Scan Repos",
-      "details": "total_failure: Scan Repos",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-19T04:59:53.070Z",
-      "source": "factory-watchdog",
-      "action": "issue-closed",
-      "target": "[Watchdog] FAILURE: Cron Monitor",
-      "details": "recovered: [Watchdog] FAILURE: Cron Monitor",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-19T04:59:53.071Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "3/6 passing. 3 failures, 0 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-10-19T06:39:22.800Z",
       "source": "build-dashboard",
       "action": "security-posture",
@@ -25922,6 +25867,29 @@
     },
     {
       "timestamp": "2026-10-26T04:55:04.001Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-26T05:00:15.717Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-26T05:00:15.726Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-26T05:00:15.732Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
