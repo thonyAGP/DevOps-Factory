@@ -1988,11 +1988,16 @@
   },
   {
     "date": "2026-10-26",
-    "avgHealth": 58,
-    "failingCI": 2,
-    "passingCI": 21,
-    "totalOpenPRs": 108,
+    "avgHealth": 57,
+    "failingCI": 3,
+    "passingCI": 20,
+    "totalOpenPRs": 109,
     "perProject": [
+      {
+        "name": "LB2I-Fiscal-Manager",
+        "health": 21,
+        "ciStatus": "fail"
+      },
       {
         "name": "DevOps-Factory",
         "health": 22,
@@ -2062,11 +2067,6 @@
         "name": "Viewground",
         "health": 46,
         "ciStatus": "none"
-      },
-      {
-        "name": "LB2I-Fiscal-Manager",
-        "health": 51,
-        "ciStatus": "pass"
       },
       {
         "name": "LecteurMagic",
