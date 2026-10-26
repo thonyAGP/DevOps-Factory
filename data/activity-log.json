@@ -2,41 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-19T15:01:38.301Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 23 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-19T15:01:38.860Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.9/10, 3070 risk pts, +0/-0",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-19T15:02:48.608Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 10%, 19 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-19T15:03:55.086Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: medium, deploy 0/wk, lead 168.1h, MTTR 9.9h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-19T15:04:17.823Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 35909min total, 335min wasted, ~$271.27/mo",
-      "status": "success"
-    },
-    {
       "timestamp": "2026-10-19T15:05:51.350Z",
       "source": "build-dashboard",
       "action": "compliance-report",
@@ -27642,6 +27607,21 @@
       "action": "check-complete",
       "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-26T15:04:28.286Z",
+      "source": "quality-score",
+      "action": "quality-improved",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "25 → 40 (+15pts)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-10-26T15:04:28.292Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 34/100, 0 excellent, 17 needs work, 0 drops, 1 improvements",
+      "status": "success"
     }
   ]
 }

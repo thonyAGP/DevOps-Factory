@@ -1,4 +1,4 @@
-## Quality Score Report - 2026-10-20
+## Quality Score Report - 2026-10-26
 
 ### Summary
 - **Average Score**: 34/100
@@ -72,6 +72,18 @@
 - **Score**: 40/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### LB2I-Fiscal-Manager
+- **Score**: 40/100
+- **CI Passes**: ✗
+- **Coverage**: ✓
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
@@ -189,18 +201,6 @@
 - **No Critical Findings**: ✗
 
 #### test_codingmenace
-- **Score**: 25/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### LB2I-Fiscal-Manager
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
