@@ -14,8 +14,8 @@
     "priorite": "haute",
     "impact": "ci_rouge",
     "premiereOccurrence": "2026-10-11T18:07:46.411Z",
-    "derniereOccurrence": "2026-10-28T03:59:33.980Z",
-    "occurrences": 54,
+    "derniereOccurrence": "2026-10-28T06:01:56.691Z",
+    "occurrences": 55,
     "ouvertures": 2,
     "fermeLe": null,
     "enquetes": {
@@ -28,7 +28,7 @@
     "derniereDecision": {
       "enquete": false,
       "motif": "enquete_en_cours",
-      "horodatage": "2026-10-28T03:59:33.980Z"
+      "horodatage": "2026-10-28T06:01:56.691Z"
     },
     "causedBy": null,
     "incidentRootId": null,
@@ -47,29 +47,30 @@
       "typeFlux": "github-file-date",
       "depot": "thonyAGP/FincaScout"
     },
-    "etat": "ferme",
+    "etat": "enquete_demandee",
     "priorite": "haute",
     "impact": "job_muet",
     "premiereOccurrence": "2026-10-19T12:07:46.073Z",
-    "derniereOccurrence": "2026-10-21T05:08:32.451Z",
-    "occurrences": 12,
-    "ouvertures": 1,
-    "fermeLe": "2026-10-21T11:09:51.887Z",
+    "derniereOccurrence": "2026-10-28T06:01:56.691Z",
+    "occurrences": 13,
+    "ouvertures": 2,
+    "fermeLe": null,
     "enquetes": {
-      "demandees": 1,
+      "demandees": 2,
       "horodatages": [
-        "2026-10-19T12:07:46.073Z"
+        "2026-10-19T12:07:46.073Z",
+        "2026-10-28T06:01:56.691Z"
       ]
     },
     "derniereDecision": {
-      "enquete": false,
-      "motif": "enquete_en_cours",
-      "horodatage": "2026-10-21T05:08:32.451Z"
+      "enquete": true,
+      "motif": "rouvert_hors_cooldown",
+      "horodatage": "2026-10-28T06:01:56.691Z"
     },
     "causedBy": null,
     "incidentRootId": null,
     "nonFiable": {
-      "detail": "dernière preuve le 18/10 02:00, il y a 3 j (seuil 30 h)"
+      "detail": "dernière preuve le 27/10 01:00, il y a 30 h (seuil 30 h)"
     }
   }
 ]
