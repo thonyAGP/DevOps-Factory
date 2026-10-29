@@ -2,43 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-22T16:44:55.938Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 29/100, branch protection 0/23, CI 21/23, review coverage 0%",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-22T16:44:56.669Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "237 recommendations across 37 repos (4 critical, 186 high)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-22T16:45:39.984Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "36 projects, avg health 56",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-22T16:50:53.009Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "DevOps-Factory",
-      "details": "CI failure: Factory CI on master",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-22T16:50:53.014Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: null on null",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-10-22T16:56:32.266Z",
       "source": "ci-health-check",
       "action": "ci-failure-detected",
@@ -32439,6 +32402,37 @@
     },
     {
       "timestamp": "2026-10-29T16:43:28.027Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-29T16:52:56.032Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-29T16:52:56.047Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-29T16:52:57.223Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-29T16:52:57.235Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
