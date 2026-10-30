@@ -2,117 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-23T05:08:08.483Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Auto-Generate Tests",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:16.347Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "CI Health Check",
-      "details": "Partial failure detected: gh: not found",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:26.690Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Build Dashboard",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:31.515Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Migration Tracker",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:31.521Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Quality Score",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:32.867Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "Redeploy Templates",
-      "details": "Partial failure detected: Failed to create PR",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:42.240Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Scan Repos",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:45.265Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Supply Chain Security",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:50.330Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "Weekly Veille",
-      "details": "Partial failure detected: GEMINI_API_KEY",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:50.337Z",
-      "source": "factory-watchdog",
-      "action": "workflow-stale",
-      "target": "CI Health Check",
-      "details": "Workflow stale (informational patterns only)",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:52.350Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Build Dashboard",
-      "details": "total_failure: Build Dashboard",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:54.313Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Scan Repos",
-      "details": "total_failure: Scan Repos",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:54.318Z",
-      "source": "factory-watchdog",
-      "action": "workflow-stale",
-      "target": "Weekly Veille",
-      "details": "Workflow stale (informational patterns only)",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-23T05:08:54.324Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "21/30 passing. 6 failures, 3 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-10-23T05:22:44.511Z",
       "source": "ci-health-check",
       "action": "ci-failure-detected",
@@ -33099,6 +32988,37 @@
     },
     {
       "timestamp": "2026-10-30T05:04:57.880Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-30T05:13:53.305Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-30T05:13:53.317Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-30T05:13:54.809Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-30T05:13:54.818Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
