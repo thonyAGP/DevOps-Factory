@@ -2,29 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-24T23:15:38.430Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "DevOps-Factory",
-      "details": "CI failure: Factory CI on master",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-24T23:15:38.439Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-24T23:15:38.448Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "5/8 passing, 2 failing. Issues: 2 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-10-24T23:24:18.610Z",
       "source": "ci-health-check",
       "action": "ci-failure-detected",
@@ -34939,6 +34916,37 @@
     },
     {
       "timestamp": "2026-10-31T23:11:10.329Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-31T23:18:23.644Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-31T23:18:23.654Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-31T23:18:25.097Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-10-31T23:18:25.105Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
