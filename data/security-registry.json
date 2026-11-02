@@ -1,16 +1,16 @@
 {
-  "date": "2026-10-26",
+  "date": "2026-11-02",
   "repos": [
     {
       "name": "Zentra",
       "repo": "thonyAGP/zentra",
-      "risk": 555,
+      "risk": 550,
       "scorecard": 1,
       "grade": "F",
       "secrets": 1,
       "sastErrors": 3,
       "criticalDeps": 7,
-      "highDeps": 92,
+      "highDeps": 91,
       "duplicationPct": 6.65,
       "coveragePct": null,
       "reasons": [
@@ -23,13 +23,13 @@
     {
       "name": "ClubMedRoomAssignment",
       "repo": "thonyAGP/ClubMedRoomAssignment",
-      "risk": 535,
+      "risk": 525,
       "scorecard": 5,
       "grade": "F",
       "secrets": 0,
       "sastErrors": 3,
       "criticalDeps": 12,
-      "highDeps": 80,
+      "highDeps": 78,
       "duplicationPct": 3.27,
       "coveragePct": null,
       "reasons": [
@@ -41,13 +41,13 @@
     {
       "name": "LecteurMagic",
       "repo": "thonyAGP/LecteurMagic",
-      "risk": 465,
+      "risk": 445,
       "scorecard": 1,
       "grade": "F",
       "secrets": 4,
       "sastErrors": 7,
       "criticalDeps": 2,
-      "highDeps": 74,
+      "highDeps": 70,
       "duplicationPct": 10.23,
       "coveragePct": null,
       "reasons": [
@@ -60,13 +60,13 @@
     {
       "name": "Site_Au-marais",
       "repo": "thonyAGP/au-marais",
-      "risk": 330,
+      "risk": 325,
       "scorecard": 1,
       "grade": "F",
       "secrets": 2,
       "sastErrors": 1,
       "criticalDeps": 6,
-      "highDeps": 49,
+      "highDeps": 48,
       "duplicationPct": 13.66,
       "coveragePct": null,
       "reasons": [
@@ -115,13 +115,13 @@
     {
       "name": "Thumbfast_createur_images",
       "repo": "thonyAGP/Thumbfast",
-      "risk": 170,
+      "risk": 165,
       "scorecard": 7,
       "grade": "F",
       "secrets": 0,
       "sastErrors": 0,
       "criticalDeps": 4,
-      "highDeps": 26,
+      "highDeps": 25,
       "duplicationPct": 14.69,
       "coveragePct": null,
       "reasons": [
@@ -130,15 +130,34 @@
       ]
     },
     {
+      "name": "LB2I-Fiscal-Manager",
+      "repo": "thonyAGP/LB2I-Fiscal-Manager",
+      "risk": 155,
+      "scorecard": 1,
+      "grade": "F",
+      "secrets": 2,
+      "sastErrors": 9,
+      "criticalDeps": 1,
+      "highDeps": 16,
+      "duplicationPct": 4.49,
+      "coveragePct": 63.41,
+      "reasons": [
+        "2 secret(s) exposé(s)",
+        "1 dépendance(s) CRITICAL",
+        "9 erreur(s) SAST",
+        "duplication 4.49%"
+      ]
+    },
+    {
       "name": "Site_1970_Plomberie",
       "repo": "thonyAGP/Site_1970_Plomberie",
-      "risk": 165,
+      "risk": 150,
       "scorecard": 7,
       "grade": "F",
       "secrets": 0,
       "sastErrors": 0,
       "criticalDeps": 1,
-      "highDeps": 31,
+      "highDeps": 28,
       "duplicationPct": 15.84,
       "coveragePct": null,
       "reasons": [
@@ -149,13 +168,13 @@
     {
       "name": "analyse-negocio",
       "repo": "thonyAGP/analyse-negocio",
-      "risk": 155,
+      "risk": 150,
       "scorecard": 7,
       "grade": "F",
       "secrets": 0,
       "sastErrors": 0,
       "criticalDeps": 5,
-      "highDeps": 21,
+      "highDeps": 20,
       "duplicationPct": 12.11,
       "coveragePct": null,
       "reasons": [
@@ -164,40 +183,21 @@
       ]
     },
     {
-      "name": "LB2I-Fiscal-Manager",
-      "repo": "thonyAGP/LB2I-Fiscal-Manager",
-      "risk": 150,
-      "scorecard": 1,
-      "grade": "F",
-      "secrets": 2,
-      "sastErrors": 9,
-      "criticalDeps": 1,
-      "highDeps": 15,
-      "duplicationPct": 4.53,
-      "coveragePct": 63.41,
-      "reasons": [
-        "2 secret(s) exposé(s)",
-        "1 dépendance(s) CRITICAL",
-        "9 erreur(s) SAST",
-        "duplication 4.53%"
-      ]
-    },
-    {
       "name": "CasaSync",
       "repo": "thonyAGP/CasaSync",
-      "risk": 105,
+      "risk": 110,
       "scorecard": 3,
       "grade": "F",
       "secrets": 2,
       "sastErrors": 0,
       "criticalDeps": 2,
-      "highDeps": 13,
-      "duplicationPct": 3.45,
+      "highDeps": 14,
+      "duplicationPct": 3.41,
       "coveragePct": 93.28,
       "reasons": [
         "2 secret(s) exposé(s)",
         "2 dépendance(s) CRITICAL",
-        "duplication 3.45%"
+        "duplication 3.41%"
       ]
     },
     {
@@ -220,13 +220,13 @@
     {
       "name": "DevOps-Factory",
       "repo": "thonyAGP/DevOps-Factory",
-      "risk": 70,
+      "risk": 65,
       "scorecard": 7,
       "grade": "D",
       "secrets": 0,
       "sastErrors": 4,
       "criticalDeps": 0,
-      "highDeps": 10,
+      "highDeps": 9,
       "duplicationPct": 8.82,
       "coveragePct": null,
       "reasons": [
@@ -303,13 +303,13 @@
     {
       "name": "API_Claude",
       "repo": "thonyAGP/claude-cli-wrapper",
-      "risk": 5,
+      "risk": 0,
       "scorecard": 9,
-      "grade": "B",
+      "grade": "A",
       "secrets": 0,
       "sastErrors": 0,
       "criticalDeps": 0,
-      "highDeps": 1,
+      "highDeps": 0,
       "duplicationPct": 16.62,
       "coveragePct": null,
       "reasons": [
@@ -351,12 +351,12 @@
   ],
   "summary": {
     "avgScorecard": 5.8,
-    "totalRisk": 3295,
+    "totalRisk": 3230,
     "reposWithSecrets": 6,
     "reposOverDuplication": 19,
     "gradeDistribution": {
-      "A": 2,
-      "B": 2,
+      "A": 3,
+      "B": 1,
       "C": 2,
       "D": 2,
       "F": 12
