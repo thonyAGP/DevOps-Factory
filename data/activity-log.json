@@ -2,62 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-26T03:17:01.320Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 23 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-26T03:17:02.020Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6/10, 3070 risk pts, +0/-0",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-26T03:18:28.349Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 10%, 19 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-26T03:19:38.524Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: high, deploy 0/wk, lead 250.3h, MTTR 9.1h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-26T03:20:01.980Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 43233min total, 327min wasted, ~$329.86/mo",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-26T03:21:45.577Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 29/100, branch protection 0/23, CI 21/23, review coverage 0%",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-26T03:21:46.362Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "237 recommendations across 37 repos (4 critical, 187 high)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-10-26T03:22:26.367Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "36 projects, avg health 58",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-10-26T03:26:50.077Z",
       "source": "ci-health-check",
       "action": "ci-failure-detected",
@@ -36381,6 +36325,37 @@
     },
     {
       "timestamp": "2026-11-02T03:15:25.190Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-02T03:24:30.606Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "DevOps-Factory",
+      "details": "CI failure: Factory CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-02T03:24:30.622Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-02T03:24:32.120Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-02T03:24:32.134Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
