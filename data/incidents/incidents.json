@@ -10,14 +10,14 @@
       "typeFlux": "github-workflow-runs",
       "depot": "thonyAGP/DevOps-Factory"
     },
-    "etat": "enquete_demandee",
+    "etat": "ferme",
     "priorite": "haute",
     "impact": "ci_rouge",
     "premiereOccurrence": "2026-10-11T18:07:46.411Z",
     "derniereOccurrence": "2026-11-03T19:42:19.183Z",
     "occurrences": 87,
     "ouvertures": 2,
-    "fermeLe": null,
+    "fermeLe": "2026-11-03T22:54:46.265Z",
     "enquetes": {
       "demandees": 2,
       "horodatages": [
@@ -71,6 +71,42 @@
     "incidentRootId": null,
     "nonFiable": {
       "detail": "dernière preuve le 27/10 01:00, il y a 30 h (seuil 30 h)"
+    }
+  },
+  {
+    "version": 1,
+    "id": "inc-lb2i-pulse-http_ko-202611032254",
+    "empreinte": "lb2i-pulse:http_ko",
+    "flux": "lb2i-pulse",
+    "classe": "http_ko",
+    "source": {
+      "detecteur": "silence-watchdog",
+      "typeFlux": "https",
+      "depot": null
+    },
+    "etat": "enquete_demandee",
+    "priorite": "haute",
+    "impact": "service_indisponible",
+    "premiereOccurrence": "2026-11-03T22:54:46.265Z",
+    "derniereOccurrence": "2026-11-03T22:54:46.265Z",
+    "occurrences": 1,
+    "ouvertures": 1,
+    "fermeLe": null,
+    "enquetes": {
+      "demandees": 1,
+      "horodatages": [
+        "2026-11-03T22:54:46.265Z"
+      ]
+    },
+    "derniereDecision": {
+      "enquete": true,
+      "motif": "nouvel_incident",
+      "horodatage": "2026-11-03T22:54:46.265Z"
+    },
+    "causedBy": null,
+    "incidentRootId": null,
+    "nonFiable": {
+      "detail": "HTTP 402 (attendu 200)"
     }
   }
 ]
