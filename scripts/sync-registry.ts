@@ -19,13 +19,13 @@ import {
 } from './repository-discovery.js';
 import { logActivity } from './activity-logger.js';
 import { batchFileExists } from './github-file-checker.js';
+import { findKnownProjectsInsertPos } from './registry-insert.js';
 
 const IGNORED_REPOS = [
   'DevOps-Factory',
   'Livret_accueil_Au-Marais', // legacy name, tracked as livret-au-marais
   ...SCAN_CONFIG.ignoredRepos,
 ];
-
 
 const gh = (cmd: string): string => {
   try {
@@ -185,37 +185,19 @@ const main = () => {
   const configPath = 'factory.config.ts';
   const content = readFileSync(configPath, 'utf-8');
 
-  // Find the last entry closing brace + comma before ];
-  const closingPattern = /(\n\];)\s*\n\nexport const GITHUB_OWNER/;
-  const match = content.match(closingPattern);
-
-  if (!match) {
-    // Fallback: find the KNOWN_PROJECTS closing ];
-    const fallbackPattern = /^];\s*$/m;
-    const fallbackMatch = content.match(fallbackPattern);
-    if (!fallbackMatch || fallbackMatch.index === undefined) {
-      console.error('❌ Cannot find KNOWN_PROJECTS closing bracket in factory.config.ts');
-      return;
-    }
-
-    const insertPos = fallbackMatch.index;
-    const newContent =
-      content.slice(0, insertPos) +
-      newEntries.map((e) => e + ',').join('\n') +
-      '\n' +
-      content.slice(insertPos);
-
-    writeFileSync(configPath, newContent);
-  } else {
-    const insertPos = match.index ?? 0;
-    const newContent =
-      content.slice(0, insertPos) +
-      '\n' +
-      newEntries.map((e) => e + ',').join('\n') +
-      content.slice(insertPos);
-
-    writeFileSync(configPath, newContent);
+  const insertPos = findKnownProjectsInsertPos(content);
+  if (insertPos === -1) {
+    console.error('❌ Cannot find KNOWN_PROJECTS closing bracket in factory.config.ts');
+    return;
   }
+
+  writeFileSync(
+    configPath,
+    content.slice(0, insertPos) +
+      newEntries.map((e) => e + ',').join('\n') +
+      '\n' +
+      content.slice(insertPos)
+  );
 
   console.log(
     `\n🎉 Added ${newEntries.length} repo(s) to factory.config.ts: ${addedNames.join(', ')}`
@@ -230,4 +212,3 @@ const main = () => {
 };
 
 main();
-
