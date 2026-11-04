@@ -1,13 +1,13 @@
-## Quality Score Report - 2026-11-02
+## Quality Score Report - 2026-11-04
 
 ### Summary
-- **Average Score**: 34/100
+- **Average Score**: 32/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
-- **Needs Work** (<60): 17
+- **Needs Work** (<60): 25
 
 ### Score Drops (≥5 points)
-- **ClubMedRoomAssignment**: 55 → 40 (-15)
+- **Zentra**: 40 → 25 (-15)
 
 ### Per Repository
 
@@ -71,7 +71,19 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### Zentra
+#### LB2I-Fiscal-Manager
+- **Score**: 40/100
+- **CI Passes**: ✗
+- **Coverage**: ✓
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### FincaScout
 - **Score**: 40/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -83,10 +95,10 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
-#### LB2I-Fiscal-Manager
+#### FincaScout
 - **Score**: 40/100
-- **CI Passes**: ✗
-- **Coverage**: ✓
+- **CI Passes**: ✓
+- **Coverage**: ✗
 - **Prettier**: ✓
 - **ESLint**: ✓
 - **Branch Protection**: ✗
@@ -204,6 +216,90 @@
 - **No Critical Findings**: ✗
 
 #### test_codingmenace
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### Zentra
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### patrimo
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### Boxmail_cleaning
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### jira-tickets
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### patrimo
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### Boxmail_cleaning
+- **Score**: 25/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### jira-tickets
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
