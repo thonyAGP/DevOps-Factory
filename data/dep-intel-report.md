@@ -1,6 +1,6 @@
 ## Dependency Intelligence Report
 
-> Generated: 2026-10-21T14:23:56.163Z
+> Generated: 2026-11-04T16:56:59.649Z
 
 ### Security Vulnerabilities
 
@@ -24,10 +24,18 @@ No open Dependabot alerts found.
 | test_codingmenace | 11 | 0 | nextjs |
 | Zentra | 45 | 0 | nextjs |
 | LB2I-Fiscal-Manager | 59 | 0 | nextjs |
+| patrimo | 15 | 0 | node |
+| Boxmail_cleaning | 17 | 0 | node |
+| jira-tickets | 1 | 0 | node |
+| FincaScout | 6 | 0 | node |
+| patrimo | 15 | 0 | node |
+| Boxmail_cleaning | 17 | 0 | node |
+| jira-tickets | 1 | 0 | node |
+| FincaScout | 6 | 0 | node |
 
 ### Summary
 
-- **Repos scanned**: 14
+- **Repos scanned**: 22
 - **Total vulnerabilities**: 0
 
 ---
