@@ -1,13 +1,10 @@
-## Quality Score Report - 2026-11-04
+## Quality Score Report - 2026-11-05
 
 ### Summary
 - **Average Score**: 32/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 25
-
-### Score Drops (≥5 points)
-- **Zentra**: 40 → 25 (-15)
 
 ### Per Repository
 
