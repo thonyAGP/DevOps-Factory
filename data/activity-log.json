@@ -2,37 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-30T18:43:08.712Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "DevOps-Factory",
-      "details": "CI failure: Factory CI on master",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-30T18:43:08.727Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-30T18:43:10.641Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-30T18:43:10.654Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-10-30T18:52:22.137Z",
       "source": "ci-health-check",
       "action": "ci-failure-detected",
@@ -23835,6 +23804,62 @@
       "action": "outcome-registry",
       "details": "Registry updated: 52 outcomes (23 merged, 9 closed, 20 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
       "status": "info"
+    },
+    {
+      "timestamp": "2026-11-06T18:45:53.752Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 23 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-06T18:45:54.513Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.8/10, 3230 risk pts, +0/-0",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-06T18:47:41.901Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 10%, 19 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-06T18:49:00.231Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: high, deploy 0/wk, lead 250.3h, MTTR 12.3h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-06T18:49:26.664Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 43248min total, 284min wasted, ~$329.98/mo",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-06T18:51:13.172Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 30/100, branch protection 0/23, CI 22/23, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-06T18:51:13.920Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "237 recommendations across 37 repos (4 critical, 180 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-06T18:52:04.687Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "36 projects, avg health 56",
+      "status": "warning"
     }
   ]
 }

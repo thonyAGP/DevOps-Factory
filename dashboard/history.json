@@ -3979,9 +3979,9 @@
   },
   {
     "date": "2026-11-06",
-    "avgHealth": 57,
-    "failingCI": 3,
-    "passingCI": 20,
+    "avgHealth": 56,
+    "failingCI": 4,
+    "passingCI": 19,
     "totalOpenPRs": 116,
     "perProject": [
       {
@@ -3992,6 +3992,11 @@
       {
         "name": "zentra",
         "health": 31,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "Site_1970_Plomberie",
+        "health": 41,
         "ciStatus": "fail"
       },
       {
@@ -4116,11 +4121,6 @@
       },
       {
         "name": "MCP_Quota_Claude",
-        "health": 71,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "Site_1970_Plomberie",
         "health": 71,
         "ciStatus": "pass"
       },
