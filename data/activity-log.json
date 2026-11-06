@@ -2,37 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-10-30T10:29:53.811Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "DevOps-Factory",
-      "details": "CI failure: Factory CI on master",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-30T10:29:53.826Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-10-30T10:29:55.285Z",
-      "source": "ci-health-check",
-      "action": "alert-deferred",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "Alert suppressed, within self-heal window",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-10-30T10:29:55.296Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "4/8 passing, 3 failing. Issues: 2 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-10-30T10:43:51.959Z",
       "source": "ci-health-check",
       "action": "ci-failure-detected",
@@ -25325,6 +25294,37 @@
       "source": "build-dashboard",
       "action": "dashboard-built",
       "details": "36 projects, avg health 57",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-06T10:31:31.913Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-06T10:31:31.925Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "Zentra",
+      "details": "CI failure: CI on master",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-06T10:31:33.687Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-06T10:31:33.698Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "6/10 passing, 3 failing. Issues: 3 created, 0 closed",
       "status": "warning"
     }
   ]
