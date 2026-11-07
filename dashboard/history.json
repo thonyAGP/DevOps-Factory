@@ -4160,14 +4160,19 @@
   },
   {
     "date": "2026-11-07",
-    "avgHealth": 57,
-    "failingCI": 3,
-    "passingCI": 20,
-    "totalOpenPRs": 115,
+    "avgHealth": 56,
+    "failingCI": 4,
+    "passingCI": 19,
+    "totalOpenPRs": 116,
     "perProject": [
       {
         "name": "LB2I-Fiscal-Manager",
         "health": 21,
+        "ciStatus": "fail"
+      },
+      {
+        "name": "CasaSync",
+        "health": 31,
         "ciStatus": "fail"
       },
       {
@@ -4267,11 +4272,6 @@
       },
       {
         "name": "au-marais",
-        "health": 61,
-        "ciStatus": "pass"
-      },
-      {
-        "name": "CasaSync",
         "health": 61,
         "ciStatus": "pass"
       },
