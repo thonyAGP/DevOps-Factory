@@ -140,7 +140,7 @@
       "criticalDeps": 1,
       "highDeps": 16,
       "duplicationPct": 4.49,
-      "coveragePct": 63.41,
+      "coveragePct": 64.73,
       "reasons": [
         "2 secret(s) exposé(s)",
         "1 dépendance(s) CRITICAL",
@@ -193,7 +193,7 @@
       "criticalDeps": 2,
       "highDeps": 14,
       "duplicationPct": 3.41,
-      "coveragePct": 93.28,
+      "coveragePct": 93.02,
       "reasons": [
         "2 secret(s) exposé(s)",
         "2 dépendance(s) CRITICAL",
@@ -221,17 +221,18 @@
       "name": "DevOps-Factory",
       "repo": "thonyAGP/DevOps-Factory",
       "risk": 65,
-      "scorecard": 7,
+      "scorecard": 6,
       "grade": "D",
       "secrets": 0,
       "sastErrors": 4,
       "criticalDeps": 0,
       "highDeps": 9,
       "duplicationPct": 8.82,
-      "coveragePct": null,
+      "coveragePct": 26.04,
       "reasons": [
         "4 erreur(s) SAST",
-        "duplication 8.82%"
+        "duplication 8.82%",
+        "couverture 26.04%"
       ]
     },
     {
@@ -350,7 +351,7 @@
     }
   ],
   "summary": {
-    "avgScorecard": 5.8,
+    "avgScorecard": 5.7,
     "totalRisk": 3230,
     "reposWithSecrets": 6,
     "reposOverDuplication": 19,
