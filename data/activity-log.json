@@ -2,34 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-11-01T17:17:38.592Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 37 repos (23 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-01T17:17:44.686Z",
-      "source": "scan-and-configure",
-      "action": "registry-sync",
-      "details": "Auto-added 4 repo(s): patrimo, Boxmail_cleaning, jira-tickets, FincaScout",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-01T17:17:57.603Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:17:57.619Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 53 outcomes (23 merged, 9 closed, 21 open). 1 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-11-01T17:27:39.206Z",
       "source": "build-dashboard",
       "action": "security-posture",
@@ -14800,6 +14772,62 @@
       "action": "outcome-registry",
       "details": "Registry updated: 52 outcomes (23 merged, 9 closed, 20 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
       "status": "info"
+    },
+    {
+      "timestamp": "2026-11-08T17:23:17.595Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 23 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-08T17:23:18.331Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.7/10, 3230 risk pts, +0/-0",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-08T17:24:20.851Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 10%, 19 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-08T17:25:20.766Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: high, deploy 0/wk, lead 250.3h, MTTR 9.2h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-08T17:25:41.782Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 43542min total, 277min wasted, ~$332.34/mo",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-08T17:26:58.165Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 30/100, branch protection 0/23, CI 22/23, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-08T17:26:58.906Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "237 recommendations across 37 repos (4 critical, 180 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-08T17:27:36.424Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "36 projects, avg health 57",
+      "status": "warning"
     }
   ]
 }
