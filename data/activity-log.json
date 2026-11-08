@@ -2,124 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-11-01T17:27:39.206Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 23 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:27:39.981Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 5.8/10, 3295 risk pts, +0/-0",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-01T17:28:57.894Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 10%, 19 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:30:03.016Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: high, deploy 0/wk, lead 250.3h, MTTR 12.3h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-01T17:30:24.657Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 43283min total, 298min wasted, ~$330.26/mo",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-01T17:31:51.415Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 29/100, branch protection 0/23, CI 21/23, review coverage 0%",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:31:52.176Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "237 recommendations across 37 repos (4 critical, 181 high)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-01T17:32:29.054Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "36 projects, avg health 57",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:38:18.067Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "DevOps-Factory",
-      "details": "CI failure: Factory CI on master",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:38:18.083Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:38:19.426Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:38:19.439Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:47:11.113Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "DevOps-Factory",
-      "details": "CI failure: Factory CI on master",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:47:11.129Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:47:12.582Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-01T17:47:12.595Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-11-01T18:04:42.966Z",
       "source": "ci-health-check",
       "action": "ci-failure-detected",
@@ -14828,6 +14710,85 @@
       "action": "dashboard-built",
       "details": "36 projects, avg health 57",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-08T18:00:34.942Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Auto-Generate Tests",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-11-08T18:00:40.451Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "CI Health Check",
+      "details": "Partial failure detected: gh: not found",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-08T18:00:44.332Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Coverage Audit",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-11-08T18:00:52.749Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Migration Tracker",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-11-08T18:00:55.448Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Redeploy Templates",
+      "details": "Partial failure detected: Failed to create PR",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-08T18:01:03.049Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Supply Chain Security",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-11-08T18:01:05.230Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Weekly Veille",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-11-08T18:01:05.235Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "CI Health Check",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-11-08T18:01:07.460Z",
+      "source": "factory-watchdog",
+      "action": "issue-closed",
+      "target": "[Watchdog] FAILURE: Feedback Collector",
+      "details": "recovered: [Watchdog] FAILURE: Feedback Collector",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-08T18:01:07.465Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "23/30 passing. 5 failures, 2 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
