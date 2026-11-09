@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-08T17:17:22.431Z",
+  "timestamp": "2026-11-09T03:12:19.150Z",
   "analyses": [
     {
       "name": "analyse-negocio",
@@ -98,7 +98,8 @@
       "fullName": "thonyAGP/Boxmail_cleaning",
       "stack": "node",
       "packageManager": "npm",
-      "hasCI": false,
+      "hasCI": true,
+      "ciWorkflow": "ci.yml",
       "hasClaudeReview": false,
       "hasSelfHealing": false,
       "hasQodoMerge": false,
@@ -136,7 +137,7 @@
       "hasCoverageGate": false,
       "hasLighthouse": false,
       "hasTypedoc": false,
-      "defaultBranch": "claude/new-session-gutt6f"
+      "defaultBranch": "main"
     },
     {
       "name": "CarAssist",
