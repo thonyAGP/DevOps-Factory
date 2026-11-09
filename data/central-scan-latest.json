@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "date": "2026-11-02",
-  "totalFindings": 735,
+  "date": "2026-11-09",
+  "totalFindings": 821,
   "repos": [
     {
       "name": "DevOps-Factory",
@@ -45,7 +45,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 8.82
+            "duplicationPct": 8.83
           }
         }
       ]
@@ -136,13 +136,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 1031,
+          "findings": 1046,
           "bySeverity": {
-            "DUPLICATION": 1031
+            "DUPLICATION": 1046
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 3.41
+            "duplicationPct": 3.4
           }
         }
       ]
@@ -233,13 +233,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 459,
+          "findings": 465,
           "bySeverity": {
-            "DUPLICATION": 459
+            "DUPLICATION": 465
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 13.66
+            "duplicationPct": 13.33
           }
         }
       ]
@@ -879,7 +879,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 6.65
+            "duplicationPct": 6.58
           }
         }
       ]
@@ -923,13 +923,367 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 549,
+          "findings": 630,
           "bySeverity": {
-            "DUPLICATION": 549
+            "DUPLICATION": 630
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 4.49
+            "duplicationPct": 4.17
+          }
+        }
+      ]
+    },
+    {
+      "name": "patrimo",
+      "repo": "thonyAGP/patrimo",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 13,
+          "bySeverity": {
+            "DUPLICATION": 13
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 11.26
+          }
+        }
+      ]
+    },
+    {
+      "name": "Boxmail_cleaning",
+      "repo": "thonyAGP/Boxmail_cleaning",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "findings",
+          "findings": 5,
+          "bySeverity": {
+            "SECRET": 5
+          },
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 18,
+          "bySeverity": {
+            "WARNING": 11,
+            "ERROR": 7
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 2,
+          "bySeverity": {
+            "HIGH": 2
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 400,
+          "bySeverity": {
+            "DUPLICATION": 400
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 2.78
+          }
+        }
+      ]
+    },
+    {
+      "name": "jira-tickets",
+      "repo": "thonyAGP/jira-tickets",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 16,
+          "bySeverity": {
+            "ERROR": 16
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 969,
+          "bySeverity": {
+            "DUPLICATION": 969
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 19.08
+          }
+        }
+      ]
+    },
+    {
+      "name": "FincaScout",
+      "repo": "thonyAGP/FincaScout",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 1,
+          "bySeverity": {
+            "WARNING": 1
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 1,
+          "bySeverity": {
+            "HIGH": 1
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 175,
+          "bySeverity": {
+            "DUPLICATION": 175
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 17.38
+          }
+        }
+      ]
+    },
+    {
+      "name": "patrimo",
+      "repo": "thonyAGP/patrimo",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 13,
+          "bySeverity": {
+            "DUPLICATION": 13
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 11.26
+          }
+        }
+      ]
+    },
+    {
+      "name": "Boxmail_cleaning",
+      "repo": "thonyAGP/Boxmail_cleaning",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "findings",
+          "findings": 5,
+          "bySeverity": {
+            "SECRET": 5
+          },
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 18,
+          "bySeverity": {
+            "WARNING": 11,
+            "ERROR": 7
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 2,
+          "bySeverity": {
+            "HIGH": 2
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "clean",
+          "findings": 400,
+          "bySeverity": {
+            "DUPLICATION": 400
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 2.78
+          }
+        }
+      ]
+    },
+    {
+      "name": "jira-tickets",
+      "repo": "thonyAGP/jira-tickets",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 16,
+          "bySeverity": {
+            "ERROR": 16
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 969,
+          "bySeverity": {
+            "DUPLICATION": 969
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 19.08
+          }
+        }
+      ]
+    },
+    {
+      "name": "FincaScout",
+      "repo": "thonyAGP/FincaScout",
+      "stack": "node",
+      "cloned": true,
+      "scanners": [
+        {
+          "scanner": "gitleaks",
+          "status": "clean",
+          "findings": 0,
+          "bySeverity": {},
+          "top": []
+        },
+        {
+          "scanner": "semgrep",
+          "status": "findings",
+          "findings": 1,
+          "bySeverity": {
+            "WARNING": 1
+          },
+          "top": []
+        },
+        {
+          "scanner": "trivy",
+          "status": "findings",
+          "findings": 1,
+          "bySeverity": {
+            "HIGH": 1
+          },
+          "top": []
+        },
+        {
+          "scanner": "jscpd",
+          "status": "findings",
+          "findings": 175,
+          "bySeverity": {
+            "DUPLICATION": 175
+          },
+          "top": [],
+          "metrics": {
+            "duplicationPct": 17.38
           }
         }
       ]
