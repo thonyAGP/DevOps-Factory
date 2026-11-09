@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-02",
+  "date": "2026-11-09",
   "repos": [
     {
       "name": "Zentra",
@@ -11,13 +11,13 @@
       "sastErrors": 3,
       "criticalDeps": 7,
       "highDeps": 91,
-      "duplicationPct": 6.65,
+      "duplicationPct": 6.58,
       "coveragePct": null,
       "reasons": [
         "1 secret(s) exposé(s)",
         "7 dépendance(s) CRITICAL",
         "3 erreur(s) SAST",
-        "duplication 6.65%"
+        "duplication 6.58%"
       ]
     },
     {
@@ -67,13 +67,13 @@
       "sastErrors": 1,
       "criticalDeps": 6,
       "highDeps": 48,
-      "duplicationPct": 13.66,
+      "duplicationPct": 13.33,
       "coveragePct": null,
       "reasons": [
         "2 secret(s) exposé(s)",
         "6 dépendance(s) CRITICAL",
         "1 erreur(s) SAST",
-        "duplication 13.66%"
+        "duplication 13.33%"
       ]
     },
     {
@@ -139,13 +139,13 @@
       "sastErrors": 9,
       "criticalDeps": 1,
       "highDeps": 16,
-      "duplicationPct": 4.49,
+      "duplicationPct": 4.17,
       "coveragePct": 64.73,
       "reasons": [
         "2 secret(s) exposé(s)",
         "1 dépendance(s) CRITICAL",
         "9 erreur(s) SAST",
-        "duplication 4.49%"
+        "duplication 4.17%"
       ]
     },
     {
@@ -192,12 +192,46 @@
       "sastErrors": 0,
       "criticalDeps": 2,
       "highDeps": 14,
-      "duplicationPct": 3.41,
+      "duplicationPct": 3.4,
       "coveragePct": 93.02,
       "reasons": [
         "2 secret(s) exposé(s)",
         "2 dépendance(s) CRITICAL",
-        "duplication 3.41%"
+        "duplication 3.4%"
+      ]
+    },
+    {
+      "name": "Boxmail_cleaning",
+      "repo": "thonyAGP/Boxmail_cleaning",
+      "risk": 95,
+      "scorecard": 4,
+      "grade": "F",
+      "secrets": 5,
+      "sastErrors": 7,
+      "criticalDeps": 0,
+      "highDeps": 2,
+      "duplicationPct": 2.78,
+      "coveragePct": null,
+      "reasons": [
+        "5 secret(s) exposé(s)",
+        "7 erreur(s) SAST"
+      ]
+    },
+    {
+      "name": "Boxmail_cleaning",
+      "repo": "thonyAGP/Boxmail_cleaning",
+      "risk": 95,
+      "scorecard": 4,
+      "grade": "F",
+      "secrets": 5,
+      "sastErrors": 7,
+      "criticalDeps": 0,
+      "highDeps": 2,
+      "duplicationPct": 2.78,
+      "coveragePct": null,
+      "reasons": [
+        "5 secret(s) exposé(s)",
+        "7 erreur(s) SAST"
       ]
     },
     {
@@ -218,6 +252,40 @@
       ]
     },
     {
+      "name": "jira-tickets",
+      "repo": "thonyAGP/jira-tickets",
+      "risk": 80,
+      "scorecard": 7,
+      "grade": "F",
+      "secrets": 0,
+      "sastErrors": 16,
+      "criticalDeps": 0,
+      "highDeps": 0,
+      "duplicationPct": 19.08,
+      "coveragePct": null,
+      "reasons": [
+        "16 erreur(s) SAST",
+        "duplication 19.08%"
+      ]
+    },
+    {
+      "name": "jira-tickets",
+      "repo": "thonyAGP/jira-tickets",
+      "risk": 80,
+      "scorecard": 7,
+      "grade": "F",
+      "secrets": 0,
+      "sastErrors": 16,
+      "criticalDeps": 0,
+      "highDeps": 0,
+      "duplicationPct": 19.08,
+      "coveragePct": null,
+      "reasons": [
+        "16 erreur(s) SAST",
+        "duplication 19.08%"
+      ]
+    },
+    {
       "name": "DevOps-Factory",
       "repo": "thonyAGP/DevOps-Factory",
       "risk": 65,
@@ -227,11 +295,11 @@
       "sastErrors": 4,
       "criticalDeps": 0,
       "highDeps": 9,
-      "duplicationPct": 8.82,
+      "duplicationPct": 8.83,
       "coveragePct": 26.04,
       "reasons": [
         "4 erreur(s) SAST",
-        "duplication 8.82%",
+        "duplication 8.83%",
         "couverture 26.04%"
       ]
     },
@@ -302,6 +370,38 @@
       ]
     },
     {
+      "name": "FincaScout",
+      "repo": "thonyAGP/FincaScout",
+      "risk": 5,
+      "scorecard": 9,
+      "grade": "B",
+      "secrets": 0,
+      "sastErrors": 0,
+      "criticalDeps": 0,
+      "highDeps": 1,
+      "duplicationPct": 17.38,
+      "coveragePct": null,
+      "reasons": [
+        "duplication 17.38%"
+      ]
+    },
+    {
+      "name": "FincaScout",
+      "repo": "thonyAGP/FincaScout",
+      "risk": 5,
+      "scorecard": 9,
+      "grade": "B",
+      "secrets": 0,
+      "sastErrors": 0,
+      "criticalDeps": 0,
+      "highDeps": 1,
+      "duplicationPct": 17.38,
+      "coveragePct": null,
+      "reasons": [
+        "duplication 17.38%"
+      ]
+    },
+    {
       "name": "API_Claude",
       "repo": "thonyAGP/claude-cli-wrapper",
       "risk": 0,
@@ -348,19 +448,51 @@
       "reasons": [
         "duplication 19.88%"
       ]
+    },
+    {
+      "name": "patrimo",
+      "repo": "thonyAGP/patrimo",
+      "risk": 0,
+      "scorecard": 9,
+      "grade": "A",
+      "secrets": 0,
+      "sastErrors": 0,
+      "criticalDeps": 0,
+      "highDeps": 0,
+      "duplicationPct": 11.26,
+      "coveragePct": null,
+      "reasons": [
+        "duplication 11.26%"
+      ]
+    },
+    {
+      "name": "patrimo",
+      "repo": "thonyAGP/patrimo",
+      "risk": 0,
+      "scorecard": 9,
+      "grade": "A",
+      "secrets": 0,
+      "sastErrors": 0,
+      "criticalDeps": 0,
+      "highDeps": 0,
+      "duplicationPct": 11.26,
+      "coveragePct": null,
+      "reasons": [
+        "duplication 11.26%"
+      ]
     }
   ],
   "summary": {
-    "avgScorecard": 5.7,
-    "totalRisk": 3230,
-    "reposWithSecrets": 6,
-    "reposOverDuplication": 19,
+    "avgScorecard": 6.1,
+    "totalRisk": 3590,
+    "reposWithSecrets": 8,
+    "reposOverDuplication": 25,
     "gradeDistribution": {
-      "A": 3,
-      "B": 1,
+      "A": 5,
+      "B": 3,
       "C": 2,
       "D": 2,
-      "F": 12
+      "F": 16
     }
   }
 }
