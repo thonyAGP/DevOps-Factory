@@ -2,68 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-11-02T03:15:23.371Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "DevOps-Factory",
-      "details": "CI failure: Factory CI on master",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-02T03:15:23.390Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-02T03:15:25.177Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-02T03:15:25.190Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-02T03:24:30.606Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "DevOps-Factory",
-      "details": "CI failure: Factory CI on master",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-02T03:24:30.622Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-02T03:24:32.120Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-02T03:24:32.134Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "4/8 passing, 3 failing. Issues: 3 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-11-02T03:33:36.136Z",
       "source": "ci-health-check",
       "action": "ci-failure-detected",
@@ -12888,6 +12826,62 @@
       "action": "outcome-registry",
       "details": "Registry updated: 52 outcomes (23 merged, 9 closed, 20 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
       "status": "info"
+    },
+    {
+      "timestamp": "2026-11-09T03:22:23.571Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 23 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-09T03:22:24.296Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 5.7/10, 3230 risk pts, +0/-0",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-09T03:23:40.984Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 10%, 19 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-09T03:24:50.247Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: high, deploy 0/wk, lead 250.3h, MTTR 9.1h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-09T03:25:11.640Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 43783min total, 274min wasted, ~$334.26/mo",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-09T03:26:45.114Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 30/100, branch protection 0/23, CI 22/23, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-09T03:26:45.873Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "237 recommendations across 37 repos (3 critical, 180 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-09T03:27:27.233Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "36 projects, avg health 57",
+      "status": "warning"
     }
   ]
 }
