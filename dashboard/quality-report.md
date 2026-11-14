@@ -1,12 +1,24 @@
-## Quality Score Report - 2026-11-13
+## Quality Score Report - 2026-11-14
 
 ### Summary
-- **Average Score**: 34/100
+- **Average Score**: 35/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 25
 
 ### Per Repository
+
+#### ClubMedRoomAssignment
+- **Score**: 55/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
 
 #### CasaSync
 - **Score**: 55/100
@@ -45,18 +57,6 @@
 - **No Critical Findings**: ✓
 
 #### DevOps-Factory
-- **Score**: 40/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### ClubMedRoomAssignment
 - **Score**: 40/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
