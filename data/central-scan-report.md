@@ -1,14 +1,14 @@
-# Central Security Scan - 2026-11-09
+# Central Security Scan - 2026-11-16
 
 Scans centralisés exécutés depuis DevOps-Factory (repo public = minutes gratuites). Les repos privés du plan Free n'ont ni Code Scanning ni quota Actions illimité.
 
-**Total findings: 821** sur 28 repos _(sécurité uniquement — la duplication est mesurée en %, pas comptée ici)_
+**Total findings: 819** sur 28 repos _(sécurité uniquement — la duplication est mesurée en %, pas comptée ici)_
 
 | Repo | Secrets (gitleaks) | SAST (semgrep) | Deps/Config (trivy) | Duplication (jscpd) |
 |------|--------------------|----------------|---------------------|---------------------|
 | DevOps-Factory | ⏭️ | 🔴 13 | 🔴 9 | 🔴 8.83% |
 | ClubMedRoomAssignment | 🟢 0 | 🔴 15 | 🔴 90 | 🔴 3.27% |
-| CasaSync | 🔴 2 | 🔴 11 | 🔴 16 | 🔴 3.4% |
+| CasaSync | 🔴 2 | 🔴 11 | 🔴 16 | 🔴 3.36% |
 | Livret_accueil_Au-Marais | 🔴 5 | 🔴 6 | 🔴 29 | 🔴 5.65% |
 | Site_Au-marais | 🔴 2 | 🔴 7 | 🔴 54 | 🔴 13.33% |
 | LecteurMagic | 🔴 4 | 🔴 19 | 🔴 72 | 🔴 10.23% |
@@ -24,14 +24,14 @@ Scans centralisés exécutés depuis DevOps-Factory (repo public = minutes gratu
 | Lanceur_Claude | 🟢 0 | 🔴 10 | 🟢 0 | 🟢 0.3% |
 | analyse-negocio | 🟢 0 | 🔴 6 | 🔴 25 | 🔴 12.11% |
 | SqlConnectionTest | 🟢 0 | 🔴 6 | 🟢 0 | 🔴 19.88% |
-| Zentra | 🔴 1 | 🔴 14 | 🔴 98 | 🔴 6.58% |
-| LB2I-Fiscal-Manager | 🔴 2 | 🔴 16 | 🔴 17 | 🔴 4.17% |
+| Zentra | 🔴 1 | 🔴 14 | 🔴 96 | 🔴 6.58% |
+| LB2I-Fiscal-Manager | 🔴 2 | 🔴 16 | 🔴 17 | 🔴 4.19% |
 | patrimo | 🟢 0 | 🟢 0 | 🟢 0 | 🔴 11.26% |
-| Boxmail_cleaning | 🔴 5 | 🔴 18 | 🔴 2 | 🟢 2.78% |
+| Boxmail_cleaning | 🔴 5 | 🔴 18 | 🔴 2 | 🟢 2.75% |
 | jira-tickets | 🟢 0 | 🔴 16 | 🟢 0 | 🔴 19.08% |
 | FincaScout | 🟢 0 | 🔴 1 | 🔴 1 | 🔴 17.38% |
 | patrimo | 🟢 0 | 🟢 0 | 🟢 0 | 🔴 11.26% |
-| Boxmail_cleaning | 🔴 5 | 🔴 18 | 🔴 2 | 🟢 2.78% |
+| Boxmail_cleaning | 🔴 5 | 🔴 18 | 🔴 2 | 🟢 2.75% |
 | jira-tickets | 🟢 0 | 🔴 16 | 🟢 0 | 🔴 19.08% |
 | FincaScout | 🟢 0 | 🔴 1 | 🔴 1 | 🔴 17.38% |
 
