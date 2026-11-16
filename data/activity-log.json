@@ -2,118 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-11-09T21:51:03.988Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 23 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-09T21:51:04.716Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.1/10, 3590 risk pts, +0/-0",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-09T21:52:13.490Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 10%, 19 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-09T21:53:35.834Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: high, deploy 0/wk, lead 250.3h, MTTR 9.3h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-09T21:54:05.490Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 43959min total, 290min wasted, ~$335.67/mo",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-09T21:55:37.923Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 30/100, branch protection 0/23, CI 22/23, review coverage 0%",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-09T21:55:38.693Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "237 recommendations across 37 repos (3 critical, 180 high)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-09T21:56:25.529Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "36 projects, avg health 57",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-09T21:58:26.527Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 23 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-09T21:58:26.943Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.1/10, 3590 risk pts, +0/-0",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-09T21:59:45.085Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 10%, 19 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-09T22:01:01.951Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: high, deploy 0/wk, lead 250.3h, MTTR 9.3h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-09T22:01:28.040Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 43965min total, 290min wasted, ~$335.72/mo",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-09T22:03:19.855Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 30/100, branch protection 0/23, CI 22/23, review coverage 0%",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-09T22:03:20.288Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "237 recommendations across 37 repos (3 critical, 180 high)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-09T22:03:56.255Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "36 projects, avg health 57",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-11-10T01:49:09.385Z",
       "source": "ci-health-check",
       "action": "ci-failure-detected",
@@ -3684,6 +3572,85 @@
       "action": "dashboard-built",
       "details": "36 projects, avg health 58",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-16T22:24:58.104Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Auto-Generate Tests",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-11-16T22:25:04.952Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "CI Health Check",
+      "details": "Partial failure detected: gh: not found",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-16T22:25:22.148Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Quality Score",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-11-16T22:25:23.798Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Redeploy Templates",
+      "details": "Partial failure detected: Failed to create PR",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-16T22:25:31.719Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Supply Chain Security",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-11-16T22:25:35.797Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Weekly Veille",
+      "details": "Partial failure detected: GEMINI_API_KEY",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-16T22:25:35.799Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "CI Health Check",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-11-16T22:25:37.842Z",
+      "source": "factory-watchdog",
+      "action": "issue-created",
+      "target": "Quality Score",
+      "details": "total_failure: Quality Score",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-11-16T22:25:38.129Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "Weekly Veille",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-11-16T22:25:38.131Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "24/30 passing. 3 failures, 3 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
