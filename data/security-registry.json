@@ -1,21 +1,21 @@
 {
-  "date": "2026-11-09",
+  "date": "2026-11-16",
   "repos": [
     {
       "name": "Zentra",
       "repo": "thonyAGP/zentra",
-      "risk": 550,
+      "risk": 530,
       "scorecard": 1,
       "grade": "F",
       "secrets": 1,
       "sastErrors": 3,
-      "criticalDeps": 7,
+      "criticalDeps": 5,
       "highDeps": 91,
       "duplicationPct": 6.58,
       "coveragePct": null,
       "reasons": [
         "1 secret(s) exposé(s)",
-        "7 dépendance(s) CRITICAL",
+        "5 dépendance(s) CRITICAL",
         "3 erreur(s) SAST",
         "duplication 6.58%"
       ]
@@ -139,13 +139,13 @@
       "sastErrors": 9,
       "criticalDeps": 1,
       "highDeps": 16,
-      "duplicationPct": 4.17,
+      "duplicationPct": 4.19,
       "coveragePct": 69.88,
       "reasons": [
         "2 secret(s) exposé(s)",
         "1 dépendance(s) CRITICAL",
         "9 erreur(s) SAST",
-        "duplication 4.17%"
+        "duplication 4.19%"
       ]
     },
     {
@@ -192,12 +192,12 @@
       "sastErrors": 0,
       "criticalDeps": 2,
       "highDeps": 14,
-      "duplicationPct": 3.4,
+      "duplicationPct": 3.36,
       "coveragePct": 93.13,
       "reasons": [
         "2 secret(s) exposé(s)",
         "2 dépendance(s) CRITICAL",
-        "duplication 3.4%"
+        "duplication 3.36%"
       ]
     },
     {
@@ -210,7 +210,7 @@
       "sastErrors": 7,
       "criticalDeps": 0,
       "highDeps": 2,
-      "duplicationPct": 2.78,
+      "duplicationPct": 2.75,
       "coveragePct": null,
       "reasons": [
         "5 secret(s) exposé(s)",
@@ -227,7 +227,7 @@
       "sastErrors": 7,
       "criticalDeps": 0,
       "highDeps": 2,
-      "duplicationPct": 2.78,
+      "duplicationPct": 2.75,
       "coveragePct": null,
       "reasons": [
         "5 secret(s) exposé(s)",
@@ -484,7 +484,7 @@
   ],
   "summary": {
     "avgScorecard": 6.1,
-    "totalRisk": 3590,
+    "totalRisk": 3570,
     "reposWithSecrets": 8,
     "reposOverDuplication": 25,
     "gradeDistribution": {
