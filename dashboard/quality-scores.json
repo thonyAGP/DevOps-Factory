@@ -1,22 +1,6 @@
 {
-  "timestamp": "2026-11-15T15:33:29.186Z",
+  "timestamp": "2026-11-17T17:31:47.108Z",
   "scores": [
-    {
-      "name": "ClubMedRoomAssignment",
-      "repo": "thonyAGP/ClubMedRoomAssignment",
-      "score": 55,
-      "breakdown": {
-        "ciPasses": 15,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 15,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
     {
       "name": "CasaSync",
       "repo": "thonyAGP/CasaSync",
@@ -82,6 +66,22 @@
       }
     },
     {
+      "name": "ClubMedRoomAssignment",
+      "repo": "thonyAGP/ClubMedRoomAssignment",
+      "score": 40,
+      "breakdown": {
+        "ciPasses": 0,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 15,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
       "name": "Livret_accueil_Au-Marais",
       "repo": "thonyAGP/livret-au-marais",
       "score": 40,
@@ -100,6 +100,22 @@
     {
       "name": "LecteurMagic",
       "repo": "thonyAGP/LecteurMagic",
+      "score": 40,
+      "breakdown": {
+        "ciPasses": 15,
+        "coverageAboveThreshold": 0,
+        "prettierClean": 5,
+        "eslintZeroWarnings": 10,
+        "branchProtection": 0,
+        "depsUpToDate": 10,
+        "noSecrets": 0,
+        "noDuplication": 0,
+        "noCriticalFindings": 0
+      }
+    },
+    {
+      "name": "Zentra",
+      "repo": "thonyAGP/zentra",
       "score": 40,
       "breakdown": {
         "ciPasses": 15,
@@ -354,22 +370,6 @@
       }
     },
     {
-      "name": "Zentra",
-      "repo": "thonyAGP/zentra",
-      "score": 25,
-      "breakdown": {
-        "ciPasses": 0,
-        "coverageAboveThreshold": 0,
-        "prettierClean": 5,
-        "eslintZeroWarnings": 10,
-        "branchProtection": 0,
-        "depsUpToDate": 10,
-        "noSecrets": 0,
-        "noDuplication": 0,
-        "noCriticalFindings": 0
-      }
-    },
-    {
       "name": "jira-tickets",
       "repo": "thonyAGP/jira-tickets",
       "score": 25,
@@ -402,5 +402,12 @@
       }
     }
   ],
-  "drops": []
+  "drops": [
+    {
+      "repo": "ClubMedRoomAssignment",
+      "drop": 15,
+      "from": 55,
+      "to": 40
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-## Quality Score Report - 2026-11-15
+## Quality Score Report - 2026-11-17
 
 ### Summary
 - **Average Score**: 35/100
@@ -6,19 +6,10 @@
 - **Good** (60-79): 0
 - **Needs Work** (<60): 25
 
-### Per Repository
+### Score Drops (≥5 points)
+- **ClubMedRoomAssignment**: 55 → 40 (-15)
 
-#### ClubMedRoomAssignment
-- **Score**: 55/100
-- **CI Passes**: ✓
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✓
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
+### Per Repository
 
 #### CasaSync
 - **Score**: 55/100
@@ -68,6 +59,18 @@
 - **Duplication <3%**: ✗
 - **No Critical Findings**: ✗
 
+#### ClubMedRoomAssignment
+- **Score**: 40/100
+- **CI Passes**: ✗
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✓
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
 #### Livret_accueil_Au-Marais
 - **Score**: 40/100
 - **CI Passes**: ✓
@@ -81,6 +84,18 @@
 - **No Critical Findings**: ✗
 
 #### LecteurMagic
+- **Score**: 40/100
+- **CI Passes**: ✓
+- **Coverage**: ✗
+- **Prettier**: ✓
+- **ESLint**: ✓
+- **Branch Protection**: ✗
+- **Dependency Mgmt**: ✓
+- **Gitleaks**: ✗
+- **Duplication <3%**: ✗
+- **No Critical Findings**: ✗
+
+#### Zentra
 - **Score**: 40/100
 - **CI Passes**: ✓
 - **Coverage**: ✗
@@ -261,18 +276,6 @@
 - **No Critical Findings**: ✗
 
 #### test_codingmenace
-- **Score**: 25/100
-- **CI Passes**: ✗
-- **Coverage**: ✗
-- **Prettier**: ✓
-- **ESLint**: ✓
-- **Branch Protection**: ✗
-- **Dependency Mgmt**: ✓
-- **Gitleaks**: ✗
-- **Duplication <3%**: ✗
-- **No Critical Findings**: ✗
-
-#### Zentra
 - **Score**: 25/100
 - **CI Passes**: ✗
 - **Coverage**: ✗
