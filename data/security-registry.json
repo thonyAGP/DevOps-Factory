@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-16",
+  "date": "2026-11-23",
   "repos": [
     {
       "name": "Zentra",
@@ -11,25 +11,25 @@
       "sastErrors": 3,
       "criticalDeps": 5,
       "highDeps": 91,
-      "duplicationPct": 6.58,
+      "duplicationPct": 6.13,
       "coveragePct": null,
       "reasons": [
         "1 secret(s) exposé(s)",
         "5 dépendance(s) CRITICAL",
         "3 erreur(s) SAST",
-        "duplication 6.58%"
+        "duplication 6.13%"
       ]
     },
     {
       "name": "ClubMedRoomAssignment",
       "repo": "thonyAGP/ClubMedRoomAssignment",
-      "risk": 525,
+      "risk": 515,
       "scorecard": 5,
       "grade": "F",
       "secrets": 0,
       "sastErrors": 3,
       "criticalDeps": 12,
-      "highDeps": 78,
+      "highDeps": 76,
       "duplicationPct": 3.27,
       "coveragePct": null,
       "reasons": [
@@ -41,13 +41,13 @@
     {
       "name": "LecteurMagic",
       "repo": "thonyAGP/LecteurMagic",
-      "risk": 445,
+      "risk": 435,
       "scorecard": 1,
       "grade": "F",
       "secrets": 4,
       "sastErrors": 7,
       "criticalDeps": 2,
-      "highDeps": 70,
+      "highDeps": 68,
       "duplicationPct": 10.23,
       "coveragePct": null,
       "reasons": [
@@ -60,20 +60,20 @@
     {
       "name": "Site_Au-marais",
       "repo": "thonyAGP/au-marais",
-      "risk": 325,
+      "risk": 360,
       "scorecard": 1,
       "grade": "F",
-      "secrets": 2,
+      "secrets": 6,
       "sastErrors": 1,
       "criticalDeps": 6,
-      "highDeps": 48,
-      "duplicationPct": 13.33,
+      "highDeps": 47,
+      "duplicationPct": 12.99,
       "coveragePct": null,
       "reasons": [
-        "2 secret(s) exposé(s)",
+        "6 secret(s) exposé(s)",
         "6 dépendance(s) CRITICAL",
         "1 erreur(s) SAST",
-        "duplication 13.33%"
+        "duplication 12.99%"
       ]
     },
     {
@@ -132,20 +132,20 @@
     {
       "name": "LB2I-Fiscal-Manager",
       "repo": "thonyAGP/LB2I-Fiscal-Manager",
-      "risk": 155,
+      "risk": 160,
       "scorecard": 1,
       "grade": "F",
       "secrets": 2,
       "sastErrors": 9,
       "criticalDeps": 1,
-      "highDeps": 16,
-      "duplicationPct": 4.19,
+      "highDeps": 17,
+      "duplicationPct": 4.21,
       "coveragePct": 69.88,
       "reasons": [
         "2 secret(s) exposé(s)",
         "1 dépendance(s) CRITICAL",
         "9 erreur(s) SAST",
-        "duplication 4.19%"
+        "duplication 4.21%"
       ]
     },
     {
@@ -185,32 +185,32 @@
     {
       "name": "CasaSync",
       "repo": "thonyAGP/CasaSync",
-      "risk": 110,
+      "risk": 100,
       "scorecard": 3,
       "grade": "F",
       "secrets": 2,
       "sastErrors": 0,
-      "criticalDeps": 2,
+      "criticalDeps": 1,
       "highDeps": 14,
       "duplicationPct": 3.36,
       "coveragePct": 93.18,
       "reasons": [
         "2 secret(s) exposé(s)",
-        "2 dépendance(s) CRITICAL",
+        "1 dépendance(s) CRITICAL",
         "duplication 3.36%"
       ]
     },
     {
       "name": "Boxmail_cleaning",
       "repo": "thonyAGP/Boxmail_cleaning",
-      "risk": 95,
+      "risk": 100,
       "scorecard": 4,
       "grade": "F",
       "secrets": 5,
       "sastErrors": 7,
       "criticalDeps": 0,
-      "highDeps": 2,
-      "duplicationPct": 2.75,
+      "highDeps": 3,
+      "duplicationPct": 2.88,
       "coveragePct": null,
       "reasons": [
         "5 secret(s) exposé(s)",
@@ -220,14 +220,14 @@
     {
       "name": "Boxmail_cleaning",
       "repo": "thonyAGP/Boxmail_cleaning",
-      "risk": 95,
+      "risk": 100,
       "scorecard": 4,
       "grade": "F",
       "secrets": 5,
       "sastErrors": 7,
       "criticalDeps": 0,
-      "highDeps": 2,
-      "duplicationPct": 2.75,
+      "highDeps": 3,
+      "duplicationPct": 2.88,
       "coveragePct": null,
       "reasons": [
         "5 secret(s) exposé(s)",
@@ -354,19 +354,19 @@
       ]
     },
     {
-      "name": "Lanceur_Claude",
-      "repo": "thonyAGP/claude-launcher",
+      "name": "FincaScout",
+      "repo": "thonyAGP/FincaScout",
       "risk": 5,
-      "scorecard": 8,
+      "scorecard": 9,
       "grade": "B",
       "secrets": 0,
-      "sastErrors": 1,
+      "sastErrors": 0,
       "criticalDeps": 0,
-      "highDeps": 0,
-      "duplicationPct": 0.3,
+      "highDeps": 1,
+      "duplicationPct": 17.34,
       "coveragePct": null,
       "reasons": [
-        "1 erreur(s) SAST"
+        "duplication 17.34%"
       ]
     },
     {
@@ -379,26 +379,10 @@
       "sastErrors": 0,
       "criticalDeps": 0,
       "highDeps": 1,
-      "duplicationPct": 17.38,
+      "duplicationPct": 17.34,
       "coveragePct": null,
       "reasons": [
-        "duplication 17.38%"
-      ]
-    },
-    {
-      "name": "FincaScout",
-      "repo": "thonyAGP/FincaScout",
-      "risk": 5,
-      "scorecard": 9,
-      "grade": "B",
-      "secrets": 0,
-      "sastErrors": 0,
-      "criticalDeps": 0,
-      "highDeps": 1,
-      "duplicationPct": 17.38,
-      "coveragePct": null,
-      "reasons": [
-        "duplication 17.38%"
+        "duplication 17.34%"
       ]
     },
     {
@@ -484,12 +468,12 @@
   ],
   "summary": {
     "avgScorecard": 6.1,
-    "totalRisk": 3570,
+    "totalRisk": 3585,
     "reposWithSecrets": 8,
     "reposOverDuplication": 25,
     "gradeDistribution": {
       "A": 5,
-      "B": 3,
+      "B": 2,
       "C": 2,
       "D": 2,
       "F": 16
