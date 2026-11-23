@@ -58,7 +58,9 @@ jobs:
           git config user.email "devops-factory[bot]@users.noreply.github.com"
           git add data/activity-log.json data/self-heal-cooldowns.json
           git diff --cached --quiet || git commit -m "chore: update activity log" --no-verify
-          if git pull --rebase --autostash; then
+          # Fetch master only: a bare `git pull` fetched every ai-fix/* and renovate/* branch (~8 min),
+          # master moved meanwhile and the push was rejected (fetch first)
+          if git fetch --no-tags origin master && git rebase --autostash origin/master; then
             git push
             exit 0
           fi
