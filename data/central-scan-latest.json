@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "date": "2026-11-16",
-  "totalFindings": 819,
+  "date": "2026-11-23",
+  "totalFindings": 814,
   "repos": [
     {
       "name": "DevOps-Factory",
@@ -77,10 +77,10 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 90,
+          "findings": 88,
           "bySeverity": {
-            "HIGH": 78,
-            "CRITICAL": 12
+            "CRITICAL": 12,
+            "HIGH": 76
           },
           "top": []
         },
@@ -126,19 +126,19 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 16,
+          "findings": 15,
           "bySeverity": {
             "HIGH": 14,
-            "CRITICAL": 2
+            "CRITICAL": 1
           },
           "top": []
         },
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 1054,
+          "findings": 1059,
           "bySeverity": {
-            "DUPLICATION": 1054
+            "DUPLICATION": 1059
           },
           "top": [],
           "metrics": {
@@ -204,9 +204,9 @@
         {
           "scanner": "gitleaks",
           "status": "findings",
-          "findings": 2,
+          "findings": 6,
           "bySeverity": {
-            "SECRET": 2
+            "SECRET": 6
           },
           "top": []
         },
@@ -223,23 +223,23 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 54,
+          "findings": 53,
           "bySeverity": {
             "CRITICAL": 6,
-            "HIGH": 48
+            "HIGH": 47
           },
           "top": []
         },
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 465,
+          "findings": 469,
           "bySeverity": {
-            "DUPLICATION": 465
+            "DUPLICATION": 469
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 13.33
+            "duplicationPct": 12.99
           }
         }
       ]
@@ -273,9 +273,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 72,
+          "findings": 70,
           "bySeverity": {
-            "HIGH": 70,
+            "HIGH": 68,
             "CRITICAL": 2
           },
           "top": []
@@ -704,46 +704,8 @@
       "name": "Lanceur_Claude",
       "repo": "thonyAGP/claude-launcher",
       "stack": "unknown",
-      "cloned": true,
-      "scanners": [
-        {
-          "scanner": "gitleaks",
-          "status": "clean",
-          "findings": 0,
-          "bySeverity": {},
-          "top": []
-        },
-        {
-          "scanner": "semgrep",
-          "status": "findings",
-          "findings": 10,
-          "bySeverity": {
-            "ERROR": 1,
-            "MEDIUM": 6,
-            "WARNING": 3
-          },
-          "top": []
-        },
-        {
-          "scanner": "trivy",
-          "status": "clean",
-          "findings": 0,
-          "bySeverity": {},
-          "top": []
-        },
-        {
-          "scanner": "jscpd",
-          "status": "clean",
-          "findings": 1,
-          "bySeverity": {
-            "DUPLICATION": 1
-          },
-          "top": [],
-          "metrics": {
-            "duplicationPct": 0.3
-          }
-        }
-      ]
+      "cloned": false,
+      "scanners": []
     },
     {
       "name": "analyse-negocio",
@@ -873,13 +835,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 397,
+          "findings": 428,
           "bySeverity": {
-            "DUPLICATION": 397
+            "DUPLICATION": 428
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 6.58
+            "duplicationPct": 6.13
           }
         }
       ]
@@ -913,9 +875,9 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 17,
+          "findings": 18,
           "bySeverity": {
-            "HIGH": 16,
+            "HIGH": 17,
             "CRITICAL": 1
           },
           "top": []
@@ -923,13 +885,13 @@
         {
           "scanner": "jscpd",
           "status": "findings",
-          "findings": 634,
+          "findings": 637,
           "bySeverity": {
-            "DUPLICATION": 634
+            "DUPLICATION": 637
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 4.19
+            "duplicationPct": 4.21
           }
         }
       ]
@@ -993,9 +955,9 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 18,
+          "findings": 20,
           "bySeverity": {
-            "WARNING": 11,
+            "WARNING": 13,
             "ERROR": 7
           },
           "top": []
@@ -1003,22 +965,22 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 2,
+          "findings": 3,
           "bySeverity": {
-            "HIGH": 2
+            "HIGH": 3
           },
           "top": []
         },
         {
           "scanner": "jscpd",
           "status": "clean",
-          "findings": 439,
+          "findings": 526,
           "bySeverity": {
-            "DUPLICATION": 439
+            "DUPLICATION": 526
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 2.75
+            "duplicationPct": 2.88
           }
         }
       ]
@@ -1106,7 +1068,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 17.38
+            "duplicationPct": 17.34
           }
         }
       ]
@@ -1170,9 +1132,9 @@
         {
           "scanner": "semgrep",
           "status": "findings",
-          "findings": 18,
+          "findings": 20,
           "bySeverity": {
-            "WARNING": 11,
+            "WARNING": 13,
             "ERROR": 7
           },
           "top": []
@@ -1180,22 +1142,22 @@
         {
           "scanner": "trivy",
           "status": "findings",
-          "findings": 2,
+          "findings": 3,
           "bySeverity": {
-            "HIGH": 2
+            "HIGH": 3
           },
           "top": []
         },
         {
           "scanner": "jscpd",
           "status": "clean",
-          "findings": 439,
+          "findings": 526,
           "bySeverity": {
-            "DUPLICATION": 439
+            "DUPLICATION": 526
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 2.75
+            "duplicationPct": 2.88
           }
         }
       ]
@@ -1283,7 +1245,7 @@
           },
           "top": [],
           "metrics": {
-            "duplicationPct": 17.38
+            "duplicationPct": 17.34
           }
         }
       ]
