@@ -2,29 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-11-16T17:42:00.512Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T17:42:01.894Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T17:42:01.896Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "7/10 passing, 2 failing. Issues: 2 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-11-16T21:19:06.435Z",
       "source": "scan-and-configure",
       "action": "scan-complete",
@@ -3247,6 +3224,62 @@
       "source": "build-dashboard",
       "action": "dashboard-built",
       "details": "36 projects, avg health 57",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-23T18:02:30.505Z",
+      "source": "build-dashboard",
+      "action": "security-posture",
+      "details": "Avg score: 35/100, 23 critical issues",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-23T18:02:31.214Z",
+      "source": "security-registry",
+      "action": "registry-updated",
+      "details": "avg 6.1/10, 3585 risk pts, +0/-0",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-23T18:04:14.982Z",
+      "source": "build-dashboard",
+      "action": "template-drift",
+      "details": "Drift: 10%, 19 drifted templates",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-23T18:05:36.601Z",
+      "source": "build-dashboard",
+      "action": "dora-metrics",
+      "details": "DORA: high, deploy 0/wk, lead 22.2h, MTTR 11.1h",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-23T18:05:59.633Z",
+      "source": "build-dashboard",
+      "action": "cost-monitor",
+      "details": "CI cost: 44155min total, 255min wasted, ~$337.24/mo",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-23T18:07:57.269Z",
+      "source": "build-dashboard",
+      "action": "compliance-report",
+      "details": "Compliance: avg 30/100, branch protection 0/23, CI 22/23, review coverage 0%",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-23T18:07:57.951Z",
+      "source": "scan-and-configure",
+      "action": "recommendations-generated",
+      "details": "237 recommendations across 37 repos (3 critical, 175 high)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-23T18:08:46.417Z",
+      "source": "build-dashboard",
+      "action": "dashboard-built",
+      "details": "36 projects, avg health 58",
       "status": "warning"
     }
   ]
