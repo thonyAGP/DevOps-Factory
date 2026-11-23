@@ -2,108 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-11-15T20:40:50.870Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-15T20:40:52.560Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-15T20:40:52.562Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "7/10 passing, 2 failing. Issues: 2 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T00:33:27.291Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T00:33:28.752Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T00:33:28.754Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "7/10 passing, 2 failing. Issues: 2 created, 0 closed",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T00:46:26.165Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 23 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T00:46:26.759Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.1/10, 3590 risk pts, +0/-0",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-16T00:47:32.661Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 10%, 19 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T00:48:41.820Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: high, deploy 0/wk, lead 156.8h, MTTR 8.4h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-16T00:49:03.382Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 44114min total, 281min wasted, ~$336.91/mo",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-16T00:50:28.969Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 30/100, branch protection 0/23, CI 22/23, review coverage 0%",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T00:50:29.676Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "237 recommendations across 37 repos (3 critical, 179 high)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-16T00:51:07.415Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "36 projects, avg health 58",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-11-16T03:23:43.201Z",
       "source": "scan-and-configure",
       "action": "scan-complete",
@@ -3379,6 +3277,29 @@
     },
     {
       "timestamp": "2026-11-22T20:07:14.384Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "7/10 passing, 2 failing. Issues: 2 created, 0 closed",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-23T01:15:56.860Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-23T01:15:58.593Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-23T01:15:58.595Z",
       "source": "ci-health-check",
       "action": "check-complete",
       "details": "7/10 passing, 2 failing. Issues: 2 created, 0 closed",
