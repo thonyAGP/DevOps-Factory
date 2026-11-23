@@ -2,85 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-11-16T22:24:58.104Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Auto-Generate Tests",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-11-16T22:25:04.952Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "CI Health Check",
-      "details": "Partial failure detected: gh: not found",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T22:25:22.148Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Quality Score",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-11-16T22:25:23.798Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "Redeploy Templates",
-      "details": "Partial failure detected: Failed to create PR",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T22:25:31.719Z",
-      "source": "factory-watchdog",
-      "action": "workflow-failure",
-      "target": "Supply Chain Security",
-      "details": "Total failure detected",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-11-16T22:25:35.797Z",
-      "source": "factory-watchdog",
-      "action": "workflow-partial-failure",
-      "target": "Weekly Veille",
-      "details": "Partial failure detected: GEMINI_API_KEY",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-16T22:25:35.799Z",
-      "source": "factory-watchdog",
-      "action": "workflow-stale",
-      "target": "CI Health Check",
-      "details": "Workflow stale (informational patterns only)",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-11-16T22:25:37.842Z",
-      "source": "factory-watchdog",
-      "action": "issue-created",
-      "target": "Quality Score",
-      "details": "total_failure: Quality Score",
-      "status": "error"
-    },
-    {
-      "timestamp": "2026-11-16T22:25:38.129Z",
-      "source": "factory-watchdog",
-      "action": "workflow-stale",
-      "target": "Weekly Veille",
-      "details": "Workflow stale (informational patterns only)",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-11-16T22:25:38.131Z",
-      "source": "factory-watchdog",
-      "action": "watchdog-complete",
-      "details": "24/30 passing. 3 failures, 3 partial. 0 self-heals",
-      "status": "error"
-    },
-    {
       "timestamp": "2026-11-17T01:20:09.360Z",
       "source": "ci-health-check",
       "action": "ci-failure-detected",
@@ -3186,6 +3107,27 @@
       "action": "check-complete",
       "details": "7/10 passing, 2 failing. Issues: 2 created, 0 closed",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-23T22:58:18.505Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 37 repos (23 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-23T22:58:36.938Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-23T22:58:36.940Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 53 outcomes (23 merged, 9 closed, 21 open). 1 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
