@@ -1,6 +1,6 @@
 ## Template Update Report
 
-> Based on veille from 2026-11-15
+> Based on veille from 2026-11-23
 
 ### All templates are up to date
 
