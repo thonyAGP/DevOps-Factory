@@ -3201,6 +3201,69 @@
       "action": "dashboard-built",
       "details": "36 projects, avg health 58",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-24T22:39:59.752Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Auto-Generate Tests",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-11-24T22:40:05.666Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "CI Health Check",
+      "details": "Partial failure detected: gh: not found",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-24T22:40:24.345Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Redeploy Templates",
+      "details": "Partial failure detected: Failed to create PR",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-24T22:40:32.591Z",
+      "source": "factory-watchdog",
+      "action": "workflow-failure",
+      "target": "Supply Chain Security",
+      "details": "Total failure detected",
+      "status": "error"
+    },
+    {
+      "timestamp": "2026-11-24T22:40:36.424Z",
+      "source": "factory-watchdog",
+      "action": "workflow-partial-failure",
+      "target": "Weekly Veille",
+      "details": "Partial failure detected: GEMINI_API_KEY",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-24T22:40:36.426Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "CI Health Check",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-11-24T22:40:36.427Z",
+      "source": "factory-watchdog",
+      "action": "workflow-stale",
+      "target": "Weekly Veille",
+      "details": "Workflow stale (informational patterns only)",
+      "status": "info"
+    },
+    {
+      "timestamp": "2026-11-24T22:40:36.428Z",
+      "source": "factory-watchdog",
+      "action": "watchdog-complete",
+      "details": "25/30 passing. 2 failures, 3 partial. 0 self-heals",
+      "status": "error"
     }
   ]
 }
