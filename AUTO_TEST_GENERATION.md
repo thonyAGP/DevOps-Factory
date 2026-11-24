@@ -60,7 +60,7 @@ pnpm auto-generate-tests -- --limit 10
 # Options
 pnpm auto-generate-tests -- --dry-run           # Preview
 pnpm auto-generate-tests -- --no-commit         # Pas d'auto-commit
-pnpm auto-generate-tests -- --model sonnet-4-5  # Meilleure qualité
+pnpm auto-generate-tests -- --model claude-opus-5-5  # Meilleure qualité
 ```
 
 **Avantages** :

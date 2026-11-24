@@ -19,7 +19,7 @@
  *
  * Environment:
  *   ANTHROPIC_API_KEY: Required
- *   AUTO_GEN_MODEL: claude-haiku-4-5 (default) or claude-sonnet-4-5
+ *   AUTO_GEN_MODEL: claude-haiku-4-5 (default) or claude-opus-5-5
  *   AUTO_GEN_MAX_FILES: Max files per run (default: 10)
  */
 
@@ -297,8 +297,7 @@ const calculateCost = (inputTokens: number, outputTokens: number, model: string)
   // Pricing as of March 2024
   const prices: Record<string, { input: number; output: number }> = {
     'claude-haiku-4-5': { input: 0.25, output: 1.25 }, // per MTok
-    'claude-sonnet-4-5': { input: 3.0, output: 15.0 },
-    'claude-opus-4': { input: 15.0, output: 75.0 },
+    'claude-opus-5-5': { input: 4.0, output: 20.0 },
   };
 
   const price = prices[model] || prices['claude-haiku-4-5'];
