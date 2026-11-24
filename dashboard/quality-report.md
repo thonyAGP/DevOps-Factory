@@ -1,13 +1,10 @@
-## Quality Score Report - 2026-11-23
+## Quality Score Report - 2026-11-24
 
 ### Summary
 - **Average Score**: 35/100
 - **Excellent** (80+): 0
 - **Good** (60-79): 0
 - **Needs Work** (<60): 25
-
-### Score Drops (≥5 points)
-- **ClubMedRoomAssignment**: 55 → 40 (-15)
 
 ### Per Repository
 
