@@ -2,29 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-11-18T18:30:57.427Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "ClubMedRoomAssignment",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-18T18:30:59.305Z",
-      "source": "ci-health-check",
-      "action": "ci-failure-detected",
-      "target": "LB2I-Fiscal-Manager",
-      "details": "CI failure: CI on main",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-18T18:30:59.307Z",
-      "source": "ci-health-check",
-      "action": "check-complete",
-      "details": "7/10 passing, 2 failing. Issues: 2 created, 0 closed",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-11-18T19:40:31.770Z",
       "source": "scan-and-configure",
       "action": "scan-complete",
@@ -3257,6 +3234,13 @@
       "action": "dashboard-built",
       "details": "36 projects, avg health 58",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-25T18:35:33.433Z",
+      "source": "quality-score",
+      "action": "quality-complete",
+      "details": "Avg 35/100, 0 excellent, 25 needs work, 0 drops, 0 improvements",
+      "status": "success"
     }
   ]
 }
