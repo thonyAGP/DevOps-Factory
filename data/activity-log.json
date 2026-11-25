@@ -2,83 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-11-18T04:50:38.701Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 37 repos (23 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-18T04:50:54.545Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-18T04:50:54.547Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 52 outcomes (23 merged, 9 closed, 20 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
-      "timestamp": "2026-11-18T05:00:38.087Z",
-      "source": "build-dashboard",
-      "action": "security-posture",
-      "details": "Avg score: 35/100, 23 critical issues",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-18T05:00:38.532Z",
-      "source": "security-registry",
-      "action": "registry-updated",
-      "details": "avg 6.1/10, 3570 risk pts, +0/-0",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-18T05:02:03.616Z",
-      "source": "build-dashboard",
-      "action": "template-drift",
-      "details": "Drift: 10%, 19 drifted templates",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-18T05:03:13.674Z",
-      "source": "build-dashboard",
-      "action": "dora-metrics",
-      "details": "DORA: high, deploy 0/wk, lead 2.1h, MTTR 10.3h",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-18T05:03:35.242Z",
-      "source": "build-dashboard",
-      "action": "cost-monitor",
-      "details": "CI cost: 44022min total, 269min wasted, ~$336.18/mo",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-18T05:05:13.373Z",
-      "source": "build-dashboard",
-      "action": "compliance-report",
-      "details": "Compliance: avg 30/100, branch protection 0/23, CI 22/23, review coverage 0%",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-18T05:05:13.855Z",
-      "source": "scan-and-configure",
-      "action": "recommendations-generated",
-      "details": "237 recommendations across 37 repos (3 critical, 174 high)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-18T05:05:52.273Z",
-      "source": "build-dashboard",
-      "action": "dashboard-built",
-      "details": "36 projects, avg health 58",
-      "status": "warning"
-    },
-    {
       "timestamp": "2026-11-18T09:31:05.833Z",
       "source": "ci-health-check",
       "action": "ci-failure-detected",
@@ -3264,6 +3187,27 @@
       "action": "dashboard-built",
       "details": "36 projects, avg health 58",
       "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-25T05:48:01.168Z",
+      "source": "scan-and-configure",
+      "action": "scan-complete",
+      "details": "Scanned 37 repos (23 active)",
+      "status": "success"
+    },
+    {
+      "timestamp": "2026-11-25T05:48:20.416Z",
+      "source": "outcome-registry",
+      "action": "pattern-degrade",
+      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-25T05:48:20.419Z",
+      "source": "scan-and-configure",
+      "action": "outcome-registry",
+      "details": "Registry updated: 53 outcomes (23 merged, 9 closed, 21 open). 1 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
+      "status": "info"
     }
   ]
 }
