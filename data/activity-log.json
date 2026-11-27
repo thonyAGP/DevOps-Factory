@@ -2,27 +2,6 @@
   "version": 1,
   "entries": [
     {
-      "timestamp": "2026-11-20T04:32:25.814Z",
-      "source": "scan-and-configure",
-      "action": "scan-complete",
-      "details": "Scanned 37 repos (23 active)",
-      "status": "success"
-    },
-    {
-      "timestamp": "2026-11-20T04:32:47.175Z",
-      "source": "outcome-registry",
-      "action": "pattern-degrade",
-      "details": "prettier-format-error: 0.2 -> 0.2 (1/5, 20.0%)",
-      "status": "warning"
-    },
-    {
-      "timestamp": "2026-11-20T04:32:47.178Z",
-      "source": "scan-and-configure",
-      "action": "outcome-registry",
-      "details": "Registry updated: 52 outcomes (23 merged, 9 closed, 20 open). 0 new in last 7d. 0 confidence scores adjusted. 0 repo(s) promoted.",
-      "status": "info"
-    },
-    {
       "timestamp": "2026-11-20T04:42:09.425Z",
       "source": "build-dashboard",
       "action": "security-posture",
@@ -3161,6 +3140,29 @@
       "source": "build-dashboard",
       "action": "dashboard-built",
       "details": "36 projects, avg health 58",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-27T04:40:12.546Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "ClubMedRoomAssignment",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-27T04:40:14.147Z",
+      "source": "ci-health-check",
+      "action": "ci-failure-detected",
+      "target": "LB2I-Fiscal-Manager",
+      "details": "CI failure: CI on main",
+      "status": "warning"
+    },
+    {
+      "timestamp": "2026-11-27T04:40:14.149Z",
+      "source": "ci-health-check",
+      "action": "check-complete",
+      "details": "7/10 passing, 2 failing. Issues: 2 created, 0 closed",
       "status": "warning"
     }
   ]
