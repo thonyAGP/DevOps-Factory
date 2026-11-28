@@ -49,7 +49,7 @@ export const CLAUDE_REVIEW_CONFIG: ClaudeReviewConfig = {
     'thonyAGP/ClubMedRoomAssignment',
     'thonyAGP/LecteurMagic',
   ]),
-  model: 'claude-sonnet-4-5-20250929',
+  model: 'claude-opus-5-5',
 };
 
 // Total = 100. noDuplication + noCriticalFindings come from the weekly
